@@ -1,0 +1,17 @@
+<div class="viewModelsPage">
+	
+	<div class="searchBar">
+		<input placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="list">
+		<div ng-repeat="user in userList | filter:query" class="listItem">
+			<a ng-href="#/user/{{user.id}}/{{$index}}">
+				<div class="description">{{user.usernamename}}</div>
+				<div class="description">{{user.email}}</div>
+			</a>
+			
+		</div>
+		
+	</div>
+</div>

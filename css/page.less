@@ -1,0 +1,144 @@
+/*Model Page*/
+
+@toolbarHeight:60px;
+/*standard add page layout*/
+.addPage{
+  width:100%;
+  height:100%;
+  position:absolute;
+  font-family:Helvetica, Tahoma, sans-serif;
+  
+  .toolbar{
+    width:100%;
+    height:@toolbarHeight;
+     
+  }
+  
+  .workspace{
+    position:absolute;
+    top:@toolbarHeight;
+    width:100%;
+    bottom:0px;
+  }
+    
+  //buttons
+  button{
+      margin-top:10px;
+      font-size:14px;
+      padding:6px;
+      padding-left:8px;
+      padding-right:8px;
+      border-radius:2px;
+      border:1px solid #D6D6D6;
+      cursor:pointer;
+      background:#E2E2E2;
+  }
+    
+    button[type=submit]{
+      color:#ffffff;
+      background:#E05050;
+      border:1px solid #C90404;
+      padding-left:12px;
+      padding-right:12px;
+      //hover state
+      &:hover{
+        background: #e05050; /* Old browsers */
+background: -moz-linear-gradient(top,  #e05050 0%, #d63939 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e05050), color-stop(100%,#d63939)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #e05050 0%,#d63939 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #e05050 0%,#d63939 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #e05050 0%,#d63939 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #e05050 0%,#d63939 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e05050', endColorstr='#d63939',GradientType=0 ); /* IE6-9 */
+
+      }
+      
+      //active state
+      &:active{
+       background: #e05050; /* Old browsers */
+background: -moz-linear-gradient(top,  #e05050 0%, #b73131 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e05050), color-stop(100%,#b73131)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #e05050 0%,#b73131 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #e05050 0%,#b73131 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #e05050 0%,#b73131 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #e05050 0%,#b73131 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e05050', endColorstr='#b73131',GradientType=0 ); /* IE6-9 */
+
+      }
+    
+  }
+}
+/*Create Model*/
+.createModelPage{
+  .addPage;
+}
+
+/*Add Configuration*/
+
+.addConfigPage{
+  .addPage;
+}
+
+/*Add Upholstery*/
+.addUpolPage{
+  .addPage;
+}
+
+/*Add Customer*/
+
+.addCustomerPage{
+  .addPage;
+}
+
+
+
+@import "contacts/supplier/add_supplier.less";
+@import "supplies/foam/add_foam.less";
+@import "supplies/lumber/add_lumber.less";
+@import "supplies/wool/add_wool.less";
+
+
+/*
+ * Orders
+ */
+
+@import "orders/po/create_po.less";
+
+/*
+ * Settings
+ */
+@import "auth/group/add_group.less";
+
+/*
+ * Details Page
+ */
+
+.detailsPage{
+  height:100%;
+  width:100%;
+  //toolbar
+  .toolbar{
+    height:@toolbarHeight;
+    border-bottom:1px solid grey;
+    
+    button{
+      height:30px;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+  }
+  
+  .workspace{
+    position:absolute;
+    top:@toolbarHeight;
+    bottom:0px;
+    width:100%
+  }
+  table{
+    td{
+      padding:3px;
+    }
+  }
+}
+
+@import 'auth/group/group_details.less';

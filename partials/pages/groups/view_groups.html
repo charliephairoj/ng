@@ -1,0 +1,16 @@
+<div class="viewModelsPage">
+	
+	<div class="searchBar">
+		<input placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="list">
+		<div ng-repeat="group in groupList | filter:query" class="listItem">
+			<a ng-href="#/groups/{{group.id}}/{{$index}}">
+				<div class="description">{{group.name}}</div>
+			</a>
+			
+		</div>
+		
+	</div>
+</div>

@@ -1,0 +1,93 @@
+
+
+.createPOPage{
+  font-family:Helvetica, Tahoma, sans-serif;
+  .sidebar{
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    width:175px;
+    background:white;
+    border-right:1px solid #000;
+    z-index:1;
+    .sourceList{
+      top:40px;
+      bottom:0px;
+      width:100%;
+      position:absolute;
+      left:0px;
+      
+      
+      .sourceItem{
+        width:100%;
+        height:20px;
+        cursor:move;
+        border:1px solid grey;
+        
+        &:hover{
+          border:1px solid blue;
+        }
+        
+        &:active{
+          border:1px solid red;
+          background:purple;
+        }
+      }
+    }
+    
+  }
+  
+  
+  
+  .po{
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:175px;
+    right:0px;
+    background:white;
+    
+    .toolbar{
+      height:50px;
+      width:100%;
+      
+      button{
+        padding:10px;
+      }
+    }
+    
+    .supplier{
+      position:absolute;
+      top:50px;
+      left:100px;
+      font-family:Helvetica, Tahoma, sans-serif;
+      
+      label{
+        padding-left:10px;
+      }
+    }
+    
+    .supplies{
+      position:absolute;
+      top:175px;
+      bottom:0px;
+      left:0px;
+      right:0px;
+      
+      table{
+        width:100%;
+       
+          
+        .itemNo{
+          width:5%;
+        }
+        .description{
+          width:75%;
+        }
+        
+      }
+    }
+    
+  }
+}

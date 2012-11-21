@@ -1,0 +1,181 @@
+/* app css stylesheet */
+
+
+
+
+/*Directives-----------------------------------*/
+
+
+
+
+
+/*Side Menu Gadget*/
+
+.gadget-sideMenu{
+	position:fixed;
+	top:100px;
+	left:-35px;
+	width:90px;
+	height:auto;
+	z-index:10;
+	font-family:Tahoma, Helvetica, sans-serif;
+	-webkit-transition: all 250ms ease;
+	-moz-transition: all 250ms ease;
+	-ms-transition: all 250ms ease;
+	-o-transition: all 250ms ease;
+	transition: all 250ms ease;
+	
+	&:hover{
+	  left:0px;
+	}
+	
+	.gadget-itemContainer{
+	  position: relative;
+    margin-right: 40px;
+    
+    .gadget-item{
+      position: relative;
+      height:50px;
+      width:50px;
+      background: #3c3c3c;
+      border-top: 1px solid grey;
+      cursor: pointer;
+      
+      &:first-child{
+        border-top: 1px solid transparent;
+        border-top-right-radius:2px;
+      }
+      
+      &:last-child{
+        border-bottom-right-radius:2px;
+      }
+    }
+    
+    .gadget-content{
+      position:absolute;
+      left:48px;
+      top:0px;
+      height:50px;
+      width:0px;
+      opacity:0;
+      background: #3c3c3c;
+      border-top:1px solid transparent;
+      border-top-right-radius:2px;
+      border-bottom-right-radius:2px;
+      text-align:center;
+      font-size:14px;
+      -webkit-transition: all 325ms ease;
+      -moz-transition: all 325ms ease;
+      -ms-transition: all 325ms ease;
+      -o-transition: all 325ms ease;
+      transition: all 325ms ease;
+      
+      span{
+        color: #FFFFFF;
+        height:50px;
+        line-height:50px;
+        position:relative;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+    
+    &:hover{
+      .gadget-content{
+        width:250px;
+        opacity:1;
+      }
+    }
+	}
+}
+
+
+/*
+ * Drag and Drop Upload 
+ * Component
+ */
+
+.ec-drop-target{
+	position:relative;
+	height:220px;
+	width:440px;
+	font-family: Tahoma, Helvetica, sans-serif, Arial;
+	
+	.dropbox{
+	  position:absolute;
+    height:122px;
+    width:200px;
+    top:5px;
+    left:5px;
+    margin:5px;
+    border:1px dashed #9F9F9F;
+    border-radius:3px;
+    color:#9F9F9F;
+    font-size:18px;
+    text-align:center;
+    padding-top:58px;
+    -webkit-transition: all 325ms ease;
+    -moz-transition: all 325ms ease;
+    -ms-transition: all 325ms ease;
+    -o-transition: all 325ms ease;
+    transition: all 325ms ease;
+    
+    &.active{
+      background-color: #9AFC8F;
+      color: #5BA05B;
+      border-color: #5BA05B;
+    }
+	}
+	
+	.previewContainer{
+	  position:absolute;
+    right:5px;
+    top:0px;
+    height:200px;
+    width:200px;
+    margin: 5px;
+    
+    div{
+      position:relative;
+      height:90px;
+      width:90px;
+      padding: 5px;
+      overflow: hidden;
+      float: left;
+      
+      .closeButton{
+        position:absolute;
+        height:5px;
+        width:35px;
+        top:5px;
+        right:0px;
+        border:1px solid grey;
+        border-radius: 2px;
+        background: black;
+        color:#FFFFFF;
+        padding: 2px;
+        font-size: 10px;
+        padding:6px;
+        padding-top:0px;
+        cursor:pointer;
+      }
+      
+      img{
+        height:100%;
+        width:auto;
+      }
+    }
+	}
+}
+
+
+
+
+
+
+
+/*
+ *Add Model Component 
+ */
+
+

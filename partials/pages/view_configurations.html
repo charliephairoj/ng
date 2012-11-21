@@ -1,0 +1,23 @@
+<div class="configPage">
+	
+	
+
+	<div class="configSection">
+		
+		<ul>
+			<li ng-repeat="config in configurations | orderBy:config" class="configItem">
+				<div>
+					<table class="infoTable">
+						<tr>
+							<td>Configuration:</td>
+							<td>{{config.configuration}}</td>
+						</tr>
+					</table>
+					
+				</div>
+				
+			</li>
+			
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="addLumberPage addPage">
+	<form name="addLumberForm" ng-controller="AddLumberCtrl">
+		
+		<button type="submit" ng-click="save()">Save</button>
+		<table>
+			<tr>
+				<td><label>Supplier</label></td>
+				<td><select ng-options="supplier.name for supplier in supplierList" ng-model="lumber.supplier"></select></td>
+			</tr>
+			<tr>
+				<td><label>Type</label></td>
+				<td>
+					<select ng-model="lumber.type" required>
+						<option value="Alder">Alder</option>
+						<option value="Teak">Teak</option>
+						<option value="Ash">Ash</option>
+						<option value="Beech">Beech</option>
+						<option value="Oak">Oak</option>
+						<option value="MDF">MDF</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Width</label></td>
+				<td><input name="width" type="number" min="0" ng-model="lumber.width" required/></td>
+			</tr>
+			<tr>
+				<td><label>Length</label></td>
+				<td><input type="number" min="0" ng-model="lumber.depth" required/></td>
+			</tr>
+			<tr>
+				<td><label>Thickness</label></td>
+				<td><input type="number" min="0" ng-model="lumber.height" required/></td>
+			</tr>
+			<tr>
+				<td><label>Cost</label></td>
+				<td><input type="number" min="0" ng-model="lumber.cost" required/></td>
+			</tr>
+		</table> 
+		
+		
+	</form>
+	
+</div>

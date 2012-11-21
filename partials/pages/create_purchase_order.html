@@ -1,0 +1,68 @@
+<div class="createPOPage">
+	<div class="sidebar" ng-switch on="sourceType" ng-init="sourceType = supplier">
+		
+		<input ng-model="query" type="text" />
+		<div class="sourceList" ng-switch-default="supplier">
+			<div class="sourceItem" ec-draggable='{"type":"supplier", "index":{{$index}}}' ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</div>
+		</div>
+		<div class="sourceList" ng-switch-when="supply">
+			<div class="sourceItem" ng-repeat="supply in supplyList | filter:supplier.name |exclude:orderedSupplies" ec-draggable='{"type":"supply", "index":{{supply.id}}}'>{{supply.description}}</div>
+		</div>
+	</div>
+	<div class="po" ec-droppable="add()">
+		<div class="toolbar">
+			<button type="button"ng-click="create()">Create</button>
+		</div>
+		<div class="supplier">
+			<table>
+				<tr>
+					<td><label>Supplier</label></td>
+					<td><label>{{supplier.name}}</label></td>
+				</tr>
+				<tr>
+					<td><label>Address</label></td>
+					<td><label>{{supplier.address1}}</label></td>
+				</tr>
+				<tr>
+					<td><label>City</label></td>
+					<td><label>{{supplier.city}}</label></td>
+				</tr>
+				<tr>
+					<td><label>Territory</label></td>
+					<td><label>{{supplier.territory}}</label></td>
+				</tr>
+				<tr>
+					<td><label>Country</label></td>
+					<td><label>{{supplier.country}}</label></td>
+				</tr>
+				<tr>
+					<td><label>Telephone</label></td>
+					<td><label>{{supplier.telephone}}</label></td>
+				</tr>
+			</table>
+			
+		</div>
+		
+		<div class="supplies">
+			<table>
+				<thead>
+					<tr>
+						<th class="itemNo"><label>Item No.</label></th>
+						<th class="description"><label>Description</label></th>
+						<th><label>Quantity</label></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="orderedSupply in orderedSupplies">
+						<td class="itemNo"><label>{{$index+1}}</label></td>
+						<td class="description"><label>{{orderedSupply.description}}</label></td>
+						<td class=""><label><input type="number" min="0" ng-model="orderedSupplies[$index].quantity"/></label></td>
+						<td class="delete"><button type="button" ng-click="remove($index)">Remove</button></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+	
+</div>

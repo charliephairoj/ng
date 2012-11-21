@@ -1,0 +1,18 @@
+<div class="viewModelsPage">
+	
+	<div class="searchBar">
+		<input placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="supplierList">
+		<div ng-repeat="supplier in supplierList | filter:query" class="listItem">
+			<a ng-href="#/suppliers/{{supplier.id}}/{{$index}}">
+				<div class="model">{{supplier.name}}</div>
+				<div>{{supplier.id}}</div>
+				<div>{{supplier.email}}</div>
+			</a>
+			
+		</div>
+		
+	</div>
+</div>

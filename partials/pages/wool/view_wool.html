@@ -1,0 +1,17 @@
+<div class="viewModelsPage">
+	
+	<div class="searchBar">
+		<input placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="list">
+		<div ng-repeat="wool in woolList | filter:query" class="listItem">
+			<a ng-href="#/wool/{{wool.id}}/{{$index}}">
+				<div class="description">{{wool.description}}</div>
+				<div class="text">{{lumber.text}}</div>
+			</a>
+			
+		</div>
+		
+	</div>
+</div>

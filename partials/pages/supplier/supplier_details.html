@@ -1,0 +1,56 @@
+<div class="supplierDetailsPage">
+	<form>
+		<button type="button" ng-click="deleteSupplier()">Delete</button>
+		<!--<button type="button" >Add Supplier Contact</button> -->
+		<table>
+			<tr>
+				<td><label>Company Name</label></td>
+				<td><input type="text" ng-model="supplier.name" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Terms of Payment in Days</label></td>
+				<td><input type="number" ng-model="supplier.terms" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Discount</label></td>
+				<td><input type="number" ng-model="supplier.discount" ec-blur="updateSupplier()" />%</td>
+			</tr>
+			
+			<tr>
+				<td><label>Telephone</label></td>
+				<td><input type="text" ng-model="supplier.telephone" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Fax</label></td>
+				<td><input type="text" ng-model="supplier.fax" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Address 1</label></td>
+				<td><input type="text" ng-model="supplier.address1" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Address 2</label></td>
+				<td><input type="text" ng-model="supplier.address2" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>City</label></td>
+				<td><input type="text" ng-model="supplier.city" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Territory</label></td>
+				<td><input type="text" ng-model="supplier.territory" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Country</label></td>
+				<td><input type="text" ng-model="supplier.country" ec-blur="updateSupplier()" /></td>
+			</tr>
+			<tr>
+				<td><label>Zipcode</label></td>
+				<td><input type="text" ng-model="supplier.zipcode" ec-blur="updateSupplier()" /></td>
+			</tr>
+		</table> 
+		
+		
+	</form>
+	
+</div>

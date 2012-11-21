@@ -1,0 +1,21 @@
+<div class="gadget-sideMenu">
+		<div ng-repeat="menuItem in menuItems" class="gadget-itemContainer">
+			
+			<div class="gadget-content" ng-click="activateComponent(menuItem.title)">
+				<span ng-click="alert('oooo')">{{menuItem.title}}</span>
+			</div>
+			<div class="gadget-item">
+				<img ng-src={{menuItem.icon}} />
+			</div>
+		</div>
+		<div class="gadget-itemContainer">
+			
+			<div class="gadget-content" ng-click="activateComponent(menuItem.title)">
+				<span>Add a Reminder</span>
+			</div>
+			<div class="gadget-item">
+				<img ng-src={{menuItem.icon}} />
+			</div>
+		</div>
+		
+	</div>
