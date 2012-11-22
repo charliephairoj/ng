@@ -11,27 +11,69 @@
     background:white;
     border-right:1px solid #000;
     z-index:1;
+    background:#DBDBDB;
+    
+    .searchBar{
+      padding-top:5px;
+      padding-bottom:5px;
+      background:#CECECE;
+      border-bottom:1px solid #AAAAAA;
+      input{
+        
+        margin-left:10px;
+        border-radius:10px;
+        height:20px;
+      }
+    }
+    
+    //Source list of suppliers and supplies
     .sourceList{
-      top:40px;
-      bottom:0px;
-      width:100%;
-      position:absolute;
+      margin-top:5px;
+      height:auto;
+      padding-top:5px;
+      padding-bottom:5px;
+      margin-right:5px;
+      margin-left:5px;
+      position:relative;
       left:0px;
+      border-radius:5px;
+      background:#A0A0A0;
+      -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+        
+        box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
       
       
       .sourceItem{
-        width:100%;
-        height:20px;
+        padding-top:5px;
+        padding-bottom:5px;
         cursor:move;
-        border:1px solid grey;
+        border-bottom:1px solid grey;
+        background:white;
+        padding-left:5px;
+        padding-right:5px;
+        margin-left:5px;
+        margin-right:5px;
+        
+        &:first-child{
+          -webkit-border-radius: 5px 5px 0px 0px;
+          border-radius: 5px 5px 0px 0px;
+        }
+        
+        &:last-child{
+          -webkit-border-radius: 0px 0px 5px 5px;
+          border-radius: 0px 0px 5px 5px;
+          border-bottom:none;
+        }
         
         &:hover{
-          border:1px solid blue;
+          background:#DDDDDD;
+          margin-top:2px;
+          margin-bottom:2px;
         }
         
         &:active{
-          border:1px solid red;
-          background:purple;
+          background:#AFAFAF;
+          border-radius:5px;
         }
       }
     }
@@ -46,46 +88,150 @@
     bottom:0px;
     left:175px;
     right:0px;
-    background:white;
+    background:#DBDBDB;
     
     .toolbar{
-      height:50px;
+      padding-top:10px;
+      padding-bottom:10px;
       width:100%;
-      
+      background:#CECECE;
+      border-bottom:1px solid #AAAAAA;
       button{
-        padding:10px;
-      }
-    }
-    
-    .supplier{
-      position:absolute;
-      top:50px;
-      left:100px;
-      font-family:Helvetica, Tahoma, sans-serif;
-      
-      label{
-        padding-left:10px;
-      }
-    }
-    
-    .supplies{
-      position:absolute;
-      top:175px;
-      bottom:0px;
-      left:0px;
-      right:0px;
-      
-      table{
-        width:100%;
-       
-          
-        .itemNo{
-          width:5%;
-        }
-        .description{
-          width:75%;
+        margin-left:10px;
+        padding:5px;
+        border-radius:4px;
+        border:1px solid #AAAAAA;
+        cursor:pointer;
+        
+        background: rgb(219,219,219); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(219,219,219,1) 0%, rgba(201,201,201,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(219,219,219,1)), color-stop(100%,rgba(201,201,201,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
+        
+        &:hover{
+          background: rgb(219,219,219); /* Old browsers */
+          background: -moz-linear-gradient(top,  rgba(219,219,219,1) 0%, rgba(188,188,188,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(219,219,219,1)), color-stop(100%,rgba(188,188,188,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#bcbcbc',GradientType=0 ); /* IE6-9 */
+
         }
         
+        &:active{
+          //-webkit-box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+          //box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+          border:1px solid #7F7F7F;
+          color:#FFFFFF;
+          text-shadow: 0px -1px 1px #666666;
+          filter: dropshadow(color=#666666, offx=0, offy=-1);
+          background: rgb(173,173,173); /* Old browsers */
+          background: -moz-linear-gradient(top,  rgba(173,173,173,1) 0%, rgba(173,173,173,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(173,173,173,1)), color-stop(100%,rgba(173,173,173,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#adadad',GradientType=0 ); /* IE6-9 */
+
+        }
+      }
+    }
+    
+    .workspace{
+      
+      .supplier{
+        position:absolute;
+        top:50px;
+        left:100px;
+        font-family:Helvetica, Tahoma, sans-serif;
+        
+        label{
+          padding-left:10px;
+        }
+      }
+      
+      .supplies{
+        position:absolute;
+        top:175px;
+        height:auto;
+        left:10px;
+        right:10px;
+        background:#A0A0A0;
+        border-radius:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+            
+            box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+        
+        table{
+          margin-left:5px;
+          margin-right:5px;
+          
+          
+          
+            
+          .itemNo{
+            width:5%;
+          }
+          .description{
+            width:75%;
+          }
+          
+          
+          tr{
+            padding-top:5px;
+            padding-bottom:5px;
+            cursor:move;
+            border-bottom:1px solid grey;
+            background:white;
+            padding-left:5px;
+            padding-right:5px;
+            margin-left:5px;
+            margin-right:5px;
+            
+            th{
+                &:first-child{
+                  -webkit-border-radius: 5px 0px 0px 0px;
+                  border-radius: 5px 0px 0px 0px;
+                }
+                
+                &:last-child{
+                  -webkit-border-radius: 0px 5px 0px 0px;
+                  border-radius: 0px 5px 0px 0px;
+                }
+              }
+            
+            
+              
+            
+            
+            td{
+              
+              input{
+                border:none;
+                text-align:right;
+              }
+                &:first-child{
+                  -webkit-border-radius: 0px 0px 0px 5px;
+                  border-radius: 0px 0px 0px 5px;
+                }
+                
+                &:last-child{
+                  -webkit-border-radius: 0px 0px 5px 0px;
+                  border-radius: 0px 0px 5px 0px;
+                }
+              }
+          }
+          
+        }
       }
     }
     
