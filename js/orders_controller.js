@@ -57,6 +57,12 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         });
     };
     
+    $scope.reset = function(){
+        $scope.supplier = {};
+        $scope.orderedSupplies = [];
+        $scope.sourceType = "supplier"; 
+    };
+    
     $scope.remove = function(index){
         $scope.orderedSupplies.splice(index, 1);
     }

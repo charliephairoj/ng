@@ -13,10 +13,10 @@
 	<div class="po" ec-droppable="add()">
 		<div class="toolbar">
 			<button type="button"ng-click="create()">Create</button>
+			<button type="button"ng-click="reset()">Reset</button>
 		</div>
 		<div class="workspace">
-			<div class="supplier">
-				<table>
+				<table class="supplier">
 					<tr>
 						<td><label>Supplier</label></td>
 						<td><label>{{supplier.name}}</label></td>
@@ -43,7 +43,6 @@
 					</tr>
 				</table>
 				
-			</div>
 			
 			<div class="supplies">
 				<table>
