@@ -49,18 +49,18 @@
 				<table>
 					<thead>
 						<tr>
-							<th class="itemNo"><label>Item No.</label></th>
+							<th class="itemNo"><label>No.</label></th>
 							<th class="description"><label>Description</label></th>
-							<th><label>Quantity</label></th>
-							<th><label>Remove</label></th>
+							<th class="quantity"><label>Quantity</label></th>
+							<th class="remove"><label>Remove</label></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="orderedSupply in orderedSupplies">
 							<td class="itemNo"><label>{{$index+1}}</label></td>
 							<td class="description"><label>{{orderedSupply.description}}</label></td>
-							<td class=""><label><input class="quantity" type="number" min="0" ng-model="orderedSupplies[$index].quantity"/></label></td>
-							<td class="delete"><button type="button" ng-click="remove($index)">Remove</button></td>
+							<td class="quantity"><label><input type="number" min="0" ng-model="orderedSupplies[$index].quantity"/></label></td>
+							<td class="remove" ng-click="remove($index)">x</td>
 						</tr>
 					</tbody>
 				</table>
