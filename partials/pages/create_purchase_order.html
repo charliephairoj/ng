@@ -10,10 +10,10 @@
 			<li class="sourceItem" ng-repeat="supply in supplyList | filter:supplier.name |filter:query |exclude:orderedSupplies" ec-draggable='{"type":"supply", "index":{{supply.id}}}'>{{supply.description}}</li>
 		</ul>
 	</div>
-	<div class="po" ec-droppable="add()">
+	<form class="po" name="form" ec-droppable="add()" novalidate>
 		<div class="toolbar">
-			<button type="button"ng-click="create()">Create</button>
-			<button type="button"ng-click="reset()">Reset</button> 
+			<button type="submit" ng-disabled="form.$invalid || hasOrderedSupplies()" ng-click="create()">Create</button>
+			<button type="button" ng-click="reset()">Reset</button> 
 		</div>
 		<div class="workspace">
 				<table class="supplier">
@@ -58,7 +58,7 @@
 						<tr ng-repeat="orderedSupply in orderedSupplies">
 							<td class="itemNo"><label>{{$index+1}}</label></td>
 							<td class="description"><label>{{orderedSupply.description}}</label></td>
-							<td class="quantity"><label><input type="number" min="0" ng-model="orderedSupplies[$index].quantity"/></label></td>
+							<td class="quantity"><label><input type="number" min="0" required ng-model="orderedSupplies[$index].quantity"/></label></td>
 							<td class="remove" ng-click="remove($index)">x</td>
 						</tr>
 					</tbody>
@@ -66,6 +66,6 @@
 				
 			</div>
 		</div>
-	</div>
+	</form>
 	
 </div>

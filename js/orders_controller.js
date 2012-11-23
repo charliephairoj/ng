@@ -26,19 +26,16 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
                 angular.forEach($scope.supplyList, function(item){
                     
                     if(item.id == $scope.data.index){
-                        console.log(item);
-                        console.log($scope.data);
+                        
                         $scope.orderedSupplies.push(item);
                     }
                 });
                 
-                console.log($scope.orderedSupplies);
             });
             //$scope.orderedSupplies.push($scope.supplyList[$scope.data.index]);
         }
         
-        console.log($scope.data);
-        console.log($scope.supplier);
+        
     };
     
     $scope.create = function(){
@@ -65,6 +62,12 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     
     $scope.remove = function(index){
         $scope.orderedSupplies.splice(index, 1);
+    }
+    
+    
+    //Validation functions
+    $scope.hasOrderedSupplies = function(){
+        return $scope.orderedSupplies.length === 0;
     }
     
 }

@@ -20,6 +20,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('customer/:id', {id:'@id'});
     }).factory('Lumber', function(ecResource){
         return ecResource('lumber/:id', {id:'@id'});
+    }).factory('Fabric', function(ecResource){
+        return ecResource('fabric/:id', {id:'@id'});
     }).factory('Foam', function(ecResource){
         return ecResource('foam/:id', {id:'@id'});
     }).factory('Wool', function(ecResource){

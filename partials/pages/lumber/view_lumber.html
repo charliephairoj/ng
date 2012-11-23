@@ -7,9 +7,9 @@
 	<div class="lumberList">
 		<div ng-repeat="lumber in lumberList | filter:query" class="listItem">
 			<a ng-href="#/lumber/{{lumber.id}}/{{$index}}">
-				<div class="color">{{lumber.height}}</div>
-				<div class="type">{{lumber.type}}</div>
-				<div class="width">{{lumber.width}}</div>
+				<div class="model">{{lumber.description}}</div>
+				<div>{{lumber.height}}</div>
+				<div>{{lumber.width}}</div>
 			</a>
 			
 		</div>

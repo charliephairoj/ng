@@ -34,6 +34,13 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters',
     when('/wool/add_wool', {templateUrl:'partials/pages/wool/add_wool.html', controller: AddWoolCtrl}).
     when('/wool', {templateUrl:'partials/pages/wool/view_wool.html', controller: ViewWoolCtrl}).
     when('/wool/:id/:index', {templateUrl:'partials/pages/wool/wool_details.html', controller: WoolDetailsCtrl}).
+    //fabric routes
+    when('/fabric/add_fabric', {templateUrl:'partials/pages/fabric/add_fabric.html', controller: AddFabricCtrl}).
+    when('/fabric', {templateUrl:'partials/pages/fabric/view_fabrics.html', controller: ViewFabricsCtrl}).
+    when('/fabric/:id/:index', {templateUrl:'partials/pages/fabric/fabric_details.html', controller: WoolDetailsCtrl}).
+    /*
+     * This section deals with orders
+     */
     //purhcase order routes
     when('/purchase_orders/create_purchase_order', {templateUrl:'partials/pages/create_purchase_order.html', controller:CreatePOCtrl}).
     

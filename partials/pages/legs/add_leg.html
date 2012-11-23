@@ -1,24 +1,35 @@
-<div class="addCustomerPage">
-	<form>
-		<button type="submit" ng-click="saveSupplier()">Save</button>
+	<form name="form" novalidate class="addLegPage addPage">
+		<div class="toolbar">
+			<button type="submit" ng-disabled="form.$invalid" ng-click="saveSupplier()">Save</button>
+		</div>
+		<div class="workspace">
+			<table>
+				<tr>
+					<td><label>Supplier</label></td>
+					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
+				</tr>
+				<tr>
+					<td><label>Height</label></td>
+					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="leg.height" required/></td>
+				</tr>
+				<tr>
+					<td><label>Width</label></td>
+					<td><input name="width" type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="leg.width" required/></td>
+				</tr>
+				<tr>
+					<td><label>Depth</label></td>
+					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="leg.depth" required/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Cost per Piece</label></td>
+					<td><input type="text" ng-model="leg.cost" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" required/></td>
+				</tr>
+				
+			</table> 
+		</div>
 		
-		<table>
-			<tr>
-				<td><label>Supplier</label></td>
-				<td><select ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
-			</tr>
-			<tr>
-				<td><label>Model</label></td>
-				<td><select ng-options="model.model for model in models" ng-model="leg.model"></select></td>
-			</tr>
-			<tr>
-				<td><label>Cost</label></td>
-				<td><input type="text" ng-model="leg.cost"/></td>
-			</tr>
-			
-		</table> 
 		
 		
 	</form>
 	
-</div>

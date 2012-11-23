@@ -177,3 +177,48 @@ function WoolDetailsCtrl($scope, Wool, $routeParams){
 }
 
 WoolDetailsCtrl.$inject = ['$scope', 'Wool', '$routeParams']
+
+
+
+
+
+/*
+ * Fabric Controllers
+ */
+
+//Add fabric Ctrl
+
+
+function AddFabricCtrl($scope, Supplier, Fabric){
+    $scope.supplierList = Supplier.query();
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var fabric = new Fabric();
+       
+       
+       angular.copy($scope.fabric, fabric);
+       
+        fabric.$save();
+    };
+    
+    
+    
+}
+
+AddFabricCtrl.$inject = ['$scope', 'Supplier', 'Fabric'];
+
+
+//controller to add foam
+
+function ViewFabricsCtrl($scope, Fabric){
+    $scope.fabricList = Fabric.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewFabricsCtrl.$inject = ['$scope', 'Fabric'];
