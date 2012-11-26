@@ -15,16 +15,11 @@ function AddLumberCtrl($scope, Lumber){
     $scope.save = function(){
         //declare vars
         var lumber = new Lumber();
-        //set properties
+        //copy properties
+        angular.copy($scope.lumber, lumber);
+        
         lumber.supplierID = $scope.lumber.supplier.id
-        lumber.width = $scope.lumber.width;
-        lumber.depth = $scope.lumber.depth;
-        lumber.height = $scope.lumber.height;
-        lumber.type = $scope.lumber.type;
-        lumber.cost = $scope.lumber.cost;
         lumber.description = $scope.lumber.type+' '+lumber.width+'x'+lumber.depth+'x'+lumber.height;
-        
-        
         
         lumber.$save(function(data){
             window.location = "#/lumber";
@@ -48,7 +43,7 @@ ViewLumberCtrl.$inject = ['$scope', 'Lumber']
 
 function LumberDetailsCtrl($scope, Lumber, $routeParams){
     
-    $scope.lumber = Lumber.get({'id':$routeParams.lumberID})
+    $scope.lumber = Lumber.get({'id':$routeParams.id})
     console.log($scope.lumber);
     $scope.remove = function(){
         $scope.lumber.$delete(function(){
@@ -62,7 +57,7 @@ function LumberDetailsCtrl($scope, Lumber, $routeParams){
     };
 }
 
-ViewLumberCtrl.$inject = ['$scope', 'Lumber', '$routeParams']
+LumberDetailsCtrl.$inject = ['$scope', 'Lumber', '$routeParams']
 
 //controller to add foam
 
@@ -70,33 +65,58 @@ function AddFoamCtrl($scope, Foam){
     //Methods
     
     //Add Lumber
-    $scope.addFoam = function(){
+    $scope.save = function(){
         //declare vars
         var foam = new Foam();
         //set properties
-        foam.width = $scope.foam.width;
-        foam.depth = $scope.foam.depth;
-        foam.height = $scope.foam.height;
-        foam.color = $scope.foam.color;
+        angular.copy($scope.foam, foam)
         foam.foamType = $scope.foam.type;
+        foam.supplierID = $scope.foam.supplier.id;
         
         foam.$save();
     };
     
-    $scope.updateFoam = function(){
-        
-    }
+    
     
 }
 
-AddFoamCtrl.$inject = ['$scope', 'Lumber'];
+AddFoamCtrl.$inject = ['$scope', 'Foam'];
 
 
-function ViewFoamCtrl($scope){
+function ViewFoamCtrl($scope, Foam){
+    
+    $scope.foamList = Foam.query();
+    console.log($scope.foamList);
     //var lumber = $scope.lumbers
     
 }
-ViewFoamCtrl.$inject = ['$scope']
+ViewFoamCtrl.$inject = ['$scope', 'Foam']
+
+//Foam Details
+
+function FoamDetailsCtrl($scope, Foam, $routeParams){
+    
+    $scope.foam = Foam.get({'id':$routeParams.id})
+    console.log($scope.lumber);
+    $scope.remove = function(){
+        $scope.foam.$delete(function(){
+            window.location = "index.html#/foam"
+        });
+        $scope.foamList = Foam.query();
+    };
+    
+    $scope.update = function(){
+        $scope.foam.$save()
+    };
+}
+
+FoamDetailsCtrl.$inject = ['$scope', 'Foam', '$routeParams']
+
+
+
+/*
+ * Legs
+ */
 
 
 //controller to add foam
@@ -127,13 +147,7 @@ function AddWoolCtrl($scope, Supplier, Wool){
     //Add Lumber
     $scope.save = function(){
        var wool = new Wool();
-       wool.cost = $scope.wool.cost;
-       if($scope.wool.tex.trim()!=null){
-           wool.tex = $scope.wool.tex;
-       }
-       if($scope.wool.description.trim()!=null){
-           wool.description = $scope.wool.description;
-       }
+       angular.copy($scope.wool, wool);
        wool.supplierID = $scope.wool.supplier.id;
        
        wool.$save();
@@ -158,6 +172,65 @@ function ViewWoolCtrl($scope, Wool){
 }
 
 ViewWoolCtrl.$inject = ['$scope', 'Wool'];
+
+
+function WoolDetailsCtrl($scope, Wool, $routeParams){
+    
+    $scope.wool = Wool.get({'id':$routeParams.id})
+    console.log($scope.wool);
+    $scope.remove = function(){
+        $scope.wool.$delete(function(){
+            window.location = "index.html#/wool";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.wool.$save()
+    };
+}
+
+WoolDetailsCtrl.$inject = ['$scope', 'Wool', '$routeParams']
+
+/*
+ * Screw Controllers
+ */
+
+//controller to add foam
+
+function AddScrewCtrl($scope, Supplier, Screw){
+    $scope.supplierList = Supplier.query();
+    console.log(Supplier.query());
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var screw = new Screw();
+       angular.copy($scope.screw, screw);
+       screw.supplierID = $scope.screw.supplier.id;
+       
+       screw.$save();
+    };
+    
+    
+    
+}
+
+AddScrewCtrl.$inject = ['$scope', 'Supplier', 'Screw'];
+
+
+//controller to add foam
+
+function ViewScrewsCtrl($scope, Screw){
+    $scope.screwList = Screw.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewScrewsCtrl.$inject = ['$scope', 'Screw'];
 
 
 function WoolDetailsCtrl($scope, Wool, $routeParams){

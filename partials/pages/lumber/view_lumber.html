@@ -1,18 +1,22 @@
-<div class="viewModelsPage">
+<div class="viewModelsPage viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
-	</div>
+	<input placeholder="Search" class="searchBar" type="text" ng-model="query" />
 	
-	<div class="lumberList">
-		<div ng-repeat="lumber in lumberList | filter:query" class="listItem">
-			<a ng-href="#/lumber/{{lumber.id}}/{{$index}}">
-				<div class="model">{{lumber.description}}</div>
-				<div>{{lumber.height}}</div>
-				<div>{{lumber.width}}</div>
-			</a>
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="lumber in lumberList | filter:query" class="listItem">
+					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.description}}</a></td>
+				</tr>
+			</tbody>
 			
-		</div>
-		
+		</table>
 	</div>
+	
+	
 </div>

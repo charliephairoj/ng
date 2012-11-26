@@ -43,8 +43,15 @@
 					</tr>
 				</table>
 				
+				<table class="vat">
+					<tr>
+						<td><label>Vat</label></td>
+						<td><input type="text" required ng-pattern="/^\d{0,2}$/" ng-model="vat" />%</td>
+					</tr>
+				</table>
+				
 			
-			<div class="supplies">
+			<div class="supplies" ng-hide="hasOrderedSupplies()">
 				<table>
 					<thead>
 						<tr>
@@ -58,7 +65,7 @@
 						<tr ng-repeat="orderedSupply in orderedSupplies">
 							<td class="itemNo"><label>{{$index+1}}</label></td>
 							<td class="description"><label>{{orderedSupply.description}}</label></td>
-							<td class="quantity"><label><input type="number" min="0" required ng-model="orderedSupplies[$index].quantity"/></label></td>
+							<td class="quantity"><label><input type="text" ng-pattern="/^[1-9](\d+)?$/" required ng-model="orderedSupplies[$index].quantity"/></label></td>
 							<td class="remove" ng-click="remove($index)">x</td>
 						</tr>
 					</tbody>

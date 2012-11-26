@@ -10,6 +10,7 @@
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     $scope.supplyList = Supply.query();
     $scope.orderedSupplies = [];
+    $scope.vat;
     console.log($scope.supplyList);
     //Methods
     

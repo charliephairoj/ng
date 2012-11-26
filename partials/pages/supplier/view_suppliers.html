@@ -1,18 +1,28 @@
-<div class="viewModelsPage">
+<div class="viewModelsPage viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
-	</div>
-	
-	<div class="supplierList">
-		<div ng-repeat="supplier in supplierList | filter:query" class="listItem">
-			<a ng-href="#/suppliers/{{supplier.id}}/{{$index}}">
-				<div class="model">{{supplier.name}}</div>
-				<div>{{supplier.id}}</div>
-				<div>{{supplier.email}}</div>
-			</a>
+	<input placeholder="Search" class="searchBar" type="text" ng-model="query" />
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Territory</th>
+					<th>Country</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.name}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.address1}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.city}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.territory}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.country}}</a></td>
+				</tr>
+			</tbody>
 			
-		</div>
-		
+		</table>
 	</div>
+	
 </div>

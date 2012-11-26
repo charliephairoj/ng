@@ -57,6 +57,10 @@ function MainMenuCtrl($scope) {
                     'category':'Paint'
                 },
                 {
+                    'category':'Screws',
+                    'actions':['Add Screw']
+                },
+                {
                     'category':'Wool',
                     'actions':['Add Wool']
                 }
@@ -341,20 +345,24 @@ function AddSupplierCtrl($scope, Supplier){
     //Mehtods
     
     //Method to save the supplier to the database
-    $scope.saveSupplier = function(){
+    $scope.save = function(){
         //New customer  and address objects
-        var newSupplier = new Supplier(), address = {};
+        var supplier = new Supplier(), address = {};
         //Apply the customer details first
-        newSupplier.name = $scope.contact.name;
-        newSupplier.email = $scope.contact.email;
-        newSupplier.telephone = $scope.contact.telephone;
-        newSupplier.fax = $scope.contact.fax;
+        supplier.name = $scope.contact.name;
+        supplier.email = $scope.contact.email;
+        supplier.telephone = $scope.contact.telephone;
+        supplier.fax = $scope.contact.fax;
         //Set the address        
-        newSupplier.address1 = $scope.contact.address1;
-        newSupplier.address2 = $scope.contact.address2;
-        newSupplier.city = $scope.contact.city;
-        newSupplier.territory = $scope.contact.territory;
-        newSupplier.country = $scope.contact.country;
+        supplier.address1 = $scope.contact.address1;
+        supplier.address2 = $scope.contact.address2;
+        supplier.city = $scope.contact.city;
+        supplier.territory = $scope.contact.territory;
+        supplier.country = $scope.contact.country;
+        
+        //terms and discount
+        supplier.discount = $scope.supplier.discount;
+        supplier.terms = $scope.supplier.terms;
         
         //Save the supplier
         
@@ -378,9 +386,9 @@ ViewSuppliersCtrl.$inject = ['$scope', 'Supplier'];
 
 function SupplierDetailCtrl($scope, Supplier, $routeParams){
     
-    $scope.supplier =  $scope.supplierList[$routeParams.index];
+    $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
-    $scope.updateSupplier = function(){
+    $scope.update = function(){
         console.log($scope.supplier);
         
         $scope.supplier.$save(function(data){
@@ -388,7 +396,7 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams){
         });
     };
     
-    $scope.deleteSupplier = function(){
+    $scope.remove = function(){
         $scope.supplier.$delete()
         $scope.supplierList.splice($routeParams.index, 1);
         window.location = 'index.html#/supplier';

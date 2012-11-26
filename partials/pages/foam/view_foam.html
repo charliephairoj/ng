@@ -1,18 +1,22 @@
-<div class="viewModelsPage">
+<div class="viewFoamPage viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
-	</div>
+	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	
-	<div class="modelList">
-		<div ng-repeat="model in models | filter:query" class="listItem">
-			<a ng-href="#/model/{{model.id}}/{{$index}}">
-				<div class="model">{{model.model}}</div>
-				<div class="name">{{model.name}}</div>
-				<div class="collection">{{model.collection}}</div>
-			</a>
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Color</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="foam in foamList | filter:query" class="listItem">
+					<td><a ng-href="#/foam/{{foam.id}}">{{foam.type}}</a></td>
+					<td><a ng-href="#/foam/{{foam.id}}">{{foam.color}}</a></td>
+				</tr>
+			</tbody>
 			
-		</div>
-		
+		</table>
 	</div>
 </div>

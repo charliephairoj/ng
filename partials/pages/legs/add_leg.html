@@ -9,6 +9,10 @@
 					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
 				</tr>
 				<tr>
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="leg.reference" /></td>
+				</tr>
+				<tr>
 					<td><label>Height</label></td>
 					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="leg.height" required/></td>
 				</tr>

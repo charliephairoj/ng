@@ -1,6 +1,6 @@
 	<form name="form" class="addFoamPage addPage">
 		<div class="toolbar">
-			<button type="submit" ng-disabled="form.$invalid" ng-click="saveSupplier()">Save</button>
+			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
 		</div>
 		<div class="workspace">
 			<table>
@@ -9,7 +9,9 @@
 					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
 				</tr>
 				<tr>
-				
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="foam.reference" /></td>
+				</tr>
 				<tr>
 					<td><label>Color</label></td>
 					<td>

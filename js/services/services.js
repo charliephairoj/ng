@@ -26,6 +26,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('foam/:id', {id:'@id'});
     }).factory('Wool', function(ecResource){
         return ecResource('wool/:id', {id:'@id'});
+    }).factory('Screw', function(ecResource){
+        return ecResource('screw/:id', {id:'@id'});
     }).factory('Product', function(ecResource){
         return ecResource('product/:id', {id:'@id'});
     }).factory('PurchaseOrder', function(ecResource){

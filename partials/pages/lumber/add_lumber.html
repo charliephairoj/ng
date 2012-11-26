@@ -9,6 +9,10 @@
 					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="lumber.supplier"></select></td>
 				</tr>
 				<tr>
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="lumber.reference" /></td>
+				</tr>
+				<tr>
 					<td><label>Type</label></td>
 					<td>
 						<select required ng-model="lumber.type">

@@ -139,22 +139,67 @@
 .detailsPage{
   height:100%;
   width:100%;
+  background:#DBDBDB;
+
   //toolbar
   .toolbar{
-    height:@toolbarHeight;
-    border-bottom:1px solid grey;
-    
-    button{
-      height:30px;
-      margin-top:10px;
-      margin-bottom:10px;
+    padding-top:10px;
+      padding-bottom:10px;
+      width:100%;
+      background:#CECECE;
+      border-bottom:1px solid #AAAAAA;
+      button{
+        margin-left:10px;
+        padding:5px;
+        border-radius:4px;
+        border:1px solid #AAAAAA;
+        cursor:pointer;
+        
+        background: rgb(219,219,219); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(219,219,219,1) 0%, rgba(201,201,201,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(219,219,219,1)), color-stop(100%,rgba(201,201,201,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(219,219,219,1) 0%,rgba(201,201,201,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#c9c9c9',GradientType=0 ); /* IE6-9 */
+        
+        &:hover{
+          background: rgb(219,219,219); /* Old browsers */
+          background: -moz-linear-gradient(top,  rgba(219,219,219,1) 0%, rgba(188,188,188,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(219,219,219,1)), color-stop(100%,rgba(188,188,188,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom,  rgba(219,219,219,1) 0%,rgba(188,188,188,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#bcbcbc',GradientType=0 ); /* IE6-9 */
+
+        }
+        
+        &:active{
+          //-webkit-box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+          //box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+          border:1px solid #7F7F7F;
+          color:#FFFFFF;
+          text-shadow: 0px -1px 1px #666666;
+          filter: dropshadow(color=#666666, offx=0, offy=-1);
+          background: rgb(173,173,173); /* Old browsers */
+          background: -moz-linear-gradient(top,  rgba(173,173,173,1) 0%, rgba(173,173,173,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(173,173,173,1)), color-stop(100%,rgba(173,173,173,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom,  rgba(173,173,173,1) 0%,rgba(173,173,173,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#adadad',GradientType=0 ); /* IE6-9 */
+
+        }
+      }
     }
-  }
+  
   
   .workspace{
-    position:absolute;
-    top:@toolbarHeight;
-    bottom:0px;
+    position:relative;
+    height:100%;
     width:100%
   }
   table{
@@ -165,3 +210,77 @@
 }
 
 @import 'auth/group/group_details.less';
+
+
+
+/*
+ * View Page area
+ */
+
+.viewPage{
+  font-family: Helvetica, Tahoma, sans-serif;
+  background:#DBDBDB;
+  position:absolute;
+  top:0px;
+  bottom:0px;
+  right:0px;
+  left:0px;
+  
+  .searchBar{
+    height:20px;
+    border-radius:15px;
+    padding-left:10px;
+    width:140px;
+    margin:10px;
+    outline:none;
+    .transition(width, 250ms, ease);
+    
+    //States
+    
+    &:focus{
+      
+      width:200px;
+      
+    }
+  }
+  
+  .listContainer{
+    background:#A0A0A0;
+    margin-left:10px;
+    margin-right:10px;
+    padding:5px;
+    border-radius:5px;
+        
+    .list{
+      background:#FFFFFF;
+      border-radius:5px;
+      height:20px;
+      width:100%;
+      
+      
+      .listItem{
+        
+        border-bottom:1px solid grey;
+        
+        td{
+          padding-top:5px;
+          padding-bottom:5px;
+          padding-left:3px;
+          padding-right:3px;
+          
+          a{
+            height:100%;
+            width:100%;
+            text-decoration:none;
+            color:black;
+          }
+        }
+        
+        //States
+        &:last-child{
+          border-bottom:none;
+        }
+      }
+    }
+  }
+}
