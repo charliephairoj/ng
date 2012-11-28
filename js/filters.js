@@ -39,11 +39,8 @@ angular.module('EmployeeCenter.filters', []).
         var filtered = [],
             cleanItem, 
             cleanArray = clean(targetArray);
-            console.log(cleanArray);
         angular.forEach(array, function(item){
             cleanItem = clean(item);
-            console.log(cleanItem);
-            console.log(cleanArray.indexOf(cleanItem));
             if(targetArray.indexOf(item) === -1){
                 filtered.push(item);
             }

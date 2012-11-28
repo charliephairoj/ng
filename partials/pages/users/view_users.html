@@ -1,17 +1,22 @@
-<div class="viewModelsPage">
+<div class="viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
-	</div>
+	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	
-	<div class="list">
-		<div ng-repeat="user in userList | filter:query" class="listItem">
-			<a ng-href="#/user/{{user.id}}/{{$index}}">
-				<div class="description">{{user.usernamename}}</div>
-				<div class="description">{{user.email}}</div>
-			</a>
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in userList | filter:query" class="listItem">
+					<td><a ng-href="#/users/{{user.id}}">{{user.name}}</a></td>
+					<td><a ng-href="#/users/{{user.id}}">{{user.email}}</a></td>
+				</tr>
+			</tbody>
 			
-		</div>
-		
+		</table>
 	</div>
 </div>

@@ -75,8 +75,13 @@ AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission'];
 function GroupDetailsCtrl($scope, Group, Permission, $routeParams){
     $scope.permissionList = Permission.query({'resource':false});
     $scope.group = Group.get({'id':$routeParams.id})
-    console.log($scope.group.permissions);
-    console.log($scope.permissionList)
+    
+   
+    
+    
+   
+    
+    
     
     $scope.remove = function(){
         $scope.group.$delete();
@@ -141,4 +146,33 @@ function AddUserCtrl($scope, User, Group){
 
 AddUserCtrl.$inject = ['$scope', 'User', 'Group'];
 
+
+
+//User details
+
+function UserDetailsCtrl($scope, Group, User, $routeParams){
+    $scope.groupList = Group.query({'resource':false});
+    $scope.user = User.get({'id':$routeParams.id})
+    
+    
+    $scope.remove = function(){
+        $scope.user.$delete();
+    };
+    
+    $scope.add = function(){
+         angular.forEach($scope.permissionList, function(perm){
+            if($scope.data.id === perm.id){
+                $scope.$apply(function(){
+                    $scope.group.permissions.push(perm)
+                });
+                
+            }
+        });
+        
+        $scope.group.$save();
+    }
+    
+}
+
+UserDetailsCtrl.$inject = ['$scope', 'Group', 'User', '$routeParams']
 

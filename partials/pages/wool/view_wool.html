@@ -7,13 +7,13 @@
 		<table class="list">
 			<thead>
 				<tr>
-					<th>Description</th>
-					<th>Text</th>
+					<th>Ref</th>
+					<th>Tex</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="wool in woolList | filter:query" class="listItem">
-					<td><a ng-href="#/wool/{{wool.id}}">{{wool.description}}</a></td>
+					<td><a ng-href="#/wool/{{wool.id}}">{{wool.reference}}</a></td>
 					<td><a ng-href="#/wool/{{wool.id}}">{{wool.tex}}</a></td>
 				</tr>
 			</tbody>

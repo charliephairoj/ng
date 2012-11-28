@@ -6,12 +6,14 @@
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Ref</th>
 					<th>Type</th>
 					<th>Color</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="foam in foamList | filter:query" class="listItem">
+					<td><a ng-href="#/foam/{{foam.id}}">{{foam.reference}}</a></td>
 					<td><a ng-href="#/foam/{{foam.id}}">{{foam.type}}</a></td>
 					<td><a ng-href="#/foam/{{foam.id}}">{{foam.color}}</a></td>
 				</tr>

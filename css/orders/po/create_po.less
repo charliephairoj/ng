@@ -55,13 +55,14 @@
         margin-right:5px;
         
         &:first-child{
-          -webkit-border-radius: 5px 5px 0px 0px;
-          border-radius: 5px 5px 0px 0px;
+          border-top-left-radius:5px;
+          border-top-right-radius:5px;
+          
         }
         
         &:last-child{
-          -webkit-border-radius: 0px 0px 5px 5px;
-          border-radius: 0px 0px 5px 5px;
+          border-bottom-left-radius:5px;
+          border-bottom-right-radius:5px;
           border-bottom:none;
         }
         
@@ -193,6 +194,14 @@
             width:40px;
             outline:none;
           }
+        }
+      }
+      
+      .currency{
+        .vat;
+        
+        select{
+          margin-left:5px;
         }
       }
       

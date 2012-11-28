@@ -9,6 +9,7 @@
 
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     $scope.supplyList = Supply.query();
+    $scope.supplierList = Supplier.query();
     $scope.orderedSupplies = [];
     $scope.vat;
     console.log($scope.supplyList);
@@ -44,7 +45,10 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         var po =  new PurchaseOrder();
         
         po.supplier = $scope.supplier.id;
+        po.vat = $scope.vat;
+        po.currency = $scope.currency
         po.supplies = [];
+        
         angular.forEach($scope.orderedSupplies, function(supply, index){
             po.supplies.push({'id':supply.id, 'quantity':Number(supply.quantity)});
         });

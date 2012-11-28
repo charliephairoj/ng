@@ -6,8 +6,9 @@
 function MainMenuCtrl($scope) {
     $scope.menuActions =[];
     $scope.subMenuItems =[];
-    $scope.menuSections = [
+    $scope.menuSections = [/*
         {
+            
             section:'Products',
             categories: [
                 {
@@ -29,7 +30,7 @@ function MainMenuCtrl($scope) {
                 
             ] 
         
-        },
+        },*/
         {
             section:'Supplies',
             categories: [

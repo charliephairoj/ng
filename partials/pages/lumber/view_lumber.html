@@ -6,12 +6,20 @@
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Ref</th>
 					<th>Description</th>
+					<th>Width</th>
+					<th>Length</th>
+					<th>Thickness</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="lumber in lumberList | filter:query" class="listItem">
+					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.reference}}</a></td>
 					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.description}}</a></td>
+					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.width}}</a></td>
+					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.depth}}</a></td>
+					<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.height}}</a></td>
 				</tr>
 			</tbody>
 			

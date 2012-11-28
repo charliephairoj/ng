@@ -6,11 +6,13 @@
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Ref</th>
 					<th>Height</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="screw in screwList | filter:query" class="listItem">
+					<td><a ng-href="#/screw/{{screw.id}}">{{screw.reference}}</a></td>
 					<td><a ng-href="#/screw/{{screw.id}}">{{screw.height}}</a></td>
 				</tr>
 			</tbody>
