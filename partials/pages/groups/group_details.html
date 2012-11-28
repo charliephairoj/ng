@@ -1,18 +1,21 @@
-<div class="groupDetailsPage">
+<div class="groupDetailsPage detailsPage">
 	<div class="toolbar">
 			<button type="button" ng-click="remove()">Delete</button>
 	</div>
 	<div class="workspace">
-		<table ec-droppable='add()'>
-			<tr>
-				<td><label>Group Name</label></td>
-				<td><input type="text" ng-model="group.name" ec-blur="update()" /></td>
-			</tr>
-			
-			
-			<tr ng-repeat="perm in group.permissions"><td>{{perm.name}}</td></tr>
-			
-		</table> 
+		<div ec-droppable='add()'>
+			<table>
+				<tr>
+					<td><label>Group Name</label></td>
+					<td><input type="text" ng-model="group.name" ec-blur="update()" /></td>
+				</tr>
+				
+				
+				<tr ng-repeat="perm in group.permissions"><td>{{perm.name}}</td></tr>
+				
+			</table> 
+		</div>
+		
 		<div class="permissionList">
 			<ul>
 				<li ng-repeat='perm in permissionList | exclude:group.permissions'><div class="permission" ec-draggable='{"id":{{perm.id}}}'>{{perm.name}}</div></li>

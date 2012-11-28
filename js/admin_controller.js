@@ -76,7 +76,7 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams){
     $scope.permissionList = Permission.query({'resource':false});
     $scope.group = Group.get({'id':$routeParams.id})
     
-   
+   console.log($scope.group);
     
     
    

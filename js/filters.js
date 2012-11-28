@@ -8,29 +8,43 @@ angular.module('EmployeeCenter.filters', []).
       return String(text).replace(/\%VERSION\%/mg, version);
     }
   }]).filter('exclude', function(){
-      //Strips the haskey before comparison
-      function clean(target){
-          var data,temp;
-          if(target instanceof Array){
-              data = []
-              angular.forEach(target, function(item){
-                  temp = JSON.parse(JSON.stringify(item));
-                  if(temp.$$hashKey){
-                      delete temp.$$hashKey;
-                  }
-                  data.push(temp);
-              });
-          }else{
-              data = JSON.parse(JSON.stringify(target));
-              if(data.$$hashKey){
-                  delete data.$$hashKey;
-              }
-             
+      
+      function compareObject(item, target){
+          var key;
+          for(key in item){
+            if(target.hasOwnProperty(key)){
+                if(key!='$$hashKey'){
+                    if(typeof item[key] == 'object' && typeof target[key]== 'object'){
+                        if(!compareObject(item[key], target[key])){
+                            return false;
+                        }
+                    }else{
+                        if(item[key] != target[key]){
+                            
+                            return false;
+                        } 
+                    }  
+                }
+                    
+            }else{
+                return false;
+            }
           }
           
-          return data;
+          return true;
       }
       
+      function compare(targetArray, target){
+          var i = 0;
+          for(i; i<targetArray.length; i++){
+               console.log(compareObject(target, targetArray[i]))
+              if(compareObject(target, targetArray[i])){
+                  return true;
+              }
+          }
+          
+          return false;
+      }
       //function to compare
       return function(array, targetArray) {
         if (!(array instanceof Array)) return array;
@@ -38,14 +52,17 @@ angular.module('EmployeeCenter.filters', []).
        
         var filtered = [],
             cleanItem, 
-            cleanArray = clean(targetArray);
-        angular.forEach(array, function(item){
-            cleanItem = clean(item);
-            if(targetArray.indexOf(item) === -1){
+            cleanArray = angular.fromJson(angular.toJson(targetArray));
+        angular.forEach(array, function(item, index){
+            cleanItem = angular.fromJson(angular.toJson(item));
+            if(index==0){
+                //console.log(compare(cleanArray, cleanItem));
+            }
+            
+            if(!compare(cleanArray, cleanItem)){
                 filtered.push(item);
             }
         });
-        
         return filtered;
       };
   });

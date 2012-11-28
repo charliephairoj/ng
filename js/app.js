@@ -67,13 +67,3 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters',
     
   }]);
 
-EmployeeCenter.run(function($rootScope, Model, Supplier, Supply){
-    $rootScope.supplyList = Supply.query();
-    //$rootScope.models = Model.query();
-    $rootScope.supplierList = Supplier.query();
-    
-    //$rootScope.configurations = PersistantData.get('configuration', $rootScope.configurations);
-    //$rootScope.upholsteries = Upholstery.query();
-    
-     
-});
