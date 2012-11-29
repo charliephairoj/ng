@@ -210,15 +210,101 @@ directive('ecDropTarget', function(){
  * Directives for form validation
  */
 
-directive('float', function(){
-    var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
-    return {
-        require:'ngModel',
-        link: function(scope, element, attr, ctrl){
+directive('beautify', function($filter){
+   return {
+       restrict:'A', 
+       link: function(scope, element, attr){
             
+            element.bind('blur', function(){
+                element.context.value = $filter('beautify')(element.context.value);
+            })  
+           
+           
+       }
+   } 
+}).
+directive('map', function(){
+    //Create the variables to be used
+    var map,
+        marker,
+        //Options for the map 
+        mapOptions= {
+            center: new google.maps.LatLng(13.776239,100.527884),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+    
+    //Function to initialize the map
+    function initialize() {
+        
+        map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+            
+             
+    }
+    
+    //create marker function
+    function createMarker(params){
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(13.776239,100.527884),
+            draggable:true,
+            map: map,
+            title:params.title
+        });
+        
+        google.maps.event.addListener(marker, 'mouseup', params.mouseUp);
+        
+        return marker;
+    }
+    return {
+        restrict:'A',
+        replace:false,
+        link: function(scope, element, attrs){
+          var geocoder = new google.maps.Geocoder();
+          initialize();
+          
+          
+          //geocodes from the address
+          scope.getPosition = function(){
+              //If all necessary parts of the address are defined
+              if(scope.contact.address1 && scope.contact.city && scope.contact.territory && scope.contact.country){
+                  //create address string
+                  var address = scope.contact.address1+', '+scope.contact.city+', '+scope.contact.territory+', '+scope.contact.country;
+                  //Geocode the address via google maps
+                  geocoder.geocode({'address':address}, function(results, status){
+                    //create marker if not yet created
+                    if(marker == null || marker == undefined){
+                        //call function to create marker
+                        createMarker({
+                            'title':scope.contact.name,
+                            'mouseUp':function(){
+                                //get position 
+                                var position = marker.getPosition();
+                                //Set lat and Long
+                                scope.contact.lat = position.$a;
+                                scope.contact.lng = position.ab;
+                                console.log(scope.contact);
+                            } 
+                        });
+                        
+                       
+                    //set marker position if already created
+                    }else{
+                        marker.setPosition(results[0].geometry.location);    
+                    }
+                    map.panTo(marker.getPosition());
+                    map.setZoom(14);
+                    //apply the lat and long
+                    scope.contact.lat = results[0].geometry.location.$a;
+                    scope.contact.lng = results[0].geometry.location.ab;
+                  });
+              }
+          }
+          
         }
     }
 })
+
+
 
 ;
 

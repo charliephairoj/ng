@@ -380,7 +380,7 @@ AddSupplierCtrl.$inject = ['$scope', 'Supplier'];
 
 //View supplierList controller
 function ViewSuppliersCtrl($scope, Supplier){
-    console.log($scope.supplierList);
+    $scope.supplierList = Supplier.query();
 }
 
 ViewSuppliersCtrl.$inject = ['$scope', 'Supplier'];

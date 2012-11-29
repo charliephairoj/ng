@@ -7,7 +7,8 @@
 
 //controller to add lumber
 
-function AddLumberCtrl($scope, Lumber){
+function AddLumberCtrl($scope, Lumber, Supplier){
+    $scope.supplierList = Supplier.query();
     
     //Methods
     
@@ -28,7 +29,7 @@ function AddLumberCtrl($scope, Lumber){
     
 }
 
-AddLumberCtrl.$inject = ['$scope', 'Lumber'];
+AddLumberCtrl.$inject = ['$scope', 'Lumber', 'Supplier'];
 
 //update lumber
 
@@ -61,7 +62,9 @@ LumberDetailsCtrl.$inject = ['$scope', 'Lumber', '$routeParams']
 
 //controller to add foam
 
-function AddFoamCtrl($scope, Foam){
+function AddFoamCtrl($scope, Foam, Supplier){
+    
+    $scope.supplierList = Supplier.query();
     //Methods
     
     //Add Lumber
@@ -80,7 +83,7 @@ function AddFoamCtrl($scope, Foam){
     
 }
 
-AddFoamCtrl.$inject = ['$scope', 'Foam'];
+AddFoamCtrl.$inject = ['$scope', 'Foam', 'Supplier'];
 
 
 function ViewFoamCtrl($scope, Foam){
@@ -200,7 +203,6 @@ WoolDetailsCtrl.$inject = ['$scope', 'Wool', '$routeParams']
 
 function AddScrewCtrl($scope, Supplier, Screw){
     $scope.supplierList = Supplier.query();
-    console.log(Supplier.query());
     //Methods
     
     //Add Lumber
@@ -233,10 +235,10 @@ function ViewScrewsCtrl($scope, Screw){
 ViewScrewsCtrl.$inject = ['$scope', 'Screw'];
 
 
-function WoolDetailsCtrl($scope, Wool, $routeParams){
+function ScrewDetailsCtrl($scope, Screw, $routeParams){
     
-    $scope.wool = Wool.get({'id':$routeParams.id})
-    console.log($scope.wool);
+    $scope.screw = Screw.get({'id':$routeParams.id});
+    
     $scope.remove = function(){
         $scope.wool.$delete(function(){
             window.location = "index.html#/wool";

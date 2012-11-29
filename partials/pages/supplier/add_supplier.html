@@ -1,4 +1,4 @@
-	<form name="form" class="addPage">
+	<form name="form" class="addSupplierPage addPage">
 		<div class="toolbar">
 			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
 		</div>
@@ -6,35 +6,35 @@
 			<table>
 				<tr>
 					<td><label>Company Name</label></td>
-					<td><input type="text" required ng-model="contact.name" /></td>
+					<td><input beautify type="text" required ng-model="contact.name" /></td>
 				</tr>
 				
 				
 				<tr>
 					<td><label>Address 1</label></td>
-					<td><input type="text" required ng-model="contact.address1" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.address1" /></td>
 				</tr>
 				
 				
 				<tr>
 					<td><label>Address 2</label></td>
-					<td><input type="text" ng-model="contact.address2" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" ng-model="contact.address2" /></td>
 				</tr>
 				<tr>
 					<td><label>City</label></td>
-					<td><input type="text" required ng-model="contact.city" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.city" /></td>
 				</tr>
 				<tr>
 					<td><label>Territory</label></td>
-					<td><input type="text" required ng-model="contact.territory" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.territory" /></td>
 				</tr>
 				<tr>
 					<td><label>Country</label></td>
-					<td><input type="text" required ng-model="contact.country" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.country" /></td>
 				</tr>
 				<tr>
 					<td><label>Zipcode</label></td>
-					<td><input type="text" required ng-model="contact.zipcode" /></td>
+					<td><input ec-blur="getPosition()" type="text" required ng-model="contact.zipcode" /></td>
 				</tr>
 				<tr>
 					<td><label>Telephone</label></td>
@@ -46,13 +46,20 @@
 				</tr>
 				<tr>
 					<td><label>Discount</label></td>
-					<td><input type="text" required ng-pattern="/\d+{0,2}/"ng-model="contact.discount" />%</td>
+					<td><input type="text" required ng-pattern="/\d{1,2}/" ng-model="contact.discount" />%</td>
 				</tr>
 				<tr>
 					<td><label>Terms</label></td>
 					<td><input type="text" ng-pattern="/\d+/" ng-model="contact.terms" /></td>
 				</tr>
 			</table> 
+			<div class="mapContainer">
+				<div id="map_canvas" map >
+			
+				</div>
+			</div>
+			
+			
 		</div>
 		
 		

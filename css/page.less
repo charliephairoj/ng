@@ -7,6 +7,8 @@
   height:100%;
   position:absolute;
   font-family:Helvetica, Tahoma, sans-serif;
+  background:#DBDBDB;
+
   
   .toolbar{
     padding-top:10px;
@@ -32,6 +34,36 @@
         
         
       }
+    }
+    
+    table{
+      background:#FFFFFF;
+      border-radius:5px;
+      margin-top:10px;
+      margin-left:10px;
+      
+      tr{
+        border-top:1px solid grey;
+        
+          
+        td{
+          padding-top:3px;
+          padding-bottom:3px;
+          padding-left:5px;
+          vertical-align:middle;
+          
+          input{
+            border:none;
+            outline:none;
+            height:100%;
+          }
+        }
+        
+        &:first-child{
+          border-top:none;
+        }
+      }
+      
     }
     
     
