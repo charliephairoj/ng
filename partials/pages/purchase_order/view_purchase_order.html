@@ -1,0 +1,31 @@
+<div class="viewModelsPage viewPage">
+	
+	<div class="toolbar" >
+		<button click-url="/purchase_order/create" ui-if="currentUser.hasPermission('add_purchaseorder')">Create</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Territory</th>
+					<th>Country</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.name}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.address1}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.city}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.territory}}</a></td>
+					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.country}}</a></td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+	
+</div>

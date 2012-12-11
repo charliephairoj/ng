@@ -1,0 +1,30 @@
+<div class="viewPage">
+	
+	<div class="toolbar" >
+		<button click-url="/zipper/add_zipper" ui-if="currentUser.hasPermission('add_zipper')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Supplier</th>
+					<th>Ref</th>
+					<th>Width</th>
+					<th>Roll Length</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="zipper in zipperList | filter:query" class="listItem">
+					<td><a ng-href="#/zipper/{{zipper.id}}">{{zipper.supplier.name}}</a></td>
+					<td><a ng-href="#/zipper/{{zipper.id}}">{{zipper.reference}}</a></td>
+					<td><a ng-href="#/zipper/{{zipper.id}}">{{zipper.width+zipper.widthUnits}}</a></td>
+					<td><a ng-href="#/zipper/{{zipper.id}}">{{zipper.depth+zipper.depthUnits}}</a></td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+</div>
