@@ -52,7 +52,7 @@ directive('ecDraggable', function(){
 /*
  * Makes something droppable
  */
-directive('ecDroppable', function(){
+directive('ecDroppable', function($parse){
     return {
         restrict:'A',
         replace:false,
@@ -210,13 +210,18 @@ directive('ecDropTarget', function(){
  * Directives for form validation
  */
 
-directive('beautify', function($filter){
+directive('beautify', function($filter, $parse){
    return {
        restrict:'A', 
        link: function(scope, element, attr){
-            
+            //bind to blur
             element.bind('blur', function(){
-                element.context.value = $filter('beautify')(element.context.value);
+                //create new beautified version
+                var beautifiedValue = $filter('beautify')(element.context.value);
+                //apply to input
+                element.context.value = beautifiedValue
+                //assign to model
+                $parse(attr.ngModel).assign(scope, beautifiedValue)
             })  
            
            
@@ -302,8 +307,25 @@ directive('map', function(){
           
         }
     }
-})
+}).
 
+/*
+ * Click and send to url for all elements
+ */
+directive('clickUrl', function($location){
+    return {
+        restrict:'A',
+        link: function(scope, element, attr){
+            element.bind('click', function(){
+               console.log(scope.category);
+               scope.category='fabric';
+                $location.path(attr.clickUrl);
+                scope.$apply();
+            });
+            
+        }
+    }
+})
 
 
 ;

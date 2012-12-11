@@ -1,8 +1,6 @@
-<div class="viewModelsPage">
+<div class="viewModelsPage viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
-	</div>
+	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	
 	<div class="supplierList">
 		<div ng-repeat="supplier in suppliers | filter:query" class="listItem">

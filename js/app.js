@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters','EmployeeCenter.services', 'EmployeeCenter.directives']).
+var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filters','EmployeeCenter.services', 'EmployeeCenter.directives', 'UserAuth']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
     //Model routes
@@ -35,7 +35,20 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters',
     //screw routes
     when('/screws/add_screw', {templateUrl:'partials/pages/screws/add_screw.html', controller: AddScrewCtrl}).
     when('/screws', {templateUrl:'partials/pages/screws/view_screws.html', controller: ViewScrewsCtrl}).
+    when('/screws/:id', {templateUrl:'partials/pages/screws/screw_details.html', controller: ScrewDetailsCtrl}).
 
+    //staple routes
+    when('/staple/add_staple', {templateUrl:'partials/pages/staple/add_staple.html', controller: AddStapleCtrl}).
+    when('/staple', {templateUrl:'partials/pages/staple/view_staple.html', controller: ViewStaplesCtrl}).
+    when('/staple/:id', {templateUrl:'partials/pages/staple/staple_details.html', controller: StapleDetailsCtrl}).
+    //thread routes
+    when('/thread/add_thread', {templateUrl:'partials/pages/thread/add_thread.html', controller: AddThreadCtrl}).
+    when('/thread', {templateUrl:'partials/pages/thread/view_thread.html', controller: ViewThreadsCtrl}).
+    when('/thread/:id', {templateUrl:'partials/pages/thread/thread_details.html', controller: ThreadDetailsCtrl}).
+    //webbing routes
+    when('/webbing/add_webbing', {templateUrl:'partials/pages/webbing/add_webbing.html', controller: AddWebbingCtrl}).
+    when('/webbing', {templateUrl:'partials/pages/webbing/view_webbing.html', controller: ViewWebbingsCtrl}).
+    when('/webbing/:id', {templateUrl:'partials/pages/webbing/webbing_details.html', controller: WebbingDetailsCtrl}).
     //wool routes
     when('/wool/add_wool', {templateUrl:'partials/pages/wool/add_wool.html', controller: AddWoolCtrl}).
     when('/wool', {templateUrl:'partials/pages/wool/view_wool.html', controller: ViewWoolCtrl}).
@@ -43,13 +56,19 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters',
     //fabric routes
     when('/fabric/add_fabric', {templateUrl:'partials/pages/fabric/add_fabric.html', controller: AddFabricCtrl}).
     when('/fabric', {templateUrl:'partials/pages/fabric/view_fabrics.html', controller: ViewFabricsCtrl}).
-    when('/fabric/:id/:index', {templateUrl:'partials/pages/fabric/fabric_details.html', controller: WoolDetailsCtrl}).
+    when('/fabric/:id', {templateUrl:'partials/pages/fabric/fabric_details.html', controller: FabricDetailsCtrl}).
+     //zipper routes
+    when('/zipper/add_zipper', {templateUrl:'partials/pages/zipper/add_zipper.html', controller: AddZipperCtrl}).
+    when('/zipper', {templateUrl:'partials/pages/zipper/view_zipper.html', controller: ViewZipperCtrl}).
+    when('/zipper/:id', {templateUrl:'partials/pages/zipper/zipper_details.html', controller: ZipperDetailsCtrl}).
+    
     /*
      * This section deals with orders
      */
     //purhcase order routes
-    when('/purchase_orders/create_purchase_order', {templateUrl:'partials/pages/create_purchase_order.html', controller:CreatePOCtrl}).
-    
+    when('/purchase_order', {templateUrl:'partials/pages/purchase_order/view_purchase_order.html', controller:ViewPOCtrl}).
+    when('/purchase_order/create', {templateUrl:'partials/pages/purchase_order/create_purchase_order.html', controller:CreatePOCtrl}).
+
     /*
      * this area deals with all the urls for the admin section of thes site
      */
@@ -67,3 +86,7 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['EmployeeCenter.filters',
     
   }]);
 
+
+EmployeeCenter.run(function($rootScope, CurrentUser){
+    $rootScope.currentUser = CurrentUser;
+})

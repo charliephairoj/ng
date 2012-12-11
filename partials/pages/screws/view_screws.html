@@ -1,19 +1,24 @@
 <div class="viewModelsPage viewPage">
 	
+	<div class="toolbar" >
+		<button click-url="/screws/add_screw" ui-if="currentUser.hasPermission('add_screw')">Add</button>
 		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
 	
 	<div class="listContainer">
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Supplier</th>
 					<th>Ref</th>
 					<th>Height</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="screw in screwList | filter:query" class="listItem">
-					<td><a ng-href="#/screw/{{screw.id}}">{{screw.reference}}</a></td>
-					<td><a ng-href="#/screw/{{screw.id}}">{{screw.height}}</a></td>
+					<td><a ng-href="#/screws/{{screw.id}}">{{screw.supplier.name}}</a></td>
+					<td><a ng-href="#/screws/{{screw.id}}">{{screw.reference}}</a></td>
+					<td><a ng-href="#/screws/{{screw.id}}">{{screw.height}}</a></td>
 				</tr>
 			</tbody>
 			

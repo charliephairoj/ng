@@ -9,86 +9,103 @@
 
 
 
-/*Side Menu Gadget*/
+/*
+ * UI Date
+ */
 
-.gadget-sideMenu{
-	position:fixed;
-	top:100px;
-	left:-35px;
-	width:90px;
-	height:auto;
-	z-index:10;
-	font-family:Tahoma, Helvetica, sans-serif;
-	-webkit-transition: all 250ms ease;
-	-moz-transition: all 250ms ease;
-	-ms-transition: all 250ms ease;
-	-o-transition: all 250ms ease;
-	transition: all 250ms ease;
-	
-	&:hover{
-	  left:0px;
-	}
-	
-	.gadget-itemContainer{
-	  position: relative;
-    margin-right: 40px;
-    
-    .gadget-item{
-      position: relative;
-      height:50px;
-      width:50px;
-      background: #3c3c3c;
-      border-top: 1px solid grey;
-      cursor: pointer;
+.ui-datepicker{
+  margin:5px;
+  border-radius:5px;
+  border:1px solid grey;
+  font-family:Helvetica, Tahoma, sans-serif;
+  display:none;
+  background-color:#ffffff;
+  //Genearl dom elements
+  a{
+    text-decoration:none;
+  }
+  
+  //header
+  .ui-datepicker-header{
+    background-color:#30343A;
+    position:relative;
+    text-align:center;
+    padding-top:20px;
+    padding-bottom:2px;
+    //corner buttons
+    .ui-corner-all{
       
-      &:first-child{
-        border-top: 1px solid transparent;
-        border-top-right-radius:2px;
-      }
       
-      &:last-child{
-        border-bottom-right-radius:2px;
-      }
     }
-    
-    .gadget-content{
+    //previous
+    .ui-datepicker-prev{
       position:absolute;
-      left:48px;
-      top:0px;
-      height:50px;
-      width:0px;
-      opacity:0;
-      background: #3c3c3c;
-      border-top:1px solid transparent;
-      border-top-right-radius:2px;
-      border-bottom-right-radius:2px;
-      text-align:center;
-      font-size:14px;
-      -webkit-transition: all 325ms ease;
-      -moz-transition: all 325ms ease;
-      -ms-transition: all 325ms ease;
-      -o-transition: all 325ms ease;
-      transition: all 325ms ease;
-      
-      span{
-        color: #FFFFFF;
-        height:50px;
-        line-height:50px;
-        position:relative;
-        font-size: 14px;
-        cursor: pointer;
+      left:3px;
+      top:3px;
+      cursor:pointer;
+      color:grey;
+      .transition(all, 350ms, linear);
+      &:hover{
+        color:#FFFFFF;
       }
     }
     
-    &:hover{
-      .gadget-content{
-        width:250px;
-        opacity:1;
+    //next
+    .ui-datepicker-next{
+      position:absolute;
+      right:3px;
+      top:3px;
+      cursor:pointer;
+      color:grey;
+      .transition(all, 350ms, linear);
+      &:hover{
+        color:#FFFFFF;
       }
     }
-	}
-}
+    
+    //title
+    .ui-datepicker-title{
+      display:inline;
+      color:#FFFFFF;
+    }
+  }
+  
+  //calendar
+  .ui-datepicker-calendar{
+    padding:2px;
+    td{
+      text-align:center;
+      padding:10px;
+      margin:2px;
+      border:1px solid grey;
+      cursor:pointer;
 
+      a{
+        color:grey;
+        .transition(all, 300ms, linear);
+      }
+      
+      //States
+      
+      &.ui-datepicker-current-day{
+        background:grey;
+        
+        a{
+          color:black;
+        }
+      }
+      
+      &:hover{
+        a{
+          color:black;
+        }
+          
+      }
+     
+      
+    }
+  }
+}
 
 /*
  * Drag and Drop Upload 

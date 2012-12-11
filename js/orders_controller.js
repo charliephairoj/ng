@@ -5,13 +5,21 @@
  * Lumber Area
  */
 
+//controller to view po
+
+function ViewPOCtrl($scope, PurchaseOrder, Supplier){
+    $scope.supplierList = Supplier.query();
+    
+}
+
+ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier']
 //controller to add lumber
 
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     $scope.supplyList = Supply.query();
     $scope.supplierList = Supplier.query();
     $scope.orderedSupplies = [];
-    $scope.vat;
+    $scope.po = {};
     //Methods
     
     //Add Supplier
@@ -44,8 +52,21 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         var po =  new PurchaseOrder();
         
         po.supplier = $scope.supplier.id;
-        po.vat = $scope.vat;
-        po.currency = $scope.currency
+        po.vat = $scope.po.vat;
+        po.currency = $scope.po.currency
+        //Add delivery date
+        po.deliveryDate = {}
+        po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;
+        po.deliveryDate.date = $scope.po.deliveryDate.getDate();
+        po.deliveryDate.year = $scope.po.deliveryDate.getFullYear();
+        
+        if($scope.po.shipping.type == "none"){
+            po.shipping = false;
+        }else{
+            po.shipping = {};
+            po.shipping.type = $scope.po.shipping.type;
+            po.shipping.amount = $scope.po.shipping.amount;
+        }
         po.supplies = [];
         
         angular.forEach($scope.orderedSupplies, function(supply, index){
@@ -66,13 +87,31 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     
     $scope.remove = function(index){
         $scope.orderedSupplies.splice(index, 1);
-    }
+    };
     
     
     //Validation functions
     $scope.hasOrderedSupplies = function(){
         return $scope.orderedSupplies.length === 0;
-    }
+    };
+    
+    //shippign status
+    $scope.orderedShipping = function(){
+        if(!$scope.po.shipping){
+           
+            return false;
+        }else{
+            if($scope.po.shipping.type == "none"){
+                return false;
+            }else{
+                return true;
+            }
+            
+        }
+        
+        
+        
+    };
     
 }
 

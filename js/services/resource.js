@@ -464,8 +464,7 @@ angular.module('ecResource', ['ngResource']).
            
             
             Resource.prototype.$delete = function(callback){
-                //saves to storage
-                //so that it is immediately available
+                
                 storage.remove(this);
                 
                

@@ -1,16 +1,25 @@
-<div class="viewModelsPage">
+<div class="viewPage">
 	
-	<div class="searchBar">
-		<input placeholder="Search" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/groups/add_group" ui-if="currentUser.hasPermission('add_group')">Create</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	</div>
 	
-	<div class="list">
-		<div ng-repeat="group in groupList | filter:query" class="listItem">
-			<a ng-href="#/groups/{{group.id}}/{{$index}}">
-				<div class="description">{{group.name}}</div>
-			</a>
+	
+	
+	<div class="listContainer">
+		<table class="list">
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="group in groupList | filter:query" class="listItem">
+					<td><a ng-href="#/groups/{{group.id}}">{{group.name}}</a></td>
+				</tr>
+			</tbody>
 			
-		</div>
-		
+		</table>
 	</div>
 </div>

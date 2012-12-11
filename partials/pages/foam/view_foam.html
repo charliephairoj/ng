@@ -1,11 +1,15 @@
 <div class="viewFoamPage viewPage">
 	
-	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/foam/add_foam" ui-if="currentUser.hasPermission('add_foam')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
 	
 	<div class="listContainer">
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Supplier</th>
 					<th>Ref</th>
 					<th>Type</th>
 					<th>Color</th>
@@ -13,6 +17,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="foam in foamList | filter:query" class="listItem">
+					<td><a ng-href="#/foam/{{foam.id}}">{{foam.supplier.name}}</a></td>
 					<td><a ng-href="#/foam/{{foam.id}}">{{foam.reference}}</a></td>
 					<td><a ng-href="#/foam/{{foam.id}}">{{foam.type}}</a></td>
 					<td><a ng-href="#/foam/{{foam.id}}">{{foam.color}}</a></td>

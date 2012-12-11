@@ -1,6 +1,9 @@
 <div class="viewPage">
 	
-	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/users/add_user" ui-if="currentUser.hasPermission('add_user')">Create</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
 	
 	<div class="listContainer">
 		<table class="list">

@@ -1,12 +1,17 @@
 <div class="viewPage">
 	
-	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/fabric/add_fabric" ui-if="currentUser.hasPermission('add_fabric')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
 	
 	
 	<div class="listContainer">
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Supplier</th>
 					<th>Ref</th>
 					<th>Pattern</th>
 					<th>Color</th>
@@ -15,6 +20,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="fabric in fabricList | filter:query" class="listItem">
+					<td><a ng-href="#/fabric/{{fabric.id}}">{{fabric.supplier.name}}</a></td>
 					<td><a ng-href="#/fabric/{{fabric.id}}">{{fabric.reference}}</a></td>
 					<td><a ng-href="#/fabric/{{fabric.id}}">{{fabric.pattern}}</a></td>
 					<td><a ng-href="#/fabric/{{fabric.id}}">{{fabric.color}}</a></td>

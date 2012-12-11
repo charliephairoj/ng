@@ -7,16 +7,19 @@
 				<td><select ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
 			</tr>
 			<tr>
-					<td><label>Reference Number</label></td>
-					<td><input type="text" ng-model="fiber.reference" /></td>
-				</tr>
+				<td><label>Reference Number</label></td>
+				<td><input type="text" ng-model="fiber.reference" /></td>
+			</tr>
 			<tr>
-				<td><label>Type</label></td>
 				<td>
-					<select ng-model="foam.type">
-						<option>Fiber</option>
-						<option>Foam</option>
+					<label>Width per Sq</label>
+					<select>
+						<option value="m">Meter</option>
+						<option value="ft">Foot</option>
 					</select>
+				</td>
+				<td>
+					<input type="text" />
 				</td>
 			</tr>
 			<tr>

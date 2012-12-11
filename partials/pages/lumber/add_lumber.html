@@ -27,15 +27,34 @@
 				
 				<tr>
 					<td><label>Width</label></td>
-					<td><input name="width" type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.width" required/></td>
+					<td>
+						<input name="width" type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.width" required/>
+						<select ng-required ng-model="lumber.widthUnits">
+							<option value="in">in</option>
+							<option value="ft">ft</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><label>Length</label></td>
-					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.depth" required/></td>
+					<td>
+						<input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.depth" required/>
+						<select ng-required ng-model="lumber.depthUnits">
+							<option value="in">in</option>
+							<option value="ft">ft</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><label>Thickness</label></td>
-					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.height" required/></td>
+					<td>
+						<input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="lumber.height" required/>
+						<select ng-required ng-model="lumber.heightUnits">
+							<option value="in">in</option>
+							<option value="mm">mm</option>
+							<option value="cm">cm</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><label>Cost per Piece</label></td>

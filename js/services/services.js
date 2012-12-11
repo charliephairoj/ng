@@ -24,10 +24,18 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('fabric/:id', {id:'@id'});
     }).factory('Foam', function(ecResource){
         return ecResource('foam/:id', {id:'@id'});
-    }).factory('Wool', function(ecResource){
-        return ecResource('wool/:id', {id:'@id'});
     }).factory('Screw', function(ecResource){
         return ecResource('screw/:id', {id:'@id'});
+    }).factory('Staple', function(ecResource){
+        return ecResource('staple/:id', {id:'@id'});
+    }).factory('Thread', function(ecResource){
+        return ecResource('thread/:id', {id:'@id'});
+    }).factory('Webbing', function(ecResource){
+        return ecResource('webbing/:id', {id:'@id'});
+    }).factory('Wool', function(ecResource){
+        return ecResource('wool/:id', {id:'@id'});
+    }).factory('Zipper', function(ecResource){
+        return ecResource('zipper/:id', {id:'@id'});
     }).factory('Product', function(ecResource){
         return ecResource('product/:id', {id:'@id'});
     }).factory('PurchaseOrder', function(ecResource){
@@ -38,4 +46,20 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('group/:id', {id:'@id'});
     }).factory('Permission', function(ecResource){
         return ecResource('permission/:id', {id:'@id'});
+    }).
+    
+    
+    /*
+     * Current User 
+     */
+    factory('CurrentUser', function(){
+        function user(){
+            
+        }
+        
+        user.sayHi = function(){
+            window.alert('hi there');
+        };
+        
+        return user;
     });

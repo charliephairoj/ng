@@ -51,12 +51,7 @@ function MainMenuCtrl($scope) {
                     'category':'Legs',
                     'actions':['Add Leg']
                 },
-                {
-                    'category':'Metal'
-                },
-                {
-                    'category':'Paint'
-                },
+               
                 {
                     'category':'Screws',
                     'actions':['Add Screw']
@@ -64,6 +59,22 @@ function MainMenuCtrl($scope) {
                 {
                     'category':'Wool',
                     'actions':['Add Wool']
+                },
+                {
+                    'category':'Webbing',
+                    'actions':['Add Webbing']
+                },
+                {
+                    'category':'Staple',
+                    'actions':['Add Staple']
+                },
+                {
+                    'category':'Thread',
+                    'actions':['Add Thread']
+                },
+                {
+                    'category':'Zipper',
+                    'actions':['Add Zipper']
                 }
                 
             ] 
@@ -362,16 +373,18 @@ function AddSupplierCtrl($scope, Supplier){
         supplier.country = $scope.contact.country;
         
         //terms and discount
-        supplier.discount = $scope.supplier.discount;
-        supplier.terms = $scope.supplier.terms;
-        
+        supplier.discount = $scope.contact.discount;
+        supplier.terms = $scope.contact.terms;
+        console.log(supplier);
         //Save the supplier
-        
-        newSupplier.$save(function(data){
+        /*
+        supplier.$save(function(data){
             //Add supplier to 
-            $scope.supplierList.push(newSupplier);
-            console.log(newSupplier);
+            $scope.supplierList.push(supplier);
+            window.location = "index.html#/suppliers";
         });
+        
+        */
         
     };
 }

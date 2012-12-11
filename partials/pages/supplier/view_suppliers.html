@@ -1,6 +1,9 @@
 <div class="viewModelsPage viewPage">
 	
-	<input placeholder="Search" class="searchBar" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/suppliers/add_supplier" ui-if="currentUser.hasPermission('add_supplier')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
 	<div class="listContainer">
 		<table class="list">
 			<thead>

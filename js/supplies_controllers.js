@@ -9,7 +9,7 @@
 
 function AddLumberCtrl($scope, Lumber, Supplier){
     $scope.supplierList = Supplier.query();
-    
+    console.log($scope.supplierList);
     //Methods
     
     //Add Lumber
@@ -20,7 +20,6 @@ function AddLumberCtrl($scope, Lumber, Supplier){
         angular.copy($scope.lumber, lumber);
         
         lumber.supplierID = $scope.lumber.supplier.id
-        lumber.description = $scope.lumber.type+' '+lumber.width+'x'+lumber.depth+'x'+lumber.height;
         
         lumber.$save(function(data){
             window.location = "#/lumber";
@@ -50,7 +49,6 @@ function LumberDetailsCtrl($scope, Lumber, $routeParams){
         $scope.lumber.$delete(function(){
             window.location = "index.html#/lumber"
         });
-        $scope.lumberList = Lumber.query();
     };
     
     $scope.update = function(){
@@ -76,7 +74,9 @@ function AddFoamCtrl($scope, Foam, Supplier){
         foam.foamType = $scope.foam.type;
         foam.supplierID = $scope.foam.supplier.id;
         
-        foam.$save();
+        foam.$save(function(){
+            window.location = "index.html#/foam";
+        });
     };
     
     
@@ -153,7 +153,9 @@ function AddWoolCtrl($scope, Supplier, Wool){
        angular.copy($scope.wool, wool);
        wool.supplierID = $scope.wool.supplier.id;
        
-       wool.$save();
+       wool.$save(function(){
+            window.location = "index.html#/wool";
+        });
     };
     
     
@@ -211,7 +213,9 @@ function AddScrewCtrl($scope, Supplier, Screw){
        angular.copy($scope.screw, screw);
        screw.supplierID = $scope.screw.supplier.id;
        
-       screw.$save();
+       screw.$save(function(){
+            window.location = "index.html#/screws";
+        });
     };
     
     
@@ -240,18 +244,18 @@ function ScrewDetailsCtrl($scope, Screw, $routeParams){
     $scope.screw = Screw.get({'id':$routeParams.id});
     
     $scope.remove = function(){
-        $scope.wool.$delete(function(){
-            window.location = "index.html#/wool";
+        $scope.screw.$delete(function(){
+            window.location = "index.html#/screws";
         });
         
     };
     
     $scope.update = function(){
-        $scope.wool.$save()
+        $scope.screw.$save()
     };
 }
 
-WoolDetailsCtrl.$inject = ['$scope', 'Wool', '$routeParams']
+ScrewDetailsCtrl.$inject = ['$scope', 'Screw', '$routeParams'];
 
 
 
@@ -275,7 +279,9 @@ function AddFabricCtrl($scope, Supplier, Fabric){
        
        angular.copy($scope.fabric, fabric);
        
-        fabric.$save();
+        fabric.$save(function(){
+           window.location = "index.html#/fabric"
+       });
     };
     
     
@@ -297,3 +303,267 @@ function ViewFabricsCtrl($scope, Fabric){
 }
 
 ViewFabricsCtrl.$inject = ['$scope', 'Fabric'];
+
+function FabricDetailsCtrl($scope, Fabric, $routeParams){
+    
+    $scope.fabric = Fabric.get({'id':$routeParams.id});
+    
+    $scope.remove = function(){
+        $scope.fabric.$delete(function(){
+            window.location = "index.html#/staples";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.fabric.$save()
+    };
+}
+
+FabricDetailsCtrl.$inject = ['$scope', 'Fabric', '$routeParams'];
+
+
+/*
+ * Staple Controllers
+ */
+
+//controller to add foam
+
+function AddStapleCtrl($scope, Supplier, Staple){
+    $scope.supplierList = Supplier.query();
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var staple = new Staple();
+       angular.copy($scope.staple, staple);
+       staple.supplierID = $scope.staple.supplier.id;
+       
+       staple.$save(function(){
+           window.location = "index.html#/staples"
+       });
+    };
+    
+    
+    
+}
+
+AddStapleCtrl.$inject = ['$scope', 'Supplier', 'Staple'];
+
+
+//controller to add foam
+
+function ViewStaplesCtrl($scope, Staple){
+    $scope.stapleList = Staple.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewStaplesCtrl.$inject = ['$scope', 'Staple'];
+
+
+function StapleDetailsCtrl($scope, Staple, $routeParams){
+    
+    $scope.staple = Staple.get({'id':$routeParams.id});
+    
+    $scope.remove = function(){
+        $scope.staple.$delete(function(){
+            window.location = "index.html#/staples";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.staple.$save()
+    };
+}
+
+StapleDetailsCtrl.$inject = ['$scope', 'Staple', '$routeParams'];
+
+
+/*
+ * Webbing Controllers
+ */
+
+//controller to add foam
+
+function AddWebbingCtrl($scope, Supplier, Webbing){
+    $scope.supplierList = Supplier.query();
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var webbing = new Webbing();
+       angular.copy($scope.webbing, webbing);
+       webbing.supplierID = $scope.webbing.supplier.id;
+       
+       webbing.$save(function(){
+           window.location = "#/webbing"
+       });
+    };
+    
+    
+    
+}
+
+AddWebbingCtrl.$inject = ['$scope', 'Supplier', 'Webbing'];
+
+
+//controller to add foam
+
+function ViewWebbingsCtrl($scope, Webbing){
+    $scope.webbingList = Webbing.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewWebbingsCtrl.$inject = ['$scope', 'Webbing'];
+
+
+function WebbingDetailsCtrl($scope, Webbing, $routeParams){
+    
+    $scope.webbing = Webbing.get({'id':$routeParams.id});
+    
+    $scope.remove = function(){
+        $scope.webbing.$delete(function(){
+            window.location = "index.html#/webbing";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.webbing.$save()
+    };
+}
+
+WebbingDetailsCtrl.$inject = ['$scope', 'Webbing', '$routeParams'];
+
+
+/*
+ * Thread Controllers
+ */
+
+//controller to add foam
+
+function AddThreadCtrl($scope, Supplier, Thread){
+    $scope.supplierList = Supplier.query();
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var thread = new Thread();
+       angular.copy($scope.thread, thread);
+       thread.supplierID = $scope.thread.supplier.id;
+       
+       thread.$save(function(){
+           window.location = "index.html#/threads"
+       });
+    };
+    
+    
+    
+}
+
+AddThreadCtrl.$inject = ['$scope', 'Supplier', 'Thread'];
+
+
+//controller to add foam
+
+function ViewThreadsCtrl($scope, Thread){
+    $scope.threadList = Thread.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewThreadsCtrl.$inject = ['$scope', 'Thread'];
+
+
+function ThreadDetailsCtrl($scope, Thread, $routeParams){
+    
+    $scope.thread = Thread.get({'id':$routeParams.id});
+    
+    $scope.remove = function(){
+        $scope.thread.$delete(function(){
+            window.location = "index.html#/threads";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.thread.$save()
+    };
+}
+
+ThreadDetailsCtrl.$inject = ['$scope', 'Thread', '$routeParams'];
+
+
+
+
+/*
+ * Thread Controllers
+ */
+
+//controller to add foam
+
+function AddZipperCtrl($scope, Supplier, Zipper){
+    $scope.supplierList = Supplier.query();
+    //Methods
+    
+    //Add Lumber
+    $scope.save = function(){
+       var zipper = new Zipper();
+       angular.copy($scope.zipper, zipper);
+       zipper.supplierID = $scope.zipper.supplier.id;
+       
+       zipper.$save(function(){
+           window.location = "index.html#/zipper"
+       });
+    };
+    
+    
+    
+}
+
+AddZipperCtrl.$inject = ['$scope', 'Supplier', 'Zipper'];
+
+
+//controller to add foam
+
+function ViewZipperCtrl($scope, Zipper){
+    $scope.zipperList = Zipper.query()
+    //Methods
+    
+    
+    
+    
+}
+
+ViewZipperCtrl.$inject = ['$scope', 'Zipper'];
+
+
+function ZipperDetailsCtrl($scope, Zipper, $routeParams){
+    
+    $scope.zipper = Zipper.get({'id':$routeParams.id});
+    
+    $scope.remove = function(){
+        $scope.zipper.$delete(function(){
+            window.location = "index.html#/zipper";
+        });
+        
+    };
+    
+    $scope.update = function(){
+        $scope.zipper.$save()
+    };
+}
+
+ZipperDetailsCtrl.$inject = ['$scope', 'Zipper', '$routeParams'];

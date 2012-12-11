@@ -1,18 +1,23 @@
 <div class="viewModelsPage viewPage">
 	
-	<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="toolbar" >
+		<button click-url="/wool/add_wool" ui-if="currentUser.hasPermission('add_wool')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
 	
 	
 	<div class="listContainer">
 		<table class="list">
 			<thead>
 				<tr>
+					<th>Supplier</th>
 					<th>Ref</th>
 					<th>Tex</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="wool in woolList | filter:query" class="listItem">
+					<td><a ng-href="#/wool/{{wool.id}}">{{wool.supplier.name}}</a></td>
 					<td><a ng-href="#/wool/{{wool.id}}">{{wool.reference}}</a></td>
 					<td><a ng-href="#/wool/{{wool.id}}">{{wool.tex}}</a></td>
 				</tr>
