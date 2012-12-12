@@ -77,11 +77,11 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     //Groups
     when('/groups', {templateUrl:'partials/pages/groups/view_groups.html', controller:ViewGroupsCtrl}).
     when('/groups/add_group', {templateUrl:'partials/pages/groups/add_group.html', controller:AddGroupCtrl}).
-    when('/groups/:id/:index', {templateUrl:'partials/pages/groups/group_details.html', controller:GroupDetailsCtrl}).
+    when('/groups/:id', {templateUrl:'partials/pages/groups/group_details.html', controller:GroupDetailsCtrl}).
     //Users
     when('/users', {templateUrl:'partials/pages/users/view_users.html', controller:ViewUsersCtrl}).
     when('/users/add_user', {templateUrl:'partials/pages/users/add_user.html', controller:AddUserCtrl}).
-    when('/users/:id/', {templateUrl:'partials/pages/users/user_details.html', controller:UserDetailsCtrl})
+    when('/users/:id', {templateUrl:'partials/pages/users/user_details.html', controller:UserDetailsCtrl})
     
     
   }]);
