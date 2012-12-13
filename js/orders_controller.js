@@ -83,10 +83,13 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         $scope.supplier = {};
         $scope.orderedSupplies = [];
         $scope.sourceType = "supplier"; 
+        
+        $scope.$apply();
     };
     
     $scope.remove = function(index){
         $scope.orderedSupplies.splice(index, 1);
+        $scope.$apply();
     };
     
     

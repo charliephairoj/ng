@@ -377,14 +377,13 @@ function AddSupplierCtrl($scope, Supplier){
         supplier.terms = $scope.contact.terms;
         console.log(supplier);
         //Save the supplier
-        /*
+        
         supplier.$save(function(data){
-            //Add supplier to 
-            $scope.supplierList.push(supplier);
+            
             window.location = "index.html#/suppliers";
         });
         
-        */
+        
         
     };
 }

@@ -132,14 +132,11 @@ function AddUserCtrl($scope, User, Group){
         });
     };
     
+    
     $scope.save = function(){
          user = new User();
          
-         user.groups = $scope.user.groups;
-         user.name = $scope.user.name;
-         user.password = $scope.user.password;
-         user.username = $scope.user.username
-         user.email = $scope.user.email;
+         angular.copy($scope.user, user);
          user.$save();
     }
 }
@@ -170,6 +167,10 @@ function UserDetailsCtrl($scope, Group, User, $routeParams){
         });
         
         $scope.group.$save();
+    };
+    
+    $scope.update = function(){
+        $scope.user.$save();
     }
     
 }

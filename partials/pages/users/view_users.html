@@ -15,7 +15,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in userList | filter:query" class="listItem">
-					<td><a ng-href="#/users/{{user.id}}">{{user.name}}</a></td>
+					<td><a ng-href="#/users/{{user.id}}">{{user.firstName+' '+user.lastName}}</a></td>
 					<td><a ng-href="#/users/{{user.id}}">{{user.email}}</a></td>
 				</tr>
 			</tbody>
