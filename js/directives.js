@@ -271,23 +271,22 @@ directive('map', function(){
           //geocodes from the address
           scope.getPosition = function(){
               //If all necessary parts of the address are defined
-              if(scope.contact.address1 && scope.contact.city && scope.contact.territory && scope.contact.country){
+              if(scope.supplier.address1 && scope.supplier.city && scope.supplier.territory && scope.supplier.country){
                   //create address string
-                  var address = scope.contact.address1+', '+scope.contact.city+', '+scope.contact.territory+', '+scope.contact.country;
+                  var address = scope.supplier.address1+', '+scope.supplier.city+', '+scope.supplier.territory+', '+scope.supplier.country+' '+scope.supplier.zipcode;
                   //Geocode the address via google maps
                   geocoder.geocode({'address':address}, function(results, status){
                     //create marker if not yet created
                     if(marker == null || marker == undefined){
                         //call function to create marker
                         createMarker({
-                            'title':scope.contact.name,
+                            'title':scope.supplier.name,
                             'mouseUp':function(){
                                 //get position 
                                 var position = marker.getPosition();
                                 //Set lat and Long
-                                scope.contact.lat = position.$a;
-                                scope.contact.lng = position.ab;
-                                console.log(scope.contact);
+                                scope.supplier.lat = position.$a;
+                                scope.supplier.lng = position.ab;
                             } 
                         });
                         
@@ -299,8 +298,8 @@ directive('map', function(){
                     map.panTo(marker.getPosition());
                     map.setZoom(14);
                     //apply the lat and long
-                    scope.contact.lat = results[0].geometry.location.$a;
-                    scope.contact.lng = results[0].geometry.location.ab;
+                    scope.supplier.lat = results[0].geometry.location.$a;
+                    scope.supplier.lng = results[0].geometry.location.ab;
                   });
               }
           }
