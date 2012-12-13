@@ -35,7 +35,7 @@ function ViewGroupsCtrl($scope, Group ){
 ViewGroupsCtrl.$inject = ['$scope', 'Group'];
 
 //Add group controller
-function AddGroupCtrl($scope, Group, Permission){
+function AddGroupCtrl($scope, Group, Permission, $location){
     
     $scope.permissionList = Permission.query();
     $scope.group = {};
@@ -47,7 +47,9 @@ function AddGroupCtrl($scope, Group, Permission){
         group.name = $scope.group.name;
         group.permissions = $scope.group.permissions;
         
-        group.$save();
+        group.$save(function(){
+            $location.paht("/groups");
+        });
     };
     
     $scope.add = function(){
@@ -68,11 +70,11 @@ function AddGroupCtrl($scope, Group, Permission){
     }
 }
 
-AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission'];
+AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission', '$location'];
 
 //Group details
 
-function GroupDetailsCtrl($scope, Group, Permission, $routeParams){
+function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
     $scope.permissionList = Permission.query({'resource':false});
     $scope.group = Group.get({'id':$routeParams.id})
     
@@ -84,7 +86,9 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams){
     
     
     $scope.remove = function(){
-        $scope.group.$delete();
+        $scope.group.$delete(function(){
+            $location.paht("/groups");
+        });
     };
     
     $scope.add = function(){
@@ -102,7 +106,7 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams){
     
 }
 
-GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams']
+GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$location']
 
 /*
  * User Area
@@ -115,7 +119,7 @@ function ViewUsersCtrl($scope, User){
 
 ViewUsersCtrl.$inject = ['$scope', 'User'];
 
-function AddUserCtrl($scope, User, Group){
+function AddUserCtrl($scope, User, Group, $location){
     $scope.user = {}
     $scope.user.groups = []
     $scope.groupList = Group.query();
@@ -137,23 +141,27 @@ function AddUserCtrl($scope, User, Group){
          user = new User();
          
          angular.copy($scope.user, user);
-         user.$save();
+         user.$save(function(){
+            $location.paht("/users");
+        });
     }
 }
 
-AddUserCtrl.$inject = ['$scope', 'User', 'Group'];
+AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
 
 
 
 //User details
 
-function UserDetailsCtrl($scope, Group, User, $routeParams){
+function UserDetailsCtrl($scope, Group, User, $routeParams, $location){
     $scope.groupList = Group.query({'resource':false});
     $scope.user = User.get({'id':$routeParams.id})
     
     
     $scope.remove = function(){
-        $scope.user.$delete();
+        $scope.user.$delete(function(){
+            $location.paht("/users");
+        });
     };
     
     $scope.add = function(){
@@ -175,5 +183,5 @@ function UserDetailsCtrl($scope, Group, User, $routeParams){
     
 }
 
-UserDetailsCtrl.$inject = ['$scope', 'Group', 'User', '$routeParams']
+UserDetailsCtrl.$inject = ['$scope', 'Group', 'User', '$routeParams', '$location']
 

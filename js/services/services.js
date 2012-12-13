@@ -62,4 +62,45 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         };
         
         return user;
+    }).
+    
+    
+    /*
+     * Poller
+     */
+    factory('Poller', function($timeout){
+        function Poller(){}
+        
+        Poller.poll = function(scope, fn){
+            //var switch
+            var keepPolling = true;
+            //listener to change switch 
+            //when the scope is destroyed
+            scope.$on('$destroy', function(){
+                keepPolling = false;
+            });
+            
+            //loopping function checks switch
+            //and runs the fn arg
+            function looper(){
+               
+                fn();
+                if(keepPolling){
+                    $timeout(looper, 1000);
+                }
+            }
+            
+            //starts loop
+            looper();
+        };
+        
+        return Poller;
+        
     });
+    
+
+
+
+
+
+

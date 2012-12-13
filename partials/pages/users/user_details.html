@@ -19,7 +19,7 @@
 			
 			<tr>
 				<td><label>Groups</label></td>
-				<td><input type="text" ng-model="user.cost" ec-blur="update()" /></td>
+				<td ng-repeat="group in user.groups">{{group.name}}</td>
 			</tr>
 			
 		</table> 

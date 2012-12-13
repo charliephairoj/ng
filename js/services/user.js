@@ -28,8 +28,7 @@ angular.module('UserAuth', []).
             $http({method:'GET', url:'/auth_service'}).success(function(data){
                 console.log(data);
                 //assigns to permissions
-                this.permissions = data.permissions;
-                this.modules = data.modules;
+                angular.copy(data, this);
             }.bind(this));
         };
         

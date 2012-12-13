@@ -1,60 +1,78 @@
-	<form name="form" class="addSupplierPage addPage">
+	<form name="form" class="addSupplierPage addPage" ng-init="addContact=false">
 		<div class="toolbar">
 			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+			<button type="button" ng-click="addContact=true">Add Contact</button>
+		</div>
+		<div class="addContactModal" ng-show="addContact">
+			<div class="title">Add Supplier Contact</div>
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td><input beautify type="text" ng-model="contact.firstName" /></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input beautify type="text" ng-model="contact.lastName" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input beautify type="text" ng-model="contact.email" /></td>
+				</tr>
+			</table>
 		</div>
 		<div class="workspace">
 			<table>
 				<tr>
 					<td><label>Company Name</label></td>
-					<td><input beautify type="text" required ng-model="contact.name" /></td>
+					<td><input beautify type="text" required ng-model="supplier.name" /></td>
 				</tr>
 				
 				
 				<tr>
 					<td><label>Address 1</label></td>
-					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.address1" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="supplier.address1" /></td>
 				</tr>
 				
 				
 				<tr>
 					<td><label>Address 2</label></td>
-					<td><input beautify ec-blur="getPosition()" type="text" ng-model="contact.address2" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" ng-model="supplier.address2" /></td>
 				</tr>
 				<tr>
 					<td><label>City</label></td>
-					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.city" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="supplier.city" /></td>
 				</tr>
 				<tr>
 					<td><label>Territory</label></td>
-					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.territory" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="supplier.territory" /></td>
 				</tr>
 				<tr>
 					<td><label>Country</label></td>
-					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="contact.country" /></td>
+					<td><input beautify ec-blur="getPosition()" type="text" required ng-model="supplier.country" /></td>
 				</tr>
 				<tr>
 					<td><label>Zipcode</label></td>
-					<td><input ec-blur="getPosition()" type="text" required ng-model="contact.zipcode" /></td>
+					<td><input ec-blur="getPosition()" type="text" required ng-model="supplier.zipcode" /></td>
 				</tr>
 				<tr>
 					<td><label>Email</label></td>
-					<td><input type="email" ng-model="contact.email" /></td>
+					<td><input type="email" ng-model="supplier.email" /></td>
 				</tr>
 				<tr>
 					<td><label>Telephone</label></td>
-					<td><input type="text" ng-model="contact.telephone" /></td>
+					<td><input type="text" ng-model="supplier.telephone" /></td>
 				</tr>
 				<tr>
 					<td><label>Fax</label></td>
-					<td><input type="text" ng-model="contact.fax" /></td>
+					<td><input type="text" ng-model="supplier.fax" /></td>
 				</tr>
 				<tr>
 					<td><label>Discount</label></td>
-					<td><input type="text" required ng-pattern="/\d{1,2}/" ng-model="contact.discount" />%</td>
+					<td><input type="text" required ng-pattern="/\d{1,2}/" ng-model="supplier.discount" />%</td>
 				</tr>
 				<tr>
 					<td><label>Terms</label></td>
-					<td><input type="text" ng-pattern="/\d+/" ng-model="contact.terms" /></td>
+					<td><input type="text" ng-pattern="/\d+/" ng-model="supplier.terms" /></td>
 				</tr>
 			</table> 
 			<div class="mapContainer">

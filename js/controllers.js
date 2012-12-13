@@ -4,145 +4,9 @@
 
 
 function MainMenuCtrl($scope) {
-    $scope.menuActions =[];
-    $scope.subMenuItems =[];
-    $scope.menuSections = [/*
-        {
-            
-            section:'Products',
-            categories: [
-                {
-                    'category':'Models',
-                    'actions':['Add Model', 'View Models']
-                
-                },
-                {
-                    'category':'Configurations',
-                    'actions':['Add Configuration', 'View Configurations']
-                },
-                {
-                    'category':'Upholstery',
-                    'actions':['Add Upholstery', 'View Upholsteries']
-                },
-                {'category':'Cabinets'},
-                {'category':'Tables'},
-                {'category':'Area Rugs'}
-                
-            ] 
-        
-        },*/
-        {
-            section:'Supplies',
-            categories: [
-                {
-                    'category':'Fabric',
-                    'actions':['Add Fabric']
-                },
-                {
-                    'category':'Foam',
-                    'actions':['Add Foam']
-                    
-                },
-                {
-                    'category':'Lumber',
-                    'actions':['Add Lumber']
-                },
-                {
-                    'category':'Legs',
-                    'actions':['Add Leg']
-                },
-               
-                {
-                    'category':'Screws',
-                    'actions':['Add Screw']
-                },
-                {
-                    'category':'Wool',
-                    'actions':['Add Wool']
-                },
-                {
-                    'category':'Webbing',
-                    'actions':['Add Webbing']
-                },
-                {
-                    'category':'Staple',
-                    'actions':['Add Staple']
-                },
-                {
-                    'category':'Thread',
-                    'actions':['Add Thread']
-                },
-                {
-                    'category':'Zipper',
-                    'actions':['Add Zipper']
-                }
-                
-            ] 
-        
-        },  
-        {
-            section:'Contacts',
-            categories:[
-                {
-                    'category':'Customers',
-                    'actions':['Add Customer']
-                },
-                {
-                    'category':'Suppliers',
-                    'actions':['Add Supplier']
-                }
-            ]
-        },
-        {
-            section:'Orders',
-            categories:[
-                {'category':'Acknowledgements'},
-                {'category':'Pending Orders'},
-                {'category':'Shipping'},
-                {
-                    'category':'Purchase Orders',
-                    'actions':['Create New Purchase Order']
-                }
-            ]
-        },
-        {
-            section:'Administrator',
-            categories: [
-                {
-                    'category':'Users',
-                    'actions':['Add User', 'View Models']
-                
-                },
-                {
-                    'category':'Groups',
-                    'actions':['Add Group', 'Add Permissions to Group']
-                },
-                {
-                    'category':'Permissions',
-                    'actions':['Add Permission']
-                },
-               
-                
-            ] 
-        
-        },
-    ];
     
-    $scope.changeSideMenu = function(index,target){
-        $scope.showActionMenu=false;
-            console.log(index);
-            console.log(target);
-            $scope.section = target.toUpperCase();
-            $scope.categories = $scope.menuSections[index].categories;
-    };
     
-    $scope.listActions = function(index, target){
-        $scope.showActionMenu = true;
-        console.log($scope.showActionMenu);
-        $scope.category = target;
-        $scope.menuActions = $scope.categories[index].actions;
-    };
-    
+   
    
 }
 MainMenuCtrl.$inject = ['$scope'];
@@ -351,36 +215,35 @@ function AddCustomerCtrl($scope, Customer){
 
 AddCustomerCtrl.$inject = ['$scope', 'Customer'];
 
-function AddSupplierCtrl($scope, Supplier){
+function AddSupplierCtrl($scope, Supplier, $location){
     
     
     //Mehtods
+    
     
     //Method to save the supplier to the database
     $scope.save = function(){
         //New customer  and address objects
         var supplier = new Supplier(), address = {};
         //Apply the customer details first
-        supplier.name = $scope.contact.name;
-        supplier.email = $scope.contact.email;
-        supplier.telephone = $scope.contact.telephone;
-        supplier.fax = $scope.contact.fax;
+        supplier.name = $scope.supplier.name;
+        supplier.email = $scope.supplier.email;
+        supplier.telephone = $scope.supplier.telephone;
+        supplier.fax = $scope.supplier.fax;
         //Set the address        
-        supplier.address1 = $scope.contact.address1;
-        supplier.address2 = $scope.contact.address2;
-        supplier.city = $scope.contact.city;
-        supplier.territory = $scope.contact.territory;
-        supplier.country = $scope.contact.country;
+        supplier.address1 = $scope.supplier.address1;
+        supplier.address2 = $scope.supplier.address2;
+        supplier.city = $scope.supplier.city;
+        supplier.territory = $scope.supplier.territory;
+        supplier.country = $scope.supplier.country;
         
         //terms and discount
-        supplier.discount = $scope.contact.discount;
-        supplier.terms = $scope.contact.terms;
-        console.log(supplier);
+        supplier.discount = $scope.supplier.discount;
+        supplier.terms = $scope.supplier.terms;
         //Save the supplier
         
-        supplier.$save(function(data){
-            
-            window.location = "index.html#/suppliers";
+        supplier.$save(function(){
+            $location.path("/suppliers");
         });
         
         
@@ -388,18 +251,26 @@ function AddSupplierCtrl($scope, Supplier){
     };
 }
 
-AddSupplierCtrl.$inject = ['$scope', 'Supplier'];
+AddSupplierCtrl.$inject = ['$scope', 'Supplier', '$location'];
 
 //View supplierList controller
-function ViewSuppliersCtrl($scope, Supplier){
-    $scope.supplierList = Supplier.query();
+function ViewSuppliersCtrl($scope, Supplier, Poller){
+    
+    Poller.poll($scope, function(){
+        $scope.supplierList = Supplier.query();
+    });
+    
+    
 }
 
-ViewSuppliersCtrl.$inject = ['$scope', 'Supplier'];
+ViewSuppliersCtrl.$inject = ['$scope', 'Supplier', 'Poller'];
 
-function SupplierDetailCtrl($scope, Supplier, $routeParams){
+function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
     
-    $scope.supplier =  Supplier.get({'id':$routeParams.id});
+    Poller.poll($scope, function(){
+        $scope.supplier =  Supplier.get({'id':$routeParams.id});
+    })
+    
     
     $scope.update = function(){
         console.log($scope.supplier);
@@ -410,12 +281,13 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams){
     };
     
     $scope.remove = function(){
-        $scope.supplier.$delete()
-        $scope.supplierList.splice($routeParams.index, 1);
-        window.location = 'index.html#/supplier';
+        $scope.supplier.$delete(function(){
+            $location.path('/suppliers');
+        })
+        
     }
 }
 
-SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams'];
+SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location', 'Poller'];
 
 

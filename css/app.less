@@ -114,6 +114,20 @@ select{
     }
     
   }
+  
+  //Employee area
+  .account_container{
+    color:white;
+    float:right;
+    position:relative;
+    
+    span{
+      height:@menuHeight;
+      position:absolute;
+      top:0px;
+      right:0px;
+    }
+  }
 }
 
 .headings{
@@ -209,38 +223,7 @@ select{
     }
   }
   
-  //List of actions
-  .actions{
-    margin-top:30px;
-    span{
-      .headings;
-    }
-    
-    li{
-      left:0px;
-      right:0px;
-      margin-top:2px;
-      padding-top:4px;
-      padding-bottom:2px;
-      padding-left:20px;
-      letter-spacing:1px;
-      cursor:pointer;
-      
-      //link
-      a{
-        font-size:12px;
-        color:white;
-        text-decoration:none;
-      }
-      //.Category States
-      &:hover{
-        background:#2A2D33;
-        -webkit-box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
-        
-        box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
-      }
-    }
-  }
+  
 }
 
 
