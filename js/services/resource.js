@@ -390,19 +390,22 @@ angular.module('ecResource', ['ngResource']).
                 
                
                 
+                 jQuery.ajax(getRoute(targetUrl, params), {
+                    type:'GET',
+                    cache:false,
+                    success: function(responseData, status){
+                        this.storage.clear();
+                     
+                         for(i in responseData){
+                            this.storage.save(responseData[i]);
+                            serverData.push(new Resource(responseData[i]));
+                         }
+                            
+                         data = serverData;
+                            
+                    }.bind(this)
+                });
                 
-                $http({method:'GET', url:getRoute(targetUrl, params), cache:false}).success(function(responseData){
-                     
-                     this.storage.clear();
-                     
-                     for(i in responseData){
-                        this.storage.save(responseData[i]);
-                        serverData.push(new Resource(responseData[i]));
-                     }
-                        
-                     data = serverData;
-                     
-                }.bind(this));
                 
                 return data;
                     
@@ -422,11 +425,17 @@ angular.module('ecResource', ['ngResource']).
                     //after request is received 
                     //it will automatically update the resource
                     //Make ajax call
-                    $http({method:'GET', url:getRoute(targetUrl, params), cache:false}).success(function(responseData){
-                        resource = new Resource(responseData);
+                    jQuery.ajax(getRoute(targetUrl, params), {
+                        type:'GET',
+                        cache:false,
+                        success: function(responseData, status){
+                           resource = new Resource(responseData);
+                           $rootScope.$apply();
+                            
+                        }.bind(this)
                     });
-                   
                     
+                  
                     
                     
                     //return the resource
@@ -491,12 +500,19 @@ angular.module('ecResource', ['ngResource']).
                 
                
                 //Make ajax call
-                
-                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(responseData){
-                    if(callback){
-                        callback(responseData);
-                    }
+                jQuery.ajax(getRoute(targetUrl, this), {
+                    type:'DELETE',
+                    cache:false,
+                    success: function(responseData, status){
+                        
+                        if(callback){
+                            callback(responseData);
+                            $rootScope.$apply();
+                        }
+                            
+                    }.bind(this)
                 });
+                
             };
             
             
