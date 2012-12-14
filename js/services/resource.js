@@ -464,6 +464,7 @@ angular.module('ecResource', ['ngResource']).
                 
                
                 //Make ajax call
+                
                 jQuery.ajax(getRoute(targetUrl, this), {
                     type:'DELETE',
                     processData:false,
