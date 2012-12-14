@@ -114,6 +114,13 @@ angular.module('ecResource', ['ngResource']).
                 }
             };
             
+            //Clear Keys
+            StorageEngine.clearKeys = function(){
+                
+                this.keys = [];
+                this.storage.setItem(this.key, JSON.stringify(this.keys));
+            };
+            
             //Get a key
             StorageEngine.getKey = function(arg){
                 //CREATE TEMPORARY KEY
@@ -212,6 +219,19 @@ angular.module('ecResource', ['ngResource']).
                 }else{
                     return false;
                 }
+            };
+            
+            //Clear Items
+            StorageEngine.clear = function(){
+                
+                var index;
+                //clear items
+                for(index in this.keys){
+                    this.storage.removeItem(this.keys[index]);
+                }
+                //clear keys
+                this.clearKeys();
+                
             };
             
             StorageEngine.init();
@@ -372,14 +392,15 @@ angular.module('ecResource', ['ngResource']).
                 
                 
                 $http({method:'GET', url:getRoute(targetUrl, params), cache:false}).success(function(responseData){
-                     console.log(responseData);
+                     
+                     this.storage.clear();
+                     
                      for(i in responseData){
                         this.storage.save(responseData[i]);
                         serverData.push(new Resource(responseData[i]));
                      }
                         
                      data = serverData;
-                     $rootScope.$apply();
                      
                 }.bind(this));
                 
