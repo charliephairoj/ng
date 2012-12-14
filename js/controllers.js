@@ -243,7 +243,8 @@ function AddSupplierCtrl($scope, Supplier, $location){
         //Save the supplier
         
         supplier.$save(function(){
-            $location.path("/suppliers");
+            console.log('ok');
+            $location.path('/suppliers');
         });
         
         

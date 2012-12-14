@@ -11,8 +11,15 @@ angular.module('ecResource', ['ngResource']).
         function storageFactory(key){
             //Create the main factory
             function StorageEngine(){
-                 
+                //ASSIGNS KEY TO OBJECT
+                 this.key = key;
+                 //CHECKS IF SUPPORTS LOCALSTORAGE
+                 if('localStorage' in window && window['localStorage']!==null){
+                    this.storage = window.localStorage;
+                    this.getKeys();
+                 }
             }
+            
             //determines if storage works
             StorageEngine.isSupported = function(){
                 try {
@@ -22,21 +29,118 @@ angular.module('ecResource', ['ngResource']).
                 }
             };
             
+            /*
+             * The following methods deal with the key and 
+             * array of keys that holds the ids for individual 
+             * objects under this key.
+             */
+            
+            //Create a key
+            StorageEngine.createKeysArray = function(){
+                
+                this.keys = [];
+                this.saveKeys();
+                
+            };
+            
+            //Save keys
+            StorageEngine.saveKeys = function(){
+                
+                if(typeof(this.keys) != 'Array'){
+                    this.createKeysArray();
+                }else{
+                    this.storage.setItem(this.key, JSON.stringify(this.keys));
+                }
+                
+            };
+            
+            //Save a key
+            StorageEngine.saveKey = function(arg){
+                
+                var tempKey = this.key+arg;
+                
+                if(this.keys.indexOf(tempKey)===-1){
+                    this.keys.push(tempKey);
+                    this.saveKeys();
+                }
+                
+                return true;
+            };
+            
+            //Retrieve all keys
+            StorageEngine.getKeys = function(){
+                
+                //Get keys
+                this.keys = JSON.parse(this.storage.getItem(this.key));
+                //If keys are not an array, create an array to hold keys
+                if(typeof(this.keys)!= 'Array'){
+                    console.log(typeof(this.keys));
+                    //Create an for keys and saves it
+                    this.createKeysArray();
+                } 
+               
+                return this.keys;
+            };
+            
+            //Delete a key
+            StorageEngine.deleteKey = function(key){
+                
+                //Checks whether keys are valid
+                if(!this.keys){
+                    StorageEngine.getKeys();
+                }
+                
+                var index = this.keys.indexOf(key);
+                
+                if(index!= -1){
+                    this.keys.splice(index);
+                    this.keys.save();
+                    return true;
+                }else{
+                    return false;
+                }
+            };
+            
+            //Get a key
+            StorageEngine.getKey = function(arg){
+                //CREATE TEMPORARY KEY
+                var tempKey = this.key + arg,
+                    index;
+                //Checks index of key and 
+                //If a key is present return is
+                index = this.keys.indexOf(tempKey);
+                if(index!==-1){
+                    
+                    return this.keys[index];
+                
+                //Returns null if there is no key
+                }else{
+                    
+                    return null;
+                    
+                }
+            };
+            
+            /*
+             * The following methods deal with the actual retrieving, storing
+             * and delete of the object themselves represented by the keys
+             */
+            
             //querya all items of name space
             StorageEngine.query = function(){
-                var keys = JSON.parse(storage.getItem(key));
+                
                 //checks storage of keys exists
-                if(keys === null || !keys || keys.length===0){
+                if(this.keys === null || !this.keys || this.keys.length===0){
                     
-                    return false;
+                    return null;
                     
                 }
                 
                 //create array to hold data
                 var data = [], i;
                 //iterate through all the keys
-                for(i in keys){
-                    data.push(JSON.parse(storage.getItem(key+keys[i])));
+                for(i in this.keys){
+                    data.push(JSON.parse(this.storage.getItem(this.keys[i])));
                 }
                 //return the data
                 return data;
@@ -44,10 +148,10 @@ angular.module('ecResource', ['ngResource']).
             };
             
             StorageEngine.save = function(data){
+                
                  //Create vars
                 var keyData = [],
-                        i,
-                        itemKey;
+                    i, itemKey;
                         
                 //Determines if this is an array
                 if(data instanceof Array){ 
@@ -109,14 +213,21 @@ angular.module('ecResource', ['ngResource']).
             };
             
             
-            StorageEngine.get = function(params){
-                if(params.id){
-                    var preData = storage.getItem(key+params.id);
+            StorageEngine.get = function(args){
+                //CHECKS IF THE ARG
+                if(args.id){
+                    //GET PRE JSON DATA
+                    var preData = storage.getItem(key+args.id);
+                    //IF DATA IS VALID RETURN parsed json
                     if(preData && preData!=null){
                         return JSON.parse(preData);
+                    //RETURN NULL IF INVADLID DATA
                     }else{
-                        return false;
+                        return null;
                     }
+                //RETURNS NULL IF NO ID
+                }else{
+                    return null;
                 }
                     
             };
@@ -157,8 +268,7 @@ angular.module('ecResource', ['ngResource']).
                            itemKey = data;
                        }
                    }
-                   console.log(itemKey)
-                   console.log(storage.getItem(itemKey));
+                  
                    //removes the item
                    storage.removeItem(itemKey);
                    //get index from keys
@@ -202,12 +312,11 @@ angular.module('ecResource', ['ngResource']).
      * 
      * The children objects have the prototypical methods :$save, $delete, query, 
      */
-    factory('ecResource', function($resource, $storage){
-        
+    factory('ecResource', function($resource, $storage, $rootScope){
+        var $scope = $rootScope;
         //apply data
         function applyData(target, data){
             angular.forEach(data, function(value, key){
-                console.log(value+' '+key);
                 
                 target[key] = value
                 
@@ -399,7 +508,6 @@ angular.module('ecResource', ['ngResource']).
                             
                             
                             applyData(resource, responseData);
-                            console.log(resource);
                             storage.save(resource);
                         }.bind(this)
                     });
@@ -421,14 +529,12 @@ angular.module('ecResource', ['ngResource']).
                     tempKey,
                     method = "POST";
                 
-                console.log(data.id);
                 if(data.id){
                     method = "PUT";
                 }
                 //saves to storage
                 //so that it is immediately available
                 tempKey = storage.save(this);
-                console.log(tempKey);
                
                 //stringify data and add
                 fd.append('data', JSON.stringify(data));
@@ -442,7 +548,7 @@ angular.module('ecResource', ['ngResource']).
                         //create a resource from the data
                         var resource = new Resource(responseData);
                         
-                        
+                        console.log(responseData);
                         //remove the temp item
                         storage.remove(tempKey);
                         //save new item to storage
@@ -450,10 +556,12 @@ angular.module('ecResource', ['ngResource']).
                         
                         //deep copy to this
                         angular.copy(resource, this);
-                        
+                        console.log(callback);
                         //call the call back
                         if(callback){
+                            console.log('calling')
                             callback(responseData);
+                            $scope.$apply();
                         }
                         
                     }.bind(this)
@@ -474,7 +582,6 @@ angular.module('ecResource', ['ngResource']).
                     processData:false,
                     contentType:false,
                     success: function(responseData, status){
-                        console.log(responseData);
                         if(callback){
                             callback(responseData);
                         }
