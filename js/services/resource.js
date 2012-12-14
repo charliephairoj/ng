@@ -467,10 +467,8 @@ angular.module('ecResource', ['ngResource']).
                
                 //Make ajax call
                 
-                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(){
-                    console.log(callback);
+                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(response){
                     if(callback){
-                        console.log('delete2')
                         callback(responseData);
                         $rootScope.$apply();
                     }
