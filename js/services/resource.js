@@ -495,7 +495,6 @@ angular.module('ecResource', ['ngResource']).
                 $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(responseData){
                     if(callback){
                         callback(responseData);
-                        $rootScope.$apply();
                     }
                 });
             };
