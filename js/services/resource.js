@@ -292,12 +292,15 @@ angular.module('ecResource', ['ngResource']).
                 switch(param.toLowerCase()){
                     //REQUEST FOR ID
                     case ":id":
-                        //CHECKS IF item has id
-                        if(params.id){
-                            //ADDS ID  to the url
-                            url += '/'+params.id;
+                        if(params){
+                            //CHECKS IF item has id
+                            if(params.id){
+                                //ADDS ID  to the url
+                                url += '/'+params.id;
+                            }
+                            break;
                         }
-                        break;
+                        
                 }
                 
             });
@@ -368,7 +371,7 @@ angular.module('ecResource', ['ngResource']).
                
                 
                 
-                $http({method:'GET', url:getRoute(targetUrl, this), cache:false}).success(function(responseData){
+                $http({method:'GET', url:getRoute(targetUrl, params), cache:false}).success(function(responseData){
                      console.log(responseData);
                      for(i in responseData){
                         this.storage.save(responseData[i]);
@@ -376,6 +379,7 @@ angular.module('ecResource', ['ngResource']).
                      }
                         
                      data = serverData;
+                     $rootScope.$apply();
                      
                 }.bind(this));
                 
@@ -397,7 +401,7 @@ angular.module('ecResource', ['ngResource']).
                     //after request is received 
                     //it will automatically update the resource
                     //Make ajax call
-                    $http({method:'GET', url:getRoute(targetUrl, this), cache:false}).success(function(){
+                    $http({method:'GET', url:getRoute(targetUrl, params), cache:false}).success(function(responseData){
                         resource = new Resource(responseData);
                     });
                    
@@ -467,7 +471,7 @@ angular.module('ecResource', ['ngResource']).
                
                 //Make ajax call
                 
-                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(response){
+                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(responseData){
                     if(callback){
                         callback(responseData);
                         $rootScope.$apply();
