@@ -103,10 +103,11 @@ angular.module('ecResource', ['ngResource']).
                 }
                 
                 var index = this.keys.indexOf(key);
-                
+                console.log(key);
+                console.log(index);
                 if(index!= -1){
                     this.keys.splice(index);
-                    this.keys.save();
+                    this.saveKeys();
                     return true;
                 }else{
                     return false;
@@ -204,7 +205,7 @@ angular.module('ecResource', ['ngResource']).
                     //get item key from id
                     itemKey = this.getKey(args.id);
                     //delete item and item key
-                    this.storage.remoteItem(itemKey);
+                    this.storage.removeItem(itemKey);
                     this.deleteKey(itemKey);
                     
                     return true;
@@ -470,8 +471,12 @@ angular.module('ecResource', ['ngResource']).
                     processData:false,
                     contentType:false,
                     success: function(responseData, status){
+                        
+                        console.log(callback);
                         if(callback){
+                            console.log('delete2')
                             callback(responseData);
+                            $rootScope.$apply();
                         }
                     }
                 });
