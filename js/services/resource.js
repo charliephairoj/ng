@@ -166,7 +166,6 @@ angular.module('ecResource', ['ngResource']).
                 var itemKey;
                 
                  if(data.hasOwnProperty('id')){
-                     console.log(data);
                     
                      itemKey = this.saveKey(data.id);
                      this.storage.setItem(itemKey, JSON.stringify(data));
@@ -239,7 +238,7 @@ angular.module('ecResource', ['ngResource']).
      * 
      * The children objects have the prototypical methods :$save, $delete, query, 
      */
-    factory('ecResource', function($resource, $storage, $rootScope){
+    factory('ecResource', function($resource, $storage, $rootScope, $http){
         var $scope = $rootScope;
         //apply data
         function applyData(target, data){
@@ -351,10 +350,12 @@ angular.module('ecResource', ['ngResource']).
             
             //Add query function
             Resource.query = function(params){
+                
                 var data = [],
                     storageData = [],
                     serverData = [],
                     i;
+                
                 //CHECKS IF STORAGE IS SUPPORTED
                 if(this.storage){
                     storageData = this.storage.query();
@@ -364,15 +365,18 @@ angular.module('ecResource', ['ngResource']).
                     }
                 }
                 
-                serverResource.query(function(responseData){
-                    
-                    for(i in responseData){
+               
+                
+                
+                $http({method:'GET', url:getRoute(targetUrl, this), cache:false}).success(function(responseData){
+                     console.log(responseData);
+                     for(i in responseData){
                         this.storage.save(responseData[i]);
                         serverData.push(new Resource(responseData[i]));
-                    }
-                    
-                    data = serverData;
-                    
+                     }
+                        
+                     data = serverData;
+                     
                 }.bind(this));
                 
                 return data;
@@ -393,13 +397,10 @@ angular.module('ecResource', ['ngResource']).
                     //after request is received 
                     //it will automatically update the resource
                     //Make ajax call
-                    serverResource.get(params, function(responseData){
-                    console.log(responseData);
-                       
-                       
+                    $http({method:'GET', url:getRoute(targetUrl, this), cache:false}).success(function(){
                         resource = new Resource(responseData);
-                    
-                    }.bind(this));
+                    });
+                   
                     
                     
                     
@@ -466,18 +467,12 @@ angular.module('ecResource', ['ngResource']).
                
                 //Make ajax call
                 
-                jQuery.ajax(getRoute(targetUrl, this), {
-                    type:'DELETE',
-                    processData:false,
-                    contentType:false,
-                    success: function(responseData, status){
-                        
-                        console.log(callback);
-                        if(callback){
-                            console.log('delete2')
-                            callback(responseData);
-                            $rootScope.$apply();
-                        }
+                $http({method:'DELETE', url:getRoute(targetUrl, this), cache:false}).success(function(){
+                    console.log(callback);
+                    if(callback){
+                        console.log('delete2')
+                        callback(responseData);
+                        $rootScope.$apply();
                     }
                 });
             };
