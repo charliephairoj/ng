@@ -268,9 +268,7 @@ ViewSuppliersCtrl.$inject = ['$scope', 'Supplier', 'Poller'];
 
 function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
     
-    Poller.poll($scope, function(){
-        $scope.supplier =  Supplier.get({'id':$routeParams.id});
-    })
+    $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
     
     $scope.update = function(){

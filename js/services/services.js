@@ -69,11 +69,14 @@ angular.module('EmployeeCenter.services', ['ecResource']).
      * Poller
      */
     factory('Poller', function($timeout){
-        function Poller(){}
+        function Poller(){
+            //Switch
+            this.keepPolling;
+        }
         
         Poller.poll = function(scope, fn){
-            //var switch
             var keepPolling = true;
+            //var switch
             //listener to change switch 
             //when the scope is destroyed
             scope.$on('$destroy', function(){
@@ -83,7 +86,6 @@ angular.module('EmployeeCenter.services', ['ecResource']).
             //loopping function checks switch
             //and runs the fn arg
             function looper(){
-               
                 fn();
                 if(keepPolling){
                     $timeout(looper, 1000);
@@ -92,6 +94,12 @@ angular.module('EmployeeCenter.services', ['ecResource']).
             
             //starts loop
             looper();
+        };
+        
+        //STops the polling
+        Poller.stop = function(){
+            //turn off the switch
+            this.keepPolling = false;
         };
         
         return Poller;
