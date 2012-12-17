@@ -7,12 +7,14 @@
 
 //controller to view po
 
-function ViewPOCtrl($scope, PurchaseOrder, Supplier){
-    $scope.supplierList = Supplier.query();
-    
+function ViewPOCtrl($scope, PurchaseOrder, Supplier, Poller){
+    Poller.poll($scope, function(){
+        $scope.poList = PurchaseOrder.query();
+
+    });
 }
 
-ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier']
+ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier', 'Poller']
 //controller to add lumber
 
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){

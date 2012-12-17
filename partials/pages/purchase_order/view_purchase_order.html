@@ -8,20 +8,18 @@
 		<table class="list">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Address</th>
-					<th>City</th>
-					<th>Territory</th>
-					<th>Country</th>
+					<th>PO#</th>
+					<th>url</th>
+					<th>Order Date</th>
+					<th>Ordered By</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.name}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.address1}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.city}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.territory}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.country}}</a></td>
+				<tr ng-repeat="po in poList | filter:query" class="listItem">
+					<td><a ng-href="#/purchase_order/{{po.id}}" >{{po.id}}</a></td>
+					<td><a ng-href="{{po.url}}"  target="_blank">View Document</a></td>
+					<td><a ng-href="#/purchase_order/{{po.id}}">{{po.orderDate}}</a></td>
+					<td>{{po.employee}}</td>
 				</tr>
 			</tbody>
 			
