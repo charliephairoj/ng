@@ -1,57 +1,110 @@
-	<form class="supplierDetailsPage detailsPage">
+<div class="supplierDetailsPage detailsPage"  ng-init="showAddContact=false">
+	<form name="contactForm" novalidate class="addContactModal" ng-show="showAddContact">
+		<div class="title" ng-click="showAddContact=false">Add Supplier Contact</div>
+		<table class="supplier_contact_table">
+			<tr>
+				<td>First Name</td>
+				<td><input beautify type="text" required ng-model="contact.firstName" /></td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input beautify type="text" required ng-model="contact.lastName" /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input beautify type="email" required ng-model="contact.email" /></td>
+			</tr>
+			<tr>
+				<td>Telephone</td>
+				<td><input beautify type="text" required ng-model="contact.telephone" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="button" ng-disabled="contactForm.$invalid" ng-click="addContact()">Add Contact</button></td>
+			</tr>
+		</table>
+	</form>
+	<form name="form" novalidate>
 		<div class="toolbar">
 			<button type="button" ng-click="remove()">Delete</button>
+			<button type="button" ng-click="showAddContact=true">Add Contact</button>
+
 		</div>
 		<!--<button type="button" >Add Supplier Contact</button> -->
-		<table>
-			<tr>
-				<td><label>Company Name</label></td>
-				<td><input type="text" ng-model="supplier.name" ec-blur="update()" /></td>
-			</tr>
-			
-			
-			<tr>
-				<td><label>Telephone</label></td>
-				<td><input type="text" ng-model="supplier.telephone" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Fax</label></td>
-				<td><input type="text" ng-model="supplier.fax" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Address 1</label></td>
-				<td><input type="text" ng-model="supplier.address1" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Address 2</label></td>
-				<td><input type="text" ng-model="supplier.address2" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>City</label></td>
-				<td><input type="text" ng-model="supplier.city" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Territory</label></td>
-				<td><input type="text" ng-model="supplier.territory" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Country</label></td>
-				<td><input type="text" ng-model="supplier.country" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Zipcode</label></td>
-				<td><input type="text" ng-model="supplier.zipcode" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Terms of Payment in Days</label></td>
-				<td><input type="number" ng-model="supplier.terms" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Discount</label></td>
-				<td><input type="number" ng-model="supplier.discount" ec-blur="update()" />%</td>
-			</tr>
-		</table> 
-		
+		<div class="workspace">
+			<table>
+				<tr>
+					<td><label>Company Name</label></td>
+					<td><input type="text" ng-model="supplier.name" ec-blur="update()" /></td>
+				</tr>
+				
+				
+				<tr>
+					<td><label>Telephone</label></td>
+					<td><input type="text" ng-model="supplier.telephone" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Fax</label></td>
+					<td><input type="text" ng-model="supplier.fax" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Address 1</label></td>
+					<td><input type="text" ng-model="supplier.address1" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Address 2</label></td>
+					<td><input type="text" ng-model="supplier.address2" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>City</label></td>
+					<td><input type="text" ng-model="supplier.city" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Territory</label></td>
+					<td><input type="text" ng-model="supplier.territory" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Country</label></td>
+					<td><input type="text" ng-model="supplier.country" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Zipcode</label></td>
+					<td><input type="text" ng-model="supplier.zipcode" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Terms of Payment in Days</label></td>
+					<td><input type="number" ng-model="supplier.terms" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Discount</label></td>
+					<td><input type="number" ng-model="supplier.discount" ec-blur="update()" />%</td>
+				</tr>
+			</table> 
+			<table class="supplierContacts">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Telephone</th>
+						
+					</tr>
+				</thead>
+				
+				<tbody ng-repeat="contact in supplier.contacts">
+					<tr>
+					
+						<td>{{contact.firstName}}</td>
+						<td>{{contact.lastName}}</td>
+						<td>{{contact.email}}</td>
+						<td>{{contact.telephone}}</td>
+					</tr>
+					
+				</tbody>
+				
+			</table>
+		</div>
 		
 	</form>
 	
+</div>

@@ -220,30 +220,29 @@ function AddSupplierCtrl($scope, Supplier, $location){
     
     //Mehtods
     
+    //addS  contact to the supplier
+    $scope.addContact = function(){
+        
+        if(!$scope.supplier.contacts){
+            $scope.supplier.contacts = [];
+        }
+        
+        $scope.supplier.contacts.push(angular.copy($scope.contact));
+        
+        $scope.contact = {};
+        
+        $scope.showAddContact = false;
+        
+    };
     
     //Method to save the supplier to the database
     $scope.save = function(){
         //New customer  and address objects
         var supplier = new Supplier(), address = {};
-        //Apply the customer details first
-        supplier.name = $scope.supplier.name;
-        supplier.email = $scope.supplier.email;
-        supplier.telephone = $scope.supplier.telephone;
-        supplier.fax = $scope.supplier.fax;
-        //Set the address        
-        supplier.address1 = $scope.supplier.address1;
-        supplier.address2 = $scope.supplier.address2;
-        supplier.city = $scope.supplier.city;
-        supplier.territory = $scope.supplier.territory;
-        supplier.country = $scope.supplier.country;
         
-        //terms and discount
-        supplier.discount = $scope.supplier.discount;
-        supplier.terms = $scope.supplier.terms;
-        //Save the supplier
-        
+        angular.copy($scope.supplier, supplier);
+                
         supplier.$save(function(){
-            console.log('ok');
             $location.path('/suppliers');
         });
         
@@ -270,6 +269,23 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
     
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
+    //addS  contact to the supplier
+    $scope.addContact = function(){
+        
+        if(!$scope.supplier.contacts){
+            $scope.supplier.contacts = [];
+        }
+        
+        $scope.supplier.contacts.push(angular.copy($scope.contact));
+        
+        $scope.contact = {};
+        
+        $scope.showAddContact = false;
+        
+        //Save changes
+        $scope.supplier.$save();
+        
+    };
     
     $scope.update = function(){
         console.log($scope.supplier);

@@ -1,25 +1,43 @@
-	<form name="form" class="addSupplierPage addPage" ng-init="addContact=false">
-		<div class="toolbar">
-			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
-			<button type="button" ng-click="addContact=true">Add Contact</button>
-		</div>
-		<div class="addContactModal" ng-show="addContact">
-			<div class="title">Add Supplier Contact</div>
-			<table>
+<div class="addPage addSupplierPage"  ng-init="showAddContact=false">
+	<!--
+		The popup modal to add a new contact
+		to the supplier
+	-->
+	<form name="contactForm" novalidate class="addContactModal" ng-show="showAddContact">
+			<div class="title" ng-click="showAddContact=false">Add Supplier Contact</div>
+			<table class="supplier_contact_table">
 				<tr>
 					<td>First Name</td>
-					<td><input beautify type="text" ng-model="contact.firstName" /></td>
+					<td><input beautify type="text" required ng-model="contact.firstName" /></td>
 				</tr>
 				<tr>
 					<td>Last Name</td>
-					<td><input beautify type="text" ng-model="contact.lastName" /></td>
+					<td><input beautify type="text" required ng-model="contact.lastName" /></td>
 				</tr>
 				<tr>
 					<td>Email</td>
-					<td><input beautify type="text" ng-model="contact.email" /></td>
+					<td><input beautify type="email" required ng-model="contact.email" /></td>
+				</tr>
+				<tr>
+					<td>Telephone</td>
+					<td><input beautify type="text" required ng-model="contact.telephone" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="button" ng-disabled="contactForm.$invalid" ng-click="addContact()">Add Contact</button></td>
 				</tr>
 			</table>
+		</form>
+		
+	<!--
+		Form that adds a new Supplier
+	-->
+	<form name="form" novalidate class="addSupplierPage addPage">
+		<div class="toolbar">
+			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+			<button type="button" ng-click="showAddContact=true">Add Contact</button>
 		</div>
+		
 		<div class="workspace">
 			<table>
 				<tr>
@@ -88,3 +106,4 @@
 		
 	</form>
 	
+</div>

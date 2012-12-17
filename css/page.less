@@ -8,15 +8,8 @@
   position:absolute;
   font-family:Helvetica, Tahoma, sans-serif;
   background:#DBDBDB;
-
   
-  .toolbar{
-    padding-top:10px;
-      padding-bottom:10px;
-      width:100%;
-      background:#CECECE;
-      border-bottom:1px solid #AAAAAA;
-      button{
+  button{
         margin-left:10px;
         padding:5px;
         border-radius:4px;
@@ -34,6 +27,14 @@
         
         
       }
+  
+  .toolbar{
+    padding-top:10px;
+      padding-bottom:10px;
+      width:100%;
+      background:#CECECE;
+      border-bottom:1px solid #AAAAAA;
+      
     }
     
     table{
@@ -189,7 +190,7 @@
   height:100%;
   width:100%;
   background:#DBDBDB;
-
+  position:absolute;
   //toolbar
   .toolbar{
     padding-top:10px;
@@ -247,9 +248,10 @@
   
   
   .workspace{
-    position:relative;
-    height:100%;
-    width:100%
+    position:absolute;
+    top:@toolbarHeight;
+    width:100%;
+    bottom:0px;
   }
   table{
     td{
@@ -259,7 +261,7 @@
 }
 
 @import 'auth/group/group_details.less';
-
+@import 'contacts/supplier/supplier_details.less';
 
 
 /*
