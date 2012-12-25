@@ -33,7 +33,27 @@ angular.module('EmployeeCenter.filters', []).
         //return string
         return newStr;
       };
-  }).filter('exclude', function(){
+  }).
+  
+  /*
+   * Filter into proper telephone
+   */
+  filter('telephone', function(){
+     return function($input){
+         
+         var clean = $input.replace(/ /g, '').replace(/-/g, '');
+         return clean;
+     }
+     
+     
+     
+     
+      
+  }).
+  
+  
+  
+  filter('exclude', function(){
       
       function compareObject(item, target){
           var key;
