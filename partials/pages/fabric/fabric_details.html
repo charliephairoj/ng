@@ -1,27 +1,104 @@
-<form class="detailsPage">
-	<div class="toolbar">
-			<button type="button" ng-click="remove()">Delete</button>
-	</div>
-	<table>
-			<tr>
-				<td><label>Description</label></td>
-				<td><input type="text" ng-model="fabric.description" ec-blur="update()" /></td>
-			</tr>
-			
-			<tr>
-				<td><label>Pattern</label></td>
-				<td><input type="text" ng-model="fabric.pattern" ec-blur="update()" /></td>
-			</tr>
-			
-			<tr>
-				<td><label>Color</label></td>
-				<td><input type="text" ng-model="fabric.color" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label>Cost per Yard</label></td>
-				<td><input type="text" ng-model="fabric.cost" ec-blur="update()" /></td>
-			</tr>
-			
-		</table> 
+
+
+<div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false;">
 	
-</form>
+	<!--
+		Add Length Modal
+	-->
+	<form name="addForm" novalidate class="addModal" ng-show="showAdd">
+		<div class="title" ng-click="showAdd=false">Add Fabric Length</div>
+		<table class="table">
+			<tr>
+				<td>Length</td>
+				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
+			</tr>
+			<tr>
+				<td>Remarks</td>
+				<td><textarea cols="25" rows="8" ng-model="addRemark"></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="button" ng-disabled="addForm.$invalid" ng-click="add()">Add</button>
+				</td>
+			</tr>
+			
+		</table>
+	</form>
+	<!--
+		Subtract Length Modal
+	-->
+	<form name="subtractForm" novalidate class="addModal" ng-show="showSubtract">
+		<div class="title" ng-click="showSubtract=false">Subtract Fabric Length</div>
+		<table class="table">
+			<tr>
+				<td>Length</td>
+				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
+			</tr>
+			<tr>
+				<td>Remarks</td>
+				<td><textarea cols="25" rows="8" ng-model="subtractRemark"></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Add</button>
+				</td>
+			</tr>
+			
+		</table>
+	</form>
+	<!--
+		Reset Length Modal
+	-->
+	<form name="resetForm" novalidate class="addModal" ng-show="showReset">
+		<div class="title" ng-click="showReset=false">Reset Fabric Length</div>
+		<table class="table">
+			<tr>
+				<td>Length</td>
+				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
+			</tr>
+			<tr>
+				<td>Remarks</td>
+				<td><textarea cols="25" rows="8" ng-model="resetRemark"></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Add</button>
+				</td>
+			</tr>
+			
+		</table>
+	</form>
+	<form>
+		<div class="toolbar">
+				<button type="button" ng-click="remove()">Delete</button>
+				<button type="button" ng-click="showAdd=true">Add Length</button>
+				<button type="button" ng-click="showSubtract=true">Subtract Length</button>
+				<button type="button" ng-click="showReset=true">Reset Length</button>
+		</div>
+		<table>
+				<tr>
+					<td><label>Description</label></td>
+					<td><input type="text" ng-model="fabric.description" ec-blur="update()" /></td>
+				</tr>
+				
+				<tr>
+					<td><label>Pattern</label></td>
+					<td><input type="text" ng-model="fabric.pattern" ec-blur="update()" /></td>
+				</tr>
+				
+				<tr>
+					<td><label>Color</label></td>
+					<td><input type="text" ng-model="fabric.color" ec-blur="update()" /></td>
+				</tr>
+				<tr>
+					<td><label>Cost per Yard</label></td>
+					<td><input type="text" ng-model="fabric.cost" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" /></td>
+				</tr>
+				
+			</table> 
+		
+	</form>
+</div>

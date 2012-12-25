@@ -265,7 +265,7 @@ function ViewSuppliersCtrl($scope, Supplier, Poller){
 
 ViewSuppliersCtrl.$inject = ['$scope', 'Supplier', 'Poller'];
 
-function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
+function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, SupplierContact){
     
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
@@ -287,8 +287,23 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
         
     };
     
+    //Remove a supplier contact
+    $scope.deleteContact = function($index){
+        
+        var contact = SupplierContact.get({'id':$scope.supplier.contacts[$index].id}, function(){
+           
+            $scope.supplier.contacts.splice($index, 1);
+            contact.$delete();
+            
+            $scope.supplier.$save();
+             $scope.$apply();
+        });
+        
+    
+    };
+    
+    
     $scope.update = function(){
-        console.log($scope.supplier);
         
         $scope.supplier.$save(function(data){
            
@@ -303,6 +318,6 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller){
     }
 }
 
-SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location', 'Poller'];
+SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location', 'Poller', 'SupplierContact'];
 
 

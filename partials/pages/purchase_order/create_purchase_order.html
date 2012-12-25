@@ -41,8 +41,18 @@
 						<td><label>Telephone</label></td>
 						<td><label>{{supplier.telephone}}</label></td>
 					</tr>
+					
 				</table>
 				
+				<table class="attention">
+					<tr ui-if="supplier.contacts.length">
+						<td><label>Attention To:</label></td>
+						<td><select required ng-options="contact.firstName+' '+contact.lastName for contact in supplier.contacts" ng-model="supplier.attention">
+						</select>
+							
+						</td>
+					</tr>
+				</table>
 				<table class="deliveryDate">
 					<tr>
 						<td><label>Delivery Date</label></td>

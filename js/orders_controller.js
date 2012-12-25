@@ -29,9 +29,9 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         $scope.sourceType = "supply";
         console.log('ok');
         if($scope.data.type == "supplier"){
-            $scope.$apply(function(){
+            
                 $scope.supplier = $scope.supplierList[$scope.data.index];
-            });
+            $scope.$apply();
         }else if($scope.data.type == "supply"){
             $scope.$apply(function(){
                 angular.forEach($scope.supplyList, function(item){
@@ -55,7 +55,12 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         
         po.supplier = $scope.supplier.id;
         po.vat = $scope.po.vat;
-        po.currency = $scope.po.currency
+        po.currency = $scope.po.currency;
+        if(po.attention){
+            po.attention = $scope.supplier.attention.firstName+' '+$scope.supplierList.attention.lastName;
+        }else{
+            po.attention = null;
+        }
         //Add delivery date
         po.deliveryDate = {}
         po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;

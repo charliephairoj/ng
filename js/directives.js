@@ -72,14 +72,11 @@ directive('ecDroppable', function($parse){
                 }
                 
             }).bind('dragover', function(event){
-                console.log('maybe');
                 event.preventDefault();
                 event.originalEvent.dataTransfer.effectAllowed = "copy";
-                console.log(1);
             }).bind('dragleave', function(event){
                 event.preventDefault();
                 event.originalEvent.dataTransfer.effectAllowed = "copy";
-                console.log(2);
             });
         }
     }

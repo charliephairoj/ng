@@ -81,7 +81,13 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     //Users
     when('/users', {templateUrl:'partials/pages/users/view_users.html', controller:ViewUsersCtrl}).
     when('/users/add_user', {templateUrl:'partials/pages/users/add_user.html', controller:AddUserCtrl}).
-    when('/users/:id', {templateUrl:'partials/pages/users/user_details.html', controller:UserDetailsCtrl})
+    when('/users/:id', {templateUrl:'partials/pages/users/user_details.html', controller:UserDetailsCtrl}).
+    
+    /*
+     * This area deals with all the permissions
+     */
+    when('/settings/change_password', {templateUrl:'partials/pages/settings/change_password.html', controller:ChangePasswordCtrl})
+    
     
     
   }]);

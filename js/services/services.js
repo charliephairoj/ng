@@ -11,8 +11,9 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('model/:id', {id:'@id'});
     }).factory('Supplier', function(ecResource){
         return ecResource('supplier/:id', {id:'@id'});
-    }).
-    factory('Configuration', function(ecResource){
+    }).factory('SupplierContact', function(ecResource){
+        return ecResource('supplier_contact/:id', {id:'@id'});
+    }).factory('Configuration', function(ecResource){
         return ecResource('configuration/:id', {id:'@id'});
     }).factory('Upholstery', function(ecResource){
         return ecResource('upholstery/:id', {id:'@id'});

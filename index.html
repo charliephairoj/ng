@@ -25,6 +25,7 @@
   <script src="js/supplies_controllers.js"></script>
   <script src="js/orders_controller.js"></script>
   <script src="js/admin_controller.js"></script>
+  <script src="js/settings_controller.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAOLXHtWOGh4Hh8JkA1u4zbwYZR990668k&sensor=true" type="text/javascript"></script>
 
 
@@ -54,6 +55,9 @@
 			<li class="menuItem" ng-show="currentUser.hasModule('administrator')" ng-click="module='administrator'">
 				<h2>Administrator</h2>
 			</li>
+			<li class="menuItem" ng-click="module='settings'">
+				<h2>Settings</h2>
+			</li>
 		</ul>
 		<!--
 		<div class="account_container">
@@ -63,7 +67,7 @@
 		-->
 	</div>
 	
-	<div class="sideMenu" ng-init="category=null">
+	<div class="sideMenu">
 		<!--
 			Area that lists the modules to be used
 			relies on angular to detemine which module list
@@ -117,6 +121,15 @@
 				<ul class="category_list">
 					<li ng-show="currentUser.hasPermission('add_user')" click-url="/users">Users</li>
 					<li ng-show="currentUser.hasPermission('add_group')" click-url="/groups">Groups</li>
+					
+					
+				</ul>
+			</div>
+			
+			<div class="category_inner_container" ng-switch-when="settings">
+				<h2>Settings</h2>
+				<ul class="category_list">
+					<li click-url="/settings/change_password">Change Password</li>
 					
 					
 				</ul>

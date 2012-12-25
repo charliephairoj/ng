@@ -128,6 +128,9 @@ angular.module('ecResource', ['ngResource']).
                     index;
                 //Checks index of key and 
                 //If a key is present return is
+                if(!this.keys){
+                    this.createKeysArray();
+                }
                 index = this.keys.indexOf(tempKey);
                 if(index!==-1){
                     
@@ -413,7 +416,7 @@ angular.module('ecResource', ['ngResource']).
             };
             
             //Get function
-            Resource.get = function(params){
+            Resource.get = function(params, callback){
                 
                 if(params.id){
                     //get the data from local storage
@@ -429,8 +432,12 @@ angular.module('ecResource', ['ngResource']).
                         type:'GET',
                         cache:false,
                         success: function(responseData, status){
-                           resource = new Resource(responseData);
-                           $rootScope.$apply();
+                           angular.copy(new Resource(responseData), resource);
+                           
+                           if(callback){
+                               callback(responseData);
+                           }
+                           
                             
                         }.bind(this)
                     });
@@ -479,7 +486,6 @@ angular.module('ecResource', ['ngResource']).
                         
                         //deep copy to this
                         angular.copy(resource, this);
-                        console.log(callback);
                         //call the call back
                         if(callback){
                             console.log('calling')
@@ -495,7 +501,6 @@ angular.module('ecResource', ['ngResource']).
            
             
             Resource.prototype.$delete = function(callback){
-                
                 storage.remove(this);
                 
                

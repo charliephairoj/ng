@@ -328,6 +328,74 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
     
     $scope.fabric = Fabric.get({'id':$routeParams.id});
     
+    $scope.add = function(){
+        
+        //close modal
+        $scope.showAdd = false;
+        
+        var fd = new FormData();
+        
+        fd.append('length', $scope.addLength);
+        fd.append('remark', $scope.addRemark)
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/add", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(subtractForm){
+               angular.copy(responseData, $scope.fabric);
+           }
+        });
+        
+    };
+    
+    $scope.subtract = function(){
+        
+        //close modal
+        $scope.showSubtract = false;
+        
+        var fd = new FormData();
+        
+        fd.append('length', $scope.subtractLength);
+        fd.append('remark', $scope.subtractRemark);
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/subtract", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(subtractForm){
+               
+               angular.copy(responseData, $scope.fabric);
+           } 
+        });
+    };
+    
+    
+    $scope.reset = function(){
+        
+        //close modal
+        $scope.showReset = false;
+        
+        var fd = new FormData();
+        
+        fd.append('length', $scope.resetLength);
+        fd.append('remark', $scope.resetRemark);
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/reset", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(responseData){
+               angular.copy(responseData, $scope.fabric);
+           } 
+        });
+    };
+    
+    
+    
     $scope.remove = function(){
         $scope.fabric.$delete(function(){
             $location.path('/fabric');
