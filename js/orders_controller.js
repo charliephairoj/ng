@@ -8,10 +8,14 @@
 //controller to view po
 
 function ViewPOCtrl($scope, PurchaseOrder, Supplier, Poller){
+    $scope.poList = PurchaseOrder.query();
+    /*
     Poller.poll($scope, function(){
         $scope.poList = PurchaseOrder.query();
 
     });
+    
+    */
 }
 
 ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier', 'Poller']
@@ -56,11 +60,13 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         po.supplier = $scope.supplier.id;
         po.vat = $scope.po.vat;
         po.currency = $scope.po.currency;
-        if(po.attention){
-            po.attention = $scope.supplier.attention.firstName+' '+$scope.supplierList.attention.lastName;
-        }else{
-            po.attention = null;
+        if($scope.po.attention){
+            po.attention = {};
+            angular.copy($scope.po.attention, po.attention);
+            
         }
+                console.log(po.attention);
+
         //Add delivery date
         po.deliveryDate = {}
         po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;

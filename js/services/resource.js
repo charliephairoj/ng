@@ -267,7 +267,7 @@ angular.module('ecResource', ['ngResource']).
         function applyData(target, data){
             angular.forEach(data, function(value, key){
                 
-                target[key] = value
+                target[key] = value;
                 
             });
         }
@@ -279,29 +279,20 @@ angular.module('ecResource', ['ngResource']).
             var data = {};
             //iterate over the target
             angular.forEach(target, function(value, key){
-                //add data with key
-                data[key] = value;
+                
+                if(key !== "files" || key !== "filesToUpload" || key !== "newFiles" || key !== "newFileUrls"){
+                    //add data with key
+                    data[key] = value;
+                }
+                
             });
             //return thedata
             return data;
         }
         
-        //helps extract images from the 
-        //target and returns it
-        function extractImages(target){
-            
-            //creates an array
-            var images = [];
-            //lopps through the images
-            angular.forEach(target)
-            
-        }
+       
         
-        //helps extract files from the target 
-        //and returns it
-        function extractFiles(target){
-            
-        }
+       
         
         //function route gets url
         function getRoute(targetUrl, params){

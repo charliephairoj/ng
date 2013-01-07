@@ -296,7 +296,7 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
             contact.$delete();
             
             $scope.supplier.$save();
-             $scope.$apply();
+            $scope.$apply();
         });
         
     
@@ -304,9 +304,10 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     
     
     $scope.update = function(){
-        
+        console.log($scope.supplier);
         $scope.supplier.$save(function(data){
-           
+            console.log(data);
+           $scope.supplier =  Supplier.get({'id':$routeParams.id});
         });
     };
     

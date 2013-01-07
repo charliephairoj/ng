@@ -4,28 +4,38 @@
 		<button click-url="/suppliers/add_supplier" ui-if="currentUser.hasPermission('add_supplier')">Add</button>
 		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	</div>
-	<div class="listContainer">
-		<table class="list">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Address</th>
-					<th>City</th>
-					<th>Territory</th>
-					<th>Country</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.name}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.address1}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.city}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.territory}}</a></td>
-					<td><a ng-href="#/suppliers/{{supplier.id}}">{{supplier.country}}</a></td>
-				</tr>
-			</tbody>
-			
-		</table>
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				
+				<tbody>
+					<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
+						<td>
+							<table class="detailsTable">
+								<tr>
+									<td>Company:</td>
+									<td>{{supplier.name}}</td>
+								</tr>
+								<tr>
+									<td>Address:</td>
+									<td>{{supplier.address1}}
+										<br />
+										{{supplier.city+","+supplier.territory}}
+										<br />
+										{{supplier.country+" "+supplier.zipcode}}
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td><a ng-href="#/suppliers/{{supplier.id}}">Edit</a></td>
+						
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
 	</div>
+	
 	
 </div>

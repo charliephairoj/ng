@@ -4,26 +4,35 @@
 		<button click-url="/purchase_order/create" ui-if="currentUser.hasPermission('add_purchaseorder')">Create</button>
 		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	</div>
-	<div class="listContainer">
-		<table class="list">
-			<thead>
-				<tr>
-					<th>PO#</th>
-					<th>url</th>
-					<th>Order Date</th>
-					<th>Ordered By</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="po in poList | filter:query" class="listItem">
-					<td><a ng-href="#/purchase_order/{{po.id}}" >{{po.id}}</a></td>
-					<td><a ng-href="{{po.url}}"  target="_blank">View Document</a></td>
-					<td><a ng-href="#/purchase_order/{{po.id}}">{{po.orderDate}}</a></td>
-					<td>{{po.employee}}</td>
-				</tr>
-			</tbody>
-			
-		</table>
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				
+				<tbody>
+					<tr ng-repeat="po in poList | filter:query" class="listItem">
+						<td>
+							<label>PO# {{po.id}}</label>
+							<table class="detailsTable">
+								<tr>
+									<td>Order Date:</td>
+									<td>{{po.orderDate}}</td>
+								</tr>
+								<tr>
+									<td>Delivery Date:</td>
+									<td>{{po.deliveryDate}}</td>
+								</tr>
+								<tr>
+									<td>Ordered By:</td>
+									<td>{{po.employee}}</td>
+								</tr>
+							</table>
+						</td>
+						
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
 	</div>
 	
 </div>

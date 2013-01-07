@@ -5,24 +5,26 @@
 		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	</div>
 	
-	
-	<div class="listContainer">
-		<table class="list">
-			<thead>
-				<tr>
-					<th>Supplier</th>
-					<th>Ref</th>
-					<th>Width</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="webbing in webbingList | filter:query" class="listItem">
-					<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.supplier.name}}</a></td>
-					<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.reference}}</a></td>
-					<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.Width}}</a></td>
-				</tr>
-			</tbody>
-			
-		</table>
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				<thead>
+					<tr>
+						<th>Supplier</th>
+						<th>Ref</th>
+						<th>Width</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="webbing in webbingList | filter:query" class="listItem">
+						<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.supplier.name}}</a></td>
+						<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.reference}}</a></td>
+						<td><a ng-href="#/webbing/{{webbing.id}}">{{webbing.Width}}</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
 	</div>
+	
 </div>

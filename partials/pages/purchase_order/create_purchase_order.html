@@ -44,10 +44,10 @@
 					
 				</table>
 				
-				<table class="attention">
-					<tr ui-if="supplier.contacts.length">
+				<table class="attention" ui-if="supplier.contacts.length">
+					<tr>
 						<td><label>Attention To:</label></td>
-						<td><select required ng-options="contact.firstName+' '+contact.lastName for contact in supplier.contacts" ng-model="supplier.attention">
+						<td><select required ng-options="contact.firstName+' '+contact.lastName for contact in supplier.contacts" ng-model="po.attention">
 						</select>
 							
 						</td>
@@ -91,15 +91,11 @@
 					</tr>
 				</table>
 				
-				<table class="currency">
+				<table class="currency" ui-if="supplier">
 					<tr>
 						<td><label>Currency</label></td>
 						<td>
-							<select required  ng-model="po.currency" >
-								<option value="THB">Thai Baht</option>
-								<option value="USD">US Dollars</option>
-								<option value="EUR">Euro</option>
-							</select>
+							{{supplier.currency}}
 						</td>
 					</tr>
 				</table>

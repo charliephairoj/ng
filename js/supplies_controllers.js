@@ -336,15 +336,20 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
         var fd = new FormData();
         
         fd.append('length', $scope.addLength);
-        fd.append('remark', $scope.addRemark)
+        fd.append('remark', $scope.addRemark);
+        
+        //clear the form
+        $scope.addLength = null;
+        $scope.addRemark = null;
         
         jQuery.ajax("fabric/"+$scope.fabric.id+"/add", {
            type:'POST',
            data:fd,
            processData:false,
            contentType:false,
-           success: function(subtractForm){
+           success: function(responseData){
                angular.copy(responseData, $scope.fabric);
+               $scope.$apply();
            }
         });
         
@@ -360,14 +365,19 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
         fd.append('length', $scope.subtractLength);
         fd.append('remark', $scope.subtractRemark);
         
+        //Clear the form
+        $scope.subtractLength = null;
+        $scope.subtractRemark = null;
+        
         jQuery.ajax("fabric/"+$scope.fabric.id+"/subtract", {
            type:'POST',
            data:fd,
            processData:false,
            contentType:false,
-           success: function(subtractForm){
+           success: function(responseData){
                
                angular.copy(responseData, $scope.fabric);
+               $scope.$apply();
            } 
         });
     };
@@ -383,6 +393,10 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
         fd.append('length', $scope.resetLength);
         fd.append('remark', $scope.resetRemark);
         
+        //Clear the form
+        $scope.resetLength = null;
+        $scope.resetRemark = null;
+        
         jQuery.ajax("fabric/"+$scope.fabric.id+"/reset", {
            type:'POST',
            data:fd,
@@ -390,6 +404,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            contentType:false,
            success: function(responseData){
                angular.copy(responseData, $scope.fabric);
+               $scope.$apply();
            } 
         });
     };

@@ -89,7 +89,7 @@ angular.module('EmployeeCenter.services', ['ecResource']).
             function looper(){
                 fn();
                 if(keepPolling){
-                    $timeout(looper, 1000);
+                    $timeout(looper, 10000);
                 }
             }
             
@@ -104,6 +104,18 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         };
         
         return Poller;
+        
+    }).
+
+
+    /*
+     * Upload Images and returns the url
+     */    
+    factory('ImageUploader', function(){
+        
+        function Uploader(){
+            
+        }
         
     });
     
