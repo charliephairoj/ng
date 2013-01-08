@@ -7,20 +7,30 @@
 	<div class="workspace">
 		<div class="listContainer">
 			<table class="list">
-				<thead>
-					<tr>
-						<th>Supplier</th>
-						<th>Ref</th>
-						<th>Type</th>
-						<th>Color</th>
-					</tr>
-				</thead>
+		
 				<tbody>
 					<tr ng-repeat="foam in foamList | filter:query" class="listItem">
-						<td><a ng-href="#/foam/{{foam.id}}">{{foam.supplier.name}}</a></td>
-						<td><a ng-href="#/foam/{{foam.id}}">{{foam.reference}}</a></td>
-						<td><a ng-href="#/foam/{{foam.id}}">{{foam.type}}</a></td>
-						<td><a ng-href="#/foam/{{foam.id}}">{{foam.color}}</a></td>
+						<td>
+							<table class="detailsTable">
+								<tr>
+									<td>Supplier:</td>
+									<td>{{foam.supplier.name}}</td>
+								</tr>
+								<tr>
+									<td>Reference Number</td>
+									<td>{{foam.reference}}</td>
+								</tr>
+								<tr>
+									<td>Type:</td>
+									<td>{{foam.type}}</td>
+								</tr>
+								<tr>
+									<td>Color:</td>
+									<td>{{foam.color}}</td>
+								</tr>
+							</table>
+						</td>
+						
 					</tr>
 				</tbody>
 				

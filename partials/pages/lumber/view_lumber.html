@@ -17,6 +17,34 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="lumber in lumberList | filter:query" class="listItem">
+						<td>
+							<table>
+								<tr>
+									<td>Supplier:</td>
+									<td>{{lumber.supplier.name}}</td>
+								</tr>
+								<tr>
+									<td>Reference Number:</td>
+									<td>{{lumber.reference}}</td>
+								</tr>
+								<tr>
+									<td>Type:</td>
+									<td>{{lumber.type}}</td>
+								</tr>
+								<tr>
+									<td>Width:</td>
+									<td>{{lumber.width+lumber.widthUnits}}</td>
+								</tr>
+								<tr>
+									<td>Thickness:</td>
+									<td>{{lumber.height+lumber.heightUnits}}</td>
+								</tr>
+								<tr>
+									<td>Length:</td>
+									<td>{{lumber.depth+lumber.depthUnits}}</td>
+								</tr>
+							</table>
+						</td>
 						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.supplier.name}}</a></td>
 						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.reference}}</a></td>
 						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.description}}</a></td>
