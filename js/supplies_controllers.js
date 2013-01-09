@@ -409,6 +409,18 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
         });
     };
     
+    $scope.viewLog = function(){
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/log",  {
+            type:'GET',
+            success: function(responseData){
+                $scope.fabric.logs = [];
+                angular.copy(responseData, $scope.fabric.logs);
+                
+                $scope.$apply();
+            } 
+        });
+    };
     
     
     $scope.remove = function(){
