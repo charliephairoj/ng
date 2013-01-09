@@ -4,22 +4,35 @@
 		<button click-url="/users/add_user" ui-if="currentUser.hasPermission('add_user')">Create</button>
 		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
 	</div>
-	
-	<div class="listContainer">
-		<table class="list">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="user in userList | filter:query" class="listItem">
-					<td><a ng-href="#/users/{{user.id}}">{{user.firstName+' '+user.lastName}}</a></td>
-					<td><a ng-href="#/users/{{user.id}}">{{user.email}}</a></td>
-				</tr>
-			</tbody>
-			
-		</table>
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				
+				<tbody>
+					<tr ng-repeat="user in userList | filter:query" class="listItem">
+						<td>
+							<table class="detailsTable">
+								<tr>
+									<td>Name:</td>
+									<td>{{user.firstName+' '+user.lastName}}</td>
+								</tr>
+								<tr>
+									<td>Username:</td>
+									<td>{{user.username}}</td>
+								</tr>
+								<tr>
+									<td>Email:</td>
+									<td>{{user.email}}</td>
+								</tr>
+							</table>
+						</td>
+						
+						<td><a ng-href="#/users/{{user.id}}">edit</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
 	</div>
+	
 </div>

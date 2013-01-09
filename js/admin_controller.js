@@ -142,7 +142,7 @@ function AddUserCtrl($scope, User, Group, $location){
          
          angular.copy($scope.user, user);
          user.$save(function(){
-            $location.paht("/users");
+            $location.path("/users");
         });
     }
 }

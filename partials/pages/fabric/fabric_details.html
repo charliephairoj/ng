@@ -10,7 +10,7 @@
 		<table class="table">
 			<tr>
 				<td>Length</td>
-				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
+				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
 			</tr>
 			<tr>
 				<td>Remarks</td>
@@ -33,7 +33,7 @@
 		<table class="table">
 			<tr>
 				<td>Length</td>
-				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
+				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
 			</tr>
 			<tr>
 				<td>Remarks</td>
@@ -42,7 +42,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Add</button>
+					<button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Subtract</button>
 				</td>
 			</tr>
 			
@@ -56,7 +56,7 @@
 		<table class="table">
 			<tr>
 				<td>Length</td>
-				<td><input beautify type="text" ng-pattern="/^[1-9](\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
+				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
 			</tr>
 			<tr>
 				<td>Remarks</td>
@@ -65,7 +65,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Add</button>
+					<button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Reset</button>
 				</td>
 			</tr>
 			

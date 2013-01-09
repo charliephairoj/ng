@@ -22,14 +22,17 @@
 				</tr>
 				<tr>
 					<td><label>Width</label></td>
-					<td><input name="width" type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="fabric.width" required/></td>
+					<td><input name="width" type="text" ng-pattern="/^\d+(\.\d{2})?$/" ng-model="fabric.width" required/></td>
 				</tr>
 				
 				<tr>
 					<td><label>Cost per Yard</label></td>
-					<td><input type="text" ng-model="fabric.cost" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" required/></td>
+					<td><input type="text" ng-model="fabric.cost" ng-pattern="/^\d+(\.\d{2})?$/" required/>{{fabric.supplier.currency}}</td>
 				</tr>
-				
+				<tr>
+					<td><label>Current Length</label></td>
+					<td><input type="text" ng-model="fabric.currentLength" ng-pattern="/^\d+(\.\d{2})?$/" required /></td>
+				</tr>
 			</table> 
 		</div>
 		
