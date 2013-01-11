@@ -414,8 +414,8 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
         jQuery.ajax("fabric/"+$scope.fabric.id+"/log",  {
             type:'GET',
             success: function(responseData){
-                $scope.fabric.logs = [];
-                angular.copy(responseData, $scope.fabric.logs);
+                $scope.logs = [];
+                angular.copy(responseData, $scope.logs);
                 
                 $scope.$apply();
             } 

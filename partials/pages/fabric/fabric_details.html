@@ -112,13 +112,14 @@
 				</tr> 
 				
 			</table>
-			<div ng-show="showLog">
+			<div class="logContainer" ng-show="showLog">
 				<table>
 					<tr ng-repeat="log in fabric.logs">
 						<td>{{log.action}}</td>
 						<td>{{log.employee}}</td>
 						<td>{{log.length}}</td>
 						<td>{{log.total}}</td>
+						<td>{{log.remarks}}</td>
 					</tr>
 				</table>
 			</div>
