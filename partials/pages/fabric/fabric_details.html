@@ -114,13 +114,27 @@
 			</table>
 			<div class="logContainer" ng-show="showLog">
 				<table>
-					<tr ng-repeat="log in logs"> 
-						<td>{{log.action}}</td>
-						<td>{{log.employee}}</td>
-						<td>{{log.length}}</td>
-						<td>{{log.total}}</td>
-						<td>{{log.remarks}}</td>
-					</tr>
+					<thead>
+						<tr>
+							<th>Action</th>
+							<th>Employee</th>
+							<th>Length</th>
+							<th>Total</th>
+							<th>Remarks</th>
+							<th>Timestamp</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="log in logs"> 
+							<td>{{log.action}}</td>
+							<td>{{log.employee}}</td>
+							<td>{{log.length}}</td>
+							<td>{{log.total}}</td>
+							<td>{{log.remarks}}</td>
+							<td>{{log.timestamp}}</td>
+						</tr>
+					</tbody>
+					
 				</table>
 			</div>
 			<div ng-repeat="image in imagePreviews" style="position: absolute; right:10px; top:10px;">
