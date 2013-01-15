@@ -58,7 +58,7 @@ select{
 
 /*Main Menu*/
 
-@menuHeight:30px;
+@menuHeight:50px;
 @menuSidePadding:8px;
 
 //general animation 
@@ -78,21 +78,26 @@ select{
   width:100%;
   font-family:Helvetica, Tahoma, sans-serif;
   z-index:10;
-  background: #3d3d3d; /* Old browsers */
-  background: -moz-linear-gradient(top,  #3d3d3d 1%, #161616 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#3d3d3d), color-stop(100%,#161616)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #3d3d3d 1%,#161616 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #3d3d3d 1%,#161616 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #3d3d3d 1%,#161616 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #3d3d3d 1%,#161616 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d3d3d', endColorstr='#161616',GradientType=0 ); /* IE6-9 */
-
-   
+  background: #30343A; /* Old browsers */
+ -webkit-box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+        
+        box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  
+  .logo{
+    position:relative;
+    height:30px;
+    margin:10px;
+    width:auto;
+    float:left;
+  }
   //Container for main menu
   .mainMenuContainer{
     position:relative;
     height:auto;
     width:auto;
+    float:left;
+    margin-left:20px;
+    margin-top:17px;
     //individual menu items
     .menuItem{
       
@@ -105,12 +110,24 @@ select{
       h2{
         font-size:14px;
         font-weight:400;
-        padding:8px;
-        width:70px;
+        padding-right:30px;
         color:white;
         .menuAnimation;
       }
       
+      .category_list{
+        position:absolute;
+        display:none;
+        margin-top:30px;
+      }
+      
+      &:hover{
+        .category_list{
+          display:block;
+          background:red;
+          
+        }
+      }
     }
     
   }
@@ -138,13 +155,14 @@ select{
 /*Sidemenu*/
 .sideMenu{
   position:absolute;
-  width:175px;
+  width:0px;
   top:@menuHeight;
   bottom:0px;
-  background:#30343A;
+  background:#282828;
   border-right:1px solid #2b2b2b;
   font-family:Helvetica, Tahoma, sans-serif;
-  z-index:1;
+  z-index:-1;
+  .transition(all, 500ms, linear);
   
   .category_container{
     width:100%;
@@ -188,6 +206,8 @@ select{
         }
       }
     }
+    
+    
   }
   //List of categories
   .categories{
@@ -221,9 +241,12 @@ select{
         box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
       }
     }
+    
   }
   
-  
+  &.active{
+      width:175px;
+    }
 }
 
 
@@ -237,12 +260,27 @@ select{
 	top:@menuHeight;
 	bottom:0px;
 	right:0px;
-	left:175px;
-	overflow:hidden;
+	left:0px;
+	
+	.transition(all, 500ms, linear);
 	
   input{
     border: 1px solid grey;
     background-color: #FFFFFF;
+  }
+  
+  &.active{
+    left:175px;
+  }
+  
+  .toolbar{
+    background:#282828;
+  }
+  
+  .workspace{
+    -webkit-box-shadow:  -2px 3px 5px 2px rgba(0, 0, 0, 0.5);
+        
+        box-shadow:  -2px 3px 5px 2px rgba(0, 0, 0, 0.5);
   }
 }
 

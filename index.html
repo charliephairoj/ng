@@ -32,7 +32,7 @@
 </head>
 <body  ng-controller="MainMenuCtrl" ng-init="showActionMenu=false">
 	<div class="mainMenu">
-		<img src="img/DellaLogo.png" />
+		<img class="logo" src="img/DellaLogo.png" />
 		<ul class="mainMenuContainer" ng-init="module=null">
 			<!--
 			<li class="menuItem" ng-repeat="section in menuSections" ng-click="changeSideMenu($index, section.section)">
@@ -44,21 +44,24 @@
 			</li>
 			
 			-->
-			<li class="menuItem" ng-show="currentUser.hasModule('contacts')" ng-click="module='contacts'">
+			<li class="menuItem" ng-show="currentUser.hasModule('contacts')" ng-click="module='contacts';mainContainer='active'">
 				<h2>Contacts</h2>
+				
 			</li>
 			<li class="menuItem" ng-show="currentUser.hasModule('supplies')" ng-click="module='supplies'">
 				<h2>Supplies</h2>
+				
 			</li>
 			<li class="menuItem" ng-show="currentUser.hasModule('orders')" ng-click="module='orders'">
 				<h2>Orders</h2>
+				
 			</li>
 			<li class="menuItem" ng-show="currentUser.hasModule('administrator')" ng-click="module='administrator'">
 				<h2>Administrator</h2>
+				<ul class="category_list">
+				
 			</li>
-			<li class="menuItem" ng-click="module='settings'">
-				<h2>Settings</h2>
-			</li>
+			
 		</ul>
 		<!--
 		<div class="account_container">
@@ -68,7 +71,7 @@
 		-->
 	</div>
 	
-	<div class="sideMenu">
+	<div class="sideMenu" ng-class="mainContainer">
 		<!--
 			Area that lists the modules to be used
 			relies on angular to detemine which module list
@@ -143,7 +146,7 @@
 		
 	</div>
 	
-	<div ng-view class="mainContainer">
+	<div ng-view class="mainContainer" ng-class="mainContainer">
 		
 	</div>
 </body>
