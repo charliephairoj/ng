@@ -3,6 +3,35 @@
 <div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false; showLog=false"  image-drop-target>
 	
 	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>{{fabric.pattern}}<br />{{fabric.color}}</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="showAdd=!showAdd">Add Length</div>
+				</li>
+				<li>
+					<div ng-click="showSubtract=!showSubtract">Subtract Length</div>
+				</li>
+				<li>
+					<div ng-click="showReset=!showReset">Reset Length</div>
+				</li>
+				<li>
+					<div ng-click="viewLog();showLog=!showLog">View Log</div>
+				</li>
+				<li>
+					<div ng-click="remove()">Delete</div>
+				</li>
+					
+			</ul>
+		</nav>
+	</div>
+	
+	<!--
 		Add Length Modal
 	-->
 	<form name="addForm" novalidate class="addModal" ng-show="showAdd">
@@ -72,13 +101,7 @@
 		</table>
 	</form>
 	<form>
-		<div class="toolbar">
-				<button type="button" ng-click="remove()">Delete</button>
-				<button type="button" ng-click="showAdd=true">Add Length</button>
-				<button type="button" ng-click="showSubtract=true">Subtract Length</button>
-				<button type="button" ng-click="showReset=true">Reset Length</button>
-				<button type="button" ng-click="viewLog(); showLog = true;">View Log</button>
-		</div>
+		
 		<table>
 				<tr>
 					<td><label>Supplier</label></td>
