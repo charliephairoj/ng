@@ -142,6 +142,9 @@ select{
 
 
 /*Sidemenu*/
+
+@menuItemBGColor:#313131;
+@menuItemBGHoverColor:#292929;
 .sideMenu{display:none;}
 .sidebar{
   position:fixed;
@@ -149,7 +152,7 @@ select{
   top:20px;
   left:20px;
   width:130px;
-  background:#313131;
+  background:@menuItemBGColor;
   font-family:Helvetica, Tahoma, sans-serif;
   z-index:10;
   border-radius:2px;
@@ -196,12 +199,12 @@ select{
           line-height: 25px;
           text-decoration:none;
           color:#FFF;
-          background-color:#313131;
+          background-color:@menuItemBGColor;
           cursor:pointer;
           .transition(background-color, 250ms, linear);
           
           &:hover{
-            background-color:#292929;
+            background-color:@menuItemBGHoverColor;
           }
         }
         

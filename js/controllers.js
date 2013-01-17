@@ -237,14 +237,18 @@ function AddSupplierCtrl($scope, Supplier, $location){
     
     //Method to save the supplier to the database
     $scope.save = function(){
-        //New customer  and address objects
-        var supplier = new Supplier(), address = {};
         
-        angular.copy($scope.supplier, supplier);
-                
-        supplier.$save(function(){
-            $location.path('/suppliers');
-        });
+        if($scope.form.$valid){
+            //New customer  and address objects
+            var supplier = new Supplier(), address = {};
+            
+            angular.copy($scope.supplier, supplier);
+                    
+            supplier.$save(function(){
+                $location.path('/suppliers');
+            });
+        }
+        
         
         
         
