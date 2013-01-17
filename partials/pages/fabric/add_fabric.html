@@ -7,8 +7,7 @@
 			<nav>
 				<ul>
 					<li>
-						<div ng-click="save()">Save</div>
-						<a ng-href="#/fabric/add_fabric">Add Fabric</a>
+						<div ng-class="{dirty:form.$invalid}" ng-click="save()">Save</div>
 					</li>
 					
 				</ul>

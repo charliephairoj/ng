@@ -290,14 +290,21 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
     
     //Add Lumber
     $scope.save = function(){
-       var fabric = new Fabric();
+        
+        //Checks the form is valid
+        if($scope.form.$valid){
+            //Create new fabric object
+            var fabric = new Fabric();
        
+            //copies data to new object
+            angular.copy($scope.fabric, fabric);
+            
+            //save to database
+            fabric.$save(function(){
+                $location.path('/fabric');
+            });
+        }
        
-       angular.copy($scope.fabric, fabric);
-       
-        fabric.$save(function(){
-           $location.path('/fabric');
-       });
     };
     
     
