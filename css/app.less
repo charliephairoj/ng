@@ -60,7 +60,7 @@ select{
   position:absolute;
   height:@menuHeight;
   background-color:black;
-  bottom:0px;
+  bottom:20px;
   width:100%;
   font-family:Helvetica, Tahoma, sans-serif;
   z-index:10;
@@ -93,11 +93,12 @@ select{
       text-align:center;
       cursor:pointer;
       //span
-      h2{
+      a{
         font-size:14px;
         font-weight:400;
         padding-right:30px;
         color:white;
+        text-decoration:none;
       }
       
       .category_list{
@@ -137,101 +138,97 @@ select{
   font-size:14px;
   color:grey;
 }
+
+
+
 /*Sidemenu*/
-.sideMenu{
-  position:absolute;
-  width:0px;
-  top:@menuHeight;
-  bottom:0px;
-  background:#282828;
-  border-right:1px solid #2b2b2b;
+.sideMenu{display:none;}
+.sidebar{
+  position:fixed;
+  
+  top:20px;
+  left:20px;
+  width:130px;
+  background:#313131;
   font-family:Helvetica, Tahoma, sans-serif;
-  z-index:-1;
+  z-index:10;
+  border-radius:2px;
+  -webkit-box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   .transition(all, 500ms, linear);
   
-  .category_container{
-    width:100%;
-    position:absolute;
-    height:50%;
-    top:0px;
-    left:0px;
-    overflow-y:scroll;
-    overflow-x:hidden;
-    
-    .category_inner_container{
-      color:white;
-      margin-top:10px;
-      position:relative;
-      width:100%;
-      
-      h2{
-        opacity:0.6;
-        padding-left:10px;
+  header{
+    border-radius:2px 2px 0px 0px;
+    h1{
+      min-height:40px;
+      padding:2px 2px 3px;
+      line-height:18px;
+      font-size:15px;
+      span{
+        display:inline-block;
+        padding:12px 8px;
+        word-wrap:normal;
+        color:#FFF;
       }
-      
-      .category_list{
-        margin-top:10px;
-        li{
-          font-size:0.8em;
-          padding:4px;
-          padding-left:20px;
-          letter-spacing:0.15em;
+    }
+  }
+  nav{
+    padding-bottom: 8px;
+    border-top: 1px solid #282828;
+    border-radius: 0 0 2px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    
+    ul{
+      list-style: none;
+      border-bottom: 1px solid #3C3C3C;
+      color: #757575;
+      li{
+        color: #FFF;
+        
+        .textholder{
+          font-size:12px;
+          display: block;
+          height: 25px;
+          padding: 0 10px;
+          border-top: 1px solid #3c3c3c;
+          border-bottom: 1px solid #282828;
+          line-height: 25px;
+          text-decoration:none;
+          color:#FFF;
+          background-color:#313131;
           cursor:pointer;
-          a{
-            height:100%;
-            width:100%;
-          }
-          //.Category States
+          .transition(background-color, 250ms, linear);
+          
           &:hover{
-            background:#2A2D33;
-            -webkit-box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
-            
-            box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+            background-color:#292929;
           }
+        }
+        
+        a{
+          .textholder
+        }
+        
+        div{
+          .textholder
+        }
+        button{
+         
+          .textholder
         }
       }
     }
-    
-    
   }
-  //List of categories
-  .categories{
-    margin-top:10px;
-    list-style-type:none;
-    //span for description
-    span{
-      .headings;
-    }
-    .category{
-      left:0px;
-      right:0px;
-      margin-top:2px;
-      padding-top:4px;
-      padding-bottom:2px;
-      padding-left:20px;
-      letter-spacing:1px;
-      cursor:pointer;
       
-      //link
-      a{
-        font-size:12px;
-        color:white;
-        text-decoration:none;
-      }
-      //.Category States
-      &:hover{
-        background:#2A2D33;
-        -webkit-box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
-        
-        box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
-      }
-    }
+      
+          
+          
+         
     
-  }
+    
+    
   
-  &.active{
-      width:175px;
-    }
+  
 }
 
 
@@ -242,31 +239,23 @@ select{
 /*Main Container*/
 .mainContainer{
 	position:absolute;
-	bottom:@menuHeight;
+	bottom:@menuHeight+20;
 	top:0px;
 	right:0px;
 	left:0px;
+	background-color:#E8E8E8;
 	
-	.transition(all, 500ms, linear);
 	
   input{
     border: 1px solid grey;
     background-color: #FFFFFF;
   }
   
-  &.active{
-    left:175px;
-  }
   
-  .toolbar{
-    background:#282828;
-  }
   
-  .workspace{
-    -webkit-box-shadow:  -2px 3px 5px 2px rgba(0, 0, 0, 0.5);
-        
-        box-shadow:  -2px 3px 5px 2px rgba(0, 0, 0, 0.5);
-  }
+  
+  
+  
 }
 
 

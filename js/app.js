@@ -4,7 +4,13 @@
 // Declare app level module which depends on filters, and services
 var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filters','EmployeeCenter.services', 'EmployeeCenter.directives', 'UserAuth']).
   config(['$routeProvider', function($routeProvider) {
+      
     $routeProvider.
+        //Category Routes
+    when('/contacts', {templateUrl:'partials/pages/contacts.html'}).
+    when('/supplies', {templateUrl:'partials/pages/supplies.html'}).
+    when('/orders', {templateUrl:'partials/pages/orders.html'}).
+    when('/administrator', {templateUrl:'partials/pages/administrator.html'}).
     //Model routes
     when('/models', {templateUrl: 'partials/pages/view_models.html', controller: ViewModelsCtrl}).
     when('/models/:modelID/:index', {templateUrl:'partials/pages/model_details.html', controller: ViewModelsCtrl}).

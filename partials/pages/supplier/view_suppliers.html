@@ -1,8 +1,23 @@
-<div class="viewModelsPage viewPage">
+<div class="viewSuppliersPage">
 	
-	<div class="toolbar" >
-		<button click-url="/suppliers/add_supplier" ui-if="currentUser.hasPermission('add_supplier')">Add</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="sidebar">
+		<header>
+			<h1><span>Suppliers</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div>
+						View Suppliers		
+					</div>
+				</li>
+				<li ui-if="currentUser.hasPermission('add_supplier')">
+					<div click-url="/suppliers/add_supplier">
+						Add Supplier
+					</div>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	
 	<div class="workspace">
@@ -10,15 +25,13 @@
 			<table class="list">
 				
 				<tbody>
-					<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
+					<tr ng-repeat="supplier in supplierList" class="listItem">
 						<td>
 							<table class="detailsTable">
-								<tr>
-									<td>Company:</td>
+								<tr class="name">
 									<td>{{supplier.name}}</td>
 								</tr>
-								<tr>
-									<td>Address:</td>
+								<tr class="address">
 									<td>{{supplier.address1}}
 										<br />
 										{{supplier.city+","+supplier.territory}}

@@ -1,0 +1,17 @@
+<div>
+	<div class="sidebar">
+		<header>
+			<h1>
+				<span>Contacts</span>
+			</h1>
+		</header>
+		<nav>
+			<ul class="list">
+				<li ng-show="currentUser.hasPermission('add_supplier')"><a ng-href="#/suppliers">Suppliers</a></li>
+				<li ng-show="currentUser.hasPermission('add_supplier')"><a>Customers</a></li>
+				<li></li>
+			</ul>
+		</nav>
+		
+	</div>
+</div>

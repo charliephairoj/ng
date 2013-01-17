@@ -1,4 +1,38 @@
-<div class="supplierDetailsPage detailsPage"  ng-init="showAddContact=false">
+<div class="supplierDetailsPage"  ng-init="showAddContact=false; edit=false;">
+	
+	
+	<!--SideBar Section-->
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>New Supplier</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="edit=!edit">
+						Edit
+					</div>
+				</li>
+				<li>
+					<div ng-click="showAddContact=true">
+						Add Contact
+					</div>
+				</li>
+				<li>
+					<div ng-click="showAddContact=true">
+						View Map
+					</div>
+				</li>
+				<li>
+					<div ng-click="remove()">Delete</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!--Supplier Contact Section -->
+	
 	<form name="contactForm" novalidate class="addContactModal" ng-show="showAddContact">
 		<div class="title" ng-click="showAddContact=false">Add Supplier Contact</div>
 		<table class="supplier_contact_table">
@@ -24,15 +58,47 @@
 			</tr>
 		</table>
 	</form>
+	
+	<!--Supplier Information Section -->
 	<form name="form" novalidate>
-		<div class="toolbar">
-			<button type="button" ng-click="remove()">Delete</button>
-			<button type="button" ng-click="showAddContact=true">Add Contact</button>
-
-		</div>
-		<!--<button type="button" >Add Supplier Contact</button> -->
+		
 		<div class="workspace">
-			<table>
+			<table class="contactInfo" ui-if="edit==false;">
+				<tr>
+					<td><label>Company Name</label></td>
+					<td>{{supplier.name}}</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td><label>Address 1</label></td>
+					<td>
+						{{supplier.address1+' '+supplier.address2}}
+						<br />
+						{{supplier.city+', '+supplier.territory}}
+						<br />
+						{{supplier.country+' '+supplier.zipcode}}
+					</td>
+				</tr>
+				<tr>
+					<td><label>Telephone</label></td>
+					<td>{{supplier.telephone}}</td>
+				</tr>
+				<tr>
+					<td><label>Fax</label></td>
+					<td>{{supplier.fax}}</td>
+				</tr>
+				<tr>
+					<td><label>Terms</label></td>
+					<td>{{supplier.terms}} Days</td>
+				</tr>
+				<tr>
+					<td><label>Discount</label></td>
+					<td>{{supplier.discount}} %</td>
+				</tr>
+			</table>
+			<table class="contactInput" ui-if="edit">
 				<tr>
 					<td><label>Company Name</label></td>
 					<td><input type="text" ng-model="supplier.name" ec-blur="update()" /></td>
@@ -72,12 +138,12 @@
 					<td><input type="text" ng-model="supplier.zipcode" ec-blur="update()" /></td>
 				</tr>
 				<tr>
-					<td><label>Terms of Payment in Days</label></td>
-					<td><input type="number" ng-model="supplier.terms" ec-blur="update()" /></td>
+					<td><label>Terms</label></td>
+					<td><input type="number" ng-model="supplier.terms" ec-blur="update()" /> Days</td>
 				</tr>
 				<tr>
 					<td><label>Discount</label></td>
-					<td><input type="number" ng-model="supplier.discount" ec-blur="update()" />%</td>
+					<td><input type="number" ng-model="supplier.discount" ec-blur="update()" /> %</td>
 				</tr>
 				<tr>
 					<td><label>Currency</label></td>

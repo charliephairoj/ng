@@ -1,9 +1,19 @@
 <div class="viewPage">
 	
-	<div class="toolbar" >
-		<button click-url="/fabric/add_fabric" ui-if="currentUser.hasPermission('add_fabric')">Add</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="sidebar">
+		<header>
+			<h1><span>Fabric</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a ng-href="#/fabric/add_fabric">Add Fabric</a>
+				</li>
+				
+			</ul>
+		</nav>
 	</div>
+	
 	
 	
 	<div class="workspace">
