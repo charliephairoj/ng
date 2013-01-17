@@ -7,9 +7,13 @@
 		</header>
 		<nav>
 			<ul class="list">
-				<li ng-show="currentUser.hasPermission('add_supplier')"><a ng-href="#/suppliers">Suppliers</a></li>
-				<li ng-show="currentUser.hasPermission('add_supplier')"><a>Customers</a></li>
-				<li></li>
+				<li ng-show="currentUser.hasPermission('add_user')">
+					<a ng-href="#/users">Users</a>
+				</li>
+				<li ng-show="currentUser.hasPermission('add_group')">
+					<a ng-href="#/groups">Groups</a>
+				</li>
+				
 			</ul>
 		</nav>
 		
