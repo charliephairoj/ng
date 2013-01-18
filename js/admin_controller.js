@@ -48,7 +48,7 @@ function AddGroupCtrl($scope, Group, Permission, $location){
         group.permissions = $scope.group.permissions;
         
         group.$save(function(){
-            $location.paht("/groups");
+            $location.path("/groups");
         });
     };
     
@@ -56,9 +56,8 @@ function AddGroupCtrl($scope, Group, Permission, $location){
         
         angular.forEach($scope.permissionList, function(perm){
             if($scope.data.id == perm.id){
-                $scope.$apply(function(){
-                    $scope.group.permissions.push(perm)
-                });
+                $scope.group.permissions.push(perm);
+                $scope.$apply();
                 
             }
         });
@@ -67,7 +66,7 @@ function AddGroupCtrl($scope, Group, Permission, $location){
     $scope.remove = function(index){
         
         $scope.group.permissions.splice(index, 1);
-    }
+    };
 }
 
 AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission', '$location'];
@@ -76,7 +75,7 @@ AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission', '$location'];
 
 function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
     $scope.permissionList = Permission.query({'resource':false});
-    $scope.group = Group.get({'id':$routeParams.id})
+    $scope.group = Group.get({'id':$routeParams.id});
     
    console.log($scope.group);
     
@@ -87,26 +86,25 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
     
     $scope.remove = function(){
         $scope.group.$delete(function(){
-            $location.paht("/groups");
+            $location.path("/groups");
         });
     };
     
     $scope.add = function(){
          angular.forEach($scope.permissionList, function(perm){
             if($scope.data.id === perm.id){
-                $scope.$apply(function(){
-                    $scope.group.permissions.push(perm)
-                });
+                $scope.group.permissions.push(perm);
+                $scope.$apply();
                 
             }
         });
         
         $scope.group.$save();
-    }
+    };
     
 }
 
-GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$location']
+GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$location'];
 
 /*
  * User Area
@@ -114,23 +112,20 @@ GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$l
 
 function ViewUsersCtrl($scope, User){
     $scope.userList = User.query();
-    console.log($scope.userList)
 }
 
 ViewUsersCtrl.$inject = ['$scope', 'User'];
 
 function AddUserCtrl($scope, User, Group, $location){
-    $scope.user = {}
-    $scope.user.groups = []
+    $scope.user = {};
+    $scope.user.groups = [];
     $scope.groupList = Group.query();
-    console.log($scope.groupList)
     
     $scope.add = function(){
         angular.forEach($scope.groupList, function(group){
-            if($scope.data.id == group.id){
-                $scope.$apply(function(){
-                    $scope.user.groups.push(group)
-                });
+            if($scope.data.id === group.id){
+                $scope.user.groups.push(group);
+                $scope.$apply();
                 
             }
         });
@@ -138,13 +133,21 @@ function AddUserCtrl($scope, User, Group, $location){
     
     
     $scope.save = function(){
-         user = new User();
+        
+        
+        //Validates the form
+        if($scope.form.$valid){
+            user = new User();
+            angular.copy($scope.user, user);
+            user.$save(function(){
+                $location.path("/users");
+            });
+        }
          
-         angular.copy($scope.user, user);
-         user.$save(function(){
-            $location.path("/users");
-        });
-    }
+         
+         
+         
+    };
 }
 
 AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
@@ -155,21 +158,20 @@ AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
 
 function UserDetailsCtrl($scope, Group, User, $routeParams, $location){
     $scope.groupList = Group.query({'resource':false});
-    $scope.user = User.get({'id':$routeParams.id})
+    $scope.user = User.get({'id':$routeParams.id});
     
     
     $scope.remove = function(){
         $scope.user.$delete(function(){
-            $location.paht("/users");
+            $location.path("/users");
         });
     };
     
     $scope.add = function(){
          angular.forEach($scope.permissionList, function(perm){
             if($scope.data.id === perm.id){
-                $scope.$apply(function(){
-                    $scope.group.permissions.push(perm)
-                });
+                $scope.group.permissions.push(perm);
+                $scope.$apply();
                 
             }
         });
@@ -179,9 +181,9 @@ function UserDetailsCtrl($scope, Group, User, $routeParams, $location){
     
     $scope.update = function(){
         $scope.user.$save();
-    }
+    };
     
 }
 
-UserDetailsCtrl.$inject = ['$scope', 'Group', 'User', '$routeParams', '$location']
+UserDetailsCtrl.$inject = ['$scope', 'Group', 'User', '$routeParams', '$location'];
 

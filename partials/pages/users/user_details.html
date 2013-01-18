@@ -1,7 +1,35 @@
-<div class="detailsPage">
-	<div class="toolbar">
-			<button type="button" ng-click="remove()">Delete</button>
+<div class="detailsPage" ng-init="edit=false;">
+	
+	<!--
+		Sidebar
+	-->
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>Add User</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="edit=!edit">
+						Edit
+					</div>
+				</li>
+				<li>
+					<div ng-click="remove()">
+						Delete
+					</div>
+				</li>
+			</ul>
+		</nav>
 	</div>
+	
+	
+	
+	<!--
+		Edit Panel
+	-->
+	
 	<table>
 			<tr>
 				<td><label>First Name</label></td>

@@ -1,9 +1,24 @@
 <div class="viewPage">
 	
-	<div class="toolbar" >
-		<button click-url="/users/add_user" ui-if="currentUser.hasPermission('add_user')">Create</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
-	</div>
+	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Suppliers</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li ui-if="currentUser.hasPermission('add_user')">
+					<div click-url="/users/add_user">
+						Create User
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>	
+	
+	
 	<div class="workspace">
 		<div class="listContainer">
 			<table class="list">
