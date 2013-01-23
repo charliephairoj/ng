@@ -393,6 +393,32 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
          
     };
     
+    $scope.reserve = function(){
+        //close modal
+        $scope.showReserve = false;
+        
+        var fd = new FormData();
+        
+        fd.append('length', $scope.reserveLength);
+        fd.append('remark', $scope.reserveRemark);
+        
+        //clear the form
+        $scope.reserveLength = null;
+        $scope.reserveRemark = null;
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/reserve", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(responseData){
+               console.log(responseData);
+               angular.copy(responseData, $scope.fabric);
+               $scope.$apply();
+           }
+        });
+    };
+    
     
     $scope.add = function(){
         

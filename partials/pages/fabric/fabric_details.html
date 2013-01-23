@@ -1,6 +1,6 @@
 
 
-<div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false; showLog=false"  image-drop-target="upload()">
+<div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false; showLog=false; showReserve=false;"  image-drop-target="upload()">
 	
 	<!--
 		Sidebar
@@ -15,6 +15,9 @@
 		</header>
 		<nav>
 			<ul>
+				<li>
+					<div ng-click="showReserve=!showReserve">Reserve Length</div>
+				</li>
 				<li>
 					<div ng-click="showAdd=!showAdd">Add Length</div>
 				</li>
@@ -34,6 +37,29 @@
 			</ul>
 		</nav>
 	</div>
+	<!--
+		Reserve Length Modal
+	-->
+	<form name="reserveForm" novalidate class="addModal" ng-show="showReserve">
+		<div class="title" ng-click="showReserve=false">Reserve Fabric Length</div>
+		<table class="table">
+			<tr>
+				<td>Length</td>
+				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="reserveLength" /></td>
+			</tr>
+			<tr>
+				<td>Acknowledgement</td>
+				<td><input ng-model="reserveRemark"/></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="button" ng-disabled="reserveForm.$invalid" ng-click="reserve()">Add</button>
+				</td>
+			</tr>
+			
+		</table>
+	</form>
 	
 	<!--
 		Add Length Modal
@@ -46,8 +72,8 @@
 				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
 			</tr>
 			<tr>
-				<td>Remarks</td>
-				<td><textarea cols="25" rows="8" ng-model="addRemark"></textarea></td>
+				<td>Acknowledgement</td>
+				<td><textarea cols="8" rows="25" ng-model="addRemark"/></textarea></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -69,8 +95,8 @@
 				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
 			</tr>
 			<tr>
-				<td>Remarks</td>
-				<td><textarea cols="25" rows="8" ng-model="subtractRemark"></textarea></td>
+				<td>Acknowledgement</td>
+				<td><input ng-model="subtractRemark" /></textarea></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -92,8 +118,8 @@
 				<td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
 			</tr>
 			<tr>
-				<td>Remarks</td>
-				<td><textarea cols="25" rows="8" ng-model="resetRemark"></textarea></td>
+				<td>Acknowledgement</td>
+				<td><textarea cols="8" rows="25"  ng-model="resetRemark" /></textarea></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -104,6 +130,32 @@
 			
 		</table>
 	</form>
+	
+	<div class="logContainer" ng-class="{active:showLog}">
+		<table class="log">
+			<thead>
+				<tr>
+					<th>Action</th>
+					<th>Employee</th>
+					<th>Length</th>
+					<th>Total</th>
+					<th>Remarks</th>
+					<th>Timestamp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="log in logs" ng-class="{subtract:log.action=='Subtract'}"> 
+					<td>{{log.action}}</td>
+					<td>{{log.employee}}</td>
+					<td>{{log.length}}</td>
+					<td>{{log.total}}</td>
+					<td>{{log.remarks}}</td>
+					<td>{{log.timestamp}}</td>
+				</tr>
+			</tbody>
+					
+		</table>
+	</div>
 	<form>
 		
 		<table>
@@ -144,33 +196,13 @@
 					<td><label>Current Length</label></td>
 					<td>{{fabric.depth}}</td>
 				</tr> 
+				<tr>
+					<td><label>Reserved Length</label></td>
+					<td>{{fabric.reserved_length}}</td>
+				</tr> 
 				
 			</table>
-			<div class="logContainer" ng-show="showLog">
-				<table>
-					<thead>
-						<tr>
-							<th>Action</th>
-							<th>Employee</th>
-							<th>Length</th>
-							<th>Total</th>
-							<th>Remarks</th>
-							<th>Timestamp</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="log in logs"> 
-							<td>{{log.action}}</td>
-							<td>{{log.employee}}</td>
-							<td>{{log.length}}</td>
-							<td>{{log.total}}</td>
-							<td>{{log.remarks}}</td>
-							<td>{{log.timestamp}}</td>
-						</tr>
-					</tbody>
-					
-				</table>
-			</div>
+			
 			
 		
 	</form>
