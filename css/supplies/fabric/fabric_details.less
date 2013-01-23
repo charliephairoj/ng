@@ -59,7 +59,11 @@
         overflow:scroll;
         .transition(left, 500ms, linear);
         .log{
+            
             tr{
+                th{
+                    font-size:14px;
+                }
                 td{
                     padding:5px;
                 }
@@ -67,6 +71,10 @@
                 //TR States
                 &.subtract{
                     background-color:red;
+                    opacity:0.7;
+                }
+                &.reserve{
+                    background-color:yellow;
                     opacity:0.7;
                 }
             }

@@ -144,7 +144,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="log in logs" ng-class="{subtract:log.action=='Subtract'}"> 
+				<tr ng-repeat="log in logs" ng-class="{subtract:log.action=='Subtract', reserve:log.action=='Reserve'}"> 
 					<td>{{log.action}}</td>
 					<td>{{log.employee}}</td>
 					<td>{{log.length}}</td>
