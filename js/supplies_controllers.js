@@ -307,6 +307,29 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
        
     };
     
+    //Upload Image
+    $scope.upload = function(){
+        
+        var fd = new FormData();
+        
+        fd.append('image', $scope.image[0]);
+        
+        //clear the form
+        $scope.addLength = null;
+        $scope.addRemark = null;
+        
+        jQuery.ajax("fabric/image", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(responseData){
+               angular.copy(responseData, $scope.fabric);
+               $scope.$apply();
+           }
+        });
+    };
+    
     
     
 }
@@ -334,6 +357,42 @@ ViewFabricsCtrl.$inject = ['$scope', 'Fabric', 'Poller'];
 function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
     
     $scope.fabric = Fabric.get({'id':$routeParams.id});
+    
+    //Uploads Profie Image
+    $scope.upload = function(){
+        
+       
+        
+        var fd = new FormData();
+        
+        fd.append('image', $scope.images[0]);
+        
+        //clear the form
+        $scope.addLength = null;
+        $scope.addRemark = null;
+        
+        jQuery.ajax("fabric/"+$scope.fabric.id+"/image", {
+           type:'POST',
+           data:fd,
+           processData:false,
+           contentType:false,
+           success: function(responseData){
+               console.log(responseData);
+               $scope.fabric.image = {};
+               angular.copy(responseData, $scope.fabric.image);
+               $scope.fabric.$save();
+               //Set new profile pic
+               $scope.profileImageUrl = $scope.fabric.image.url;
+               //Clear upload images and clear previews
+               $scope.imagePreviews = null;
+               $scope.images = null;
+               $scope.$apply();
+           }
+        });
+        
+         
+    };
+    
     
     $scope.add = function(){
         

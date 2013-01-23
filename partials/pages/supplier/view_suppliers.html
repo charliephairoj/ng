@@ -1,5 +1,8 @@
 <div class="viewSuppliersPage">
 	
+	<!-- 
+		Sidebar
+	-->
 	<div class="sidebar">
 		<header>
 			<h1><span>Suppliers</span></h1>
@@ -16,12 +19,23 @@
 		</nav>
 	</div>
 	
+	<!--
+		Search Bar
+	-->
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
 	<div class="workspace">
 		<div class="listContainer">
 			<table class="list">
 				
 				<tbody>
-					<tr ng-repeat="supplier in supplierList" class="listItem">
+					<tr ng-repeat="supplier in supplierList | filter:query" class="listItem">
 						<td>
 							<table class="detailsTable">
 								<tr class="name">

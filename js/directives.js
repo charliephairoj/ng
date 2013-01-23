@@ -9,7 +9,20 @@
 angular.module('EmployeeCenter.directives', []).
 
 /*
- * Create directive for on blue
+ * adds the fade in class or fades in via javascript
+ */
+directive('fadeIn', function(){
+    return {
+        restrict:'A',
+        replace:false,
+        link: function(scope, element, attrs){
+            element.addClass('fadeIn');
+        }
+    }
+}).
+
+/*
+ * Create directive for on blur
  */
 directive('ecBlur', function($parse){
     
@@ -88,7 +101,7 @@ directive('ecDroppable', function($parse){
  * Files will be available as "scope.images" 
  */
 
-directive('imageDropTarget', function(){
+directive('imageDropTarget', function($parse){
     
     
     return {
@@ -186,10 +199,8 @@ directive('imageDropTarget', function(){
                         console.log(fileReader.readAsDataURL(files[i]));
                     }
                 }
-                
-                console.log($scope.images);
-                console.log($scope.imagePreviews);
-                
+                //Eval the attr of this directive
+                $scope.$eval(attrs.imageDropTarget);
             })
         }
     };

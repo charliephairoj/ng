@@ -20,7 +20,7 @@
 	<!--
 		Search Bar
 	-->
-	<div class="searchbar" >
+	<div class="searchBar" >
 		<input size="40" placeholder="Search" ng-model="query" />
 	</div>
 	
@@ -35,8 +35,18 @@
 				
 				<tbody>
 					<tr ng-repeat="fabric in fabricList | filter:query" class="listItem" clickUrl="#/fabric/{{fabric.id}}">
+						<td style="width:130px; position:relative">
+							<div style="margin:0; overflow:hidden; position:absolute; top:0px;right:0px;left:0px;bottom:0px;">
+								<img style="height:100%" ng-src="{{fabric.image.url}}" />
+							</div>
+							
+						</td>
 						<td>
 							<table class="detailsTable">
+								<tr>
+									<td>Supply ID</td>
+									<td>{{fabric.id}}</td>
+								</tr>
 								<tr>
 									<td>Supplier:</td>
 									<td>{{fabric.supplier.name}}</td>
@@ -48,6 +58,10 @@
 								<tr>
 									<td>Color:</td>
 									<td>{{fabric.color}}</td>
+								</tr>
+								<tr>
+									<td>Content</td>
+									<td>{{fabric.content}}</td>
 								</tr>
 								<tr>
 									<td>Current Length</td>

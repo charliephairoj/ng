@@ -28,13 +28,24 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     $scope.po = {};
     //Methods
     
+    //View Supplies
+    $scope.supplies = function(){
+        console.log($scope.supplier);
+        if($scope.supplier){
+            $scope.showSupplies = !$scope.showSupplies;
+            $scope.showSuppliers = false;
+        }
+        
+    };
     //Add Supplier
     $scope.add = function(supplier){
         $scope.sourceType = "supply";
         console.log('ok');
         if($scope.data.type == "supplier"){
             
-                $scope.supplier = $scope.supplierList[$scope.data.index];
+            $scope.supplier = $scope.supplierList[$scope.data.index];
+            $scope.query = null;
+            $scope.showSuppliers = false;
             $scope.$apply();
         }else if($scope.data.type == "supply"){
             $scope.$apply(function(){
@@ -54,48 +65,52 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     };
     
     $scope.create = function(){
-        //Create a new purchase order resource
-        var po =  new PurchaseOrder();
         
-        po.supplier = $scope.supplier.id;
-        po.vat = $scope.po.vat;
-        po.currency = $scope.po.currency;
-        if($scope.po.attention){
-            po.attention = {};
-            angular.copy($scope.po.attention, po.attention);
+        //Verifies that the form is valid
+        if($scope.form.$valid){
+            //Create a new purchase order resource
+            var po =  new PurchaseOrder();
             
+            po.supplier = $scope.supplier.id;
+            po.vat = $scope.po.vat;
+            po.currency = $scope.po.currency;
+            if($scope.po.attention){
+                po.attention = {};
+                angular.copy($scope.po.attention, po.attention);
+                
+            }
+                    console.log(po.attention);
+    
+            //Add delivery date
+            po.deliveryDate = {}
+            po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;
+            po.deliveryDate.date = $scope.po.deliveryDate.getDate();
+            po.deliveryDate.year = $scope.po.deliveryDate.getFullYear();
+            
+            if($scope.po.shipping.type == "none"){
+                po.shipping = false;
+            }else{
+                po.shipping = {};
+                po.shipping.type = $scope.po.shipping.type;
+                po.shipping.amount = $scope.po.shipping.amount;
+            }
+            po.supplies = [];
+            
+            angular.forEach($scope.orderedSupplies, function(supply, index){
+                po.supplies.push({'id':supply.id, 'quantity':Number(supply.quantity)});
+            });
+            
+            po.$save(function(response){
+                console.log(response);
+                window.open(response.url, replace=false);
+            });
         }
-                console.log(po.attention);
-
-        //Add delivery date
-        po.deliveryDate = {}
-        po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;
-        po.deliveryDate.date = $scope.po.deliveryDate.getDate();
-        po.deliveryDate.year = $scope.po.deliveryDate.getFullYear();
         
-        if($scope.po.shipping.type == "none"){
-            po.shipping = false;
-        }else{
-            po.shipping = {};
-            po.shipping.type = $scope.po.shipping.type;
-            po.shipping.amount = $scope.po.shipping.amount;
-        }
-        po.supplies = [];
-        
-        angular.forEach($scope.orderedSupplies, function(supply, index){
-            po.supplies.push({'id':supply.id, 'quantity':Number(supply.quantity)});
-        });
-        
-        po.$save(function(response){
-            console.log(response);
-            window.open(response.url, replace=false);
-        });
     };
     
     $scope.reset = function(){
-        $scope.supplier = {};
+        $scope.supplier = null;
         $scope.orderedSupplies = [];
-        $scope.sourceType = "supplier"; 
         
         $scope.$apply();
     };

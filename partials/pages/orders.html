@@ -7,8 +7,8 @@
 		</header>
 		<nav>
 			<ul class="list">
-				<li ng-show="currentUser.hasPermission('add_supplier')"><a ng-href="#/suppliers">Suppliers</a></li>
-				<li ng-show="currentUser.hasPermission('add_supplier')"><a>Customers</a></li>
+				<li ui-if="currentUser.hasPermission('add_purchaseorder')"><a ng-href="#/purchase_order">Purchase Orders</a></li>
+				<li ui-if="currentUser.hasPermission('add_supplier')"><a>Customers</a></li>
 				<li></li>
 			</ul>
 		</nav>

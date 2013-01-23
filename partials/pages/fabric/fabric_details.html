@@ -1,12 +1,16 @@
 
 
-<div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false; showLog=false"  image-drop-target>
+<div class="fabricDetailsPage" ng-init="showAdd=false;showSubtract=false; showReset=false; showLog=false"  image-drop-target="upload()">
 	
 	<!--
 		Sidebar
 	-->
 	<div class="sidebar">
 		<header>
+			<div class="profilePic" ui-if="fabric.image">
+				<img ng-src="{{fabric.image.url}}" />
+			</div>
+			
 			<h1><span>{{fabric.pattern}}<br />{{fabric.color}}</span></h1>
 		</header>
 		<nav>
@@ -125,6 +129,10 @@
 					<td><input type="text" ng-model="fabric.color" ec-blur="update()" /></td>  
 				</tr>
 				<tr>
+					<td><label>Content</label></td>
+					<td><input type="text" ng-model="fabric.content" ec-blur="update()" /></td>  
+				</tr>
+				<tr>
 					<td><label>Width</label></td>
 					<td><input type="text" ng-model="fabric.width" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" /></td>
 				</tr>
@@ -163,9 +171,7 @@
 					
 				</table>
 			</div>
-			<div ng-repeat="image in imagePreviews" style="position: absolute; right:10px; top:10px;">
-				<img style="width:100px; height:auto;" ng-src="{{image.url}}" />
-			</div>
+			
 		
 	</form>
 </div>

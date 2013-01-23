@@ -2,6 +2,7 @@
 		
 		<div class="sidebar">
 			<header>
+				<div class="profilePic" ui-if="imagePreviews"><img ng-src="{{imagePreviews[0].url}}" /></div>
 				<h1><span>Fabric</span></h1>
 			</header>
 			<nav>
@@ -16,7 +17,7 @@
 		
 		
 		
-		<div class="workspace">
+		<div class="workspace" image-drop-target="upload()">
 			<table class="inputTable">
 				<tr>
 					<td><label>Supplier</label></td>

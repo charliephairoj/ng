@@ -1,20 +1,51 @@
-<div class="createPOPage">
-	<div class="sidebar" ng-switch on="sourceType" ng-init="sourceType = supplier">
-		<div class="searchBar">
-			<input ng-model="query" type="text" />
-		</div>
-		<ul class="sourceList" ng-switch-default="supplier">
-			<li class="sourceItem" ec-draggable='{"type":"supplier", "index":{{$index}}}' ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</li>
-		</ul>
-		<ul class="sourceList" ng-switch-when="supply">
-			<li class="sourceItem" ng-repeat="supply in supplyList | filter:supplier.name |filter:query |exclude:orderedSupplies" ec-draggable='{"type":"supply", "index":{{supply.id}}}'>{{supply.description}}</li>
-		</ul>
-	</div>
+<div class="createPOPage" ng-init="showSuppliers=false; showSupplies=false;" fade-in>
+	
+	
+	
+	
 	<form class="po" name="form" ec-droppable="add()" novalidate>
-		<div class="toolbar">
-			<button type="submit" ng-disabled="form.$invalid || hasOrderedSupplies()" ng-click="create()">Create</button>
-			<button type="button" ng-click="reset()">Reset</button> 
+		
+		<!--
+			Sidebar
+		-->
+		
+		<div class="sidebar">
+			<header>
+				<h1>
+					<span>Contacts</span>
+				</h1>
+			</header>
+			<nav>
+				<ul class="list">
+					<li><div ng-class="{dirty:form.$invalid}" ng-click="create()" >Create</div></li>
+					<li><div ng-click="showSuppliers=!showSuppliers;showSupplies=False">View Suppliers</div></li>
+					<li><div ng-class="{dirty:!supplier}" ng-click="supplies()">View Supplies</div></li>
+					<li><div ng-click="reset()" >Reset</div></li>
+				</ul>
+			</nav>
+			
 		</div>
+		
+		<!--
+			Panels containing suppliers and supplies
+		-->
+		
+		<div class="panel" ng-class="{active:showSuppliers}">
+			<ul class="sourceList">
+				<li class="sourceItem" ec-draggable='{"type":"supplier", "index":{{$index}}}' ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</li>
+			</ul>
+		</div>
+		
+		<div class="panel" ng-class="{active:showSupplies}">
+			<ul class="sourceList">
+				<li class="sourceItem" ng-repeat="supply in supplyList | filter:supplier.name | filter:query |exclude:orderedSupplies" ec-draggable='{"type":"supply", "index":{{supply.id}}}'>{{supply.description}}</li>
+			</ul>
+			
+		</div>
+		
+		<!--
+			Workspace
+		-->
 		<div class="workspace">
 				<table class="supplier">
 					<tr>

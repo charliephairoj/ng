@@ -1,9 +1,35 @@
-<div class="viewModelsPage viewPage">
+<div class="viewPage">
 	
-	<div class="toolbar" >
-		<button click-url="/purchase_order/create" ui-if="currentUser.hasPermission('add_purchaseorder')">Create</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<!--
+		Sidebar
+	-->
+	
+	<div class="sidebar">
+		<header>
+			<h1>
+				<span>Contacts</span>
+			</h1>
+		</header>
+		<nav>
+			<ul class="list">
+				<li ui-if="currentUser.hasPermission('add_purchaseorder')"><a ng-href="#/purchase_order/create">Create</a></li>
+			</ul>
+		</nav>
+		
 	</div>
+	
+	<!--
+		Search Bar
+	-->
+	
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
 	<div class="workspace">
 		<div class="listContainer">
 			<table class="list">
