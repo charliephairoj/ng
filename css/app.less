@@ -268,7 +268,38 @@ select{
 }
 
 
-
+/*
+*Notification system
+*/
+#notificationContainer{
+    width:100%;
+    height:auto;
+    background-color:transparent;
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index:100;
+    opacity:0;
+    .transition(opacity, 350ms, linear);
+    
+    #notification{
+        width:200px;
+        text-align:center;
+        position:relative;
+        border-radius:2px;
+        color:black;
+        font-family:Helvetica;
+        font-size:0.8em;
+        margin:0 auto;
+        padding:5px;
+        background-color:yellow;
+    }
+    
+    //States
+    &.active{
+        opacity:1;    
+    }
+}
 
 
 

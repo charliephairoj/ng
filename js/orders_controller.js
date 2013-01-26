@@ -21,7 +21,7 @@ function ViewPOCtrl($scope, PurchaseOrder, Supplier, Poller){
 ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier', 'Poller']
 //controller to add lumber
 
-function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
+function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
     $scope.supplyList = Supply.query();
     $scope.supplierList = Supplier.query();
     $scope.orderedSupplies = [];
@@ -39,6 +39,7 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     };
     
     $scope.addSupplier = function(index){
+        Notification.display('Woohoo this shiz works', 1000);
       $scope.supplier = $scope.supplierList[index];
       $scope.query = null;
       $scope.showSuppliers=false;
@@ -165,5 +166,5 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
     
 }
 
-CreatePOCtrl.$inject = ['$scope', 'Supply', 'Supplier', 'PurchaseOrder'];
+CreatePOCtrl.$inject = ['$scope', 'Supply', 'Supplier', 'PurchaseOrder', 'Notification'];
 

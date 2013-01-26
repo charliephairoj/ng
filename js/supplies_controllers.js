@@ -284,13 +284,15 @@ ScrewDetailsCtrl.$inject = ['$scope', 'Screw', '$routeParams', '$location', 'Pol
 //Add fabric Ctrl
 
 
-function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
+function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller, Notification){
     $scope.supplierList = Supplier.query();
     //Methods
     
     //Add Lumber
     $scope.save = function(){
         
+        //Display saving message
+        Notification.display('Saving Fabric...');
         //Checks the form is valid
         if($scope.form.$valid){
             //Create new fabric object
@@ -301,6 +303,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
             
             //save to database
             fabric.$save(function(){
+                Notification.display('Fabric Saved');
                 $location.path('/fabric');
             });
         }
@@ -310,6 +313,8 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
     //Upload Image
     $scope.upload = function(){
         
+        //Notify of uploading image
+        Notification.display('Uploading Image...');
         var fd = new FormData();
         
         fd.append('image', $scope.images[0]);
@@ -324,6 +329,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
+               Notification.display('Image Updated');
                angular.copy(responseData, $scope.fabric);
                $scope.$apply();
            }
@@ -334,7 +340,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
     
 }
 
-AddFabricCtrl.$inject = ['$scope', 'Supplier', 'Fabric', '$location', 'Poller'];
+AddFabricCtrl.$inject = ['$scope', 'Supplier', 'Fabric', '$location', 'Poller', 'Notification'];
 
 
 //controller to add foam
@@ -354,14 +360,14 @@ function ViewFabricsCtrl($scope, Fabric, Poller){
 
 ViewFabricsCtrl.$inject = ['$scope', 'Fabric', 'Poller'];
 
-function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
+function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller, Notification){
     
     $scope.fabric = Fabric.get({'id':$routeParams.id});
     
     //Uploads Profie Image
     $scope.upload = function(){
-        
-       
+        //display notification
+        Notification.display('Uploading Image...');
         
         var fd = new FormData();
         
@@ -377,6 +383,8 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
+               //display success mesage
+               Notification.display('Image Updated');
                console.log(responseData);
                $scope.fabric.image = {};
                angular.copy(responseData, $scope.fabric.image);
@@ -520,18 +528,26 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
     
     
     $scope.remove = function(){
+        //Notify
+        Notification.display('Deleting Fabric...');
+        
+        //Ajax call to delete
         $scope.fabric.$delete(function(){
+            //Notify
+            Notification.display('Fabric Deleted');
+            //Reroute to view page
             $location.path('/fabric');
         });
         
     };
     
     $scope.update = function(){
-        $scope.fabric.$save()
+        Notification.display('Updating Fabric...')
+        $scope.fabric.$save(Notification.display('Fabric Updated'));
     };
 }
 
-FabricDetailsCtrl.$inject = ['$scope', 'Fabric', '$routeParams', '$location', 'Poller'];
+FabricDetailsCtrl.$inject = ['$scope', 'Fabric', '$routeParams', '$location', 'Poller', 'Notification'];
 
 
 /*

@@ -215,13 +215,15 @@ function AddCustomerCtrl($scope, Customer){
 
 AddCustomerCtrl.$inject = ['$scope', 'Customer'];
 
-function AddSupplierCtrl($scope, Supplier, $location){
+function AddSupplierCtrl($scope, Supplier, $location, Notification){
     
     
     //Mehtods
     
     //addS  contact to the supplier
     $scope.addContact = function(){
+        //Notify
+        Notification.display('Contact Added to Supplier');
         
         if(!$scope.supplier.contacts){
             $scope.supplier.contacts = [];
@@ -239,12 +241,16 @@ function AddSupplierCtrl($scope, Supplier, $location){
     $scope.save = function(){
         
         if($scope.form.$valid){
+            //Notify
+            Notification.display('Saving Supplier...');
             //New customer  and address objects
             var supplier = new Supplier(), address = {};
             
             angular.copy($scope.supplier, supplier);
                     
             supplier.$save(function(){
+                //Notify
+                Notification.display('Supplier Saved');
                 $location.path('/suppliers');
             });
         }
@@ -255,7 +261,7 @@ function AddSupplierCtrl($scope, Supplier, $location){
     };
 }
 
-AddSupplierCtrl.$inject = ['$scope', 'Supplier', '$location'];
+AddSupplierCtrl.$inject = ['$scope', 'Supplier', '$location', 'Notification'];
 
 //View supplierList controller
 function ViewSuppliersCtrl($scope, Supplier, Poller){
@@ -269,7 +275,7 @@ function ViewSuppliersCtrl($scope, Supplier, Poller){
 
 ViewSuppliersCtrl.$inject = ['$scope', 'Supplier', 'Poller'];
 
-function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, SupplierContact){
+function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, SupplierContact, Notification){
     
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
@@ -308,10 +314,11 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     
     
     $scope.update = function(){
-        console.log($scope.supplier);
+        //Notify
+        Notification.display('Updating Supplier...');
         $scope.supplier.$save(function(data){
-            console.log(data);
-           $scope.supplier =  Supplier.get({'id':$routeParams.id});
+            Notification.display('Supplier Updated');
+            $scope.supplier =  Supplier.get({'id':$routeParams.id});
         });
     };
     
@@ -323,7 +330,7 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     }
 }
 
-SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location', 'Poller', 'SupplierContact'];
+SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location', 'Poller', 'SupplierContact', 'Notification'];
 
 
 /*
@@ -333,7 +340,7 @@ SupplierDetailCtrl.$inject = ['$scope', 'Supplier', '$routeParams', '$location',
 
 //View Library
 
-function ViewLibraryCtrl($scope, LibraryBook, Poller){
+function ViewLibraryCtrl($scope, LibraryBook, Poller, Notification){
     
     Poller.poll($scope, function(){
         $scope.bookList = LibraryBook.query(console.log($scope.bookList));
@@ -344,7 +351,9 @@ function ViewLibraryCtrl($scope, LibraryBook, Poller){
     
     //Upload Image
     $scope.upload = function(){
-       
+        
+        //Notify
+        Notification.display('Uploading Image...')
         
         //Close the modal
         $scope.addPhoto = false;
@@ -370,7 +379,9 @@ function ViewLibraryCtrl($scope, LibraryBook, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
-               console.log(responseData);
+               //Notify
+               Notification.diplay('Image Uploaded');
+               
                $scope.$apply();
            }
         });
@@ -379,4 +390,4 @@ function ViewLibraryCtrl($scope, LibraryBook, Poller){
     };
 }
 
-ViewLibraryCtrl.$inject = ['$scope', 'LibraryBook', 'Poller']
+ViewLibraryCtrl.$inject = ['$scope', 'LibraryBook', 'Poller', 'Notification']

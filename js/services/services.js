@@ -119,6 +119,54 @@ angular.module('EmployeeCenter.services', ['ecResource']).
             
         }
         
+    }).
+    
+    
+    /*
+     * Notification Service
+     */
+    factory('Notification', function($timeout){
+        
+        function Notifier(){
+            this.notificationContainer = angular.element('#notificationContainer');
+            this.notification = angular.element('#notification');
+            this.promise = null;
+        }
+        
+        
+        /*
+         * The display function will display a new messge
+         * And call a timeout after a certain amount of time
+         * to fade out the message. If the message is already displayed,
+         * it will just change the message and cancel the old timeout.
+         */
+        Notifier.prototype.display = function(message){
+            
+            //Change message and 
+            this.notification.html(message)
+            this.notificationContainer.addClass('active')
+            
+            //Cancels the fadingout and 
+            //removal of message
+            if(this.promise){
+                $timeout.cancel(this.promise);
+            }
+            
+            
+            this.promise = $timeout(function(){
+                this.hide()
+                
+            }.bind(this), 3000);
+        };
+        
+        Notifier.prototype.hide = function(){
+            //Remove Message and 
+            this.notificationContainer.removeClass('active');
+        };
+        
+        return new Notifier();
+        
+        
     });
     
 
