@@ -152,7 +152,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
                 $timeout.cancel(this.promise);
             }
             
-            if(autoHide || autoHide == null || autoHide == undefined){
+            if(autoHide!=false){
+               
                 this.promise = $timeout(function(){
                     this.hide()
                     

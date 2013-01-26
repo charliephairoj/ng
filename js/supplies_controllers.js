@@ -367,7 +367,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller, Noti
     //Uploads Profie Image
     $scope.upload = function(){
         //display notification
-        Notification.display('Uploading Image...');
+        Notification.display('Uploading Image...', false);
         
         var fd = new FormData();
         
