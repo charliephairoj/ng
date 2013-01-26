@@ -242,7 +242,7 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
         
         if($scope.form.$valid){
             //Notify
-            Notification.display('Saving Supplier...');
+            Notification.display('Saving Supplier...', false);
             //New customer  and address objects
             var supplier = new Supplier(), address = {};
             
@@ -315,7 +315,7 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     
     $scope.update = function(){
         //Notify
-        Notification.display('Updating Supplier...');
+        Notification.display('Updating Supplier...', false);
         $scope.supplier.$save(function(data){
             Notification.display('Supplier Updated');
             $scope.supplier =  Supplier.get({'id':$routeParams.id});

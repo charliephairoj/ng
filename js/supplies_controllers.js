@@ -292,7 +292,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller, Notification
     $scope.save = function(){
         
         //Display saving message
-        Notification.display('Saving Fabric...');
+        Notification.display('Saving Fabric...', false);
         //Checks the form is valid
         if($scope.form.$valid){
             //Create new fabric object
@@ -314,7 +314,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller, Notification
     $scope.upload = function(){
         
         //Notify of uploading image
-        Notification.display('Uploading Image...');
+        Notification.display('Uploading Image...', false);
         var fd = new FormData();
         
         fd.append('image', $scope.images[0]);
@@ -542,7 +542,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller, Noti
     };
     
     $scope.update = function(){
-        Notification.display('Updating Fabric...')
+        Notification.display('Updating Fabric...', false)
         $scope.fabric.$save(Notification.display('Fabric Updated'));
     };
 }
