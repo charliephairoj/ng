@@ -32,13 +32,13 @@
 		
 		<div class="panel" ng-class="{active:showSuppliers}">
 			<ul class="sourceList">
-				<li class="sourceItem" ec-draggable='{"type":"supplier", "index":{{$index}}}' ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</li>
+				<li class="sourceItem" ng-click="addSupplier($index)" ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</li>
 			</ul>
 		</div>
 		
 		<div class="panel" ng-class="{active:showSupplies}">
 			<ul class="sourceList">
-				<li class="sourceItem" ng-repeat="supply in supplyList | filter:supplier.name | filter:query |exclude:orderedSupplies" ec-draggable='{"type":"supply", "index":{{supply.id}}}'>{{supply.description}}</li>
+				<li class="sourceItem" ng-click="addSupplies($index)" ng-repeat="supply in supplyList | filter:supplier.name | filter:query |exclude:orderedSupplies">{{supply.description}}</li>
 			</ul>
 			
 		</div>

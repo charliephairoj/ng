@@ -370,14 +370,13 @@ angular.module('ecResource', ['ngResource']).
                 
                 var data = [],
                     storageData = [],
-                    serverData = [],
-                    i;
-                
+                    serverData = [];
+                    
                 //CHECKS IF STORAGE IS SUPPORTED
                 if(this.storage){
                     storageData = this.storage.query();
                     
-                    for(i in storageData){
+                    for(var i in storageData){
                         data.push(new Resource(storageData[i]));
                     }
                 }
@@ -388,14 +387,21 @@ angular.module('ecResource', ['ngResource']).
                     type:'GET',
                     cache:false,
                     success: function(responseData, status){
+                        console.log(responseData);
                         this.storage.clear();
-                     
-                         for(i in responseData){
+                        
+                        
+                        
+                        for(var i in responseData){
+                            console.log('test');
                             this.storage.save(responseData[i]);
                             serverData.push(new Resource(responseData[i]));
-                         }
+                        }
                             
-                         data = serverData;
+                         //Reset the Data
+                        data = serverData;
+                         
+                        $rootScope.$apply();
                             
                     }.bind(this)
                 });

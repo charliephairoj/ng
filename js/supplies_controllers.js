@@ -312,7 +312,7 @@ function AddFabricCtrl($scope, Supplier, Fabric, $location, Poller){
         
         var fd = new FormData();
         
-        fd.append('image', $scope.image[0]);
+        fd.append('image', $scope.images[0]);
         
         //clear the form
         $scope.addLength = null;
@@ -412,7 +412,9 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
-               console.log(responseData);
+               //Reload the log
+               $scope.viewLog();
+               
                angular.copy(responseData, $scope.fabric);
                $scope.$apply();
            }
@@ -440,6 +442,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
+               $scope.viewLog();
                angular.copy(responseData, $scope.fabric);
                $scope.$apply();
            }
@@ -467,7 +470,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
-               
+               $scope.viewLog();
                angular.copy(responseData, $scope.fabric);
                $scope.$apply();
            } 
@@ -495,6 +498,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller){
            processData:false,
            contentType:false,
            success: function(responseData){
+               $scope.viewLog();
                angular.copy(responseData, $scope.fabric);
                $scope.$apply();
            } 

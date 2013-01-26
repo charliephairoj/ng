@@ -37,6 +37,25 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder){
         }
         
     };
+    
+    $scope.addSupplier = function(index){
+      $scope.supplier = $scope.supplierList[index];
+      $scope.query = null;
+      $scope.showSuppliers=false;
+      $scope.$apply();
+    };
+    
+    $scope.addSupplies = function(index){
+        
+        
+        $scope.orderedSupplies.push($scope.supplyList[index]);
+        
+        $scope.$apply();
+            //$scope.orderedSupplies.push($scope.supplyList[$scope.data.index]);
+        
+        
+        
+    };
     //Add Supplier
     $scope.add = function(supplier){
         $scope.sourceType = "supply";

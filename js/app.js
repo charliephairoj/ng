@@ -92,10 +92,12 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     /*
      * This area deals with all the permissions
      */
-    when('/settings/change_password', {templateUrl:'partials/pages/settings/change_password.html', controller:ChangePasswordCtrl})
+    when('/settings/change_password', {templateUrl:'partials/pages/settings/change_password.html', controller:ChangePasswordCtrl}).
     
-    
-    
+    /*
+     * Deals with the photo library
+     */
+    when('/library', {templateUrl:'partials/pages/library/view.html', controller:ViewLibraryCtrl})
   }]);
 
 

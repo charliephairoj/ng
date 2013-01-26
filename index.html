@@ -59,6 +59,10 @@
 				<a ng-href="#/administrator">Administrator</a>
 				
 			</li>
+			<li class="menuItem" ng-show="currentUser.hasModule('administrator')" ng-click="module='administrator'">
+				<a ng-href="#/library">Photo Library</a>
+				
+			</li>
 			
 		</ul>
 		<!--
