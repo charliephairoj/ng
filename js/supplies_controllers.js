@@ -517,6 +517,7 @@ function FabricDetailsCtrl($scope, Fabric, $routeParams, $location, Poller, Noti
         
         jQuery.ajax("fabric/"+$scope.fabric.id+"/log",  {
             type:'GET',
+            cache:false,
             success: function(responseData){
                 console.log(responseData);
                 
