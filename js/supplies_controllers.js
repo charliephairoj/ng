@@ -46,7 +46,7 @@ function ViewLumberCtrl($scope, Lumber){
 ViewLumberCtrl.$inject = ['$scope', 'Lumber']
 
 
-function LumberDetailsCtrl($scope, Lumber, $routeParams$location, Poller){
+function LumberDetailsCtrl($scope, Lumber, $routeParams, $location, Poller){
     
     $scope.lumber = Lumber.get({'id':$routeParams.id});
     

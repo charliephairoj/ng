@@ -49,6 +49,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('permission/:id', {id:'@id'});
     }).factory('LibraryBook', function(ecResource){
         return ecResource('library/:id', {id:'@id'});
+    }).factory('Acknowledgement', function(ecResource){
+        return ecResource('acknowledgement/:id', {id:'@id'});
     }).
     
     

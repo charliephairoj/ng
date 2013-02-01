@@ -2,7 +2,7 @@
 
 
 /*
- * Lumber Area
+ * PO Area
  */
 
 //controller to view po
@@ -18,7 +18,7 @@ function ViewPOCtrl($scope, PurchaseOrder, Supplier, Poller){
     */
 }
 
-ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier', 'Poller']
+ViewPOCtrl.$inject = ['$scope', 'PurchaseOrder', 'Supplier', 'Poller'];
 //controller to add lumber
 
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
@@ -167,4 +167,18 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
 }
 
 CreatePOCtrl.$inject = ['$scope', 'Supply', 'Supplier', 'PurchaseOrder', 'Notification'];
+
+
+
+/*
+ * Acknowledgement Area
+ */
+
+function ViewAcknowledgementCtrl($scope, Acknowledgement){
+    $scope.ackList = Acknowledgement.query(console.log($scope.ackList));
+    console.log($scope.ackList);   
+}
+
+ViewAcknowledgementCtrl.$inject = ['$scope', 'Acknowledgement'];
+
 

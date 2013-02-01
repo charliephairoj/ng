@@ -5,12 +5,13 @@
 var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filters','EmployeeCenter.services', 'EmployeeCenter.directives', 'UserAuth']).
   config(['$routeProvider', function($routeProvider) {
       
-    $routeProvider.
+    $routeProvider. 
         //Category Routes
     when('/contacts', {templateUrl:'partials/pages/contacts.html'}).
     when('/supplies', {templateUrl:'partials/pages/supplies.html'}).
     when('/orders', {templateUrl:'partials/pages/orders.html'}).
     when('/administrator', {templateUrl:'partials/pages/administrator.html'}).
+    when('/products', {templateUrl: 'partials/pages/products.html'}).
     //Model routes
     when('/models', {templateUrl: 'partials/pages/view_models.html', controller: ViewModelsCtrl}).
     when('/models/:modelID/:index', {templateUrl:'partials/pages/model_details.html', controller: ViewModelsCtrl}).
@@ -19,8 +20,9 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/configurations', {templateUrl: 'partials/pages/view_configurations.html', controller: ViewConfigsCtrl}).
     when('/configurations/add_configuration', {templateUrl:'partials/pages/add_configuration.html', controller:AddConfigCtrl}).     
     //upholstery routes
-   // when('/upholstery', {templateUrl: 'partials/pages/view_upholsteries.html', controller: UpholCtrl}).
+    when('/upholstery', {templateUrl: 'partials/pages/products/upholstery/view_upholsteries.html', controller: ViewUpholCtrl}).
     when('/upholstery/add_upholstery', {templateUrl:'partials/pages/add_upholstery.html', controller:AddUpholCtrl}).
+    when('/upholstery/:id', {templateUrl:'partials/pages/products/upholstery/upholstery_details.html', controller:UpholDetailsCtrl}).
     //customer routes
     when('/customers/add_customer', {templateUrl:'partials/pages/add_customer.html', controller:AddCustomerCtrl}).
     //supplier routes
@@ -74,7 +76,9 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     //purhcase order routes
     when('/purchase_order', {templateUrl:'partials/pages/purchase_order/view_purchase_order.html', controller:ViewPOCtrl}).
     when('/purchase_order/create', {templateUrl:'partials/pages/purchase_order/create_purchase_order.html', controller:CreatePOCtrl}).
-
+    
+    //Acknowledgements
+    when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view_acknowledgements.html', controller:ViewAcknowledgementCtrl}).
     /*
      * this area deals with all the urls for the admin section of thes site
      */
