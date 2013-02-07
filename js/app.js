@@ -79,6 +79,7 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     
     //Acknowledgements
     when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view_acknowledgements.html', controller:ViewAcknowledgementCtrl}).
+    when('/acknowledgement/create', {templateUrl:'partials/pages/acknowledgement/create_acknowledgements.html', controller:CreateAcknowledgementCtrl}).
     /*
      * this area deals with all the urls for the admin section of thes site
      */

@@ -181,4 +181,82 @@ function ViewAcknowledgementCtrl($scope, Acknowledgement){
 
 ViewAcknowledgementCtrl.$inject = ['$scope', 'Acknowledgement'];
 
+//Create Acknowledgement
+function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Customer, Upholstery, $filter, Fabric){
+    
+    //Vars
+    $scope.show_fabric = false;
+    
+    $scope.customer_list = Customer.query();
+    $scope.upholstery_list = Upholstery.query();
+    $scope.fabric_list = Fabric.query();
+    console.log($scope.upholstery_list);
+    $scope.ack = new Acknowledgement();
+    
+    
+    
+    $scope.add_customer = function(index){
+        //Set Customer
+        $scope.ack.customer = $filter('filter')($scope.customer_list, $scope.query_customers)[index];
+        
+        //Hide Customer Panel
+        $scope.show_customers = false;
+    };
+    
+    $scope.add_upholstery = function(index){
+        //Create products array if not exists
+        if(!$scope.ack.products){
+            $scope.ack.products = [];
+        }
+        //Add New compy of product
+        $scope.ack.products.push(angular.copy($filter('filter')($scope.upholstery_list, $scope.query_uphol)[index]));
+        //Close Modal
+        $scope.show_upholstery = false;
+        $scope.show_fabric = true;
+    };
+    
+    $scope.add_upholstery_fabric = function(){
+        var index = $scope.data;
+        console.log(index);
+        console.log($scope.data);
+        //Get Fabric
+        var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[index]);
+        console.log(fabric);
+        $scope.ack.products[$scope.ack.products.length-1].fabric = {};
+        angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].fabric)
+      
+    };
+    
+    $scope.add_pillow_fabric = function(index){
+        
+        var fabric_index = $scope.data
+        var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[fabric_index]);
+        $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric = {};
+        angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric)
+        console.log($scope.ack.products)
+        
+    }
+    
+    $scope.remove = function(index){
+        $scope.ack.products.pop(index);
+    };
+    
+    $scope.create = function(){
+        var ack = new Acknowledgement()
+        angular.copy($scope.ack, ack)
+        //Add delivery date
+        ack.delivery_date = {}
+        ack.delivery_date.month = $scope.delivery_date.getMonth()+1;
+        ack.delivery_date.date = $scope.delivery_date.getDate();
+        ack.delivery_date.year = $scope.delivery_date.getFullYear();
+        ack.$save(function(responseData){
+            window.open(responseData.url, true);
+            console.log(responseData);
+        });
+    };
+    
+}
+
+CreateAcknowledgementCtrl.$inject = ['$scope', 'Acknowledgement', 'Notification', 'Customer', 'Upholstery', '$filter', 'Fabric'];
+
 

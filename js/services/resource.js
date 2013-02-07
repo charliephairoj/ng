@@ -261,7 +261,7 @@ angular.module('ecResource', ['ngResource']).
      * 
      * The children objects have the prototypical methods :$save, $delete, query, 
      */
-    factory('ecResource', function($resource, $storage, $rootScope, $http){
+    factory('ecResource', function($resource, $storage, $rootScope, $http, $q){
         var $scope = $rootScope;
         //apply data
         function applyData(target, data){
@@ -392,16 +392,21 @@ angular.module('ecResource', ['ngResource']).
                         
                         
                         
-                        for(var i in responseData){
-                            console.log('test');
-                            this.storage.save(responseData[i]);
-                            serverData.push(new Resource(responseData[i]));
-                        }
+                        
                             
-                         //Reset the Data
-                        data = serverData;
-                         
-                        $rootScope.$apply();
+                        //Reset the Data if they are not equal
+                        if(!angular.equals(data, serverData)){
+                            //Push new Data to storage
+                            for(var i in responseData){
+                                this.storage.save(responseData[i]);
+                                serverData.push(new Resource(responseData[i]));
+                            }
+                            //Reset promised data
+                            $rootScope.$apply(function(){
+                                data = serverData;
+                            });
+                        }
+                        
                             
                     }.bind(this)
                 });

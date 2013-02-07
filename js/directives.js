@@ -42,21 +42,18 @@ directive('ecBlur', function($parse){
 /*
  * Makes something draggable
  */
-directive('ecDraggable', function(){
+directive('dragOn', function(){
     return {
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
+            
             element.attr('draggable', true);
-            
             element.bind('dragstart', function(event) {
-
-                event.originalEvent.dataTransfer.setData('text/plain', attrs.ecDraggable)
+                console.log(attrs.dragOn)
+                event.originalEvent.dataTransfer.setData('text/plain', attrs.dragOn)
             });
             
-            element.bind('dragend', function(event) {
-                
-            });
         }
     }
 }).
@@ -65,13 +62,12 @@ directive('ecDraggable', function(){
 /*
  * Makes something droppable
  */
-directive('ecDroppable', function($parse){
+directive('dropOn', function($parse){
     return {
-        restrict:'EA',
+        restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
             element.bind('drop', function(event){
-                console.log('ok');
                 event.stopPropagation();
                 event.preventDefault();
                 event.originalEvent.dataTransfer.effectAllowed = "copy";
@@ -80,8 +76,9 @@ directive('ecDroppable', function($parse){
                 
                 //if there is an function
                 //then eval function
-                if(attrs.ecDroppable){
-                    scope.$eval(attrs.ecDroppable);
+                console.log(attrs.dropOn);
+                if(attrs.dropOn){
+                    scope.$eval(attrs.dropOn);
                 }
                 
             }).bind('dragover', function(event){
@@ -94,6 +91,7 @@ directive('ecDroppable', function($parse){
         }
     }
 }).
+
 
 
 /*
@@ -208,126 +206,6 @@ directive('imageDropTarget', function($parse){
         }
     };
 }).
-
-/*
- * Creates a drag and drop 
- * for uploading stuff
- */
-directive('ecDropTarget', function(){
-    /*
-     * Define functions to use for 
-     * drag and drop operations
-     */
-    var dragEnterLeave = function(evt){console.log(evt);
-        evt.stopPropagation();
-        evt.preventDefault();
-        $(this).toggleClass('active');
-    };
-    
-   return {
-       restrict:'EA',
-       replace:true,
-       templateUrl:'partials/components/drop_target.html',
-       link: function(scope, element, attrs){
-           /*
-            * Define vars to be used later
-            */
-           var dropbox = element.children('.dropbox');
-           var previewContainer = element.children('.previewContainer');
-           //Create all scope items
-           scope.filesToUpload = [];
-           
-           /*
-            * Methods
-            */
-           
-           //Function to clear files
-           scope.clearFiles = function(){
-              scope.filesToUpload = [];
-              previewContainer.html('');  
-           };
-           //Function to remove file 
-           scope.removeFile = function(val){
-               
-               var targetFile = $(this).parent().children('img')[0];
-               var targetFileSize = $(targetFile).attr('img-size');
-               var targetFileName = $(targetFile).attr('alt');
-               
-                //Removes file from the dom
-                $(this).parent().fadeOut('slow', function(){
-                   $(this).remove();
-                });
-                //remove from files to upload
-                jQuery.each(scope.filesToUpload, function(index, file){
-                   if(file){
-                       if(file.name===targetFileName && file.size==targetFileSize){
-                           scope.filesToUpload.splice(index, 1);
-                       } 
-                   }
-                });
-            };
-           
-           dropbox.bind('dragover', function(e){
-               e.preventDefault();
-           });
-           
-           dropbox.bind("dragenter", dragEnterLeave);
-           dropbox.bind("dragleave", dragEnterLeave);
-           
-           dropbox.bind('drop', function(e){
-              e.preventDefault();
-              e.stopPropagation();
-              $(this).removeClass('active');
-              //Get the Files
-              var files = e.originalEvent.dataTransfer.files;
-              
-              for (var i = 0, f; f = files[i]; i++) {
-                  
-                  if(f.type.match('image')){
-                        
-                      //Add to list of files to upload
-                      scope.filesToUpload.push(f);
-                      //Create File reader
-                      var reader = new FileReader();
-                      
-                      
-                      //Create function for when
-                      //the reader loads
-                      reader.onload = (function(img){
-                          return function(e) {
-                              
-                              
-                              // Render thumbnail.
-                              var div = angular.element('<div></div>');
-                              //Create the button to remove the image
-                              //and delete from files array
-                              var closeButton = angular.element('<div class="closeButton">remove</div>');
-                              closeButton.bind('click', scope.removeFile);
-                              
-                              div.append(closeButton);
-                              console.log(img);
-                             
-                              var tImg = ['<img class="thumb" src="', e.target.result,
-                                              '" alt=', img.name, ' img-size="', img.size,'"/>'].join('');
-                              div.hide().append(tImg);
-                              previewContainer.append(div);
-                              div.fadeIn('slow');
-                            
-                          };
-                    
-                         
-                      })(f);
-                      
-                       // Read in the image file as a data URL.
-                      reader.readAsDataURL(f);
-                  }
-              }
-           });
-           
-       }
-   }
-}).
-
 
 
 /*
@@ -474,8 +352,65 @@ directive('clickUrl', function($location){
             
         }
     }
-})
+}).
 
+/*
+ * Modal Directive
+ */
+
+directive('modal', function(){
+    function create_backdrop(){
+        var backdrop = angular.element('<div></div>');
+        backdrop.attr('id', 'backdrop');
+        console.log(backdrop);
+        return backdrop;
+    }
+    return {
+        restrict:'A',
+        scope: false,
+        require:'ngModel',
+        link: function(scope, element, attr, controller){
+            element.addClass('modal hide');
+            var children = element.children();
+            for(var i=0; i<children.length; i++){
+                if($(children[i]).hasClass('list')){
+                    var list_container = angular.element("<div class='list_container'></div>");
+                   $(children[i]).appendTo(list_container);
+                   element.append(list_container);
+                }
+            }
+            var backdrop = create_backdrop();
+            backdrop.bind('click', function(){
+                console.log('ok');
+                scope.$apply(function(){
+                    attr.ngModel = false; 
+                });
+            });
+            backdrop.bind('onclick', function(){
+                console.log('ok');
+                scope.$apply(function(){
+                    attr.ngModel = false; 
+                });
+            });
+            
+            scope.$watch(attr.ngModel, function(value){
+               if(value){
+                   element.removeClass('hide');
+                   $(document.body).append(backdrop);
+                   backdrop.fadeTo(500, 0.7);
+                   element.fadeTo(500, 1);
+               }else{
+                   element.fadeOut(400, function(){
+                       element.addClass('hide');
+                   }); 
+                   backdrop.fadeOut(500, function(){
+                      backdrop.remove(); 
+                   });
+               }
+            });
+        }
+    }
+})
 
 ;
 
