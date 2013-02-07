@@ -1,0 +1,208 @@
+<div class="createAcknowledgementPage" ng-init="show_customers=false; show_upholstery=false;show_custom_item=false;" fade-in>
+	
+	
+	
+	
+	<form class="po" name="form" ec-droppable="add()" novalidate>
+		
+		<!--
+			Sidebar
+		-->
+		
+		<div class="sidebar">
+			<header>
+				<h1>
+					<span>Contacts</span>
+				</h1>
+			</header>
+			<nav>
+				<ul class="list">
+					<li><div ng-class="{dirty:form.$invalid}" ng-click="create()" >Create</div></li>
+					<li><div ng-click="show_customers=!show_customers">Add Customer</div></li>
+					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_upholstery=true">Add Upholstery</div></li>
+					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_modal=true">Add Custom Item</div></li>
+					<li><div ng-click="reset()" >Reset</div></li>
+				</ul>
+			</nav>
+			
+		</div>
+		
+		<!--
+			Panels
+		-->
+		
+		<div data-modal ng-model="show_customers">
+			<div class="title">
+				Customers
+				<input type="text" class="search" ng-model="query_customers" />
+			</div>
+			<ul class="sourceList list">
+				<li class="sourceItem list_item" ng-click="add_customer($index)" ng-repeat="customer in customer_list | filter:query_customers">{{customer.name}}</li>
+			</ul>
+		</div>
+		
+		<div data-modal ng-model="show_upholstery">
+			<div class="title">
+				Upholstery
+				<input type="text" class="search" ng-model="query_uphol" />
+				
+			</div>
+			<ul class="sourceList list">
+				<li class="sourceItem list_item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol "><img ng-src="{{upholstery.image.url}}" />{{upholstery.model.model+' '+upholstery.configuration.configuration}}</li>
+			</ul>
+		</div>
+		<div data-modal ng-model="show_fabric" class="fabric_modal">
+			<div class="title">
+				Fabric
+				<input type="text" class="search" ng-model="query_fabric" />
+				
+			</div>
+			<div class="product_container">
+				<div class="product_item" data-drop-on="add_upholstery_fabric()">
+					<span>{{ack.products[ack.products.length-1].description}}</span>
+				</div>
+				<div class="product_item" ng-repeat="pillow in ack.products[ack.products.length-1].pillows" data-drop-on="add_pillow_fabric($index)">
+					<span>{{pillow.type}} Pillow</span>
+					
+					<span ui-if="pillow.fabric">pillow.fabric</span>
+				</div>
+			</div>
+			<div class="fabric_container">
+				<ul class="sourceList fabric_list">
+					<li class="sourceItem list_item" ng-repeat="fabric in fabric_list | filter:query_fabric " data-drag-on="{{$index}}">{{fabric.description}}</li>
+				</ul>
+			</div>
+			
+			
+		</div>
+		
+		<div data-modal ng-model="show_modal" image-drop-target>
+			<table>
+				<tr>
+					<td>Description</td>
+					<td><input type="text" ng-model="custom.description" /></td>
+					<td>Quantity</td>
+					<td><input type="text" ng-model="custom.quantity" /></td>
+					<div ng-click="show_modal=false">Click me</div>
+				</tr>
+			</table>
+		</div>
+		
+		<!--
+			Workspace
+		-->
+		<div class="workspace">
+				<table class="supplier">
+					<tr>
+						<td><label>Customer</label></td>
+						<td><label>{{ack.customer.name}}</label></td>
+					</tr>
+					<tr>
+						<td><label>Address</label></td>
+						<td><label>{{ack.customer.addresses[0].address1}}</label></td>
+					</tr>
+					<tr>
+						<td><label>City</label></td>
+						<td><label>{{ack.customer.addresses[0].city}}</label></td>
+					</tr>
+					<tr>
+						<td><label>Territory</label></td>
+						<td><label>{{ack.customer.addresses[0].territory}}</label></td>
+					</tr>
+					<tr>
+						<td><label>Country</label></td>
+						<td><label>{{ack.customer.addresses[0].country}}</label></td>
+					</tr>
+					<tr>
+						<td><label>Telephone</label></td>
+						<td><label>{{ack.customer.telephone}}</label></td>
+					</tr>
+					
+				</table>
+				
+				<table class="attention" ui-if="supplier.contacts.length">
+					<tr>
+						<td><label>Attention To:</label></td>
+						<td><select required ng-options="contact.firstName+' '+contact.lastName for contact in supplier.contacts" ng-model="po.attention">
+						</select>
+							
+						</td>
+					</tr>
+				</table>
+				<table class="deliveryDate">
+					<tr>
+						<td><label>Delivery Date</label></td>
+						<td><input type="text" ui-date required  ng-model="delivery_date" /></td>
+					</tr>
+				</table>
+				<table class="shipping">
+					<tr>
+						<td><label>Shipping</label></td>
+						<td>
+							<select ng-model="ack.shipping.type">
+								<option value="none">None</option>
+								<option value="air">Air Freight</option>
+								<option value="ground">Ground Freight</option>
+								<option value="sea">Sea Freight</option>
+							</select>
+						</td>
+						
+					</tr>
+				</table>
+				<table class="shipping" ng-show="orderedShipping()">
+					<tr>
+						
+						<td>
+							<label>Shipping Amount</label>
+						</td>
+						<td>
+							<input type="text" ng-model="ack.shipping.amount" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/"/>
+						</td>
+					</tr>
+				</table>
+				<table class="vat">
+					<tr>
+						<td><label>Vat</label></td>
+						<td><input type="text" required ng-pattern="/^\d{0,2}$/" ng-model="ack.vat" />%</td>
+					</tr>
+				</table>
+				
+				<table class="currency" ui-if="supplier">
+					<tr>
+						<td><label>Currency</label></td>
+						<td>
+							{{supplier.currency}}
+						</td>
+					</tr>
+				</table>
+				
+			
+			<div class="supplies" ng-show="ack.products">
+				<table>
+					<thead>
+						<tr>
+							<th class="itemNo"><label>No.</label></th>
+							<th class="description"><label>Description</label></th>
+							<th class="quantity"><label>Quantity</label></th>
+							<th class="remove"><label>Remove</label></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="product in ack.products">
+							<td class="itemNo"><label>{{$index+1}}</label></td>
+							<td class="description">
+								<label>{{product.model.model+' '+product.configuration.configuration}}</label>
+								<br />
+								<label> Fabric: {{product.fabric.description}}</label>
+							</td>
+							<td class="quantity"><label><input type="text" ng-pattern="/^[1-9](\d+)?$/" required ng-model="product.quantity"/></label></td>
+							<td class="remove" ng-click="remove($index)">x</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</form>
+	
+</div>
