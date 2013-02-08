@@ -266,9 +266,9 @@ AddSupplierCtrl.$inject = ['$scope', 'Supplier', '$location', 'Notification'];
 //View supplierList controller
 function ViewSuppliersCtrl($scope, Supplier, Poller){
     
-    Poller.poll($scope, function(){
+    //Poller.poll($scope, function(){
         $scope.supplierList = Supplier.query();
-    });
+    //});
     
     
 }
@@ -318,7 +318,6 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
         Notification.display('Updating Supplier...', false);
         $scope.supplier.$save(function(data){
             Notification.display('Supplier Updated');
-            $scope.supplier =  Supplier.get({'id':$routeParams.id});
         });
     };
     

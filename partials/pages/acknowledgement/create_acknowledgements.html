@@ -48,7 +48,7 @@
 				
 			</div>
 			<ul class="sourceList list">
-				<li class="sourceItem list_item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol "><img ng-src="{{upholstery.image.url}}" />{{upholstery.model.model+' '+upholstery.configuration.configuration}}</li>
+				<li class="sourceItem list_item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol "><img ng-src="{{upholstery.image.url}}" />{{upholstery.model.model}} {{upholstery.configuration.configuration}}</li>
 			</ul>
 		</div>
 		<div data-modal ng-model="show_fabric" class="fabric_modal">
@@ -60,11 +60,11 @@
 			<div class="product_container">
 				<div class="product_item" data-drop-on="add_upholstery_fabric()">
 					<span>{{ack.products[ack.products.length-1].description}}</span>
+					<span>{{ack.products[ack.products.length-1].fabric.description}}</span>
 				</div>
 				<div class="product_item" ng-repeat="pillow in ack.products[ack.products.length-1].pillows" data-drop-on="add_pillow_fabric($index)">
 					<span>{{pillow.type}} Pillow</span>
-					
-					<span ui-if="pillow.fabric">pillow.fabric</span>
+					<span>Fabric: {{pillow.fabric.description}}</span>
 				</div>
 			</div>
 			<div class="fabric_container">
@@ -72,7 +72,7 @@
 					<li class="sourceItem list_item" ng-repeat="fabric in fabric_list | filter:query_fabric " data-drag-on="{{$index}}">{{fabric.description}}</li>
 				</ul>
 			</div>
-			
+			<button style="position:absolute; bottom:10px; left:10px; z-index:10" ng-click="show_fabric = false">Submit</button>
 			
 		</div>
 		
@@ -191,9 +191,14 @@
 						<tr ng-repeat="product in ack.products">
 							<td class="itemNo"><label>{{$index+1}}</label></td>
 							<td class="description">
-								<label>{{product.model.model+' '+product.configuration.configuration}}</label>
+								<label>{{product.model.model}} {{product.configuration.configuration}}</label>
 								<br />
 								<label> Fabric: {{product.fabric.description}}</label>
+								<div style="width:100%;" ng-repeat="pillow in product.pillows">
+									{{pillow.type}} Pillow
+									<br />
+									<span>{{pillow.fabric.description}}</span>
+								</div>
 							</td>
 							<td class="quantity"><label><input type="text" ng-pattern="/^[1-9](\d+)?$/" required ng-model="product.quantity"/></label></td>
 							<td class="remove" ng-click="remove($index)">x</td>

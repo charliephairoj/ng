@@ -72,11 +72,15 @@ directive('dropOn', function($parse){
                 event.preventDefault();
                 event.originalEvent.dataTransfer.effectAllowed = "copy";
                 console.log(event.originalEvent.dataTransfer.getData('text/plain'));
-                scope.data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+                
+                //Apply data to scope for use in controller
+                scope.$apply(function(){
+                    scope.data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+                    console.log(scope);
+                });
                 
                 //if there is an function
                 //then eval function
-                console.log(attrs.dropOn);
                 if(attrs.dropOn){
                     scope.$eval(attrs.dropOn);
                 }

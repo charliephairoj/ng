@@ -42,11 +42,13 @@
 									<td>{{supplier.name}}</td>
 								</tr>
 								<tr class="address">
-									<td>{{supplier.address1}}
+									<td>{{supplier.address.address1}}
 										<br />
-										{{supplier.city+","+supplier.territory}}
+										{{supplier.address.address2}}
 										<br />
-										{{supplier.country+" "+supplier.zipcode}}
+										{{supplier.address.city+","+supplier.address.territory}}
+										<br />
+										{{supplier.address.country+" "+supplier.address.zipcode}}
 									</td>
 								</tr>
 							</table>

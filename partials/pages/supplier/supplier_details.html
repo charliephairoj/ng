@@ -74,11 +74,11 @@
 				<tr>
 					<td><label>Address 1</label></td>
 					<td>
-						{{supplier.address1+' '+supplier.address2}}
+						{{supplier.address.address1+' '+supplier.address.address2}}
 						<br />
-						{{supplier.city+', '+supplier.territory}}
+						{{supplier.address.city+', '+supplier.address.territory}}
 						<br />
-						{{supplier.country+' '+supplier.zipcode}}
+						{{supplier.address.country+' '+supplier.address.zipcode}}
 					</td>
 				</tr>
 				<tr>
@@ -115,27 +115,27 @@
 				</tr>
 				<tr>
 					<td><label>Address 1</label></td>
-					<td><input type="text" ng-model="supplier.address1" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.address1" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>Address 2</label></td>
-					<td><input type="text" ng-model="supplier.address2" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.address2" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>City</label></td>
-					<td><input type="text" ng-model="supplier.city" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.city" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>Territory</label></td>
-					<td><input type="text" ng-model="supplier.territory" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.territory" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>Country</label></td>
-					<td><input type="text" ng-model="supplier.country" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.country" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>Zipcode</label></td>
-					<td><input type="text" ng-model="supplier.zipcode" ec-blur="update()" /></td>
+					<td><input type="text" ng-model="supplier.address.zipcode" ec-blur="update()" /></td>
 				</tr>
 				<tr>
 					<td><label>Terms</label></td>

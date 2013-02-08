@@ -347,9 +347,7 @@ AddFabricCtrl.$inject = ['$scope', 'Supplier', 'Fabric', '$location', 'Poller', 
 
 function ViewFabricsCtrl($scope, Fabric, Poller){
     
-    Poller.poll($scope, function(){
         $scope.fabricList = Fabric.query();
-    });
     
     //Methods
     

@@ -204,6 +204,8 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
     };
     
     $scope.add_upholstery = function(index){
+        
+        console.log($scope);
         //Create products array if not exists
         if(!$scope.ack.products){
             $scope.ack.products = [];
@@ -223,7 +225,9 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[index]);
         console.log(fabric);
         $scope.ack.products[$scope.ack.products.length-1].fabric = {};
-        angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].fabric)
+        $scope.$apply(function(){
+            angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].fabric);
+        });
       
     };
     
@@ -232,8 +236,10 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         var fabric_index = $scope.data
         var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[fabric_index]);
         $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric = {};
-        angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric)
-        console.log($scope.ack.products)
+        $scope.$apply(function(){
+            angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric);
+        });
+        
         
     }
     
