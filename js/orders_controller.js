@@ -193,7 +193,7 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         $scope.ack.products.push(angular.copy($filter('filter')($scope.upholstery_list, $scope.query_uphol)[index]));
         //Close Modal
         $scope.show_upholstery = false;
-        $scope.show_fabric = true;
+        $scope.show_quantity = true;
     };
     
     

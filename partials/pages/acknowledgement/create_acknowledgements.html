@@ -52,7 +52,7 @@
 			</div>
 			<div class="container">
 				<div class="list">
-					<div class="list_item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol ">
+					<div class="item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol ">
 						<img ng-src="{{upholstery.url}}" />{{upholstery.description}}
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 						</div>
 						
 					</div>
-					<div class="pillows" ng-repeat="pillow in ack.products[ack.products.length-1].pillows" data-drop-on="pillow.fabric">
+					<div class="pillow" ng-repeat="pillow in ack.products[ack.products.length-1].pillows" data-drop-on="pillow.fabric">
 						<div>{{pillow.type | beautify}} Pillow</div>
 						<div class="fabric">
 							Fabric: {{pillow.fabric.description}}
@@ -102,7 +102,16 @@
 			</div>
 			
 		</div>
-		
+		<div data-modal ng-model="show_quantity" image-drop-target>
+			<table>
+				<tr>
+					
+					<td>Quantity</td>
+					<td><input type="text" ng-model="ack.products[ack.products.length-1].quantity" /></td>
+					<button ng-click="show_quantity=false;show_fabric=true;">Click me</div>
+				</tr>
+			</table>
+		</div>
 		<div data-modal ng-model="show_modal" image-drop-target>
 			<table>
 				<tr>
@@ -122,38 +131,39 @@
 				
 				<div class="customer">
 					<span class="title">Customer</span>
-					<table>
-					
-					<tr>
-						<td><label>{{ack.customer.name}}</label></td>
-					</tr>
-					<tr>
-						<td><label>{{ack.customer.addresses[0].address1}}</label></td>
-					</tr>
-					<tr>
-						<td><label>{{ack.customer.addresses[0].city}}, {{ack.customer.addresses[0].territory}}</label></td>
-					</tr>
-					<tr>
-						<td><label>{{ack.customer.addresses[0].territory}}, {{ack.customer.addresses[0].country}} {{ack.customer.addresses[0].zipcode}}</label></td>
-					</tr>
-					<tr>
-						<td><label>{{ack.customer.telephone}}</label></td>
-					</tr>
-					
-				</table>
-				</div>
-				
-				
-				<div class="order">
-					<table class="deliveryDate">
+					<table class="details">
 						<tr>
-							<td><label>Delivery Date</label></td>
-							<td><input type="text" ui-date required  ng-model="delivery_date" /></td>
+							<td>Name:</td>
+							<td>{{ack.customer.name}}</td>
+						<tr>
+							<td>Address:</td>
+							<td>
+								{{ack.customer.addresses[0].address1}}
+								<br />
+								{{ack.customer.addresses[0].city}}, {{ack.customer.addresses[0].territory}}
+								<br />
+								{{ack.customer.addresses[0].territory}}, {{ack.customer.addresses[0].country}} {{ack.customer.addresses[0].zipcode}}
+							</td>
+						</tr>
+						<tr>
+							<td>Telephone:</td>
+							<td>{{ack.customer.telephone}}</td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td>{{ack.customer.email}}</td>
 						</tr>
 					</table>
-					<table class="shipping">
+				</div>
+				
+				<div class="order">
+					<table class="details">
 						<tr>
-							<td><label>Shipping</label></td>
+							<td>Delivery Date:</td>
+							<td><input type="text" ui-date required  ng-model="delivery_date" /></td>
+						</tr>
+						<tr>
+							<td>Shipping:</td>
 							<td>
 								<select ng-model="ack.shipping.type">
 									<option value="none">None</option>
@@ -164,41 +174,43 @@
 							</td>
 							
 						</tr>
-					</table>
-					<table class="shipping" ng-show="orderedShipping()">
 						<tr>
-							
-							<td>
-								<label>Shipping Amount</label>
-							</td>
+							<td>Shipping Amount:</td>
 							<td>
 								<input type="text" ng-model="ack.shipping.amount" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/"/>
 							</td>
 						</tr>
-					</table>
-					<table class="vat">
 						<tr>
-							<td><label>Vat</label></td>
+							<td>Vat:</td>
 							<td><input type="text" required ng-pattern="/^\d{0,2}$/" ng-model="ack.vat" />%</td>
 						</tr>
-					</table>
-					
-					<table class="currency" ui-if="supplier">
 						<tr>
-							<td><label>Currency</label></td>
+							<td>Currency:</td>
 							<td>
-								{{supplier.currency}}
+								{{ack.customer.currency}}
 							</td>
 						</tr>
 					</table>
+					
+						
+					
+					
+					<table class="currency" ui-if="supplier">
+						
+					</table>
 				</div>
-				
 				
 			
 			<div class="products" ng-show="ack.products">
-				<label>Products</label>
+				<div class="title">Products</div>
 				<div class="product" ng-repeat="product in ack.products">
 					{{product.description}}
+					<table>
+						<tr>
+							<td>Qty:</td>
+							<td>{{product.quantity}}</td>
+						</tr>
+					</table>
 					<img ng-src="{{product.url}}" />
 				</div>
 				
