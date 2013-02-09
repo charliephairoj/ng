@@ -55,22 +55,6 @@ angular.module('EmployeeCenter.services', ['ecResource']).
     
     
     /*
-     * Current User 
-     */
-    factory('CurrentUser', function(){
-        function user(){
-            
-        }
-        
-        user.sayHi = function(){
-            window.alert('hi there');
-        };
-        
-        return user;
-    }).
-    
-    
-    /*
      * Poller
      */
     factory('Poller', function($timeout){

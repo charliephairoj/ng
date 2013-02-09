@@ -51,7 +51,7 @@ directive('dragOn', function(){
             element.attr('draggable', true);
             element.bind('dragstart', function(event) {
                 console.log(attrs.dragOn)
-                event.originalEvent.dataTransfer.setData('text/plain', attrs.dragOn)
+                event.originalEvent.dataTransfer.setData('text/plain', JSON.stringify(scope.$eval(attrs.dragOn)));
             });
             
         }
@@ -63,34 +63,72 @@ directive('dragOn', function(){
  * Makes something droppable
  */
 directive('dropOn', function($parse){
+    function emptyStrFilter(element, index, array){
+        return (element != "");
+    }
+    /*
+     * Function helps get the target object
+     * in the scope
+     */
+    function getTarget(scope, targetString){
+        //Assigns vars
+        
+        /*
+         * Extracts the first string part, which
+         * we can expect to exsist. Then we extract
+         * the last part, which we check if we need
+         * to make
+         */
+        var preTarget = targetString.split(/\.\w*$/).shift(),
+            targetObj = targetString.split(/\./).pop(),
+            target;
+        //Evaluates against scope
+        target = scope.$eval(preTarget);
+        //check if obj exsists and create if not
+        target[targetObj] = target[targetObj] || {};
+        //advances the progressing
+        target = target[targetObj];
+        //Return 
+        return target;
+    }
+    /*
+     * Function returns the data from the drop event
+     * and automatically parses it
+     */
+    function getData(event){
+        return JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+    }
+    //Prevent Propagation
+    function preventPropagation(event){
+        event.stopPropagation();
+        event.preventDefault();
+        event.originalEvent.dataTransfer.effectAllowed = "copy";
+    }
+    
     return {
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
             element.bind('drop', function(event){
-                event.stopPropagation();
-                event.preventDefault();
-                event.originalEvent.dataTransfer.effectAllowed = "copy";
-                console.log(event.originalEvent.dataTransfer.getData('text/plain'));
-                
-                //Apply data to scope for use in controller
+                preventPropagation(event);
+                element.removeClass('drag');
+                /*
+                 * Gets the target and copies
+                 * the data from the dragged 
+                 * object to it
+                 */
                 scope.$apply(function(){
-                    scope.data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
-                    console.log(scope);
+                    var target = getTarget(scope, attrs.dropOn);
+                    angular.copy(getData(event), target);
                 });
                 
-                //if there is an function
-                //then eval function
-                if(attrs.dropOn){
-                    scope.$eval(attrs.dropOn);
-                }
                 
             }).bind('dragover', function(event){
-                event.preventDefault();
-                event.originalEvent.dataTransfer.effectAllowed = "copy";
+                preventPropagation(event);
+                element.addClass('drag');
             }).bind('dragleave', function(event){
-                event.preventDefault();
-                event.originalEvent.dataTransfer.effectAllowed = "copy";
+                preventPropagation(event);
+                element.removeClass('drag');
             });
         }
     }
@@ -124,19 +162,13 @@ directive('imageDropTarget', function($parse){
                 var image = {
                     'url':evt.target.result
                 }
-               
-                if(!$scope.imagePreviews){
-                    $scope.imagePreviews = [];
-                }
+                //Create array if not exists
+                $scope.imagePreviews = $scope.imagePreviews || [];
                 
-                $scope.imagePreviews.push(image);              
-                $scope.$apply();
-                
+                $scope.$apply(function(){
+                    $scope.imagePreviews.push(image);          
+                });
             };
-            
-           
-           
-            
             /*
              * Available methods to interact with this directive 
              * inlucde: clear images
@@ -144,8 +176,7 @@ directive('imageDropTarget', function($parse){
             
             //Clear Image
             $scope.clearImages = function(){
-                
-                $scope.images = [];
+                $scope.images ? $scope.images.length = 0 : $scope.images = [];
             };
             
             /*
@@ -195,12 +226,11 @@ directive('imageDropTarget', function($parse){
                 for(var i=0; i<files.length; i++){
                     
                     if(files[i].type == "image/png" || files[i].type == "image/jpeg"){
-                        
-                        if(!$scope.images){
-                            $scope.images = [];
-                        }
-                        
+                        //Create array if not exists
+                        $scope.images = $scope.images || [];
+                        //Push image   
                         $scope.images.push(files[i]);
+                        //Read data and push to preview
                         fileReader.readAsDataURL(files[i]);
                     }
                 }

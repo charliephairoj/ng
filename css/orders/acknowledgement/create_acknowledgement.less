@@ -106,211 +106,44 @@
   
   
 
-.po{
-    
-    overflow:none;
-    position:absolute;
-    top:0px;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    background:#DBDBDB;
-    
-    
-    
-    
-    .workspace{
+    .ack{
+        overflow-y:scroll;
+        position:absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+        background:#313131;
+        .workspace{
+            height:100%;
+            width:100%;
+            z-index:1;
+            .supplier{
+                position:relative;
+                margin-left:10px;
+                margin-top:10px;
+                margin-right:30px;
+                margin-bottom:20px;
+                width:auto;
+                background:#FFFFFF;
+                border-radius:5px;
+                font-family:Helvetica, Tahoma, sans-serif;
+            }
         
-        height:100%;
-        width:100%;
-        z-index:1;
-      
-      .supplier{
-        position:relative;
-        margin-left:10px;
-        margin-top:10px;
-        margin-right:30px;
-        margin-bottom:20px;
-        width:auto;
-        background:#FFFFFF;
-        border-radius:5px;
-        font-family:Helvetica, Tahoma, sans-serif;
-        
-        &>tr{
-          width:100%;  
-          border-top:1px solid #CCCCCC;
-          
-          &:first-child{
-            border-top:none;
-          }
-
-          td{
-            padding:2px;
-             &:first-child{
-               color:#3c3c3c;
-               
-             }
-          }
-          
-        }
-        
-        label{
-          padding-left:10px;
-        }
-      }
-      
-      .attention{
-        .supplier;
-        select{
-          margin-left:10px;
-        }
-      }
-      .vat{
-        .supplier;
-        
-        td{
-          vertical-align:middle; 
-          
-          input{
-            margin-left:5px;
-            border:none;
-            text-align:right;
-            width:40px;
-            outline:none;
-          }
-        }
-      }
-      
-      .currency{
-        .vat;
-        
-        select{
-          margin-left:5px;
-        }
-      }
-      
-      .deliveryDate{
-        .vat;
-        td{
-          input{
-            width:auto;
-          }
-        }
-        
-      }
-      
-      .shipping{
-        .vat;
-        
-        td{
-          select{
-            margin-left:3px;
-          }
-          input{
-            margin-left:3px;
-            width:auto;
-          }
-        }
-        
-      }
-      
-      .supplies{
-        position:relative;
-        height:auto;
-        margin-left:10px;
-        margin-right:10px;
-        background:#A0A0A0;
-        border-radius:5px;
-        padding-top:5px;
-        padding-bottom:5px;
-        -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
-            
-            box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
-        
-        table{
-          margin-left:5px;
-          margin-right:5px;
-          
-          
-          
-            
-          .itemNo{
-            width:10%;
-            text-align:center;
-          }
-          .description{
-            width:75%;
-            text-align:left;
-            padding-left:10px;
-          }
-          
-          
-          tr{
-            padding-top:5px;
-            padding-bottom:5px;
-            border-bottom:1px solid grey;
-            background:white;
-            padding-left:5px;
-            padding-right:5px;
-            margin-left:5px;
-            margin-right:5px;
-            
-            th{
+       
+            .products{
+                position:absolute;
+                height:auto;
+                left:10px;
                 
-                padding:5px;
-                
-                &:first-child{
-                  -webkit-border-radius: 5px 0px 0px 0px;
-                  border-radius: 5px 0px 0px 0px;
+                .product{
+                    
                 }
-                
-                &:last-child{
-                  -webkit-border-radius: 0px 5px 0px 0px;
-                  border-radius: 0px 5px 0px 0px;
-                }
-              }
-            
-            
-              
-            
-            
-            td{
-              vertical-align:middle;
-              
-              &.remove{
-                text-align:center;
-                cursor:pointer;
-                color:#6f6f6f;
-                
-                &:hover{
-                  color:#CCCCCC;
-                }
-                
-              }
-              input{
-                border:none;
-                text-align:right;
-              }
-                &:first-child{
-                  -webkit-border-radius: 0px 0px 0px 5px;
-                  border-radius: 0px 0px 0px 5px;
-                }
-                
-                &:last-child{
-                  -webkit-border-radius: 0px 0px 5px 0px;
-                  border-radius: 0px 0px 5px 0px;
-                }
-              }
-          }
-          
+            }
         }
-      }
     }
-    
-  }
-  
-  //Page States
-  &.fadeIn{
-      opacity:1;
-  }
+    //Page States
+    &.fadeIn{
+        opacity:1;
+    }
 }

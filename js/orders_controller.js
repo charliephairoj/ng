@@ -70,9 +70,7 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
         }else if($scope.data.type == "supply"){
             $scope.$apply(function(){
                 angular.forEach($scope.supplyList, function(item){
-                    
                     if(item.id == $scope.data.index){
-                        
                         $scope.orderedSupplies.push(item);
                     }
                 });
@@ -99,7 +97,6 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
                 angular.copy($scope.po.attention, po.attention);
                 
             }
-                    console.log(po.attention);
     
             //Add delivery date
             po.deliveryDate = {}
@@ -121,7 +118,6 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
             });
             
             po.$save(function(response){
-                console.log(response);
                 window.open(response.url, replace=false);
             });
         }
@@ -129,10 +125,10 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
     };
     
     $scope.reset = function(){
-        $scope.supplier = null;
-        $scope.orderedSupplies = [];
-        
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.supplier = null;
+            $scope.orderedSupplies.length = 0;
+        });
     };
     
     $scope.remove = function(index){
@@ -148,20 +144,7 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
     
     //shippign status
     $scope.orderedShipping = function(){
-        if(!$scope.po.shipping){
-           
-            return false;
-        }else{
-            if($scope.po.shipping.type == "none"){
-                return false;
-            }else{
-                return true;
-            }
-            
-        }
-        
-        
-        
+        return $scope.po.shipping ? ($scope.po.shipping.type == "none") ? false : true : false;
     };
     
 }
@@ -190,7 +173,6 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
     $scope.customer_list = Customer.query();
     $scope.upholstery_list = Upholstery.query();
     $scope.fabric_list = Fabric.query();
-    console.log($scope.upholstery_list);
     $scope.ack = new Acknowledgement();
     
     
@@ -205,11 +187,8 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
     
     $scope.add_upholstery = function(index){
         
-        console.log($scope);
         //Create products array if not exists
-        if(!$scope.ack.products){
-            $scope.ack.products = [];
-        }
+        $scope.ack.products = $scope.ack.products || [];
         //Add New compy of product
         $scope.ack.products.push(angular.copy($filter('filter')($scope.upholstery_list, $scope.query_uphol)[index]));
         //Close Modal
@@ -217,34 +196,10 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         $scope.show_fabric = true;
     };
     
-    $scope.add_upholstery_fabric = function(){
-        var index = $scope.data;
-        console.log(index);
-        console.log($scope.data);
-        //Get Fabric
-        var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[index]);
-        console.log(fabric);
-        $scope.ack.products[$scope.ack.products.length-1].fabric = {};
-        $scope.$apply(function(){
-            angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].fabric);
-        });
-      
-    };
     
-    $scope.add_pillow_fabric = function(index){
-        
-        var fabric_index = $scope.data
-        var fabric = angular.copy($filter('filter')($scope.fabric_list, $scope.query_fabric)[fabric_index]);
-        $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric = {};
-        $scope.$apply(function(){
-            angular.copy(fabric, $scope.ack.products[$scope.ack.products.length-1].pillows[index].fabric);
-        });
-        
-        
-    }
     
     $scope.remove = function(index){
-        $scope.ack.products.pop(index);
+        $scope.ack.products.splice(index, 1);
     };
     
     $scope.create = function(){
@@ -257,7 +212,6 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         ack.delivery_date.year = $scope.delivery_date.getFullYear();
         ack.$save(function(responseData){
             window.open(responseData.url, true);
-            console.log(responseData);
         });
     };
     

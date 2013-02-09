@@ -5,25 +5,14 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('ecResource', ['ngResource']).
-    factory('myHttp', function(){
-        function http(){
-            
-        }
-        
-        return http;
-    }).
+    
     factory('$storage', function(){
-        var storage = window.localStorage;
         
         function storageFactory(key){
-            console.log(key);
-            console.log('localStorage' in window);
-            console.log(window['localStorage'] == null);
             //Create the main factory
             function StorageEngine(key){
                 //ASSIGNS KEY TO OBJECT
                 this.key = key;
-                console.log('ya');
                 //CHECKS IF SUPPORTS LOCALSTORAGE
                 if('localStorage' in window && window['localStorage']!== null){
                      this.storage = window.localStorage;
@@ -51,21 +40,14 @@ angular.module('ecResource', ['ngResource']).
             
             //Create a key
             StorageEngine.prototype.createKeysArray = function(){
-                
                 this.keys = [];
                 this.saveKeys();
-                
+                return this.keys;
             };
             
             //Save keys
             StorageEngine.prototype.saveKeys = function(){
-                
-                if(typeof(this.keys) != 'object'){
-                    this.createKeysArray();
-                }else{
-                    this.storage.setItem(this.key, JSON.stringify(this.keys));
-                }
-                
+                typeof(this.keys) === 'object' ? this.storage.setItem(this.key, JSON.stringify(this.keys)) : this.createKeysArray();
             };
             
             //Save a key
@@ -74,9 +56,8 @@ angular.module('ecResource', ['ngResource']).
                 var tempKey = this.key+arg;
                 
                 //CHECK IF keys is valid
-                if(!this.keys){
-                    this.createKeysArray();
-                }
+                this.keys = this.keys || this.createKeysArray();
+     
                 //Checks for duplicates
                 if(this.keys.indexOf(tempKey)===-1){
                     this.keys.push(tempKey);
@@ -105,13 +86,9 @@ angular.module('ecResource', ['ngResource']).
             StorageEngine.prototype.deleteKey = function(key){
                 
                 //Checks whether keys are valid
-                if(!this.keys){
-                    StorageEngine.getKeys();
-                }
+                this.keys = this.keys || this.getKeys();
                 
                 var index = this.keys.indexOf(key);
-                console.log(key);
-                console.log(index);
                 if(index!= -1){
                     this.keys.splice(index);
                     this.saveKeys();
@@ -139,16 +116,8 @@ angular.module('ecResource', ['ngResource']).
                     this.createKeysArray();
                 }
                 index = this.keys.indexOf(tempKey);
-                if(index!==-1){
-                    
-                    return this.keys[index];
-                
-                //Returns null if there is no key
-                }else{
-                    
-                    return null;
-                    
-                }
+                //Returns key or null
+                return (index !== -1) ? this.keys[index] : null; 
             };
             
             /*
@@ -183,10 +152,8 @@ angular.module('ecResource', ['ngResource']).
                 var itemKey;
                 
                  if(data.hasOwnProperty('id')){
-                    
                      itemKey = this.saveKey(data.id);
                      this.storage.setItem(itemKey, JSON.stringify(data));
-                     
                  }
             };
             
@@ -198,16 +165,10 @@ angular.module('ecResource', ['ngResource']).
                 if(args.id){
                     //Get Item Key
                     itemKey = this.getKey(args.id);
-                    //CHECKS IF THE KEY IS VALID
-                    if(itemKey){
-                        return JSON.parse(this.storage.getItem(itemKey));
-                    }else{
-                        return null;
-                    }
-                //RETURNS NULL IF NO ID
-                }else{
-                    return null;
                 }
+                //returns item or null if not found
+                return itemKey ? JSON.parse(this.storage.getItem(itemKey)) : null;
+                   
                     
             };
             
@@ -282,11 +243,8 @@ angular.module('ecResource', ['ngResource']).
               return $parse(path)(obj);
             },
             hasBody = function(obj){
-                if(typeof(obj)==="object")
-                    return true;
-                else{
-                    return false;
-                }
+                return typeof(obj) === "object";
+               
             };
         
         /**
@@ -487,11 +445,7 @@ angular.module('ecResource', ['ngResource']).
                     }
                     
                     //Set Value properties
-                    if(action.isArray){
-                        value = [];
-                    }else{
-                        value = new Resource(data);
-                    }
+                    action.isArray ? (value = []) : (value = new Resource(data));
                     value.$q = promise;
                     value.$resolved = false;
                     
@@ -507,7 +461,6 @@ angular.module('ecResource', ['ngResource']).
                         value.$resolved = resolved;
                         
                     }
-                    console.log(value);
                     
                     //Merge default params and params
                     params = extend(defaultParams, params);
@@ -552,7 +505,6 @@ angular.module('ecResource', ['ngResource']).
                                     if(index<value.length){
                                         value.pop(0);
                                     }
-                                    
                                     value.push(new Resource(obj));
                                 }else{
                                     value.push(new Resource(obj));  
@@ -589,7 +541,6 @@ angular.module('ecResource', ['ngResource']).
                         case 3: params = a1; success = a2; error = a3; break;
                         case 2:
                         case 1:
-                            
                             if (isFunction(a1)) {
                                 success = a1;
                                 error = a2;
@@ -599,22 +550,13 @@ angular.module('ecResource', ['ngResource']).
                             }
                         case 0: 
                             break;
-                        
                             
                     }
-                    
                     //Call the parent function
                     Resource[name].call(this, params, data, success, error);
                 }
             });
-            
-            
-            
-            
             return Resource;
-            
-            
         }
-        
         return ResourceFactory;
     });
