@@ -13,99 +13,87 @@
  * UI Date
  */
 
-.ui-datepicker{
-  margin:5px;
-  border-radius:5px;
-  border:1px solid grey;
-  font-family:Helvetica, Tahoma, sans-serif;
-  display:none;
-  background-color:#ffffff;
-  //Genearl dom elements
-  a{
-    text-decoration:none;
-  }
-  
-  //header
-  .ui-datepicker-header{
-    background-color:#30343A;
-    position:relative;
-    text-align:center;
-    padding-top:20px;
-    padding-bottom:2px;
-    //corner buttons
-    .ui-corner-all{
-      
-      
-    }
-    //previous
-    .ui-datepicker-prev{
-      position:absolute;
-      left:3px;
-      top:3px;
-      cursor:pointer;
-      color:grey;
-      .transition(all, 350ms, linear);
-      &:hover{
-        color:#FFFFFF;
-      }
-    }
-    
-    //next
-    .ui-datepicker-next{
-      position:absolute;
-      right:3px;
-      top:3px;
-      cursor:pointer;
-      color:grey;
-      .transition(all, 350ms, linear);
-      &:hover{
-        color:#FFFFFF;
-      }
-    }
-    
-    //title
-    .ui-datepicker-title{
-      display:inline;
-      color:#FFFFFF;
-    }
-  }
-  
-  //calendar
-  .ui-datepicker-calendar{
-    padding:2px;
-    td{
-      text-align:center;
-      padding:10px;
-      margin:2px;
-      border:1px solid grey;
-      cursor:pointer;
-
-      a{
-        color:grey;
-        .transition(all, 300ms, linear);
-      }
-      
-      //States
-      
-      &.ui-datepicker-current-day{
-        background:grey;
-        
-        a{
-          color:black;
+        .ui-datepicker{
+            margin:0px;
+            border-radius:2px;
+            .ui-datepicker-header{
+                padding:5px 0px;
+                background-color:#313131;
+                position:relative;
+                text-align:center;
+                //previous
+                .ui-datepicker-prev{
+                  position:absolute;
+                  left:3px;
+                  top:3px;
+                  cursor:pointer;
+                  color:grey;
+                  .transition(all, 350ms, linear);
+                  &:hover{
+                    color:#FFFFFF;
+                  }
+                }
+                
+                //next
+                .ui-datepicker-next{
+                  position:absolute;
+                  right:3px;
+                  top:3px;
+                  cursor:pointer;
+                  color:grey;
+                  .transition(all, 350ms, linear);
+                  &:hover{
+                    color:#FFFFFF;
+                  }
+                }
+                //title
+                .ui-datepicker-title{
+                  display:inline;
+                  color:#FFFFFF;
+                }
+            }
+            .ui-datepicker-calendar{
+                padding:2px;
+                td{
+                    text-align:center;
+                    padding:12px;
+                    margin:2px;
+                    border:1px solid grey;
+                    cursor:pointer;
+                    padding:12px;
+                    background-color:transparent;
+                    color:#000000;  
+                    .transition(all, 250ms, ease);
+                    a{
+                        .transition(all, 250ms, ease);
+                        text-decoration:none;
+                        color:grey;
+                    }
+                    //States
+                    &.ui-datepicker-current-day{
+                        background-color:#313131;
+                        color:#FFFFFF;
+                        a{
+                            color:#FFFFFF;
+                            
+                        }
+                    }
+                    &:hover{
+                        a{
+                            color:black;
+                            
+                            
+                        }
+                        &.ui-datepicker-current-day{
+                            a{
+                                color:#FFFFFF;
+                            }
+                        }
+                    }
+                }
+              
+            }
         }
-      }
-      
-      &:hover{
-        a{
-          color:black;
-        }
-          
-      }
-     
-      
-    }
-  }
-}
 
 /*
  * Drag and Drop Upload 

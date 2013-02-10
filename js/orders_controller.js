@@ -207,9 +207,9 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Notification, Custom
         angular.copy($scope.ack, ack)
         //Add delivery date
         ack.delivery_date = {}
-        ack.delivery_date.month = $scope.delivery_date.getMonth()+1;
-        ack.delivery_date.date = $scope.delivery_date.getDate();
-        ack.delivery_date.year = $scope.delivery_date.getFullYear();
+        ack.delivery_date.month = $scope.ack.delivery_date.getMonth()+1;
+        ack.delivery_date.date = $scope.ack.delivery_date.getDate();
+        ack.delivery_date.year = $scope.ack.delivery_date.getFullYear();
         ack.$save(function(responseData){
             window.open(responseData.url, true);
         });

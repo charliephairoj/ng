@@ -1519,6 +1519,339 @@ select {
 .createPOPage.fadeIn {
   opacity: 1;
 }
+.createAcknowledgementPage {
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -ms-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+  /*Modals*/
+
+}
+.createAcknowledgementPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.createAcknowledgementPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.createAcknowledgementPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.createAcknowledgementPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.createAcknowledgementPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createAcknowledgementPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.createAcknowledgementPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createAcknowledgementPage.fadeIn {
+  left: 200px;
+}
+.createAcknowledgementPage .customer_modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createAcknowledgementPage .customer_modal .container .list .item {
+  cursor: pointer;
+  padding: 10px;
+}
+.createAcknowledgementPage .fabric_modal .product_container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 350px;
+  bottom: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createAcknowledgementPage .fabric_modal .product_container .product {
+  min-height: 50px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createAcknowledgementPage .fabric_modal .product_container .product .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 30px;
+}
+.createAcknowledgementPage .fabric_modal .product_container .product .fabric img {
+  height: 100%;
+}
+.createAcknowledgementPage .fabric_modal .product_container .product.drag {
+  background-color: #C2F7A3;
+}
+.createAcknowledgementPage .fabric_modal .product_container .pillow {
+  min-height: 50px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createAcknowledgementPage .fabric_modal .product_container .pillow .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 30px;
+}
+.createAcknowledgementPage .fabric_modal .product_container .pillow .fabric img {
+  height: 100%;
+}
+.createAcknowledgementPage .fabric_modal .product_container .pillow.drag {
+  background-color: #C2F7A3;
+}
+.createAcknowledgementPage .fabric_modal .fabric_container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createAcknowledgementPage .fabric_modal .fabric_container .list .item {
+  cursor: move;
+  position: relative;
+  height: 50px;
+}
+.createAcknowledgementPage .fabric_modal .fabric_container .list .item .details {
+  position: absolute;
+  left: 60px;
+  height: 100%;
+  top: 0px;
+}
+.createAcknowledgementPage .fabric_modal .fabric_container .list .item img {
+  height: 100%;
+  width: 50px;
+}
+.createAcknowledgementPage .upholstery_modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createAcknowledgementPage .upholstery_modal .container .list .item {
+  cursor: pointer;
+  position: relative;
+  height: 100px;
+}
+.createAcknowledgementPage .upholstery_modal .container .list .item img {
+  position: absolute;
+  height: 100%;
+  right: 0px;
+}
+.createAcknowledgementPage .calendar_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+}
+.createAcknowledgementPage .calendar_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createAcknowledgementPage .calendar_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createAcknowledgementPage .calendar_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createAcknowledgementPage .calendar_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createAcknowledgementPage .ack {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #313131;
+}
+.createAcknowledgementPage .ack .workspace {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  padding-bottom: 50px;
+  z-index: 1;
+  bottom: auto;
+}
+.createAcknowledgementPage .ack .workspace .customer {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 40px;
+  color: #FFF;
+}
+.createAcknowledgementPage .ack .workspace .customer .title {
+  font-size: 18px;
+}
+.createAcknowledgementPage .ack .workspace .customer .details {
+  margin-top: 20px;
+}
+.createAcknowledgementPage .ack .workspace .customer .details tr td {
+  font-size: 12px;
+  line-height: 18px;
+}
+.createAcknowledgementPage .ack .workspace .customer .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createAcknowledgementPage .ack .workspace .customer .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
+}
+.createAcknowledgementPage .ack .workspace .order {
+  color: #FFF;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 20px;
+  color: #FFFFFF;
+}
+.createAcknowledgementPage .ack .workspace .order .title {
+  font-size: 18px;
+}
+.createAcknowledgementPage .ack .workspace .order .details {
+  margin-top: 20px;
+}
+.createAcknowledgementPage .ack .workspace .order .details tr td {
+  font-size: 12px;
+  line-height: 18px;
+}
+.createAcknowledgementPage .ack .workspace .order .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createAcknowledgementPage .ack .workspace .order .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
+}
+.createAcknowledgementPage .ack .workspace .products {
+  position: relative;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  color: #FFFFFF;
+}
+.createAcknowledgementPage .ack .workspace .products .title {
+  font-size: 24px;
+}
+.createAcknowledgementPage .ack .workspace .products .product {
+  position: relative;
+  width: 40%;
+  margin-right: 20px;
+  margin-top: 30px;
+  border: 1px solid #282828;
+  float: left;
+  border-radius: 2px;
+  padding: 10px;
+  min-height: 100px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createAcknowledgementPage .ack .workspace .products .product .details {
+  margin-top: 5px;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td {
+  padding: 2px 0px 2px;
+  vertical-align: middle;
+  color: #828282;
+  font-size: 12px;
+  line-height: 18px;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td input {
+  color: #828282;
+  font-size: 12px
+                                    padding:0px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  width: 60px;
+  padding: 0px;
+  margin-right: 5px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td input.active {
+  background-color: #474747;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td input.active:focus {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td img {
+  margin-left: 5px;
+  height: 30px;
+  width: auto;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createAcknowledgementPage .ack .workspace .products .product .details tr td:last-child {
+  padding-left: 20px;
+}
+.createAcknowledgementPage .ack .workspace .products .product > img {
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-radius: 0px 2px 0px 0px;
+}
+.createAcknowledgementPage.fadeIn {
+  opacity: 1;
+}
 /*
  * Settings
  */
@@ -2455,22 +2788,14 @@ select {
  * UI Date
  */
 .ui-datepicker {
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid grey;
-  font-family: Helvetica, Tahoma, sans-serif;
-  display: none;
-  background-color: #ffffff;
-}
-.ui-datepicker a {
-  text-decoration: none;
+  margin: 0px;
+  border-radius: 2px;
 }
 .ui-datepicker .ui-datepicker-header {
-  background-color: #30343A;
+  padding: 5px 0px;
+  background-color: #313131;
   position: relative;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 2px;
 }
 .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
   position: absolute;
@@ -2511,27 +2836,39 @@ select {
 }
 .ui-datepicker .ui-datepicker-calendar td {
   text-align: center;
-  padding: 10px;
   margin: 2px;
   border: 1px solid grey;
   cursor: pointer;
+  padding: 12px;
+  background-color: transparent;
+  color: #000000;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
 }
 .ui-datepicker .ui-datepicker-calendar td a {
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+  text-decoration: none;
   color: grey;
-  -webkit-transition: all 300ms linear;
-  -moz-transition: all 300ms linear;
-  -o-transition: all 300ms linear;
-  -ms-transition: all 300ms linear;
-  transition: all 300ms linear;
 }
 .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day {
-  background: grey;
+  background-color: #313131;
+  color: #FFFFFF;
 }
 .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day a {
-  color: black;
+  color: #FFFFFF;
 }
 .ui-datepicker .ui-datepicker-calendar td:hover a {
   color: black;
+}
+.ui-datepicker .ui-datepicker-calendar td:hover.ui-datepicker-current-day a {
+  color: #FFFFFF;
 }
 /*
  * Drag and Drop Upload 
