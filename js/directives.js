@@ -415,16 +415,18 @@ directive('modal', function(){
             }
             var backdrop = create_backdrop();
             backdrop.bind('click', function(){
-                console.log('ok');
                 scope.$apply(function(){
                     attr.ngModel = false; 
                 });
             });
             backdrop.bind('onclick', function(){
-                console.log('ok');
                 scope.$apply(function(){
                     attr.ngModel = false; 
                 });
+            });
+            
+            scope.$on('$destroy', function(){
+                backdrop.remove();
             });
             
             scope.$watch(attr.ngModel, function(value){

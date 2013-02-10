@@ -1,0 +1,2608 @@
+/* app css stylesheet */
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+/*
+ *Standard Forms layout and designs 
+*/
+/*Model Section Form*/
+input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  padding-left: 6px;
+  padding: 3px;
+}
+select {
+  border: 1px solid grey;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+}
+/*
+ * Application wide stuff
+ */
+/*general mixins*/
+/*Main Menu*/
+.mainMenu {
+  position: absolute;
+  height: 50px;
+  background-color: black;
+  bottom: 20px;
+  width: 100%;
+  font-family: Helvetica, Tahoma, sans-serif;
+  z-index: 10;
+  background: #313131;
+  /* Old browsers */
+
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.mainMenu .logo {
+  position: relative;
+  height: 30px;
+  margin: 10px;
+  width: auto;
+  float: left;
+}
+.mainMenu .mainMenuContainer {
+  position: relative;
+  height: auto;
+  width: auto;
+  float: left;
+  margin-left: 20px;
+  margin-top: 17px;
+}
+.mainMenu .mainMenuContainer .menuItem {
+  list-style-type: none;
+  float: left;
+  height: auto;
+  text-align: center;
+  cursor: pointer;
+}
+.mainMenu .mainMenuContainer .menuItem a {
+  font-size: 14px;
+  font-weight: 400;
+  padding-right: 30px;
+  color: white;
+  text-decoration: none;
+}
+.mainMenu .mainMenuContainer .menuItem .category_list {
+  position: absolute;
+  display: none;
+  margin-top: 30px;
+}
+.mainMenu .mainMenuContainer .menuItem:hover .category_list {
+  display: block;
+  background: red;
+}
+.mainMenu .account_container {
+  color: white;
+  float: right;
+  position: relative;
+}
+.mainMenu .account_container span {
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.headings {
+  padding-left: 10px;
+  font-size: 14px;
+  color: grey;
+}
+/*Sidemenu*/
+.sideMenu {
+  display: none;
+}
+.sidebar {
+  overflow: hidden;
+  position: fixed;
+  height: auto;
+  top: 20px;
+  left: 20px;
+  width: 160px;
+  background: #313131;
+  font-family: Helvetica, Tahoma, sans-serif;
+  z-index: 10;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.sidebar header {
+  border-radius: 2px 2px 0px 0px;
+}
+.sidebar header h1 {
+  min-height: 40px;
+  padding: 2px 2px 3px;
+  line-height: 18px;
+  font-size: 15px;
+}
+.sidebar header h1 span {
+  display: inline-block;
+  padding: 12px 8px;
+  word-wrap: normal;
+  color: #FFF;
+}
+.sidebar header .profilePic {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.sidebar header .profilePic img {
+  height: 100%;
+  margin: auto 0;
+}
+.sidebar nav {
+  padding-bottom: 8px;
+  border-top: 1px solid #282828;
+  border-radius: 0 0 2px 2px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.sidebar nav ul {
+  list-style: none;
+  border-bottom: 1px solid #3C3C3C;
+  color: #757575;
+}
+.sidebar nav ul li {
+  color: #FFF;
+}
+.sidebar nav ul li .textholder {
+  font-size: 12px;
+  display: block;
+  height: 25px;
+  padding: 0 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  line-height: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #313131;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+.sidebar nav ul li .textholder.dirty {
+  color: grey;
+}
+.sidebar nav ul li .textholder.dirty:hover {
+  background-color: #313131;
+}
+.sidebar nav ul li .textholder:hover {
+  background-color: #292929;
+}
+.sidebar nav ul li a {
+  font-size: 12px;
+  display: block;
+  height: 25px;
+  padding: 0 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  line-height: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #313131;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+.sidebar nav ul li a.dirty {
+  color: grey;
+}
+.sidebar nav ul li a.dirty:hover {
+  background-color: #313131;
+}
+.sidebar nav ul li a:hover {
+  background-color: #292929;
+}
+.sidebar nav ul li div {
+  font-size: 12px;
+  display: block;
+  height: 25px;
+  padding: 0 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  line-height: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #313131;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+.sidebar nav ul li div.dirty {
+  color: grey;
+}
+.sidebar nav ul li div.dirty:hover {
+  background-color: #313131;
+}
+.sidebar nav ul li div:hover {
+  background-color: #292929;
+}
+.sidebar nav ul li button {
+  font-size: 12px;
+  display: block;
+  height: 25px;
+  padding: 0 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  line-height: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #313131;
+  cursor: pointer;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+.sidebar nav ul li button.dirty {
+  color: grey;
+}
+.sidebar nav ul li button.dirty:hover {
+  background-color: #313131;
+}
+.sidebar nav ul li button:hover {
+  background-color: #292929;
+}
+/*
+*Modal
+*/
+.modal {
+  position: fixed;
+  width: 600px;
+  bottom: 100px;
+  overflow: hidden;
+  top: 100px;
+  left: 50%;
+  margin-left: -300px;
+  border-radius: 2px;
+  background: #FFFFFF;
+  opacity: 0;
+  z-index: 101;
+}
+.modal .title {
+  position: absolute;
+  max-height: 30px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 45px;
+  text-align: left;
+  font-size: 16px;
+  padding: 7px 5px;
+  background-color: #313131;
+  color: #FFFFFF;
+  -webkit-border-radius: 2px 2px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
+  z-index: 1;
+}
+.modal .title .search {
+  float: right;
+  border-radius: 5px;
+  height: 10px;
+}
+.modal .container {
+  position: absolute;
+  top: 45px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+.modal .container .list .list_item {
+  padding: 5px 3px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+.modal .container .list .list_item img {
+  width: 100px;
+  height: auto;
+}
+.modal.active {
+  opacity: 1;
+  display: block;
+}
+.modal.hide {
+  display: none;
+}
+#backdrop {
+  position: fixed;
+  background: #000000;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  opacity: 0;
+  z-index: 100;
+}
+#backdrop.active {
+  opacity: 1;
+}
+#backdrop.hide {
+  display: none;
+}
+/*
+*Notification system
+*/
+#notificationContainer {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  opacity: 0;
+  -webkit-transition: opacity 350ms linear;
+  -moz-transition: opacity 350ms linear;
+  -o-transition: opacity 350ms linear;
+  -ms-transition: opacity 350ms linear;
+  transition: opacity 350ms linear;
+}
+#notificationContainer #notification {
+  width: 200px;
+  text-align: center;
+  position: relative;
+  border-radius: 2px;
+  color: black;
+  font-family: Helvetica;
+  font-size: 0.8em;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: yellow;
+}
+#notificationContainer.active {
+  opacity: 1;
+}
+/*Main Container*/
+.mainContainer {
+  position: absolute;
+  bottom: 70px;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: #E8E8E8;
+}
+.mainContainer input {
+  border: 1px solid grey;
+  background-color: #FFFFFF;
+}
+/*
+ * Modal Theming
+ */
+.ec-modal {
+  font-family: Tahoma, Helvetica, sans-serif;
+  height: auto;
+  max-height: 400px;
+  width: 440px;
+  position: absolute;
+  top: 200px;
+  right: 400px;
+  z-index: 5;
+  background: #FFFFFF;
+  border-radius: 3px;
+  -webkit-box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.ec-modal .title {
+  height: 20px;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 4px;
+  color: #5E5E5E;
+  background: #E5E5E5;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.ec-modal form {
+  margin-top: 5px;
+}
+.ec-modal form table {
+  margin-left: 5px;
+}
+.ec-modal form table td {
+  padding: 5px;
+  vertical-align: middle;
+}
+.ec-modal form label {
+  position: relative;
+  margin: 5px
+      color:#5e5e5e;
+}
+.ec-modal button[type=submit] {
+  position: relative;
+  margin: 10px;
+  background-color: #659BBC;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  height: 25px;
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.ec-modal button[type=submit]:hover {
+  border: 1px solid #34557C;
+  background: #659bbc;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #659bbc 0%, #4879ad 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #659bbc), color-stop(100%, #4879ad));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #659bbc 0%, #4879ad 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #659bbc 0%, #4879ad 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #659bbc 0%, #4879ad 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #659bbc 0%, #4879ad 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#659bbc', endColorstr='#4879ad', GradientType=0);
+  /* IE6-9 */
+
+}
+.ec-modal button[type=submit]:active {
+  background: #5a8aa8;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5a8aa8), color-stop(100%, #355e7f));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #5a8aa8 0%, #355e7f 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a8aa8', endColorstr='#355e7f', GradientType=0);
+  /* IE6-9 */
+
+}
+/*
+ * imports
+ */
+/*Model Page*/
+/*standard add page layout*/
+.addPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addPage.fadeIn {
+  left: 200px;
+}
+/*Create Model*/
+.createModelPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.createModelPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.createModelPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.createModelPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.createModelPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.createModelPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createModelPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.createModelPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createModelPage.fadeIn {
+  left: 200px;
+}
+/*Add Configuration*/
+.addConfigPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addConfigPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addConfigPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addConfigPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addConfigPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addConfigPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addConfigPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addConfigPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addConfigPage.fadeIn {
+  left: 200px;
+}
+/*Add Upholstery*/
+.addUpolPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addUpolPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addUpolPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addUpolPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addUpolPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addUpolPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addUpolPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addUpolPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addUpolPage.fadeIn {
+  left: 200px;
+}
+/*Add Customer*/
+.addCustomerPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addCustomerPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addCustomerPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addCustomerPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addCustomerPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addCustomerPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addCustomerPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addCustomerPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addCustomerPage.fadeIn {
+  left: 200px;
+}
+.addSupplierPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+  /*
+   * Sidebar
+   */
+
+  /*
+   * Workspace
+   */
+
+  /*
+   * Maps
+   */
+
+}
+.addSupplierPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addSupplierPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addSupplierPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addSupplierPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addSupplierPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addSupplierPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addSupplierPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addSupplierPage.fadeIn {
+  left: 200px;
+}
+.addSupplierPage .sidebar .dirty {
+  color: grey;
+}
+.addSupplierPage .sidebar .dirty:hover {
+  background-color: #313131;
+}
+.addSupplierPage .mapContainer {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  left: 325px;
+  bottom: 10px;
+  min-width: 210px;
+  min-height: 210px;
+  overflow: hidden;
+  background: #A0A0A0;
+  border-radius: 2px;
+}
+.addSupplierPage #map_canvas {
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+  min-width: 200px;
+  min-height: 200px;
+  position: absolute;
+}
+.addSupplierPage .addContactModal {
+  background: #CECECE;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  border: 1px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.addSupplierPage .addContactModal .title {
+  background: #3d3d3d;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3d3d3d), color-stop(100%, #161616));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #3d3d3d 1%, #161616 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#161616', GradientType=0);
+  /* IE6-9 */
+
+  color: #FFFFFF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+.addSupplierPage .addContactModal .supplier_contact_table {
+  margin: 10px;
+}
+.addSupplierPage .addContactModal button {
+  margin: 0;
+  float: right;
+}
+.addFabricPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addFabricPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addFabricPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addFabricPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addFabricPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addFabricPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addFabricPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addFabricPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addFabricPage.fadeIn {
+  left: 200px;
+}
+/*Model Page*/
+.addFoamPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addFoamPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addFoamPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addFoamPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addFoamPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addFoamPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addFoamPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addFoamPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addFoamPage.fadeIn {
+  left: 200px;
+}
+/*Model Page*/
+/*Model Page*/
+.addWoolPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addWoolPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addWoolPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addWoolPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addWoolPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addWoolPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addWoolPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addWoolPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addWoolPage.fadeIn {
+  left: 200px;
+}
+/*
+ * Orders
+ */
+.createPOPage {
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -ms-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+  /*
+    *For Panels containing the suppliers and the supplies
+    */
+
+}
+.createPOPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.createPOPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.createPOPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.createPOPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.createPOPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createPOPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.createPOPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createPOPage.fadeIn {
+  left: 200px;
+}
+.createPOPage .panel {
+  position: absolute;
+  left: 100%;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  z-index: 10;
+  overflow: scroll;
+  background-color: #D8D8D8;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  -webkit-transition: left 500ms linear;
+  -moz-transition: left 500ms linear;
+  -o-transition: left 500ms linear;
+  -ms-transition: left 500ms linear;
+  transition: left 500ms linear;
+}
+.createPOPage .panel .sourceList {
+  height: auto;
+  position: relative;
+  left: 0px;
+}
+.createPOPage .panel .sourceList .sourceItem {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid grey;
+  background: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.createPOPage .panel .sourceList .sourceItem:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.createPOPage .panel .sourceList .sourceItem:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: none;
+}
+.createPOPage .panel .sourceList .sourceItem:hover {
+  background: #DDDDDD;
+}
+.createPOPage .panel .sourceList .sourceItem:active {
+  background: #AFAFAF;
+}
+.createPOPage .panel.active {
+  left: 0px;
+}
+.createPOPage .po {
+  overflow: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #DBDBDB;
+}
+.createPOPage .po .workspace {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.createPOPage .po .workspace .supplier {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .supplier > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .supplier > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .supplier > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .supplier > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .supplier label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .attention {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .attention > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .attention > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .attention > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .attention > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .attention label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .attention select {
+  margin-left: 10px;
+}
+.createPOPage .po .workspace .vat {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .vat > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .vat > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .vat > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .vat > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .vat label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .vat td {
+  vertical-align: middle;
+}
+.createPOPage .po .workspace .vat td input {
+  margin-left: 5px;
+  border: none;
+  text-align: right;
+  width: 40px;
+  outline: none;
+}
+.createPOPage .po .workspace .currency {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .currency > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .currency > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .currency > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .currency > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .currency label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .currency td {
+  vertical-align: middle;
+}
+.createPOPage .po .workspace .currency td input {
+  margin-left: 5px;
+  border: none;
+  text-align: right;
+  width: 40px;
+  outline: none;
+}
+.createPOPage .po .workspace .currency select {
+  margin-left: 5px;
+}
+.createPOPage .po .workspace .deliveryDate {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .deliveryDate > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .deliveryDate > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .deliveryDate > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .deliveryDate > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .deliveryDate label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .deliveryDate td {
+  vertical-align: middle;
+}
+.createPOPage .po .workspace .deliveryDate td input {
+  margin-left: 5px;
+  border: none;
+  text-align: right;
+  width: 40px;
+  outline: none;
+}
+.createPOPage .po .workspace .deliveryDate td input {
+  width: auto;
+}
+.createPOPage .po .workspace .shipping {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-family: Helvetica, Tahoma, sans-serif;
+}
+.createPOPage .po .workspace .shipping > tr {
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+}
+.createPOPage .po .workspace .shipping > tr:first-child {
+  border-top: none;
+}
+.createPOPage .po .workspace .shipping > tr td {
+  padding: 2px;
+}
+.createPOPage .po .workspace .shipping > tr td:first-child {
+  color: #3c3c3c;
+}
+.createPOPage .po .workspace .shipping label {
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .shipping td {
+  vertical-align: middle;
+}
+.createPOPage .po .workspace .shipping td input {
+  margin-left: 5px;
+  border: none;
+  text-align: right;
+  width: 40px;
+  outline: none;
+}
+.createPOPage .po .workspace .shipping td select {
+  margin-left: 3px;
+}
+.createPOPage .po .workspace .shipping td input {
+  margin-left: 3px;
+  width: auto;
+}
+.createPOPage .po .workspace .supplies {
+  position: relative;
+  height: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #A0A0A0;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.createPOPage .po .workspace .supplies table {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.createPOPage .po .workspace .supplies table .itemNo {
+  width: 10%;
+  text-align: center;
+}
+.createPOPage .po .workspace .supplies table .description {
+  width: 75%;
+  text-align: left;
+  padding-left: 10px;
+}
+.createPOPage .po .workspace .supplies table tr {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
+  background: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.createPOPage .po .workspace .supplies table tr th {
+  padding: 5px;
+}
+.createPOPage .po .workspace .supplies table tr th:first-child {
+  -webkit-border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;
+}
+.createPOPage .po .workspace .supplies table tr th:last-child {
+  -webkit-border-radius: 0px 5px 0px 0px;
+  border-radius: 0px 5px 0px 0px;
+}
+.createPOPage .po .workspace .supplies table tr td {
+  vertical-align: middle;
+}
+.createPOPage .po .workspace .supplies table tr td.remove {
+  text-align: center;
+  cursor: pointer;
+  color: #6f6f6f;
+}
+.createPOPage .po .workspace .supplies table tr td.remove:hover {
+  color: #CCCCCC;
+}
+.createPOPage .po .workspace .supplies table tr td input {
+  border: none;
+  text-align: right;
+}
+.createPOPage .po .workspace .supplies table tr td:first-child {
+  -webkit-border-radius: 0px 0px 0px 5px;
+  border-radius: 0px 0px 0px 5px;
+}
+.createPOPage .po .workspace .supplies table tr td:last-child {
+  -webkit-border-radius: 0px 0px 5px 0px;
+  border-radius: 0px 0px 5px 0px;
+}
+.createPOPage.fadeIn {
+  opacity: 1;
+}
+/*
+ * Settings
+ */
+/*Model Page*/
+.addGroupPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.addGroupPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addGroupPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addGroupPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addGroupPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addGroupPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addGroupPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addGroupPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addGroupPage.fadeIn {
+  left: 200px;
+}
+.addGroupPage .workspace div {
+  float: left;
+}
+.addGroupPage .workspace .groupDetails {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.addGroupPage .workspace .groupPermissions {
+  height: 100%;
+  width: 200px;
+  overflow-x: scroll;
+}
+.addGroupPage .workspace .groupPermissions .permission {
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+.addGroupPage .workspace .groupPermissions .permission td {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.addGroupPage .workspace .groupPermissions .permission:first-child {
+  border-top: 1px solid grey;
+}
+.addGroupPage .permissionList {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 200px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 10;
+}
+.addGroupPage .permissionList ul li .permission {
+  cursor: move;
+  font-size: 13px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: grey;
+}
+.addGroupPage .permissionList ul li .permission:hover {
+  background: #6f6f6f;
+}
+/*Model Page*/
+.addUserPage {
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+  /*
+   * Sidebar
+   */
+
+}
+.addUserPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.addUserPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.addUserPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.addUserPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.addUserPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addUserPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.addUserPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.addUserPage.fadeIn {
+  left: 200px;
+}
+.addUserPage .sidebar .dirty {
+  color: grey;
+}
+.addUserPage .sidebar .dirty:hover {
+  background-color: #313131;
+}
+.addUserPage .permissionList {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 200px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 10;
+}
+.addUserPage .permissionList ul li .permission {
+  cursor: move;
+  font-size: 13px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: grey;
+}
+.addUserPage .permissionList ul li .permission:hover {
+  background: #6f6f6f;
+}
+/*
+ * Details Page
+ */
+.detailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.detailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.detailsPage table td {
+  padding: 3px;
+}
+.groupDetailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.groupDetailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.groupDetailsPage table td {
+  padding: 3px;
+}
+.groupDetailsPage .permissionList {
+  height: 100%;
+  width: 200px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  overflow-y: scroll;
+}
+.groupDetailsPage .permissionList ul {
+  position: static;
+}
+.supplierDetailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.supplierDetailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.supplierDetailsPage table td {
+  padding: 3px;
+}
+.supplierDetailsPage .workspace .contactInfo tr td:first-child {
+  color: grey;
+}
+.supplierDetailsPage .workspace .contactInfo tr td:last-child {
+  color: #3D3D3D;
+  padding-left: 100px;
+}
+.supplierDetailsPage .workspace .contactInput tr td:first-child {
+  color: grey;
+}
+.supplierDetailsPage .workspace .contactInput tr td:last-child {
+  color: #3D3D3D;
+  padding-left: 100px;
+}
+.supplierDetailsPage .workspace .contactInput tr td input {
+  background: transparent;
+  color: #000;
+  font-size: 10px;
+}
+.supplierDetailsPage .mapContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 325px;
+  bottom: 10px;
+  min-width: 210px;
+  min-height: 210px;
+  overflow: hidden;
+  background: #A0A0A0;
+  border-radius: 5px;
+}
+.supplierDetailsPage #map_canvas {
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  min-width: 200px;
+  min-height: 200px;
+  position: absolute;
+}
+.supplierDetailsPage .supplierContacts {
+  background: #FFFFFF;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.supplierDetailsPage .supplierContacts tbody {
+  margin-top: 10px;
+}
+.supplierDetailsPage .addContactModal {
+  background: #CECECE;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  border: 1px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.supplierDetailsPage .addContactModal .title {
+  background: #3d3d3d;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3d3d3d), color-stop(100%, #161616));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #3d3d3d 1%, #161616 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#161616', GradientType=0);
+  /* IE6-9 */
+
+  color: #FFFFFF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+.supplierDetailsPage .addContactModal .supplier_contact_table {
+  margin: 10px;
+}
+.supplierDetailsPage .addContactModal button {
+  margin: 0;
+  float: right;
+}
+/*Model Page*/
+.fabricDetailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.fabricDetailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.fabricDetailsPage table td {
+  padding: 3px;
+}
+.fabricDetailsPage .modal {
+  background: #CECECE;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  border: 1px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.fabricDetailsPage .modal .title {
+  background: #3d3d3d;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3d3d3d), color-stop(100%, #161616));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #3d3d3d 1%, #161616 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#161616', GradientType=0);
+  /* IE6-9 */
+
+  color: #FFFFFF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+.fabricDetailsPage .modal table {
+  margin: 10px;
+}
+.fabricDetailsPage .modal button {
+  margin: 0;
+  float: right;
+}
+.fabricDetailsPage .addModal {
+  background: #CECECE;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  border: 1px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.fabricDetailsPage .addModal .title {
+  background: #3d3d3d;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #3d3d3d), color-stop(100%, #161616));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #3d3d3d 1%, #161616 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #3d3d3d 1%, #161616 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#161616', GradientType=0);
+  /* IE6-9 */
+
+  color: #FFFFFF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+.fabricDetailsPage .addModal table {
+  margin: 10px;
+}
+.fabricDetailsPage .addModal button {
+  margin: 0;
+  float: right;
+}
+.fabricDetailsPage .logContainer {
+  position: absolute;
+  right: 0px;
+  left: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: scroll;
+  -webkit-transition: left 500ms linear;
+  -moz-transition: left 500ms linear;
+  -o-transition: left 500ms linear;
+  -ms-transition: left 500ms linear;
+  transition: left 500ms linear;
+}
+.fabricDetailsPage .logContainer .log {
+  width: 100%;
+}
+.fabricDetailsPage .logContainer .log tr th {
+  font-size: 18px;
+  padding: 5px;
+}
+.fabricDetailsPage .logContainer .log tr td {
+  padding: 5px;
+}
+.fabricDetailsPage .logContainer .log tr.subtract {
+  background-color: red;
+  opacity: 0.7;
+}
+.fabricDetailsPage .logContainer .log tr.reserve {
+  background-color: yellow;
+  opacity: 0.7;
+}
+.fabricDetailsPage .logContainer.active {
+  left: 0px;
+}
+/*
+ * View Page area
+ */
+.viewPage {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.viewPage .searchBar {
+  position: fixed;
+  right: 20px;
+  top: -15px;
+  z-index: 101;
+  padding: 0px 6px 2px;
+  border-radius: 2px;
+  background-color: #313131;
+  -webkit-transition: top 250ms linear;
+  -moz-transition: top 250ms linear;
+  -o-transition: top 250ms linear;
+  -ms-transition: top 250ms linear;
+  transition: top 250ms linear;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.viewPage .searchBar input {
+  padding: 5px;
+}
+.viewPage .searchBar input:focus {
+  outline: none;
+}
+.viewPage .searchBar:hover {
+  top: 0px;
+}
+.viewPage .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+.viewPage .workspace .listContainer {
+  width: 100%;
+}
+.viewPage .workspace .listContainer .list {
+  height: 20px;
+  width: 100%;
+}
+.viewPage .workspace .listContainer .list .listItem {
+  border-bottom: 1px solid #DDDDDD;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .listItem > td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewPage .workspace .listContainer .list .listItem > td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .listItem:hover {
+  background-color: #D3D3D3;
+}
+.viewPage .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.viewPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+/*
+ * Imports for Views
+ */
+.viewFabricPage {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.viewFabricPage .searchBar {
+  position: fixed;
+  right: 20px;
+  top: -15px;
+  z-index: 101;
+  padding: 0px 6px 2px;
+  border-radius: 2px;
+  background-color: #313131;
+  -webkit-transition: top 250ms linear;
+  -moz-transition: top 250ms linear;
+  -o-transition: top 250ms linear;
+  -ms-transition: top 250ms linear;
+  transition: top 250ms linear;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.viewFabricPage .searchBar input {
+  padding: 5px;
+}
+.viewFabricPage .searchBar input:focus {
+  outline: none;
+}
+.viewFabricPage .searchBar:hover {
+  top: 0px;
+}
+.viewFabricPage .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+.viewFabricPage .workspace .listContainer {
+  width: 100%;
+}
+.viewFabricPage .workspace .listContainer .list {
+  height: 20px;
+  width: 100%;
+}
+.viewFabricPage .workspace .listContainer .list .listItem {
+  border-bottom: 1px solid #DDDDDD;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .listItem > td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewFabricPage .workspace .listContainer .list .listItem > td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .listItem:hover {
+  background-color: #D3D3D3;
+}
+.viewFabricPage .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.viewFabricPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.viewFabricPage .workspace .detailsTable tr td {
+  padding: 5px;
+}
+.viewSuppliersPage {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  /*
+   * Workspace
+   */
+
+}
+.viewSuppliersPage .searchBar {
+  position: fixed;
+  right: 20px;
+  top: -15px;
+  z-index: 101;
+  padding: 0px 6px 2px;
+  border-radius: 2px;
+  background-color: #313131;
+  -webkit-transition: top 250ms linear;
+  -moz-transition: top 250ms linear;
+  -o-transition: top 250ms linear;
+  -ms-transition: top 250ms linear;
+  transition: top 250ms linear;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.viewSuppliersPage .searchBar input {
+  padding: 5px;
+}
+.viewSuppliersPage .searchBar input:focus {
+  outline: none;
+}
+.viewSuppliersPage .searchBar:hover {
+  top: 0px;
+}
+.viewSuppliersPage .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+.viewSuppliersPage .workspace .listContainer {
+  width: 100%;
+}
+.viewSuppliersPage .workspace .listContainer .list {
+  height: 20px;
+  width: 100%;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem {
+  border-bottom: 1px solid #DDDDDD;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem > td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem > td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem:hover {
+  background-color: #D3D3D3;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.viewSuppliersPage .workspace .detailsTable .name {
+  color: black;
+}
+.viewSuppliersPage .workspace .detailsTable .name td {
+  color: black;
+}
+.viewSuppliersPage .workspace .detailsTable .address td {
+  padding-top: 5px;
+  padding-left: 15px;
+  font-size: 10px;
+  color: grey;
+  line-height: 15px;
+}
+.viewLibraryPage {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.viewLibraryPage .searchBar {
+  position: fixed;
+  right: 20px;
+  top: -15px;
+  z-index: 101;
+  padding: 0px 6px 2px;
+  border-radius: 2px;
+  background-color: #313131;
+  -webkit-transition: top 250ms linear;
+  -moz-transition: top 250ms linear;
+  -o-transition: top 250ms linear;
+  -ms-transition: top 250ms linear;
+  transition: top 250ms linear;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.viewLibraryPage .searchBar input {
+  padding: 5px;
+}
+.viewLibraryPage .searchBar input:focus {
+  outline: none;
+}
+.viewLibraryPage .searchBar:hover {
+  top: 0px;
+}
+.viewLibraryPage .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+.viewLibraryPage .workspace .listContainer {
+  width: 100%;
+}
+.viewLibraryPage .workspace .listContainer .list {
+  height: 20px;
+  width: 100%;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem {
+  border-bottom: 1px solid #DDDDDD;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem > td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem > td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem:hover {
+  background-color: #D3D3D3;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.viewLibraryPage .addPhotoModal {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.4;
+  background: black;
+  z-index: 1000;
+}
+.viewLibraryPage .addPhotoModal .target {
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  left: 50%;
+  margin-left: -200px;
+  top: 50%;
+  margin-top: -200px;
+  background: #d8d8d8;
+  border-radius: 5px;
+  z-index: 1000;
+  border: 1px solid grey;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .addPhotoModal .target .imageContainer {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: auto;
+}
+.viewLibraryPage .addPhotoModal .target .imageContainer .previewImage {
+  width: 100%;
+  height: auto;
+}
+.viewLibraryPage .addPhotoModal .target .infoTable {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.viewLibraryPage .addPhotoModal .target .infoTable td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 3px;
+}
+.viewLibraryPage .addPhotoModal .target .infoTable td .uploadButton {
+  background: blue;
+  margin: 5px 20px 10px;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  vertical-align: middle;
+  letter-spacing: 1px;
+}
+.viewLibraryPage .addPhotoModal.active .target {
+  border: 5px dashed green;
+}
+.viewLibraryPage .workspace .imageContainer {
+  width: 100px;
+  height: auto;
+  margin: 5px;
+  float: left;
+}
+.viewLibraryPage .workspace .imageContainer img {
+  width: 100%;
+}
+/* app css stylesheet */
+/*Directives-----------------------------------*/
+/*
+ * UI Date
+ */
+.ui-datepicker {
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  font-family: Helvetica, Tahoma, sans-serif;
+  display: none;
+  background-color: #ffffff;
+}
+.ui-datepicker a {
+  text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-header {
+  background-color: #30343A;
+  position: relative;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 2px;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  cursor: pointer;
+  color: grey;
+  -webkit-transition: all 350ms linear;
+  -moz-transition: all 350ms linear;
+  -o-transition: all 350ms linear;
+  -ms-transition: all 350ms linear;
+  transition: all 350ms linear;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover {
+  color: #FFFFFF;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  cursor: pointer;
+  color: grey;
+  -webkit-transition: all 350ms linear;
+  -moz-transition: all 350ms linear;
+  -o-transition: all 350ms linear;
+  -ms-transition: all 350ms linear;
+  transition: all 350ms linear;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+  color: #FFFFFF;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+  display: inline;
+  color: #FFFFFF;
+}
+.ui-datepicker .ui-datepicker-calendar {
+  padding: 2px;
+}
+.ui-datepicker .ui-datepicker-calendar td {
+  text-align: center;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-calendar td a {
+  color: grey;
+  -webkit-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  transition: all 300ms linear;
+}
+.ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day {
+  background: grey;
+}
+.ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day a {
+  color: black;
+}
+.ui-datepicker .ui-datepicker-calendar td:hover a {
+  color: black;
+}
+/*
+ * Drag and Drop Upload 
+ * Component
+ */
+.ec-drop-target {
+  position: relative;
+  height: 220px;
+  width: 440px;
+  font-family: Tahoma, Helvetica, sans-serif, Arial;
+}
+.ec-drop-target .dropbox {
+  position: absolute;
+  height: 122px;
+  width: 200px;
+  top: 5px;
+  left: 5px;
+  margin: 5px;
+  border: 1px dashed #9F9F9F;
+  border-radius: 3px;
+  color: #9F9F9F;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 58px;
+  -webkit-transition: all 325ms ease;
+  -moz-transition: all 325ms ease;
+  -ms-transition: all 325ms ease;
+  -o-transition: all 325ms ease;
+  transition: all 325ms ease;
+}
+.ec-drop-target .dropbox.active {
+  background-color: #9AFC8F;
+  color: #5BA05B;
+  border-color: #5BA05B;
+}
+.ec-drop-target .previewContainer {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+}
+.ec-drop-target .previewContainer div {
+  position: relative;
+  height: 90px;
+  width: 90px;
+  padding: 5px;
+  overflow: hidden;
+  float: left;
+}
+.ec-drop-target .previewContainer div .closeButton {
+  position: absolute;
+  height: 5px;
+  width: 35px;
+  top: 5px;
+  right: 0px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  background: black;
+  color: #FFFFFF;
+  padding: 2px;
+  font-size: 10px;
+  padding: 6px;
+  padding-top: 0px;
+  cursor: pointer;
+}
+.ec-drop-target .previewContainer div img {
+  height: 100%;
+  width: auto;
+}
+/*
+ *Add Model Component 
+ */

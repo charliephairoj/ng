@@ -21,6 +21,7 @@
 					<li><div ng-click="show_customers=!show_customers">Add Customer</div></li>
 					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_upholstery=true">Add Upholstery</div></li>
 					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_modal=true">Add Custom Item</div></li>
+					<li><div ng-click="show_calendar=true">Set Delivery Date</div></li>
 					<li><div ng-click="reset()" >Reset</div></li>
 				</ul>
 			</nav>
@@ -102,7 +103,7 @@
 			</div>
 			
 		</div>
-		<div data-modal ng-model="show_quantity" image-drop-target>
+		<div data-modal ng-model="show_quantity">
 			<table>
 				<tr>
 					
@@ -112,7 +113,7 @@
 				</tr>
 			</table>
 		</div>
-		<div data-modal ng-model="show_modal" image-drop-target>
+		<div data-modal ng-model="show_modal">
 			<table>
 				<tr>
 					<td>Description</td>
@@ -122,6 +123,12 @@
 					<div ng-click="show_modal=false">Click me</div>
 				</tr>
 			</table>
+		</div>
+		
+		<div class="calendar_modal" data-modal  ng-model="show_calendar">
+			<div ui-date ng-model="ack.delivery_date">
+			</div>
+			<button ng-click="show_calendar=!show_calendar">Select</button>
 		</div>
 		
 		<!--
@@ -160,7 +167,7 @@
 					<table class="details">
 						<tr>
 							<td>Delivery Date:</td>
-							<td><input type="text" ui-date required  ng-model="delivery_date" /></td>
+							<td>{{ack.delivery_date | date:"MMMM d, yyyy"}}</td>
 						</tr>
 						<tr>
 							<td>Shipping:</td>
@@ -205,10 +212,41 @@
 				<div class="title">Products</div>
 				<div class="product" ng-repeat="product in ack.products">
 					{{product.description}}
-					<table>
+					<table class="details">
 						<tr>
 							<td>Qty:</td>
 							<td>{{product.quantity}}</td>
+						</tr>
+						<tr>
+							<td>Custom Size:</td>
+							<td><input type="checkbox" ng-model="product.is_custom_size" /></td>
+						</tr>
+						<tr>
+							<td>Width:</td>
+							<td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.width" />mm</td>
+						</tr>
+						<tr>
+							<td>Depth:</td>
+							<td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.depth" />mm</td>
+						</tr>
+						<tr>
+							<td>Height:</td>
+							<td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.height" />mm</td>
+						</tr>
+						<tr>
+							<td>Fabric: </td>
+							<td>
+								{{product.fabric.description}}
+								<img ng-src="{{product.fabric.image_url}}" />
+							</td>
+							<td>
+								
+							</td>
+							
+						</tr>
+						<tr ng-repeat="pillow in product.pillows">
+							<td>{{pillow.type | beautify}} Pillow</td>
+							<td>{{pillow.fabric.description}}<img ng-src="{{pillow.fabric.image_url}}" /></td>
 						</tr>
 					</table>
 					<img ng-src="{{product.url}}" />
