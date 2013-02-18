@@ -358,7 +358,7 @@ directive('map', function(){
           //geocodes from the address
           scope.map.getPosition = function(obj){
               //If all necessary parts of the address are defined
-              if(obj.address1 && obj.city && obj.territory && obj.country && obj.zipcode){
+              if(obj.address1 && obj.city && obj.territory && obj.country){
                   //create address string
                   var address = obj.address1+', '+obj.city+', '+obj.territory+', '+obj.country+' '+obj.zipcode;
                   //Geocode the address via google maps

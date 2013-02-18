@@ -298,9 +298,9 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
         //Notify
         Notification.display('Contact Added to Supplier');
         
-        if(!$scope.supplier.contacts){
-            $scope.supplier.contacts = [];
-        }
+        
+        $scope.supplier.contacts = $scope.supplier.contacts || [];
+      
         
         $scope.supplier.contacts.push(angular.copy($scope.contact));
         
@@ -311,7 +311,7 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
     };
     
     $scope.getLocation = function(){
-         var position = $scope.map.getPosition($scope.customer.address);
+         var position = $scope.map.getPosition($scope.supplier.address);
             angular.extend($scope.customer.address, position);
     };
     
