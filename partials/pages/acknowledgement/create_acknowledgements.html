@@ -1,10 +1,55 @@
 <div class="createAcknowledgementPage" ng-init="show_customers=false; show_upholstery=false;show_custom_item=false;" fade-in>
 	
 	
+	<form name="quantityForm" novalidate class="quantity_modal" data-modal ng-model="show_quantity">
+		<div class="title">Quantity</div>
+		<input ng-model="ack.products[ack.products.length-1].quantity" required ng-pattern="/^\d+$/" />
+		<div class="bottom_bar">
+			<button ng-disabled="quantityForm.$invalid" ng-click="show_quantity=false; show_fabric=true;">Submit</button>
+		</div>
+	</form>
+	
+	<form name="vatForm" class="vat_modal" novalidate data-modal ng-model="show_vat">
+		<div class="title">Vat</div>
+		<input ng-model="ack.vat" required ng-pattern="/^\d{1,2}$/" /><span>%</span>
+		<div class="bottom_bar">
+			<button ng-disabled="vatForm.$invalid" ng-click="show_vat=false">Submit</button>
+		</div>
+	</form>
+	
+	<form name="poForm" class="po_modal" novalidate data-modal ng-model="show_po">
+		<div class="title">Vat</div>
+		<input ng-model="ack.po"  size="40"/>
+		<div class="bottom_bar">
+			<button ng-click="show_po=false">Submit</button>
+		</div>
+	</form>
+	
+	<form name="customForm" novalidate class="custom_modal" data-modal ng-model="show_custom" image-drop-target="uploadImage()">
+		<div class="title">Custom Item</div>
+		<div class="details">
+			<table>
+				<tr class="description">
+					<td>Description</td>
+					<td><input type="text" ng-model="custom.description" required /></td>
+				</tr>
+				<tr class="quantity">
+					<td>Quantity</td>
+					<td><input type="text" ng-model="custom.quantity" required ng-pattern="/^\d+$/" /></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="target">
+			Drop Image Here
+		</div>
+		<div class="bottom_bar">
+			<button ng-disabled="customForm.$invalid" ng-click="addCustomItem()">Add Item</button>
+		</div>
+	</form>
 	
 	
 	<form class="ack" name="form" ec-droppable="add()" novalidate>
-		
 		<!--
 			Sidebar
 		-->
@@ -17,11 +62,13 @@
 			</header>
 			<nav>
 				<ul class="list">
-					<li><div ng-class="{dirty:form.$invalid}" ng-click="create()" >Create</div></li>
-					<li><div ng-click="show_customers=!show_customers">Add Customer</div></li>
-					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_upholstery=true">Add Upholstery</div></li>
-					<li><div ng-class="{dirty:!ack.customer}" ng-click="show_modal=true">Add Custom Item</div></li>
-					<li><div ng-click="show_calendar=true">Set Delivery Date</div></li>
+					<li><div ng-class="{dirty:$scope.isValidated}" ng-click="create()" >Create</div></li>
+					<li><div class="customer" ng-class="{dirty:!ack.customer}" ng-click="show_customers=!show_customers">Add Customer</div></li>
+					<li><div class="upholstery" ng-class="{dirty:!ack.products}" ng-click="show_upholstery=true">Add Upholstery</div></li>
+					<li><div ng-click="show_custom=true">Add Custom Item</div></li>
+					<li><div class="delivery_date" ng-class="{dirty:!ack.delivery_date}" ng-click="show_calendar=true">Set Delivery Date</div></li>
+					<li><div class="vat" ng-class="{dirty:!ack.vat}" ng-click="show_vat=true">Set Vat</div></li>
+					<li><div ng-click="show_po=true">Set Purchase Order</div></li>
 					<li><div ng-click="reset()" >Reset</div></li>
 				</ul>
 			</nav>
@@ -39,7 +86,7 @@
 			</div>
 			<div class="container">
 				<ul class="list">
-					<li class="item" ng-click="add_customer($index)" ng-repeat="customer in customer_list | filter:query_customers">{{customer.name}}</li>
+					<li class="item" ng-click="add_customer($index)" ng-repeat="customer in customer_list | filter:query_customers | orderBy:'name'">{{customer.name}}</li>
 				</ul>
 			</div>
 			
@@ -53,13 +100,14 @@
 			</div>
 			<div class="container">
 				<div class="list">
-					<div class="item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol ">
+					<div class="item" ng-click="add_upholstery($index)" ng-repeat="upholstery in upholstery_list | filter:query_uphol">
 						<img ng-src="{{upholstery.url}}" />{{upholstery.description}}
 					</div>
 				</div>
 			</div>
 			
 		</div>
+		
 		<div data-modal ng-model="show_fabric" class="fabric_modal">
 			<div class="title">
 				Fabric
@@ -98,38 +146,24 @@
 						</li>
 					</ul>
 				</div>
-				<button style="position:absolute; bottom:10px; left:10px; z-index:10" ng-click="show_fabric = false">Submit</button>
-				
 			</div>
-			
+			<div class="bottom_bar">
+				<button ng-click="show_fabric = false">Submit</button>
+			</div>
 		</div>
-		<div data-modal ng-model="show_quantity">
-			<table>
-				<tr>
-					
-					<td>Quantity</td>
-					<td><input type="text" ng-model="ack.products[ack.products.length-1].quantity" /></td>
-					<button ng-click="show_quantity=false;show_fabric=true;">Click me</div>
-				</tr>
-			</table>
-		</div>
-		<div data-modal ng-model="show_modal">
-			<table>
-				<tr>
-					<td>Description</td>
-					<td><input type="text" ng-model="custom.description" /></td>
-					<td>Quantity</td>
-					<td><input type="text" ng-model="custom.quantity" /></td>
-					<div ng-click="show_modal=false">Click me</div>
-				</tr>
-			</table>
-		</div>
+		
+		
+		
+		
+		
+		
+		
 		
 		<div class="calendar_modal" data-modal  ng-model="show_calendar">
 			<div ui-date ng-model="ack.delivery_date">
 			</div>
 			<div class="bottom_bar">
-				<button ng-click="show_calendar=!show_calendar">Select</button>
+				<button ng-disabled="!ack.delivery_date" ng-click="show_calendar=!show_calendar">Select</button>
 			</div>
 			
 		</div>
@@ -172,27 +206,10 @@
 							<td>Delivery Date:</td>
 							<td>{{ack.delivery_date | date:"MMMM d, yyyy"}}</td>
 						</tr>
-						<tr>
-							<td>Shipping:</td>
-							<td>
-								<select ng-model="ack.shipping.type">
-									<option value="none">None</option>
-									<option value="air">Air Freight</option>
-									<option value="ground">Ground Freight</option>
-									<option value="sea">Sea Freight</option>
-								</select>
-							</td>
-							
-						</tr>
-						<tr>
-							<td>Shipping Amount:</td>
-							<td>
-								<input type="text" ng-model="ack.shipping.amount" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/"/>
-							</td>
-						</tr>
+		
 						<tr>
 							<td>Vat:</td>
-							<td><input type="text" required ng-pattern="/^\d{0,2}$/" ng-model="ack.vat" />%</td>
+							<td>{{ack.vat}}%</td>
 						</tr>
 						<tr>
 							<td>Currency:</td>
@@ -200,13 +217,6 @@
 								{{ack.customer.currency}}
 							</td>
 						</tr>
-					</table>
-					
-						
-					
-					
-					<table class="currency" ui-if="supplier">
-						
 					</table>
 				</div>
 				
@@ -236,7 +246,7 @@
 							<td>Height:</td>
 							<td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.height" />mm</td>
 						</tr>
-						<tr>
+						<tr ui-if="product.fabric">
 							<td>Fabric: </td>
 							<td>
 								{{product.fabric.description}}
@@ -253,6 +263,7 @@
 						</tr>
 					</table>
 					<img ng-src="{{product.url}}" />
+					<div class="remove_btn" ng-click="removeProduct($index)">Remove</div>
 				</div>
 				
 				

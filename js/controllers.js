@@ -215,6 +215,79 @@ function AddCustomerCtrl($scope, Customer){
 
 AddCustomerCtrl.$inject = ['$scope', 'Customer'];
 
+function ViewCustomersCtrl($scope, Customer){
+    
+    $scope.customerList = Customer.query();
+    $scope.customer = {};
+    $scope.address = {};
+    
+    //Watchers
+    $scope.$watch('marker', function(){
+        if($scope.marker){
+            if($scope.marker.lng && $scope.marker.lat){
+                
+                $scope.address.lng = $scope.marker.lng;
+                $scope.address.lat = $scope.marker.lat; 
+            }
+        }
+        
+        
+    }, true);
+    //Mehtods
+    
+    $scope.getLocation = function(){
+        var position = $scope.map.getPosition($scope.address);
+        angular.extend($scope.address, position);
+    };
+    
+    $scope.saveCustomer = function(){
+        //New customer  
+        var newCustomer = new Customer();
+        //Apply the customer details first
+        angular.copy($scope.customer, newCustomer);
+        newCustomer.address = {};
+        angular.copy($scope.address, newCustomer.address);
+        
+        newCustomer.$save(function(){
+            $scope.add_customer=false;
+            $scope.customerList = Customer.query();
+            
+        });
+    };
+}
+
+ViewCustomersCtrl.$inject = ['$scope', 'Customer'];
+
+
+function CustomerDetailsCtrl($scope, Customer, $routeParams, $location, Notification){
+    
+    $scope.customer =  Customer.get({'id':$routeParams.id});
+    //Mehtods
+    $scope.map = function(){
+        $scope.viewMap=true;
+        $scope.map.setPosition({lat:$scope.customer.address.lat, lng:$scope.customer.address.lng});
+         
+    };
+    
+    $scope.update = function(){
+        Notification.display('Updating...', false);
+        $scope.customer.$save(function(){
+            Notification.display('Updated');
+        });
+    };
+    
+    $scope.remove = function(){
+        $scope.customer.$delete(function(){
+            $location.path('/customers');
+        });
+        
+    };
+}
+
+CustomerDetailsCtrl.$inject = ['$scope', 'Customer', '$routeParams', '$location', 'Notification'];
+
+
+
 function AddSupplierCtrl($scope, Supplier, $location, Notification){
     
     
@@ -237,6 +310,11 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
         
     };
     
+    $scope.getLocation = function(){
+         var position = $scope.map.getPosition($scope.customer.address);
+            angular.extend($scope.customer.address, position);
+    };
+    
     //Method to save the supplier to the database
     $scope.save = function(){
         
@@ -244,7 +322,7 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
             //Notify
             Notification.display('Saving Supplier...', false);
             //New customer  and address objects
-            var supplier = new Supplier(), address = {};
+            var supplier = new Supplier();
             
             angular.copy($scope.supplier, supplier);
                     

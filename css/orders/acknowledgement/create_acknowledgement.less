@@ -7,6 +7,42 @@
     
     .addPage;
     
+    /*Sidebar*/
+   .sidebar{
+      ul{
+          li{
+              
+              .customer{
+                  background-color:#BBFF9E;
+                  color:grey;
+                  //State
+                  &.dirty{
+                      background-color:#EFE28D;
+                      //border-bottom: 1px solid #EDD855;
+                      //border-top: 1px solid #EAD975;
+                      color:grey;
+                      &:hover{
+                          background-color:#E5CC50;
+                      }
+                  }
+                  &:hover{
+                      background-color:#A7FF82;
+                  }
+              }
+              .delivery_date{
+                  .customer;
+              }
+                  
+              .upholstery{
+                  .customer;
+              }
+              .vat{
+                  .customer;
+              }
+          }
+      }
+   }
+    
     /*Modals*/
     //Customer Modal
     .customer_modal{
@@ -20,15 +56,20 @@
                 }
             }
         }
+        
     }
     //Fabric Modal
     .fabric_modal{
+        .calendar_modal;
+        height:400px;
+        width:600px;
+        margin-left:-300px;
         .product_container{
             position:absolute;
             top:0px;
             left:0px;
             width:350px;
-            bottom:0px;
+            bottom:36px;
             overflow-y:scroll;
             overflow-x:hidden;
             .product{
@@ -54,7 +95,7 @@
         .fabric_container{
             position:absolute;
             top:0px;
-            bottom:0px;
+            bottom:36px;
             right:0px;
             width:250px;
             overflow-y:scroll;
@@ -137,6 +178,112 @@
         
     }
     
+    .quantity_modal{
+        .calendar_modal;
+        width:200px;
+        margin-left:-100px;
+        height:125px;
+        top:150px;
+        background-color:#313131;
+        .title{
+            text-align:center;
+        }
+        input{
+            width:100px;
+            position:absolute;
+            top:50px;
+            left:50px;
+            border:none;
+            outline:none;
+            padding:0px;
+            text-align:center;
+        }
+    }
+    
+    .vat_modal{
+        .quantity_modal;
+        input{
+            width:50px;
+            left:75px;
+        }
+        span{
+            top:50px;
+            position:absolute;
+            right:55px;
+            color:#FFFFFF;
+        }
+    }
+    
+    .po_modal{
+        .vat_modal;
+        
+        input{
+            width:150px;
+            left:25px;
+        }
+        
+    }
+    
+    .custom_modal{
+        .calendar_modal;
+        height:300px;
+        width:400px;
+        margin-left:-200px;
+        background-color:#313131;
+        color:#FFFFFF;
+        .title{
+            text-align:center;
+        }
+        .details{
+            width:100%;
+            text-align:center;
+            table{
+              margin-top:50px;
+              margin-left:45px;
+              tr{
+                  td{
+                      vertical-align:middle;
+                      font-size:12px;
+                      color:#6B6B6B;  
+                      &:first-child{
+                          text-align:left;
+                          padding-right:5px;
+                      }
+                      &:last-child{
+                          padding-left:5px;
+                          text-align:left;
+                      }
+                  }
+              }
+          }
+        }
+        
+        .target{
+            color:grey;
+            font-size:12px;
+            right:25px;
+            left:25px;
+            position:absolute;
+            bottom:40px; 
+            padding:50px 0px;
+            border:3px dashed grey;
+            border-radius:5px;
+            .transition(all, 250ms, ease);
+            text-align:center;
+        }
+        
+        //State
+        &.active{
+            .target{
+                border:3px dashed #85C181;
+                background-color:#64876D;
+                color:black;
+            }
+        }
+        
+        
+    }
+    
     
   
   
@@ -207,7 +354,7 @@
                     color:#828282;
                     font-size:14px;
                     position:relative;
-                    width:40%;
+                    width:80%;
                     margin-right:20px;
                     margin-top:30px;
                     border:1px solid #282828;
@@ -271,6 +418,23 @@
                         right:0px;
                         top:0px;
                         border-radius:0px 2px 0px 0px;
+                    }
+                    .remove_btn{
+                        position:absolute;
+                        bottom:0px;
+                        right:0px;
+                        border-radius:0px 0px 2px 0px;
+                        font-size:10px;
+                        padding:5px;
+                        border:1px solid #282828;
+                        color:#828282;
+                        cursor:pointer;
+                        -webkit-box-shadow: 0px 1px 0 rgba(255,255,255,.06),1px 1px 0 rgba(255,255,255,.03),-1px -1px 0 rgba(0,0,0,.02),inset 1px 1px 0 rgba(255,255,255,0.05);
+                        box-shadow: 0px 1px 0 rgba(255,255,255,.06),1px 1px 0 rgba(255,255,255,.03),-1px -1px 0rgba(0,0,0,.02),inset 1px 1px 0 rgba(255,255,255,0.05);
+                        .transition(all, 250ms, ease);
+                        &:hover{
+                            color:#FFFFFF;
+                        }
                     }
                 }
             }

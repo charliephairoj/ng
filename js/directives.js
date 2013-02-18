@@ -311,14 +311,29 @@ directive('map', function(){
     
     //create marker function
     function createMarker(params){
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(13.776239,100.527884),
-            draggable:true,
-            map: map,
-            title:params.title
-        });
+        console.log(marker);
+        if(!marker){
+            console.log('ok');
+            if(params.lat && params.lng){
+                var lat = params.lat,
+                    lng = params.lng
+            }else{
+                lat = 13.776239;
+                lng = 100.527884;
+            }
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                draggable:true,
+                map: map,
+                title:params.title
+            });
+            
+            if(params.mouseUp){
+                google.maps.event.addListener(marker, 'mouseup', params.mouseUp);
+            }
+        }
         
-        google.maps.event.addListener(marker, 'mouseup', params.mouseUp);
+        
         
         return marker;
     }
@@ -326,29 +341,43 @@ directive('map', function(){
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
+          scope.map = scope.map || {};
           var geocoder = new google.maps.Geocoder();
           initialize();
           
+          scope.$on('shown', function(){
+              google.maps.event.trigger(map, 'resize');
+          });
           
+          scope.map.setPosition = function(obj){
+              createMarker(obj);
+              console.log(marker);
+              map.panTo(marker.getPosition());
+              map.setZoom(14);
+          };
           //geocodes from the address
-          scope.getPosition = function(){
+          scope.map.getPosition = function(obj){
               //If all necessary parts of the address are defined
-              if(scope.supplier.address1 && scope.supplier.city && scope.supplier.territory && scope.supplier.country){
+              if(obj.address1 && obj.city && obj.territory && obj.country && obj.zipcode){
                   //create address string
-                  var address = scope.supplier.address1+', '+scope.supplier.city+', '+scope.supplier.territory+', '+scope.supplier.country+' '+scope.supplier.zipcode;
+                  var address = obj.address1+', '+obj.city+', '+obj.territory+', '+obj.country+' '+obj.zipcode;
                   //Geocode the address via google maps
                   geocoder.geocode({'address':address}, function(results, status){
                     //create marker if not yet created
                     if(marker == null || marker == undefined){
                         //call function to create marker
                         createMarker({
-                            'title':scope.supplier.name,
+                            //'title':scope.supplier.name,
                             'mouseUp':function(){
                                 //get position 
                                 var position = marker.getPosition();
                                 //Set lat and Long
-                                scope.supplier.lat = position.$a;
-                                scope.supplier.lng = position.ab;
+                                scope.$apply(function(){
+                                    scope.marker = scope.marker || {};
+                                    scope.marker.lat = position.Ya;
+                                    scope.marker.lng = position.Za;
+                                });
+                                
                             } 
                         });
                         
@@ -360,8 +389,9 @@ directive('map', function(){
                     map.panTo(marker.getPosition());
                     map.setZoom(14);
                     //apply the lat and long
-                    scope.supplier.lat = results[0].geometry.location.$a;
-                    scope.supplier.lng = results[0].geometry.location.ab;
+                    return {lat:results[0].geometry.location.$a,
+                            lng:results[0].geometry.location.ab}
+                    
                   });
               }
           }
@@ -428,16 +458,20 @@ directive('modal', function(){
             scope.$on('$destroy', function(){
                 backdrop.remove();
             });
-            
+            console.log(attr.ngModel);
             scope.$watch(attr.ngModel, function(value){
+                console.log(value);
                if(value){
                    element.removeClass('hide');
                    $(document.body).append(backdrop);
                    backdrop.fadeTo(500, 0.7);
-                   element.fadeTo(500, 1);
+                   element.fadeTo(500, 1, function(){
+                       scope.$broadcast('shown');
+                   });
                }else{
                    element.fadeOut(400, function(){
                        element.addClass('hide');
+                       scope.$broadcast('hidden');
                    }); 
                    backdrop.fadeOut(500, function(){
                       backdrop.remove(); 

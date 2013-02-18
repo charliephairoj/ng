@@ -175,12 +175,14 @@ angular.module('ecResource', ['ngResource']).
          
             //Remove an Item from storage
             StorageEngine.prototype.remove = function(args){
+                console.log(args);
                 //declare vars
                 var itemKey;
                 //checks if object has an id
                 if(args.hasOwnProperty('id')){
                     //get item key from id
                     itemKey = this.getKey(args.id);
+                    console.log(itemKey);
                     //delete item and item key
                     this.storage.removeItem(itemKey);
                     this.deleteKey(itemKey);
@@ -390,6 +392,24 @@ angular.module('ecResource', ['ngResource']).
                  
             }
             
+            function test(response, tempthis){
+                
+                console.log(new Error().stack);
+                if(angular.isArray(response)){
+                    console.log('Break');
+                    console.log('Count: '+response.length);
+                    forEach(response, function(item){
+                        console.log(item.name);
+                    });
+                }else{
+                    console.log(response);
+                    
+                    if(tempthis){
+                        console.log(tempthis);
+                    }
+                }
+            }
+            
             forEach(actions, function(action, name){
                 
                 
@@ -449,6 +469,7 @@ angular.module('ecResource', ['ngResource']).
                     value.$q = promise;
                     value.$resolved = false;
                     
+                    
                     //Prepropulate
                     if(action.isArray){
                         forEach(storage.query(), function(obj){
@@ -463,9 +484,13 @@ angular.module('ecResource', ['ngResource']).
                     }
                     
                     //Merge default params and params
-                    params = extend(defaultParams, params);
+                    if(name != "query"){
+                        params = extend(defaultParams, params);
+                    }
                     
-       
+                    
+                    console.log(params);
+                    console.log(data);
                     /*
                      * In this section we whill set the configurations of the 
                      * ajax call. We do this separately than the call because 
@@ -492,25 +517,26 @@ angular.module('ecResource', ['ngResource']).
                         });
                         
                     };
-                    
+                    console.log('Name: '+name+'   Method: '+action.method);
+                    console.log(route.url(extend({}, extract_params(data, params))));
                     //Ajax Call
                     jQuery.ajax(httpConfig.url, httpConfig);
                     //Set promise
                     promise.then(function(response, status){
+                        //test(response, this);
                         var q = value.$q, resolved = value.$resolved;
                         if(angular.isArray(response)){
+                            //Clear prepopulated values
+                            value.length = 0;
+                            //Loop through the objs to save and load to promise
                             forEach(response, function(obj, index){
                                 storage.save(obj);
-                                if(value.length>0){
-                                    if(index<value.length){
-                                        value.pop(0);
-                                    }
-                                    value.push(new Resource(obj));
-                                }else{
-                                    value.push(new Resource(obj));  
-                                }
-                                  
+                                value.push(new Resource(obj));
                             });
+                        //Delete object from storage
+                        }else if(action.method==="DELETE"){
+                            storage.remove(this);
+                        //Save Single object
                         }else{
                             //Save to storage
                             storage.save(response);
@@ -519,6 +545,7 @@ angular.module('ecResource', ['ngResource']).
                             value.$resolved = resolved;
                             
                         }
+                        //run a success function if exists
                         (success||noop)(value, status)
                     }.bind(this), error)
                     //Return promise to be filled later

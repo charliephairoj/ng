@@ -9,7 +9,7 @@
 			<table class="list">
 				
 				<tbody>
-					<tr ng-repeat="uphol in upholList | filter:query" class="listItem">
+					<tr ng-repeat="uphol in upholList | filter:query | orderBy: 'model'" class="listItem">
 						<td style="width:130px; position:relative">
 							<div style="margin:0; overflow:hidden; position:absolute; top:0px;right:0px;left:0px;bottom:0px;">
 								<img style="height:100%" ng-src="{{uphol.url}}" />
