@@ -292,7 +292,8 @@ directive('telephone', function($filter, $parse){
  */
 directive('map', function(){
     //Create the variables to be used
-    var map,
+    var latLng = {},
+        map,
         marker,
         //Options for the map 
         mapOptions= {
@@ -301,6 +302,32 @@ directive('map', function(){
             mapTypeId: google.maps.MapTypeId.HYBRID
         };
     
+    function getRegion(country){
+        switch(country.toLocaleLowerCase()){
+            case "thailand":
+                return 'TH';
+            case "usa":
+                return "US";
+            case "us":
+                return 'US';
+            case "italy":
+                return 'IT';
+            case 'spain':
+                return 'ES';
+            case 'germany':
+                return 'DE';
+            case 'china':
+                return 'CN';
+            case 'india':
+                return 'IN';
+            case 'new zealand':
+                return 'NZ';
+            case 'australia':
+                return 'AU';
+            default:
+                return false;
+        }
+    }
     //Function to initialize the map
     function initialize() {
         
@@ -356,44 +383,65 @@ directive('map', function(){
               map.setZoom(14);
           };
           //geocodes from the address
-          scope.map.getPosition = function(obj){
+          scope.map.getPosition = function(obj, arg2){
               //If all necessary parts of the address are defined
-              if(obj.address1 && obj.city && obj.territory && obj.country){
-                  //create address string
-                  var address = obj.address1+', '+obj.city+', '+obj.territory+', '+obj.country+' '+obj.zipcode;
+                //create address string
+                  var address =  obj.address1 ? address+' '+obj.address1 : '';
+                  address = obj.address2 ? address+' '+obj.address2 : address;
+                  address = obj.city ? address+', '+obj.city : address;
+                  address = obj.territory ? address+', '+obj.territory : address;
+                  address = obj.country ? address+', '+obj.country : address;
+                  address = obj.zipcode ? address+' '+obj.zipcode : address;
+                  var requestObj = {address:address};
+                  if(obj.country){
+                      var region = getRegion(obj.country);
+                      if(region){
+                          requestObj['region'] = region;
+                      }
+                  }else if(requestObj.address.search(/[\u0E00-\u0E7F]+/g) != -1){
+                      requestObj['region'] = 'TH'
+                  }
                   //Geocode the address via google maps
-                  geocoder.geocode({'address':address}, function(results, status){
-                    //create marker if not yet created
-                    if(marker == null || marker == undefined){
-                        //call function to create marker
-                        createMarker({
-                            //'title':scope.supplier.name,
-                            'mouseUp':function(){
-                                //get position 
-                                var position = marker.getPosition();
-                                //Set lat and Long
-                                scope.$apply(function(){
-                                    scope.marker = scope.marker || {};
-                                    scope.marker.lat = position.Ya;
-                                    scope.marker.lng = position.Za;
-                                });
-                                
-                            } 
-                        });
+                  geocoder.geocode(requestObj, function(results, status){
+                    if(results.length>0){
+                        //create marker if not yet created
+                        if(!marker){
+                            //call function to create marker
+                            createMarker({
+                                //'title':scope.supplier.name,
+                                'mouseUp':function(){
+                                    //get position 
+                                    var position = marker.getPosition();
+                                    //Set lat and Long
+                                    scope.$apply(function(){
+                                        scope.marker = scope.marker || {};
+                                        scope.marker.lat = position.Ya;
+                                        scope.marker.lng = position.Za;
+                                    });
+                                    
+                                } 
+                            });
+                            
+                           
+                        //set marker position if already created
+                        }else{
+                            marker.setPosition(results[0].geometry.location);    
+                        }
+                        map.panTo(marker.getPosition());
+                        map.setZoom(14);
                         
-                       
-                    //set marker position if already created
-                    }else{
-                        marker.setPosition(results[0].geometry.location);    
+                        //Run the on success call back
+                        if(angular.isFunction(arg2)){
+                            latLng.lat = results[0].geometry.location.lat();
+                            latLng.lng = results[0].geometry.location.lng();
+                            console.log(latLng);
+                            arg2(latLng);
+                        };   
+                        
                     }
-                    map.panTo(marker.getPosition());
-                    map.setZoom(14);
-                    //apply the lat and long
-                    return {lat:results[0].geometry.location.$a,
-                            lng:results[0].geometry.location.ab}
+                    
                     
                   });
-              }
           }
           
         }

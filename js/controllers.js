@@ -271,9 +271,28 @@ function CustomerDetailsCtrl($scope, Customer, $routeParams, $location, Notifica
     
     $scope.update = function(){
         Notification.display('Updating...', false);
-        $scope.customer.$save(function(){
-            Notification.display('Updated');
+        //Holds jobs
+        var jobHolder = [];
+        //Loop through all the addresses
+        angular.forEach($scope.customer.addresses, function(address, index){
+            console.log(address);
+            jobHolder.push(address);
+            $scope.map.getPosition(address, function(position){
+                console.log(position);
+                angular.extend($scope.customer.addresses[index], position);
+                jobHolder.shift();
+                console.log(jobHolder);
+                if(jobHolder.length === 0){
+                    $scope.customer.$save(function(){
+                        Notification.display('Updated');
+                    });
+                }
+                
+            });
         });
+        
+        
+        
     };
     
     $scope.remove = function(){
@@ -311,8 +330,10 @@ function AddSupplierCtrl($scope, Supplier, $location, Notification){
     };
     
     $scope.getLocation = function(){
-         var position = $scope.map.getPosition($scope.supplier.address);
-            angular.extend($scope.customer.address, position);
+         var position = $scope.map.getPosition($scope.supplier.address, function(response){
+             angular.extend($scope.supplier.address, response);
+         });
+         
     };
     
     //Method to save the supplier to the database
@@ -394,9 +415,13 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     $scope.update = function(){
         //Notify
         Notification.display('Updating Supplier...', false);
-        $scope.supplier.$save(function(data){
-            Notification.display('Supplier Updated');
+        $scope.map.getPosition($scope.supplier.address, function(position){
+            angular.extend($scope.supplier.address, position);
+            $scope.supplier.$save(function(data){
+                Notification.display('Supplier Updated');
+            });
         });
+        
     };
     
     $scope.remove = function(){
