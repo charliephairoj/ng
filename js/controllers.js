@@ -261,7 +261,7 @@ ViewCustomersCtrl.$inject = ['$scope', 'Customer'];
 
 function CustomerDetailsCtrl($scope, Customer, $routeParams, $location, Notification){
     
-    $scope.customer =  Customer.get({'id':$routeParams.id});
+    $scope.customer =  Customer.get({'id':$routeParams.id}); 
     //Mehtods
     $scope.map = function(){
         $scope.viewMap=true;
