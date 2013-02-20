@@ -160,14 +160,20 @@ angular.module('ecResource', ['ngResource']).
             //Get an item from storage
             StorageEngine.prototype.get = function(args){
                 
-                var itemKey;
-                //CHECKS IF THE ARG
-                if(args.id){
-                    //Get Item Key
-                    itemKey = this.getKey(args.id);
+                if(args){
+                    var itemKey;
+                    //CHECKS IF THE ARG
+                    
+                    if(args.id){
+                        //Get Item Key
+                        itemKey = this.getKey(args.id);
+                    }
+                    //returns item or null if not found
+                    return itemKey ? JSON.parse(this.storage.getItem(itemKey)) : null;
+                }else{
+                    return null;
                 }
-                //returns item or null if not found
-                return itemKey ? JSON.parse(this.storage.getItem(itemKey)) : null;
+                
                    
                     
             };

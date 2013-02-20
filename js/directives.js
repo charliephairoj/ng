@@ -331,59 +331,50 @@ directive('map', function(){
     //Function to initialize the map
     function initialize() {
         
-        map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+        
             
              
-    }
-    
-    //create marker function
-    function createMarker(params){
-        console.log(marker);
-        if(!marker){
-            console.log('ok');
-            if(params.lat && params.lng){
-                var lat = params.lat,
-                    lng = params.lng
-            }else{
-                lat = 13.776239;
-                lng = 100.527884;
-            }
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, lng),
-                draggable:true,
-                map: map,
-                title:params.title
-            });
-            
-            if(params.mouseUp){
-                google.maps.event.addListener(marker, 'mouseup', params.mouseUp);
-            }
-        }
-        
-        
-        
-        return marker;
     }
     return {
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
-          scope.map = scope.map || {};
-          var geocoder = new google.maps.Geocoder();
-          initialize();
-          
-          scope.$on('shown', function(){
+            var geocoder = new google.maps.Geocoder();
+            scope.map = scope.map || {};
+            map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+            scope.map.map = map;       
+            //Refresh the map if a shown event is broadcast
+            scope.$on('shown', function(){
               google.maps.event.trigger(map, 'resize');
-          });
-          
-          scope.map.setPosition = function(obj){
-              createMarker(obj);
-              console.log(marker);
-              map.panTo(marker.getPosition());
-              map.setZoom(14);
-          };
-          //geocodes from the address
-          scope.map.getPosition = function(obj, arg2, arg3){
+            });
+            //Create a marker and adds to scope.map.markers
+            scope.map.createMarker = function(obj){
+              if(obj.lat && lat.lng){
+                  var marker = new google.maps.Marker({
+                      position: new google.maps.LatLng(obj.lat, obj.lng),
+                      draggable:true,
+                      map: map,
+                      title:params.title
+                  });
+                  if(obj.mouseUp){
+                      google.maps.event.addListener(marker, 'mouseup', obj.mouseUp);
+                  }
+                  //Add Marker to array
+                  scope.map.markers = scope.map.markers || []
+                  scope.map.markers.push(marker);
+                  //return marker
+                  return marker;
+              }else{
+                  return false;
+              }
+            };
+            //Set map position
+            scope.map.setPosition = function(obj){
+                map.panTo(new google.maps.LatLng(obj.lat, obj.lng));
+                map.setZoom(14);
+            };
+            //geocodes from the address
+            scope.map.getPosition = function(obj, arg2, arg3){
               //If all necessary parts of the address are defined
                 //create address string
                   var address =  obj.address1 ? address+' '+obj.address1 : '';
@@ -399,54 +390,27 @@ directive('map', function(){
                           requestObj['region'] = region;
                       }
                   }else if(requestObj.address.search(/[\u0E00-\u0E7F]+/g) != -1){
-                      requestObj['region'] = 'TH'
+                      requestObj['region'] = 'TH';
                   }
                   //Geocode the address via google maps
                   geocoder.geocode(requestObj, function(results, status){
                     if(results.length>0){
-                        //create marker if not yet created
-                        if(!marker){
-                            //call function to create marker
-                            createMarker({
-                                //'title':scope.supplier.name,
-                                'mouseUp':function(){
-                                    //get position 
-                                    var position = marker.getPosition();
-                                    //Set lat and Long
-                                    scope.$apply(function(){
-                                        scope.marker = scope.marker || {};
-                                        scope.marker.lat = position.Ya;
-                                        scope.marker.lng = position.Za;
-                                    });
-                                    
-                                } 
-                            });
-                            
-                           
-                        //set marker position if already created
-                        }else{
-                            marker.setPosition(results[0].geometry.location);    
-                        }
-                        map.panTo(marker.getPosition());
-                        map.setZoom(14);
-                        
-                        //Run the on success call back
+                        var positions = [];
+                        angular.forEach(results, function(result){
+                            positions.push({lat:result.geometry.location.lat(),
+                                            lng:result.geometry.location.lng()})
+                         
+                        });
                         if(angular.isFunction(arg2)){
-                            latLng.lat = results[0].geometry.location.lat();
-                            latLng.lng = results[0].geometry.location.lng();
-                            console.log(latLng);
-                            arg2(latLng);
+                            arg2(position);
                         };   
-                        
                     }else{
                         if(angular.isFunction(arg3)){
                             arg3();
                         }
                     }
-                    
-                    
                   });
-          }
+            }
           
         }
     }

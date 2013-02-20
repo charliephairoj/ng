@@ -263,7 +263,7 @@ function CustomerDetailsCtrl($scope, Customer, $routeParams, $location, Notifica
     
     $scope.customer =  Customer.get({'id':$routeParams.id}); 
     //Mehtods
-    $scope.map = function(){
+    $scope.viewMap = function(){
         $scope.viewMap=true;
         $scope.map.setPosition({lat:$scope.customer.address.lat, lng:$scope.customer.address.lng});
          
@@ -420,7 +420,8 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
         //Notify
         Notification.display('Updating Supplier...', false); 
         $scope.map.getPosition($scope.supplier.address, function(position){
-            angular.extend($scope.supplier.address, position);
+            //if
+            //angular.extend($scope.supplier.address, position);
             $scope.supplier.$save(function(data){
                 Notification.display('Supplier Updated');
             });
