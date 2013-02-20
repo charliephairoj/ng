@@ -1,0 +1,143 @@
+<div class="view_customer_page" ng-init="add_customer=false;">
+	
+	<!--Add Customer Modal-->
+	<form name="customerForm" novalidate class="customer_modal" data-modal ng-model="add_customer">
+		<div class="title">Add Customer</div>
+		<div class="container">
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" required beautify ng-model="customer.first_name" /></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" beautify ng-model="customer.last_name" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="email" required beautify ng-model="customer.email" /></td>
+				</tr>
+				<tr>
+					<td>Telephone</td>
+					<td><input type="text" required beautify ng-model="customer.telephone" /></td>
+				</tr>
+				<tr>
+					<td>Customer Type</td>
+					<td>
+						<select required ng-model="customer.type">
+							<option value="Dealer">Dealer</option>
+							<option value="Retail">Retail</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Currency</td>
+					<td>
+						<select required ng-model="customer.currency">
+							<option value="USD">US Dollar</option>
+							<option value="EUR">Euro</option>
+							<option value="THB">Thai Baht</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Address 1</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.address1" /></td>
+				</tr>
+				<tr>
+					<td>Address 2</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.address2" /></td>
+				</tr>
+				<tr>
+					<td>City</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.city" /></td>
+				</tr>
+				<tr>
+					<td>Territory/Chaengwat</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.territory" /></td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.country" /></td>
+				</tr>
+				<tr>
+					<td>Zipcode</td>
+					<td><input type="text" ec-blur="getLocation()" beautify ng-model="address.zipcode" /></td>
+				</tr>
+				
+			</table>
+			<div class="map_container">
+				<div id="map_canvas" map >
+			
+				</div>
+			</div>
+		</div>
+		<div class="bottom_bar">
+			<button ng-disabled="customerForm.$invalid" ng-click="saveCustomer()">Add</button>
+		</div>
+	</form>
+	
+	<!-- 
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Customers</span></h1>
+		</header>
+		<nav>
+			<ul>
+				
+				<li ng-show="currentUser.hasPermission('add_supplier')" ng-click="add_customer=true">
+					<div>
+						Add Customer
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!--
+		Search Bar
+	-->
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				
+				<tbody>
+					<tr ng-repeat="customer in customerList | filter:query | orderBy:'name'" class="listItem">
+						<td>
+							<table class="detailsTable">
+								<tr class="name">
+									<td>{{customer.name}}</td>
+								</tr>
+								<tr class="address">
+									<td>{{customer.addresses[0].address1}}
+										<br />
+										{{customer.addresses[0].address2}}
+										<br />
+										{{customer.addresses[0].city+","+customer.addresses[0].territory}}
+										<br />
+										{{customer.addresses[0].country+" "+customer.addresses[0].zipcode}}
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td><a ng-href="#/customers/{{customer.id}}">Edit</a></td>
+						
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+	
+</div>
