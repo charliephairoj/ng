@@ -287,7 +287,11 @@ function CustomerDetailsCtrl($scope, Customer, $routeParams, $location, Notifica
                         Notification.display('Updated');
                     });
                 }
-                
+                   
+            });
+        }, function(){
+            $scope.customer.$save(function(){
+                Notification.display('Updated');
             });
         });
         
@@ -414,11 +418,15 @@ function SupplierDetailCtrl($scope, Supplier, $routeParams, $location, Poller, S
     
     $scope.update = function(){
         //Notify
-        Notification.display('Updating Supplier...', false);
+        Notification.display('Updating Supplier...', false); 
         $scope.map.getPosition($scope.supplier.address, function(position){
             angular.extend($scope.supplier.address, position);
             $scope.supplier.$save(function(data){
                 Notification.display('Supplier Updated');
+            });
+        }, function(){
+            $scope.supplier.$save(function(){
+                Notification.display('Updated');  
             });
         });
         

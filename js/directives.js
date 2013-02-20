@@ -383,7 +383,7 @@ directive('map', function(){
               map.setZoom(14);
           };
           //geocodes from the address
-          scope.map.getPosition = function(obj, arg2){
+          scope.map.getPosition = function(obj, arg2, arg3){
               //If all necessary parts of the address are defined
                 //create address string
                   var address =  obj.address1 ? address+' '+obj.address1 : '';
@@ -438,6 +438,10 @@ directive('map', function(){
                             arg2(latLng);
                         };   
                         
+                    }else{
+                        if(angular.isFunction(arg3)){
+                            arg3();
+                        }
                     }
                     
                     
