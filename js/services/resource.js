@@ -103,6 +103,10 @@ angular.module('ecResource', ['ngResource']).
                 
                 this.keys = [];
                 this.storage.setItem(this.key, JSON.stringify(this.keys));
+                if(JSON.parse(this.storage.getItem(this.key)).length===0){
+                    return true;
+                }else
+                    return false;
             };
             
             //Get a key
@@ -117,7 +121,7 @@ angular.module('ecResource', ['ngResource']).
                 }
                 index = this.keys.indexOf(tempKey);
                 //Returns key or null
-                return (index !== -1) ? this.keys[index] : null; 
+                return (index !== -1) ? this.keys[index] : false; 
             };
             
             /*
@@ -154,6 +158,9 @@ angular.module('ecResource', ['ngResource']).
                  if(data.hasOwnProperty('id')){
                      itemKey = this.saveKey(data.id);
                      this.storage.setItem(itemKey, JSON.stringify(data));
+                     return true;
+                 }else{
+                     return false;
                  }
             };
             
@@ -526,7 +533,7 @@ angular.module('ecResource', ['ngResource']).
                     console.log('Name: '+name+'   Method: '+action.method);
                     console.log(route.url(extend({}, extract_params(data, params))));
                     //Ajax Call
-                    jQuery.ajax(httpConfig.url, httpConfig);
+                    //jQuery.ajax(httpConfig.url, httpConfig);
                     //Set promise
                     promise.then(function(response, status){
                         //test(response, this);
