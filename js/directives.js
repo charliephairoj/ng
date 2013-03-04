@@ -342,7 +342,8 @@ directive('map', function(){
             var geocoder = new google.maps.Geocoder();
             scope.map = scope.map || {};
             map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
-            scope.map.map = map;       
+            scope.map.map = map;    
+            scope.map.markers = [];   
             //Refresh the map if a shown event is broadcast
             scope.$on('shown', function(){
               google.maps.event.trigger(map, 'resize');
@@ -360,7 +361,6 @@ directive('map', function(){
                       google.maps.event.addListener(marker, 'mouseup', obj.mouseUp);
                   }
                   //Add Marker to array
-                  scope.map.markers = scope.map.markers || []
                   scope.map.markers.push(marker);
                   //return marker
                   return marker;
@@ -370,8 +370,12 @@ directive('map', function(){
             };
             //Set map position
             scope.map.setPosition = function(obj){
-                map.panTo(new google.maps.LatLng(obj.lat, obj.lng));
+                var latLng = new google.maps.LatLng(obj.lat, obj.lng);
+                map.panTo(latLng);
                 map.setZoom(14);
+                if(obj.updateMarker){
+                    scope.map.markers.length > 0 ? scope.map.markers[0].setPosition(latLng) : scope.map.createMarker(obj);
+                }
             };
             //geocodes from the address
             scope.map.getPosition = function(obj, arg2, arg3){
@@ -402,7 +406,7 @@ directive('map', function(){
                          
                         });
                         if(angular.isFunction(arg2)){
-                            arg2(position);
+                            arg2(positions[0]);
                         };   
                     }else{
                         if(angular.isFunction(arg3)){
@@ -438,11 +442,10 @@ directive('clickUrl', function($location){
  * Modal Directive
  */
 
-directive('modal', function(){
+directive('modal', function($parse){
     function create_backdrop(){
         var backdrop = angular.element('<div></div>');
         backdrop.attr('id', 'backdrop');
-        console.log(backdrop);
         return backdrop;
     }
     return {
@@ -460,23 +463,16 @@ directive('modal', function(){
                 }
             }
             var backdrop = create_backdrop();
-            backdrop.bind('click', function(){
-                scope.$apply(function(){
-                    attr.ngModel = false; 
-                });
+            backdrop.bind('mouseenter', function(){
+                console.log('ok');
+                attr.$set('ngModel', false);
             });
-            backdrop.bind('onclick', function(){
-                scope.$apply(function(){
-                    attr.ngModel = false; 
-                });
-            });
+            
             
             scope.$on('$destroy', function(){
                 backdrop.remove();
             });
-            console.log(attr.ngModel);
             scope.$watch(attr.ngModel, function(value){
-                console.log(value);
                if(value){
                    element.removeClass('hide');
                    $(document.body).append(backdrop);

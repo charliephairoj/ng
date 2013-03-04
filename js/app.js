@@ -110,4 +110,4 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
 
 EmployeeCenter.run(function($rootScope, CurrentUser){
     $rootScope.currentUser = CurrentUser;
-})
+});

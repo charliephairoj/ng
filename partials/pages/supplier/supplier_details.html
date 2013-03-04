@@ -20,7 +20,7 @@
 					</div>
 				</li>
 				<li>
-					<div ng-click="showAddContact=true">
+					<div ng-click="viewMap=true">
 						View Map
 					</div>
 				</li>
@@ -31,6 +31,9 @@
 		</nav>
 	</div>
 	
+	<div data-modal ng-model="viewMap">
+		<div map><div id="map_canvas"></div></div>
+	</div>
 	<!--Supplier Contact Section -->
 	
 	<form name="contactForm" novalidate class="addContactModal" ng-show="showAddContact">

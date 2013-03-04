@@ -50,21 +50,26 @@ angular.module('ecResource', ['ngResource']).
                 typeof(this.keys) === 'object' ? this.storage.setItem(this.key, JSON.stringify(this.keys)) : this.createKeysArray();
             };
             
+            StorageEngine.prototype.createKey = function(){
+                key = 'storage-temp'+Date.now();  
+                return key;
+            };
+            
             //Save a key
             StorageEngine.prototype.saveKey = function(arg){
                 
-                var tempKey = this.key+arg;
+                var itemKey = this.key+arg;
                 
                 //CHECK IF keys is valid
                 this.keys = this.keys || this.createKeysArray();
      
                 //Checks for duplicates
-                if(this.keys.indexOf(tempKey)===-1){
-                    this.keys.push(tempKey);
+                if(this.keys.indexOf(itemKey)===-1){
+                    this.keys.push(itemKey);
                     this.saveKeys();
                 }
                 
-                return tempKey;
+                return itemKey;
             };
             
             //Retrieve all keys
@@ -112,16 +117,8 @@ angular.module('ecResource', ['ngResource']).
             //Get a key
             StorageEngine.prototype.getKey = function(arg){
                 //CREATE TEMPORARY KEY
-                var tempKey = this.key + arg,
-                    index;
-                //Checks index of key and 
-                //If a key is present return is
-                if(!this.keys){
-                    this.createKeysArray();
-                }
-                index = this.keys.indexOf(tempKey);
-                //Returns key or null
-                return (index !== -1) ? this.keys[index] : false; 
+                return this.key + arg;
+                   
             };
             
             /*
@@ -131,17 +128,10 @@ angular.module('ecResource', ['ngResource']).
             
             //querya all items of name space
             StorageEngine.prototype.query = function(){
-                
-                //checks storage of keys exists
-                if(this.keys === null || !this.keys || this.keys.length===0){
-                    
-                    return null;
-                    
-                }
-                
                 //create array to hold data
                 var data = [], i;
                 //iterate through all the keys
+                this.keys = this.getKeys();   
                 for(i in this.keys){
                     data.push(JSON.parse(this.storage.getItem(this.keys[i])));
                 }
@@ -152,33 +142,59 @@ angular.module('ecResource', ['ngResource']).
             
             //Save item into storage
             StorageEngine.prototype.save = function(data){
-                
                 var itemKey;
-                
-                 if(data.hasOwnProperty('id')){
-                     itemKey = this.saveKey(data.id);
-                     this.storage.setItem(itemKey, JSON.stringify(data));
-                     return true;
-                 }else{
-                     return false;
-                 }
+                //Function to save object if it has an id
+                function saveFn(obj){ 
+                    if(obj.hasOwnProperty('id')){
+                        var itemKey = this.saveKey(obj.id);
+                        this.storage.setItem(itemKey, JSON.stringify(obj));
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                var saveObject = saveFn.bind(this);
+                //Check if the data is valid
+                if(data){
+                    //Checks if an array or not
+                    if(angular.isArray(data)){
+                        //Reset storage for this namespace
+                        this.clear();
+                        //loop through items
+                        for(var i=0; i<data.length; i++){
+                            //return false if data did not save
+                            if(!saveObject(data[i])){
+                                return false;
+                            }
+                        }
+                    }else{
+                        //return false if data did not save
+                        return saveObject(data) ? data : false;
+                    }
+                }else{
+                    //return false if data is not valid
+                    return false;
+                }
             };
             
             //Get an item from storage
             StorageEngine.prototype.get = function(args){
-                
-                if(args){
+                if(args.hasOwnProperty('id')){  
                     var itemKey;
                     //CHECKS IF THE ARG
                     
-                    if(args.id){
-                        //Get Item Key
-                        itemKey = this.getKey(args.id);
-                    }
-                    //returns item or null if not found
-                    return itemKey ? JSON.parse(this.storage.getItem(itemKey)) : null;
+                    
+                    itemKey = this.getKey(args.id);
+                        
+                    if(itemKey){
+                        return JSON.parse(this.storage.getItem(itemKey));
+                    }else{
+                        return 'itemKey';  
+                    }    
+                    
+                     
                 }else{
-                    return null;
+                    return args;  
                 }
                 
                    
@@ -188,14 +204,12 @@ angular.module('ecResource', ['ngResource']).
          
             //Remove an Item from storage
             StorageEngine.prototype.remove = function(args){
-                console.log(args);
                 //declare vars
                 var itemKey;
                 //checks if object has an id
                 if(args.hasOwnProperty('id')){
                     //get item key from id
                     itemKey = this.getKey(args.id);
-                    console.log(itemKey);
                     //delete item and item key
                     this.storage.removeItem(itemKey);
                     this.deleteKey(itemKey);
@@ -207,7 +221,6 @@ angular.module('ecResource', ['ngResource']).
                 }
             };
             
-            StorageEngine.prototype.delete = StorageEngine.remove;
             
             //Clear Items
             StorageEngine.prototype.clear = function(){
@@ -245,358 +258,152 @@ angular.module('ecResource', ['ngResource']).
      * 
      * The children objects have the prototypical methods :$save, $delete, query, 
      */
-    factory('ecResource', function($storage, $rootScope, $http, $q, $parse){
-        /*
-         * Helper functions that are given new names to make the code more concise
-         */
-        var forEach = angular.forEach,
-            copy = angular.copy,
-            extend = angular.extend,
-            noop = angular.noop,
-            isFunction = angular.isFunction,
-            getter = function(obj, path) {
-              return $parse(path)(obj);
-            },
-            hasBody = function(obj){
-                return typeof(obj) === "object";
-               
-            };
-        
-        /**
-         * We need our custom method because encodeURIComponent is too aggressive and doesn't follow
-         * http://www.ietf.org/rfc/rfc3986.txt with regards to the character set (pchar) allowed in path
-         * segments:
-         *    segment       = *pchar
-         *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
-         *    pct-encoded   = "%" HEXDIG HEXDIG
-         *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
-         *    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
-         *                     / "*" / "+" / "," / ";" / "="
-         */
-        function encodeUriSegment(val) {
-          return encodeUriQuery(val, true).
-            replace(/%26/gi, '&').
-            replace(/%3D/gi, '=').
-            replace(/%2B/gi, '+');
-        }
-    
-    
-        /**
-         * This method is intended for encoding *key* or *value* parts of query component. We need a custom
-         * method becuase encodeURIComponent is too agressive and encodes stuff that doesn't have to be
-         * encoded per http://tools.ietf.org/html/rfc3986:
-         *    query       = *( pchar / "/" / "?" )
-         *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
-         *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
-         *    pct-encoded   = "%" HEXDIG HEXDIG
-         *    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
-         *                     / "*" / "+" / "," / ";" / "="
-         */
-        function encodeUriQuery(val, pctEncodeSpaces) {
-          return encodeURIComponent(val).
-            replace(/%40/gi, '@').
-            replace(/%3A/gi, ':').
-            replace(/%24/g, '$').
-            replace(/%2C/gi, ',').
-            replace((pctEncodeSpaces ? null : /%20/g), '+');
-        }
-    
-        function Route(template, defaults) {
-          this.template = template = template + '#';
-          this.defaults = defaults || {};
-          var urlParams = this.urlParams = {};
-          forEach(template.split(/\W/), function(param){
-            if (param && template.match(new RegExp("[^\\\\]:" + param + "\\W"))) {
-              urlParams[param] = true;
-            }
-          });
-          this.template = template.replace(/\\:/g, ':');
-        }
-    
-        Route.prototype = {
-          url: function(params) {
-            var self = this,
-                url = this.template,
-                val,
-                encodedVal;
-    
-            params = params || {};
-            forEach(this.urlParams, function(_, urlParam){
-              val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
-              if (angular.isDefined(val) && val !== null) {
-                encodedVal = encodeUriSegment(val);
-                url = url.replace(new RegExp(":" + urlParam + "(\\W)", "g"), encodedVal + "$1");
-              } else {
-                url = url.replace(new RegExp("(\/?):" + urlParam + "(\\W)", "g"), function(match,
-                    leadingSlashes, tail) {
-                  if (tail.charAt(0) == '/') {
-                    return tail;
-                  } else {
-                    return leadingSlashes + tail;
-                  }
-                });
-              }
-            });
-            url = url.replace(/\/?#$/, '');
-            var query = [];
-            forEach(params, function(value, key){
-              if (!self.urlParams[key]) {
-                query.push(encodeUriQuery(key) + '=' + encodeUriQuery(value));
-              }
-            });
-            query.sort();
-            url = url.replace(/\/*$/, '');
-            return url + (query.length ? '?' + query.join('&') : '');
-          }
-        };
-        
-        var DEFAULT_ACTIONS = {
-            'get':    {method:'GET'},
-            'save':   {method:'POST'},
-            'query':  {method:'GET', isArray:true},
-            'remove': {method:'DELETE'},
-            'delete': {method:'DELETE'}
-        };
+    factory('ecResource', function($storage, $rootScope, $http, $q, $parse, $resource){
         
         
-        
-        
-        /*
-         * Resource Factory creates the resource and applies the correct
-         * url, params and methods, along with prototype methods that it's 
-         * children will need.
-         */
-        
-        function ResourceFactory(url, defaultParams, actions){
-            var namespace = url.split('/')[0].toLowerCase(),
-                storage = $storage(namespace);
-            /*
-             * Copied from Angular source code for resource
-             */
-            function extract_params(data, actionParams){
+        function ResourceFactory(url, paramDefaults, actions){
+            var DEFAULT_ACTIONS = {'get':    {method:'GET'},
+                                   'save':   {method:'POST'},
+                                   'update': {method:'PUT'},
+                                   'query':  {method:'GET', isArray:true},
+                                   'remove': {method:'DELETE'},
+                                   'delete': {method:'DELETE'}},
+                oResource,
+                storage = $storage(url.split(/\//g)[0]),
+                value,
+                getter = function(obj, path) {
+                    return $parse(path)(obj);
+                };
+            /*Helper Functions*/
+            function extractParams(data, actionParams){
                 var ids = {};
-                actionParams = extend({}, actionParams);
-                forEach(actionParams, function(value, key){
-                  if (isFunction(value)) { value = value(); }
-                  ids[key] = value.charAt && value.charAt(0) == '@' ? getter(data, value.substr(1)) : value;
+                actionParams = angular.extend({}, paramDefaults, actionParams);
+                angular.forEach(actionParams, function(value, key){
+                    if (angular.isFunction(value)) { value = value(); }
+                    ids[key] = value.charAt && value.charAt(0) == '@' ? getter(data, value.substr(1)) : value;
                 });
                 return ids;
-              }
-            //Create Route class
-            var route = new Route(url);
-            //Combine all actions
-            actions = extend({}, DEFAULT_ACTIONS, actions);
-            
-            /*
-            //Get the namespace
-            var namespace = targetUrl.split('/')[0].toLowerCase(),
-                storage = $storage(namespace);
-            
-            
-            
-             * Initial creation of the resouce. Created here so that can be used in query
-             * methods
-             */
-            
-            //Create resource object
-            function Resource(data){
-                
-                 angular.copy(data, this);
-                 
             }
             
-            function test(response, tempthis){
-                
-                console.log(new Error().stack);
-                if(angular.isArray(response)){
-                    console.log('Break');
-                    console.log('Count: '+response.length);
-                    forEach(response, function(item){
-                        console.log(item.name);
-                    });
-                }else{
-                    console.log(response);
-                    
-                    if(tempthis){
-                        console.log(tempthis);
-                    }
-                }
-            }
+            //Extend all actions to include default and argument actions
+            actions = angular.extend({}, DEFAULT_ACTIONS, actions);
+            //Assign original and new resource
+            oResource = new $resource(url, paramDefaults, actions);
+            function Resource(value){angular.copy(value || {}, this);}
             
-            forEach(actions, function(action, name){
-                
-                
+            //Loop through actions
+            angular.forEach(actions, function(action, name){
+                var hasBody = action.method == 'POST' || action.method == 'PUT' || action.method == 'PATCH';
+                //Default methods
                 Resource[name] = function(a1, a2, a3, a4){
-                    //Declare Vars
-                    var success,
-                        error,
-                        data,
-                        params = {},
-                        deferred = $q.defer(),
-                        promise = deferred.promise,
+                    var params = {};
+                    var data;
+                    var success = angular.noop;
+                    var error = null;
+                    var promise,
                         value;
-                    //Set Value properties
-                    
-                    //Assign args based on args length                       
-                    switch(arguments.length){
+        
+                    switch(arguments.length) {
                         case 4:
-                            params = a1;
-                            data = a2;
                             error = a4;
                             success = a3;
-                           //fallthrough
+                        //fallthrough
                         case 3:
                         case 2:
-                            if (isFunction(a2)) {
-                                if (isFunction(a1)) {
+                            if (angular.isFunction(a2)) {
+                                if (angular.isFunction(a1)) {
                                     success = a1;
                                     error = a2;
                                     break;
-                                }else{
-                                    success = a2;
-                                    error = a3;
-                                    break;
                                 }
-                                  //fallthrough
-                                } else {
-                                  params = a1;
-                                  data = a2;
-                                  success = a3;
-                                  break;
-                                }
-                          case 1:
-                              if (isFunction(a1)){
-                                  success = a1;
-                              }else{
-                                  if (hasBody){
-                                    data = a1;
-                                  }else{ 
-                                      params = a1;
-                                  }
-                              } 
-                              break;
+            
+                                success = a2;
+                                error = a3;
+                          //fallthrough
+                            } else {
+                                params = a1;
+                                data = a2;
+                                success = a3;
+                                break;
+                            }
+                        case 1:
+                            if (angular.isFunction(a1)) success = a1;
+                            else if (hasBody) data = a1;
+                            else params = a1;
+                            break;
+                        case 0: break;
+                        default:
+                            throw "Expected between 0-4 arguments [params, data, success, error], got " +
+                                arguments.length + " arguments.";
                     }
                     
-                    //Set Value properties
-                    action.isArray ? (value = []) : (value = new Resource(data));
-                    value.$q = promise;
-                    value.$resolved = false;
-                    
-                    
-                    //Prepropulate
-                    if(action.isArray){
-                        forEach(storage.query(), function(obj){
-                            value.push(new Resource(obj));
-                        });
-                    }else{
-                        var q = value.$q, resolved = value.$resolved
-                        copy(storage.get(params), value);
-                        value.$q = q;
-                        value.$resolved = resolved;
-                        
+                    value = action.isArray ? [] : {};
+                    //Runs storage mechanism if exists
+                    if(storage[name]){
+                        //Determines if param or data is used
+                        value = hasBody ? storage[name](data) || value : storage[name](params) || value;
+                        //Determines if array or not when creating resource
+                        value = action.isArray ? angular.forEach(value, function(item, index){value[index] = new Resource(value[index])}) : new Resource(value);
+                        //Copies storage data with key to self
+                        if(hasBody) {angular.extend(value, this);}
                     }
-                    
-                    //Merge default params and params
-                    if(name != "query"){
-                        params = extend(defaultParams, params);
-                    }
-                    
-                    
-                    console.log(params);
-                    console.log(data);
-                    /*
-                     * In this section we whill set the configurations of the 
-                     * ajax call. We do this separately than the call because 
-                     * of different necessary parts between GET, POST, PUT, 
-                     * and DELETE calls
-                     */
-                    var httpConfig = {cache:false};
-                    if(action.method === "POST" || action.method === "PUT"){
-                        if(data.id){
-                            action.method = "PUT";
-                        }
-                        httpConfig.data = JSON.stringify(data);
-                    }
-                    httpConfig.method = action.method;
-                    httpConfig.url = route.url(extend({}, extract_params(data, params)));
-                    httpConfig.success = function(response, status){
-                        $rootScope.$apply(function(){
-                            deferred.resolve(response, status);
-                        });  
-                    };
-                    httpConfig.error = function(status){
-                        $rootScope.$apply(function(){
-                            deferred.reject(status);
-                        });
-                        
-                    };
-                    console.log('Name: '+name+'   Method: '+action.method);
-                    console.log(route.url(extend({}, extract_params(data, params))));
-                    //Ajax Call
-                    //jQuery.ajax(httpConfig.url, httpConfig);
-                    //Set promise
-                    promise.then(function(response, status){
-                        //test(response, this);
-                        var q = value.$q, resolved = value.$resolved;
-                        if(angular.isArray(response)){
-                            //Clear prepopulated values
+                    var oPromise = oResource[name](params, data, function(response){
+                        //save data to storage
+                        action.method == "DELETE" ? storage.remove(params) : storage.save(response);  
+                        //copy data to body
+                        if(action.method == "DELETE" || hasBody){angular.copy(JSON.parse(JSON.stringify(response)), this);}
+                        //pass data to placeholder
+                        if(action.isArray){
+                            //Reset array
                             value.length = 0;
-                            //Loop through the objs to save and load to promise
-                            forEach(response, function(obj, index){
-                                storage.save(obj);
-                                value.push(new Resource(obj));
+                            angular.forEach(response, function(item){
+                                value.push(new Resource(JSON.parse(JSON.stringify(item)))); 
                             });
-                        //Delete object from storage
-                        }else if(action.method==="DELETE"){
-                            storage.remove(this);
-                        //Save Single object
                         }else{
-                            //Save to storage
-                            storage.save(response);
-                            copy(response, value);
-                            value.$q = q;
-                            value.$resolved = resolved;
-                            
+                            angular.copy(new Resource(JSON.parse(JSON.stringify(response))), value);
                         }
-                        //run a success function if exists
-                        (success||noop)(value, status)
-                    }.bind(this), error)
-                    //Return promise to be filled later
+                        //execute callback
+                        success(response);
+                    }.bind(this), function(){dump(name);error()});
+                    //return placeholder
+                    
                     return value;
                     
-                };
+                    
+                }
                 
-                
-                //Set prototype
+                //Prototypical methods
                 Resource.prototype['$'+name] = function(a1, a2, a3){
-                    if (action.method==="PUT"){
-                        var param = {id:'@id'}
-                    }
-                    var params = extract_params(this, param), 
-                        data = hasBody ? this : undefined,
+                    var params = extractParams(this),
                         success = angular.noop,
                         error;
-                    //Assign arguments based on lengths
-                    switch(arguments.length){
+        
+                    switch(arguments.length) {
                         case 3: params = a1; success = a2; error = a3; break;
                         case 2:
                         case 1:
-                            if (isFunction(a1)) {
+                            if (angular.isFunction(a1)) {
                                 success = a1;
                                 error = a2;
                             } else {
                                 params = a1;
-                                success = a2 || noop;
+                                success = a2 || angular.noop;
                             }
-                        case 0: 
-                            break;
-                            
+                        case 0: break;
+                        default:
+                            throw "Expected between 1-3 arguments [params, success, error], got " +
+                              arguments.length + " arguments.";
                     }
-                    //Call the parent function
+                    var data = hasBody ? this : undefined;
                     Resource[name].call(this, params, data, success, error);
                 }
             });
+            
             return Resource;
         }
         return ResourceFactory;
     });
+    
+
+
+
