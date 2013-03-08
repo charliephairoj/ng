@@ -262,6 +262,7 @@ angular.module('ecResource', ['ngResource']).
         
         
         function ResourceFactory(url, paramDefaults, actions){
+         
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
                                    'save':   {method:'POST'},
                                    'update': {method:'PUT'},
