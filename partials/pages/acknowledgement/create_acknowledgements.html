@@ -18,8 +18,8 @@
 	</form>
 	
 	<form name="poForm" class="po_modal" novalidate data-modal ng-model="show_po">
-		<div class="title">Vat</div>
-		<input ng-model="ack.po"  size="40"/>
+		<div class="title">PO Number</div>
+		<input ng-model="ack.po_id"  size="40"/>
 		<div class="bottom_bar">
 			<button ng-click="show_po=false">Submit</button>
 		</div>
@@ -206,6 +206,10 @@
 							<td>Delivery Date:</td>
 							<td>{{ack.delivery_date | date:"MMMM d, yyyy"}}</td>
 						</tr>
+						<tr ui-if="ack.po_id">
+							<td>PO#:</td>
+							<td>{{ack.po_id}}</td>
+						</tr>
 		
 						<tr>
 							<td>Vat:</td>
@@ -261,9 +265,9 @@
 							<td>{{pillow.type | beautify}} Pillow</td>
 							<td>{{pillow.fabric.description}}<img ng-src="{{pillow.fabric.image_url}}" /></td>
 						</tr>
-						<tr ng-repeat="pillow in product.pillows">
-							<td>Remarks:</td>
-							<td><textarea cols="8" rows="20" ng-model="product.comments"></textarea></td>
+						<tr>
+							<td>Comments:</td>
+							<td><textarea cols="40" rows="4" ng-model="product.comments"></textarea></td>
 						</tr>
 					</table>
 					<img ng-src="{{product.url}}" />

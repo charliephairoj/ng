@@ -2240,7 +2240,7 @@ select {
   padding-left: 20px;
 }
 .createAcknowledgementPage .ack .workspace .products .product > img {
-  height: 50px;
+  height: 150px;
   position: absolute;
   right: 0px;
   top: 0px;

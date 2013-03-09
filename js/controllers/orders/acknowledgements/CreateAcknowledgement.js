@@ -107,10 +107,11 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Customer, Upholstery
             ack.delivery_date.year = $scope.ack.delivery_date.getFullYear();
             console.log(ack);
             
-            ack.$save(function(responseData){
-                console.log(responseData);
+            ack.$save(function(response){
+                console.log(response);
                 Notification.display('Acknowledgement created');
-                window.open(responseData.url, true);
+                window.open(response.acknowledgement_url, true);
+                window.open(response.production_url, true);
             });
         }else{
             Notification.display('The Order is Not Complete')

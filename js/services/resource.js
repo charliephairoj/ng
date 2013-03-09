@@ -365,7 +365,7 @@ angular.module('ecResource', ['ngResource']).
                         }
                         //execute callback
                         success(response);
-                    }.bind(this), function(){dump(name);error()});
+                    }.bind(this), function(e){console.log(e);});
                     //return placeholder
                     
                     return value;
