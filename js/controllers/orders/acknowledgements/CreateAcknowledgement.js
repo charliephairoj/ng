@@ -110,8 +110,8 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Customer, Upholstery
             ack.$save(function(response){
                 console.log(response);
                 Notification.display('Acknowledgement created');
-                window.open(response.acknowledgement_url, true);
-                window.open(response.production_url, true);
+                window.open(response.acknowledgement_url);
+                window.open(response.production_url);
             });
         }else{
             Notification.display('The Order is Not Complete')

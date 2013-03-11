@@ -1,6 +1,13 @@
 <div class="createAcknowledgementPage" ng-init="showCustomers=false; show_upholstery=false;showCustom_item=false;" fade-in>
 	
 	
+	<form name="remarksForm" novalidate class="remarks_modal" data-modal ng-model="showRemarks">
+		<div class="title">Remarks</div>
+		<textarea ng-model="ack.remarks" ></textarea>
+		<div class="bottom_bar">
+			<button ng-click="showRemarks=false">Submit</button>
+		</div>
+	</form>
 	<form name="quantityForm" novalidate class="quantity_modal" data-modal ng-model="show_quantity">
 		<div class="title">Quantity</div>
 		<input ng-model="ack.products[ack.products.length-1].quantity" required ng-pattern="/^\d+$/" />
@@ -69,6 +76,7 @@
 					<li><div class="delivery_date" ng-class="{dirty:!ack.delivery_date}" ng-click="show_calendar=true">Set Delivery Date</div></li>
 					<li><div class="vat" ng-class="{dirty:!ack.vat}" ng-click="show_vat=true">Set Vat</div></li>
 					<li><div ng-click="show_po=true">Set Purchase Order</div></li>
+					<li><div ng-click="showRemarks=true">Add Remarks</div></li>
 					<li><div ng-click="reset()" >Reset</div></li>
 				</ul>
 			</nav>

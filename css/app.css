@@ -2103,6 +2103,79 @@ select {
   background-color: #64876D;
   color: black;
 }
+.createAcknowledgementPage .remarks_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  width: 200px;
+  margin-left: -100px;
+  height: 125px;
+  top: 150px;
+  height: 350px;
+  width: 500px;
+  margin-left: -250px;
+  background-color: #313131;
+}
+.createAcknowledgementPage .remarks_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createAcknowledgementPage .remarks_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createAcknowledgementPage .remarks_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createAcknowledgementPage .remarks_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createAcknowledgementPage .remarks_modal .title {
+  text-align: center;
+}
+.createAcknowledgementPage .remarks_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.createAcknowledgementPage .remarks_modal input {
+  width: 50px;
+  left: 75px;
+}
+.createAcknowledgementPage .remarks_modal span {
+  top: 50px;
+  position: absolute;
+  right: 55px;
+  color: #FFFFFF;
+}
+.createAcknowledgementPage .remarks_modal textarea {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  right: 10px;
+  left: 10px;
+}
 .createAcknowledgementPage .ack {
   overflow-y: scroll;
   overflow-x: hidden;
