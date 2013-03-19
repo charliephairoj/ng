@@ -1,0 +1,41 @@
+	<form name="form" class="addGluePage">
+		
+		<!--
+			Sidebar
+		-->
+		<div class="sidebar">
+			<header>
+				<h1><span>Glue</span></h1>
+			</header>
+			<nav>
+				<ul>
+					<li>
+						<button ng-disabled="form.$invalid" ng-click="save()">Save</button>
+					</li>
+					
+				</ul>
+			</nav>
+		</div>
+		
+		<div class="workspace">
+			<table class="data-table">
+				<tr>
+					<td><label>Supplier</label></td>
+					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="glue.supplier"></select></td>
+				</tr>
+				<tr>
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="glue.reference" /></td>
+				</tr>
+				
+				<tr>
+					<td><label>Cost per Container</label></td>
+					<td><input type="text" ng-model="glue.cost" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" required/></td>
+				</tr>
+			</table> 
+		</div>
+		
+		
+		
+	</form>
+	

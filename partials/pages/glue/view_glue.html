@@ -1,0 +1,48 @@
+<div class="viewGluePage viewPage">
+	
+	
+	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Glue</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a href="#/glue/add">Add Glue</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+		
+				<tbody>
+					<tr ng-repeat="glue in glueList | filter:query" class="listItem">
+						<td>
+							<table class="detailsTable">
+								<tr>
+									<td>Supplier:</td>
+									<td>{{glue.supplier.name}}</td>
+								</tr>
+								<tr>
+									<td>Reference Number</td>
+									<td>{{glue.reference}}</td>
+								</tr>
+								
+							</table>
+						</td>
+						<td><a ng-href="#/glue/{{glue.id}}">edit</a></td>
+						
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+</div>
