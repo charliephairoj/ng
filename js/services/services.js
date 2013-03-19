@@ -25,6 +25,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('fabric/:id', {id:'@id'});
     }).factory('Foam', function(ecResource){
         return ecResource('foam/:id', {id:'@id'});
+    }).factory('Glue', function(ecResource){
+        return ecResource('glue/:id', {id:'@id'});
     }).factory('Screw', function(ecResource){
         return ecResource('screw/:id', {id:'@id'});
     }).factory('Staple', function(ecResource){
@@ -113,9 +115,19 @@ angular.module('EmployeeCenter.services', ['ecResource']).
      */
     factory('Notification', function($timeout){
         
+        function center(target){
+            var width = $(window).width();
+            var tWidth = $(target).width();
+            if($(target).css('left')==0){
+                $(target).css('left', width-tWidth);
+            }else{
+                $(target).css('margin-left', -(tWidth/2));
+            }
+        }
+        
         function Notifier(){
-            this.notificationContainer = angular.element('#notificationContainer');
             this.notification = angular.element('#notification');
+            console.log(this.notification);
             this.promise = null;
         }
         
@@ -130,7 +142,8 @@ angular.module('EmployeeCenter.services', ['ecResource']).
             
             //Change message and 
             this.notification.html(message)
-            this.notificationContainer.addClass('active')
+            center(this.notification);
+            this.notification.addClass('active')
             
             //Cancels the fadingout and 
             //removal of message
@@ -148,8 +161,9 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         };
         
         Notifier.prototype.hide = function(){
+            console.log(this);
             //Remove Message and 
-            this.notificationContainer.removeClass('active');
+            this.notification.removeClass('active');
         };
         
         return new Notifier();

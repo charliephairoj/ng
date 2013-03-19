@@ -1,9 +1,24 @@
 	<form name="form" class="addFoamPage addPage">
-		<div class="toolbar">
-			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+		
+		<!--
+			Sidebar
+		-->
+		<div class="sidebar">
+			<header>
+				<h1><span>Fabric</span></h1>
+			</header>
+			<nav>
+				<ul>
+					<li>
+						<button ng-disabled="form.$invalid" ng-click="save()">Save</button>
+					</li>
+					
+				</ul>
+			</nav>
 		</div>
+		
 		<div class="workspace">
-			<table>
+			<table class="data-table">
 				<tr>
 					<td><label>Supplier</label></td>
 					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="foam.supplier"></select></td>
@@ -40,7 +55,7 @@
 				<tr>
 					<td><label>Thickness</label></td>
 					<td>
-						<input type="text"  ng-pattern="/^[1-9](\d+)?$/" ng-model="foam.height" />
+						<input type="text"  ng-pattern="/^(\d+)?(\.)?(\d+)$/" ng-model="foam.height" />
 						<select ng-required ng-model="heightUnits">
 							<option value="in">in</option>
 							<option value="mm">mm</option>

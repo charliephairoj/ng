@@ -8,9 +8,10 @@
 
 
 
-function ViewCustomersCtrl($scope, Customer){
-    
-    $scope.customerList = Customer.query();
+function ViewCustomersCtrl($scope, Customer, Notification){
+    Notification.display('Loading Customers...', false);
+    $scope.customerList = Customer.query(function(){
+        Notification.hide();});
     $scope.customer = {};
     $scope.address = {};
     
@@ -49,6 +50,6 @@ function ViewCustomersCtrl($scope, Customer){
     };
 }
 
-ViewCustomersCtrl.$inject = ['$scope', 'Customer'];
+ViewCustomersCtrl.$inject = ['$scope', 'Customer', 'Notification'];
 
 

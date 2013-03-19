@@ -63,65 +63,12 @@ function LumberDetailsCtrl($scope, Lumber, $routeParams, $location, Poller){
 
 LumberDetailsCtrl.$inject = ['$scope', 'Lumber', '$routeParams', '$lumber', 'Poller']
 
-//controller to add foam
-
-function AddFoamCtrl($scope, Foam, Supplier, $location, Poller){
-    
-    $scope.supplierList = Supplier.query();
-    //Methods
-    
-    //Add Lumber
-    $scope.save = function(){
-        //declare vars
-        var foam = new Foam();
-        //set properties
-        angular.copy($scope.foam, foam)
-        foam.foamType = $scope.foam.type;
-        foam.supplierID = $scope.foam.supplier.id;
-        
-        foam.$save(function(){
-            $location.path('/foam');
-        });
-    };
-    
-    
-    
-}
-
-AddFoamCtrl.$inject = ['$scope', 'Foam', 'Supplier', '$location', 'Poller'];
 
 
-function ViewFoamCtrl($scope, Foam, Poller){
-    
-    Poller.poll($scope, function(){
-        $scope.foamList = Foam.query();
-    });
-    
-    
-}
-ViewFoamCtrl.$inject = ['$scope', 'Foam', 'Poller']
 
-//Foam Details
 
-function FoamDetailsCtrl($scope, Foam, $routeParams, $location, Poller){
-    
-    Poller.poll($scope, function(){
-        $scope.foam = Foam.get({'id':$routeParams.id});
-    });
-    
-    $scope.remove = function(){
-        $scope.foam.$delete(function(){
-            $location.path('/foam');
-        });
-        $scope.foamList = Foam.query();
-    };
-    
-    $scope.update = function(){
-        $scope.foam.$save()
-    };
-}
 
-FoamDetailsCtrl.$inject = ['$scope', 'Foam', '$routeParams', '$location', 'Poller']
+
 
 
 

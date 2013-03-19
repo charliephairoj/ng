@@ -43,7 +43,10 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/foam', {templateUrl:'partials/pages/foam/view_foam.html', controller:ViewFoamCtrl}).
     when('/foam/add_foam', {templateUrl:'partials/pages/foam/add_foam.html', controller:AddFoamCtrl}).
     when('/foam/:id', {templateUrl:'partials/pages/foam/foam_details.html', controller:FoamDetailsCtrl}).
-
+    //foam routes
+    when('/glue', {templateUrl:'partials/pages/glue/view_glue.html', controller:ViewGlueCtrl}).
+    when('/glue/add', {templateUrl:'partials/pages/glue/add_glue.html', controller:AddGlueCtrl}).
+    when('/glue/:id', {templateUrl:'partials/pages/glue/glue_details.html', controller:GlueDetailsCtrl}).
     //leg routes
     when('/legs/add_leg', {templateUrl:'partials/pages/legs/add_leg.html', controller:AddLegCtrl}).
     //screw routes

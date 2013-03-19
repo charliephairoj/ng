@@ -4,7 +4,10 @@
  * Upholstery Area
  */
 function ViewUpholCtrl($scope, Upholstery, Notification){
-    $scope.upholList = Upholstery.query();
+    Notification.display('Loading Upholstery...');
+    $scope.upholList = Upholstery.query(function(){
+        Notification.hide();
+    });
     /*
     Poller.poll($scope, function(){
         $scope.poList = PurchaseOrder.query();

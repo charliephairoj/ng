@@ -1,8 +1,21 @@
 <div class="viewFoamPage viewPage">
 	
-	<div class="toolbar" >
-		<button click-url="/foam/add_foam" ui-if="currentUser.hasPermission('add_foam')">Add</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	
+	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Foam</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a ng-href="#/foam/add_foam">Add Foam</a>
+				</li>
+				
+			</ul>
+		</nav>
 	</div>
 	<div class="workspace">
 		<div class="listContainer">
