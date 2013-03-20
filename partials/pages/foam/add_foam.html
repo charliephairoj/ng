@@ -31,32 +31,34 @@
 					<td><label>Color</label></td>
 					<td>
 						<select required ng-model="foam.color">
-							<option>Blue</option>
-							<option>Yellow</option>
-							<option>Green</option>
-							<option>Pink</option>
+							<option value="Blue">Blue</option>
+							<option value="Yellow">Yellow</option>
+							<option value="Green">Green</option>
+							<option value="Pink">Pink</option>
+							<option value="White">White</option>
+							<option value="Grey">Grey</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td><label>Width</label></td>
 					<td>
-						<input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="foam.width" />
+						<input type="text" ng-pattern="/^[0-9](\d+)?(\.\d+)?$/" ng-model="foam.width" />
 						in
 					</td>
 				</tr>
 				<tr>
 					<td><label>Length</label></td>
 					<td>
-						<input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="foam.depth" />
+						<input type="text" ng-pattern="/^[0-9](\d+)?(\.\d+)?$/" ng-model="foam.depth" />
 						in
 					</td>
 				</tr>
 				<tr>
 					<td><label>Thickness</label></td>
 					<td>
-						<input type="text"  ng-pattern="/^(\d+)?(\.)?(\d+)$/" ng-model="foam.height" />
-						<select ng-required ng-model="heightUnits">
+						<input type="text"  ng-pattern="/^[0-9](\d+)?(\.\d+)?$/" ng-model="foam.height" />
+						<select ng-required ng-model="height_units">
 							<option value="in">in</option>
 							<option value="mm">mm</option>
 							<option value="cm">cm</option>
