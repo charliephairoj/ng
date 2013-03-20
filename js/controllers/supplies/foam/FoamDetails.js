@@ -2,9 +2,9 @@
 
 function FoamDetailsCtrl($scope, Foam, $routeParams, $location, Poller, Notification){
     
-    Poller.poll($scope, function(){
-        $scope.foam = Foam.get({'id':$routeParams.id});
-    });
+    //Poller.poll($scope, function(){
+    $scope.foam = Foam.get({'id':$routeParams.id});
+    //});
     
     $scope.remove = function(){
         $scope.foam.$delete(function(){
