@@ -1,6 +1,6 @@
 //Foam Details
 
-function FoamDetailsCtrl($scope, Foam, $routeParams, $location, Poller){
+function FoamDetailsCtrl($scope, Foam, $routeParams, $location, Poller, Notification){
     
     Poller.poll($scope, function(){
         $scope.foam = Foam.get({'id':$routeParams.id});
@@ -14,8 +14,11 @@ function FoamDetailsCtrl($scope, Foam, $routeParams, $location, Poller){
     };
     
     $scope.update = function(){
-        $scope.foam.$save()
+        Notification.display('Updating Foam...', false);
+        $scope.foam.$save(function(){
+            Notification.display('Foam Updated'); 
+        });
     };
 }
 
-FoamDetailsCtrl.$inject = ['$scope', 'Foam', '$routeParams', '$location', 'Poller'];
+FoamDetailsCtrl.$inject = ['$scope', 'Foam', '$routeParams', '$location', 'Poller', 'Notification'];
