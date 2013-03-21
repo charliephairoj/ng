@@ -7,6 +7,7 @@ function AddUpholsteryCtrl($scope, Model, Configuration, Upholstery, Notificatio
         Notification.display('Saving Upholstery Product...');
         $scope.upholstery.$save(function(){
             Notification.display('Upholstery Product Saved');
+            $location.path('/upholstery');
         }); 
     };
     
