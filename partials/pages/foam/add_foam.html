@@ -1,11 +1,12 @@
-	<form name="form" class="addFoamPage addPage">
+	<form name="form" class="addFoamPage addPage"  image-drop-target="upload()">
 		
 		<!--
 			Sidebar
 		-->
 		<div class="sidebar">
 			<header>
-				<h1><span>Fabric</span></h1>
+				<div class="profilePic" ui-if="imagePreviews"><img ng-src="{{foam.image.url}}" /></div>
+				<h1><span>Add Foam</span></h1>
 			</header>
 			<nav>
 				<ul>

@@ -9,6 +9,21 @@
 angular.module('EmployeeCenter.directives', []).
 
 /*
+ * Fade an image in when it loads
+ */
+directive('fadeLoad', function(){
+    return {
+        restrict:'A',
+        replace:false,
+        link: function(scope, element, attrs){
+            element.css('opacity', 0);
+            element.bind('load', function(){
+                element.fadeTo(1000, 1);
+            });
+        }
+    }
+})
+/*
  * adds the fade in class or fades in via javascript
  */
 directive('fadeIn', function(){

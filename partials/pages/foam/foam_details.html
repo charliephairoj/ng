@@ -1,6 +1,38 @@
-<div class="detailsPage">
-	<div class="toolbar">
-			<button type="button" ng-click="remove()">Delete</button>
+<div class="detailsPage" image-drop-target="upload()">
+	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<div class="profilePic" ui-if="foam.image">
+				<img ng-src="{{foam.image.url}}" />
+			</div>
+			
+			<h1><span>{{foam.reference}}<br />{{foam.height}}x{{foam.width}}x{{foam.length}}</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="showReserve=!showReserve">Reserve Length</div>
+				</li>
+				<li>
+					<div ng-click="showAdd=!showAdd">Add Length</div>
+				</li>
+				<li>
+					<div ng-click="showSubtract=!showSubtract">Subtract Length</div>
+				</li>
+				<li>
+					<div ng-click="showReset=!showReset">Reset Length</div>
+				</li>
+				<li>
+					<div ng-click="viewLog();showLog=!showLog">View Log</div>
+				</li>
+				<li>
+					<div ng-click="remove()">Delete</div>
+				</li>
+					
+			</ul>
+		</nav>
 	</div>
 	<table>
 			

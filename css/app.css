@@ -100,6 +100,15 @@ select {
   top: 0px;
   right: 0px;
 }
+.mainMenu .logout {
+  height: 100%;
+  position: absolute;
+  padding: 17px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #FFFFFF;
+  right: 20px;
+}
 .headings {
   padding-left: 10px;
   font-size: 14px;
@@ -417,11 +426,11 @@ select {
   margin: 0 auto;
   padding: 5px;
   background-color: yellow;
-  -webkit-transition: all 500ms linear;
-  -moz-transition: all 500ms linear;
-  -o-transition: all 500ms linear;
-  -ms-transition: all 500ms linear;
-  transition: all 500ms linear;
+  -webkit-transition: opacity 500ms linear;
+  -moz-transition: opacity 500ms linear;
+  -o-transition: opacity 500ms linear;
+  -ms-transition: opacity 500ms linear;
+  transition: opacity 500ms linear;
 }
 #notification.active {
   opacity: 1;
@@ -2415,6 +2424,802 @@ select {
 .createAcknowledgementPage.fadeIn {
   opacity: 1;
 }
+.createShippingPage {
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -ms-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  left: 200px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  font-family: Helvetica, Tahoma, sans-serif;
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+  /*Sidebar*/
+
+  /*Modals*/
+
+}
+.createShippingPage .workspace {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  bottom: 0px;
+}
+.createShippingPage .workspace .inputTable {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.createShippingPage .workspace .inputTable tr td {
+  padding: 5px;
+  vertical-align: middle;
+  color: grey;
+}
+.createShippingPage .workspace .inputTable tr td input {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #CCCCCC;
+  -webkit-transition: border 250ms linear;
+  -moz-transition: border 250ms linear;
+  -o-transition: border 250ms linear;
+  -ms-transition: border 250ms linear;
+  transition: border 250ms linear;
+}
+.createShippingPage .workspace .inputTable tr td input:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createShippingPage .workspace .inputTable tr td select {
+  border: 1px solid #CCCCCC;
+}
+.createShippingPage .workspace .inputTable tr td select:focus {
+  outline: none;
+  border: 1px solid grey;
+}
+.createShippingPage.fadeIn {
+  left: 200px;
+}
+.createShippingPage .sidebar ul li .customer {
+  background-color: #BBFF9E;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .customer.dirty {
+  background-color: #EFE28D;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .customer.dirty:hover {
+  background-color: #E5CC50;
+}
+.createShippingPage .sidebar ul li .customer:hover {
+  background-color: #A7FF82;
+}
+.createShippingPage .sidebar ul li .delivery_date {
+  background-color: #BBFF9E;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .delivery_date.dirty {
+  background-color: #EFE28D;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .delivery_date.dirty:hover {
+  background-color: #E5CC50;
+}
+.createShippingPage .sidebar ul li .delivery_date:hover {
+  background-color: #A7FF82;
+}
+.createShippingPage .sidebar ul li .upholstery {
+  background-color: #BBFF9E;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .upholstery.dirty {
+  background-color: #EFE28D;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .upholstery.dirty:hover {
+  background-color: #E5CC50;
+}
+.createShippingPage .sidebar ul li .upholstery:hover {
+  background-color: #A7FF82;
+}
+.createShippingPage .sidebar ul li .vat {
+  background-color: #BBFF9E;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .vat.dirty {
+  background-color: #EFE28D;
+  color: grey;
+}
+.createShippingPage .sidebar ul li .vat.dirty:hover {
+  background-color: #E5CC50;
+}
+.createShippingPage .sidebar ul li .vat:hover {
+  background-color: #A7FF82;
+}
+.createShippingPage .ack_modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createShippingPage .ack_modal .container .list .item {
+  cursor: pointer;
+  padding: 10px;
+}
+.createShippingPage .fabric_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  height: 400px;
+  width: 600px;
+  margin-left: -300px;
+}
+.createShippingPage .fabric_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .fabric_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .fabric_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .fabric_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .fabric_modal .product_container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 350px;
+  bottom: 36px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createShippingPage .fabric_modal .product_container .product {
+  min-height: 50px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createShippingPage .fabric_modal .product_container .product .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 30px;
+}
+.createShippingPage .fabric_modal .product_container .product .fabric img {
+  height: 100%;
+}
+.createShippingPage .fabric_modal .product_container .product.drag {
+  background-color: #C2F7A3;
+}
+.createShippingPage .fabric_modal .product_container .pillow {
+  min-height: 50px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createShippingPage .fabric_modal .product_container .pillow .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 30px;
+}
+.createShippingPage .fabric_modal .product_container .pillow .fabric img {
+  height: 100%;
+}
+.createShippingPage .fabric_modal .product_container .pillow.drag {
+  background-color: #C2F7A3;
+}
+.createShippingPage .fabric_modal .fabric_container {
+  position: absolute;
+  top: 0px;
+  bottom: 36px;
+  right: 0px;
+  width: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createShippingPage .fabric_modal .fabric_container .list .item {
+  cursor: move;
+  position: relative;
+  height: 50px;
+}
+.createShippingPage .fabric_modal .fabric_container .list .item .details {
+  position: absolute;
+  left: 60px;
+  height: 100%;
+  top: 0px;
+}
+.createShippingPage .fabric_modal .fabric_container .list .item img {
+  height: 100%;
+  width: 50px;
+}
+.createShippingPage .upholstery_modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createShippingPage .upholstery_modal .container .list .item {
+  cursor: pointer;
+  position: relative;
+  height: 100px;
+}
+.createShippingPage .upholstery_modal .container .list .item img {
+  position: absolute;
+  height: 100%;
+  right: 0px;
+}
+.createShippingPage .calendar_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+}
+.createShippingPage .calendar_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .calendar_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .calendar_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .calendar_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .quantity_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  width: 200px;
+  margin-left: -100px;
+  height: 125px;
+  top: 150px;
+  background-color: #313131;
+}
+.createShippingPage .quantity_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .quantity_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .quantity_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .quantity_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .quantity_modal .title {
+  text-align: center;
+}
+.createShippingPage .quantity_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.createShippingPage .vat_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  width: 200px;
+  margin-left: -100px;
+  height: 125px;
+  top: 150px;
+  background-color: #313131;
+}
+.createShippingPage .vat_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .vat_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .vat_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .vat_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .vat_modal .title {
+  text-align: center;
+}
+.createShippingPage .vat_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.createShippingPage .vat_modal input {
+  width: 50px;
+  left: 75px;
+}
+.createShippingPage .vat_modal span {
+  top: 50px;
+  position: absolute;
+  right: 55px;
+  color: #FFFFFF;
+}
+.createShippingPage .po_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  width: 200px;
+  margin-left: -100px;
+  height: 125px;
+  top: 150px;
+  background-color: #313131;
+}
+.createShippingPage .po_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .po_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .po_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .po_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .po_modal .title {
+  text-align: center;
+}
+.createShippingPage .po_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.createShippingPage .po_modal input {
+  width: 50px;
+  left: 75px;
+}
+.createShippingPage .po_modal span {
+  top: 50px;
+  position: absolute;
+  right: 55px;
+  color: #FFFFFF;
+}
+.createShippingPage .po_modal input {
+  width: 150px;
+  left: 25px;
+}
+.createShippingPage .custom_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  height: 300px;
+  width: 400px;
+  margin-left: -200px;
+  background-color: #313131;
+  color: #FFFFFF;
+}
+.createShippingPage .custom_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .custom_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .custom_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .custom_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .custom_modal .title {
+  text-align: center;
+}
+.createShippingPage .custom_modal .details {
+  width: 100%;
+  text-align: center;
+}
+.createShippingPage .custom_modal .details table {
+  margin-top: 50px;
+  margin-left: 45px;
+}
+.createShippingPage .custom_modal .details table tr td {
+  vertical-align: middle;
+  font-size: 12px;
+  color: #6B6B6B;
+}
+.createShippingPage .custom_modal .details table tr td:first-child {
+  text-align: left;
+  padding-right: 5px;
+}
+.createShippingPage .custom_modal .details table tr td:last-child {
+  padding-left: 5px;
+  text-align: left;
+}
+.createShippingPage .custom_modal .target {
+  color: grey;
+  font-size: 12px;
+  right: 25px;
+  left: 25px;
+  position: absolute;
+  bottom: 40px;
+  padding: 50px 0px;
+  border: 3px dashed grey;
+  border-radius: 5px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+  text-align: center;
+}
+.createShippingPage .custom_modal.active .target {
+  border: 3px dashed #85C181;
+  background-color: #64876D;
+  color: black;
+}
+.createShippingPage .remarks_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+  width: 200px;
+  margin-left: -100px;
+  height: 125px;
+  top: 150px;
+  height: 350px;
+  width: 500px;
+  margin-left: -250px;
+  background-color: #313131;
+}
+.createShippingPage .remarks_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.createShippingPage .remarks_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .remarks_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.createShippingPage .remarks_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.createShippingPage .remarks_modal .title {
+  text-align: center;
+}
+.createShippingPage .remarks_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.createShippingPage .remarks_modal input {
+  width: 50px;
+  left: 75px;
+}
+.createShippingPage .remarks_modal span {
+  top: 50px;
+  position: absolute;
+  right: 55px;
+  color: #FFFFFF;
+}
+.createShippingPage .remarks_modal textarea {
+  font-size: 1em;
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  right: 10px;
+  left: 10px;
+}
+.createShippingPage .ack {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #313131;
+}
+.createShippingPage .ack .workspace {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  padding-bottom: 50px;
+  z-index: 1;
+  bottom: auto;
+}
+.createShippingPage .ack .workspace .customer {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 40px;
+  color: #FFF;
+}
+.createShippingPage .ack .workspace .customer .title {
+  font-size: 18px;
+}
+.createShippingPage .ack .workspace .customer .details {
+  margin-top: 20px;
+}
+.createShippingPage .ack .workspace .customer .details tr td {
+  font-size: 12px;
+  line-height: 18px;
+}
+.createShippingPage .ack .workspace .customer .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createShippingPage .ack .workspace .customer .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
+}
+.createShippingPage .ack .workspace .order {
+  color: #FFF;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 20px;
+  color: #FFFFFF;
+}
+.createShippingPage .ack .workspace .order .title {
+  font-size: 18px;
+}
+.createShippingPage .ack .workspace .order .details {
+  margin-top: 20px;
+}
+.createShippingPage .ack .workspace .order .details tr td {
+  font-size: 12px;
+  line-height: 18px;
+}
+.createShippingPage .ack .workspace .order .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createShippingPage .ack .workspace .order .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
+}
+.createShippingPage .ack .workspace .products {
+  position: relative;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  color: #FFFFFF;
+}
+.createShippingPage .ack .workspace .products .title {
+  font-size: 24px;
+}
+.createShippingPage .ack .workspace .products .product {
+  color: #828282;
+  font-size: 14px;
+  position: relative;
+  width: 80%;
+  margin-right: 20px;
+  margin-top: 30px;
+  border: 1px solid #282828;
+  float: left;
+  border-radius: 2px;
+  padding: 10px;
+  min-height: 100px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.createShippingPage .ack .workspace .products .product .details {
+  margin-top: 5px;
+}
+.createShippingPage .ack .workspace .products .product .details tr td {
+  padding: 2px 0px 2px;
+  vertical-align: middle;
+  color: #828282;
+  font-size: 12px;
+  line-height: 18px;
+}
+.createShippingPage .ack .workspace .products .product .details tr td input {
+  outline: none;
+  color: #828282;
+  font-size: 12px
+                                    padding:0px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  width: 60px;
+  padding: 0px;
+  margin-right: 5px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createShippingPage .ack .workspace .products .product .details tr td input.active {
+  background-color: #474747;
+}
+.createShippingPage .ack .workspace .products .product .details tr td input.active:focus {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.createShippingPage .ack .workspace .products .product .details tr td img {
+  margin-left: 5px;
+  height: 30px;
+  width: auto;
+}
+.createShippingPage .ack .workspace .products .product .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createShippingPage .ack .workspace .products .product .details tr td:last-child {
+  padding-left: 20px;
+}
+.createShippingPage .ack .workspace .products .product > img {
+  height: 150px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-radius: 0px 2px 0px 0px;
+}
+.createShippingPage .ack .workspace .products .product .remove_btn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 0px 0px 2px 0px;
+  font-size: 10px;
+  padding: 5px;
+  border: 1px solid #282828;
+  color: #828282;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createShippingPage .ack .workspace .products .product .remove_btn:hover {
+  color: #FFFFFF;
+}
+.createShippingPage.fadeIn {
+  opacity: 1;
+}
 /*
  * Settings
  */
@@ -3060,6 +3865,21 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewPage .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewPage .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewPage .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
+}
 .viewPage .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;
 }
@@ -3143,6 +3963,21 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;
@@ -3228,6 +4063,21 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewGluePage .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewGluePage .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewGluePage .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
+}
 .viewGluePage .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;
 }
@@ -3312,6 +4162,21 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;
@@ -3414,6 +4279,21 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.view_customer_page .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view_customer_page .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view_customer_page .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
 }
 .view_customer_page .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;
@@ -3560,6 +4440,21 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img div img {
+  height: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem:hover {
   background-color: #D3D3D3;

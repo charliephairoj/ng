@@ -110,6 +110,7 @@
 
 @import "orders/po/create_po.less";
 @import "orders/acknowledgement/create_acknowledgement.less";
+@import "orders/shipping/create_shipping.less";
 
 /*
  * Settings
@@ -231,19 +232,34 @@
           
           &>td{
             
-            vertical-align:middle;
-            padding:10px;
-            
-            label{
-              font-size:10pt;
-              color:#C1C1C1;
-              .transition(all, 250ms, linear);
-            }
-            
+              vertical-align:middle;
+              padding:10px;
+              
+              label{
+                font-size:10pt;
+                color:#C1C1C1;
+                .transition(all, 250ms, linear);
+              }
+              
+              &.profile-img{
+                  width:200px;
+                  position:relative;
+                  div{
+                      position:absolute;
+                      overflow:hidden;
+                      top:0;
+                      bottom:0;
+                      left:0;
+                      right:0;
+                      img{
+                          height:100%;
+                      }
+                  }
+              }
             
               
               
-           }
+          }
           
           //States
           //States

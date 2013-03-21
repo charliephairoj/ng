@@ -34,10 +34,10 @@
 			<table class="list">
 				
 				<tbody>
-					<tr ng-repeat="fabric in fabricList | filter:query" class="listItem" clickUrl="#/fabric/{{fabric.id}}">
-						<td style="width:130px; position:relative">
-							<div style="margin:0; overflow:hidden; position:absolute; top:0px;right:0px;left:0px;bottom:0px;">
-								<img style="height:100%" ng-src="{{fabric.image_url}}" />
+					<tr ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="listItem" clickUrl="#/fabric/{{fabric.id}}">
+						<td class="profile-img">
+							<div>
+								<img ng-src="{{fabric.image_url}}" />
 							</div>
 							
 						</td>

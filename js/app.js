@@ -17,9 +17,9 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/administrator', {templateUrl:'partials/pages/administrator.html'}).
     when('/products', {templateUrl: 'partials/pages/products.html'}).
     //Model routes
-    when('/models', {templateUrl: 'partials/pages/view_models.html', controller: ViewModelsCtrl}).
-    when('/models/:modelID/:index', {templateUrl:'partials/pages/model_details.html', controller: ViewModelsCtrl}).
-    when('/models/add_model', {templateUrl:'partials/pages/add_model.html', controller: AddModelCtrl}).
+    when('/models', {templateUrl: 'partials/pages/products/model/view_models.html', controller: ViewModelsCtrl}).
+    when('/models/add', {templateUrl:'partials/pages/products/model/add_model.html', controller: AddModelCtrl}).
+    when('/models/:id', {templateUrl:'partials/pages/products/model/model_details.html', controller: ModelDetailsCtrl}).
     //configuration routes
     when('/configurations', {templateUrl: 'partials/pages/view_configurations.html', controller: ViewConfigsCtrl}).
     when('/configurations/add_configuration', {templateUrl:'partials/pages/add_configuration.html', controller:AddConfigCtrl}).     
@@ -89,6 +89,9 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     //Acknowledgements
     when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view_acknowledgements.html', controller:ViewAcknowledgementCtrl}).
     when('/acknowledgement/create', {templateUrl:'partials/pages/acknowledgement/create_acknowledgements.html', controller:CreateAcknowledgementCtrl}).
+    //Shipping
+    when('/shipping', {templateUrl:'partials/pages/shipping/view_shipping.html', controller:ViewShippingCtrl}).
+    when('/shipping/create', {templateUrl:'partials/pages/shipping/create_shipping.html', controller:CreateShippingCtrl}).
     /*
      * this area deals with all the urls for the admin section of thes site
      */

@@ -1,0 +1,69 @@
+<div class="viewPage">
+	
+	<!--
+		Sidebar
+	-->
+	
+	<div class="sidebar">
+		<header>
+			<h1>
+				<span>Shipping</span>
+			</h1>
+		</header>
+		<nav>
+			<ul class="list">
+				<li ui-if="currentUser.hasPermission('add_purchaseorder')"><a ng-href="#/shipping/create">Create</a></li>
+			</ul>
+		</nav>
+		
+	</div>
+	
+	<!--
+		Search Bar
+	-->
+	
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				
+				<tbody>
+					<tr ng-repeat="ack in ackList | filter:query" class="listItem">
+						<td>
+							<label>Ack# {{ack.id}}</label>
+							<table class="detailsTable">
+								<tr>
+									<td>Customer:</td>
+									<td>{{ack.customer}}</td>
+								</tr>
+								<tr>
+									<td>Order Date:</td>
+									<td>{{ack.time_created}}</td>
+								</tr>
+								<tr>
+									<td>Delivery Date:</td>
+									<td>{{ack.delivery_date}}</td>
+								</tr>
+								<tr>
+									<td>Ordered By:</td>
+									<td>{{ack.employee}}</td>
+								</tr>
+							</table>
+						</td>
+						<td><a ng-href="#/acknowledgement/{{ack.id}}"></a></td>
+						
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+</div>
