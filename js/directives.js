@@ -22,7 +22,7 @@ directive('fadeLoad', function(){
             });
         }
     }
-})
+}).
 /*
  * adds the fade in class or fades in via javascript
  */
