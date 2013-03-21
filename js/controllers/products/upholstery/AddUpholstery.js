@@ -1,4 +1,4 @@
-function AddUpholsteryCtrl($scope, Model, Configuration, Upholstery, Notification){
+function AddUpholsteryCtrl($scope, Model, Configuration, Upholstery, Notification, $location){
     $scope.modelList = Model.query();
     $scope.configurationList = Configuration.query();
     $scope.upholstery = new Upholstery();
@@ -13,4 +13,4 @@ function AddUpholsteryCtrl($scope, Model, Configuration, Upholstery, Notificatio
     
 }
 
-AddUpholsteryCtrl.$inject = ['$scope', 'Model', 'Configuration', 'Upholstery', 'Notification'];
+AddUpholsteryCtrl.$inject = ['$scope', 'Model', 'Configuration', 'Upholstery', 'Notification', '$location'];
