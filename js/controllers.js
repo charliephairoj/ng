@@ -54,67 +54,7 @@ AddConfigCtrl.$inject = ['$scope', 'Configuration'];
 
 
 
-function AddUpholCtrl($scope){
-    $scope.modelConfigs = [];
-    $scope.listConfigs = function(val){
-        
-        console.log($scope.uphol.model.configurations);
-        console.log($scope.modelConfigs);
-        $scope.modelConfigs = $scope.uphol.model.configurations;
-    };
-    
-    //Adds a new models
-    $scope.addNewModel = function(model){
-        //Create Vars
-        var fd = new FormData(), newModel = {};//new Model();
-        //close the modal
-        $scope.showAddItemModal = false;
-        
-        //loop through files and add to fd
-        jQuery.each($scope.filesToUpload, function(index, file){
-            fd.append(index, file);
-        });
-        
-        //Get Model data
-        //Create New Model 
-        newModel.name = $scope.model.name;
-        newModel.model = $scope.model.number;
-        newModel.collection = $scope.model.collection;
-        
-        //Add Model information
-        fd.append("modelData", JSON.stringify({'name':newModel.name, 'model':newModel.model, 'collection':newModel.collection}));
-        
-        //Make ajax call
-        jQuery.ajax('/model', {
-            type:'POST',
-            processData:false,
-            contentType:false,
-            data:fd,
-            success: function(responseData, status){
-                if(status==='success'){
-                    //Assign id and image urls
-                    newModel.modelID = responseData.model.modelID;
-                    newModel.images = responseData.model.images;
-                    //Add model to collection
-                    $scope.models.push(newModel);
-                    //Empty input fields
-                    $scope.model={};
-                    //Call directive function to clear upload files
-                    $scope.clearFiles();
-                }else{
-                    
-                }
-                
-            }
-        });
-      
-    };
-    
-    
-    
-}
 
-AddUpholCtrl.$inject = ['$scope'];
 
 
 

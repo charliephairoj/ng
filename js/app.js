@@ -25,7 +25,7 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/configurations/add_configuration', {templateUrl:'partials/pages/add_configuration.html', controller:AddConfigCtrl}).     
     //upholstery routes
     when('/upholstery', {templateUrl: 'partials/pages/products/upholstery/view_upholsteries.html', controller: ViewUpholCtrl}).
-    when('/upholstery/add_upholstery', {templateUrl:'partials/pages/add_upholstery.html', controller:AddUpholCtrl}).
+    when('/upholstery/add', {templateUrl:'partials/pages/products/upholstery/add_upholstery.html', controller:AddUpholsteryCtrl}).
     when('/upholstery/:id', {templateUrl:'partials/pages/products/upholstery/upholstery_details.html', controller:UpholDetailsCtrl}).
     //customer routes
     when('/customers/add', {templateUrl:'partials/pages/customer/add_customer.html', controller:AddCustomerCtrl}).
