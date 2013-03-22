@@ -53,10 +53,9 @@ angular.module('EmployeeCenter.services', ['ecResource']).
         return ecResource('library/:id', {id:'@id'});
     }).factory('Acknowledgement', function(ecResource){
         return ecResource('acknowledgement/:id', {id:'@id'});
-    })./*factory('Shipping', function(ecResource){
+    }).factory('Shipping', function(ecResource){
         return ecResource('shipping/:id', {id:'@id'});
-    }).*/
-    
+    }).
     
     /*
      * Poller

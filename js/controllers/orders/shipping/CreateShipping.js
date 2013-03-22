@@ -8,7 +8,7 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
     $scope.addAcknowledgement = function(index){
         //Set Customer
         ack = $filter('orderBy')($filter('filter')($scope.ackList, $scope.queryAck), 'name')[index];
-        $scope.shipping.ack = {id:ack.id};
+        $scope.shipping.acknowledgement = {id:ack.id};
         $scope.shipping.customer = ack.customer;
         $scope.shipping.products = ack.products;
         $scope.shipping.deliveryDate = new Date(ack.delivery_date);
@@ -37,8 +37,7 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
             $scope.shipping.$save(function(response){
                 console.log(response);
                 Notification.display('Acknowledgement created');
-                window.open(response.acknowledgement_url);
-                window.open(response.production_url);
+                window.open(response.url);
             });
         }else{
             Notification.display('The Order is Not Complete')
@@ -56,7 +55,7 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
          * The following are test to see if
          * The property has already been added
          */
-        if(!$scope.shipping.ack){
+        if(!$scope.shipping.acknowledgement){
             return false;
         }
         
@@ -69,6 +68,6 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
     
 }
 
-CreateAcknowledgementCtrl.$inject = ['$scope', 'Acknowledgement', '$filter', 'Notification', 'Shipping'];
+CreateShippingCtrl.$inject = ['$scope', 'Acknowledgement', '$filter', 'Notification', 'Shipping'];
 
 
