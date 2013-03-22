@@ -15,7 +15,6 @@ function CreateAcknowledgementCtrl($scope, Acknowledgement, Customer, Upholstery
     //Vars
     $scope.show_fabric = false;
     $scope.uploading = false;
-   
     $scope.customerList = Customer.query();
     $scope.upholsteryList = Upholstery.query();
     $scope.fabricList = Fabric.query();

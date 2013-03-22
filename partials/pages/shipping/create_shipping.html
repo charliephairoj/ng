@@ -69,10 +69,10 @@
 		
 		
 		<div class="calendar_modal" data-modal  ng-model="show_calendar">
-			<div ui-date ng-model="shipping.delivery_date">
+			<div ui-date ng-model="shipping.deliveryDate">
 			</div>
 			<div class="bottom_bar">
-				<button ng-disabled="!shipping.delivery_date" ng-click="show_calendar=!show_calendar">Select</button>
+				<button ng-disabled="!shipping.deliveryDate" ng-click="show_calendar=!show_calendar">Select</button>
 			</div>
 			
 		</div>
@@ -81,7 +81,16 @@
 			Workspace
 		-->
 		<div class="workspace">
-				
+				<div class="acknowledgement">
+					<span class="title">Acknowledgement</span>
+					<table class="details">
+						<tr>
+							<td>ID:</td>
+							<td>{{shipping.ack.id}}</td>
+						</tr>
+							
+					</table>
+				</div>
 				<div class="customer">
 					<span class="title">Customer</span>
 					<table class="details">
@@ -113,14 +122,14 @@
 					<table class="details">
 						<tr>
 							<td>Delivery Date:</td>
-							<td>{{shipping.delivery_date | date:"MMMM d, yyyy"}}</td>
+							<td>{{shipping.deliveryDate | date:"MMMM d, yyyy"}}</td>
 						</tr>
 					</table>
 				</div>
 				
 			
 			<div class="products" ng-show="shipping.products">
-				<div class="title">Products</div>
+				<div class="title">Products to Ship</div>
 				<div class="product" ng-repeat="product in shipping.products">
 					{{product.description}}
 					<table class="details">

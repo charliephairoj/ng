@@ -2552,129 +2552,6 @@ select {
   cursor: pointer;
   padding: 10px;
 }
-.createShippingPage .fabric_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  height: 400px;
-  width: 600px;
-  margin-left: -300px;
-}
-.createShippingPage .fabric_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .fabric_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .fabric_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .fabric_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .fabric_modal .product_container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 350px;
-  bottom: 36px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.createShippingPage .fabric_modal .product_container .product {
-  min-height: 50px;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.createShippingPage .fabric_modal .product_container .product .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 30px;
-}
-.createShippingPage .fabric_modal .product_container .product .fabric img {
-  height: 100%;
-}
-.createShippingPage .fabric_modal .product_container .product.drag {
-  background-color: #C2F7A3;
-}
-.createShippingPage .fabric_modal .product_container .pillow {
-  min-height: 50px;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.createShippingPage .fabric_modal .product_container .pillow .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 30px;
-}
-.createShippingPage .fabric_modal .product_container .pillow .fabric img {
-  height: 100%;
-}
-.createShippingPage .fabric_modal .product_container .pillow.drag {
-  background-color: #C2F7A3;
-}
-.createShippingPage .fabric_modal .fabric_container {
-  position: absolute;
-  top: 0px;
-  bottom: 36px;
-  right: 0px;
-  width: 250px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.createShippingPage .fabric_modal .fabric_container .list .item {
-  cursor: move;
-  position: relative;
-  height: 50px;
-}
-.createShippingPage .fabric_modal .fabric_container .list .item .details {
-  position: absolute;
-  left: 60px;
-  height: 100%;
-  top: 0px;
-}
-.createShippingPage .fabric_modal .fabric_container .list .item img {
-  height: 100%;
-  width: 50px;
-}
-.createShippingPage .upholstery_modal .container {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.createShippingPage .upholstery_modal .container .list .item {
-  cursor: pointer;
-  position: relative;
-  height: 100px;
-}
-.createShippingPage .upholstery_modal .container .list .item img {
-  position: absolute;
-  height: 100%;
-  right: 0px;
-}
 .createShippingPage .calendar_modal {
   width: 303px;
   height: 282px;
@@ -2710,340 +2587,11 @@ select {
   background-color: #444444;
   color: #000000;
 }
-.createShippingPage .quantity_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  width: 200px;
-  margin-left: -100px;
-  height: 125px;
-  top: 150px;
-  background-color: #313131;
-}
-.createShippingPage .quantity_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .quantity_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .quantity_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .quantity_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .quantity_modal .title {
-  text-align: center;
-}
-.createShippingPage .quantity_modal input {
-  width: 100px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  border: none;
-  outline: none;
-  padding: 0px;
-  text-align: center;
-}
-.createShippingPage .vat_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  width: 200px;
-  margin-left: -100px;
-  height: 125px;
-  top: 150px;
-  background-color: #313131;
-}
-.createShippingPage .vat_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .vat_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .vat_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .vat_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .vat_modal .title {
-  text-align: center;
-}
-.createShippingPage .vat_modal input {
-  width: 100px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  border: none;
-  outline: none;
-  padding: 0px;
-  text-align: center;
-}
-.createShippingPage .vat_modal input {
-  width: 50px;
-  left: 75px;
-}
-.createShippingPage .vat_modal span {
-  top: 50px;
-  position: absolute;
-  right: 55px;
-  color: #FFFFFF;
-}
-.createShippingPage .po_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  width: 200px;
-  margin-left: -100px;
-  height: 125px;
-  top: 150px;
-  background-color: #313131;
-}
-.createShippingPage .po_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .po_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .po_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .po_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .po_modal .title {
-  text-align: center;
-}
-.createShippingPage .po_modal input {
-  width: 100px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  border: none;
-  outline: none;
-  padding: 0px;
-  text-align: center;
-}
-.createShippingPage .po_modal input {
-  width: 50px;
-  left: 75px;
-}
-.createShippingPage .po_modal span {
-  top: 50px;
-  position: absolute;
-  right: 55px;
-  color: #FFFFFF;
-}
-.createShippingPage .po_modal input {
-  width: 150px;
-  left: 25px;
-}
-.createShippingPage .custom_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  height: 300px;
-  width: 400px;
-  margin-left: -200px;
-  background-color: #313131;
-  color: #FFFFFF;
-}
-.createShippingPage .custom_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .custom_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .custom_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .custom_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .custom_modal .title {
-  text-align: center;
-}
-.createShippingPage .custom_modal .details {
-  width: 100%;
-  text-align: center;
-}
-.createShippingPage .custom_modal .details table {
-  margin-top: 50px;
-  margin-left: 45px;
-}
-.createShippingPage .custom_modal .details table tr td {
-  vertical-align: middle;
-  font-size: 12px;
-  color: #6B6B6B;
-}
-.createShippingPage .custom_modal .details table tr td:first-child {
-  text-align: left;
-  padding-right: 5px;
-}
-.createShippingPage .custom_modal .details table tr td:last-child {
-  padding-left: 5px;
-  text-align: left;
-}
-.createShippingPage .custom_modal .target {
-  color: grey;
-  font-size: 12px;
-  right: 25px;
-  left: 25px;
-  position: absolute;
-  bottom: 40px;
-  padding: 50px 0px;
-  border: 3px dashed grey;
-  border-radius: 5px;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-  text-align: center;
-}
-.createShippingPage .custom_modal.active .target {
-  border: 3px dashed #85C181;
-  background-color: #64876D;
-  color: black;
-}
 .createShippingPage .remarks_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-  width: 200px;
-  margin-left: -100px;
-  height: 125px;
-  top: 150px;
   height: 350px;
   width: 500px;
   margin-left: -250px;
   background-color: #313131;
-}
-.createShippingPage .remarks_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createShippingPage .remarks_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createShippingPage .remarks_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createShippingPage .remarks_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createShippingPage .remarks_modal .title {
-  text-align: center;
-}
-.createShippingPage .remarks_modal input {
-  width: 100px;
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  border: none;
-  outline: none;
-  padding: 0px;
-  text-align: center;
-}
-.createShippingPage .remarks_modal input {
-  width: 50px;
-  left: 75px;
-}
-.createShippingPage .remarks_modal span {
-  top: 50px;
-  position: absolute;
-  right: 55px;
-  color: #FFFFFF;
 }
 .createShippingPage .remarks_modal textarea {
   font-size: 1em;
@@ -3070,6 +2618,29 @@ select {
   padding-bottom: 50px;
   z-index: 1;
   bottom: auto;
+}
+.createShippingPage .ack .workspace .acknowledgement {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #FFF;
+}
+.createShippingPage .ack .workspace .acknowledgement .title {
+  font-size: 18px;
+}
+.createShippingPage .ack .workspace .acknowledgement .details {
+  margin-top: 20px;
+}
+.createShippingPage .ack .workspace .acknowledgement .details tr td {
+  font-size: 12px;
+  line-height: 18px;
+}
+.createShippingPage .ack .workspace .acknowledgement .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createShippingPage .ack .workspace .acknowledgement .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
 }
 .createShippingPage .ack .workspace .customer {
   position: relative;
@@ -3128,7 +2699,7 @@ select {
   color: #FFFFFF;
 }
 .createShippingPage .ack .workspace .products .title {
-  font-size: 24px;
+  font-size: 18px;
 }
 .createShippingPage .ack .workspace .products .product {
   color: #828282;

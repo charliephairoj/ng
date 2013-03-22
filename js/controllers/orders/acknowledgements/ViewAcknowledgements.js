@@ -8,7 +8,7 @@
  */
 
 function ViewAcknowledgementCtrl($scope, Acknowledgement){
-    $scope.ackList = Acknowledgement.query(console.log($scope.ackList));
+    $scope.ackList = Acknowledgement.query();
 }
 
 ViewAcknowledgementCtrl.$inject = ['$scope', 'Acknowledgement'];

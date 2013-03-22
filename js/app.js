@@ -90,8 +90,10 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view_acknowledgements.html', controller:ViewAcknowledgementCtrl}).
     when('/acknowledgement/create', {templateUrl:'partials/pages/acknowledgement/create_acknowledgements.html', controller:CreateAcknowledgementCtrl}).
     //Shipping
+    /*
     when('/shipping', {templateUrl:'partials/pages/shipping/view_shipping.html', controller:ViewShippingCtrl}).
     when('/shipping/create', {templateUrl:'partials/pages/shipping/create_shipping.html', controller:CreateShippingCtrl}).
+    *.
     /*
      * this area deals with all the urls for the admin section of thes site
      */
