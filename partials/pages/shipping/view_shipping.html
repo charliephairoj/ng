@@ -35,25 +35,22 @@
 			<table class="list">
 				
 				<tbody>
-					<tr ng-repeat="ack in ackList | filter:query" class="listItem">
+					<tr ng-repeat="shipping in shippingList | filter:query" class="listItem">
 						<td>
-							<label>Ack# {{ack.id}}</label>
+							<label>Shipping# {{shipping.id}}</label>
 							<table class="detailsTable">
 								<tr>
 									<td>Customer:</td>
-									<td>{{ack.customer}}</td>
+									<td>{{shipping.customer.name}}</td>
 								</tr>
-								<tr>
-									<td>Order Date:</td>
-									<td>{{ack.time_created}}</td>
-								</tr>
+								
 								<tr>
 									<td>Delivery Date:</td>
-									<td>{{ack.delivery_date}}</td>
+									<td>{{shipping.delivery_date}}</td>
 								</tr>
 								<tr>
 									<td>Ordered By:</td>
-									<td>{{ack.employee}}</td>
+									<td>{{shipping.employee}}</td>
 								</tr>
 							</table>
 						</td>
