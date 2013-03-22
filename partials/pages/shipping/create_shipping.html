@@ -3,7 +3,7 @@
 	
 	<form name="remarksForm" novalidate class="remarks_modal" data-modal ng-model="showRemarks">
 		<div class="title">Remarks</div>
-		<textarea ng-model="ack.remarks" ></textarea>
+		<textarea ng-model="shipping.comments" ></textarea>
 		<div class="bottom_bar">
 			<button ng-click="showRemarks=false">Submit</button>
 		</div>
@@ -27,7 +27,7 @@
 					<li><div ng-class="{dirty:$scope.isValidated}" ng-click="create()" >Create</div></li>
 					<li><div ng-click="showAck=!showAck">Choose Acknowledgement</div></li>
 					<li><div class="delivery_date" ng-class="{dirty:!ack.delivery_date}" ng-click="show_calendar=true">Set Delivery Date</div></li>
-					<li><div ng-click="showRemarks=true">Add Remarks</div></li>
+					<li><div ng-click="showRemarks=true">Add Comments</div></li>
 					<li><div ng-click="reset()" >Reset</div></li>
 				</ul>
 			</nav>
