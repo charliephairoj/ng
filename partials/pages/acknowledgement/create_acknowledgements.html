@@ -51,7 +51,7 @@
 			Drop Image Here
 		</div>
 		<div class="bottom_bar">
-			<button ng-disabled="customForm.$invalid && uploading" ng-click="addCustomItem()">Add Item</button>
+			<button ng-disabled="customForm.$invalid || uploading" ng-click="addCustomItem()">Add Item</button>
 		</div>
 	</form>
 	
