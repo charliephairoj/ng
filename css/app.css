@@ -14,6 +14,19 @@ body {
   padding: 0;
   font-size: 16px;
 }
+/*Fonts*/
+/*Fonts
+ * 
+ * Contains all the fonts to be used
+ * in this applicaiton
+ */
+@font-face {
+  font-family: 'proxima';
+  src: url('../fonts/proximanova-light-webfont.eot');
+  src: url('../fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/proximanova-light-webfont.woff') format('woff'), url('../fonts/proximanova-light-webfont.ttf') format('truetype'), url('../fonts/proximanova-light-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /*
  *Standard Forms layout and designs 
 */
@@ -37,14 +50,22 @@ select {
  */
 /*general mixins*/
 /*Main Menu*/
+/*Rules:
+ * 
+ * Menus operate in the 10-19 z-index range with 
+ * the base z-index at 10.
+ */
+/*This file handles the design of the main menu, 
+ *including the links of the main menu
+ */
 .mainMenu {
   position: absolute;
   height: 50px;
   background-color: black;
-  bottom: 20px;
+  top: 0px;
   width: 100%;
   font-family: Helvetica, Tahoma, sans-serif;
-  z-index: 10;
+  z-index: 11;
   background: #313131;
   /* Old browsers */
 
@@ -74,7 +95,9 @@ select {
   cursor: pointer;
 }
 .mainMenu .mainMenuContainer .menuItem a {
-  font-size: 14px;
+  font-family: proxima;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
   font-weight: 400;
   padding-right: 30px;
   color: white;
@@ -115,18 +138,22 @@ select {
   color: grey;
 }
 /*Sidemenu*/
-.sideMenu {
-  display: none;
-}
+/*
+ * Side Menu
+ * 
+ * This file handles the design of the side menu
+ * the buttons and heading that are part of the 
+ * side menu.
+ */
 .sidebar {
   overflow: hidden;
   position: fixed;
-  height: auto;
-  top: 20px;
-  left: 20px;
-  width: 160px;
+  top: 50px;
+  left: 0px;
+  width: 200px;
+  bottom: 0px;
   background: #313131;
-  font-family: Helvetica, Tahoma, sans-serif;
+  font-family: proxima;
   z-index: 10;
   border-radius: 2px;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
@@ -137,20 +164,18 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.sidebar header {
-  border-radius: 2px 2px 0px 0px;
-}
 .sidebar header h1 {
   min-height: 40px;
   padding: 2px 2px 3px;
   line-height: 18px;
-  font-size: 15px;
 }
 .sidebar header h1 span {
   display: inline-block;
   padding: 12px 8px;
   word-wrap: normal;
   color: #FFF;
+  font-size: 1.2em;
+  letter-spacing: 0.06em;
 }
 .sidebar header .profilePic {
   margin-right: 5px;
@@ -164,12 +189,22 @@ select {
   height: 100%;
   margin: auto 0;
 }
+.sidebar header .profile-pic {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.sidebar header .profile-pic img {
+  height: 100%;
+  margin: auto 0;
+}
 .sidebar nav {
   padding-bottom: 8px;
   border-top: 1px solid #282828;
   border-radius: 0 0 2px 2px;
-  font-size: 12px;
-  font-weight: 500;
 }
 .sidebar nav ul {
   list-style: none;
@@ -177,7 +212,18 @@ select {
   color: #757575;
 }
 .sidebar nav ul li {
-  color: #FFF;
+  /*
+                 * General format for the buttons to 
+                 * be placed in the sidemenu.
+                 * They are later applied to different html 
+                 * elements that can be part of the sidemenu
+                 */
+
+  /*
+                 * Apply the basic button format to 
+                 * all possible html elements that can be used 
+                 */
+
 }
 .sidebar nav ul li .textholder {
   font-size: 12px;
@@ -195,11 +241,19 @@ select {
   background-color: #313131;
   cursor: pointer;
   text-align: left;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
   -webkit-transition: background-color 250ms linear;
   -moz-transition: background-color 250ms linear;
   -o-transition: background-color 250ms linear;
   -ms-transition: background-color 250ms linear;
   transition: background-color 250ms linear;
+  /*
+                     * Different button states that the menu 
+                     * can be in based on the classes issued by
+                     * angular.
+                     */
+
 }
 .sidebar nav ul li .textholder.dirty {
   color: grey;
@@ -226,11 +280,19 @@ select {
   background-color: #313131;
   cursor: pointer;
   text-align: left;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
   -webkit-transition: background-color 250ms linear;
   -moz-transition: background-color 250ms linear;
   -o-transition: background-color 250ms linear;
   -ms-transition: background-color 250ms linear;
   transition: background-color 250ms linear;
+  /*
+                     * Different button states that the menu 
+                     * can be in based on the classes issued by
+                     * angular.
+                     */
+
 }
 .sidebar nav ul li a.dirty {
   color: grey;
@@ -257,11 +319,19 @@ select {
   background-color: #313131;
   cursor: pointer;
   text-align: left;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
   -webkit-transition: background-color 250ms linear;
   -moz-transition: background-color 250ms linear;
   -o-transition: background-color 250ms linear;
   -ms-transition: background-color 250ms linear;
   transition: background-color 250ms linear;
+  /*
+                     * Different button states that the menu 
+                     * can be in based on the classes issued by
+                     * angular.
+                     */
+
 }
 .sidebar nav ul li div.dirty {
   color: grey;
@@ -288,11 +358,19 @@ select {
   background-color: #313131;
   cursor: pointer;
   text-align: left;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
   -webkit-transition: background-color 250ms linear;
   -moz-transition: background-color 250ms linear;
   -o-transition: background-color 250ms linear;
   -ms-transition: background-color 250ms linear;
   transition: background-color 250ms linear;
+  /*
+                     * Different button states that the menu 
+                     * can be in based on the classes issued by
+                     * angular.
+                     */
+
 }
 .sidebar nav ul li button.dirty {
   color: grey;
@@ -438,8 +516,8 @@ select {
 /*Main Container*/
 .mainContainer {
   position: absolute;
-  bottom: 70px;
-  top: 0px;
+  bottom: 0px;
+  top: 50px;
   right: 0px;
   left: 0px;
   background-color: #E8E8E8;
@@ -3362,6 +3440,9 @@ select {
   left: 0px;
 }
 /*
+ * View Page Imports 
+ */
+/*
  * View Page area
  */
 .viewPage {
@@ -3416,6 +3497,7 @@ select {
   width: 100%;
 }
 .viewPage .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -3460,9 +3542,6 @@ select {
 .viewPage .workspace .listContainer .list .listItem:last-child {
   border-bottom: none;
 }
-/*
- * Imports for Views
- */
 .viewFabricPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
@@ -3515,6 +3594,7 @@ select {
   width: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -3614,6 +3694,7 @@ select {
   width: 100%;
 }
 .viewGluePage .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -3714,6 +3795,7 @@ select {
   width: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -3831,6 +3913,7 @@ select {
   width: 100%;
 }
 .view_customer_page .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -3992,6 +4075,7 @@ select {
   width: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem {
+  background-color: #CCC;
   border-bottom: 1px solid #DDDDDD;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
