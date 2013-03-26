@@ -152,9 +152,7 @@ select {
   background: #313131;
   font-family: proxima;
   z-index: 10;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  border-right: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
@@ -3380,8 +3378,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 .viewPage .workspace {
   overflow-y: scroll;
@@ -3391,6 +3387,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .viewPage .workspace .listContainer {
   width: 100%;
@@ -3400,19 +3402,20 @@ select {
   width: 100%;
 }
 .viewPage .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewPage .workspace .listContainer .list .listItem > td {
+.viewPage .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.viewPage .workspace .listContainer .list .listItem > td label {
+.viewPage .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3421,11 +3424,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewPage .workspace .listContainer .list .listItem > td.profile-img {
+.viewPage .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewPage .workspace .listContainer .list .listItem > td.profile-img div {
+.viewPage .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3433,11 +3436,39 @@ select {
   left: 0;
   right: 0;
 }
-.viewPage .workspace .listContainer .list .listItem > td.profile-img div img {
+.viewPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.viewPage .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewPage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewPage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewPage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .viewPage .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .viewPage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
@@ -3452,8 +3483,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 .viewFabricPage .workspace {
   overflow-y: scroll;
@@ -3463,6 +3492,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .viewFabricPage .workspace .listContainer {
   width: 100%;
@@ -3472,19 +3507,20 @@ select {
   width: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewFabricPage .workspace .listContainer .list .listItem > td {
+.viewFabricPage .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.viewFabricPage .workspace .listContainer .list .listItem > td label {
+.viewFabricPage .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3493,11 +3529,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img {
+.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img div {
+.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3505,11 +3541,39 @@ select {
   left: 0;
   right: 0;
 }
-.viewFabricPage .workspace .listContainer .list .listItem > td.profile-img div img {
+.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .viewFabricPage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
@@ -3527,8 +3591,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 .viewGluePage .workspace {
   overflow-y: scroll;
@@ -3538,6 +3600,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .viewGluePage .workspace .listContainer {
   width: 100%;
@@ -3547,19 +3615,20 @@ select {
   width: 100%;
 }
 .viewGluePage .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewGluePage .workspace .listContainer .list .listItem > td {
+.viewGluePage .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.viewGluePage .workspace .listContainer .list .listItem > td label {
+.viewGluePage .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3568,11 +3637,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewGluePage .workspace .listContainer .list .listItem > td.profile-img {
+.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewGluePage .workspace .listContainer .list .listItem > td.profile-img div {
+.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3580,11 +3649,39 @@ select {
   left: 0;
   right: 0;
 }
-.viewGluePage .workspace .listContainer .list .listItem > td.profile-img div img {
+.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.viewGluePage .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewGluePage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewGluePage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewGluePage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewGluePage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .viewGluePage .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .viewGluePage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
@@ -3599,8 +3696,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   /*
    * Workspace
    */
@@ -3614,6 +3709,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .viewSuppliersPage .workspace .listContainer {
   width: 100%;
@@ -3623,19 +3724,20 @@ select {
   width: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem > td {
+.viewSuppliersPage .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem > td label {
+.viewSuppliersPage .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3644,11 +3746,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img {
+.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img div {
+.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3656,11 +3758,39 @@ select {
   left: 0;
   right: 0;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem > td.profile-img div img {
+.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
@@ -3688,8 +3818,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   /*
    * Add Customer Modal
    */
@@ -3707,6 +3835,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .view_customer_page .workspace .listContainer {
   width: 100%;
@@ -3716,19 +3850,20 @@ select {
   width: 100%;
 }
 .view_customer_page .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.view_customer_page .workspace .listContainer .list .listItem > td {
+.view_customer_page .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.view_customer_page .workspace .listContainer .list .listItem > td label {
+.view_customer_page .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3737,11 +3872,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.view_customer_page .workspace .listContainer .list .listItem > td.profile-img {
+.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.view_customer_page .workspace .listContainer .list .listItem > td.profile-img div {
+.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3749,11 +3884,39 @@ select {
   left: 0;
   right: 0;
 }
-.view_customer_page .workspace .listContainer .list .listItem > td.profile-img div img {
+.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.view_customer_page .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.view_customer_page .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view_customer_page .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view_customer_page .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view_customer_page .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .view_customer_page .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .view_customer_page .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
@@ -3833,8 +3996,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 .viewLibraryPage .workspace {
   overflow-y: scroll;
@@ -3844,6 +4005,12 @@ select {
   top: 0px;
   bottom: 0px;
   z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
 }
 .viewLibraryPage .workspace .listContainer {
   width: 100%;
@@ -3853,19 +4020,20 @@ select {
   width: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem {
-  background-color: #CCC;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #313131;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem > td {
+.viewLibraryPage .workspace .listContainer .list .listItem.cell {
   vertical-align: middle;
   padding: 10px;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem > td label {
+.viewLibraryPage .workspace .listContainer .list .listItem.cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3874,11 +4042,11 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img {
+.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img div {
+.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3886,11 +4054,39 @@ select {
   left: 0;
   right: 0;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem > td.profile-img div img {
+.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+  height: 100%;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td {
+  vertical-align: middle;
+  padding: 10px;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem:hover {
-  background-color: #D3D3D3;
+  background-color: #292929;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
