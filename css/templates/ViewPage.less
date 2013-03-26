@@ -10,7 +10,6 @@
   bottom:0px;
   right:0px;
   left:200px;
-  
   .workspace{
     overflow-y:scroll;
     position:absolute;
@@ -19,7 +18,6 @@
     top:0px;
     bottom:0px;
     z-index:1;
-    
     /*
      * Container holding the list. The 
      * height is auto so that is can 
@@ -27,22 +25,54 @@
      * scroll enabled to allow scrolling
      */  
     .listContainer{
+      position:relative;
       width:100%;
+      height:auto;
       .list{
-        height:20px;
+        display:table;
+        height:auto;
         width:100%;
         .listItem{
+          display:table-row;
+          width:100%;
+          height:auto;
           background-color:#313131;
-          border-top: 1px solid #3c3c3c;
-          border-bottom: 1px solid #282828;
+          text-decoration:none;
           .transition(all, 250ms, linear);
-          &.cell{
+          .cell{
+              display:table-cell;
               vertical-align:middle;
               padding:10px;
+              border-top: 1px solid #3c3c3c;
+              border-bottom: 1px solid #282828;
               label{
                 font-size:10pt;
                 color:#C1C1C1;
                 .transition(all, 250ms, linear);
+              }
+              .details{
+                  display:table;
+                  width:auto;
+                  .details-row{                    
+                      display:table-row;
+                      color:grey;
+                      font-size:1em;
+                      letter-spacing:0.08em;
+                      margin-bottom:2em;
+                      .details-cell{
+                          display:table-cell;
+                          font-size:0.8em;
+                          padding:0.5em;
+                          font-family:proxima;
+                      }
+                      .details-title{
+                          .details-cell;
+                          padding-right:1em;
+                      }
+                      .details-data{
+                          .details-cell;
+                      }
+                  }
               }
               &.profile-img{
                   width:200px;
@@ -76,6 +106,10 @@
           &:last-child{
             border-bottom:none;
           }
+        }
+        
+        .row{
+            .listItem;
         }
       }
     }

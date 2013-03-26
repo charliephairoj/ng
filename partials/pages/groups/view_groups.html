@@ -1,25 +1,37 @@
 <div class="viewPage">
-	
-	<div class="toolbar" >
-		<button click-url="/groups/add_group" ui-if="currentUser.hasPermission('add_group')">Create</button>
-		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	<div class="sidebar">
+		<header>
+			<h1><span>Groups</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li ui-if="currentUser.hasPermission('add_group')">
+					<a ng-href="#/groups/add_group">Add Group</a>
+				</li>
+					
+			</ul>
+		</nav>
 	</div>
 	
-	
-	
-	<div class="listContainer">
-		<table class="list">
-			<thead>
-				<tr>
-					<th>Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="group in groupList | filter:query" class="listItem">
-					<td><a ng-href="#/groups/{{group.id}}">{{group.name}}</a></td>
-				</tr>
-			</tbody>
-			
-		</table>
+	<div class="searchBar">
+		<input type="text" ng-model="query" />
 	</div>
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<div class="list">
+				<a class="row" ng-repeat="group in groupList" ng-href="#/groups/{{group.id}}">
+					<div class="cell">
+						<div class="details">
+							<div class="details-row">
+								<div class="details-title">Name:</div>
+								<div class="details-data">{{group.name}}</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	
 </div>

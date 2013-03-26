@@ -32,37 +32,34 @@
 	
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
-				
-				<tbody>
-					<tr ng-repeat="ack in ackList | filter:query" class="listItem">
-						<td>
-							<label>Ack# {{ack.id}}</label>
-							<table class="detailsTable">
-								<tr>
-									<td>Customer:</td>
-									<td>{{ack.customer.name}}</td>
-								</tr>
-								<tr>
-									<td>Order Date:</td>
-									<td>{{ack.time_created}}</td>
-								</tr>
-								<tr>
-									<td>Delivery Date:</td>
-									<td>{{ack.delivery_date}}</td>
-								</tr>
-								<tr>
-									<td>Ordered By:</td>
-									<td>{{ack.employee}}</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/acknowledgement/{{ack.id}}"></a></td>
-						
-					</tr>
-				</tbody>
-				
-			</table>
+			<div class="list">
+					<a ng-repeat="ack in ackList | filter:query" class="row" ng-href="#/acknowledgement/{{ack.id}}">
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Ack#:</div>
+									<div class="details-data">{{ack.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Customer:</div>
+									<div class="details-data">{{ack.customer.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Order Date:</div>
+									<div class="details-data">{{ack.time_created}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Delivery Date:</div>
+									<div class="details-data">{{ack.delivery_date}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Ordered By:</div>
+									<div class="details-data">{{ack.employee}}</div>
+								</div>
+							</div>
+						</div>
+					</a>
+			</div>
 		</div>
 	</div>
 	

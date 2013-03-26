@@ -1,35 +1,28 @@
 <div class="addGroupPage">
-	<form class="groupForm" ec-droppable="add()" >
-		<div class="toolbar">
-			<button type="submit" ng-click="save()">Save</button>
-		</div>
-		<div class="workspace">
-			<div class="groupDetails">
-				<table>
-			
-					<tr>
-						<td><label>Name</label></td>
-						<td><input type="text" min="0" ng-model="group.name" /></td>
-					</tr>
-				</table>
-			</div>
-			
-			<div class="groupPermissions">
-				<table>
-					<tr><td>Group Permissions</td></tr>
-					<tr  class="permission" ng-repeat="perm in group.permissions"><td>{{perm.name}}</td><td><button ng-click="remove($index)">x</button></td></tr>
-				</table>
-			</div>
-			
-		</div>
-		
-		
-		
-	</form>
 	
-	<div class="permissionList">
-		<ul>
-			<li ng-repeat="perm in permissionList | exclude:group.permissions"><div class="permission" ec-draggable='{"id":{{perm.id}}}'>{{perm.name}}</div></li>
-		</ul>
+	<!--SideBar Section-->
+	<div class="sidebar">
+		<header>
+			<h1><span>{{group.name}}</span></h1>
+		</header>
+		<nav>
+			<ul>
+				
+				<li>
+					<div ng-click="save()">Save</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="workspace">
+		<div class="groupDetails">
+			<table>
+			
+				<tr>
+					<td><label>Name</label></td>
+					<td><input type="text" min="0" ng-model="group.name" /></td>
+				</tr>
+			</table>
+		</div>	
 	</div>
 </div>

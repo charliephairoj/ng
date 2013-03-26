@@ -32,33 +32,24 @@
 	
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
-				
-				<tbody>
-					<tr ng-repeat="supplier in supplierList | filter:query | orderBy:'name'" class="listItem">
-						<td>
-							<table class="detailsTable">
-								<tr class="name">
-									<td>{{supplier.name}}</td>
-								</tr>
-								<tr class="address">
-									<td>{{supplier.address.address1}}
-										<br />
-										{{supplier.address.address2}}
-										<br />
-										{{supplier.address.city+","+supplier.address.territory}}
-										<br />
-										{{supplier.address.country+" "+supplier.address.zipcode}}
-									</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/suppliers/{{supplier.id}}">Edit</a></td>
-						
-					</tr>
-				</tbody>
-				
-			</table>
+			<ul class="list">
+					<a ng-repeat="supplier in supplierList | filter:query | orderBy:'name'" class="listItem" ng-href="#/suppliers/{{supplier.id}}">
+						<div class="cell">
+							<div class="details">
+								<div class="name">{{supplier.name}}</div>
+								<div class="address">
+									<span>{{supplier.address.address1}}</span>
+									<br />
+									<span ui-if="supplier.address.address2!=''">{{supplier.address.address2}}</span>
+									<br />
+									<span>{{supplier.address.city+","+supplier.address.territory}}</span>
+									<br />
+									<span>{{supplier.address.country+" "+supplier.address.zipcode}}</span>
+								</div>
+							</div>
+						</div>
+					</a>
+			</ul>
 		</div>
 	</div>
 	

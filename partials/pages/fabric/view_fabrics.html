@@ -31,54 +31,49 @@
 	
 	<div class="workspace" style="z-index:1;">
 		<div class="listContainer">
-			<table class="list">
+			<div class="list">
 				
-				<tbody>
-					<tr ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="listItem" clickUrl="#/fabric/{{fabric.id}}">
-						<td class="profile-img">
+					<a ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/fabric/{{fabric.id}}">
+						<div class="profile-img cell">
 							<div>
 								<img ng-src="{{fabric.image_url}}" />
 							</div>
 							
-						</td>
-						<td>
-							<table class="detailsTable">
-								<tr>
-									<td>Supply ID</td>
-									<td>{{fabric.id}}</td>
-								</tr>
-								<tr>
-									<td>Supplier:</td>
-									<td>{{fabric.supplier.name}}</td>
-								</tr>
-								<tr>
-									<td>Pattern:</td>
-									<td>{{fabric.pattern}}</td>
-								</tr>
-								<tr>
-									<td>Color:</td>
-									<td>{{fabric.color}}</td>
-								</tr>
-								<tr>
-									<td>Content</td>
-									<td>{{fabric.content}}</td>
-								</tr>
-								<tr>
-									<td>Current Length</td>
-									<td>{{fabric.depth}}</td>
-								</tr>
-								<tr>
-									<td>Reserved Length</td>
-									<td>{{fabric.reserved_length}}</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/fabric/{{fabric.id}}">edit</a></td>
-						
-						
-				</tbody>
-				
-			</table>
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Supply ID</div>
+									<div class="details-data">{{fabric.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Supplier:</div>
+									<div class="details-data">{{fabric.supplier.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Pattern:</div>
+									<div class="details-data">{{fabric.pattern}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Color:</div>
+									<div class="details-data">{{fabric.color}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Content</div>
+									<div class="details-data">{{fabric.content}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Current Length</div>
+									<div class="details-data">{{fabric.depth}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Reserved Length</div>
+									<div class="details-data">{{fabric.reserved_length}}</div>
+								</div>
+							</div>
+						</div>						
+					</a>
+			</div>
 		</div>
 	</div>
 	

@@ -74,15 +74,63 @@ AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission', '$location'];
 //Group details
 
 function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
-    $scope.permissionList = Permission.query({'resource':false});
-    $scope.group = Group.get({'id':$routeParams.id});
     
-   console.log($scope.group);
+    $scope.permissionList = Permission.query(function(){
+        console.log($scope.permissionList);
+        merge($scope.permissionList, $scope.group.permissions);
+    });
+    $scope.group = Group.get({'id':$routeParams.id}, function(){
+        merge($scope.permissionList, $scope.group.permissions);
+    });
     
+    function search(list, key, value, callback, error){        
+        for(var i=0; i<list.length; i++){
+            if(list[i].hasOwnProperty(key)){
+                if(list[i][key] == value){
+                    callback(list[i], i);
+                    return list[i];
+                    
+                }
+            }
+        }
+        
+        if(angular.isFunction(error)){error()}
+        return false;
+    }
+    function merge(permList, groupPerms){
+        if(permList && groupPerms){
+            angular.forEach(groupPerms, function(perm){
+                search(permList, 'id', perm.id, function(item, index){                    
+                    permList[index].status = true;
+                });
+                
+            });
+        }
+    }
     
-   
-    
-    
+    $scope.updatePermission = function(index){
+        var perm = $scope.permissionList[index];
+        $scope.permissionList[index].status = perm.checked;
+        if(perm.checked){
+            
+            search($scope.group.permissions, 'id', perm.id, function(item, index){
+                
+            },
+            function(){
+                perm.status = 'add';
+                $scope.group.permissions.push(angular.copy(perm));
+            });
+        }else{
+            search($scope.group.permissions, 'id', perm.id, function(item, index){
+                $scope.group.permissions[index].status = 'delete';
+            }, 
+            function(){
+                 
+            });
+        }
+        $scope.group.$save();
+        console.log($scope.group.permissions);
+    }
     
     $scope.remove = function(){
         $scope.group.$delete(function(){
@@ -157,7 +205,7 @@ AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
 //User details
 
 function UserDetailsCtrl($scope, Group, User, $routeParams, $location){
-    $scope.groupList = Group.query({'resource':false});
+    $scope.groupList = Group.query();
     $scope.user = User.get({'id':$routeParams.id});
     
     

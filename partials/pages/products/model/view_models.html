@@ -21,38 +21,34 @@
 	</div>
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
+			<div class="list">
 				
-				<tbody>
-					<tr ng-repeat="model in modelList | filter:query | orderBy: 'model'" class="listItem">
-						<td class="profile-img">
+					<a ng-repeat="model in modelList | filter:query | orderBy: 'model'" class="row" ng-href="#/models/{{model.id}}">
+						<div class="profile-img cell">
 							<div>
 								<img fade-load ng-src="{{model.images[0]}}" />
 							</div>
-							
-						</td>
-						<td>
-							<table class="detailsTable">
-								<tr>
-									<td>Model:</td>
-									<td>{{model.model}}</td>
-								</tr>
-								<tr>
-									<td>Name:</td>
-									<td>{{model.name}}</td>
-								</tr>
-								<tr>
-									<td>Collection:</td>
-									<td>{{model.collection}}</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/models/{{model.id}}">edit</a></td>
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<td class="details-title">Model:</td>
+									<td class="details-data">{{model.model}}</td>
+								</div>
+								<div class="details-row">
+									<td class="details-title">Name:</td>
+									<td class="details-data">{{model.name}}</td>
+								</div>
+								<div class="details-row">
+									<td class="details-title">Collection:</td>
+									<td class="details-data">{{model.collection}}</td>
+								</div>
+							</div>
+						</div>
+					</a>
 						
-						
-				</tbody>
 				
-			</table>
+			</div>
 		</div>
 	</div>
 </div>

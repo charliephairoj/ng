@@ -18,56 +18,50 @@
 	</div>
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
-				
-				<tbody>
-					<tr ng-repeat="uphol in upholList | filter:query | orderBy: 'model'" class="listItem">
-						<td class="profile-img">
+			<div class="list">				
+				<a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model'" class="row" ng-href="#/upholstery/{{uphol.id}}">
+						<div class="profile-img cell">
 							<div>
-								<img ng-src="{{uphol.url}}" />
+								<img fade-load ng-src="{{uphol.url}}" />
 							</div>
 							
-						</td>
-						<td>
-							<table class="detailsTable">
-								<tr>
-									<td>Product ID</td>
-									<td>{{uphol.id}}</td>
-								</tr>
-								<tr>
-									<td>Model Name:</td>
-									<td>{{uphol.model.name}}</td>
-								</tr>
-								<tr>
-									<td>Model Number:</td>
-									<td>{{uphol.model.model}}</td>
-								</tr>
-								<tr>
-									<td>Configuration:</td>
-									<td>{{uphol.configuration.configuration}}</td>
-								</tr>
-								<tr>
-									<td>Manufacture Price:</td>
-									<td>{{uphol.manufacture_price}}</td>
-								</tr>
-								<tr>
-									<td>Wholesale Price:</td>
-									<td>{{uphol.wholesale_price}}</td>
-								</tr>
-								<tr>
-									<td>Retail Price:</td>
-									<td>{{uphol.retail_price}}</td>
-								</tr>
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Product ID</div>
+									<div class="details-data">{{uphol.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Model Name:</div>
+									<div class="details-data">{{uphol.model.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Model Number:</div>
+									<div class="details-data">{{uphol.model.model}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Configuration:</div>
+									<div class="details-data">{{uphol.configuration.configuration}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Manufacture Price:</div>
+									<div class="details-data">{{uphol.manufacture_price}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Wholesale Price:</div>
+									<div class="details-data">{{uphol.wholesale_price}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Retail Price:</div>
+									<div class="details-data">{{uphol.retail_price}}</div>
+								</div>
 								
 								
-							</table>
-						</td>
-						<td><a ng-href="#/upholstery/{{uphol.id}}">edit</a></td>
-						
-						
-				</tbody>
-				
-			</table>
+							</div>
+						</div>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>

@@ -32,34 +32,34 @@
 	
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
+			<div class="list">
 				
-				<tbody>
-					<tr ng-repeat="shipping in shippingList | filter:query" class="listItem">
-						<td>
-							<label>Shipping# {{shipping.id}}</label>
-							<table class="detailsTable">
-								<tr>
-									<td>Customer:</td>
-									<td>{{shipping.customer.name}}</td>
-								</tr>
-								
-								<tr>
-									<td>Delivery Date:</td>
-									<td>{{shipping.delivery_date}}</td>
-								</tr>
-								<tr>
-									<td>Ordered By:</td>
-									<td>{{shipping.employee}}</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/acknowledgement/{{ack.id}}"></a></td>
+					<a ng-repeat="shipping in shippingList | filter:query" class="row">
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Shipping#:</div>
+									<div class="details-data">{{shipping.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Customer:</div>
+									<div class="details-data">{{shipping.customer.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Delivery Date:</div>
+									<div class="details-data">{{shipping.delivery_date}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Ordered By:</div>
+									<div class="details-data">{{shipping.employee}}</div>
+								</div>
+							</div>
+						</div>
+						<div><a ng-href="#/acknowledgement/{{ack.id}}"></a></div>
 						
-					</tr>
-				</tbody>
+					</a>
 				
-			</table>
+			</div>
 		</div>
 	</div>
 	

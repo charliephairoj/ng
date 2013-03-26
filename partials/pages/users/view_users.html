@@ -18,35 +18,32 @@
 		</nav>
 	</div>	
 	
+	<div class="searchBar">
+		<input type="text" ng-model="query" />
+	</div>
 	
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
-				
-				<tbody>
-					<tr ng-repeat="user in userList | filter:query" class="listItem">
-						<td>
-							<table class="detailsTable">
-								<tr>
-									<td>Name:</td>
-									<td>{{user.firstName+' '+user.lastName}}</td>
-								</tr>
-								<tr>
-									<td>Username:</td>
-									<td>{{user.username}}</td>
-								</tr>
-								<tr>
-									<td>Email:</td>
-									<td>{{user.email}}</td>
-								</tr>
-							</table>
-						</td>
-						
-						<td><a ng-href="#/users/{{user.id}}">edit</a></td>
-					</tr>
-				</tbody>
-				
-			</table>
+			<div class="list">
+					<a ng-repeat="user in userList | filter:query" class="row" ng-href="#/users/{{user.id}}">
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Name:</div>
+									<div class="details-data">{{user.firstName+' '+user.lastName}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Username:</div>
+									<div class="details-data">{{user.username}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Email:</div>
+									<div class="details-data">{{user.email}}</div>
+								</div>
+							</div>
+						</div>
+					</a>
+			</div>
 		</div>
 	</div>
 	

@@ -1,4 +1,4 @@
-<div class="viewFoamPage viewPage">
+<div class="viewPage">
 	
 	
 	<!--
@@ -29,46 +29,40 @@
 	
 	<div class="workspace">
 		<div class="listContainer">
-			<table class="list">
-		
-				<tbody>
-					<tr ng-repeat="foam in foamList | filter:query | orderBy:'supplier.name'" class="listItem">
-						<td class="profile-img">
+			<div class="list">
+					<a ng-repeat="foam in foamList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/foam/{{foam.id}}">
+						<div class="profile-img cell">
 							<div>
 								<img ng-src="{{foam.image_url}}" />
 							</div>
 							
-						</td>
-						<td>
-							<table class="detailsTable">
-								<tr>
-									<td>Supplier:</td>
-									<td>{{foam.supplier.name}}</td>
-								</tr>
-								<tr>
-									<td>Reference Number</td>
-									<td>{{foam.reference}}</td>
-								</tr>
-								<tr>
-									<td>Dimensions:</td>
-									<td>{{foam.height}} x {{foam.width}} x {{foam.depth}}</td>
-								</tr>
-								<tr>
-									<td>Color:</td>
-									<td>{{foam.color}}</td>
-								</tr>
-								<tr>
-									<td>Cost:</td>
-									<td>{{foam.cost}}</td>
-								</tr>
-							</table>
-						</td>
-						<td><a ng-href="#/foam/{{foam.id}}">edit</a></td>
-						
-					</tr>
-				</tbody>
-				
-			</table>
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Supplier:</div>
+									<div class="details-data">{{foam.supplier.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Reference Number</div>
+									<div class="details-data">{{foam.reference}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Dimensions:</div>
+									<div class="details-data">{{foam.height}} x {{foam.width}} x {{foam.depth}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Color:</div>
+									<div class="details-data">{{foam.color}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Cost:</div>
+									<div class="details-data">{{foam.cost}}</div>
+								</div>
+							</div>
+						</div>
+					</a>
+			</div>
 		</div>
 	</div>
 	

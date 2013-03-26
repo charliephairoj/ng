@@ -1,24 +1,35 @@
 <div class="groupDetailsPage detailsPage">
-	<div class="toolbar">
-			<button type="button" ng-click="remove()">Delete</button>
+	
+	<!--SideBar Section-->
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>{{group.name}}</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="viewMap()">
+						View Map
+					</div>
+				</li>
+				<li>
+					<div ng-click="remove()">Delete</div>
+				</li>
+			</ul>
+		</nav>
 	</div>
+	
 	<div class="workspace">
-		<div ec-droppable='add()'>
-			<table>
-				<tr>
-					<td><label>Group Name</label></td>
-					<td><input type="text" ng-model="group.name" ec-blur="update()" /></td>
-				</tr>
-				
-				
-				<tr ng-repeat="perm in group.permissions"><td>{{perm.name}}</td></tr>
-				
-			</table> 
-		</div>
 		
+		<div>
+			<div>{{group.name}}</div>
+		</div>
 		<div class="permissionList">
 			<ul>
-				<li ng-repeat='perm in permissionList | exclude:group.permissions'><div class="permission" ec-draggable='{"id":{{perm.id}}}'>{{perm.name}}</div></li>
+				<li ng-repeat='perm in permissionList'>
+					<input type="checkbox" ng-model="perm.checked" ng-checked="perm.status == true" ng-click="updatePermission($index)">{{perm.app}} {{perm.name}}</div>
+				</li>
 			</ul>
 		</div>
 	</div>

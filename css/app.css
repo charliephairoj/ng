@@ -449,7 +449,7 @@ select {
   top: 50px;
   right: 0px;
   left: 0px;
-  background-color: #E8E8E8;
+  background-color: #313131;
 }
 .mainContainer input {
   border: 1px solid grey;
@@ -3395,27 +3395,35 @@ select {
      */
 }
 .viewPage .workspace .listContainer {
+  position: relative;
   width: 100%;
+  height: auto;
 }
 .viewPage .workspace .listContainer .list {
-  height: 20px;
+  display: table;
+  height: auto;
   width: 100%;
 }
 .viewPage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
   background-color: #313131;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
+  text-decoration: none;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewPage .workspace .listContainer .list .listItem.cell {
+.viewPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.viewPage .workspace .listContainer .list .listItem.cell label {
+.viewPage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3424,11 +3432,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewPage .workspace .listContainer .list .listItem.cell.profile-img {
+.viewPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewPage .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewPage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3436,12 +3474,15 @@ select {
   left: 0;
   right: 0;
 }
-.viewPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewPage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
 .viewPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
 .viewPage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
@@ -3451,6 +3492,36 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
 }
 .viewPage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
@@ -3474,6 +3545,149 @@ select {
   color: #FFF;
 }
 .viewPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.viewPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
 }
 .viewFabricPage {
@@ -3500,27 +3714,35 @@ select {
      */
 }
 .viewFabricPage .workspace .listContainer {
+  position: relative;
   width: 100%;
+  height: auto;
 }
 .viewFabricPage .workspace .listContainer .list {
-  height: 20px;
+  display: table;
+  height: auto;
   width: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
   background-color: #313131;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
+  text-decoration: none;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewFabricPage .workspace .listContainer .list .listItem.cell {
+.viewFabricPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.viewFabricPage .workspace .listContainer .list .listItem.cell label {
+.viewFabricPage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3529,11 +3751,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img {
+.viewFabricPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewFabricPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewFabricPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewFabricPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewFabricPage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3541,12 +3793,15 @@ select {
   left: 0;
   right: 0;
 }
-.viewFabricPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewFabricPage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
 .viewFabricPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
 .viewFabricPage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
@@ -3556,6 +3811,36 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewFabricPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
 }
 .viewFabricPage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
@@ -3581,8 +3866,148 @@ select {
 .viewFabricPage .workspace .listContainer .list .listItem:last-child {
   border-bottom: none;
 }
-.viewFabricPage .workspace .detailsTable tr td {
-  padding: 5px;
+.viewFabricPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewFabricPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewFabricPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewFabricPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewFabricPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewFabricPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewFabricPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewFabricPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewFabricPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewFabricPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewFabricPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewFabricPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewFabricPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewFabricPage .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
 }
 .viewGluePage {
   font-family: Helvetica, Tahoma, sans-serif;
@@ -3608,27 +4033,35 @@ select {
      */
 }
 .viewGluePage .workspace .listContainer {
+  position: relative;
   width: 100%;
+  height: auto;
 }
 .viewGluePage .workspace .listContainer .list {
-  height: 20px;
+  display: table;
+  height: auto;
   width: 100%;
 }
 .viewGluePage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
   background-color: #313131;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
+  text-decoration: none;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewGluePage .workspace .listContainer .list .listItem.cell {
+.viewGluePage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.viewGluePage .workspace .listContainer .list .listItem.cell label {
+.viewGluePage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3637,11 +4070,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img {
+.viewGluePage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewGluePage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewGluePage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewGluePage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewGluePage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3649,12 +4112,15 @@ select {
   left: 0;
   right: 0;
 }
-.viewGluePage .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewGluePage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
 .viewGluePage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
 .viewGluePage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
@@ -3664,6 +4130,36 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewGluePage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewGluePage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewGluePage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewGluePage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
 }
 .viewGluePage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
@@ -3689,6 +4185,149 @@ select {
 .viewGluePage .workspace .listContainer .list .listItem:last-child {
   border-bottom: none;
 }
+.viewGluePage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewGluePage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewGluePage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewGluePage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewGluePage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewGluePage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewGluePage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewGluePage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewGluePage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewGluePage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewGluePage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewGluePage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewGluePage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewGluePage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewGluePage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewGluePage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewGluePage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewGluePage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewGluePage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewGluePage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewGluePage .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
+}
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
@@ -3697,8 +4336,8 @@ select {
   right: 0px;
   left: 200px;
   /*
-   * Workspace
-   */
+     * Workspace
+     */
 
 }
 .viewSuppliersPage .workspace {
@@ -3717,27 +4356,35 @@ select {
      */
 }
 .viewSuppliersPage .workspace .listContainer {
+  position: relative;
   width: 100%;
+  height: auto;
 }
 .viewSuppliersPage .workspace .listContainer .list {
-  height: 20px;
+  display: table;
+  height: auto;
   width: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
   background-color: #313131;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
+  text-decoration: none;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem.cell {
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem.cell label {
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3746,11 +4393,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img {
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3758,12 +4435,15 @@ select {
   left: 0;
   right: 0;
 }
-.viewSuppliersPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewSuppliersPage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
@@ -3773,6 +4453,36 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewSuppliersPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
@@ -3798,6 +4508,169 @@ select {
 .viewSuppliersPage .workspace .listContainer .list .listItem:last-child {
   border-bottom: none;
 }
+.viewSuppliersPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewSuppliersPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewSuppliersPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewSuppliersPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewSuppliersPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewSuppliersPage .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
+}
+.viewSuppliersPage .workspace .cell .details {
+  display: block;
+  width: 100%;
+}
+.viewSuppliersPage .workspace .cell .details .name {
+  display: block;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewSuppliersPage .workspace .cell .details .address {
+  display: block;
+  color: grey;
+}
+.viewSuppliersPage .workspace .cell .details .address span {
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  line-height: 1.4em;
+}
 .viewSuppliersPage .workspace .detailsTable .name {
   color: black;
 }
@@ -3811,7 +4684,7 @@ select {
   color: grey;
   line-height: 15px;
 }
-.view_customer_page {
+.viewCustomerPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
   top: 0px;
@@ -3827,7 +4700,7 @@ select {
    */
 
 }
-.view_customer_page .workspace {
+.viewCustomerPage .workspace {
   overflow-y: scroll;
   position: absolute;
   right: 0px;
@@ -3842,28 +4715,36 @@ select {
      * scroll enabled to allow scrolling
      */
 }
-.view_customer_page .workspace .listContainer {
+.viewCustomerPage .workspace .listContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.viewCustomerPage .workspace .listContainer .list {
+  display: table;
+  height: auto;
   width: 100%;
 }
-.view_customer_page .workspace .listContainer .list {
-  height: 20px;
+.viewCustomerPage .workspace .listContainer .list .listItem {
+  display: table-row;
   width: 100%;
-}
-.view_customer_page .workspace .listContainer .list .listItem {
+  height: auto;
   background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms linear;
-  -moz-transition: all 250ms linear;
-  -o-transition: all 250ms linear;
-  -ms-transition: all 250ms linear;
-  transition: all 250ms linear;
 }
-.view_customer_page .workspace .listContainer .list .listItem.cell {
-  vertical-align: middle;
-  padding: 10px;
-}
-.view_customer_page .workspace .listContainer .list .listItem.cell label {
+.viewCustomerPage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3872,11 +4753,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img {
+.viewCustomerPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewCustomerPage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3884,14 +4795,17 @@ select {
   left: 0;
   right: 0;
 }
-.view_customer_page .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewCustomerPage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
-.view_customer_page .workspace .listContainer .list .listItem td {
+.viewCustomerPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.view_customer_page .workspace .listContainer .list .listItem td label {
+.viewCustomerPage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -3900,11 +4814,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.view_customer_page .workspace .listContainer .list .listItem td.profile-img {
+.viewCustomerPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
   position: relative;
 }
-.view_customer_page .workspace .listContainer .list .listItem td.profile-img div {
+.viewCustomerPage .workspace .listContainer .list .listItem td.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -3912,40 +4856,183 @@ select {
   left: 0;
   right: 0;
 }
-.view_customer_page .workspace .listContainer .list .listItem td.profile-img div img {
+.viewCustomerPage .workspace .listContainer .list .listItem td.profile-img div img {
   height: 100%;
 }
-.view_customer_page .workspace .listContainer .list .listItem:hover {
+.viewCustomerPage .workspace .listContainer .list .listItem:hover {
   background-color: #292929;
 }
-.view_customer_page .workspace .listContainer .list .listItem:hover td label {
+.viewCustomerPage .workspace .listContainer .list .listItem:hover td label {
   color: #FFF;
 }
-.view_customer_page .workspace .listContainer .list .listItem:last-child {
+.viewCustomerPage .workspace .listContainer .list .listItem:last-child {
   border-bottom: none;
 }
-.view_customer_page .customer_modal {
+.viewCustomerPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewCustomerPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewCustomerPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewCustomerPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewCustomerPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewCustomerPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewCustomerPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewCustomerPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewCustomerPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewCustomerPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewCustomerPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewCustomerPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewCustomerPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewCustomerPage .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
+}
+.viewCustomerPage .customer_modal {
   background-color: #313131;
   width: 650px;
   margin-left: -325px;
 }
-.view_customer_page .customer_modal .title {
+.viewCustomerPage .customer_modal .title {
   text-align: center;
 }
-.view_customer_page .customer_modal .container {
+.viewCustomerPage .customer_modal .container {
   position: relative;
 }
-.view_customer_page .customer_modal .container table {
+.viewCustomerPage .customer_modal .container table {
   position: absolute;
   left: 15px;
   top: 20px;
 }
-.view_customer_page .customer_modal .container table td {
+.viewCustomerPage .customer_modal .container table td {
   font-size: 12px;
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.view_customer_page .customer_modal .container table td input {
+.viewCustomerPage .customer_modal .container table td input {
   font-size: 12px;
   border-radius: 2px;
   color: #FFFFFF;
@@ -3957,37 +5044,44 @@ select {
   -ms-transition: all 250ms ease;
   transition: all 250ms ease;
 }
-.view_customer_page .customer_modal .container table td input:focus {
+.viewCustomerPage .customer_modal .container table td input:focus {
   background-color: #FFFFFF;
   color: #000000;
 }
-.view_customer_page .customer_modal .container table td:first-child {
+.viewCustomerPage .customer_modal .container table td:first-child {
   color: #FFFFFF;
   padding-right: 5px;
 }
-.view_customer_page .customer_modal .container .map_container {
+.viewCustomerPage .customer_modal .container .map_container {
   position: absolute;
   top: 20px;
   right: 20px;
   width: 300px;
   height: 300px;
 }
-.view_customer_page .customer_modal .container .map_container #map_canvas {
+.viewCustomerPage .customer_modal .container .map_container #map_canvas {
   height: 100%;
   width: 100%;
 }
-.view_customer_page .workspace .detailsTable .name {
-  color: black;
+.viewCustomerPage .workspace .cell .details {
+  display: block;
+  width: 100%;
 }
-.view_customer_page .workspace .detailsTable .name td {
-  color: black;
-}
-.view_customer_page .workspace .detailsTable .address td {
-  padding-top: 5px;
-  padding-left: 15px;
-  font-size: 10px;
+.viewCustomerPage .workspace .cell .details .name {
+  display: block;
   color: grey;
-  line-height: 15px;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewCustomerPage .workspace .cell .details .address {
+  display: block;
+  color: grey;
+}
+.viewCustomerPage .workspace .cell .details .address span {
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  line-height: 1.4em;
 }
 .viewLibraryPage {
   font-family: Helvetica, Tahoma, sans-serif;
@@ -4013,27 +5107,35 @@ select {
      */
 }
 .viewLibraryPage .workspace .listContainer {
+  position: relative;
   width: 100%;
+  height: auto;
 }
 .viewLibraryPage .workspace .listContainer .list {
-  height: 20px;
+  display: table;
+  height: auto;
   width: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
   background-color: #313131;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
+  text-decoration: none;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem.cell {
+.viewLibraryPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem.cell label {
+.viewLibraryPage .workspace .listContainer .list .listItem .cell label {
   font-size: 10pt;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
@@ -4042,11 +5144,41 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img {
+.viewLibraryPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem .cell.profile-img {
   width: 200px;
   position: relative;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img div {
+.viewLibraryPage .workspace .listContainer .list .listItem .cell.profile-img div {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -4054,12 +5186,15 @@ select {
   left: 0;
   right: 0;
 }
-.viewLibraryPage .workspace .listContainer .list .listItem.cell.profile-img div img {
+.viewLibraryPage .workspace .listContainer .list .listItem .cell.profile-img div img {
   height: 100%;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
   vertical-align: middle;
   padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem td label {
   font-size: 10pt;
@@ -4069,6 +5204,36 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewLibraryPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem td.profile-img {
   width: 200px;
@@ -4092,6 +5257,149 @@ select {
   color: #FFF;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.viewLibraryPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewLibraryPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.viewLibraryPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.viewLibraryPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.viewLibraryPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.viewLibraryPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.viewLibraryPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.viewLibraryPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.viewLibraryPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.viewLibraryPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.viewLibraryPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.viewLibraryPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.viewLibraryPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.viewLibraryPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
 }
 .viewLibraryPage .addPhotoModal {
