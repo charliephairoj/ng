@@ -49,12 +49,14 @@ select {
  * Application wide stuff
  */
 /*general mixins*/
-/*Main Menu*/
-/*Rules:
+/*Menu
+ * 
+ *Rules:
  * 
  * Menus operate in the 10-19 z-index range with 
  * the base z-index at 10.
  */
+/*Main Menu*/
 /*This file handles the design of the main menu, 
  *including the links of the main menu
  */
@@ -96,8 +98,8 @@ select {
 }
 .mainMenu .mainMenuContainer .menuItem a {
   font-family: proxima;
-  font-size: 0.8em;
-  letter-spacing: 0.08em;
+  font-size: 1m;
+  letter-spacing: 0.07em;
   font-weight: 400;
   padding-right: 30px;
   color: white;
@@ -131,11 +133,6 @@ select {
   text-decoration: none;
   color: #FFFFFF;
   right: 20px;
-}
-.headings {
-  padding-left: 10px;
-  font-size: 14px;
-  color: grey;
 }
 /*Sidemenu*/
 /*
@@ -381,9 +378,86 @@ select {
 .sidebar nav ul li button:hover {
   background-color: #292929;
 }
-/*
-*Modal
-*/
+/*Notification Rules:
+ *
+ * The notification system will have 
+ * the highest index operating in the 
+ * 100-109 range because of the belief
+ * that communiation with the user is the
+ * most important aspect to make the 
+ * application feel responsive
+ */
+/*Notification system*/
+#notification {
+  z-index: 100;
+  opacity: 0;
+  width: auto;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 2px;
+  color: black;
+  font-family: Helvetica;
+  font-size: 0.8em;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: yellow;
+  -webkit-transition: opacity 500ms linear;
+  -moz-transition: opacity 500ms linear;
+  -o-transition: opacity 500ms linear;
+  -ms-transition: opacity 500ms linear;
+  transition: opacity 500ms linear;
+}
+#notification.active {
+  opacity: 1;
+}
+/*Page Rules:
+ * 
+ * All pages and their components in
+ * the z-index range of 0-9 with the base
+ * being 0
+ */
+/*Search Bar*/
+.searchBar {
+  position: absolute;
+  right: 20px;
+  top: -15px;
+  z-index: 9;
+  padding: 0px 6px 2px;
+  border-radius: 2px;
+  background-color: #313131;
+  -webkit-transition: top 250ms linear;
+  -moz-transition: top 250ms linear;
+  -o-transition: top 250ms linear;
+  -ms-transition: top 250ms linear;
+  transition: top 250ms linear;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.searchBar input {
+  padding: 5px;
+}
+.searchBar input:focus {
+  outline: none;
+}
+.searchBar:hover {
+  top: 0px;
+}
+/*Main Container*/
+.mainContainer {
+  position: absolute;
+  bottom: 0px;
+  top: 50px;
+  right: 0px;
+  left: 0px;
+  background-color: #E8E8E8;
+}
+.mainContainer input {
+  border: 1px solid grey;
+  background-color: #FFFFFF;
+}
+/*Modal*/
 .modal {
   position: fixed;
   width: 600px;
@@ -487,154 +561,8 @@ select {
   display: none;
 }
 /*
-*Notification system
-*/
-#notification {
-  z-index: 100;
-  opacity: 0;
-  width: auto;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  border-radius: 2px;
-  color: black;
-  font-family: Helvetica;
-  font-size: 0.8em;
-  margin: 0 auto;
-  padding: 5px;
-  background-color: yellow;
-  -webkit-transition: opacity 500ms linear;
-  -moz-transition: opacity 500ms linear;
-  -o-transition: opacity 500ms linear;
-  -ms-transition: opacity 500ms linear;
-  transition: opacity 500ms linear;
-}
-#notification.active {
-  opacity: 1;
-}
-/*Main Container*/
-.mainContainer {
-  position: absolute;
-  bottom: 0px;
-  top: 50px;
-  right: 0px;
-  left: 0px;
-  background-color: #E8E8E8;
-}
-.mainContainer input {
-  border: 1px solid grey;
-  background-color: #FFFFFF;
-}
-/*
  * Modal Theming
  */
-.ec-modal {
-  font-family: Tahoma, Helvetica, sans-serif;
-  height: auto;
-  max-height: 400px;
-  width: 440px;
-  position: absolute;
-  top: 200px;
-  right: 400px;
-  z-index: 5;
-  background: #FFFFFF;
-  border-radius: 3px;
-  -webkit-box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.4);
-  box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-}
-.ec-modal .title {
-  height: 20px;
-  text-align: center;
-  font-size: 16px;
-  padding-top: 4px;
-  color: #5E5E5E;
-  background: #E5E5E5;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-.ec-modal form {
-  margin-top: 5px;
-}
-.ec-modal form table {
-  margin-left: 5px;
-}
-.ec-modal form table td {
-  padding: 5px;
-  vertical-align: middle;
-}
-.ec-modal form label {
-  position: relative;
-  margin: 5px
-      color:#5e5e5e;
-}
-.ec-modal button[type=submit] {
-  position: relative;
-  margin: 10px;
-  background-color: #659BBC;
-  border: none;
-  border-radius: 2px;
-  color: white;
-  height: 25px;
-  width: 60px;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-}
-.ec-modal button[type=submit]:hover {
-  border: 1px solid #34557C;
-  background: #659bbc;
-  /* Old browsers */
-
-  background: -moz-linear-gradient(top, #659bbc 0%, #4879ad 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #659bbc), color-stop(100%, #4879ad));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(top, #659bbc 0%, #4879ad 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(top, #659bbc 0%, #4879ad 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(top, #659bbc 0%, #4879ad 100%);
-  /* IE10+ */
-
-  background: linear-gradient(to bottom, #659bbc 0%, #4879ad 100%);
-  /* W3C */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#659bbc', endColorstr='#4879ad', GradientType=0);
-  /* IE6-9 */
-
-}
-.ec-modal button[type=submit]:active {
-  background: #5a8aa8;
-  /* Old browsers */
-
-  background: -moz-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5a8aa8), color-stop(100%, #355e7f));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(top, #5a8aa8 0%, #355e7f 100%);
-  /* IE10+ */
-
-  background: linear-gradient(to bottom, #5a8aa8 0%, #355e7f 100%);
-  /* W3C */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a8aa8', endColorstr='#355e7f', GradientType=0);
-  /* IE6-9 */
-
-}
 /*
  * imports
  */
@@ -3455,31 +3383,6 @@ select {
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
-.viewPage .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.viewPage .searchBar input {
-  padding: 5px;
-}
-.viewPage .searchBar input:focus {
-  outline: none;
-}
-.viewPage .searchBar:hover {
-  top: 0px;
-}
 .viewPage .workspace {
   overflow-y: scroll;
   position: absolute;
@@ -3551,31 +3454,6 @@ select {
   left: 200px;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-}
-.viewFabricPage .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.viewFabricPage .searchBar input {
-  padding: 5px;
-}
-.viewFabricPage .searchBar input:focus {
-  outline: none;
-}
-.viewFabricPage .searchBar:hover {
-  top: 0px;
 }
 .viewFabricPage .workspace {
   overflow-y: scroll;
@@ -3652,31 +3530,6 @@ select {
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
-.viewGluePage .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.viewGluePage .searchBar input {
-  padding: 5px;
-}
-.viewGluePage .searchBar input:focus {
-  outline: none;
-}
-.viewGluePage .searchBar:hover {
-  top: 0px;
-}
 .viewGluePage .workspace {
   overflow-y: scroll;
   position: absolute;
@@ -3752,31 +3605,6 @@ select {
    * Workspace
    */
 
-}
-.viewSuppliersPage .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.viewSuppliersPage .searchBar input {
-  padding: 5px;
-}
-.viewSuppliersPage .searchBar input:focus {
-  outline: none;
-}
-.viewSuppliersPage .searchBar:hover {
-  top: 0px;
 }
 .viewSuppliersPage .workspace {
   overflow-y: scroll;
@@ -3870,31 +3698,6 @@ select {
    * Workspace
    */
 
-}
-.view_customer_page .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.view_customer_page .searchBar input {
-  padding: 5px;
-}
-.view_customer_page .searchBar input:focus {
-  outline: none;
-}
-.view_customer_page .searchBar:hover {
-  top: 0px;
 }
 .view_customer_page .workspace {
   overflow-y: scroll;
@@ -4032,31 +3835,6 @@ select {
   left: 200px;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-}
-.viewLibraryPage .searchBar {
-  position: fixed;
-  right: 20px;
-  top: -15px;
-  z-index: 101;
-  padding: 0px 6px 2px;
-  border-radius: 2px;
-  background-color: #313131;
-  -webkit-transition: top 250ms linear;
-  -moz-transition: top 250ms linear;
-  -o-transition: top 250ms linear;
-  -ms-transition: top 250ms linear;
-  transition: top 250ms linear;
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-}
-.viewLibraryPage .searchBar input {
-  padding: 5px;
-}
-.viewLibraryPage .searchBar input:focus {
-  outline: none;
-}
-.viewLibraryPage .searchBar:hover {
-  top: 0px;
 }
 .viewLibraryPage .workspace {
   overflow-y: scroll;
