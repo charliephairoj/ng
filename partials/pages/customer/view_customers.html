@@ -87,7 +87,7 @@
 		<nav>
 			<ul>
 				
-				<li ui-if="currentUser.hasPermission('add_customer')" ng-click="add_customer=true">
+				<li ng-show="currentUser.hasPermission('add_customer')" ng-click="add_customer=true">
 					<div>
 						Add Customer
 					</div>

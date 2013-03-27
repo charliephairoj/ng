@@ -15,6 +15,14 @@
 		</nav>
 	</div>
 	
+	<!--
+		Search Bar
+	-->
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	
 	<div class="workspace">
 		
 		<div class="details">
@@ -32,7 +40,7 @@
 					<div class="cell">Application</div>
 					<div class="cell">Permission</div>
 				</div>-->
-				<div class="row" ng-repeat='perm in permissionList'>
+				<div class="row" ng-repeat='perm in permissionList | filter:query'>
 					<div class="cell">
 						<input type="checkbox" ng-model="perm.checked" ng-checked="perm.status" ng-click="updatePermission($index)">					
 					</div>

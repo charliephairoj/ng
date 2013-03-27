@@ -97,7 +97,7 @@ AddGroupCtrl.$inject = ['$scope', 'Group', 'Permission', '$location'];
 
 //Group details
 
-function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
+function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location, $filter){
     
     $scope.permissionList = Permission.query(function(){
         console.log($scope.permissionList);
@@ -110,7 +110,8 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
     
     
     $scope.updatePermission = function(index){
-        var perm = $scope.permissionList[index];
+        
+        var perm = $filter('filter')($scope.permissionList, $scope.query)[index];
         $scope.permissionList[index].status = perm.checked;
         if(perm.checked){
             
@@ -153,7 +154,7 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
     
 }
 
-GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$location'];
+GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$location', '$filter'];
 
 /*
  * User Area
