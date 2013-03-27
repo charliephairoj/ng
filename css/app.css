@@ -84,16 +84,16 @@ select {
 }
 .mainMenu .mainMenuContainer {
   position: relative;
-  height: auto;
   width: auto;
-  float: left;
   margin-left: 20px;
-  margin-top: 17px;
+  height: 100%;
+  display: table;
 }
 .mainMenu .mainMenuContainer .menuItem {
+  display: table-cell;
+  vertical-align: middle;
   list-style-type: none;
-  float: left;
-  height: auto;
+  height: 100%;
   text-align: center;
   cursor: pointer;
 }
@@ -102,9 +102,18 @@ select {
   font-size: 1m;
   letter-spacing: 0.07em;
   font-weight: 400;
-  padding-right: 30px;
+  padding: 1em;
   color: white;
   text-decoration: none;
+  background-color: #313131;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.mainMenu .mainMenuContainer .menuItem a:hover {
+  background-color: orange;
 }
 .mainMenu .mainMenuContainer .menuItem .category_list {
   position: absolute;
@@ -127,13 +136,23 @@ select {
   right: 0px;
 }
 .mainMenu .logout {
-  height: 100%;
+  font-family: proxima;
   position: absolute;
-  padding: 17px;
-  font-size: 14px;
+  padding: 1em;
+  font-size: 1em;
   text-decoration: none;
   color: #FFFFFF;
   right: 20px;
+  top: 0px;
+  background-color: #313131;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.mainMenu .logout:hover {
+  background-color: orange;
 }
 /*Sidemenu*/
 /*
@@ -558,6 +577,76 @@ select {
 }
 #backdrop.hide {
   display: none;
+}
+.calendar_modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+}
+.calendar_modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.calendar_modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.calendar_modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.calendar_modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.calendar-modal {
+  width: 303px;
+  height: 282px;
+  margin-left: -151px;
+  border-radius: 2px;
+}
+.calendar-modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.calendar-modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.calendar-modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.calendar-modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
 }
 /*
  * Modal Theming
@@ -1883,41 +1972,6 @@ select {
   position: absolute;
   height: 100%;
   right: 0px;
-}
-.createAcknowledgementPage .calendar_modal {
-  width: 303px;
-  height: 282px;
-  margin-left: -151px;
-  border-radius: 2px;
-}
-.createAcknowledgementPage .calendar_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createAcknowledgementPage .calendar_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createAcknowledgementPage .calendar_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createAcknowledgementPage .calendar_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
 }
 .createAcknowledgementPage .quantity_modal {
   width: 303px;

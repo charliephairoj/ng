@@ -25,17 +25,16 @@
     //Container for main menu
     .mainMenuContainer{
         position:relative;
-        height:auto;
         width:auto;
-        float:left;
         margin-left:20px;
-        margin-top:17px;
+        height:100%;
+        display:table;
         //individual menu items
         .menuItem{
-          
+            display:table-cell;
+            vertical-align:middle;
             list-style-type:none;
-            float:left;
-            height:auto;
+            height:100%;
             text-align:center;
             cursor:pointer;
             //span
@@ -44,9 +43,14 @@
                 font-size:1m;
                 letter-spacing:0.07em;
                 font-weight:400;
-                padding-right:30px;
+                padding:1em;
                 color:white;
                 text-decoration:none;
+                background-color:#313131;
+                .transition(all, 250ms, linear);
+                &:hover{
+                    background-color:orange;
+                }
             }
             
             .category_list{
@@ -80,12 +84,18 @@
     }
   
     .logout{
-        height:100%;
+        font-family:proxima;
         position:absolute;
-        padding:17px;
-        font-size:14px;
+        padding:1em;
+        font-size:1em;
         text-decoration:none;
         color:#FFFFFF;
         right:20px;
+        top:0px;
+        background-color:#313131;
+        .transition(all, 250ms, linear);
+        &:hover{
+            background-color:orange;
+        }
     }
 }
