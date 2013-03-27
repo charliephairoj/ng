@@ -258,7 +258,7 @@ select {
   background-color: #313131;
 }
 .sidebar nav ul li .textholder:hover {
-  background-color: #292929;
+  background-color: orange;
 }
 .sidebar nav ul li a {
   font-size: 12px;
@@ -297,7 +297,7 @@ select {
   background-color: #313131;
 }
 .sidebar nav ul li a:hover {
-  background-color: #292929;
+  background-color: orange;
 }
 .sidebar nav ul li div {
   font-size: 12px;
@@ -336,7 +336,7 @@ select {
   background-color: #313131;
 }
 .sidebar nav ul li div:hover {
-  background-color: #292929;
+  background-color: orange;
 }
 .sidebar nav ul li button {
   font-size: 12px;
@@ -375,7 +375,7 @@ select {
   background-color: #313131;
 }
 .sidebar nav ul li button:hover {
-  background-color: #292929;
+  background-color: orange;
 }
 /*Notification Rules:
  *
@@ -3000,6 +3000,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.detailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.detailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.detailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.detailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.detailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.detailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.detailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.detailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.detailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .detailsPage table td {
   padding: 3px;
@@ -3019,6 +3070,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.userDetailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.userDetailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.userDetailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.userDetailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.userDetailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.userDetailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.userDetailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.userDetailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.userDetailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .userDetailsPage table td {
   padding: 3px;
@@ -3099,6 +3201,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.groupDetailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.groupDetailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.groupDetailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.groupDetailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.groupDetailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.groupDetailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.groupDetailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.groupDetailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.groupDetailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .groupDetailsPage table td {
   padding: 3px;
@@ -3164,6 +3317,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.supplierDetailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.supplierDetailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.supplierDetailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.supplierDetailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.supplierDetailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.supplierDetailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.supplierDetailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.supplierDetailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.supplierDetailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .supplierDetailsPage table td {
   padding: 3px;
@@ -3282,6 +3486,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.customer_details_page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.customer_details_page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.customer_details_page .workspace .details .table .row {
+  display: table-row;
+}
+.customer_details_page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.customer_details_page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.customer_details_page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.customer_details_page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.customer_details_page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.customer_details_page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .customer_details_page table td {
   padding: 3px;
@@ -3343,6 +3598,57 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #313131;
+}
+.fabricDetailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.fabricDetailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.fabricDetailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.fabricDetailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.fabricDetailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.fabricDetailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.fabricDetailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.fabricDetailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.fabricDetailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .fabricDetailsPage table td {
   padding: 3px;
@@ -3482,6 +3788,123 @@ select {
 }
 .fabricDetailsPage .logContainer.active {
   left: 0px;
+}
+.acknowledgementDetailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.acknowledgementDetailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.acknowledgementDetailsPage .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.acknowledgementDetailsPage .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.acknowledgementDetailsPage .workspace .details .table .row {
+  display: table-row;
+}
+.acknowledgementDetailsPage .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.acknowledgementDetailsPage .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.acknowledgementDetailsPage .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.acknowledgementDetailsPage .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.acknowledgementDetailsPage .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.acknowledgementDetailsPage .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.acknowledgementDetailsPage table td {
+  padding: 3px;
+}
+.acknowledgementDetailsPage .workspace .table .row .cell.acknowledged {
+  color: yellow;
+}
+.acknowledgementDetailsPage .workspace .table .row .cell.shipped {
+  color: #00FF00;
+}
+.acknowledgementDetailsPage .workspace .products .table {
+  position: relative;
+}
+.acknowledgementDetailsPage .workspace .products .table .row {
+  position: relative;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell {
+  position: relative;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell.product-img {
+  height: 150px;
+  width: 225px;
+  position: relative;
+  overflow: hidden;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell .details {
+  width: 100%;
+  display: table;
+  border: none;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell .details .details-row {
+  width: 100%;
+  display: table-row;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell .details .details-row .details-data {
+  display: table-cell;
+  color: #CCC;
+  border: none;
+  font-size: 0.8em;
+  font-family: proxima;
+  padding: 0.3em;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell .details .details-row .details-data img {
+  height: 2em;
+  width: auto;
+}
+.acknowledgementDetailsPage .workspace .products .table .row .cell img {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  bottom: 0px;
 }
 /*
  * View Page Imports 
@@ -3809,6 +4232,333 @@ select {
 }
 .viewPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
+}
+.acknowledgementViewPage {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+}
+.acknowledgementViewPage .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
+}
+.acknowledgementViewPage .workspace .listContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.acknowledgementViewPage .workspace .listContainer .list {
+  display: table;
+  height: auto;
+  width: 100%;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem .cell.profile-img div img {
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem td.profile-img div img {
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem:hover {
+  background-color: #292929;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.acknowledgementViewPage .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td .details .details-row {
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-data.acknowledged {
+  color: yellow;
+}
+.acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-data.shipped {
+  color: #00FF00;
 }
 .viewFabricPage {
   font-family: Helvetica, Tahoma, sans-serif;

@@ -87,8 +87,9 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/purchase_order/create', {templateUrl:'partials/pages/purchase_order/create_purchase_order.html', controller:CreatePOCtrl}).
     
     //Acknowledgements
-    when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view_acknowledgements.html', controller:ViewAcknowledgementCtrl}).
-    when('/acknowledgement/create', {templateUrl:'partials/pages/acknowledgement/create_acknowledgements.html', controller:CreateAcknowledgementCtrl}).
+    when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view.html', controller:ViewAcknowledgementCtrl}).
+    when('/acknowledgement/create', {templateUrl:'partials/pages/acknowledgement/create.html', controller:CreateAcknowledgementCtrl}).
+    when('/acknowledgement/:id', {templateUrl:'partials/pages/acknowledgement/details.html', controller: AcknowledgementDetailsCtrl}).
     //Shipping
     when('/shipping', {templateUrl:'partials/pages/shipping/view_shipping.html', controller:ViewShippingCtrl}).
     when('/shipping/create', {templateUrl:'partials/pages/shipping/create_shipping.html', controller:CreateShippingCtrl}).

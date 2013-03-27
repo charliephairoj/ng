@@ -122,6 +122,8 @@
  * Details Page
  */
 
+@font:proxima;
+
 .detailsPage{
   height:100%;
   left:200px;
@@ -132,15 +134,66 @@
   //padding:15px;
   -webkit-box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
         
-        box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  //toolbar
-  
-  
-  
+        box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);  
   .workspace{
-    position:absolute;
-    width:100%;
-    height:100%;
+      position:absolute;
+      width:100%;
+      height:100%;
+      background-color:#313131;
+      .details{
+          position:relative;
+          height:auto;
+          width:100%;
+          border-bottom:1px solid #282828;
+          .table{
+              margin:10px;
+              display:table;
+              .row{
+                  display:table-row;
+                  .cell{
+                      display:table-cell;
+                      padding:0.4em;
+                      font-size:0.8em;
+                      color:#CCC;
+                      font-family:@font;
+                      letter-spacing:0.08em;
+                  }
+              }
+          }
+      }
+      .items{
+      position:relative;
+      height:100%;
+      width:100%;
+      overflow-y:scroll;
+      
+      .table{
+          display:table;
+          width:100%;
+          margin-bottom:100px;
+          .row{
+              display:table-row;
+              width:100%;
+              
+              &.header{
+                  position:absolute;
+                  top:0px;
+              }
+              
+              .cell{
+                  color:#CCC;
+                  font-family:@font;
+                  display:table-cell;
+                  font-size:0.8em;
+                  padding:1em;
+                  border-top: 1px solid #3c3c3c;
+                  border-bottom: 1px solid #282828;
+                  letter-spacing:0.08em;
+              }
+          }
+      }
+      
+    }
   }
   table{
     td{
@@ -155,13 +208,14 @@
 @import 'contacts/supplier/supplier_details.less';
 @import 'contacts/customer/details.less';
 @import 'supplies/fabric/fabric_details.less';
-
+@import 'orders/acknowledgement/details.less';
 
 /*
  * View Page Imports 
  */
-@import "templates/viewPage.less";
+@import "templates/view.less";
 
+@import "orders/acknowledgement/view.less";
 @import "supplies/fabric/view_fabric.less";
 @import "supplies/glue/view_glue.less";
 @import "contacts/supplier/view_suppliers.less";
