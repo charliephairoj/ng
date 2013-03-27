@@ -1,4 +1,4 @@
-<div class="detailsPage" ng-init="edit=false;">
+<div class="userDetailsPage" ng-init="edit=false;">
 	
 	<!--
 		Sidebar
@@ -10,11 +10,6 @@
 		</header>
 		<nav>
 			<ul>
-				<li>
-					<div ng-click="edit=!edit">
-						Edit
-					</div>
-				</li>
 				<li>
 					<div ng-click="remove()">
 						Delete
@@ -30,26 +25,31 @@
 		Edit Panel
 	-->
 	
-	<table>
-			<tr>
-				<td><label>First Name</label></td>
-				<td><input type="text" ng-model="user.firstName" ec-blur="update()" /></td>
-			</tr>
-			<tr>
-				<td><label> Last Name</label></td>
-				<td><input type="text" ng-model="user.lastName" ec-blur="update()" /></td>
-			</tr>
-			
-			<tr>
-				<td><label>Email</label></td>
-				<td><input type="text" ng-model="user.email" ec-blur="update()" /></td>
-			</tr>
-			
-			<tr>
-				<td><label>Groups</label></td>
-				<td ng-repeat="group in user.groups">{{group.name}}</td>
-			</tr>
-			
-		</table> 
-	
+	<div class="details">
+		<div class="table">
+			<div class="row">
+				<div class="cell"><label>First Name</label></div>
+				<div class="cell"><input type="text" ng-model="user.first_name" ec-blur="update()" /></div>
+			</div>
+			<div class="row">
+				<div class="cell"><label> Last Name</label></div>
+				<div class="cell"><input type="text" ng-model="user.last_name" ec-blur="update()" /></div>
+			</div>
+				
+			<div class="row">
+				<div class="cell"><label>Email</label></div>
+				<div class="cell"><input type="text" ng-model="user.email" ec-blur="update()" /></div>
+			</div>	
+		</div>		
+	</div> 
+	<div class="groups">
+		<div class="table">
+			<div class="row" ng-repeat="group in groupList">
+				<div class="cell">
+					<input type="checkbox" ng-model="group.checked" ng-checked="group.status" ng-click="updateGroup($index)"/>
+				</div>
+				<div class="cell">{{group.name}}</div>
+			</div>
+		</div>
+	</div>
 </div>

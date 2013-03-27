@@ -63,16 +63,17 @@ select {
 .mainMenu {
   position: absolute;
   height: 50px;
-  background-color: black;
   top: 0px;
   width: 100%;
   font-family: Helvetica, Tahoma, sans-serif;
   z-index: 11;
-  background: #313131;
-  /* Old browsers */
+  background-color: #313131;
+  border-bottom: 1px solid #282828;
+  /*
+    -webkit-box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    */
 
-  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 }
 .mainMenu .logo {
   position: relative;
@@ -3003,6 +3004,86 @@ select {
 .detailsPage table td {
   padding: 3px;
 }
+.userDetailsPage {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #E8E8E8;
+  position: absolute;
+  font-family: Helvetica, sans-serif, Tahoma;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  background-color: #313131;
+}
+.userDetailsPage .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.userDetailsPage table td {
+  padding: 3px;
+}
+.userDetailsPage .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.userDetailsPage .details .table {
+  margin: 10px;
+  display: table;
+}
+.userDetailsPage .details .table .row {
+  display: table-row;
+}
+.userDetailsPage .details .table .row .cell {
+  display: table-cell;
+  padding: 1em;
+  font-size: 1em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.userDetailsPage .details .table .row .cell input {
+  font-family: proxima;
+  font-size: 1em;
+  background: transparent;
+  outline: none;
+  border: 1px solid transparent;
+  color: #CCC;
+}
+.userDetailsPage .details .table .row .cell input:focus {
+  background: #444444;
+}
+.userDetailsPage .groups {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.userDetailsPage .groups .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.userDetailsPage .groups .table .row {
+  display: table-row;
+  width: 100%;
+}
+.userDetailsPage .groups .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.userDetailsPage .groups .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
 .groupDetailsPage {
   height: 100%;
   left: 200px;
@@ -3012,6 +3093,7 @@ select {
   font-family: Helvetica, sans-serif, Tahoma;
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  background-color: #313131;
 }
 .groupDetailsPage .workspace {
   position: absolute;
@@ -3021,16 +3103,52 @@ select {
 .groupDetailsPage table td {
   padding: 3px;
 }
-.groupDetailsPage .permissionList {
+.groupDetailsPage .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.groupDetailsPage .details .table {
+  margin: 10px;
+  display: table;
+}
+.groupDetailsPage .details .table .cell {
+  display: table-cell;
+  padding: 1em;
+  font-size: 1em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.groupDetailsPage .permissions {
+  position: relative;
   height: 100%;
-  width: 200px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
+  width: 100%;
   overflow-y: scroll;
 }
-.groupDetailsPage .permissionList ul {
-  position: static;
+.groupDetailsPage .permissions .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.groupDetailsPage .permissions .table .row {
+  display: table-row;
+  width: 100%;
+}
+.groupDetailsPage .permissions .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.groupDetailsPage .permissions .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
 }
 .supplierDetailsPage {
   height: 100%;
@@ -3408,6 +3526,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -3551,6 +3670,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -3727,6 +3847,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -3870,6 +3991,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4046,6 +4168,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4189,6 +4312,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4369,6 +4493,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4512,6 +4637,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4729,6 +4855,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -4872,6 +4999,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -5120,6 +5248,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;
@@ -5263,6 +5392,7 @@ select {
   display: table-row;
   width: 100%;
   height: auto;
+  color: #313131;
   background-color: #313131;
   text-decoration: none;
   -webkit-transition: all 250ms linear;

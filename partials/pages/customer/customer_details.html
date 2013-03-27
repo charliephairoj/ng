@@ -28,7 +28,7 @@
 						View Map
 					</div>
 				</li>
-				<li>
+				<li ui-if="currentUser.hasPermission('delete_customer')">
 					<div ng-click="remove()">Delete</div>
 				</li>
 			</ul>

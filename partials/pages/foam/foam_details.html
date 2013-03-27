@@ -27,7 +27,7 @@
 				<li>
 					<div ng-click="viewLog();showLog=!showLog">View Log</div>
 				</li>
-				<li>
+				<li ui-if="currentUser.hasPermission('delete_foam')">
 					<div ng-click="remove()">Delete</div>
 				</li>
 					

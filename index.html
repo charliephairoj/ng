@@ -72,7 +72,7 @@
 				<a ng-href="#/contacts">Contacts</a>
 				
 			</li>
-			<li class="menuItem" ng-show="currentUser.hasModule('contacts')" ng-click="module='contacts';mainContainer='active'">
+			<li class="menuItem" ng-show="currentUser.hasModule('products')" ng-click="module='contacts';mainContainer='active'">
 				<a ng-href="#/products">Products</a>
 				
 			</li>
@@ -80,7 +80,8 @@
 				<a ng-href="#/supplies">Supplies</a>
 				
 			</li>
-			<li class="menuItem" ng-show="currentUser.hasModule('orders')" ng-click="module='orders'">
+			<li class="menuItem" ng-show="currentUser.hasModule('acknowledgements') || currentUser.hasModule('shipping') || currentUser.hasModule('orders')" 
+			ng-click="module='orders'">
 				<a ng-href="#/orders">Orders</a>
 				
 			</li>

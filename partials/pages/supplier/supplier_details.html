@@ -9,12 +9,12 @@
 		</header>
 		<nav>
 			<ul>
-				<li>
+				<li ui-if="currentUser.hasPermission('change_supplier')">
 					<div ng-click="edit=!edit">
 						Edit
 					</div>
 				</li>
-				<li>
+				<li ui-if="currentUser.hasPermission('add_suppliercontact')">
 					<div ng-click="showAddContact=true">
 						Add Contact
 					</div>
@@ -24,7 +24,7 @@
 						View Map
 					</div>
 				</li>
-				<li>
+				<li ui-if="currentUser.hasPermission('delete_supplier')">
 					<div ng-click="remove()">Delete</div>
 				</li>
 			</ul>

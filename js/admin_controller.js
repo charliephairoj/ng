@@ -1,6 +1,30 @@
 //Controllers for order
 
+function search(list, key, value, callback, error){        
+    for(var i=0; i<list.length; i++){
+        if(list[i].hasOwnProperty(key)){
+            if(list[i][key] == value){
+                callback(list[i], i);
+                return list[i];
+                    
+            }
+        }
+    }
+        
+    if(angular.isFunction(error)){error()}
+    return false;
+}
 
+function merge(permList, groupPerms){
+    if(permList && groupPerms){
+        angular.forEach(groupPerms, function(perm){
+            search(permList, 'id', perm.id, function(item, index){                    
+                permList[index].status = true;
+            });
+                
+        });
+    }
+}
 /*
  * Permissions Area
  */
@@ -83,30 +107,7 @@ function GroupDetailsCtrl($scope, Group, Permission, $routeParams, $location){
         merge($scope.permissionList, $scope.group.permissions);
     });
     
-    function search(list, key, value, callback, error){        
-        for(var i=0; i<list.length; i++){
-            if(list[i].hasOwnProperty(key)){
-                if(list[i][key] == value){
-                    callback(list[i], i);
-                    return list[i];
-                    
-                }
-            }
-        }
-        
-        if(angular.isFunction(error)){error()}
-        return false;
-    }
-    function merge(permList, groupPerms){
-        if(permList && groupPerms){
-            angular.forEach(groupPerms, function(perm){
-                search(permList, 'id', perm.id, function(item, index){                    
-                    permList[index].status = true;
-                });
-                
-            });
-        }
-    }
+    
     
     $scope.updatePermission = function(index){
         var perm = $scope.permissionList[index];
@@ -205,9 +206,38 @@ AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
 //User details
 
 function UserDetailsCtrl($scope, Group, User, $routeParams, $location){
-    $scope.groupList = Group.query();
-    $scope.user = User.get({'id':$routeParams.id});
+    $scope.groupList = Group.query(function(){
+        merge($scope.groupList, $scope.user.groups);
+    });
+    $scope.user = User.get({'id':$routeParams.id}, function(){
+        merge($scope.groupList, $scope.user.groups);
+    });
     
+    $scope.updateGroup = function(index){
+        var group = $scope.groupList[index];
+        $scope.groupList[index].status = group.checked;
+        if(group.checked){
+            
+            search($scope.user.groups, 'id', group.id, function(item, index){
+                if($scope.user.groups[index].status == "delete"){
+                    $scope.user.groups[index].status = "add";
+                }
+            },
+            function(){
+                group.status = 'add';
+                $scope.user.groups.push(angular.copy(group));
+            });
+        }else{
+            search($scope.user.groups, 'id', group.id, function(item, index){
+                $scope.user.groups[index].status = 'delete';
+            }, 
+            function(){
+                 
+            });
+        }
+        console.log($scope.user);
+        $scope.user.$save();
+    }
     
     $scope.remove = function(){
         $scope.user.$delete(function(){
