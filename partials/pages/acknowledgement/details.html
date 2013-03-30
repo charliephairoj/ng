@@ -20,6 +20,9 @@
 		<nav>
 			<ul>
 			    <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                    <div ng-click="save()">Save</div>
+                </li>
+			    <li ng-show="currentUser.hasPermission('change_acknowledgement')">
                     <div ng-click="showCal=true">Change Delivery Date</div>
                 </li>
 				<li ui-if="currentUser.hasPermission('delete_acknowledgement')">
