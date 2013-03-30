@@ -497,21 +497,28 @@ select {
 }
 .modal .title {
   position: absolute;
-  max-height: 30px;
+  max-height: 45px;
+  min-height: 45px;
   top: 0px;
   left: 0px;
   right: 0px;
-  height: 45px;
   text-align: left;
-  font-size: 16px;
-  padding: 7px 5px;
+  font-size: 1.2em;
+  font-family: proxima;
+  padding: 8px 5px 0px 20px;
   background-color: #313131;
+  border-bottom: 1px solid #282828;
   color: #FFFFFF;
   -webkit-border-radius: 2px 2px 0px 0px;
   border-radius: 2px 2px 0px 0px;
   z-index: 1;
 }
 .modal .title .search {
+  float: right;
+  border-radius: 5px;
+  height: 10px;
+}
+.modal .title .searchbar {
   float: right;
   border-radius: 5px;
   height: 10px;
@@ -1373,357 +1380,202 @@ select {
 .createPOPage.fadeIn {
   left: 200px;
 }
-.createPOPage .panel {
+.createPOPage .modal {
+  background-color: #313131;
+}
+.createPOPage .modal .container {
   position: absolute;
-  left: 100%;
   width: 100%;
-  top: 0px;
-  bottom: 0px;
-  z-index: 10;
-  overflow: scroll;
-  background-color: #D8D8D8;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
-  -webkit-transition: left 500ms linear;
-  -moz-transition: left 500ms linear;
-  -o-transition: left 500ms linear;
-  -ms-transition: left 500ms linear;
-  transition: left 500ms linear;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
-.createPOPage .panel .sourceList {
-  height: auto;
-  position: relative;
-  left: 0px;
+.createPOPage .modal .container .list {
+  width: 100%;
 }
-.createPOPage .panel .sourceList .sourceItem {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.createPOPage .modal .container .list .item {
+  width: 100%;
+  background: #313131;
+  padding: 1em;
+  font-size: 1em;
+  font-family: proxima;
+  color: #CCCCCC;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
   cursor: pointer;
-  border-bottom: 1px solid grey;
-  background: white;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
 }
-.createPOPage .panel .sourceList .sourceItem:first-child {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.createPOPage .panel .sourceList .sourceItem:last-child {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom: none;
-}
-.createPOPage .panel .sourceList .sourceItem:hover {
-  background: #DDDDDD;
-}
-.createPOPage .panel .sourceList .sourceItem:active {
-  background: #AFAFAF;
-}
-.createPOPage .panel.active {
-  left: 0px;
+.createPOPage .modal .container .list .item:hover {
+  background: orange;
+  color: #FFFFFF;
 }
 .createPOPage .po {
-  overflow: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
   position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background: #DBDBDB;
+  background: #313131;
 }
 .createPOPage .po .workspace {
   height: 100%;
   width: 100%;
   z-index: 1;
+  padding-bottom: 50px;
 }
 .createPOPage .po .workspace .supplier {
   position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
+  margin-left: 20px;
+  margin-top: 40px;
+  color: #FFF;
 }
-.createPOPage .po .workspace .supplier > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
+.createPOPage .po .workspace .supplier .title {
+  font-size: 18px;
 }
-.createPOPage .po .workspace .supplier > tr:first-child {
-  border-top: none;
+.createPOPage .po .workspace .supplier .details {
+  margin-top: 20px;
 }
-.createPOPage .po .workspace .supplier > tr td {
-  padding: 2px;
+.createPOPage .po .workspace .supplier .details tr td {
+  line-height: 1.6em;
+  font-size: 0.8em;
+  font-family: proxima;
+  letter-spacing: 0.08em;
 }
-.createPOPage .po .workspace .supplier > tr td:first-child {
-  color: #3c3c3c;
+.createPOPage .po .workspace .supplier .details tr td:first-child {
+  color: #6B6B6B;
 }
-.createPOPage .po .workspace .supplier label {
-  padding-left: 10px;
+.createPOPage .po .workspace .supplier .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
 }
-.createPOPage .po .workspace .attention {
+.createPOPage .po .workspace .order {
   position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
+  margin-left: 20px;
+  margin-top: 40px;
+  color: #FFF;
 }
-.createPOPage .po .workspace .attention > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
+.createPOPage .po .workspace .order .title {
+  font-size: 18px;
 }
-.createPOPage .po .workspace .attention > tr:first-child {
-  border-top: none;
+.createPOPage .po .workspace .order .details {
+  margin-top: 20px;
 }
-.createPOPage .po .workspace .attention > tr td {
-  padding: 2px;
+.createPOPage .po .workspace .order .details tr td {
+  line-height: 1.6em;
+  font-size: 0.8em;
+  font-family: proxima;
+  letter-spacing: 0.08em;
 }
-.createPOPage .po .workspace .attention > tr td:first-child {
-  color: #3c3c3c;
+.createPOPage .po .workspace .order .details tr td:first-child {
+  color: #6B6B6B;
 }
-.createPOPage .po .workspace .attention label {
-  padding-left: 10px;
-}
-.createPOPage .po .workspace .attention select {
-  margin-left: 10px;
-}
-.createPOPage .po .workspace .vat {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
-}
-.createPOPage .po .workspace .vat > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
-}
-.createPOPage .po .workspace .vat > tr:first-child {
-  border-top: none;
-}
-.createPOPage .po .workspace .vat > tr td {
-  padding: 2px;
-}
-.createPOPage .po .workspace .vat > tr td:first-child {
-  color: #3c3c3c;
-}
-.createPOPage .po .workspace .vat label {
-  padding-left: 10px;
-}
-.createPOPage .po .workspace .vat td {
-  vertical-align: middle;
-}
-.createPOPage .po .workspace .vat td input {
-  margin-left: 5px;
-  border: none;
-  text-align: right;
-  width: 40px;
-  outline: none;
-}
-.createPOPage .po .workspace .currency {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
-}
-.createPOPage .po .workspace .currency > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
-}
-.createPOPage .po .workspace .currency > tr:first-child {
-  border-top: none;
-}
-.createPOPage .po .workspace .currency > tr td {
-  padding: 2px;
-}
-.createPOPage .po .workspace .currency > tr td:first-child {
-  color: #3c3c3c;
-}
-.createPOPage .po .workspace .currency label {
-  padding-left: 10px;
-}
-.createPOPage .po .workspace .currency td {
-  vertical-align: middle;
-}
-.createPOPage .po .workspace .currency td input {
-  margin-left: 5px;
-  border: none;
-  text-align: right;
-  width: 40px;
-  outline: none;
-}
-.createPOPage .po .workspace .currency select {
-  margin-left: 5px;
-}
-.createPOPage .po .workspace .deliveryDate {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
-}
-.createPOPage .po .workspace .deliveryDate > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
-}
-.createPOPage .po .workspace .deliveryDate > tr:first-child {
-  border-top: none;
-}
-.createPOPage .po .workspace .deliveryDate > tr td {
-  padding: 2px;
-}
-.createPOPage .po .workspace .deliveryDate > tr td:first-child {
-  color: #3c3c3c;
-}
-.createPOPage .po .workspace .deliveryDate label {
-  padding-left: 10px;
-}
-.createPOPage .po .workspace .deliveryDate td {
-  vertical-align: middle;
-}
-.createPOPage .po .workspace .deliveryDate td input {
-  margin-left: 5px;
-  border: none;
-  text-align: right;
-  width: 40px;
-  outline: none;
-}
-.createPOPage .po .workspace .deliveryDate td input {
-  width: auto;
-}
-.createPOPage .po .workspace .shipping {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  width: auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-family: Helvetica, Tahoma, sans-serif;
-}
-.createPOPage .po .workspace .shipping > tr {
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
-}
-.createPOPage .po .workspace .shipping > tr:first-child {
-  border-top: none;
-}
-.createPOPage .po .workspace .shipping > tr td {
-  padding: 2px;
-}
-.createPOPage .po .workspace .shipping > tr td:first-child {
-  color: #3c3c3c;
-}
-.createPOPage .po .workspace .shipping label {
-  padding-left: 10px;
-}
-.createPOPage .po .workspace .shipping td {
-  vertical-align: middle;
-}
-.createPOPage .po .workspace .shipping td input {
-  margin-left: 5px;
-  border: none;
-  text-align: right;
-  width: 40px;
-  outline: none;
-}
-.createPOPage .po .workspace .shipping td select {
-  margin-left: 3px;
-}
-.createPOPage .po .workspace .shipping td input {
-  margin-left: 3px;
-  width: auto;
+.createPOPage .po .workspace .order .details tr td:last-child {
+  color: #828282;
+  padding-left: 20px;
 }
 .createPOPage .po .workspace .supplies {
   position: relative;
   height: auto;
-  margin-left: 10px;
-  margin-right: 10px;
-  background: #A0A0A0;
-  border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  color: #FFFFFF;
 }
-.createPOPage .po .workspace .supplies table {
-  margin-left: 5px;
-  margin-right: 5px;
+.createPOPage .po .workspace .supplies .title {
+  font-size: 24px;
 }
-.createPOPage .po .workspace .supplies table .itemNo {
-  width: 10%;
-  text-align: center;
+.createPOPage .po .workspace .supplies .supply {
+  color: #828282;
+  font-size: 14px;
+  position: relative;
+  width: 80%;
+  margin-right: 20px;
+  margin-top: 30px;
+  border: 1px solid #282828;
+  float: left;
+  border-radius: 2px;
+  padding: 10px;
+  min-height: 100px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
 }
-.createPOPage .po .workspace .supplies table .description {
-  width: 75%;
-  text-align: left;
-  padding-left: 10px;
+.createPOPage .po .workspace .supplies .supply .details {
+  margin-top: 5px;
 }
-.createPOPage .po .workspace .supplies table tr {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid grey;
-  background: white;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.createPOPage .po .workspace .supplies table tr th {
-  padding: 5px;
-}
-.createPOPage .po .workspace .supplies table tr th:first-child {
-  -webkit-border-radius: 5px 0px 0px 0px;
-  border-radius: 5px 0px 0px 0px;
-}
-.createPOPage .po .workspace .supplies table tr th:last-child {
-  -webkit-border-radius: 0px 5px 0px 0px;
-  border-radius: 0px 5px 0px 0px;
-}
-.createPOPage .po .workspace .supplies table tr td {
+.createPOPage .po .workspace .supplies .supply .details tr td {
+  padding: 2px 0px 2px;
   vertical-align: middle;
+  color: #828282;
+  font-size: 12px;
+  line-height: 18px;
 }
-.createPOPage .po .workspace .supplies table tr td.remove {
-  text-align: center;
+.createPOPage .po .workspace .supplies .supply .details tr td input {
+  outline: none;
+  color: #828282;
+  font-size: 12px
+                                    padding:0px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  width: 60px;
+  padding: 0px;
+  margin-right: 5px;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.createPOPage .po .workspace .supplies .supply .details tr td input.active {
+  background-color: #474747;
+}
+.createPOPage .po .workspace .supplies .supply .details tr td input.active:focus {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.createPOPage .po .workspace .supplies .supply .details tr td img {
+  margin-left: 5px;
+  height: 30px;
+  width: auto;
+}
+.createPOPage .po .workspace .supplies .supply .details tr td:first-child {
+  color: #6B6B6B;
+}
+.createPOPage .po .workspace .supplies .supply .details tr td:last-child {
+  padding-left: 20px;
+}
+.createPOPage .po .workspace .supplies .supply > img {
+  height: 150px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-radius: 0px 2px 0px 0px;
+}
+.createPOPage .po .workspace .supplies .supply .remove_btn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 0px 0px 2px 0px;
+  font-size: 10px;
+  padding: 5px;
+  border: 1px solid #282828;
+  color: #828282;
   cursor: pointer;
-  color: #6f6f6f;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
 }
-.createPOPage .po .workspace .supplies table tr td.remove:hover {
-  color: #CCCCCC;
-}
-.createPOPage .po .workspace .supplies table tr td input {
-  border: none;
-  text-align: right;
-}
-.createPOPage .po .workspace .supplies table tr td:first-child {
-  -webkit-border-radius: 0px 0px 0px 5px;
-  border-radius: 0px 0px 0px 5px;
-}
-.createPOPage .po .workspace .supplies table tr td:last-child {
-  -webkit-border-radius: 0px 0px 5px 0px;
-  border-radius: 0px 0px 5px 0px;
+.createPOPage .po .workspace .supplies .supply .remove_btn:hover {
+  color: #FFFFFF;
 }
 .createPOPage.fadeIn {
   opacity: 1;

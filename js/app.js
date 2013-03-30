@@ -83,8 +83,8 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
      * This section deals with orders
      */
     //purhcase order routes
-    when('/purchase_order', {templateUrl:'partials/pages/purchase_order/view_purchase_order.html', controller:ViewPOCtrl}).
-    when('/purchase_order/create', {templateUrl:'partials/pages/purchase_order/create_purchase_order.html', controller:CreatePOCtrl}).
+    when('/purchase_order', {templateUrl:'partials/pages/purchase_order/view.html', controller:ViewPOCtrl}).
+    when('/purchase_order/create', {templateUrl:'partials/pages/purchase_order/create.html', controller:CreatePOCtrl}).
     
     //Acknowledgements
     when('/acknowledgement', {templateUrl:'partials/pages/acknowledgement/view.html', controller:ViewAcknowledgementCtrl}).
