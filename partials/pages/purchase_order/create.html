@@ -1,0 +1,163 @@
+<div class="createPOPage" ng-init="showSuppliers=false; showSupplies=false;" fade-in>
+	
+	
+	
+	
+	<form class="po" name="form" ec-droppable="add()" novalidate>
+		
+		<!--
+			Sidebar
+		-->
+		
+		<div class="sidebar">
+			<header>
+				<h1>
+					<span>Contacts</span>
+				</h1>
+			</header>
+			<nav>
+				<ul class="list">
+					<li><div ng-class="{dirty:form.$invalid}" ng-click="create()" >Create</div></li>
+					<li><div ng-click="showSuppliers=!showSuppliers">View Suppliers</div></li>
+					<li><div ng-class="{dirty:!po.supplier}" ng-click="showSupplies=true">View Supplies</div></li>
+					<li><div ng-click="reset()" >Reset</div></li>
+				</ul>
+			</nav>
+			
+		</div>
+		
+		<!--
+			Panels containing suppliers and supplies
+		-->
+		
+		<div class="suppliers" data-modal data-ng-model="showSuppliers">
+		    <div class="title">
+		        Suppliers
+		        <div class="searchbar"></div>
+		    </div>
+		    <div class="container">
+                <ul class="list">
+                    <li class="item" ng-click="addSupplier($index)" ng-repeat="supplier in supplierList | filter:query">{{supplier.name}}</li>
+                </ul>
+            </div>
+		</div>
+		
+		<div class="supplies" data-ng-model="showSupplies" data-modal>
+		    <div class="title">
+		        Supplies
+		    </div>
+		    <div class="container">
+		        <ul class="list">
+                    <li class="item" ng-click="addSupply($index)" ng-repeat="supply in supplyList | filter:supplier.name | filter:query |exclude:orderedSupplies">{{supply.description}}</li>
+                </ul>
+		    </div>
+			
+			
+		</div>
+		
+		<!--
+			Workspace
+		-->
+		<div class="workspace">
+		    <div class="supplier">
+				<table class="details">
+					<tr>
+						<td>Supplier</td>
+						<td>{{po.supplier.name}}</td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>{{po.supplier.address.address1}}</td>
+					</tr>
+					<tr>
+						<td>City</td>
+						<td>{{po.supplier.address.city}}</td>
+					</tr>
+					<tr>
+						<td>Territory</td>
+						<td>{{po.supplier.address.territory}}</td>
+					</tr>
+					<tr>
+						<td>Country</td>
+						<td>{{po.supplier.address.country}}</td>
+					</tr>
+					<tr>
+						<td>Telephone</td>
+						<td>{{po.supplier.telephone}}</td>
+					</tr>
+					
+				</table>
+				
+				<table class="attention" ui-if="supplier.contacts.length">
+					<tr>
+						<td>Attention To:</td>
+						<td><select required ng-options="contact.firstName+' '+contact.lastName for contact in po.supplier.contacts" ng-model="po.attention">
+						</select>
+							
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="order">
+				<table class="details">
+					<tr>
+						<td>Delivery Date</td>
+						<td><input type="text" ui-date required  ng-model="po.deliveryDate" /></td>
+					</tr>
+					<tr>
+                        <td>Shipping</td>
+                        <td>
+                            <select ng-model="po.shipping.type">
+                                <option value="none">None</option>
+                                <option value="air">Air Freight</option>
+                                <option value="ground">Ground Freight</option>
+                                <option value="sea">Sea Freight</option>
+                            </select>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                            Shipping Amount
+                        </td>
+                        <td>
+                            <input type="text" ng-model="po.shipping.amount" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vat</td>
+                        <td><input type="text" required ng-pattern="/^\d{0,2}$/" ng-model="po.vat" />%</td>
+                    </tr>
+                    <tr>
+                        <td>Currency</td>
+                        <td>
+                            {{supplier.currency}}
+                        </td>
+                    </tr>
+				</table>
+				
+			</div>
+			<div class="supplies">
+			    <div class="supply" data-ng-repeat="supply in po.supplies">
+    				<table class="details">
+    					<tr>
+    					    <td>Item No.</td>
+    					    <td>{{$index+1}}</td>
+    					</tr>
+    					<tr>
+    					    <td>Description:</td>
+    					    <td>{{supply.description}}</td>
+    					</tr>
+    					<tr>
+    					    <td>Quantity</td>
+    					    <td>{{supply.quantity}}</td>
+    					</tr>
+    				</table>
+    				<div class="remove_btn" ng-click="removeProduct($index)">Remove</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+</div>
