@@ -20,6 +20,7 @@
 					<li><div ng-class="{dirty:form.$invalid}" ng-click="create()" >Create</div></li>
 					<li><div ng-click="showSuppliers=!showSuppliers">View Suppliers</div></li>
 					<li><div ng-class="{dirty:!po.supplier}" ng-click="showSupplies=true">View Supplies</div></li>
+					<li><div ng-click="showCalendar=true">Set Delivery Date</div></li>
 					<li><div ng-click="reset()" >Reset</div></li>
 				</ul>
 			</nav>
@@ -51,10 +52,17 @@
                     <li class="item" ng-click="addSupply($index)" ng-repeat="supply in supplyList | filter:supplier.name | filter:query |exclude:orderedSupplies">{{supply.description}}</li>
                 </ul>
 		    </div>
-			
-			
 		</div>
 		
+		<div class="calendar_modal" data-modal  ng-model="showCalendar">
+            <div ui-date ng-model="po.delivery_date">
+            </div>
+            <div class="bottom_bar">
+                <button ng-disabled="!po.delivery_date" ng-click="showCalendar=!showCalendar">Select</button>
+            </div>
+            
+        </div>
+        
 		<!--
 			Workspace
 		-->
@@ -102,7 +110,7 @@
 				<table class="details">
 					<tr>
 						<td>Delivery Date</td>
-						<td><input type="text" ui-date required  ng-model="po.deliveryDate" /></td>
+						<td>{{po.delivery_date | date:"MMMM d, yyyy"}}</td>
 					</tr>
 					<tr>
                         <td>Shipping</td>
@@ -154,7 +162,8 @@
     					    <td>{{supply.quantity}}</td>
     					</tr>
     				</table>
-    				<div class="remove_btn" ng-click="removeProduct($index)">Remove</div>
+    				<img ng-src="{{supply.image.url}}" />
+    				<div class="remove_btn" ng-click="removeSupply($index)">Remove</div>
 				</div>
 			</div>
 		</div>

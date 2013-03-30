@@ -1380,19 +1380,19 @@ select {
 .createPOPage.fadeIn {
   left: 200px;
 }
-.createPOPage .modal {
+.createPOPage .suppliers {
   background-color: #313131;
 }
-.createPOPage .modal .container {
+.createPOPage .suppliers .container {
   position: absolute;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.createPOPage .modal .container .list {
+.createPOPage .suppliers .container .list {
   width: 100%;
 }
-.createPOPage .modal .container .list .item {
+.createPOPage .suppliers .container .list .item {
   width: 100%;
   background: #313131;
   padding: 1em;
@@ -1408,7 +1408,39 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.createPOPage .modal .container .list .item:hover {
+.createPOPage .suppliers .container .list .item:hover {
+  background: orange;
+  color: #FFFFFF;
+}
+.createPOPage .supplies {
+  background-color: #313131;
+}
+.createPOPage .supplies .container {
+  position: absolute;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.createPOPage .supplies .container .list {
+  width: 100%;
+}
+.createPOPage .supplies .container .list .item {
+  width: 100%;
+  background: #313131;
+  padding: 1em;
+  font-size: 1em;
+  font-family: proxima;
+  color: #CCCCCC;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  cursor: pointer;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.createPOPage .supplies .container .list .item:hover {
   background: orange;
   color: #FFFFFF;
 }
@@ -5440,6 +5472,7 @@ select {
   border-bottom: none;
 }
 .viewSuppliersPage .workspace .cell .details {
+  font-family: proxima;
   display: block;
   width: 100%;
 }
@@ -5854,6 +5887,7 @@ select {
   width: 100%;
 }
 .viewCustomerPage .workspace .cell .details {
+  font-family: proxima;
   display: block;
   width: 100%;
 }

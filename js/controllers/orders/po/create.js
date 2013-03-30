@@ -1,7 +1,7 @@
 function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
     $scope.supplyList;
     $scope.supplierList = Supplier.query();
-    $scope.po = {};
+    $scope.po = new PurchaseOrder();
     //Methods
     
     //View Supplies
@@ -60,38 +60,10 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
         
         //Verifies that the form is valid
         if($scope.form.$valid){
-            //Create a new purchase order resource
-            var po =  new PurchaseOrder();
             
-            po.supplier = $scope.supplier.id;
-            po.vat = $scope.po.vat;
-            po.currency = $scope.po.currency;
-            if($scope.po.attention){
-                po.attention = {};
-                angular.copy($scope.po.attention, po.attention);
-                
-            }
-    
-            //Add delivery date
-            po.deliveryDate = {}
-            po.deliveryDate.month = $scope.po.deliveryDate.getMonth()+1;
-            po.deliveryDate.date = $scope.po.deliveryDate.getDate();
-            po.deliveryDate.year = $scope.po.deliveryDate.getFullYear();
             
-            if($scope.po.shipping.type == "none"){
-                po.shipping = false;
-            }else{
-                po.shipping = {};
-                po.shipping.type = $scope.po.shipping.type;
-                po.shipping.amount = $scope.po.shipping.amount;
-            }
-            po.supplies = [];
-            
-            angular.forEach($scope.orderedSupplies, function(supply, index){
-                po.supplies.push({'id':supply.id, 'quantity':Number(supply.quantity)});
-            });
-            
-            po.$save(function(response){
+            $scope.po.$save(function(response){
+                console.log(response);
                 window.open(response.url, replace=false);
             });
         }
@@ -105,8 +77,8 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
         });
     };
     
-    $scope.remove = function(index){
-        $scope.orderedSupplies.splice(index, 1);
+    $scope.removeSupply = function(index){
+        $scope.po.supplies.splice(index, 1);
         $scope.$apply();
     };
     
