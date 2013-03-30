@@ -358,10 +358,10 @@ angular.module('ecResource', ['ngResource']).
                             //Reset array
                             value.length = 0;
                             angular.forEach(response, function(item){
-                                value.push(new Resource(JSON.parse(JSON.stringify(item)))); 
+                                value.push(new Resource(item)); 
                             });
                         }else{
-                            angular.copy(new Resource(JSON.parse(JSON.stringify(response))), value);
+                            angular.copy(new Resource(response), value);
                         }
                         //execute callback
                         success(response);

@@ -94,6 +94,8 @@ var EmployeeCenter = angular.module('EmployeeCenter', ['ui','EmployeeCenter.filt
     when('/shipping', {templateUrl:'partials/pages/shipping/view_shipping.html', controller:ViewShippingCtrl}).
     when('/shipping/create', {templateUrl:'partials/pages/shipping/create_shipping.html', controller:CreateShippingCtrl}).
     when('/shipping/deliveries/week', {templateUrl:'partials/pages/shipping/weekly.html', controller:WeeklyDeliveriesCtrl}).
+    when('/shipping/deliveries/today', {templateUrl:'partials/pages/shipping/today.html', controller:TodayDeliveryCtrl}).
+
     /*
      * this area deals with all the urls for the admin section of thes site
      */

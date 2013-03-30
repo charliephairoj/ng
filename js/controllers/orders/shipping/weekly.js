@@ -3,9 +3,7 @@ function WeeklyDeliveriesCtrl($scope, Acknowledgement){
     $scope.endDate = new Date();
     $scope.endDate.setDate($scope.endDate.getDate()+7);
     $scope.ackList = Acknowledgement.query({start_date:$scope.startDate.toISOString(),
-                                            end_date:$scope.endDate.toISOString}, function(){
-                                                console.log($scope.ackList);
-                                            });
+                                            end_date:$scope.endDate.toISOString()});
 }
 WeeklyDeliveriesCtrl.$inject = ['$scope', 'Acknowledgement'];
 
