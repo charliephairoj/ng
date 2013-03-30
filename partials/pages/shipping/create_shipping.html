@@ -72,7 +72,7 @@
 			<div ui-date ng-model="shipping.deliveryDate">
 			</div>
 			<div class="bottom_bar">
-				<button ng-disabled="!shipping.deliveryDate" ng-click="show_calendar=!show_calendar">Select</button>
+				<button ng-disabled="!shipping.delivery_date" ng-click="show_calendar=!show_calendar">Select</button>
 			</div>
 			
 		</div>
@@ -122,7 +122,7 @@
 					<table class="details">
 						<tr>
 							<td>Delivery Date:</td>
-							<td>{{shipping.deliveryDate | date:"MMMM d, yyyy"}}</td>
+							<td>{{shipping.delivery_date | date:"MMMM d, yyyy"}}</td>
 						</tr>
 					</table>
 				</div>

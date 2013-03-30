@@ -11,8 +11,7 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
         $scope.shipping.acknowledgement = {id:ack.id};
         $scope.shipping.customer = ack.customer;
         $scope.shipping.products = ack.products;
-        $scope.shipping.deliveryDate = new Date(ack.delivery_date);
-        console.log($scope.shipping);
+        $scope.shipping.delivery_date = new Date(ack.delivery_date);
         //Hide Customer Panel
         $scope.showAck = false;
     };
@@ -51,7 +50,7 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
             return false;
         }
         
-        if(!$scope.shipping.deliveryDate){
+        if(!$scope.shipping.delivery_date){
             return false;
         }
         //Return true for form validated

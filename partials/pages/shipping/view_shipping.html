@@ -13,6 +13,7 @@
 		<nav>
 			<ul class="list">
 				<li ui-if="currentUser.hasPermission('add_shipping')"><a ng-href="#/shipping/create">Create</a></li>
+                <li ui-if="currentUser.hasPermission('add_shipping')"><a ng-href="#/shipping/deliveries/week">View Weekly Deliveries</a></li>
 			</ul>
 		</nav>
 		
@@ -55,7 +56,6 @@
 								</div>
 							</div>
 						</div>
-						<div><a ng-href="#/acknowledgement/{{ack.id}}"></a></div>
 						
 					</a>
 				

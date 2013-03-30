@@ -192,6 +192,12 @@ select {
   font-size: 1.2em;
   letter-spacing: 0.06em;
 }
+.sidebar header h2 {
+  padding: 12px 8px;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  color: #FFF;
+}
 .sidebar header .profilePic {
   margin-right: 5px;
   margin-left: 5px;
