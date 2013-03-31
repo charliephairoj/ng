@@ -1,7 +1,13 @@
 <div class="createPOPage" ng-init="showSuppliers=false; showSupplies=false;" fade-in>
 	
 	
-	
+	<form name="quantityForm" novalidate class="quantity_modal" data-modal ng-model="showQuantity">
+        <div class="title">Quantity</div>
+        <input ng-model="po.supplies[po.supplies.length-1].quantity" required ng-pattern="/^\d+$/" />
+        <div class="bottom_bar">
+            <button ng-disabled="quantityForm.$invalid" ng-click="showQuantity=false">Submit</button>
+        </div>
+    </form>
 	
 	<form class="po" name="form" ec-droppable="add()" novalidate>
 		
@@ -161,6 +167,10 @@
     					    <td>Quantity</td>
     					    <td>{{supply.quantity}}</td>
     					</tr>
+    					<tr>
+                            <td>Unit Cost</td>
+                            <td>{{supply.cost}}</td>
+                        </tr>
     				</table>
     				<img ng-src="{{supply.image.url}}" />
     				<div class="remove_btn" ng-click="removeSupply($index)">Remove</div>

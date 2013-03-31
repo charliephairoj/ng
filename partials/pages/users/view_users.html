@@ -25,7 +25,7 @@
 	<div class="workspace">
 		<div class="listContainer">
 			<div class="list">
-					<a ng-repeat="user in userList | filter:query" class="row" ng-href="#/users/{{user.id}}">
+					<a ng-repeat="user in userList | filter:query | orderBy:'first_name'" class="row" ng-href="#/users/{{user.id}}">
 						<div class="cell">
 							<div class="details">
 								<div class="details-row">
@@ -40,6 +40,10 @@
 									<div class="details-title">Email:</div>
 									<div class="details-data">{{user.email}}</div>
 								</div>
+								<div class="details-row">
+                                    <div class="details-title">Last Login:</div>
+                                    <div class="details-data">{{user.last_login | date:"MMM d, y h:mm:ss a"}}</div>
+                                </div>
 							</div>
 						</div>
 					</a>

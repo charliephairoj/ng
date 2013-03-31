@@ -26,7 +26,7 @@ function CreatePOCtrl($scope, Supply, Supplier, PurchaseOrder, Notification){
         $scope.po.supplies = $scope.po.supplies || [];
         $scope.po.supplies.push($scope.supplyList[index]);
         $scope.showSupplies = false;
-       
+        $scope.showQuantity = true;
         
         
         
