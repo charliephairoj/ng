@@ -5,10 +5,10 @@
 //View supplierList controller
 function ViewSuppliersCtrl($scope, Supplier, Poller){
     
-    //Poller.poll($scope, function(){
-        $scope.supplierList = Supplier.query();
-    //});
-    
+    $scope.supplierList = Supplier.poll().query();
+    $scope.$on('$destroy', function(){
+        Supplier.stopPolling(); 
+    });
     
 }
 

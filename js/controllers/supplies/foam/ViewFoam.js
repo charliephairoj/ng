@@ -1,13 +1,9 @@
 function ViewFoamCtrl($scope, Foam, Poller){
     
-    $scope.foamList = Foam.query(function(){
-        console.log($scope.foamList);
+    $scope.foamList = Foam.poll().query();
+    $scope.$on('$destroy', function(){
+        Foam.stopPolling();
     });
-    /*
-    Poller.poll($scope, function(){
-        $scope.foamList = Foam.query();
-    });
-    */
     
 }
 ViewFoamCtrl.$inject = ['$scope', 'Foam', 'Poller'];

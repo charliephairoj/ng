@@ -158,8 +158,6 @@ angular.module('ecResource', ['ngResource']).
                 if(data){
                     //Checks if an array or not
                     if(angular.isArray(data)){
-                        //Reset storage for this namespace
-                        this.clear();
                         //loop through items
                         for(var i=0; i<data.length; i++){
                             //return false if data did not save
@@ -235,6 +233,22 @@ angular.module('ecResource', ['ngResource']).
                 
             };
             
+            /*
+             * Save and retrieves last modified time for resources
+             */
+            StorageEngine.prototype.saveLastModified = function(date){
+                this.storage.setItem(this.key+"-last_modified", date.toISOString());
+            }
+            
+            StorageEngine.prototype.getLastModified = function(){
+                var dateStr = this.storage.getItem(this.key+"-last_modified");
+                if(dateStr){
+                    return new Date(dateStr);
+                }else{
+                    return false;
+                }
+            }
+            
             return new StorageEngine(key);
         }
         
@@ -272,6 +286,7 @@ angular.module('ecResource', ['ngResource']).
                 oResource,
                 storage = $storage(url.split(/\//g)[0]),
                 value,
+                poll = false,
                 getter = function(obj, path) {
                     return $parse(path)(obj);
                 };
@@ -286,11 +301,54 @@ angular.module('ecResource', ['ngResource']).
                 return ids;
             }
             
+            function indexOfId(array, id){
+                
+                for(var i=0; i<array.length; i++){
+                    if(array[i].hasOwnProperty('id')){
+                        if(array[i].id == id){
+                            return i;
+                        }
+                    }
+                }
+                
+                return -1;
+            }
+            
             //Extend all actions to include default and argument actions
             actions = angular.extend({}, DEFAULT_ACTIONS, actions);
             //Assign original and new resource
             oResource = new $resource(url, paramDefaults, actions);
-            function Resource(value){angular.copy(value || {}, this);}
+            function Resource(value){
+                angular.extend(this, value || {});
+                this.$$poll = false;
+                this.$$last_checked = false;
+                this.$$timeout;
+                this.$$date = true;
+            }
+            
+            /*
+             * Set Date for when doing mock tests
+             */
+            Resource.disableDate = function(){
+                this.$$date = false;
+            }
+            Resource.prototype.disableDate = Resource.disableDate;
+            /*
+             * Create a polling function. When the polling function 
+             * is call the poll value will be set to true
+             */
+            Resource.poll = function(){
+                this.$$poll = true;
+                poll = true;
+                return this;
+            }
+            Resource.prototype.poll = Resource.poll;
+            
+            Resource.stopPolling = function(){
+                poll = false;
+                return this;
+            }
+            Resource.prototype.poll = Resource.poll;
             
             //Loop through actions
             angular.forEach(actions, function(action, name){
@@ -301,8 +359,7 @@ angular.module('ecResource', ['ngResource']).
                     var data;
                     var success = angular.noop;
                     var error = null;
-                    var promise,
-                        value;
+                    var promise;
         
                     switch(arguments.length) {
                         case 4:
@@ -337,32 +394,68 @@ angular.module('ecResource', ['ngResource']).
                             throw "Expected between 0-4 arguments [params, data, success, error], got " +
                                 arguments.length + " arguments.";
                     }
-                    
-                    value = action.isArray ? [] : {};
+                    if(action.isArray){
+                        value = value || [];
+                    }else{
+                        value = value || {};
+                    }
+                    value['$$marker'] = 'poop';
                     //Runs storage mechanism if exists
                     if(storage[name]){
                         //Determines if param or data is used
-                        value = hasBody ? storage[name](data) || value : storage[name](params) || value;
+                        var data = hasBody ? storage[name](data) || value : storage[name](params) || value;
                         //Determines if array or not when creating resource
-                        value = action.isArray ? angular.forEach(value, function(item, index){value[index] = new Resource(value[index])}) : new Resource(value);
+                        if(action.isArray){
+                            angular.forEach(data, function(item, index){
+                                var index = indexOfId(value, item.id);
+                                if(index>-1){angular.extend(value[index], new Resource(item));}
+                                index > -1 ? angular.extend(value[index], new Resource(item)) : value.push(new Resource(item));
+                            })
+                        }else{
+                            angular.extend(value, new Resource(data));
+                        }
                         //Copies storage data with key to self
                         if(hasBody) {angular.extend(value, this);}
+                    }
+                    
+                    /*
+                     * Determines whether to include the last modified parameter depending
+                     * on whether the 'last_checked' var has a value or not
+                     */
+                    if(this.$$last_checked && action.method == "GET" && poll){ 
+                        angular.extend(params, {last_modified:this.$$last_checked.toISOString()})
+                    }
+                    if(storage.getLastModified()){
+                        angular.extend(params, {last_modified:storage.getLastModified().toISOString()});
                     }
                     var oPromise = oResource[name](params, data, function(response){
                         //save data to storage
                         action.method == "DELETE" ? storage.remove(params) : storage.save(response);  
                         //copy data to body
-                        if(action.method == "DELETE" || hasBody){angular.copy(JSON.parse(JSON.stringify(response)), this);}
+                        if(action.method == "DELETE" || hasBody){angular.extend(this, response);}
                         //pass data to placeholder
                         if(action.isArray){
                             //Reset array
-                            value.length = 0;
+                            var index;
                             angular.forEach(response, function(item){
-                                value.push(new Resource(item)); 
+                                var index = indexOfId(value, item.id);
+                                if(index > -1){
+                                    angular.extend(value[index], item);
+                                }else{
+                                    value.push(new Resource(item)); 
+                                }
+                                
                             });
                         }else{
-                            angular.copy(new Resource(response), value);
+                            angular.extend(value, new Resource(response));
                         }
+                        
+                        this.$$last_checked = new Date();
+                        storage.saveLastModified(this.$$last_checked);
+                        if(poll && action.method == "GET"){
+                            this.$$timeout = setTimeout(Resource[name], 5000);
+                        }
+                        console.log(value.length);
                         //execute callback
                         success(response);
                     }.bind(this), function(e){console.log(e);});

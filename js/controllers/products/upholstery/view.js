@@ -5,16 +5,12 @@
  */
 function ViewUpholCtrl($scope, Upholstery, Notification){
     Notification.display('Loading Upholstery...');
-    $scope.upholList = Upholstery.query(function(){
+    $scope.upholList = Upholstery.poll().query(function(){
         Notification.hide();
     });
-    /*
-    Poller.poll($scope, function(){
-        $scope.poList = PurchaseOrder.query();
-
-    });
-    
-    */
+    $scope.$on('$destroy', function(){
+        Upholstery.stopPolling();
+    })
    
    
 }

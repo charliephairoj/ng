@@ -48,7 +48,7 @@ ViewPermissionsCtrl.$inject = ['$scope', 'Permission'];
 
 //View group controller
 function ViewGroupsCtrl($scope, Group ){
-    $scope.groupList = Group.query();
+    $scope.groupList = Group.poll().query();
     console.log($scope.groupList);
     //Methods
     
@@ -161,7 +161,8 @@ GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$l
  */
 
 function ViewUsersCtrl($scope, User){
-    $scope.userList = User.query();
+    console.log(User);
+    $scope.userList = User.poll().query();
 }
 
 ViewUsersCtrl.$inject = ['$scope', 'User'];

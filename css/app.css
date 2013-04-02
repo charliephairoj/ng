@@ -3978,6 +3978,7 @@ select {
   width: auto;
 }
 .viewPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4039,6 +4040,7 @@ select {
   width: auto;
 }
 .viewPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4122,6 +4124,7 @@ select {
   width: auto;
 }
 .viewPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4183,6 +4186,7 @@ select {
   width: auto;
 }
 .viewPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4299,6 +4303,7 @@ select {
   width: auto;
 }
 .acknowledgementViewPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4360,6 +4365,7 @@ select {
   width: auto;
 }
 .acknowledgementViewPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4443,6 +4449,7 @@ select {
   width: auto;
 }
 .acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4504,6 +4511,7 @@ select {
   width: auto;
 }
 .acknowledgementViewPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4626,6 +4634,7 @@ select {
   width: auto;
 }
 .viewFabricPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4687,6 +4696,7 @@ select {
   width: auto;
 }
 .viewFabricPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4770,6 +4780,7 @@ select {
   width: auto;
 }
 .viewFabricPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4831,6 +4842,7 @@ select {
   width: auto;
 }
 .viewFabricPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -4947,6 +4959,7 @@ select {
   width: auto;
 }
 .viewGluePage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5008,6 +5021,7 @@ select {
   width: auto;
 }
 .viewGluePage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5091,6 +5105,7 @@ select {
   width: auto;
 }
 .viewGluePage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5152,6 +5167,7 @@ select {
   width: auto;
 }
 .viewGluePage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5272,6 +5288,7 @@ select {
   width: auto;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5333,6 +5350,7 @@ select {
   width: auto;
 }
 .viewSuppliersPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5416,6 +5434,7 @@ select {
   width: auto;
 }
 .viewSuppliersPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5477,6 +5496,7 @@ select {
   width: auto;
 }
 .viewSuppliersPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5635,6 +5655,7 @@ select {
   width: auto;
 }
 .viewCustomerPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5696,6 +5717,7 @@ select {
   width: auto;
 }
 .viewCustomerPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5779,6 +5801,7 @@ select {
   width: auto;
 }
 .viewCustomerPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -5840,6 +5863,7 @@ select {
   width: auto;
 }
 .viewCustomerPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -6029,6 +6053,7 @@ select {
   width: auto;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -6090,6 +6115,7 @@ select {
   width: auto;
 }
 .viewLibraryPage .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -6173,6 +6199,7 @@ select {
   width: auto;
 }
 .viewLibraryPage .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;
@@ -6234,6 +6261,7 @@ select {
   width: auto;
 }
 .viewLibraryPage .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
   display: table-row;
   color: grey;
   font-size: 1em;

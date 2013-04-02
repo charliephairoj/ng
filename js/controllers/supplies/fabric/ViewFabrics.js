@@ -14,8 +14,10 @@
 
 function ViewFabricsCtrl($scope, Fabric){
     
-    $scope.fabricList = Fabric.query();
-    
+    $scope.fabricList = Fabric.poll().query();
+    $scope.$on('$destroy', function(){
+        Fabric.stopPolling();
+    });
     //Methods
     
     
