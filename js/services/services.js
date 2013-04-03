@@ -5,27 +5,7 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('EmployeeCenter.services', ['ecResource']).
-    factory('Supply', function(ecResource){
-        return ecResource('supply/:id', {id:'@id'});   
-    }).factory('Model', function(ecResource){
-        return ecResource('model/:id', {id:'@id'});
-    }).factory('Supplier', function(ecResource){
-        return ecResource('supplier/:id', {id:'@id'});
-    }).factory('SupplierContact', function(ecResource){
-        return ecResource('supplier_contact/:id', {id:'@id'});
-    }).factory('Configuration', function(ecResource){
-        return ecResource('configuration/:id', {id:'@id'});
-    }).factory('Upholstery', function(ecResource){
-        return ecResource('upholstery/:id', {id:'@id'});
-    }).factory('Customer', function(ecResource){
-        return ecResource('customer/:id', {id:'@id'});
-    }).factory('Lumber', function(ecResource){
-        return ecResource('lumber/:id', {id:'@id'});
-    }).factory('Fabric', function(ecResource){
-        return ecResource('fabric/:id', {id:'@id'});
-    }).factory('Foam', function(ecResource){
-        return ecResource('foam/:id', {id:'@id'});
-    }).factory('Glue', function(ecResource){
+    factory('Glue', function(ecResource){
         return ecResource('glue/:id', {id:'@id'});
     }).factory('Screw', function(ecResource){
         return ecResource('screw/:id', {id:'@id'});
