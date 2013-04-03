@@ -5,8 +5,6 @@ function AddTransactionCtrl($scope, Transaction, Notification){
         Notification.display('Saving Transaction...', false);
         $scope.transaction.$save(function(){
             Notification.display('Transaction Saved');
-        }, function(){
-            Notification.display('Error Saving Transaction');
         });
     }
 }

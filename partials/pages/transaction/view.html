@@ -12,7 +12,7 @@
         </header>
         <nav>
             <ul class="list">
-                <li ui-if="currentUser.hasPermission('add_acknowledgement')"><a ng-href="#/transaction/add">Create</a></li>
+                <li ui-if="currentUser.hasPermission('add_transaction')"><a ng-href="#/transaction/add">Create</a></li>
             </ul>
         </nav>
         
@@ -40,6 +40,7 @@
                         <div class="cell">Amount</div>
                         <div class="cell">Currency</div>
                         <div class="cell">Type</div>
+                        <div class="cell">Employee</div>
                     </div>
                 </div>
                 <div class="body">
@@ -49,6 +50,7 @@
                         <div class="cell">{{transaction.amount}}</div>
                         <div class="cell">{{transaction.currency}}</div>
                         <div class="cell">{{transaction.type}}</div>
+                        <div class="cell">{{transaction.employee}}</div>
                     </a>
                 </div>
             </div>

@@ -5,14 +5,14 @@
     -->
     
     <div class="sidebar">
-        <header>
+        <header> 
             <h1>
                 <span>Add a Transaction</span>
             </h1>
         </header>
         <nav>
             <ul class="list">
-                <li ui-if="currentUser.hasPermission('add_user')">
+                <li ui-if="currentUser.hasPermission('add_transaction')">
                     <button ng-disabled="form.$invalid" ng-click="save()">Save</button>
                 </li>
             </ul>
