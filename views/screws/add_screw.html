@@ -1,0 +1,42 @@
+	<form name="form" novalidate class="addScrewPage addPage">
+		<div class="toolbar">
+			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+		</div>
+		<div class="workspace">
+			<table>
+				<tr>
+					<td><label>Supplier</label></td>
+					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="screw.supplier"></select></td>
+				</tr>
+				<tr>
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="screw.reference" /></td>
+				</tr>
+				<tr>
+					<td><label>Height</label></td>
+					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="screw.height" required/></td>
+				</tr>
+				<tr>
+					<td><label>Width</label></td>
+					<td><input name="width" type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="screw.width" required/></td>
+				</tr>
+				<tr>
+					<td><label>Depth</label></td>
+					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="screw.depth" required/></td>
+				</tr>
+				<tr>
+					<td><label>Quantity per Box</label></td>
+					<td><input type="text" ng-pattern="/^[1-9](\d+)?$/" ng-model="screw.boxQuantity" required/></td>
+				</tr>
+				<tr>
+					<td><label>Cost per Box</label></td>
+					<td><input type="text" ng-model="screw.cost" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" required/></td>
+				</tr>
+				
+			</table> 
+		</div>
+		
+		
+		
+	</form>
+	

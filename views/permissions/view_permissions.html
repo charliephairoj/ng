@@ -1,0 +1,16 @@
+<div class="viewModelsPage">
+	
+	<div class="searchBar">
+		<input placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="list">
+		<div ng-repeat="perm in permissionList | filter:query" class="listItem">
+			<a ng-href="#/permission/{{perm.id}}/{{$index}}">
+				<div class="description">{{perm.name}}</div>
+			</a>
+			
+		</div>
+		
+	</div>
+</div>

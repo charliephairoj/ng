@@ -1,0 +1,50 @@
+	<form name="form" class="addPage">
+		<div class="toolbar">
+			<button type="submit" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+		</div>
+		<div class="workspace">
+			<table>
+				<tr>
+					<td><label>Supplier</label></td>
+					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="staple.supplier"></select></td>
+				</tr>
+				<tr>
+					<td><label>Reference Number</label></td>
+					<td><input type="text" ng-model="staple.reference" /></td>
+				</tr>
+				<tr>
+					<td><label>Width</label></td>
+					<td>
+						<input type="text" ng-model="staple.width" />
+						<select required ng-model="staple.widthUnits">
+							<option value"in">in</option>
+							<option value"cm">cm</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Leg Height</label></td>
+					<td>
+						<input type="text" ng-model="staple.height" />
+						<select required ng-model="staple.heightUnits">
+							<option value"in">in</option>
+							<option value"cm">cm</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Quantity per Box</label></td>
+					<td><input type="text" ng-model="staple.boxQuantity" /></td>
+				</tr>
+				<tr>
+					<td><label>Cost per Box</label></td>
+					<td><input required type="text" ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" ng-model="staple.cost" /></td>
+				</tr>
+				
+			</table> 
+		</div>
+		
+		
+		
+	</form>
+	

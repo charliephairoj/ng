@@ -1,0 +1,24 @@
+<div class="detailsPage">
+	<div class="toolbar">
+			<button type="button" ng-click="remove()">Delete</button>
+	</div>
+	<table>
+			<tr>
+				<td><label>Description</label></td>
+				<td><input type="text" ng-model="thread.description" ec-blur="update()" /></td>
+			</tr>
+			
+			
+			<tr>
+				<td><label>Color</label></td>
+				<td><input type="text" ng-model="thread.color" ec-blur="update()" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Cost per Spool</label></td>
+				<td><input type="text" ng-model="thread.cost" ec-blur="update()" /></td>
+			</tr>
+			
+		</table> 
+	
+</div>

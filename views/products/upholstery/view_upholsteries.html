@@ -1,0 +1,67 @@
+<div class="viewPage">
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>Upholstery</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a ng-href="#/upholstery/add">Add Upholstery</a>
+				</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<div class="searchBar">
+		<input type="text" ng-model="query" />
+	</div>
+	<div class="workspace">
+		<div class="listContainer">
+			<div class="list">				
+				<a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model'" class="row" ng-href="#/upholstery/{{uphol.id}}">
+						<div class="profile-img cell">
+							<div>
+								<img fade-load ng-src="{{uphol.url}}" />
+							</div>
+							
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Product ID</div>
+									<div class="details-data">{{uphol.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Model Name:</div>
+									<div class="details-data">{{uphol.model.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Model Number:</div>
+									<div class="details-data">{{uphol.model.model}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Configuration:</div>
+									<div class="details-data">{{uphol.configuration.configuration}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Manufacture Price:</div>
+									<div class="details-data">{{uphol.manufacture_price}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Wholesale Price:</div>
+									<div class="details-data">{{uphol.wholesale_price}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Retail Price:</div>
+									<div class="details-data">{{uphol.retail_price}}</div>
+								</div>
+								
+								
+							</div>
+						</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

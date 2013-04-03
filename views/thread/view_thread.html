@@ -1,0 +1,30 @@
+<div class="viewPage">
+	
+	<div class="toolbar" >
+		<button click-url="/thread/add_thread" ui-if="currentUser.hasPermission('add_sewingthread')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				<thead>
+					<tr>
+						<th>Supplier</th>
+						<th>Ref</th>
+						<th>Color</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="thread in threadList | filter:query" class="listItem">
+						<td><a ng-href="#/thread/{{thread.id}}">{{thread.supplier.name}}</a></td>
+						<td><a ng-href="#/thread/{{thread.id}}">{{thread.reference}}</a></td>
+						<td><a ng-href="#/thread/{{thread.id}}">{{thread.color}}</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+</div>

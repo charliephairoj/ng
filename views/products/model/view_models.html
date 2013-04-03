@@ -1,0 +1,54 @@
+<div class="viewPage">
+	
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>Models</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a ng-href="#/models/add">Add New Model</a>
+				</li>
+					
+			</ul>
+		</nav>
+	</div>
+		
+		
+	<div class="searchBar">
+		<input type="text" ng-model="query" />
+	</div>
+	<div class="workspace">
+		<div class="listContainer">
+			<div class="list">
+				
+					<a ng-repeat="model in modelList | filter:query | orderBy: 'model'" class="row" ng-href="#/models/{{model.id}}">
+						<div class="profile-img cell">
+							<div>
+								<img fade-load ng-src="{{model.images[0]}}" />
+							</div>
+						</div>
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<td class="details-title">Model:</td>
+									<td class="details-data">{{model.model}}</td>
+								</div>
+								<div class="details-row">
+									<td class="details-title">Name:</td>
+									<td class="details-data">{{model.name}}</td>
+								</div>
+								<div class="details-row">
+									<td class="details-title">Collection:</td>
+									<td class="details-data">{{model.collection}}</td>
+								</div>
+							</div>
+						</div>
+					</a>
+						
+				
+			</div>
+		</div>
+	</div>
+</div>

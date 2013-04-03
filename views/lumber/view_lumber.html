@@ -1,0 +1,63 @@
+<div class="viewModelsPage viewPage">
+	
+	<input placeholder="Search" class="searchBar" type="text" ng-model="query" />
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				<thead>
+					<tr>
+						<th>Supplier</th>
+						<th>Ref</th>
+						<th>Description</th>
+						<th>Width</th>
+						<th>Length</th>
+						<th>Thickness</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="lumber in lumberList | filter:query" class="listItem">
+						<td>
+							<table>
+								<tr>
+									<td>Supplier:</td>
+									<td>{{lumber.supplier.name}}</td>
+								</tr>
+								<tr>
+									<td>Reference Number:</td>
+									<td>{{lumber.reference}}</td>
+								</tr>
+								<tr>
+									<td>Type:</td>
+									<td>{{lumber.type}}</td>
+								</tr>
+								<tr>
+									<td>Width:</td>
+									<td>{{lumber.width+lumber.widthUnits}}</td>
+								</tr>
+								<tr>
+									<td>Thickness:</td>
+									<td>{{lumber.height+lumber.heightUnits}}</td>
+								</tr>
+								<tr>
+									<td>Length:</td>
+									<td>{{lumber.depth+lumber.depthUnits}}</td>
+								</tr>
+							</table>
+						</td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.supplier.name}}</a></td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.reference}}</a></td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.description}}</a></td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.width+lumber.widthUnits}}</a></td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.depth+lumber.depthUnits}}</a></td>
+						<td><a ng-href="#/lumber/{{lumber.id}}">{{lumber.height+lumber.heightUnits}}</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+	
+	
+</div>

@@ -1,0 +1,55 @@
+<div class="userDetailsPage" ng-init="edit=false;">
+	
+	<!--
+		Sidebar
+	-->
+	
+	<div class="sidebar">
+		<header>
+			<h1><span>Add User</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="remove()">
+						Delete
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	
+	
+	
+	<!--
+		Edit Panel
+	-->
+	
+	<div class="details">
+		<div class="table">
+			<div class="row">
+				<div class="cell"><label>First Name</label></div>
+				<div class="cell"><input type="text" ng-model="user.first_name" ec-blur="update()" /></div>
+			</div>
+			<div class="row">
+				<div class="cell"><label> Last Name</label></div>
+				<div class="cell"><input type="text" ng-model="user.last_name" ec-blur="update()" /></div>
+			</div>
+				
+			<div class="row">
+				<div class="cell"><label>Email</label></div>
+				<div class="cell"><input type="text" ng-model="user.email" ec-blur="update()" /></div>
+			</div>	
+		</div>		
+	</div> 
+	<div class="groups">
+		<div class="table">
+			<div class="row" ng-repeat="group in groupList">
+				<div class="cell">
+					<input type="checkbox" ng-model="group.checked" ng-checked="group.status" ng-click="updateGroup($index)"/>
+				</div>
+				<div class="cell">{{group.name}}</div>
+			</div>
+		</div>
+	</div>
+</div>
