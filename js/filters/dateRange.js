@@ -1,4 +1,4 @@
-angular.module('EmployeeCenter.filters', []).
+angular.module('EmployeeCenter.filters').
     filter('dateRange', function(){
         function filter(date, start, end, success){
             if(start.getTime() <= date.getTime() && date.getTime() <= end.getTime()){

@@ -2,6 +2,7 @@
  * View Page area
  */
 
+@import "grid.less";
 .viewPage{
   font-family: Helvetica, Tahoma, sans-serif;
   //background:#D8D8D8;
@@ -18,12 +19,24 @@
     top:0px;
     bottom:0px;
     z-index:1;
+    
+    &.grid{
+        overflow:hidden;
+    }
     /*
      * Container holding the list. The 
      * height is auto so that is can 
      * be put inside a container with 
      * scroll enabled to allow scrolling
      */  
+    .container{
+        height:100%;
+        width:100%;
+        overflow-y:scroll;
+        .grid{
+           .view-grid;
+        }
+    }
     .listContainer{
       position:relative;
       width:100%;

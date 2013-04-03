@@ -1,4 +1,4 @@
-angular.module('EmployeeCenter.filters', []).
+angular.module('EmployeeCenter.filters').
     filter('dateFilter', function(){
         function filter(item, target, comparison, success){
             switch(comparison){
