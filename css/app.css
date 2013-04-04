@@ -498,7 +498,7 @@ select {
 .modal .title {
   position: absolute;
   max-height: 45px;
-  min-height: 30px;
+  min-height: 25px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -2124,6 +2124,7 @@ select {
 }
 .createAcknowledgementPage .quantity_modal .title {
   text-align: center;
+  height: 25px;
 }
 .createAcknowledgementPage .quantity_modal input {
   width: 100px;
@@ -2177,6 +2178,7 @@ select {
 }
 .createAcknowledgementPage .vat_modal .title {
   text-align: center;
+  height: 25px;
 }
 .createAcknowledgementPage .vat_modal input {
   width: 100px;
@@ -2240,6 +2242,7 @@ select {
 }
 .createAcknowledgementPage .po_modal .title {
   text-align: center;
+  height: 25px;
 }
 .createAcknowledgementPage .po_modal input {
   width: 100px;
@@ -2396,6 +2399,7 @@ select {
 }
 .createAcknowledgementPage .remarks_modal .title {
   text-align: center;
+  height: 25px;
 }
 .createAcknowledgementPage .remarks_modal input {
   width: 100px;
