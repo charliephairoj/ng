@@ -23,7 +23,6 @@ function CreateShippingCtrl($scope, Acknowledgement, $filter, Notification, Ship
         if($scope.isValidated()){
             Notification.display('Creating Acknowledgement...', false);
             
-            $scope.shipping.delivery_date = $scope.shipping.deliveryDate.getTime();
             $scope.shipping.$save(function(response){
                 console.log(response);
                 Notification.display('Acknowledgement created');
