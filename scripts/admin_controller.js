@@ -29,17 +29,6 @@ function merge(permList, groupPerms){
  * Permissions Area
  */
 
-//View permission controller
-function ViewPermissionsCtrl($scope, Permission){
-    $scope.permissionList = Permission.query();
-    console.log($scope.permissionList);
-    //Methods
-    
-    
-    
-}
-
-ViewPermissionsCtrl.$inject = ['$scope', 'Permission'];
 
 
 /*
@@ -160,48 +149,6 @@ GroupDetailsCtrl.$inject = ['$scope', 'Group', 'Permission', '$routeParams', '$l
  * User Area
  */
 
-function ViewUsersCtrl($scope, User){
-    console.log(User);
-    $scope.userList = User.poll().query();
-}
-
-ViewUsersCtrl.$inject = ['$scope', 'User'];
-
-function AddUserCtrl($scope, User, Group, $location){
-    $scope.user = {};
-    $scope.user.groups = [];
-    $scope.groupList = Group.query();
-    
-    $scope.add = function(){
-        angular.forEach($scope.groupList, function(group){
-            if($scope.data.id === group.id){
-                $scope.user.groups.push(group);
-                $scope.$apply();
-                
-            }
-        });
-    };
-    
-    
-    $scope.save = function(){
-        
-        
-        //Validates the form
-        if($scope.form.$valid){
-            user = new User();
-            angular.copy($scope.user, user);
-            user.$save(function(){
-                $location.path("/users");
-            });
-        }
-         
-         
-         
-         
-    };
-}
-
-AddUserCtrl.$inject = ['$scope', 'User', 'Group', '$location'];
 
 
 

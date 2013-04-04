@@ -105,7 +105,26 @@ angular.module('EmployeeCenter').
     when('/users', {templateUrl:'views/users/view_users.html', controller:ViewUsersCtrl}).
     when('/users/add_user', {templateUrl:'views/users/add_user.html', controller:AddUserCtrl}).
     when('/users/:id', {templateUrl:'views/users/user_details.html', controller:UserDetailsCtrl}).
-    
+    when('/administrator/group/add', {
+      templateUrl: 'views/administrator/group/add.html',
+      controller: 'AddGroupCtrl'
+    })
+    .when('/administrator/group/view', {
+      templateUrl: 'views/administrator/group/view.html',
+      controller: 'ViewGroupsCtrl'
+    })
+    .when('/administrator/permissions/view', {
+      templateUrl: 'views/administrator/permissions/view.html',
+      controller: 'ViewPermissionsCtrl'
+    })
+    .when('/administrator/user/view', {
+      templateUrl: 'views/administrator/user/view.html',
+      controller: 'ViewUsersCtrl'
+    })
+    .when('/administrator/user/add', {
+      templateUrl: 'views/administrator/user/add.html',
+      controller: 'AddUserCtrl'
+    }).
     /*
      * This area deals with all the permissions
      */
