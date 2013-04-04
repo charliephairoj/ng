@@ -154,16 +154,16 @@ angular.module('ecResource', ['ngResource']).
                     //Runs storage mechanism if exists
                     if(storage[name]){
                         //Determines if param or data is used
-                        var data = hasBody ? storage[name](data) || value : storage[name](params) || value;
+                        var storageData = hasBody ? storage[name](data) || value : storage[name](params) || value;
                         //Determines if array or not when creating resource
                         if(action.isArray){
-                            angular.forEach(data, function(item, index){
+                            angular.forEach(storageData, function(item, index){
                                 var index = indexOfId(value, item.id);
                                 if(index>-1){angular.extend(value[index], new Resource(item));}
                                 index > -1 ? angular.extend(value[index], new Resource(item)) : value.push(new Resource(item));
                             })
                         }else{
-                            angular.extend(value, new Resource(data));
+                            angular.extend(value, new Resource(storageData));
                         }
                         //Copies storage data with key to self
                         if(hasBody) {angular.extend(value, this);}
