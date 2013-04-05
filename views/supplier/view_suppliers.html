@@ -1,0 +1,57 @@
+<div class="viewSuppliersPage">
+	
+	<!-- 
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Suppliers</span></h1>
+		</header>
+		<nav>
+			<ul>
+				
+				<li ui-if="currentUser.hasPermission('add_supplier')">
+					<div click-url="/suppliers/add_supplier">
+						Add Supplier
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!--
+		Search Bar
+	-->
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<ul class="list">
+					<a ng-repeat="supplier in supplierList | filter:query | orderBy:'name'" class="listItem" ng-href="#/suppliers/{{supplier.id}}">
+						<div class="cell">
+							<div class="details">
+								<div class="name">{{supplier.name}}</div>
+								<div class="address">
+									<span>{{supplier.address.address1}}</span>
+									<br />
+									<span ui-if="supplier.address.address2!=''">{{supplier.address.address2}}</span>
+									<br />
+									<span>{{supplier.address.city+","+supplier.address.territory}}</span>
+									<br />
+									<span>{{supplier.address.country+" "+supplier.address.zipcode}}</span>
+								</div>
+							</div>
+						</div>
+					</a>
+			</ul>
+		</div>
+	</div>
+	
+	
+</div>

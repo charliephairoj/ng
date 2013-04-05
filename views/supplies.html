@@ -1,0 +1,24 @@
+<div>
+	<div class="sidebar">
+		<header>
+			<h1>
+				<span>Supplies</span>
+			</h1>
+		</header>
+		<nav>
+			<ul class="list">
+				<li ng-show="currentUser.hasPermission('add_fabric')"><a ng-href="#/fabric">Fabric</a></li>
+				<li ng-show="currentUser.hasPermission('add_foam')"><a ng-href="#/foam">Foam</a></li>
+				<li ng-show="currentUser.hasPermission('add_zipper')"><a ng-href="#/glue">Glue</a></li>
+				<li ng-show="currentUser.hasPermission('add_screw')"><a ng-href="#/screws">Screws</a></li>
+				<li ng-show="currentUser.hasPermission('add_staple')"><a ng-href="#/staple">Staple</a></li>
+				<li ng-show="currentUser.hasPermission('add_sewingthread')"><a ng-href="#/thread">Thread</a></li>
+				<li ng-show="currentUser.hasPermission('add_webbing')"><a ng-href="#/webbing">Webbing</a></li>
+				<li ng-show="currentUser.hasPermission('add_wool')"><a ng-href="#/wool">Wool</a></li>
+				<li ng-show="currentUser.hasPermission('add_zipper')"><a ng-href="#/zipper">Zipper</a></li>
+				
+			</ul>
+		</nav>
+		 
+	</div>
+</div>

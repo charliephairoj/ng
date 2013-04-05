@@ -1,0 +1,31 @@
+<div class="detailsPage">
+	<div class="toolbar">
+			<button type="button" ng-click="remove()">Delete</button>
+	</div>
+	<table>
+			<tr>
+				<td><label>Description</label></td>
+				<td><input type="text" ng-model="zipper.description" ec-blur="update()" /></td>
+			</tr>
+			<tr>
+				<td><label>Reference Number</label></td>
+				<td><input type="text" ng-model="zipper.reference" ec-blur="update()" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Width</label></td>
+				<td><input type="text" ng-model="zipper.width" ec-blur="update()" />{{zipper.widthUnits}}</td>
+			</tr>
+			<tr>
+				<td><label>Roll Length</label></td>
+				<td><input type="text" ng-model="zipper.depth" ec-blur="update()" />{{zipper.depthUnits}}</td>
+			</tr>
+			
+			<tr>
+				<td><label>Cost per Roll</label></td>
+				<td><input type="text" ng-model="zipper.cost" ec-blur="update()" /></td>
+			</tr>
+			
+		</table> 
+	
+</div>

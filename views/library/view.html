@@ -1,0 +1,49 @@
+<div class="viewLibraryPage" ng-init="addPhoto=false">
+	<!--
+		Sidebar
+	-->
+	<div class="sidebar">
+		<header>
+			<h1><span>Photo Library</span></h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<div ng-click="addPhoto=true;">Add Image</div>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+	<!--
+		Add photo Modal
+	-->
+	<div class="addPhotoModal" image-drop-target ng-show="addPhoto">
+		<div class="target">
+			<div class="imageContainer">
+				<img class="previewImage" ng-src="{{imagePreviews[0].url}}" />
+			</div>
+			<table class="infoTable">
+				<tr>
+					<td><input type="text" placeholder="description" ng-model="description"/></td>
+				</tr>
+				<tr>
+					<td><input type="text" placeholder="category" ng-model="category"/></td>
+				</tr>
+				<tr>
+					<td><div class="uploadButton" ng-click="upload()">Upload</div></td>
+				</tr>
+			</table>
+			
+			
+		</div>
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	<div class="workspace">
+		<div class="imageContainer" ng-repeat="book in bookList"><img ng-src="{{book.url}}" /></div>
+	</div>
+</div>

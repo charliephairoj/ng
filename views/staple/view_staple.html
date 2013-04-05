@@ -1,0 +1,32 @@
+<div class="viewPage">
+	
+	<div class="toolbar" >
+		<button click-url="/staple/add_staple" ui-if="currentUser.hasPermission('add_staple')">Add</button>
+		<input class="searchBar" placeholder="Search" type="text" ng-model="query" />
+	</div>
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<table class="list">
+				<thead>
+					<tr>
+						<th>Supplier</th>
+						<th>Ref</th>
+						<th>Width</th>
+						<th>Leg Height</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="staple in stapleList | filter:query" class="listItem">
+						<td><a ng-href="#/staple/{{staple.id}}">{{staple.supplier.name}}</a></td>
+						<td><a ng-href="#/staple/{{staple.id}}">{{staple.reference}}</a></td>
+						<td><a ng-href="#/staple/{{staple.id}}">{{staple.width}}</a></td>
+						<td><a ng-href="#/staple/{{staple.id}}">{{staple.height}}</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+	</div>
+	
+</div>

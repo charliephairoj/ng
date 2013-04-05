@@ -1,0 +1,28 @@
+<div class="addWoolPage">
+	<form>
+		<button type="submit" ng-click="save()">Save</button>
+		<table>
+			<tr>
+				<td><label>Supplier</label></td>
+				<td><select ng-options="supplier.name for supplier in supplierList" ng-model="wool.supplier"></select></td>
+			</tr>
+			
+			<tr>
+				<td><label>Description</label></td>
+				<td><input type="text" min="0" ng-model="wool.description" /></td>
+			</tr>
+			<tr>
+				<td><label>Tex</label></td>
+				<td><input type="text" min="0" ng-model="wool.tex" /></td>
+			</tr>
+			<tr>
+				<td><label>Cost</label></td>
+				<td><input type="text" min="0" ng-model="wool.cost" /></td>
+			</tr>
+			
+		</table> 
+		
+		
+	</form>
+	
+</div>

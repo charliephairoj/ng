@@ -1,0 +1,67 @@
+<div class="viewPage">
+	
+	<!--
+		Sidebar
+	-->
+	
+	<div class="sidebar">
+		<header>
+			<h1>
+				<span>Shipping</span>
+			</h1>
+		</header>
+		<nav>
+			<ul class="list">
+				<li ui-if="currentUser.hasPermission('add_shipping')"><a ng-href="#/shipping/create">Create</a></li>
+                <li ui-if="currentUser.hasPermission('add_shipping')"><a ng-href="#/shipping/deliveries/week">View Weekly Deliveries</a></li>
+                <li ui-if="currentUser.hasPermission('add_shipping')"><a ng-href="#/shipping/deliveries/today">View Today's Deliveries</a></li>
+			</ul>
+		</nav>
+		
+	</div>
+	
+	<!--
+		Search Bar
+	-->
+	
+	<div class="searchBar" >
+		<input size="40" placeholder="Search" ng-model="query" />
+	</div>
+	
+	<!--
+		Workspace
+	-->
+	
+	<div class="workspace">
+		<div class="listContainer">
+			<div class="list">
+				
+					<a ng-repeat="shipping in shippingList | filter:query" class="row">
+						<div class="cell">
+							<div class="details">
+								<div class="details-row">
+									<div class="details-title">Shipping#:</div>
+									<div class="details-data">{{shipping.id}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Customer:</div>
+									<div class="details-data">{{shipping.customer.name}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Delivery Date:</div>
+									<div class="details-data">{{shipping.delivery_date | date:"MMMM d, yyyy"}}</div>
+								</div>
+								<div class="details-row">
+									<div class="details-title">Ordered By:</div>
+									<div class="details-data">{{shipping.employee | date:"MMMM d, yyyy"}}</div>
+								</div>
+							</div>
+						</div>
+						
+					</a>
+				
+			</div>
+		</div>
+	</div>
+	
+</div>

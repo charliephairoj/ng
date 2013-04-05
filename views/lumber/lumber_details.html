@@ -1,0 +1,31 @@
+<form class="detailsPage">
+	<div class="toolbar">
+			<button type="button" ng-click="remove()">Delete</button>
+	</div>
+	<table>
+			<tr>
+				<td><label>Description</label></td>
+				<td><input type="text" ng-model="lumber.description" ec-blur="update()" /></td>
+			</tr>
+			<tr>
+				<td><label>Type</label></td>
+				<td><label>{{lumber.type}}</label></td>
+			</tr>
+			
+			<tr>
+				<td><label>Width</label></td>
+				<td><input type="text" ng-model="lumber.width" ec-blur="update()" />{{lumber.widthUnits}}</td>
+			</tr>
+			
+			<tr>
+				<td><label>Length</label></td>
+				<td><input type="text" ng-model="lumber.depth" ec-blur="update()" />{{lumber.depthUnits}}</td>
+			</tr>
+			<tr>
+				<td><label>Thickness</label></td>
+				<td><input type="text" ng-model="lumber.height" ec-blur="update()" />{{lumber.heightUnits}}</td>
+			</tr>
+			
+		</table> 
+	
+</form>
