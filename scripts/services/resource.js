@@ -146,24 +146,24 @@ angular.module('ecResource', ['ngResource']).
                                 arguments.length + " arguments.";
                     }
                     if(action.isArray){
-                        value = value || [];
+                        value = angular.isArray(value) ? value || [] : [];
                     }else{
-                        value = value || {};
+                        value = angular.isObject(value) ? value || {} : {};
                     }
                     value['$$marker'] = 'poop';
                     //Runs storage mechanism if exists
                     if(storage[name]){
                         //Determines if param or data is used
-                        var data = hasBody ? storage[name](data) || value : storage[name](params) || value;
+                        var strorageData = hasBody ? storage[name](data) || value : storage[name](params) || value;
                         //Determines if array or not when creating resource
                         if(action.isArray){
-                            angular.forEach(data, function(item, index){
+                            angular.forEach(strorageData, function(item, index){
                                 var index = indexOfId(value, item.id);
                                 if(index>-1){angular.extend(value[index], new Resource(item));}
                                 index > -1 ? angular.extend(value[index], new Resource(item)) : value.push(new Resource(item));
                             })
                         }else{
-                            angular.extend(value, new Resource(data));
+                            angular.extend(value, new Resource(strorageData));
                         }
                         //Copies storage data with key to self
                         if(hasBody) {angular.extend(value, this);}

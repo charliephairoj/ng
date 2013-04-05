@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('EmployeeCenterApp')
+angular.module('EmployeeCenter')
   .controller('AdministratorGroupAddCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

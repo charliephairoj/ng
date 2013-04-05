@@ -30,7 +30,7 @@ angular.module('EmployeeCenter', ['ui','EmployeeCenter.filters',
                                                        'EmployeeCenter.services',
                                                        'EmployeeCenter.directives',
                                                        'UserAuth',
-                                                       'EmployeeCenter.resources']).
+                                                       'EmployeeCenter.resources']);
 
 
 /*
@@ -45,6 +45,6 @@ angular.module('EmployeeCenter').config(function($httpProvider){
 /*
  * Run top level application code
  */
-EmployeeCenter.run(function($rootScope, CurrentUser){
+angular.module('EmployeeCenter').run(function($rootScope, CurrentUser){
     $rootScope.currentUser = CurrentUser;
 });
