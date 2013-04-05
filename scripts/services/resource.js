@@ -154,27 +154,18 @@ angular.module('ecResource', ['ngResource']).
                     //Runs storage mechanism if exists
                     if(storage[name]){
                         //Determines if param or data is used
-<<<<<<< HEAD:js/services/resource.js
-                        var storageData = hasBody ? storage[name](data) || value : storage[name](params) || value;
-                        //Determines if array or not when creating resource
-                        if(action.isArray){
-                            angular.forEach(storageData, function(item, index){
-=======
+
                         var strorageData = hasBody ? storage[name](data) || value : storage[name](params) || value;
                         //Determines if array or not when creating resource
                         if(action.isArray){
                             angular.forEach(strorageData, function(item, index){
->>>>>>> clean:scripts/services/resource.js
                                 var index = indexOfId(value, item.id);
                                 if(index>-1){angular.extend(value[index], new Resource(item));}
                                 index > -1 ? angular.extend(value[index], new Resource(item)) : value.push(new Resource(item));
                             })
                         }else{
-<<<<<<< HEAD:js/services/resource.js
-                            angular.extend(value, new Resource(storageData));
-=======
+
                             angular.extend(value, new Resource(strorageData));
->>>>>>> clean:scripts/services/resource.js
                         }
                         //Copies storage data with key to self
                         if(hasBody) {angular.extend(value, this);}
