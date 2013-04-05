@@ -148,7 +148,7 @@ angular.module('ecResource', ['ngResource']).
                     if(action.isArray){
                         value = angular.isArray(value) ? value || [] : [];
                     }else{
-                        value = angular.isObject(value) ? value || {} : {};
+                        value = angular.isObject(value) && !value.hasOwnProperty('length') ? value || {} : {};
                     }
                     value['$$marker'] = 'poop';
                     //Runs storage mechanism if exists
@@ -165,7 +165,7 @@ angular.module('ecResource', ['ngResource']).
                             })
                         }else{
 
-                            angular.extend(value, new Resource(strorageData));
+                            value = new Resource(strorageData);
                         }
                         //Copies storage data with key to self
                         if(hasBody) {angular.extend(value, this);}
