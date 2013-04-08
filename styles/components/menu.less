@@ -1,0 +1,101 @@
+/*This file handles the design of the main menu, 
+ *including the links of the main menu
+ */
+.mainMenu{
+    position:absolute;
+    height:@menuHeight;
+    top:0px;
+    width:100%;
+    font-family:Helvetica, Tahoma, sans-serif;
+    z-index:11;
+    background-color: #313131;
+    border-bottom:1px solid #282828;
+    /*
+    -webkit-box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    */
+   
+    .logo{
+        position:relative;
+        height:30px;
+        margin:10px;
+        width:auto;
+        float:left;
+    }
+    //Container for main menu
+    .mainMenuContainer{
+        position:relative;
+        width:auto;
+        margin-left:20px;
+        height:100%;
+        display:table;
+        //individual menu items
+        .menuItem{
+            display:table-cell;
+            vertical-align:middle;
+            list-style-type:none;
+            height:100%;
+            text-align:center;
+            cursor:pointer;
+            //span
+            a{
+                font-family:proxima;
+                font-size:1m;
+                letter-spacing:0.07em;
+                font-weight:400;
+                padding:1em;
+                color:white;
+                text-decoration:none;
+                background-color:#313131;
+                .transition(all, 250ms, linear);
+                &:hover{
+                    background-color:orange;
+                }
+            }
+            
+            .category_list{
+                position:absolute;
+                display:none;
+                margin-top:30px;
+            }
+            
+            &:hover{
+                .category_list{
+                    display:block;
+                    background:red;
+                  
+                }
+            }
+        }
+    }
+    
+    //Employee area
+    .account_container{
+        color:white;
+        float:right;
+        position:relative;
+        
+        span{
+            height:@menuHeight;
+            position:absolute;
+            top:0px;
+            right:0px;
+        }
+    }
+  
+    .logout{
+        font-family:proxima;
+        position:absolute;
+        padding:1em;
+        font-size:1em;
+        text-decoration:none;
+        color:#FFFFFF;
+        right:20px;
+        top:0px;
+        background-color:#313131;
+        .transition(all, 250ms, linear);
+        &:hover{
+            background-color:orange;
+        }
+    }
+}

@@ -1,0 +1,290 @@
+<div class="createAcknowledgementPage" ng-init="showCustomers=false; show_upholstery=false;showCustom_item=false;" fade-in>
+    
+    
+    <form name="remarksForm" novalidate class="remarks_modal" data-modal ng-model="showRemarks">
+        <div class="title">Remarks</div>
+        <textarea ng-model="ack.remarks" ></textarea>
+        <div class="bottom_bar">
+            <button ng-click="showRemarks=false">Submit</button>
+        </div>
+    </form>
+    <form name="quantityForm" novalidate class="quantity_modal" data-modal ng-model="show_quantity">
+        <div class="title">Quantity</div>
+        <input ng-model="ack.products[ack.products.length-1].quantity" required ng-pattern="/^\d+$/" />
+        <div class="bottom_bar">
+            <button ng-disabled="quantityForm.$invalid" ng-click="show_quantity=false; show_fabric=true;">Submit</button>
+        </div>
+    </form>
+    
+    <form name="vatForm" class="vat_modal" novalidate data-modal ng-model="show_vat">
+        <div class="title">Vat</div>
+        <input ng-model="ack.vat" required ng-pattern="/^\d{1,2}$/" /><span>%</span>
+        <div class="bottom_bar">
+            <button ng-disabled="vatForm.$invalid" ng-click="show_vat=false">Submit</button>
+        </div>
+    </form>
+    
+    <form name="poForm" class="po_modal" novalidate data-modal ng-model="show_po">
+        <div class="title">PO Number</div>
+        <input ng-model="ack.po_id"  size="40"/>
+        <div class="bottom_bar">
+            <button ng-click="show_po=false">Submit</button>
+        </div>
+    </form>
+    
+    <form name="customForm" novalidate class="custom_modal" data-modal ng-model="showCustom" image-drop-target="uploadImage()">
+        <div class="title">Custom Item</div>
+        <div class="details">
+            <table>
+                <tr class="description">
+                    <td>Description</td>
+                    <td><input type="text" ng-model="custom.description" required /></td>
+                </tr>
+                <tr class="quantity">
+                    <td>Quantity</td>
+                    <td><input type="text" ng-model="custom.quantity" required ng-pattern="/^\d+$/" /></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="target">
+            Drop Image Here
+        </div>
+        <div class="bottom_bar">
+            <button ng-disabled="customForm.$invalid || uploading" ng-click="addCustomItem()">Add Item</button>
+        </div>
+    </form>
+    
+    
+    <form class="ack" name="form" ec-droppable="add()" novalidate>
+        <!--
+            Sidebar
+        -->
+        
+        <div class="sidebar">
+            <header>
+                <h1>
+                    <span>Contacts</span>
+                </h1>
+            </header>
+            <nav>
+                <ul class="list">
+                    <li><div ng-class="{dirty:$scope.isValidated}" ng-click="create()" >Create</div></li>
+                    <li><div class="customer" ng-class="{dirty:!ack.customer}" ng-click="showCustomers=!showCustomers">Add Customer</div></li>
+                    <li><div class="upholstery" ng-class="{dirty:!ack.products}" ng-click="show_upholstery=true">Add Upholstery</div></li>
+                    <li><div ng-click="showCustom=true">Add Custom Item</div></li>
+                    <li><div class="delivery_date" ng-class="{dirty:!ack.delivery_date}" ng-click="show_calendar=true">Set Delivery Date</div></li>
+                    <li><div class="vat" ng-class="{dirty:!ack.vat}" ng-click="show_vat=true">Set Vat</div></li>
+                    <li><div ng-click="show_po=true">Set Purchase Order</div></li>
+                    <li><div ng-click="showRemarks=true">Add Remarks</div></li>
+                    <li><div ng-click="reset()" >Reset</div></li>
+                </ul>
+            </nav>
+            
+        </div>
+        
+        <!--
+            Panels
+        -->
+        
+        <div class="customer_modal" data-modal ng-model="showCustomers">
+            <div class="title">
+                Customers
+                <input type="text" class="search" ng-model="queryCustomers" />
+            </div>
+            <div class="container">
+                <ul class="list">
+                    <li class="item" ng-click="addCustomer($index)" ng-repeat="customer in customerList | filter:queryCustomers | orderBy:'name'">{{customer.name}}</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="upholstery_modal" data-modal ng-model="show_upholstery">
+            <div class="title">
+                Upholstery
+                <input type="text" class="search" ng-model="queryUpholstery" />
+                
+            </div>
+            <div class="container">
+                <div class="list">
+                    <div class="item" ng-click="addUpholstery($index)" ng-repeat="upholstery in upholsteryList | filter:queryUpholstery">
+                        <img ng-src="{{upholstery.url}}" />{{upholstery.description}}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div data-modal ng-model="show_fabric" class="fabric_modal">
+            <div class="title">
+                Fabric
+                <input type="text" class="search" ng-model="queryFabric" />
+                
+            </div>
+            <div class="container">
+                <div class="product_container">
+                    <div class="product" data-drop-on="ack.products[ack.products.length-1].fabric">
+                        <div>{{ack.products[ack.products.length-1].description}}</div>
+                        
+                        <div class="fabric" ui-if="ack.products[ack.products.length-1].fabric">
+                            Fabric:  {{ack.products[ack.products.length-1].fabric.description}}
+                            <img ng-src="{{ack.products[ack.products.length-1].fabric.image_url}}" />
+                        </div>
+                        
+                    </div>
+                    <div class="pillow" ng-repeat="pillow in ack.products[ack.products.length-1].pillows" data-drop-on="pillow.fabric">
+                        <div>{{pillow.type | beautify}} Pillow</div>
+                        <div class="fabric">
+                            Fabric: {{pillow.fabric.description}}
+                            <img ng-src="{{pillow.fabric.image_url}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="fabric_container">
+                    <ul class="list">
+                        <li class="item" ng-repeat="fabric in fabricList | filter:queryFabric " data-drag-on="fabric">
+                            <img ng-src="{{fabric.image_url}}" />
+                            <div class="details">
+                                Pattern: {{fabric.pattern}}
+                                <br />
+                                Color: {{fabric.color}}
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom_bar">
+                <button ng-click="show_fabric = false">Submit</button>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="calendar_modal" data-modal  ng-model="show_calendar">
+            <div ui-calendar ng-model="ack.delivery_date">
+            </div>
+            <div class="bottom_bar">
+                <button ng-disabled="!ack.delivery_date" ng-click="show_calendar=!show_calendar">Select</button>
+            </div>
+            
+        </div>
+        
+        <!--
+            Workspace
+        -->
+        <div class="workspace">
+                
+                <div class="customer">
+                    <span class="title">Customer</span>
+                    <table class="details">
+                        <tr>
+                            <td>Name:</td>
+                            <td>{{ack.customer.name}}</td>
+                        <tr>
+                            <td>Address:</td>
+                            <td>
+                                {{ack.customer.addresses[0].address1}}
+                                <br />
+                                {{ack.customer.addresses[0].city}}, {{ack.customer.addresses[0].territory}}
+                                <br />
+                                {{ack.customer.addresses[0].territory}}, {{ack.customer.addresses[0].country}} {{ack.customer.addresses[0].zipcode}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Telephone:</td>
+                            <td>{{ack.customer.telephone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>{{ack.customer.email}}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="order">
+                    <table class="details">
+                        <tr>
+                            <td>Delivery Date:</td>
+                            <td>{{ack.delivery_date | date:"MMMM d, yyyy"}}</td>
+                        </tr>
+                        <tr ui-if="ack.po_id">
+                            <td>PO#:</td>
+                            <td>{{ack.po_id}}</td>
+                        </tr>
+        
+                        <tr>
+                            <td>Vat:</td>
+                            <td>{{ack.vat}}%</td>
+                        </tr>
+                        <tr>
+                            <td>Currency:</td>
+                            <td>
+                                {{ack.customer.currency}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+            
+            <div class="products" ng-show="ack.products">
+                <div class="title">Products</div>
+                <div class="product" ng-repeat="product in ack.products">
+                    {{product.description}}
+                    <table class="details">
+                        <tr>
+                            <td>Qty:</td>
+                            <td>{{product.quantity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Size:</td>
+                            <td><input type="checkbox" ng-model="product.is_custom_size" /></td>
+                        </tr>
+                        <tr>
+                            <td>Width:</td>
+                            <td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.width" />mm</td>
+                        </tr>
+                        <tr>
+                            <td>Depth:</td>
+                            <td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.depth" />mm</td>
+                        </tr>
+                        <tr>
+                            <td>Height:</td>
+                            <td><input type="text" ng-class="{'active':product.is_custom_size}" ng-disabled="!product.is_custom_size" ng-model="product.height" />mm</td>
+                        </tr>
+                        <tr ui-if="product.fabric">
+                            <td>Fabric: </td>
+                            <td>
+                                {{product.fabric.description}}
+                                <img ng-src="{{product.fabric.image_url}}" />
+                            </td>
+                            <td>
+                                
+                            </td>
+                            
+                        </tr>
+                        <tr ng-repeat="pillow in product.pillows">
+                            <td>{{pillow.type | beautify}} Pillow</td>
+                            <td>{{pillow.fabric.description}}<img ng-src="{{pillow.fabric.image_url}}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Comments:</td>
+                            <td><textarea cols="40" rows="4" ng-model="product.comments"></textarea></td>
+                        </tr>
+                    </table>
+                    <img ng-src="{{product.url}}" />
+                    <div class="remove_btn" ng-click="removeProduct($index)">Remove</div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </form>
+    
+</div>

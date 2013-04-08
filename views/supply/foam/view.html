@@ -1,0 +1,69 @@
+<div class="viewPage">
+    
+    
+    <!--
+        Sidebar
+    -->
+    <div class="sidebar">
+        <header>
+            <h1><span>Foam</span></h1>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a ng-href="#/supply/foam/add">Add Foam</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+    
+    
+    <!--
+        Search Bar
+    -->
+    <div class="searchBar" >
+        <input size="40" placeholder="Search" ng-model="query" />
+    </div>
+    
+    
+    <div class="workspace">
+        <div class="listContainer">
+            <div class="list">
+                    <a ng-repeat="foam in foamList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/foam/{{foam.id}}">
+                        <div class="profile-img cell">
+                            <div>
+                                <img ng-src="{{foam.image_url}}" />
+                            </div>
+                            
+                        </div>
+                        <div class="cell">
+                            <div class="details">
+                                <div class="details-row">
+                                    <div class="details-title">Supplier:</div>
+                                    <div class="details-data">{{foam.supplier.name}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Reference Number</div>
+                                    <div class="details-data">{{foam.reference}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Dimensions:</div>
+                                    <div class="details-data">{{foam.height}} x {{foam.width}} x {{foam.depth}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Color:</div>
+                                    <div class="details-data">{{foam.color}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Cost:</div>
+                                    <div class="details-data">{{foam.cost}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+            </div>
+        </div>
+    </div>
+    
+</div>
