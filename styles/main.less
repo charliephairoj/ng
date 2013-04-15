@@ -1,0 +1,120 @@
+/* app css stylesheet */
+
+* { margin:0; padding:0; }
+
+html, body{
+    height:100%;
+    overflow:hidden;
+}
+body{
+	background-color:white;
+ 	margin: 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+/*
+ * Other Modules
+ */
+@import "../components/angular-ui/build/angular-ui.min.css";
+
+/*Fonts*/
+@import "fonts.less";
+
+/*
+ *Standard Forms layout and designs 
+*/
+
+/*Model Section Form*/
+input{
+	border:1px solid grey;
+	border-radius:2px;
+	background-color: #FFFFFF;
+	font-size:14px;
+	padding-left: 6px;
+	padding: 3px;
+}
+
+select{
+	border:1px solid grey;
+	border-radius:2px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+}
+
+/*
+ * Application wide stuff
+ */
+
+/*general mixins*/
+.transition (@prop: all, @time: 1s, @ease: linear){
+    -webkit-transition: @prop @time @ease;
+    -moz-transition: @prop @time @ease;
+    -o-transition: @prop @time @ease;
+    -ms-transition: @prop @time @ease;
+    transition: @prop @time @ease;
+}
+
+
+/*Menu
+ * 
+ *Rules:
+ * 
+ * Menus operate in the 10-19 z-index range with 
+ * the base z-index at 10.
+ */
+
+/*Main Menu*/
+@menuHeight:50px;
+@menuSidePadding:8px;
+@import "components/menu.less";
+
+/*Sidemenu*/
+@import "components/sidemenu.less";
+
+/*Notification Rules:
+ *
+ * The notification system will have 
+ * the highest index operating in the 
+ * 100-109 range because of the belief
+ * that communiation with the user is the
+ * most important aspect to make the 
+ * application feel responsive
+ */
+  
+/*Notification system*/
+@import "components/notification.less";
+
+/*Page Rules:
+ * 
+ * All pages and their components in
+ * the z-index range of 0-9 with the base
+ * being 0
+ */
+ 
+/*Search Bar*/
+@import "components/searchbar.less";
+
+/*Main Container*/
+@import "templates/mainContainer.less";
+
+/*Modal*/
+@import "templates/modal.less";
+@import "components/calendar-modal.less";
+/*
+ * Modal Theming
+ */
+
+
+
+
+
+/*
+ * imports
+ */
+
+@import "page.less";
+@import "directives.less";
+
+
+
