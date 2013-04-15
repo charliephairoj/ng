@@ -1,3 +1,4 @@
+@import "../components/angular-ui/build/angular-ui.min.css";
 /* app css stylesheet */
 * {
   margin: 0;
@@ -14,6 +15,9 @@ body {
   padding: 0;
   font-size: 16px;
 }
+/*
+ * Other Modules
+ */
 /*Fonts*/
 /*Fonts
  * 
@@ -189,7 +193,7 @@ select {
   padding: 12px 8px;
   word-wrap: normal;
   color: #FFF;
-  font-size: 1.2em;
+  font-size: 0.6em;
   letter-spacing: 0.06em;
 }
 .sidebar header h2 {
@@ -4025,6 +4029,9 @@ select {
 .acknowledgementDetailsPage table td {
   padding: 3px;
 }
+.acknowledgementDetailsPage .workspace .table .row .cell {
+  text-decoration: none;
+}
 .acknowledgementDetailsPage .workspace .table .row .cell.acknowledged {
   color: yellow;
 }
@@ -4059,7 +4066,7 @@ select {
   display: table-cell;
   color: #CCC;
   border: none;
-  font-size: 0.8em;
+  font-size: 1em;
   font-family: proxima;
   padding: 0.3em;
 }

@@ -14,7 +14,6 @@ angular.module('employeeApp.services')
         
         function Notifier(){
             this.notification = angular.element('#notification');
-            console.log(this.notification);
             this.promise = null;
         }
         
@@ -48,7 +47,6 @@ angular.module('employeeApp.services')
         };
         
         Notifier.prototype.hide = function(){
-            console.log(this);
             //Remove Message and 
             this.notification.removeClass('active');
         };

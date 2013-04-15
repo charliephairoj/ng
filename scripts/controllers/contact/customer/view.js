@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification) {
-    Notification.display('Loading Customers...', false);
+  .controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location) {
+    //Notification.display('Loading Customers...', false);
     $scope.customerList = Customer.query(function(){
         Notification.hide();});
-    $scope.customer = {};
+    $scope.customer = new Customer();
     $scope.address = {};
     
+    /*
     //Watchers
     $scope.$watch('marker', function(){
         if($scope.marker){
@@ -26,18 +27,13 @@ angular.module('employeeApp')
         var position = $scope.map.getPosition($scope.address);
         angular.extend($scope.address, position);
     };
-    
+    */
     $scope.saveCustomer = function(){
-        //New customer  
-        var newCustomer = new Customer();
-        //Apply the customer details first
-        angular.copy($scope.customer, newCustomer);
-        newCustomer.address = {};
-        angular.copy($scope.address, newCustomer.address);
         
-        newCustomer.$save(function(){
+        
+        $scope.customer.$save(function(){
             $scope.add_customer=false;
-            $scope.customerList = Customer.query();
+            $location.path("/contact/customer");
             
         });
     };

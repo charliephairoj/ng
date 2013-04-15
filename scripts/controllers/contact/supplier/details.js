@@ -56,7 +56,7 @@ angular.module('employeeApp')
     $scope.remove = function(){
         $scope.supplier.$remove(function(){
             
-            $location.path('/suppliers');
+            $location.path('/contact/supplier');
         });
         
     }

@@ -23,14 +23,15 @@ angular.module('employeeApp')
            data:fd,
            processData:false,
            contentType:false,
-           success: function(responseData){
+           success: function(response){
                Notification.display('Model Image Updated');
                $scope.model.image =  $scope.model.image || {};
-               angular.copy(responseData, $scope.fabric.image);
+               angular.copy(response, $scope.model.image);
                $scope.model.$save();
                $scope.imagePreviews = null;
                $scope.images = null;
                $scope.$apply();
+               console.log($scope);
            }
         });
         
@@ -48,7 +49,7 @@ angular.module('employeeApp')
             //Notify
             Notification.display('Model Deleted');
             //Reroute to view page
-            $location.path('/models');
+            $location.path('/product/model');
         });
         
     };

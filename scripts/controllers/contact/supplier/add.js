@@ -2,6 +2,8 @@
 
 angular.module('employeeApp')
   .controller('ContactSupplierAddCtrl', function ($scope, Supplier, $location, Notification) {
+      
+      $scope.supplier = new Supplier();
     //Mehtods
     
     //addS  contact to the supplier
@@ -37,12 +39,9 @@ angular.module('employeeApp')
         if($scope.form.$valid){
             //Notify
             Notification.display('Saving Supplier...', false);
-            //New customer  and address objects
-            var supplier = new Supplier();
-            
-            angular.copy($scope.supplier, supplier);
+          
                     
-            supplier.$save(function(){
+            $scope.supplier.$save(function(){
                 //Notify
                 Notification.display('Supplier Saved');
                 $location.path('/contact/supplier');

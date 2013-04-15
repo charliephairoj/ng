@@ -33,7 +33,7 @@ angular.module('employeeApp')
             Notification.display('Deleteing Upholstery Product');
             $scope.uphol.$delete(function(){
                 Notification.display('Upholstery Product Deleted');
-                $location.path('/upholstery');
+                $location.path('/product/upholstery');
             });
         };
     }]);

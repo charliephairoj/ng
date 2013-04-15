@@ -6,14 +6,14 @@
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title></title>
+    <title>Employee Center</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="components/normalize-css/normalize.css">
     <link rel="stylesheet" href="styles/main.css">
   </head>
-  <body ng-app="employeeApp">
+  <body ng-app="employeeApp" data-scanner>
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -63,15 +63,17 @@
         
     </div>
     <script src="components/jquery/jquery.min.js"></script>
-
+    <script src="components/jquery-ui/ui/jquery.ui.datepicker.js"></script>
+   
     <script src="components/angular/angular.js"></script>
-    
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
     <script src="components/angular-ui/build/angular-ui.min.js"></script>
 
     <!-- build:js scripts/scripts.js -->
+    
+    
     <script src="scripts/app.js"></script>
     <script src="scripts/configs.js"></script>
     <script src="scripts/controllers/contact/customer/add.js"></script>
@@ -103,10 +105,8 @@
     <script src="scripts/controllers/product/model/details.js"></script>
     <script src="scripts/services/models/acknowledgement.js"></script>
     <script src="scripts/controllers/order/acknowledgement/create.js"></script>
-    <script src="scripts/controllers/order.js"></script>
     <script src="scripts/controllers/order/acknowledgement/view.js"></script>
     <script src="scripts/services/models/fabric.js"></script>
-    
     <script src="scripts/directives/fade-load.js"></script>
     <script src="scripts/directives/fade-in.js"></script>
     <script src="scripts/directives/ec-blur.js"></script>
@@ -129,10 +129,8 @@
     <script src="scripts/controllers/administrator/user/details.js"></script>
     <script src="scripts/controllers/administrator/user/add.js"></script>
     <script src="scripts/controllers/administrator/user/view.js"></script>
-    <script src="scripts/controllers/administrator.js"></script>
     <script src="scripts/services/models/group.js"></script>
     <script src="scripts/services/models/user.js"></script>
-    <script src="scripts/controllers/supply.js"></script>
     <script src="scripts/controllers/supply/fabric/view.js"></script>
     <script src="scripts/controllers/supply/fabric/add.js"></script>
     <script src="scripts/controllers/supply/fabric/details.js"></script>
@@ -140,12 +138,20 @@
     <script src="scripts/controllers/supply/foam/add.js"></script>
     <script src="scripts/controllers/supply/foam/view.js"></script>
     <script src="scripts/services/models/foam.js"></script>
-    <script src="scripts/controllers/accounting.js"></script>
     <script src="scripts/controllers/accounting/transaction/view.js"></script>
     <script src="scripts/controllers/accounting/transaction/add.js"></script>
     <script src="scripts/controllers/accounting/transaction/details.js"></script>
     <script src="scripts/services/models/transaction.js"></script>
     <script src="scripts/services/ea-storage.js"></script>
+    <script src="scripts/services/ea-resource.js"></script>
+    <script src="scripts/services/scanner.js"></script>
+    <script src="scripts/controllers/order/acknowledgement/details.js"></script>
+    <script src="scripts/directives/scanner.js"></script>
+    <script src="scripts/services/interceptors/date-parser.js"></script>
+    <script src="scripts/services/models/permission.js"></script>
+    <script src="scripts/controllers/order/acknowledgement/weekly.js"></script>
+    <script src="scripts/controllers/order/acknowledgement/daily.js"></script>
+    <script src="scripts/controllers/order/shipping/details.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

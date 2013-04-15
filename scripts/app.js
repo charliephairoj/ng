@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('employeeApp.services', []);
+angular.module('employeeApp.services', ['ngResource']);
 angular.module('employeeApp.directives', []);
 angular.module('employeeApp.filters', []);
 angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'employeeApp.filters',
@@ -79,15 +79,15 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/order/shipping/create.html',
         controller: 'OrderShippingCreateCtrl'
       })
-      .when('/order/shipping/view', {
+      .when('/order/shipping', {
         templateUrl: 'views/order/shipping/view.html',
         controller: 'OrderShippingViewCtrl'
       })
-      .when('/order/shipping/today', {
+      .when('/order/shipping/deliveries/today', {
         templateUrl: 'views/order/shipping/today.html',
         controller: 'OrderShippingTodayCtrl'
       })
-      .when('/order/shipping/week', {
+      .when('/order/shipping/deliveries/week', {
         templateUrl: 'views/order/shipping/week.html',
         controller: 'OrderShippingWeekCtrl'
       })
@@ -121,28 +121,28 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
       .when('/supply', {
         templateUrl: 'views/supply.html'
       })
-      .when('/supply/fabric/view', {
-        templateUrl: 'views/supply/fabric.html',
+      .when('/supply/fabric', {
+        templateUrl: 'views/supply/fabric/view.html',
         controller: 'SupplyFabricViewCtrl'
       })
       .when('/supply/fabric/add', {
         templateUrl: 'views/supply/fabric/add.html',
         controller: 'SupplyFabricAddCtrl'
       })
-      .when('/supply/fabric/details', {
-        templateUrl: 'views/supply/fabric/:id.html',
+      .when('/supply/fabric/:id', {
+        templateUrl: 'views/supply/fabric/details.html',
         controller: 'SupplyFabricDetailsCtrl'
       })
-      .when('/supply/foam/details', {
-        templateUrl: 'views/supply/foam/:id.html',
+      .when('/supply/foam/:id', {
+        templateUrl: 'views/supply/foam/details.html',
         controller: 'SupplyFoamDetailsCtrl'
       })
       .when('/supply/foam/add', {
         templateUrl: 'views/supply/foam/add.html',
         controller: 'SupplyFoamAddCtrl'
       })
-      .when('/supply/foam/view', {
-        templateUrl: 'views/supply/foam.html',
+      .when('/supply/foam', {
+        templateUrl: 'views/supply/foam/view.html',
         controller: 'SupplyFoamViewCtrl'
       })
       .when('/accounting', {
@@ -159,6 +159,23 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
       .when('/accounting/transaction/:id', {
         templateUrl: 'views/accounting/transaction/details.html',
         controller: 'AccountingTransactionDetailsCtrl'
+      })
+      .when('/order/acknowledgement/:id', {
+        templateUrl: 'views/order/acknowledgement/details.html',
+        controller: 'OrderAcknowledgementDetailsCtrl'
+      })
+      /*
+      .when('/order/shipping/deliveries/week', {
+        templateUrl: 'views/order/acknowledgement/weekly.html',
+        controller: 'OrderAcknowledgementWeeklyCtrl'
+      })
+      .when('/order/shipping/deliveries/today', {
+        templateUrl: 'views/order/acknowledgement/daily.html',
+        controller: 'OrderAcknowledgementDailyCtrl'
+      })*/
+      .when('/order/shipping/:id', {
+        templateUrl: 'views/order/shipping/details.html',
+        controller: 'OrderShippingDetailsCtrl'
       })
       .otherwise({
         redirectTo: '/'

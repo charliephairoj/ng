@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('employeeApp.services')
-  .factory('Group', ['ecResource', function(ecResource) {
-    return ecResource('group/:id', {id:'@id'});   
+  .factory('Group', ['eaResource', function(eaResource) {
+    return eaResource('group/:id', {id:'@id'});   
   }]);

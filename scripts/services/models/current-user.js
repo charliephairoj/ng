@@ -3,14 +3,8 @@
 angular.module('employeeApp.services')
     .factory('CurrentUser', ['$http', function($http) {
         //Create the initial object
-        function User(){
-            //Request current user information
-            var promise = $http({method:'GET', url:'/auth_service'});
-            
-            promise.then(function(response){
-                    angular.copy(response.data, this);
-                    console.log(this);                
-            }.bind(this));
+        function User(){ 
+            angular.copy(window.current_user||{}, this);
         }
         
         //checks if user has a permission

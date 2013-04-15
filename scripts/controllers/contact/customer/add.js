@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('ContactCustomerAddCtrl', function ($scope, Customer) {
-    $scope.saveCustomer = function(){
-        //New customer  
-        var newCustomer = new Customer();
-        //Apply the customer details first
-        newCustomer.name = $scope.contact.name;
-        newCustomer.email = $scope.contact.email;
-        newCustomer.telephone = $scope.contact.email;
-        newCustomer.fax = $scope.contact.email;
-        newCustomer.$save();
-    };
+  .controller('ContactCustomerAddCtrl', function ($scope, Customer, $location, Notification) {
+      
+      $scope.customer = new Customer
+      
+      $scope.save = function(){
+          Notification.display('Saving Customer...', false);
+          $scope.customer.$save(function(){
+              Notification.display('Customer Saved');
+              $location.path('/contact/customer');
+          });
+      };
   });

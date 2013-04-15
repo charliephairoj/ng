@@ -15,11 +15,7 @@ angular.module('employeeApp')
         $scope.groupList[index].status = group.checked;
         if(group.checked){
             
-            search($scope.user.groups, 'id', group.id, function(item, index){
-                if($scope.user.groups[index].status == "delete"){
-                    $scope.user.groups[index].status = "add";
-                }
-            },
+            search($scope.user.groups, 'id', group.id, angular.noop,
             function(){
                 group.status = 'add';
                 $scope.user.groups.push(angular.copy(group));
@@ -32,8 +28,27 @@ angular.module('employeeApp')
                  
             });
         }
-        console.log($scope.user);
-        $scope.user.$save();
+        //Save the model
+        $scope.user.$save(function(){
+            //$apply changes to the model
+            angular.forEach($scope.user.groups, function(group, index){
+                if(group.hasOwnProperty('status')) {
+                    switch (group.status) {
+                        //Delete the group
+                        case "delete":
+                            $scope.user.groups.splice(index, 1);
+                            break;
+                        //Delete the status
+                        case "add":
+                            delete group.status;
+                            break;
+                        default:
+                            delete group.status;
+                            break;
+                    }
+                }
+            });
+        });
     };
     
     $scope.remove = function(){
@@ -42,19 +57,12 @@ angular.module('employeeApp')
         });
     };
     
-    $scope.add = function(){
-         angular.forEach($scope.permissionList, function(perm){
-            if($scope.data.id === perm.id){
-                $scope.group.permissions.push(perm);
-                $scope.$apply();
-                
-            }
-        });
-        
-        $scope.group.$save();
-    };
-    
     $scope.update = function(){
         $scope.user.$save();
     };
+    
+    $scope.$on('$destroy', function(){
+        $scope.user.$save(); 
+    });
+    
   }]);

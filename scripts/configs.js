@@ -6,7 +6,7 @@ angular.module('employeeApp').config(function($httpProvider){
       $httpProvider.defaults.headers.get  = {"Cache-Control":"no-cache", "expires":"-1", "pragma":"no-cache"};
   });
 
- 
+  
 /*
  * Run top level application code
  */
