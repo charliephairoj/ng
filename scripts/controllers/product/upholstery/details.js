@@ -29,6 +29,13 @@ angular.module('employeeApp')
             });
         };
         
+        $scope.update = function() {
+            Notification.display('Saving Upholsterty...', false);
+            $scope.uphol.$save(function() {
+                Notification.display('Upholstery Saved');
+            });
+        };
+        
         $scope.remove = function(){
             Notification.display('Deleteing Upholstery Product');
             $scope.uphol.$delete(function(){

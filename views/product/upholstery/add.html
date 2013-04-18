@@ -25,38 +25,54 @@
                 <tr>
                     <td><label>Model</label></td>
                     <td>
-                        <select ng-model="upholstery.model" ng-options="model.model for model in modelList | orderBy:'model'">
+                        <select ng-model="upholstery.model" required tooltip="modelText" ng-options="model.model for model in modelList | orderBy:'model'">
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Configuration</label></td>
                     <td>
-                        <select ng-model="upholstery.configuration" ng-options="config.configuration for config in configurationList | orderBy:'configuration'">
+                        <select ng-model="upholstery.configuration" required tooltip="configurationText" ng-options="config.configuration for config in configurationList | orderBy:'configuration'">
                             
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Width</label></td>
-                    <td><input type="text" beautify ng-model="upholstery.width" required/> mm</td>
+                    <td><input type="text" beautify ng-model="upholstery.width" required tooltip="widthText"/> mm</td>
                 </tr>
                 <tr>
                     <td><label>Depth</label></td>
-                    <td><input type="text" beautify ng-model="upholstery.depth" required/> mm</td>
+                    <td><input type="text" beautify ng-model="upholstery.depth" required tooltip="depthText"/> mm</td>
                 </tr>
                 <tr>
                     <td><label>Height</label></td>
-                    <td><input name="width" type="text" ng-model="upholstery.height" required/> mm</td>
+                    <td><input type="text" ng-model="upholstery.height" required tooltip="heightText"/> mm</td>
+                </tr>
+                <tr>
+                    <td><label>Back Pillows</label></td>
+                    <td><input type="text" ng-model="upholstery.back_pillow" ng-pattern="/^\d+$/" tooltip="bpText"/></td>
+                </tr>
+                <tr>
+                    <td><label>Accent Pillows</label></td>
+                    <td><input type="text" ng-model="upholstery.accent_pillow" ng-pattern="/^\d+$/" tooltip="apText"/></td>
+                </tr>
+                <tr>
+                    <td><label>Lumbar Pillows</label></td>
+                    <td><input type="text" ng-model="upholstery.lumbar_pillow" ng-pattern="/^\d+$/" tooltip="lpText"/></td>
+                </tr>
+                <tr>
+                    <td><label>Corner Pillows</label></td>
+                    <td><input type="text" ng-model="upholstery.corner_pillow" ng-pattern="/^\d+$/" tooltip="cpText"/></td>
                 </tr>
                 
                 <tr>
                     <td><label>Retail Price</label></td>
-                    <td><input type="text" ng-model="upholstery.retail_price" ng-pattern="/^\d+(\.\d{2})?$/"/> THB</td>
+                    <td><input type="text" ng-model="upholstery.retail_price" ng-pattern="/^\d+(\.\d{2})?$/" tooltip="price"/> THB</td>
                 </tr>
                 <tr>
                     <td><label>Wholesale Price</label></td>
-                    <td><input type="text" ng-model="upholstery.wholesale_price" ng-pattern="/^\d+(\.\d{2})?$/"/> THB</td>
+                    <td><input type="text" ng-model="upholstery.wholesale_price" ng-pattern="/^\d+(\.\d{2})?$/" tooltip="price"/> THB</td>
                 </tr>
             </table> 
         </div>

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('employeeApp')
-  .directive('telephone', [function () {
+angular.module('employeeApp.directives')
+  .directive('telephone', ['$filter', '$parse', function ($filter, $parse) {
     return {
        restrict:'A', 
        link: function(scope, element, attr){

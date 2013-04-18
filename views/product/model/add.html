@@ -22,15 +22,15 @@
             <table class="inputTable">
                 <tr>
                     <td><label>Model Name</label></td>
-                    <td><input type="text" ng-model="model.name" required/></td>
+                    <td><input type="text" ng-model="model.name" required tooltip="nameText"/></td>
                 </tr>
                 <tr>
                     <td><label>Model Number</label></td>
-                    <td><input type="text" beautify ng-model="model.model" required /></td>
+                    <td><input type="text" beautify ng-model="model.model" required tooltip="modelText"/></td>
                 </tr>
                 <tr>
                     <td><label>Collection</label></td>
-                    <td><input type="text" beautify ng-model="model.collection" value="Dellarobbiat Thailand" required /></td>
+                    <td><input type="text" beautify ng-model="model.collection" value="Dellarobbiat Thailand" required tooltip="collectionText"/></td>
                 </tr>
             </table> 
         </div>

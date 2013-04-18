@@ -12,6 +12,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="components/normalize-css/normalize.css">
     <link rel="stylesheet" href="styles/main.css">
+    <script>
+        window.current_user = {{user_data}};
+    </script>
   </head>
   <body ng-app="employeeApp" data-scanner>
     <!--[if lt IE 7]>
@@ -152,6 +155,7 @@
     <script src="scripts/controllers/order/acknowledgement/weekly.js"></script>
     <script src="scripts/controllers/order/acknowledgement/daily.js"></script>
     <script src="scripts/controllers/order/shipping/details.js"></script>
+    <script src="scripts/directives/tooltip.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

@@ -25,6 +25,12 @@
                 <li ng-show="currentUser.hasPermission('change_acknowledgement')">
                     <div ng-click="showCal=true">Change Delivery Date</div>
                 </li>
+                <li>
+                    <div ng-click="getPDF('acknowledgement')">View Acknowledgement</div>
+                </li>
+                <li>
+                    <div ng-click="getPDF('production')">View Production</div>
+                </li>
                 <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
                     <div ng-click="remove()">Delete</div>
                 </li>

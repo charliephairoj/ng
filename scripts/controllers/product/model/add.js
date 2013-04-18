@@ -3,7 +3,14 @@
 angular.module('employeeApp')
   .controller('ProductModelAddCtrl', ['$scope', 'Model', 'Notification', '$location',
   function ($scope, Model, Notification, $location) {
-      $scope.model = new Model();
+      
+        $scope.model = new Model();
+      
+        //Tooltips
+        $scope.nameText = "Enter a Name for this Model";
+        $scope.modelText = "Enter a Model Number for this Model";
+        $scope.collectionText = "Enter this Model's Collection";
+        
         //Adds a new models
         $scope.save = function(model){
             Notification.display('Saving Model...', false);

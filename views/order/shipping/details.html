@@ -6,7 +6,7 @@
     <div class="calendar-modal" data-modal  ng-model="showCal">
         <div ui-date ng-model="shipping.delivery_date"></div>
         <div class="bottom_bar">
-            <button ng-click="updateDeliveryDate()">Select</button>
+            <button ng-click="showCal = !showCal">Select</button>
         </div>
             
     </div>
@@ -24,6 +24,9 @@
                 </li>
                 <li ng-show="currentUser.hasPermission('change_acknowledgement')">
                     <div ng-click="showCal=true">Change Delivery Date</div>
+                </li>
+                 <li>
+                    <div ng-click="getPDF()">View PDF</div>
                 </li>
                 <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
                     <div ng-click="remove()">Delete</div>

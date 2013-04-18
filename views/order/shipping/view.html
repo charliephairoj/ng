@@ -36,7 +36,7 @@
         <div class="listContainer">
             <div class="list">
                 
-                    <a ng-repeat="shipping in shippingList | filter:query | orderBy:'-id'" class="row" ng-href="#/order/shipping/{{shipping.id}}">
+                    <a ng-repeat="shipping in shippingList | filter:query | limitTo:50 | orderBy:'-id'" class="row" ng-href="#/order/shipping/{{shipping.id}}">
                         <div class="cell">
                             <div class="details">
                                 <div class="details-row">

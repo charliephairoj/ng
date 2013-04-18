@@ -1,4 +1,4 @@
-<div class="detailsPage" image-drop-target="upload()">
+<div class="upholstery-details-page" image-drop-target="upload()">
     
     <!--
         Sidebar
@@ -27,7 +27,7 @@
     
     <form class="workspace">
         
-        <table>
+        <table class="details">
             <tr>
                 
                 <tr>
@@ -43,12 +43,16 @@
                     <td>{{uphol.configuration.configuration}}</td>
                 </tr>
                 <tr>
-                    <td>Wholesale Price:</td>
-                    <td>{{uphol.wholesale_price}}</td>
+                    <td>Retail Price:</td>
+                    <td><input type="text" ec-blur="update()" data-ng-model="uphol.retail_price" /></td>
                 </tr>
                 <tr>
-                    <td>Retail Price:</td>
-                    <td>{{uphol.retail_price}}</td>
+                    <td>Wholesale Price:</td>
+                    <td><input type="text" ec-blur="update()" data-ng-model="uphol.wholesale_price" /></td>
+                </tr>
+                <tr>
+                    <td>Export Price:</td>
+                    <td><input type="text" ec-blur="update()" data-ng-model="uphol.export_price" /></td>
                 </tr>
                 
             </table>
