@@ -58,6 +58,19 @@ angular.module('employeeApp.services')
               return true;
           }
           
+          function parseDate(obj){
+               if(obj.hasOwnProperty('delivery_date')){
+                   obj.delivery_date = new Date(obj.delivery_date);
+               }
+               if(obj.hasOwnProperty('time_created')){
+                   obj.time_created = new Date(obj.time_created);
+               }
+               if(obj.hasOwnProperty('last_login')){
+                   obj.last_login = new Date(obj.last_login);
+               }
+               return obj
+           }
+          
           //Storage initialization
           function storage(namespace) {
               this.namespace = namespace;
@@ -145,6 +158,7 @@ angular.module('employeeApp.services')
                       key;
                   for(key in this.collection) {
                       if (compare(this.collection[key], arg)) {
+                          this.collection[key] = parseDate(this.collection[key]);
                           data.push(this.collection[key]);
                       }
                   }
@@ -182,7 +196,7 @@ angular.module('employeeApp.services')
           
           //Get an obj by id
           storage.prototype.get = function(id){
-              return this.collection[id] ? this.collection[id] : null;
+              return this.collection[id] ? parseDate(this.collection[id]) : null;
           };
           
           //Iterate through all the items in the collecion
@@ -193,7 +207,7 @@ angular.module('employeeApp.services')
                   //check the it is a direct property
                   if (this.collection.hasOwnProperty(key)) {
                       //call back fn with item as argument
-                      callback(this.collection[key]);
+                      callback(parseDate(this.collection[key]));
                   }
               }
           };
