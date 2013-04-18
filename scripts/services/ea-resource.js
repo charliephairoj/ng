@@ -228,8 +228,15 @@ angular.module('employeeApp.services')
                                  //Loop for existing item in value
                                  var index = indexOfId(value, item);
                                  if (index != -1) {
-                                     //Update exiting resource
-                                     angular.extend(value[index], item);
+                                     /*
+                                      * In order not to waste resource we
+                                      * first check if the two items are equal or not.
+                                      * If they are not equal then we perform an extend
+                                      */
+                                     if (!angular.equals(value[index], item)) {
+                                         angular.extend(value[index], item);
+                                     }
+                                     
                                  } else {
                                      //Add new resource
                                      value.push(new Resource(item));
@@ -278,8 +285,14 @@ angular.module('employeeApp.services')
                                     index = indexOfId(value, item.id);
                                     
                                     if(index > -1){
-                                        //Update the found item
-                                        angular.extend(value[index], item);
+                                        /*
+                                        * In order not to waste resource we
+                                        * first check if the two items are equal or not.
+                                        * If they are not equal then we perform an extend
+                                        */
+                                        if (!angular.equals(value[index], item)) {
+                                            angular.extend(value[index], item);
+                                        }
                                     }else{
                                         //Add the new item
                                         value.push(new Resource(item)); 
@@ -324,7 +337,7 @@ angular.module('employeeApp.services')
                                 var request = Resource[name].bind(this);
                                 //call binded fn
                                 request(params, data, success, error);
-                            }.bind(this), 30000);
+                            }.bind(this), 10000);
                         }
                         //Run success call back
                         success(response);
