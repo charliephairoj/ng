@@ -19,7 +19,7 @@
     <div class="workspace">
         <div class="listContainer">
             <div class="list">              
-                <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model' | limitTo:100" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
+                <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model' | limitTo:50" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
                         <div class="profile-img cell">
                             <div>
                                 <img fade-load ng-src="{{uphol.url}}" />
