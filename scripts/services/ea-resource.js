@@ -338,7 +338,7 @@ angular.module('employeeApp.services')
                                 //call binded fn
                                 request(params, data, success, error);
                             }.bind(this), 30000);
-                        }
+                        }   
                         //Run success call back
                         success(response);
                     }.bind(this), function(e){console.log(e);});
