@@ -2047,6 +2047,7 @@ select {
   height: 80%;
   width: 80%;
   margin-left: -40%;
+  margin-top: -40%;
   font-family: proxima;
   color: #CCC;
   background-color: #313131;
@@ -4291,6 +4292,7 @@ select {
   height: 80%;
   width: 80%;
   margin-left: -40%;
+  margin-top: -40%;
   font-family: proxima;
   color: #CCC;
   background-color: #313131;
