@@ -58,34 +58,37 @@
         }
         
     }
-    //Fabric Modal
     .fabric_modal{
-        .calendar_modal;
-        height:400px;
-        width:600px;
-        margin-left:-300px;
+        height:80%;
+        width:80%;
+        margin-left:-40%;
+        font-family:proxima;
+        color:#CCC;
+        background-color:#313131;
         .product_container{
             position:absolute;
             top:0px;
             left:0px;
-            width:350px;
+            width:60%;
             bottom:36px;
             overflow-y:scroll;
             overflow-x:hidden;
+            border-right:1px solid #282828;
             .product{
                 min-height:50px;
+                padding:1em;
                 .transition(all, 250ms, ease);
                 .fabric{
                     margin-top:5px;
                     margin-left:20px;
-                    height:30px;
+                    height:50px;
                     img{
                         height:100%;    
                     }
                 }
                 //States for product
                 &.drag{
-                    background-color:#C2F7A3;    
+                    background-color:#282828;    
                 }
             }
             .pillow{
@@ -97,23 +100,24 @@
             top:0px;
             bottom:36px;
             right:0px;
-            width:250px;
+            width:40%;
             overflow-y:scroll;
             overflow-x:hidden;
             .list{
                 .item{
                     cursor:move;
                     position:relative;
-                    height:50px;
+                    height:75px;
+                    border-bottom:1px solid #282828;
+                    background-color:#313131;
                     .details{
                         position:absolute;
-                        left:60px;
-                        height:100%;
-                        top:0px;
+                        margin:16px 20px;
+                        display:inline-table;
                     }
                     img{
                         height:100%;
-                        width:50px;
+                        width:75px;
                     }
                 }
             }
