@@ -277,13 +277,13 @@ angular.module('employeeApp.services')
                          * should be update with either the array of items or the item data
                          * respecitvely.
                          */
-                        if (action.method === "GET" && 1==2) {
+                        if (action.method === "GET") {
                             if(action.isArray || angular.isArray(response)){
                                 
                                 var index;
-                                angular.forEach(response, function(item){
+                                for (var i in response) {
                                     //Find the index of the matched item by id
-                                    index = indexOfId(value, item.id);
+                                    index = indexOfId(value, response[i].id);
                                     
                                     if(index > -1){
                                         /*
@@ -291,16 +291,16 @@ angular.module('employeeApp.services')
                                         * first check if the two items are equal or not.
                                         * If they are not equal then we perform an extend
                                         */
-                                        if (!angular.equals(value[index], new Resource(item))) {
-                                            value[index] = new Resource(item);
+                                        if (!angular.equals(value[index], new Resource(response[i]))) {
+                                            value[index] = new Resource(response[i]);
                                         }
                                         
                                     }else{
                                         //Add the new item
-                                        value.push(new Resource(item)); 
+                                        value.push(new Resource(response[i])); 
                                     }
                                     
-                                });
+                                }
                             }else{
                                 //Upate the reference with the data
                                 angular.extend(value, response);
