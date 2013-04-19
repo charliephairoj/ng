@@ -281,6 +281,13 @@ angular.module('employeeApp.services')
                             if(action.isArray || angular.isArray(response)){
                                 
                                 var index;
+                                
+                                /*
+                                 * We use vanilla javascript to iterate through 
+                                 * the array and apply changes to that the 
+                                 * digest is not trigger initially. We wait till
+                                 * the end to trigger the digest
+                                 */
                                 for (var i in response) {
                                     //Find the index of the matched item by id
                                     index = indexOfId(value, response[i].id);
@@ -291,7 +298,7 @@ angular.module('employeeApp.services')
                                         * first check if the two items are equal or not.
                                         * If they are not equal then we perform an extend
                                         */
-                                        if (!angular.equals(value[index], new Resource(response[i]))) {
+                                        if (!angular.equals(value[index], response[i])) {
                                             value[index] = new Resource(response[i]);
                                         }
                                         
@@ -341,6 +348,8 @@ angular.module('employeeApp.services')
                                 request(params, data, success, error);
                             }.bind(this), 30000);
                         }   
+                        //Run the digest cycle
+                        $rootScope.$apply();
                         //Run success call back
                         success(response);
                     }.bind(this), function(e){console.log(e);});
