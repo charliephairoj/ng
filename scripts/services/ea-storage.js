@@ -95,19 +95,18 @@ angular.module('employeeApp.services')
            * Save function
            * 
            * Saves an object with an id property
-           * to the collection and the local storage.bind
+           * to the collection
            */
           storage.prototype.__save__ = function(obj){
               //Checks if the obj has an id
               if (obj.hasOwnProperty('id')) {
                   this.collection[obj.id] = obj;
-                  //Save the data to storage
-                  this.__saveToStorage__(this.namespace, this.collection);
               } else {
                   //dump(obj);
                   //throw new TypeError("Object has no 'id' property");
               }
           };
+          
           
           /*
            * Save to Local Storage
@@ -174,6 +173,9 @@ angular.module('employeeApp.services')
            * The save inner function checks if the object 
            * or the object in the array has an id property
            * and throws an error if it does not.
+           * 
+           * After all saves, the entire collection is saved
+           * to the local storage
            */
           storage.prototype.save = function(obj){
               var i;
@@ -184,6 +186,8 @@ angular.module('employeeApp.services')
               } else {
                   this.__save__(obj);
               }
+              
+              this.__saveToStorage__(this.namespace, this.collection);
               
           };
           
