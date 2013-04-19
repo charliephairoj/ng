@@ -279,6 +279,13 @@ angular.module('employeeApp.services')
                          */
                         if (action.method === "GET") {
                             if(action.isArray || angular.isArray(response)){
+                                
+                                value.length = 0;
+                                angular.forEach(response, function(item){
+                                    value.push(new Resource(item)); 
+                                });
+                                
+                                /*
                                 var index;
                                 angular.forEach(response, function(item){
                                     //Find the index of the matched item by id
@@ -289,14 +296,14 @@ angular.module('employeeApp.services')
                                         * In order not to waste resource we
                                         * first check if the two items are equal or not.
                                         * If they are not equal then we perform an extend
-                                        */
+                                        
                                         value[index] = new Resource(item);
                                     }else{
                                         //Add the new item
                                         value.push(new Resource(item)); 
                                     }
                                     
-                                });
+                                });*/
                             }else{
                                 //Upate the reference with the data
                                 angular.extend(value, response);
