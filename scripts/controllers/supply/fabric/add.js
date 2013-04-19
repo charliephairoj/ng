@@ -9,7 +9,7 @@ angular.module('employeeApp')
     //Tooltips
     $scope.supplierText = "Choose a Supplier for this Fabric";
     $scope.referenceText = "Enter the Supplier's Reference Number";
-    $scope.lengthText = "Enter the Current Length of this Fabric in millimeters";
+    $scope.lengthText = "Enter the Current Length of this Fabric in yards";
     $scope.widthText = "Enter the Width in millimeters";
     $scope.patternText = "Enter the Pattern of this Fabric";
     $scope.colorText = "Enter the Color of this Fabric";

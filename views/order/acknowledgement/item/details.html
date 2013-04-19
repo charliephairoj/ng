@@ -10,6 +10,50 @@
         </div>
             
     </div>
+    
+    <div data-modal ng-model="showFabric" class="fabric_modal">
+            <div class="title">
+                Fabric
+                <input type="text" class="search" ng-model="queryFabric" />
+                
+            </div>
+            <div class="container">
+                <div class="product_container">
+                    <div class="product" data-drop-on="item.fabric">
+                        <div>{{item.description}}</div>
+                        
+                        <div class="fabric" ui-if="item.fabric">
+                            Fabric:  {{item.fabric.description}}
+                            <img ng-src="{{item.fabric.image_url}}" />
+                        </div>
+                        
+                    </div>
+                    <div class="pillow" ng-repeat="pillow in item.pillows" data-drop-on="pillow.fabric">
+                        <div>{{pillow.type | beautify}} Pillow</div>
+                        <div class="fabric">
+                            Fabric: {{pillow.fabric.description}}
+                            <img ng-src="{{pillow.fabric.image_url}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="fabric_container">
+                    <ul class="list">
+                        <li class="item" ng-repeat="fabric in fabricList | filter:queryFabric " data-drag-on="fabric">
+                            <img ng-src="{{fabric.image_url}}" />
+                            <div class="details">
+                                Pattern: {{fabric.pattern}}
+                                <br />
+                                Color: {{fabric.color}}
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom_bar">
+                <button ng-click="show_fabric = false">Submit</button>
+            </div>
+        </div>
     <!--
         Sidebar
     -->
@@ -21,6 +65,9 @@
             <ul>
                 <li ng-show="currentUser.hasPermission('change_acknowledgement')">
                     <div ng-click="save()">Save</div>
+                </li>
+                <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                    <div ng-click="showFabric=true">Add Fabric</div>
                 </li>
                 <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
                     <div ng-click="remove()">Delete</div>
