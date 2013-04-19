@@ -123,19 +123,29 @@
     }
     //Upholstery
     .upholstery_modal{
+        background-color:#313131;
         .container{
             overflow-y:scroll;
             overflow-x:hidden;
             .list{
                 .item{
+                    border-bottom:1px solid #282828;
                     cursor:pointer;
                     position:relative;
                     height:100px;
-                    img{
-                        position:absolute;
-                        height:100%;    
-                        right:0px;
+                    .row{
+                        display:table-row;
+                        .cell{
+                            display:table-cell;
+                            padding:10px 0px;
+                            img{
+                                position:absolute;
+                                height:100%;    
+                                right:0px;
+                            }
+                        }
                     }
+                    
                 }
             }
         }
@@ -143,11 +153,10 @@
     
     
     .quantity_modal{
-        .calendar_modal;
         width:200px;
         margin-left:-100px;
+        margin-top:-100px;
         height:125px;
-        top:150px;
         background-color:#313131;
         .title{
             text-align:center;
