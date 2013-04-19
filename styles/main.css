@@ -568,12 +568,13 @@ select {
 /*Modal*/
 .modal {
   position: fixed;
-  width: 600px;
-  bottom: 100px;
+  width: 80%;
+  height: 80%;
   overflow: hidden;
   top: 50%;
   left: 50%;
-  margin-left: -300px;
+  margin-left: -40%;
+  margin-top: -40%;
   border-radius: 2px;
   background: #FFFFFF;
   opacity: 0;
@@ -2044,10 +2045,6 @@ select {
   padding: 10px;
 }
 .createAcknowledgementPage .fabric_modal {
-  height: 80%;
-  width: 80%;
-  margin-left: -40%;
-  margin-top: -20%;
   font-family: proxima;
   color: #CCC;
   background-color: #313131;
@@ -4289,10 +4286,6 @@ select {
   bottom: 0px;
 }
 .ack-item-details-page .fabric_modal {
-  height: 80%;
-  width: 80%;
-  margin-left: -40%;
-  margin-top: -20%;
   font-family: proxima;
   color: #CCC;
   background-color: #313131;
