@@ -1,1 +1,64 @@
-<p>This is the order/acknowledgement/item/details view.</p>
+
+
+<div class="acknowledgementDetailsPage" >
+    
+    
+    <div class="calendar-modal" data-modal  ng-model="showCal">
+        <div ui-date ng-model="acknowledgement.delivery_date"></div>
+        <div class="bottom_bar">
+            <button ng-click="updateDeliveryDate()">Select</button>
+        </div>
+            
+    </div>
+    <!--
+        Sidebar
+    -->
+    <div class="sidebar">
+        <header>
+            <h1><span>Acknowledgement</span></h1>
+        </header>
+        <nav>
+            <ul>
+                <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                    <div ng-click="save()">Save</div>
+                </li>
+                <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                    <div ng-click="showCal=true">Change Delivery Date</div>
+                </li>
+                <li>
+                    <div ng-click="getPDF('acknowledgement')">View Acknowledgement</div>
+                </li>
+                <li>
+                    <div ng-click="getPDF('production')">View Production</div>
+                </li>
+                <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
+                    <div ng-click="remove()">Delete</div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="workspace">
+        <div class="details">
+            <div class="table">
+                <div class="row">
+                    <div class="cell">Acknowledgement Item#:</div>
+                    <div class="cell">{{item.id}}</div>
+                </div>
+               
+                <div class="row">
+                    <div class="cell">Description</div>
+                    <div class="cell">{{item.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Status</div>
+                    <div class="cell" ng-class="{acknowledged:item.status == 'ACKNOWLEDGED', shipped:item.status == 'SHIPPED'}">{{item.status}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+
