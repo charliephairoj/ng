@@ -2129,12 +2129,18 @@ select {
 }
 .createAcknowledgementPage .upholstery_modal {
   background-color: #313131;
+  color: #CCC;
 }
 .createAcknowledgementPage .upholstery_modal .container {
+  width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.createAcknowledgementPage .upholstery_modal .container .list {
+  width: 100%;
+}
 .createAcknowledgementPage .upholstery_modal .container .list .item {
+  width: 100%;
   border-bottom: 1px solid #282828;
   cursor: pointer;
   position: relative;
@@ -2142,10 +2148,13 @@ select {
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row {
   display: table-row;
+  width: 100%;
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell {
   display: table-cell;
-  padding: 10px 0px;
+}
+.createAcknowledgementPage .upholstery_modal .container .list .item .row .cell .details {
+  padding: 10px;
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell img {
   position: absolute;
@@ -4116,6 +4125,16 @@ select {
 }
 .ack-item-details-page .workspace .table .row .cell {
   text-decoration: none;
+  position: relative;
+}
+.ack-item-details-page .workspace .table .row .cell.product-img {
+  height: 10em;
+  position: relative;
+  overflow: hidden;
+}
+.ack-item-details-page .workspace .table .row .cell.product-img img {
+  height: 100%;
+  width: auto;
 }
 .ack-item-details-page .workspace .table .row .cell.acknowledged {
   color: yellow;
@@ -4133,10 +4152,13 @@ select {
   position: relative;
 }
 .ack-item-details-page .workspace .products .table .row .cell.product-img {
-  height: 150px;
-  width: 225px;
+  height: 10em;
   position: relative;
   overflow: hidden;
+}
+.ack-item-details-page .workspace .products .table .row .cell.product-img img {
+  height: 100%;
+  width: auto;
 }
 .ack-item-details-page .workspace .products .table .row .cell .details {
   width: 100%;

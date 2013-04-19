@@ -3,13 +3,7 @@
 <div class="ack-item-details-page" >
     
     
-    <div class="calendar-modal" data-modal  ng-model="showCal">
-        <div ui-date ng-model="acknowledgement.delivery_date"></div>
-        <div class="bottom_bar">
-            <button ng-click="updateDeliveryDate()">Select</button>
-        </div>
-            
-    </div>
+  
     
     <div data-modal ng-model="showFabric" class="fabric_modal">
             <div class="title">
@@ -51,7 +45,7 @@
                 </div>
             </div>
             <div class="bottom_bar">
-                <button ng-click="show_fabric = false">Submit</button>
+                <button ng-click="showFabric = false">Submit</button>
             </div>
         </div>
     <!--
