@@ -321,7 +321,7 @@ angular.module('employeeApp.services')
                          * For delete requests, we would have to delete the item
                          */
                       
-                        //action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
+                        action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
                         
                         /*
                          * Last checked
