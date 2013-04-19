@@ -20,7 +20,9 @@ angular.module('employeeApp')
     
     $scope.save = function(){
         Notification.display('Saving Acknowledgement...', false);
-        $scope.acknowledgement.$save(function(){
+        $scope.acknowledgement.$save(function(response){
+            window.open(response.acknowledgement_url);
+            window.open(response.production_url);
             Notification.display('Acknowledgement '+$scope.acknowledgement.id+' Saved');
         });
     };
