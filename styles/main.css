@@ -582,7 +582,7 @@ select {
 .modal .title {
   position: absolute;
   max-height: 45px;
-  min-height: 25px;
+  min-height: 35px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -4312,21 +4312,26 @@ select {
   bottom: 0px;
 }
 .ack-item-details-page .fabric_modal {
-  height: 400px;
-  width: 600px;
-  margin-left: -300px;
+  height: 80%;
+  width: 80%;
+  margin-left: -40%;
+  font-family: proxima;
+  color: #CCC;
+  background-color: #313131;
 }
 .ack-item-details-page .fabric_modal .product_container {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 350px;
+  width: 60%;
   bottom: 36px;
   overflow-y: scroll;
   overflow-x: hidden;
+  border-right: 1px solid #282828;
 }
 .ack-item-details-page .fabric_modal .product_container .product {
   min-height: 50px;
+  padding: 1em;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -4336,16 +4341,17 @@ select {
 .ack-item-details-page .fabric_modal .product_container .product .fabric {
   margin-top: 5px;
   margin-left: 20px;
-  height: 30px;
+  height: 50px;
 }
 .ack-item-details-page .fabric_modal .product_container .product .fabric img {
   height: 100%;
 }
 .ack-item-details-page .fabric_modal .product_container .product.drag {
-  background-color: #C2F7A3;
+  background-color: #282828;
 }
 .ack-item-details-page .fabric_modal .product_container .pillow {
   min-height: 50px;
+  padding: 1em;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -4355,37 +4361,38 @@ select {
 .ack-item-details-page .fabric_modal .product_container .pillow .fabric {
   margin-top: 5px;
   margin-left: 20px;
-  height: 30px;
+  height: 50px;
 }
 .ack-item-details-page .fabric_modal .product_container .pillow .fabric img {
   height: 100%;
 }
 .ack-item-details-page .fabric_modal .product_container .pillow.drag {
-  background-color: #C2F7A3;
+  background-color: #282828;
 }
 .ack-item-details-page .fabric_modal .fabric_container {
   position: absolute;
   top: 0px;
   bottom: 36px;
   right: 0px;
-  width: 250px;
+  width: 40%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .ack-item-details-page .fabric_modal .fabric_container .list .item {
   cursor: move;
   position: relative;
-  height: 50px;
+  height: 75px;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
 }
 .ack-item-details-page .fabric_modal .fabric_container .list .item .details {
   position: absolute;
-  left: 60px;
-  height: 100%;
-  top: 0px;
+  margin: 16px 20px;
+  display: inline-table;
 }
 .ack-item-details-page .fabric_modal .fabric_container .list .item img {
   height: 100%;
-  width: 50px;
+  width: 75px;
 }
 /*
  * View Page Imports 
