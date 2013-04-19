@@ -177,7 +177,7 @@ angular.module('employeeApp.services')
            */
           storage.prototype.save = function(obj){
               var i;
-              if (angular.isArray(obj)) {
+              if (Object.prototype.toString.call( obj ) === '[object Array]') {
                   for (i in obj) {
                       this.__save__(obj[i]);
                   }
