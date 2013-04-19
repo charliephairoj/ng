@@ -103,6 +103,19 @@
                     <div class="cell">Height</div>
                     <div class="cell">{{item.height}}</div>
                 </div>
+                <div class="row">
+                    <div class="cell">Fabric</div>
+                    <div class="cell">{{item.fabric.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Fabric</div>
+                    <div class="cell">{{item.fabric.description}}</div>
+                </div>
+                <div class="row" data-ng-repeat="pillow in item.pillows">
+                    <div class="cell">{{pillow.type | beautify}} Pillow</div>
+                    <div class="cell">{{pillow.fabric.description}}</div>
+                </div>
+                
             </div>
         </div>
     </div>
