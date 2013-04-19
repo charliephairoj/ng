@@ -15,7 +15,7 @@
     -->
     <div class="sidebar">
         <header>
-            <h1><span>Acknowledgement</span></h1>
+            <h1><span>Acknowledgement Item</span></h1>
         </header>
         <nav>
             <ul>
@@ -41,6 +41,11 @@
     <div class="workspace">
         <div class="details">
             <div class="table">
+                <div>
+                     <div class="cell product-img">
+                        <img ng-show="product.image.url" ng-src="{{product.image.url}}" />
+                    </div>
+                </div>
                 <div class="row">
                     <div class="cell">Acknowledgement Item#:</div>
                     <div class="cell">{{item.id}}</div>
@@ -53,6 +58,18 @@
                 <div class="row">
                     <div class="cell">Status</div>
                     <div class="cell" ng-class="{acknowledged:item.status == 'ACKNOWLEDGED', shipped:item.status == 'SHIPPED'}">{{item.status}}</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Width</div>
+                    <div class="cell">{{item.width}}</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Depth</div>
+                    <div class="cell">{{item.depth}}</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Height</div>
+                    <div class="cell">{{item.height}}</div>
                 </div>
             </div>
         </div>
