@@ -33,7 +33,7 @@
     <div class="workspace">
         <div class="listContainer">
             <div class="list">
-                    <a ng-repeat="ack in ackList | filter:query | orderBy:'-id'" class="row" ng-href="#/order/acknowledgement/{{ack.id}}">
+                    <a ng-repeat="ack in ackList | filter:query | orderBy:'-id' | limitTo:50" class="row" ng-href="#/order/acknowledgement/{{ack.id}}">
                         <div class="cell">
                             <div class="details">
                                 <div class="details-row">
