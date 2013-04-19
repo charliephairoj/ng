@@ -268,7 +268,7 @@ angular.module('employeeApp.services')
                          * resource and there for the resource it self should be update
                          * with the data because it is currently presented tot he user
                          */
-                        if(action.method == "DELETE" || hasBody){angular.extend(this, response);}
+                        //if(action.method == "DELETE" || hasBody){angular.extend(this, response);}
                         //console.log('action: '+name+'  method: '+action.method+'  response: '+response+'  value: '+value);
                         /*
                          * If the method is GET it indicates that the user has requested 
@@ -277,7 +277,7 @@ angular.module('employeeApp.services')
                          * should be update with either the array of items or the item data
                          * respecitvely.
                          */
-                        if (action.method === "GET") {
+                        if (action.method === "GET" && 1==2) {
                             if(action.isArray || angular.isArray(response)){
                                 
                                 var index;
@@ -314,14 +314,14 @@ angular.module('employeeApp.services')
                          * For delete requests, we would have to delete the item
                          */
                       
-                        action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
+                        //action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
                         
                         /*
                          * Last checked
                          */
                         if(last_checked){
                             
-                            this.$$last_checked = new Date();
+                            //this.$$last_checked = new Date();
                         }
                         
                         /*
