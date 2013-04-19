@@ -321,7 +321,7 @@ angular.module('employeeApp.services')
                          */
                         if(last_checked){
                             
-                            //this.$$last_checked = new Date();
+                            this.$$last_checked = new Date();
                         }
                         
                         /*
