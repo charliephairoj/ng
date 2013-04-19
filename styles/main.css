@@ -2064,6 +2064,7 @@ select {
 .createAcknowledgementPage .fabric_modal .product_container .product {
   min-height: 50px;
   padding: 1em;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -2084,6 +2085,7 @@ select {
 .createAcknowledgementPage .fabric_modal .product_container .pillow {
   min-height: 50px;
   padding: 1em;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -4306,6 +4308,7 @@ select {
 .ack-item-details-page .fabric_modal .product_container .product {
   min-height: 50px;
   padding: 1em;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -4326,6 +4329,7 @@ select {
 .ack-item-details-page .fabric_modal .product_container .pillow {
   min-height: 50px;
   padding: 1em;
+  border-bottom: 1px solid #282828;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
