@@ -100,15 +100,7 @@ angular.module('employeeApp.services')
           storage.prototype.__save__ = function(obj){
               //Checks if the obj has an id
               if (obj.hasOwnProperty('id')) {
-                  //checks if there is an object in the collection
-                  //with the same id
-                  if (this.collection[obj.id]) {
-                      //update item
-                      angular.extend(this.collection[obj.id], obj);
-                  } else {
-                     //adds new item
-                     this.collection[obj.id] = obj
-                  }
+                  this.collection[obj.id] = obj;
                   //Save the data to storage
                   this.__saveToStorage__(this.namespace, this.collection);
               } else {
