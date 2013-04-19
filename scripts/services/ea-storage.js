@@ -176,10 +176,11 @@ angular.module('employeeApp.services')
            * and throws an error if it does not.
            */
           storage.prototype.save = function(obj){
+              var i;
               if (angular.isArray(obj)) {
-                  angular.forEach(obj, function(item){
-                      this.__save__(item); 
-                  }.bind(this));
+                  for (i in obj) {
+                      this.__save__(obj[i]);
+                  }
               } else {
                   this.__save__(obj);
               }
