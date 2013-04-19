@@ -290,9 +290,7 @@ angular.module('employeeApp.services')
                                         * first check if the two items are equal or not.
                                         * If they are not equal then we perform an extend
                                         */
-                                        if (!angular.equals(value[index], item)) {
-                                            angular.extend(value[index], item);
-                                        }
+                                        value[index] = new Resource(item);
                                     }else{
                                         //Add the new item
                                         value.push(new Resource(item)); 
