@@ -3,7 +3,7 @@
 angular.module('employeeApp')
   .controller('AdministratorUserAddCtrl', ['$scope', 'User', 'Group', '$location',
   function ($scope, User, Group, $location) {
-    $scope.user = {};
+    $scope.user = new User();
     $scope.user.groups = [];
     $scope.groupList = Group.query();
     
