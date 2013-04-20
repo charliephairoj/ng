@@ -2037,13 +2037,25 @@ select {
 .createAcknowledgementPage .sidebar ul li .vat:hover {
   background-color: #A7FF82;
 }
-.createAcknowledgementPage .customer_modal .container {
+.createAcknowledgementPage .customer-modal {
+  height: 80%;
+  width: 80%;
+  margin: 0;
+  top: 10%;
+  left: 10%;
+  font-family: proxima;
+  color: #CCC;
+  background-color: #313131;
+}
+.createAcknowledgementPage .customer-modal .container {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.createAcknowledgementPage .customer_modal .container .list .item {
+.createAcknowledgementPage .customer-modal .container .list .item {
   cursor: pointer;
   padding: 10px;
+  border-bottom: 1px solid #282828;
+  font-size: 0.08em;
 }
 .createAcknowledgementPage .fabric_modal {
   font-family: proxima;
@@ -7652,6 +7664,9 @@ select {
 }
 .viewTransactionsPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
+}
+.viewTransactionsPage .workspace .container .grid {
+  height: auto;
 }
 /* app css stylesheet */
 /*Directives-----------------------------------*/
