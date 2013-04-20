@@ -1,0 +1,68 @@
+<div class="viewFabricPage">
+
+    <!--
+        Sidebar
+    -->
+    <div class="sidebar">
+        <header>
+            <h1><span>Prop</span></h1>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a ng-href="#/supply/fabric/add">Add Prop</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+    
+    <!--
+        Search Bar
+    -->
+    <div class="searchBar" >
+        <input size="40" placeholder="Search" ng-model="query" />
+    </div>
+    
+    
+    <!--
+        Workspace
+    -->
+    
+    <div class="workspace" style="z-index:1;">
+        <div class="listContainer">
+            <div class="list">
+                
+                    <a ng-repeat="supply in supplyList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/prop/{{supply.id}}">
+                        <div class="profile-img cell">
+                            <div>
+                                <img ng-src="{{fabric.image_url}}" />
+                            </div>
+                            
+                        </div>
+                        <div class="cell">
+                            <div class="details">
+                                <div class="details-row">
+                                    <div class="details-title">Supply ID</div>
+                                    <div class="details-data">{{supply.id}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Supplier:</div>
+                                    <div class="details-data">{{supply.supplier.name}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Reference Number:</div>
+                                    <div class="details-data">{{supply.reference}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Unit Cost:</div>
+                                    <div class="details-data">{{supply.cost}}</div>
+                                </div>
+                            </div>
+                        </div>                      
+                    </a>
+            </div>
+        </div>
+    </div>
+    
+</div>
