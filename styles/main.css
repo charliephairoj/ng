@@ -2158,7 +2158,7 @@ select {
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell {
   display: table-cell;
 }
-.createAcknowledgementPage .upholstery_modal .container .list .item .row .cell .details {
+.createAcknowledgementPage .upholstery_modal .container .list .item .row .cell.details {
   padding: 20px 10px;
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell img {
