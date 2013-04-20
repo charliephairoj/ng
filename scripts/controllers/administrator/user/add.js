@@ -23,9 +23,8 @@ angular.module('employeeApp')
         
         //Validates the form
         if($scope.form.$valid){
-            user = new User();
-            angular.copy($scope.user, user);
-            user.$save(function(){
+            
+            $scope.user.$save(function(){
                 $location.path("/administrator/user");
             });
         }

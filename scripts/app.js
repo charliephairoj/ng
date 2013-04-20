@@ -103,13 +103,13 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/administrator/group/details.html',
         controller: 'AdministratorGroupDetailsCtrl'
       })
-      .when('/administrator/user/:id', {
-        templateUrl: 'views/administrator/user/details.html',
-        controller: 'AdministratorUserDetailsCtrl'
-      })
       .when('/administrator/user/add', {
         templateUrl: 'views/administrator/user/add.html',
         controller: 'AdministratorUserAddCtrl'
+      })
+      .when('/administrator/user/:id', {
+        templateUrl: 'views/administrator/user/details.html',
+        controller: 'AdministratorUserDetailsCtrl'
       })
       .when('/administrator/user', {
         templateUrl: 'views/administrator/user/view.html',
@@ -133,13 +133,13 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/supply/fabric/details.html',
         controller: 'SupplyFabricDetailsCtrl'
       })
-      .when('/supply/foam/:id', {
-        templateUrl: 'views/supply/foam/details.html',
-        controller: 'SupplyFoamDetailsCtrl'
-      })
       .when('/supply/foam/add', {
         templateUrl: 'views/supply/foam/add.html',
         controller: 'SupplyFoamAddCtrl'
+      })
+      .when('/supply/foam/:id', {
+        templateUrl: 'views/supply/foam/details.html',
+        controller: 'SupplyFoamDetailsCtrl'
       })
       .when('/supply/foam', {
         templateUrl: 'views/supply/foam/view.html',
