@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', 
-  function ($scope, Supplier, Supply, Notification) {
+  .controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', '$location',
+  function ($scope, Supplier, Supply, Notification, $location) {
     $scope.supplierList = Supplier.query();
     $scope.prop = new Supply();
     $scope.prop.type = "Prop"
@@ -51,6 +51,7 @@ angular.module('employeeApp')
            success: function(responseData){
                console.log(responseData);
                Notification.display('Image Updated');
+               $scope.prop.image = $scope.prop.image || {};
                angular.copy(responseData, $scope.prop.image);
                console.log($scope);
                $scope.$apply();
