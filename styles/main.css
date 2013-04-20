@@ -2130,6 +2130,11 @@ select {
 .createAcknowledgementPage .upholstery_modal {
   background-color: #313131;
   color: #CCC;
+  margin: 0;
+  top: 10%;
+  left: 10%;
+  height: 80%;
+  width: 80%;
 }
 .createAcknowledgementPage .upholstery_modal .container {
   width: 100%;
@@ -2154,7 +2159,7 @@ select {
   display: table-cell;
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell .details {
-  padding: 10px;
+  padding: 20px 10px;
 }
 .createAcknowledgementPage .upholstery_modal .container .list .item .row .cell img {
   position: absolute;
@@ -2342,6 +2347,7 @@ select {
   height: 350px;
   width: 500px;
   margin-left: -250px;
+  margin-top: 175px;
   background-color: #313131;
 }
 .createAcknowledgementPage .remarks_modal .title {
