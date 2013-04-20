@@ -36,7 +36,7 @@
                     <a ng-repeat="supply in supplyList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/prop/{{supply.id}}">
                         <div class="profile-img cell">
                             <div>
-                                <img ng-src="{{prop.image_url}}" />
+                                <img ng-src="{{supply.image_url}}" />
                             </div>
                             
                         </div>
