@@ -5,7 +5,7 @@ angular.module('employeeApp')
   function ($scope, Supplier, Supply, Notification, $location) {
     $scope.supplierList = Supplier.query();
     $scope.prop = new Supply();
-    $scope.prop.type = "Prop"
+    $scope.prop.type = "prop"
     //Tooltips
     $scope.supplierText = "Choose a Supplier for this Fabric";
     $scope.referenceText = "Enter the Supplier's Reference Number";
