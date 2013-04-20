@@ -22,7 +22,7 @@ angular.module('employeeApp')
         //Checks the form is valid
         if($scope.form.$valid){
             //save to database
-            $scope.fabric.$save(function(){
+            $scope.prop.$save(function(){
                 Notification.display('Prop Saved');
                 $location.path('/supply/prop');
             });
@@ -49,8 +49,10 @@ angular.module('employeeApp')
            processData:false,
            contentType:false,
            success: function(responseData){
+               console.log(responseData);
                Notification.display('Image Updated');
-               angular.copy(responseData, $scope.prop);
+               angular.copy(responseData, $scope.prop.image);
+               console.log($scope);
                $scope.$apply();
            }
         });
