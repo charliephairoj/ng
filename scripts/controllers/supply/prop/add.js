@@ -106,10 +106,10 @@ angular.module('employeeApp')
            processData:false,
            contentType:false,
            success: function(response){
-               promise.resolve(response);
+               deferred.resolve(response);
            },
            error: function(){
-               promise.reject();
+               deferred.reject();
            }
         });
     };
