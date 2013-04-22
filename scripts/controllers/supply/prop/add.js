@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', '$location',
-  function ($scope, Supplier, Supply, Notification, $location) {
+  .controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', '$location', '$q',
+  function ($scope, Supplier, Supply, Notification, $location, $q) {
+      
+      var deferred,
+          promise,
+          uploading = false;
+      
     $scope.supplierList = Supplier.query();
     $scope.prop = new Supply();
     $scope.prop.type = "prop"
@@ -17,15 +22,38 @@ angular.module('employeeApp')
     
     //Add Fabric
     $scope.save = function(){
-        //Display saving message
-        Notification.display('Saving Prop...', false);
+        /*
+         * The function will first check if the 
+         * form is valid
+         * 
+         * If the form is valid then there is a check
+         * to see if there is an image upload in progress
+         * 
+         * if there is then it will save the item after the image 
+         * is uploaded
+         */
+        
         //Checks the form is valid
         if($scope.form.$valid){
-            //save to database
-            $scope.prop.$save(function(){
-                Notification.display('Prop Saved');
-                $location.path('/supply/prop');
-            });
+            if(uploading){
+                var prop = angular.copy($scope.prop);
+                promise.then(function(response){
+                    prop.image = prop.image || {};
+                    angular.copy(response, prop.image);
+                    Notification.display('Saving Prop...', false);
+                    prop.$save(function(){
+                        Notification.display('Prop Saved');
+                    });
+                }, angular.noop);
+            }else{
+                Notification.display('Saving Prop...', false);
+                //save to database
+                $scope.prop.$save(function(){
+                    Notification.display('Prop Saved');
+                    
+                });
+            }
+            $location.path('/supply/prop');
         }
        
     };
@@ -43,18 +71,45 @@ angular.module('employeeApp')
         $scope.addLength = null;
         $scope.addRemark = null;
         
+        //Create deferred and promose
+        deferred = $q.defer();
+        promise = deferred.promise;
+        
+        //Create promise events
+        promise.then(function(data){
+            /*The success fulfillment of the
+             * promise will kick in the events:
+             * -Show success notice
+             * -update image property of prop
+             */
+            Notification.display('Image Updated');
+            
+            //Perform scope updates if
+            //The scope still exists
+            if ($scope){
+                $scope.$apply(function(){
+                    $scope.prop.image = $scope.prop.image || {};
+                    angular.copy(data, $scope.prop.image);
+                });
+            }
+            
+        }, function(reason){
+            Notification.display('Unable to Upload Image');
+        });
+        
+        //Set uploading switch to true
+        uploading = true;
+        
         jQuery.ajax("supply/image", {
            type:'POST',
            data:fd,
            processData:false,
            contentType:false,
-           success: function(responseData){
-               console.log(responseData);
-               Notification.display('Image Updated');
-               $scope.prop.image = $scope.prop.image || {};
-               angular.copy(responseData, $scope.prop.image);
-               console.log($scope);
-               $scope.$apply();
+           success: function(response){
+               promise.resolve(response);
+           },
+           error: function(){
+               promise.reject();
            }
         });
     };

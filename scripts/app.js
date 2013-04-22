@@ -189,6 +189,10 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/supply/prop/add.html',
         controller: 'SupplyPropAddCtrl'
       })
+      .when('/supply/prop/:id', {
+        templateUrl: 'views/supply/prop/details.html',
+        controller: 'SupplyPropDetailsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
