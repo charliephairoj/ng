@@ -348,8 +348,6 @@ angular.module('employeeApp.services')
                                 request(params, data, success, error);
                             }.bind(this), 30000);
                         }   
-                        //Run the digest cycle
-                        $rootScope.$apply();
                         //Run success call back
                         success(response);
                     }.bind(this), function(e){console.log(e);});
