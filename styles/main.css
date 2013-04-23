@@ -2360,7 +2360,7 @@ select {
   height: 350px;
   width: 500px;
   margin-left: -250px;
-  margin-top: 175px;
+  margin-top: -175px;
   background-color: #313131;
 }
 .createAcknowledgementPage .remarks_modal .title {

@@ -5,6 +5,6 @@ angular.module('employeeApp')
     $scope.groupList = Group.poll().query();
     
     $scope.$on('$destroy', function(){
-        Transaction.stopPolling(); 
+        Group.stopPolling(); 
     });
   }]);
