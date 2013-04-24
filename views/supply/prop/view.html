@@ -33,7 +33,7 @@
         <div class="listContainer">
             <div class="list">
                 
-                    <a ng-repeat="supply in supplyList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/prop/{{supply.id}}" image-drop-target="upload($index, images[0])">
+                    <a ng-repeat="supply in supplyList | filter:query | limitTo:100 | orderBy:'supplier.name'" class="row" ng-href="#/supply/prop/{{supply.id}}" image-drop-target="upload($index, images[0])">
                         <div class="profile-img cell">
                             <div>
                                 <img ng-src="{{supply.image_url}}" />
