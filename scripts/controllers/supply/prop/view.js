@@ -34,14 +34,12 @@ angular.module('employeeApp')
             
             //Perform scope updates if
             //The scope still exists
-            if ($scope){
-                $scope.$apply(function(){
+            
                    
-                    resource.image = resource.image || {};
-                    angular.copy(data, resource.image);
-                    resource.$save();
-                });
-            }
+            resource.image = resource.image || {};
+            angular.copy(data, resource.image);
+            resource.$save();
+                
             
         }, function(reason){
             Notification.display('Unable to Upload Image');
