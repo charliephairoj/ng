@@ -10,15 +10,17 @@ angular.module('employeeApp')
     
     $scope.upload = function(index, image){
      
-        Notification.display('Uploading Image...');
+        Notification.display('Uploading Image...', false);
         
         var resource = $filter('orderBy')($filter('filter')($scope.supplyList, $scope.query), 'supplier.name')[index],
-            deferred = $q.defer(),
-            promise = deferred.promise,
+            deferred,
+            promise,
             fd = new FormData();
             
         
-        
+        deferred = $q.defer();
+        promise = deferred.promise;
+        console.log(deferred);
         console.log(resource);
         console.log(promise);
         //Create promise events
