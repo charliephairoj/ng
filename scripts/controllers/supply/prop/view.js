@@ -6,4 +6,10 @@ angular.module('employeeApp')
     $scope.$on('$destroy', function(){
         Supply.stopPolling();
     });
+    
+    $scope.upload = function(index, image){
+        console.log(index);
+        console.log(image);
+    };
+    
   }]);

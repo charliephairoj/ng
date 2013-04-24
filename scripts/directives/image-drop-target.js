@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp')
-  .directive('imageDropTarget', [function () {
+  .directive('imageDropTarget', ['$parse', function ($parse) {
     return {
         restrict: 'EA',
         replace:false,
