@@ -28,23 +28,21 @@ angular.module('employeeApp')
              * -Show success notice
              * -update image property of prop
              */
-            
+             Notification.display('Image Updated');
             
             //Perform scope updates if
             //The scope still exists
             if ($scope){
                 $scope.$apply(function(){
-                    Notification.display('Image Updated');
+                   
                     resource.image = resource.image || {};
                     angular.copy(data, resource.image);
+                    resource.$save();
                 });
             }
             
         }, function(reason){
-            $scope.$apply(function(){
-                Notification.display('Unable to Upload Image');
-            })
-            
+            Notification.display('Unable to Upload Image');
         });
         
         //Append image and upload the form data
