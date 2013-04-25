@@ -10,6 +10,8 @@ angular.module('employeeApp')
           element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
           
           function searchHandler(evt){
+              console.log(evt);
+              console.log(evt);
               if((evt.which == "70" && (evt.metaKey || evt.ctrlKey))){
                   console.log("STRG+F");
                   evt.preventDefault();
@@ -18,9 +20,9 @@ angular.module('employeeApp')
               }
           }
           
-          $(window).keypress(searchHandler);
+          $(window).bind('keydown', searchHandler);
           scope.$on('$destroy', function(){
-              $(window).unbind('keypress', searchHandler); 
+              $(window).unbind('keydown', searchHandler); 
           });
       }
     };
