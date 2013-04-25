@@ -4081,6 +4081,67 @@ select {
   background-color: #444444;
   color: #000000;
 }
+.acknowledgementDetailsPage .log-modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.acknowledgementDetailsPage .log-modal .container .grid {
+  display: table;
+  height: 100%;
+  width: 100%;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .header {
+  display: table-header-group;
+  width: 100%;
+  height: auto;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #FFFFFF;
+  border: none;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .header .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8em;
+  border-bottom: 1px solid #313131;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .header.ui-scrollfix {
+  position: absolute;
+  top: 0px;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .body {
+  display: table-row-group;
+  width: 100%;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .body .row {
+  text-decoration: none;
+  display: table-row;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .body .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  color: grey;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .body .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
 .acknowledgementDetailsPage .workspace .table .row .cell {
   text-decoration: none;
 }

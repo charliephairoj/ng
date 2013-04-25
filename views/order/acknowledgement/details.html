@@ -11,14 +11,29 @@
             
     </div>
     
-    <div class="calendar-modal" data-modal  ng-model="showLog">
-        <div>
-            <div ng-repeat="log in logs">
-                {{log.event}} {{log.employee}} {{log.timestamp | date:"MMMM d, yyyy"}}
+    <div class="log-modal" data-modal  ng-model="showLog">
+        <div class="container">
+            <div class="grid">
+                <div class="header" ui-scrollfix="0">
+                    <div class="row">
+                        <div class="cell">Event</div>
+                        <div class="cell">Delivery Date</div>
+                        <div class="cell">Employee</div>
+                        <div class="cell">Timestamp</div>
+                    </div>
+                </div>
+                <div class="body">
+                    <a data-ng-repeat="log in logs" class="row">
+                        <div class="cell">{{log.event}}</div>
+                        <div class="cell">{{log.delivery_date | date: "MMM d, yyyy"}}</div>
+                        <div class="cell">{{log.amount}}</div>
+                        <div class="cell">{{log.timestamp | date: "MMM d, yyyy H:mm"}}</div>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="bottom_bar">
-            <button ng-click="showCal=false">Select</button>
+            <button ng-click="showLog=false">Close</button>
         </div>
             
     </div>
