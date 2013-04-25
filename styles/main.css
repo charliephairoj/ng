@@ -4090,9 +4090,8 @@ select {
   overflow-x: hidden;
 }
 .acknowledgementDetailsPage .log-modal .container .grid {
-  height: auto;
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -4424,7 +4423,7 @@ select {
  */
 .view-grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -4512,7 +4511,7 @@ select {
 }
 .viewPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -4902,7 +4901,7 @@ select {
 }
 .view-page .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -5292,7 +5291,7 @@ select {
 }
 .acknowledgementViewPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -5688,7 +5687,7 @@ select {
 }
 .viewFabricPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -6078,7 +6077,7 @@ select {
 }
 .viewGluePage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -6472,7 +6471,7 @@ select {
 }
 .viewSuppliersPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -6904,7 +6903,7 @@ select {
 }
 .viewCustomerPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -7367,7 +7366,7 @@ select {
 }
 .viewLibraryPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -7827,7 +7826,7 @@ select {
 }
 .viewTransactionsPage .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
@@ -8220,7 +8219,7 @@ select {
 }
 .view-prop-page .workspace .container .grid {
   display: table;
-  height: 100%;
+  height: auto;
   width: 100%;
   font-family: proxima;
   letter-spacing: 0.08em;
