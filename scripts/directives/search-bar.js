@@ -12,7 +12,7 @@ angular.module('employeeApp')
           var searchHandler = function(e){
               console.log(e);
           };
-          angular.element(document.body).bind('keypress', searchHandler);
+          angular.element(document.body).keypress(searchHandler);
           scope.$on('$destroy', function(){
               angular.element(document.body).unbind('keypress', searchHandler); 
           });
