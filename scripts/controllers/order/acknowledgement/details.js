@@ -18,6 +18,17 @@ angular.module('employeeApp')
             });
     };
     
+    $scope.viewLog = function(){
+        $http.get("acknowledgement/"+$scope.acknowledgement.id+"/log").success(function(data){
+             angular.forEach(data, function(log){
+                 
+                 $scope.data = $scope.data || [];
+                 $scope.data.push(log);
+                 $scope.showLog = true;
+             })
+        });
+    }
+    
     $scope.save = function(){
         Notification.display('Saving Acknowledgement...', false);
         $scope.acknowledgement.$save(function(response){
