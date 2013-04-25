@@ -5,8 +5,7 @@ angular.module('employeeApp')
   function ($scope, Supply, $filter, $q, Notification, $location) {
     $scope.supplyList = Supply.poll().query({type:'prop'});
     
-     $scope.add = function(evt){
-          evt.preventDefault();
+     $scope.add = function(){
           $location.path('/supply/prop/add');
       };
       
