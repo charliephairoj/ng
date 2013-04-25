@@ -10,12 +10,14 @@ angular.module('employeeApp')
           element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
           
           var searchHandler = function(e){
-              e.preventDefault()
-              console.log(e);
+              if((e.which == "70" && (e.metaKey || e.ctrlKey))){
+                        console.log(e);
+                        e.preventDefault();
+                        
           };
-          angular.element(document.body).keypress(searchHandler);
+          angular.element(window).keypress(searchHandler);
           scope.$on('$destroy', function(){
-              angular.element(document.body).unbind('keypress', searchHandler); 
+              angular.element(window).unbind('keypress', searchHandler); 
           });
       }
     };
