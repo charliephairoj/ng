@@ -12,7 +12,7 @@ angular.module('employeeApp')
           var searchHandler = function(e){
               e.preventDefault();
               console.log(e);
-              if((e.which == "70" && (e.metaKey || e.ctrlKey))){
+              
                         
                         
           };
