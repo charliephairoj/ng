@@ -5,9 +5,12 @@ angular.module('employeeApp')
   function ($scope, Supply, $filter, $q, Notification, $location) {
     $scope.supplyList = Supply.poll().query({type:'prop'});
     
-     $scope.add = function(){
-          $location.path('/supply/prop/add');
-      };
+    //Change page to add page
+    $scope.add = function(){
+        $scope.safeApply(function(){
+            $location.path('/supply/prop/add');
+        });
+     };
       
     $scope.upload = function(index, image){
      
