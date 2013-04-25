@@ -4051,6 +4051,10 @@ select {
   height: 282px;
   margin-left: -151px;
   border-radius: 2px;
+  height: 80%;
+  width: 80%;
+  margin-left: -40%;
+  background-color: #313131;
 }
 .acknowledgementDetailsPage .log-modal .bottom_bar {
   position: absolute;
@@ -4086,6 +4090,7 @@ select {
   overflow-x: hidden;
 }
 .acknowledgementDetailsPage .log-modal .container .grid {
+  height: auto;
   display: table;
   height: 100%;
   width: 100%;
