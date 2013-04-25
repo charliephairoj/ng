@@ -22,8 +22,8 @@ angular.module('employeeApp')
         $http.get("acknowledgement/"+$scope.acknowledgement.id+"/log").success(function(data){
              angular.forEach(data, function(log){
                  
-                 $scope.data = $scope.data || [];
-                 $scope.data.push(log);
+                 $scope.logs = $scope.logs || [];
+                 $scope.logs.push(log);
                  $scope.showLog = true;
              })
         });
