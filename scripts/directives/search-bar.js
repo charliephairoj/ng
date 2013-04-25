@@ -6,8 +6,11 @@ angular.module('employeeApp')
       template: '<div></div>',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+          var input;
+          
           element.addClass('search-bar');
           element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
+          input = element.children('input');
           
           /*
            * The handler will detect if ctrl/cmd+F 
@@ -23,11 +26,11 @@ angular.module('employeeApp')
                   //Determine
                   if(element.hasClass('focus')){
                       //Hide object and blur
-                      element.blur();
+                      input.blur();
                       element.removeClass('focus');
                   }else{
                       //Show and focus
-                      element.focus();
+                      input.focus();
                       element.addClass('focus');   
                   }
                   
