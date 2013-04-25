@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp')
-  .directive('searchBar', [function () {
+  .directive('searchBar', ['$compile', function ($compile) {
     return {
       template: '<div></div>',
       restrict: 'A',
@@ -9,8 +9,9 @@ angular.module('employeeApp')
           var input;
           
           element.addClass('search-bar');
-          element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
-          input = element.children('input');
+          input = angular.element('<input size="40" placeholder="Search" ng-model="query" />');
+          $compile(input)(scope);
+          element.append(input);
           
           /*
            * The handler will detect if ctrl/cmd+F 
