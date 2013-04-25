@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification',
-  function ($scope, Supply, $filter, $q, Notification) {
+  .controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification', '$location',
+  function ($scope, Supply, $filter, $q, Notification, $location) {
     $scope.supplyList = Supply.poll().query({type:'prop'});
     
      $scope.add = function(evt){
