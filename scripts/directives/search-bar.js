@@ -9,16 +9,18 @@ angular.module('employeeApp')
           element.addClass('search-bar');
           element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
           
-          var searchHandler = function(e){
-              e.preventDefault();
-              console.log(e);
-              
-                        
-                        
-          };
-          angular.element(window).keypress(searchHandler);
+          function searchHandler(evt){
+              if((evt.which == "70" && (evt.metaKey || evt.ctrlKey))){
+                  console.log("STRG+F");
+                  evt.preventDefault();
+                  $("#searchbox").slideDown(110);
+                  $('#search').focus();
+              }
+          }
+          
+          $(window).keypress(searchHandler);
           scope.$on('$destroy', function(){
-              angular.element(window).unbind('keypress', searchHandler); 
+              $(window).unbind('keypress', searchHandler); 
           });
       }
     };
