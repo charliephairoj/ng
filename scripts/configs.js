@@ -11,5 +11,15 @@ angular.module('employeeApp').config(function($httpProvider){
  * Run top level application code
  */
 angular.module('employeeApp').run(function($rootScope, CurrentUser){
+    
+    $rootScope.safeApply = function(fn){
+        if(!this.$$phase){
+            this.$apply(fn);
+        }else{
+            this.$eval(fn)
+        }
+    };
+    
     $rootScope.currentUser = CurrentUser;
+    
 });

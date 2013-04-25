@@ -20,9 +20,7 @@ angular.module('employeeApp')
         
         deferred = $q.defer();
         promise = deferred.promise;
-        console.log(deferred);
-        console.log(resource);
-        console.log(promise);
+        
         //Create promise events
         promise.then(function(data){
             /*The success fulfillment of the
@@ -35,10 +33,14 @@ angular.module('employeeApp')
             //Perform scope updates if
             //The scope still exists
             
-                   
-            resource.image = resource.image || {};
-            angular.copy(data, resource.image);
-            resource.$save();
+            $scope.safeApply(function(){
+                resource.image = resource.image || {};
+                angular.copy(data, resource.image);
+                resource.$save(function(){
+                    Notification.display('Prop Saved');
+                });
+            });
+            
                 
             
         }, function(reason){
