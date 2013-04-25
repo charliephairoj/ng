@@ -6,11 +6,6 @@ angular.module('employeeApp')
       Notification.display('Loading Acknowledgements...')
       $scope.ackList = Acknowledgement.poll().query();
       
-      $scope.add = function(evt){
-          evt.preventDefault();
-          $location.path('/supply/prop/add');
-      };
-      
       $scope.$on('$destroy', function(){
           Acknowledgement.stopPolling();
       });

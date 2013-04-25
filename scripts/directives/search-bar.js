@@ -28,7 +28,6 @@ angular.module('employeeApp')
                   if(element.hasClass('focus')){
                       //Hide object and blur
                       input.blur();
-                      input.val('');
                       element.removeClass('focus');
                   }else{
                       //Show and focus

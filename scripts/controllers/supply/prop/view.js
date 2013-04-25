@@ -4,10 +4,12 @@ angular.module('employeeApp')
   .controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification',
   function ($scope, Supply, $filter, $q, Notification) {
     $scope.supplyList = Supply.poll().query({type:'prop'});
-    $scope.$on('$destroy', function(){
-        Supply.stopPolling();
-    });
     
+     $scope.add = function(evt){
+          evt.preventDefault();
+          $location.path('/supply/prop/add');
+      };
+      
     $scope.upload = function(index, image){
      
         Notification.display('Uploading Image...', false);
@@ -62,5 +64,9 @@ angular.module('employeeApp')
            }
         });
     };
+    
+    $scope.$on('$destroy', function(){
+        Supply.stopPolling(); 
+    });
     
   }]);
