@@ -3,7 +3,6 @@
 angular.module('employeeApp')
   .directive('searchBar', ['$compile', function ($compile) {
     return {
-      template: '<div></div>',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
           var input;
