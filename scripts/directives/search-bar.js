@@ -10,6 +10,7 @@ angular.module('employeeApp')
           element.append(angular.element('<input size="40" placeholder="Search" ng-model="query" />'));
           
           var searchHandler = function(e){
+              e.preventDefault()
               console.log(e);
           };
           angular.element(document.body).keypress(searchHandler);
