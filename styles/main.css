@@ -4741,6 +4741,396 @@ select {
 .viewPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
 }
+.view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+}
+.view-page .workspace {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
+}
+.view-page .workspace.grid {
+  overflow: hidden;
+}
+.view-page .workspace .container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.view-page .workspace .container .grid {
+  display: table;
+  height: 100%;
+  width: 100%;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.view-page .workspace .container .grid .header {
+  display: table-header-group;
+  width: 100%;
+  height: auto;
+}
+.view-page .workspace .container .grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #FFFFFF;
+  border: none;
+}
+.view-page .workspace .container .grid .header .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8em;
+  border-bottom: 1px solid #313131;
+}
+.view-page .workspace .container .grid .header.ui-scrollfix {
+  position: absolute;
+  top: 0px;
+}
+.view-page .workspace .container .grid .body {
+  display: table-row-group;
+  width: 100%;
+}
+.view-page .workspace .container .grid .body .row {
+  text-decoration: none;
+  display: table-row;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+.view-page .workspace .container .grid .body .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  color: grey;
+}
+.view-page .workspace .container .grid .body .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.view-page .workspace .listContainer .list {
+  display: table;
+  height: auto;
+  width: 100%;
+}
+.view-page .workspace .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .listItem .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.view-page .workspace .listContainer .list .listItem .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.view-page .workspace .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.view-page .workspace .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.view-page .workspace .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .listItem .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view-page .workspace .listContainer .list .listItem .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view-page .workspace .listContainer .list .listItem .cell.profile-img div img {
+  height: 100%;
+}
+.view-page .workspace .listContainer .list .listItem td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.view-page .workspace .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.view-page .workspace .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.view-page .workspace .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.view-page .workspace .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view-page .workspace .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view-page .workspace .listContainer .list .listItem td.profile-img div img {
+  height: 100%;
+}
+.view-page .workspace .listContainer .list .listItem:hover {
+  background-color: #292929;
+}
+.view-page .workspace .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.view-page .workspace .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.view-page .workspace .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.view-page .workspace .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.view-page .workspace .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.view-page .workspace .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.view-page .workspace .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view-page .workspace .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view-page .workspace .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.view-page .workspace .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.view-page .workspace .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.view-page .workspace .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.view-page .workspace .listContainer .list .row td .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.view-page .workspace .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.view-page .workspace .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.view-page .workspace .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.view-page .workspace .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.view-page .workspace .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.view-page .workspace .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.view-page .workspace .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.view-page .workspace .listContainer .list .row:last-child {
+  border-bottom: none;
+}
 .acknowledgementViewPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
