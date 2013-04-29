@@ -32,7 +32,7 @@
         </div>
     </form>
     
-    <form name="customForm" novalidate class="custom_modal" data-modal ng-model="showCustom" image-drop-target="uploadImage()">
+    <form name="customForm" novalidate class="custom_modal" data-modal ng-model="showCustom">
         <div class="title">Custom Item</div>
         <div class="details">
             <table>
@@ -47,9 +47,7 @@
             </table>
         </div>
         
-        <div class="target">
-            Drop Image Here
-        </div>
+        <canvas file-cropper></canvas>
         <div class="bottom_bar">
             <button ng-disabled="customForm.$invalid || uploading" ng-click="addCustomItem()">Add Item</button>
         </div>
