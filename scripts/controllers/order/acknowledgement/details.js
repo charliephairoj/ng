@@ -35,6 +35,9 @@ angular.module('employeeApp')
             window.open(response.acknowledgement_url);
             window.open(response.production_url);
             Notification.display('Acknowledgement '+$scope.acknowledgement.id+' Saved');
+        }, 
+        function(){
+            Notification.display('Failed to save acknowledgement '+$scope.acknowledgement.id, false);
         });
     };
   }]);

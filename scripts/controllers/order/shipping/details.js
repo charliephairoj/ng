@@ -16,10 +16,12 @@ angular.module('employeeApp')
     $scope.getPDF = function(type) {
         Notification.display('Retrieving PDF...', false);
         $http.get("shipping/"+$scope.shipping.id+"/pdf").
-            success(function(response){
-                Notification.hide();
-                window.open(response.url);
-            });
+        success(function(response){
+            Notification.hide();
+            window.open(response.url);
+        }).error(function(){
+            Notification.display('Error retrieving PDF', false);
+        });
     };
     
     $scope.save = function(){

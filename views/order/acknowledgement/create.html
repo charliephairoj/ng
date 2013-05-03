@@ -45,9 +45,31 @@
                     <td><input type="text" ng-model="custom.quantity" required ng-pattern="/^\d+$/" /></td>
                 </tr>
             </table>
+            <div class="image-controller">
+                <h2>Image Controls</h2>
+                <button data-ng-click="cropCustomImage()">Crop</button>
+                <button data-ng-show="cropping" data-ng-click="saveCustomImage()">Save</button>
+                <button data-ng-click="previewCustomImage()">Preview</button>
+                <table>
+                    <tr>
+                        <td>Width:</td>
+                        <td>{{cropper.image.scaled_width | number:0}}px</td>
+                    </tr>
+                    <tr>
+                        <td>Height:</td>
+                        <td>{{cropper.image.scaled_height | number:0}}px</td>
+                    </tr>
+                    <tr>
+                        <td>Scale:</td>
+                        <td><input type="number" data-ng-model="cropper.scale" min="0" max="100">%</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        <div class="image-preview" file-cropper>
         </div>
         
-        <canvas file-cropper></canvas>
         <div class="bottom_bar">
             <button ng-disabled="customForm.$invalid || uploading" ng-click="addCustomItem()">Add Item</button>
         </div>

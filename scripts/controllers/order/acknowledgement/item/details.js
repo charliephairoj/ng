@@ -10,6 +10,8 @@ angular.module('employeeApp')
           Notification.display('Saving' + $scope.item.description + '...', false);
           $scope.item.$save(function(){
               Notification.display($scope.item.description + ' saved');
+          }, function(){
+              Notification.display("There was an error in saving "+$scope.item.description, false);
           });
       };
       

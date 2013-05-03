@@ -6,6 +6,7 @@ angular.module('employeeApp')
         //Vars
         $scope.show_fabric = false;
         $scope.uploading = false;
+        $scope.customImageScale = 100;
         $scope.customerList = Customer.query();
         $scope.upholsteryList = Upholstery.query();
         $scope.fabricList = Fabric.query();
@@ -35,8 +36,9 @@ angular.module('employeeApp')
         };
         
         $scope.addCustomItem = function(){
-            var item = {};
-            angular.copy($scope.custom, item);
+          
+           
+            var item = angular.copy($scope.custom);
             item.is_custom = true;
             $scope.ack.products = $scope.ack.products || [];
             $scope.ack.products.push(item);
@@ -46,13 +48,27 @@ angular.module('employeeApp')
             $scope.showCustom = false;  
         };
         
-        $scope.uploadImage = function(){
+        $scope.cropCustomImage = function(){
+            $scope.cropping = true;
+            $scope.cropper.crop();
+        };
+        
+        $scope.saveCustomImage = function(){
+            $scope.cropping = false;
+            $scope.cropper.save();
+            $scope.uploadImage($scope.cropper.getImage());
+        };
+        
+        $scope.previewCustomImage = function(){
+            window.open($scope.cropper.getImageAsURL());
+        };
+        
+        $scope.uploadImage = function(image){
             //Display Notification
             Notification.display('Uploading Image', false);
             //Set the upload Target
             
             //Get new image and add to form data
-            var image = $scope.images[0];
             var fd = new FormData();
             fd.append('image', image);
             $scope.uploading = true;
@@ -63,6 +79,7 @@ angular.module('employeeApp')
                processData:false,
                contentType:false,
                success: function(response){
+                   console.log(response);
                    //Copy image to custom item
                    $scope.custom = $scope.custom || {is_custom:true};
                    $scope.custom.image = {};
@@ -70,8 +87,6 @@ angular.module('employeeApp')
                    //add subproperty so image can be viewed
                    $scope.custom.url = $scope.custom.image.url;
                    //Clear $scope of old Image
-                   $scope.images.length = 0;
-                   $scope.imagePreviews.length = 0;
                    Notification.display('Image Uploaded');
                    $scope.uploading = false;
                    
@@ -92,6 +107,8 @@ angular.module('employeeApp')
                     Notification.display('Acknowledgement created');
                     window.open(response.acknowledgement_url);
                     window.open(response.production_url);
+                }, function(){
+                    Notification.display('There an error in creating the Acknowledgement', false);
                 });
             }else{
                 Notification.display('The Order is Not Complete')

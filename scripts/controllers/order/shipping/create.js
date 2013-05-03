@@ -26,9 +26,12 @@ angular.module('employeeApp')
             Notification.display('Creating Acknowledgement...', false);
             $scope.shipping.$save(function(response){
                 console.log(response);
-                Notification.display('Acknowledgement created');
+                Notification.display('Shipping manifest created');
                 window.open(response.url);
                 $location.path('/order/shipping');
+            }, 
+            function(){
+                Notification.display('There was an error in creating the shipping manifest', false);
             });
         }else{
             Notification.display('The Order is Not Complete')

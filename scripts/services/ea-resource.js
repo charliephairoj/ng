@@ -73,6 +73,7 @@ angular.module('employeeApp.services')
                 storage = eaStorage(url.split(/\//g)[0]),
                 value,
                 previousAction,
+                previousParams,
                 last_checked = true,
                 poll = true,
                 getter = function(obj, path) {
@@ -192,7 +193,7 @@ angular.module('employeeApp.services')
                             throw "Expected between 0-4 arguments [params, data, success, error], got " +
                                 arguments.length + " arguments.";
                     }
-                    
+                    //dump(params);
                     /*
                      * RESETTING AREA:
                      * 
@@ -200,7 +201,7 @@ angular.module('employeeApp.services')
                      * action does not meet the current action. We do this in the case 
                      * of polling where the action is the same as before.
                      */
-                    if (previousAction != name) {
+                    if (previousAction != name || params != previousParams) {
                         this.$$last_checked = undefined;
                     }
                     /*
@@ -226,7 +227,7 @@ angular.module('employeeApp.services')
                              //Iterate and return new Resources as an array
                              storage.iterate(function(item){
                                  //Loop for existing item in value
-                                 var index = indexOfId(value, item);
+                                 var index = indexOfId(value, item.id);
                                  if (index != -1) {
                                      /*
                                       * In order not to waste resource we
@@ -268,8 +269,7 @@ angular.module('employeeApp.services')
                          * resource and there for the resource it self should be update
                          * with the data because it is currently presented tot he user
                          */
-                        //if(action.method == "DELETE" || hasBody){angular.extend(this, response);}
-                        //console.log('action: '+name+'  method: '+action.method+'  response: '+response+'  value: '+value);
+                        if(action.method == "DELETE" || hasBody){angular.extend(this, response);}
                         /*
                          * If the method is GET it indicates that the user has requested 
                          * data and the resource is a gateway and it itself is no the the
@@ -280,7 +280,7 @@ angular.module('employeeApp.services')
                         if (action.method === "GET") {
                             if(action.isArray || angular.isArray(response)){
                                 
-                                var index;
+                                var index; 
                                 
                                 /*
                                  * We use vanilla javascript to iterate through 
@@ -359,7 +359,7 @@ angular.module('employeeApp.services')
                      * the settings of the current action
                      */
                     previousAction = name;
-                    
+                    previousParams = params;
                     //Return the reference
                     return value;
                     

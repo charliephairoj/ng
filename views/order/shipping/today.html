@@ -39,7 +39,7 @@
         <div class="listContainer">
             <div class="list">
                 
-                    <a ng-repeat="ack in ackList | dateRange:'delivery_date':startDate:endDate" " class="row" ng-href="#/order/acknowledgement/{{ack.id}}">
+                    <a ng-repeat="ack in ackList | dateRange:'delivery_date':startDate:endDate | orderBy:'status'" class="row" ng-href="#/order/acknowledgement/{{ack.id}}">
                         <div class="cell">
                             <div class="details">
                                 <div class="details-row">
@@ -57,6 +57,10 @@
                                 <div class="details-row">
                                     <div class="details-title">Ordered By:</div>
                                     <div class="details-data">{{ack.employee}}</div>
+                                </div>
+                                <div class="details-row">
+                                    <div class="details-title">Status:</div>
+                                    <div class="details-data">{{ack.status}}</div>
                                 </div>
                             </div>
                         </div>

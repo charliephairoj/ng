@@ -1,29 +1,78 @@
 'use strict';
 
 angular.module('employeeApp.directives')
-    .directive('fileCropper', [function () {
-        function Scene(ctx, image){
+    .directive('fileCropper', ['Notification', function (Notification) {
+        function Scene(canvas, ctx, image){
             this.ctx = ctx;
+            this.canvas = canvas
             this.img = image;
-            this.x
-            this.bX = 10;
-            this.bY = 10;
-            this.bH = 200;
-            this.bW = 100;
+            this._scale = 1;
+            this.bX = 0;
+            this.bY = 0;
+            this.bH = this.img.height;
+            this.bW = this.img.width;
+            this.cropX;
+            this.cropY;
+            this.cropW;
+            this.cropH;
             this.mouseX;
             this.mouseY;
             this.corners = [];
-            
+            this.xProportion = this.canvas.width/this.img.width;
+            this.yProportion = this.canvas.height/this.img.height;
             
             
         }
         
+        Object.defineProperties(Scene.prototype, {
+            scale:{
+                get:function(){
+                    return this._scale;
+                },
+                set: function(scale){
+                    this._scale = scale <= 1 ? scale : scale/100;
+                }
+            },
+           x:{
+               get: function(){
+                   return this.bX;
+               },
+               set: function(x){
+                   this.bX = x;
+               }
+           },
+           y:{
+               get: function(){
+                   return this.bY;
+               },
+               set: function(y){
+                   this.bY = y;
+               }
+           }, 
+           w:{
+               get: function(){
+                   return this.bW;
+               },
+               set: function(w){
+                   this.bW = w;
+               }
+           }, 
+           h:{
+               get: function(){
+                   return this.bH;
+               },
+               set: function(h){
+                   this.bH = h;
+               }
+           } 
+        });
+
         Scene.prototype.repositionCorners = function(){
-            this.corners['topLeft'] = {x:this.bX, y:this.bY};
-            this.corners['topRight'] = {x:this.bX+this.bW, y:this.bY};
-            this.corners['bottomRight'] = {x:this.bX+this.bW, y:this.bY+this.bH};
-            this.corners['bottomLeft'] = {x:this.bX, y:this.bY+this.bH};
-        }
+            this.corners['topLeft'] = {x:this.bX*this.xProportion, y:this.bY*this.yProportion};
+            this.corners['topRight'] = {x:(this.bX+this.bW)*this.xProportion, y:this.bY*this.yProportion};
+            this.corners['bottomRight'] = {x:(this.bX+this.bW)*this.xProportion, y:(this.bY+this.bH)*this.yProportion};
+            this.corners['bottomLeft'] = {x:this.bX*this.xProportion, y:(this.bY+this.bH)*this.yProportion};
+        };
         
         Scene.prototype.inCorner = function(x, y){
             for(var key in this.corners){
@@ -31,25 +80,27 @@ angular.module('employeeApp.directives')
                     return key;
                 }
             }
-        }
+        };
+        
         Scene.prototype.drawCube = function(x, y){
             this.ctx.beginPath();
             this.ctx.arc(x, y, 5, 0, Math.PI*2, true);
             this.ctx.fill();
-        }
+        };
+        
         Scene.prototype.drawCubes = function(){
             this.ctx.fillStyle = 'rgb(255, 255, 255)'
-            this.drawCube(this.bX, this.bY);
-            this.drawCube(this.bX+this.bW, this.bY+this.bH);
-            this.drawCube(this.bX+this.bW, this.bY);
-            this.drawCube(this.bX, this.bY+this.bH);
-        }
+            this.drawCube(this.bX*this.xProportion, this.bY*this.yProportion);
+            this.drawCube((this.bX+this.bW)*this.xProportion, (this.bY+this.bH)*this.yProportion);
+            this.drawCube((this.bX+this.bW)*this.xProportion, this.bY*this.yProportion);
+            this.drawCube(this.bX*this.xProportion, (this.bY+this.bH)*this.yProportion);
+        };
         
         Scene.prototype.drawBackground = function(){
-            this.ctx.drawImage(this.img, 0, 0);
+            this.ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, this.canvas.width, this.canvas.height);
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
             this.ctx.fillRect(0, 0, this.img.width, this.img.height);
-        }
+        };
         
         Scene.prototype.draw = function(){
             //Calculations
@@ -57,29 +108,66 @@ angular.module('employeeApp.directives')
             
             //Rendering
             this.drawBackground();
-            this.ctx.drawImage(this.img, this.bX, this.bY, this.bW, this.bH, this.bX, this.bY, this.bW, this.bH);
+            this.ctx.drawImage(this.img, this.bX, this.bY, this.bW, this.bH, this.bX*this.xProportion, this.bY*this.yProportion, this.bW*this.xProportion, this.bH*this.yProportion);
             this.drawCubes();
-        }
+        };
         
         Scene.prototype.drawImage = function(){
-            this.ctx.drawImage(this.img, 0, 0);
+            this.ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, this.canvas.width, this.canvas.height);
+        };
+        
+        Scene.prototype.crop = function(boundingWidth, boundingHeight){
+            if(boundingHeight && boundingWidth){
+                var ratio1 = boundingHeight/boundingWidth;
+                var ratio2 = this.bH/this.bW;
+                if(ratio1>ratio2){
+                    this.canvas.width = boundingWidth;
+                    this.canvas.height = (this.bH*boundingWidth)/this.bW;
+                    angular.element(this.canvas).css('top', (boundingHeight-this.canvas.height)/2);
+                    angular.element(this.canvas).css('left', (boundingWidth-this.canvas.width)/2);
+                }else{ 
+                    this.canvas.height = boundingHeight;
+                    this.canvas.width = (this.bW*boundingHeight)/this.bH;
+                    angular.element(this.canvas).css('left', (boundingWidth-this.canvas.width)/2);
+                    angular.element(this.canvas).css('top', (boundingHeight-this.canvas.height)/2);
+                }
+            }else{
+                this.canvas.width = this.bW;
+                this.canvas.height = this.bH;
+            }
+            
+            this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h, 0, 0, this.canvas.width, this.canvas.height);
+           // this.canvas.width = this.bW/this.xProportion
+           // this.canvas.height = this.bH/this.xProportion
+            //this.ctx.putImageData(imageData, 0, 0, this.canvas.width, this.canvas.height);
         }
         
-        Scene.prototype.getCroppedImage= function(){
-            var imageData = this.ctx.getImageData(this.bX, this.bY, this.bW, this.bH);
-            canvas.width = this.bW
-            canvas.height = this.bH
-            this.ctx.putImageData(imageData, 0, 0)
-            var url = canvas.toDataURL();
-            console.log(url);    
-            window.open(url);
-            return url;
-        }
+        Scene.prototype.getImageAsURL= function(){
+            var canvas = document.createElement("canvas");
+            var context = canvas.getContext('2d');
+            canvas.width = this.w*this._scale;
+            canvas.height = this.h*this._scale;
+            context.drawImage(this.img, this.x, this.y, this.w, this.h, 0, 0, this.w*this._scale, this.h*this._scale);
+            return canvas.toDataURL("image/jpeg");
+            
+        };
+        
+        Scene.prototype.getImageAsBlob= function(){
+            var url = this.getImageAsURL();
+            var bytes = atob(url.split(',')[1]);
+            var stream = new Uint8Array(bytes.length);
+            for(var key in bytes){
+                stream[key] = bytes.charCodeAt(key);
+            }
+            return new Blob([stream], {type: 'image/jpeg'});
+        };
+        
         return {
             restrict: 'A',
             link: function postLink(scope, element, attrs) {
                 var cubes = []
-                var canvas = element[0];
+                var canvas = angular.element("<canvas></canvas>")[0];
+                var parent = element;
                 var fileReader = new FileReader();
                 var ctx = canvas.getContext('2d');
                 var mouseX;
@@ -89,42 +177,67 @@ angular.module('employeeApp.directives')
                 var image;
                 var mousedown = false;
                 
+                parent.append(canvas);
+                angular.element(canvas).addClass('file-cropper');
+
+                //Set Canvas to parent width and height
+                canvas.width = parent.outerWidth();
+                canvas.height = parent.outerHeight();
+                
                 fileReader.onload = function(evt){
-                    console.log(evt);
+                    
+                    //Create Image
                     image = new Image();
                     image.onload = function(e){
-                        canvas.width = image.width;
-                        canvas.height = image.height;
-                        scene = new Scene(ctx, image);
+                        //Display Notification
+                        Notification.display('Image Rendered');
+                        //Set canvas dimensions
+                        var height = parent.innerHeight();
+                        var width = parent.innerWidth();
+                        var ratio1 = height/width;
+                        var ratio2 = image.height/image.width;
+                        if(ratio1>ratio2){
+                            canvas.width = width;
+                            canvas.height = (image.height*width)/image.width;
+                        }else{ 
+                            canvas.height = height;
+                            canvas.width = (image.width*height)/image.height;
+                        }
+                        //Position the canvas relative to parent
+                        angular.element(canvas).css('top', (height-canvas.height)/2);
+                        angular.element(canvas).css('left', (width-canvas.width)/2);
+                        //Create and Draw new Scene
+                        scene = new Scene(canvas, ctx, image);
                         scene.drawImage();
+                        scope.safeApply();
                     };
                     image.src = evt.target.result;
                     
                 }
                 
-                element.addClass('file-cropper');
                 //Drag Enter
                 element.bind('dragenter', function(evt){
                     evt.preventDefault();
-                    element.addClass('active');
+                    parent.addClass('drag-drop-active');
                 });
                 
                 //Drag Leave
                 element.bind('dragleave', function(evt){
                    evt.preventDefault(); 
-                   element.removeClass('active');
+                   parent.removeClass('drag-drop-active');
                 });
                 
                 //Drag over
                 element.bind('dragover', function(evt){
                     evt.preventDefault();
-                    element.addClass('active');
+                    parent.addClass('drag-drop-active');
                 });
                 
                 element.bind('drop', function(evt){
                     evt.preventDefault();
                     evt.stopPropagation();
-                    element.removeClass('active');
+                    Notification.display('Processing Image...', false);
+                    parent.removeClass('drag-drop-active');
                     //Get original evt within jquery evt
                     var e = evt.originalEvent
                     //Get the files
@@ -144,34 +257,35 @@ angular.module('employeeApp.directives')
                         if(corner){
                             switch(corner){
                                 case "topLeft":
-                                    scene.bW = scene.bW + (mouseX-e.offsetX);
-                                    scene.bH = scene.bH + (mouseY-e.offsetY);
-                                    scene.bY = scene.bY - (mouseY-e.offsetY);
-                                    scene.bX = scene.bX - (mouseX-e.offsetX);
+                                    scene.w = scene.w + ((mouseX-e.offsetX)/scene.xProportion);
+                                    scene.h = scene.h + ((mouseY-e.offsetY)/scene.yProportion);
+                                    scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
+                                    scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
                                     break;
                                 case "topRight":
-                                    scene.bW = scene.bW - (mouseX-e.offsetX);
-                                    scene.bH = scene.bH + (mouseY-e.offsetY);
-                                    scene.bY = scene.bY - (mouseY-e.offsetY);
+                                    scene.w = scene.w - ((mouseX-e.offsetX)/scene.xProportion);
+                                    scene.h = scene.h + ((mouseY-e.offsetY)/scene.yProportion);
+                                    scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
                                     break;
                                 case "bottomRight":
-                                    scene.bW = scene.bW - (mouseX-e.offsetX);
-                                    scene.bH = scene.bH - (mouseY-e.offsetY);
+                                    scene.w = scene.w - ((mouseX-e.offsetX)/scene.xProportion);
+                                    scene.h = scene.h - ((mouseY-e.offsetY)/scene.yProportion);
                                     break;
                                 case "bottomLeft":
-                                    scene.bX = scene.bX - (mouseX-e.offsetX);
-                                    scene.bH = scene.bH - (mouseY-e.offsetY);
-                                    scene.bW = scene.bW + (mouseX-e.offsetX);
+                                    scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
+                                    scene.h = scene.h - ((mouseY-e.offsetY)/scene.yProportion);
+                                    scene.w = scene.w + ((mouseX-e.offsetX)/scene.xProportion);
                                     break;
                             }
                         }else{
-                            scene.bX = scene.bX - (mouseX - e.offsetX);
-                            scene.bY = scene.bY - (mouseY - e.offsetY);
+                            scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
+                            scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
                         }
                         
                         mouseX = e.offsetX;
                         mouseY = e.offsetY;
                         scene.draw();
+                        scope.safeApply();
                         
                     }
                 }
@@ -186,18 +300,60 @@ angular.module('employeeApp.directives')
                     corner = false;
                 }
                 
-                
-                element.bind('click', function(){
-                    scope.crop();
-                });
                 /*
                  * API Section
+                 * 
+                 * Properties:
+                 * -scale
                  * 
                  * Methods:
                  * -crop
                  * -save
+                 * -getImage
                  */
-                scope.crop = function(){
+                scope.cropper = {image:{}};
+                
+                Object.defineProperties(scope.cropper, {
+                    scale:{
+                        get: function(){
+                            return scene ? scene.scale*100 : 100;
+                        },
+                        set: function(scale){
+                            if(scene){
+                                scene.scale = scale;
+                            }
+                        }
+                    } 
+                });  
+                
+                Object.defineProperties(scope.cropper.image, {
+                    width:{
+                        get: function(){
+                            return scene ? scene.w ? scene.w : 0 : 0;
+                        }
+                    },
+                    height:{
+                        get:function(){
+                            return scene ? scene.h ? scene.h : 0 : 0;
+                        }
+                    },
+                    scaled_height:{
+                        get:function(){
+                            return scene ? scene.h ? scene.h*scene.scale : 0 : 0;
+                        }
+                    },
+                    scaled_width:{
+                        get:function(){
+                            return scene ? scene.w ? scene.w*scene.scale : 0 : 0;
+                        }
+                    }
+                }); 
+                
+                scope.cropper.crop = function(){
+                    scene.x = 10;
+                    scene.y = 10;
+                    scene.w = scene.w - 20;
+                    scene.h = scene.h - 20;
                     scene.draw();
                     element.bind('mousedown', mouseDown);
                     element.bind('mousemove', mouseMove);
@@ -205,15 +361,21 @@ angular.module('employeeApp.directives')
                     element.bind('mouseleave', mouseLeave);
                 };
                 
-                scope.save = function(){
+                scope.cropper.save = function(){
+                    scene.crop(element.innerWidth(), element.innerHeight());
                     element.unbind('mousedown', mouseDown);
                     element.unbind('mousemove', mouseMove);
                     element.unbind('mouseup', mouseUp);
                     element.unbind('mouseleave', mouseLeave);
                 };
                 
-                scope.getImage = function(){
-                    return 
+                scope.cropper.getImage = function(){
+                    console.log(scene.getImageAsBlob());
+                    return scene.getImageAsBlob();
+                }
+                
+                scope.cropper.getImageAsURL = function(){
+                    return scene.getImageAsURL();
                 }
             }
         };

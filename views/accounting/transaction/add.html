@@ -31,12 +31,12 @@
             <label class="title">Transaction</label>
             <table class="details">
                 <tr>
-                    <td>Name</td>
-                    <td><input required type="text" data-ng-model="transaction.name"/></td>
+                    <td class="cell">Name</td>
+                    <td class="cell"><input required type="text" data-ng-model="transaction.name"/></td>
                 </tr>
                 <tr>
-                    <td>Amount</td>
-                    <td>
+                    <td class="cell">Amount</td>
+                    <td class="cell">
                         <input type="text" required ng-pattern="/^\d+(\.\d{2})?$/" data-ng-model="transaction.amount"/>
                         <select required data-ng-model="transaction.currency">
                             <option value="THB">THB</option>
@@ -45,8 +45,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Transaction Type</td>
-                    <td>
+                    <td class="cell">Transaction Type</td>
+                    <td class="cell">
                         <select required data-ng-model="transaction.type">
                             <option value="credit">Credit</option>
                             <option value="debit">Debit</option>
@@ -54,20 +54,20 @@
                     </td>
                 </tr>
                  <tr>
-                    <td>Transaction Date</td>
-                    <td><div data-ng-model="transaction.transaction_date" ui-date></div></td>
+                    <td class="cell">Transaction Date</td>
+                    <td class="cell"><div data-ng-model="transaction.transaction_date" ui-date></div></td>
                 </tr>
                 <tr>
-                    <td>Bank/Vendor</td>
-                    <td><input data-ng-model="transaction.vendor" type="text" /></td>
+                    <td class="cell">Bank/Vendor</td>
+                    <td class="cell"><input data-ng-model="transaction.vendor" type="text" /></td>
                 </tr>
                 <tr>
-                    <td>Invoice Number</td>
-                    <td><input data-ng-model="transaction.invoice.id" type="text" /></td>
+                    <td class="cell">Invoice Number</td>
+                    <td class="cell"><input data-ng-model="transaction.invoice.id" type="text" /></td>
                 </tr>
                 <tr>
-                    <td>Comments</td>
-                    <td><textarea data-ng-model="transaction.comments"></textarea></td>
+                    <td class="cell">Comments</td>
+                    <td class="cell"><textarea data-ng-model="transaction.comments"></textarea></td>
                 </tr>
             </table>
         </div>

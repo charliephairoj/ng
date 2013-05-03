@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp.services')
-    .factory('Notification', ['$timeout', function($timeout) {
+    .factory('Notification', ['$timeout', '$rootScope', function($timeout, $rootScope) {
         function center(target){
             var width = $(window).width();
             var tWidth = $(target).width();
@@ -27,9 +27,12 @@ angular.module('employeeApp.services')
         Notifier.prototype.display = function(message, autoHide){
             
             //Change message and 
-            this.notification.html(message)
-            center(this.notification);
-            this.notification.addClass('active')
+            $rootScope.safeApply(function(){
+                this.notification.html(message);
+                center(this.notification);
+                this.notification.addClass('active');
+            }.bind(this));
+            
             
             //Cancels the fadingout and 
             //removal of message
