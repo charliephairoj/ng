@@ -32,7 +32,9 @@
             <table class="details">
                 <tr>
                     <td class="cell">Name</td>
-                    <td class="cell"><input required type="text" data-ng-model="transaction.name"/></td>
+                    <td class="cell">
+                        <select required ng-options="contact.name for contact in contactList" ng-model="transaction.contact">
+                    </td>
                 </tr>
                 <tr>
                     <td class="cell">Amount</td>

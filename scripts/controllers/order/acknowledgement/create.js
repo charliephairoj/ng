@@ -7,9 +7,9 @@ angular.module('employeeApp')
         $scope.show_fabric = false;
         $scope.uploading = false;
         $scope.customImageScale = 100;
-        $scope.customerList = Customer.query();
-        $scope.upholsteryList = Upholstery.query();
-        $scope.fabricList = Fabric.query();
+        $scope.customerList = Customer.poll().query();
+        $scope.upholsteryList = Upholstery.poll().query();
+        $scope.fabricList = Fabric.poll().query();
         $scope.ack = new Acknowledgement();
         
         var uploadTargets = [];
@@ -136,5 +136,11 @@ angular.module('employeeApp')
             }
             //Return true for form validated
             return true;
-        }
+        };
+        
+        $scope.$on('$destroy', function(){
+            Customer.stopPolling();
+            Upholstery.stopPolling();
+            Fabric.stopPolling();
+        });
   }]);

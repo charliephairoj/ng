@@ -1781,7 +1781,7 @@ select {
 .addTransactionPage .workspace .transaction .details tr .cell .ui-datepicker {
   width: 25em;
   margin: 1em 0em;
-  border: 1px solid #CCC;
+  border: 1px solid #525252;
   border-radius: 2px;
 }
 .addTransactionPage .workspace .transaction .details tr .cell .input {
@@ -4471,8 +4471,9 @@ select {
   font-family: proxima;
   height: 80%;
   width: 80%;
-  margin-left: -40%;
-  margin-top: -20%;
+  margin: 0;
+  top: 10%;
+  left: 10%;
   background-color: #313131;
 }
 .acknowledgementDetailsPage .log-modal .ui-datepicker .ui-datepicker-header {
@@ -4597,6 +4598,7 @@ select {
 .acknowledgementDetailsPage .log-modal .container {
   overflow-y: scroll;
   overflow-x: hidden;
+  bottom: 45px;
 }
 .acknowledgementDetailsPage .log-modal .container .grid {
   display: table;

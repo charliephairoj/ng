@@ -193,6 +193,10 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/supply/prop/details.html',
         controller: 'SupplyPropDetailsCtrl'
       })
+      .when('/supply/lumber/view', {
+        templateUrl: 'views/supply/lumber/view.html',
+        controller: 'SupplyLumberViewCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

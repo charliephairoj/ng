@@ -17,7 +17,6 @@
                 <div class="header" ui-scrollfix="0">
                     <div class="row">
                         <div class="cell">Event</div>
-                        <div class="cell">Delivery Date</div>
                         <div class="cell">Employee</div>
                         <div class="cell">Timestamp</div>
                     </div>
@@ -25,7 +24,6 @@
                 <div class="body">
                     <a data-ng-repeat="log in logs" class="row">
                         <div class="cell">{{log.event}}</div>
-                        <div class="cell">{{log.delivery_date | date: "MMM d, yyyy"}}</div>
                         <div class="cell">{{log.employee}}</div>
                         <div class="cell">{{log.timestamp | date: "MMM d, yyyy H:mm"}}</div>
                     </a>
