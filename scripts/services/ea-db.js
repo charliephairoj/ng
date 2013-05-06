@@ -8,71 +8,155 @@
  * potential uses. 
  */
 angular.module('employeeApp.services')
-    .factory('eaIndexDB', ['$q', function($q) {
-        function factory(){
+    .factory('eaIndexDB', ['$q', function($q, indexes) {
+        var database = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        function factory(namespace){
+            //Create a store of namespaces in the localStorage
+            var namespaces = window.localStorage.getItem('namespace') || [];
+            if(namespaces.indexOf(namespace) == -1){
+                namespaces.push(namespace);
+            }
             /*
-             * Initialize the Database
+             * Create the shell class to be prototyped later
              */
-            window.
-            
-            /*
-             * Construct the database object that will
-             * wrap the core indexedDB features. 
-             */
-            function Database(){
-                console.log(window.indexedDB);
-                window.indexedDB.open('test');
-                this.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-                var request = this.indexedDB.open('test');
-                request.onsuccess = function(e){
-                    console.log('ok');  
-                    this.db = request.result;
-                    console.log(this.db);
-                    this.transaction = this.db.transaction(['customers'], 'readwrite');
-                    this.objectStore = this.transaction.objectStore("customers");
-                    console.log(this.objectStore);
-                    this.transaction.onsuccess = function(evt){
-                        console.log(evt);
-                    };
-                    this.objectStore.onsuccess = function(evt){
-                        console.log(evt);
-                    };
-                    this.objectStore.add({id:5, name:'charlie'});
-                }.bind(this);
-                request.onerror = function(){
-                    console.log('pee');
-                }.bind(this);
+            function Database(namespace){
+                this.namespace = namespace;
+                this.indexedDB = database;
+                var request = this.indexedDB.open('app', namespaces.length);
                 
                 request.onupgradeneeded = function(event){
                     this.db = event.target.result;
-                    this.objectStore = db.createObjectStore("customers", {keyPath:"id"});
+                    for(var key in namespaces){
+                        this.db.createObjectStore(namespaces[key], {keyPath:'id'});
+                    }
                 }.bind(this);
                 
+                request.onsuccess = function(e){
+                    this.db = request.result;
+                }.bind(this);
+                
+                request.onerror = function(){
+                }.bind(this);
             }
+            
+            /*
+             * Initialize the Database
+             */
+            
             
             /*
              * This section will implements the public facing APIs that
              * are available to retrieve data
              */
-            Database.prototype.query = function(){
-                var deferred = $q.defer();
-                return deferred.promise;
-            }
-            Database.prototype.get = function(){
-                var deferred = $q.defer();
-                this.objectStore.get();
-                return deferred.promise;
+            Database.prototype.query = function(arg1, arg2, arg3){
+                var success,
+                    error,
+                    param;
+                switch(arguments.length){
+                    case 1:
+                        angular.isFunction(arg1) ? success = arg1 : param = arg1;
+                        break;
+                    case 2:
+                        if(angular.isFunction(arg1)){
+                            success = arg1;
+                            error = arg2;
+                        }else{
+                            params = arg1;
+                            success = arg2;
+                        }
+                        break;
+                    case 3:
+                        param = arg1;
+                        success = arg2;
+                        error = arg3;
+                        break;
+                }
+                
+                var data = [];
+                var objectStore = this.db.transaction([this.namespace], 'readwrite')
+                    .objectStore(this.namespace);
+                    
+                var request = objectStore.openCursor().onsuccess = function(evt){
+                    var cursor = evt.target.result;
+                    if(cursor){
+                        data.push(cursor.value);
+                        cursor.continue();
+                    }else{
+                        (success || angular.noop)(data);
+                    }
+                }
+                request.onerror = function(evt){
+                    (error || angular.noop)();
+                }
+                
+                
             }
             
-            Database.prototype.save = function(obj){
-                var deferred = $q.defer();
-                this.objectStore.add(obj);
+            Database.prototype.get = function(param, success, error){
+                var request = this.db.transaction([this.namespace], 'readonly')
+                    .objectStore(this.namespace)
+                    .get(param);
+                   
+                request.onsuccess = function(evt){
+                    (success || angular.noop)(request.result);
+                };
                 
-                return deferred.promise;
+                request.onerror = function(evt){
+                    (error || angular.noop)();
+                };
+            }
+            
+            Database.prototype.save = function(obj, success, error){
+                var request = this.db.transaction([this.namespace], 'readwrite')
+                    .objectStore(this.namespace)
+                    .add(obj);
+                   
+                request.onsuccess = function(evt){
+                    (success || angular.noop)();
+                };
+                
+                request.onsuccess = function(evt){
+                    (error || angular.noop)();
+                };
+                
             };
             
+            Database.prototype.remove = function(arg, success, error){
+                var request = this.db.transaction([this.namespace], "readwrite")
+                    .objectStore(this.namespace)
+                    .delete(arg);
+                request.onsuccess = function(evt){
+                    (success || angular.noop)();
+                };
+                request.onerror = function(evt){
+                    (error || angular.noop)();
+                };
+            };
             
+            Database.prototype.clear = function(success, error){
+                var objectStore = this.db.transaction([this.namespace], 'readwrite')
+                    .objectStore(this.namespace);
+                    
+                var request = objectStore.openCursor().onsuccess = function(evt){
+                    var cursor = evt.target.result;
+                    if(cursor){
+                        objectStore.delete(cursor.key);
+                        cursor.continue();
+                    }else{
+                        (success || angular.noop)();
+                    }
+                }
+                request.onerror = function(evt){
+                    (error || angular.noop)();
+                }
+            }
             
-            return new Database();
+            Database.prototype.destroy = function(){
+                this.indexedDB.deleteDatabase('app');
+            }
+            
+            return new Database(namespace);
         }
+        
+        return factory;
     }]);
