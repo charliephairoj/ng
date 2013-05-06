@@ -23,5 +23,5 @@ angular.module('employeeApp.services')
            
        };
        
-       return new filter();
+       //return new filter();
   }]);

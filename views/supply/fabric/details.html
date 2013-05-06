@@ -40,9 +40,9 @@
     <!--
         Reserve Length Modal
     -->
-    <form name="reserveForm" novalidate class="addModal" ng-show="showReserve">
+    <form name="reserveForm" novalidate modal ng-model="showReserve">
         <div class="title" ng-click="showReserve=false">Reserve Fabric Length</div>
-        <table class="table">
+        <table class="container">
             <tr>
                 <td>Length</td>
                 <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="reserveLength" /></td>
@@ -51,22 +51,18 @@
                 <td>Acknowledgement</td>
                 <td><input ng-model="reserveRemark"/></textarea></td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" ng-disabled="reserveForm.$invalid" ng-click="reserve()">Reserve</button>
-                </td>
-            </tr>
-            
         </table>
+        <div class="bottom-bar">
+            <button type="button" ng-disabled="reserveForm.$invalid" ng-click="reserve()">Reserve</button>
+        </div>
     </form>
     
     <!--
         Add Length Modal
     -->
-    <form name="addForm" novalidate class="addModal" ng-show="showAdd">
+    <form name="addForm" novalidate modal ng-model="showAdd">
         <div class="title" ng-click="showAdd=false">Add Fabric Length</div>
-        <table class="table">
+        <table class="container">
             <tr>
                 <td>Length</td>
                 <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
@@ -75,21 +71,17 @@
                 <td>Acknowledgement</td>
                 <td><textarea cols="25" rows="8" ng-model="addRemark"/></textarea></td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" ng-disabled="addForm.$invalid" ng-click="add()">Add</button>
-                </td>
-            </tr>
-            
         </table>
+        <div class="bottom-bar">
+            <button type="button" ng-disabled="addForm.$invalid" ng-click="add()">Add</button>
+        </div>
     </form>
     <!--
         Subtract Length Modal
     -->
-    <form name="subtractForm" novalidate class="addModal" ng-show="showSubtract">
+    <form name="subtractForm" novalidate modal ng-model="showSubtract">
         <div class="title" ng-click="showSubtract=false">Subtract Fabric Length</div>
-        <table class="table">
+        <table class="container">
             <tr>
                 <td>Length</td>
                 <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
@@ -98,21 +90,17 @@
                 <td>Acknowledgement</td>
                 <td><input ng-model="subtractRemark" /></textarea></td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Subtract</button>
-                </td>
-            </tr>
-            
         </table>
+        <div class="bottom-bar">
+            <button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Subtract</button>
+        </div>
     </form>
     <!--
         Reset Length Modal
     -->
-    <form name="resetForm" novalidate class="addModal" ng-show="showReset">
+    <form name="resetForm" novalidate modal ng-model="showReset">
         <div class="title" ng-click="showReset=false">Reset Fabric Length</div>
-        <table class="table">
+        <table class="container">
             <tr>
                 <td>Length</td>
                 <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
@@ -120,15 +108,11 @@
             <tr>
                 <td>Acknowledgement</td>
                 <td><textarea cols="25" rows="8"  ng-model="resetRemark" /></textarea></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Reset</button>
-                </td>
-            </tr>
-            
+            </tr>   
         </table>
+        <div class="bottom-bar">
+            <button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Reset</button>
+        </div>
     </form>
     
     <div class="logContainer" ng-class="{active:showLog}">
@@ -156,9 +140,9 @@
                     
         </table>
     </div>
-    <form>
+    <form class="workspace">
         
-        <table>
+        <table class="details">
             <tr>
                 
                 <tr>
@@ -191,11 +175,11 @@
                 </tr>
                 <tr>
                     <td><label>Width</label></td>
-                    <td><input type="text" ng-model="fabric.width" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" /></td>
+                    <td><input class="length" type="text" ng-model="fabric.width" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" /></td>
                 </tr>
                 <tr>
                     <td><label>Cost per Yard</label></td>
-                    <td><input type="text" ng-model="fabric.cost" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" />{{fabric.supplier.currency}}</td>
+                    <td><input class="price" type="text" ng-model="fabric.cost" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" />{{fabric.supplier.currency}}</td>
                 </tr>
                 <tr>
                     <td><label>Current Length</label></td>
