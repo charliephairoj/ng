@@ -99,7 +99,7 @@ angular.module('employeeApp.directives')
         Scene.prototype.drawBackground = function(){
             this.ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, this.canvas.width, this.canvas.height);
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            this.ctx.fillRect(0, 0, this.img.width, this.img.height);
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         };
         
         Scene.prototype.draw = function(){
