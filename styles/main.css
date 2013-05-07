@@ -2654,6 +2654,10 @@ select {
   padding: 0px;
   text-align: center;
 }
+.createAcknowledgementPage .vat_modal .title {
+  font-size: 0.8em;
+  padding: 0.6em 0em;
+}
 .createAcknowledgementPage .vat_modal input {
   width: 50px;
   left: 75px;
@@ -2685,6 +2689,10 @@ select {
   padding: 0px;
   text-align: center;
 }
+.createAcknowledgementPage .po_modal .title {
+  font-size: 0.8em;
+  padding: 0.6em 0em;
+}
 .createAcknowledgementPage .po_modal input {
   width: 50px;
   left: 75px;
@@ -2694,6 +2702,10 @@ select {
   position: absolute;
   right: 55px;
   color: #FFFFFF;
+}
+.createAcknowledgementPage .po_modal .title {
+  font-size: 0.8em;
+  padding: 0.6em 0em;
 }
 .createAcknowledgementPage .po_modal input {
   width: 150px;
@@ -2845,6 +2857,10 @@ select {
   outline: none;
   padding: 0px;
   text-align: center;
+}
+.createAcknowledgementPage .remarks_modal .title {
+  font-size: 0.8em;
+  padding: 0.6em 0em;
 }
 .createAcknowledgementPage .remarks_modal input {
   width: 50px;

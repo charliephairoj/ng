@@ -59,8 +59,8 @@
  * -$query()
  */
 angular.module('employeeApp.services')
-  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout',
-  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout) {
+  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout', 'eaIndexedDB',
+  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexedDB) {
       function ResourceFactory(url, paramDefaults, actions){
             //Default methods available to the public
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
@@ -71,6 +71,7 @@ angular.module('employeeApp.services')
                                    'delete': {method:'DELETE'}},
                 oResource = new $resource(url, paramDefaults, actions),
                 storage = eaStorage(url.split(/\//g)[0]),
+                db = eaIndexedDB(url.split(/\//g)[0]),
                 value,
                 previousAction,
                 previousParams,
@@ -224,26 +225,29 @@ angular.module('employeeApp.services')
                      */
                      if (action.method == "GET" && !this.$$last_checked) {
                          if (action.isArray) {
-                             //Iterate and return new Resources as an array
-                             storage.iterate(function(item){
-                                 //Loop for existing item in value
-                                 var index = indexOfId(value, item.id);
-                                 if (index != -1) {
-                                     /*
-                                      * In order not to waste resource we
-                                      * first check if the two items are equal or not.
-                                      * If they are not equal then we perform an extend
-                                      */
-                                     if (!angular.equals(value[index], item)) {
-                                         angular.extend(value[index], item);
+                             db.query(function(data){
+                                 console.log(data);
+                                 for(var key in data){
+                                     //Loop for existing item in value
+                                     var index = indexOfId(value, data[key].id);
+                                     if (index != -1) {
+                                         /*
+                                          * In order not to waste resource we
+                                          * first check if the two items are equal or not.
+                                          * If they are not equal then we perform an extend
+                                          */
+                                         if (!angular.equals(value[index], data[key])) {
+                                             angular.extend(value[index], data[key]);
+                                         }
+                                         
+                                     } else {
+                                         //Add new resource
+                                         value.push(new Resource(data[key]));
                                      }
-                                     
-                                 } else {
-                                     //Add new resource
-                                     value.push(new Resource(item));
                                  }
                                  
-                             })
+                             });
+                             
                          } else {
                              //Set Reference as new Resource
                              value = new Resource(storage.get(params.id));
@@ -321,7 +325,7 @@ angular.module('employeeApp.services')
                          * For delete requests, we would have to delete the item
                          */
                       
-                        action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
+                        action.method == "DELETE" ? db.remove(params) : hasBody ? db.save(this) : db.save(value);  
                         
                         /*
                          * Last checked
