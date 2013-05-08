@@ -41,7 +41,7 @@ angular.module('employeeApp.services')
                     'model',
                     'product',
                     'configuration',
-                    'upholstery']
+                    'upholstery',
                     'group',
                     'user']
         }
