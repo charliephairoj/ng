@@ -216,6 +216,7 @@ angular.module('employeeApp.services')
                         value = angular.isArray(value) ? value || [] : [];
                     }else{
                         value = angular.isObject(value) && !value.hasOwnProperty('length') ? value || {} : {};
+                        value = this instanceof Resource ? this : new Resource(value);
                     }
                     
                     /*
@@ -245,12 +246,14 @@ angular.module('employeeApp.services')
                                                  value.push(new Resource(data[key]));
                                              }
                                          }
+                                         (success || angular.noop)(value);
                                      });
                                  });
                              } else {
                                  db.get(params.id, function(response){
                                      $rootScope.safeApply(function(){
-                                        angular.extend(value, new Resource(response));
+                                        angular.copy(new Resource(response), value);
+                                        (success || angular.noop)(value);
                                      });
                                  });
                              }
@@ -268,6 +271,7 @@ angular.module('employeeApp.services')
                                                      value.push(new Resource(data[key]));
                                                  }
                                              }
+                                             (success || angular.noop)(value);
                                          });
                                      });
                                  }
@@ -275,7 +279,8 @@ angular.module('employeeApp.services')
                                  db.onready = function(){
                                      db.get(params.id, function(response){
                                          $rootScope.safeApply(function(){
-                                            angular.extend(value, new Resource(response));
+                                            angular.copy(new Resource(response), value);
+                                            (success || angular.noop)(value);
                                          });
                                      });
                                  }
@@ -343,7 +348,7 @@ angular.module('employeeApp.services')
                                 }
                             }else{
                                 //Upate the reference with the data
-                                angular.extend(value, response);
+                                angular.copy(new Resource(response), value);
                             }
                         }
                         

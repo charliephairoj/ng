@@ -31,7 +31,6 @@ angular.module('employeeApp.services')
         }else if(key == 189){
             code += '-';
         }
-        console.log(code);
     };
     
     Scanner.prototype._dispatch = function(code){
@@ -43,6 +42,11 @@ angular.module('employeeApp.services')
                 case 'A':
                     $rootScope.$apply(function(){
                         $location.path('/order/acknowledgement/'+codes[1]);
+                    });
+                    break;
+                case 'AI':
+                    $rootScope.$apply(function(){
+                        $location.path('/order/acknowledgement/item/'+codes[1]);
                     });
                     break;
                 case 'S':
