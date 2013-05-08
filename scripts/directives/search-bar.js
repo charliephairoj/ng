@@ -3,12 +3,12 @@
 angular.module('employeeApp')
   .directive('searchBar', ['$compile', function ($compile) {
     return {
-      restrict: 'A',
+      restrict: 'EA',
       link: function postLink(scope, element, attrs) {
           var input;
-          
+          var model = attrs.ngModel || 'query'
           element.addClass('search-bar');
-          input = angular.element('<input size="40" placeholder="Search" ng-model="query" />');
+          input = angular.element('<input size="40" placeholder="Search" ng-model="'+model+'" />');
           $compile(input)(scope);
           element.append(input);
           

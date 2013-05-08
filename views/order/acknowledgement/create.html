@@ -110,11 +110,11 @@
         <div class="customer-modal" data-modal ng-model="showCustomers">
             <div class="title">
                 Customers
-                <input type="text" class="search" ng-model="queryCustomers" />
             </div>
             <div class="container">
+                <search-bar data-ng-model="queryCustomer"></search-bar>
                 <ul class="list">
-                    <li class="item" ng-click="addCustomer($index)" ng-repeat="customer in customerList | filter:queryCustomers | orderBy:'name'">{{customer.name}}</li>
+                    <li class="item" ng-click="addCustomer($index)" ng-repeat="customer in customerList | filter:queryCustomer | orderBy:'name'">{{customer.name}}</li>
                 </ul>
             </div>
             
@@ -123,10 +123,9 @@
         <div class="upholstery_modal" data-modal ng-model="show_upholstery">
             <div class="title">
                 Upholstery
-                <input type="text" class="search" ng-model="queryUpholstery" />
-                
             </div>
             <div class="container">
+                <search-bar data-ng-model="queryUpholstery"></search-bar>
                 <div class="list">
                     <div class="item" ng-click="addUpholstery($index)" ng-repeat="upholstery in upholsteryList | filter:queryUpholstery">
                         <div class="row">
@@ -144,8 +143,6 @@
         <div data-modal ng-model="show_fabric" class="fabric_modal">
             <div class="title">
                 Fabric
-                <input type="text" class="search" ng-model="queryFabric" />
-                
             </div>
             <div class="container">
                 <div class="product_container">
@@ -167,6 +164,7 @@
                     </div>
                 </div>
                 <div class="fabric_container">
+                    <search-bar data-ng-model="queryFabric"></search-bar>
                     <ul class="list">
                         <li class="item" ng-repeat="fabric in fabricList | filter:queryFabric " data-drag-on="fabric">
                             <img ng-src="{{fabric.image_url}}" />

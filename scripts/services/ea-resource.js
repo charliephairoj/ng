@@ -59,8 +59,8 @@
  * -$query()
  */
 angular.module('employeeApp.services')
-  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout',
-  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout) {
+  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout', 'eaIndexedDB',
+  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexedDB) {
       function ResourceFactory(url, paramDefaults, actions){
             //Default methods available to the public
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
@@ -71,6 +71,7 @@ angular.module('employeeApp.services')
                                    'delete': {method:'DELETE'}},
                 oResource = new $resource(url, paramDefaults, actions),
                 storage = eaStorage(url.split(/\//g)[0]),
+                db = eaIndexedDB(url),
                 value,
                 previousAction,
                 previousParams,
@@ -193,7 +194,6 @@ angular.module('employeeApp.services')
                             throw "Expected between 0-4 arguments [params, data, success, error], got " +
                                 arguments.length + " arguments.";
                     }
-                    //dump(params);
                     /*
                      * RESETTING AREA:
                      * 
@@ -216,37 +216,75 @@ angular.module('employeeApp.services')
                         value = angular.isArray(value) ? value || [] : [];
                     }else{
                         value = angular.isObject(value) && !value.hasOwnProperty('length') ? value || {} : {};
+                        value = this instanceof Resource ? this : new Resource(value);
                     }
                     
                     /*
-                     * Preload data from the storage if the action method is
-                     * a GET call
+                     * Preloads Data from the indexedDB
+                     * 
+                     * We first must check if this is a request for data. 
+                     * After we check if the db is ready. Depending on whether 
+                     * it is ready or not we proceed in two different ways:
+                     * 
+                     * -db is ready:
+                     *     -check if to make query or get call
+                     * -db is not ready:
+                     *     -attach an on ready call and make the 
+                     *      appropriate get or query call
                      */
                      if (action.method == "GET" && !this.$$last_checked) {
-                         if (action.isArray) {
-                             //Iterate and return new Resources as an array
-                             storage.iterate(function(item){
-                                 //Loop for existing item in value
-                                 var index = indexOfId(value, item.id);
-                                 if (index != -1) {
-                                     /*
-                                      * In order not to waste resource we
-                                      * first check if the two items are equal or not.
-                                      * If they are not equal then we perform an extend
-                                      */
-                                     if (!angular.equals(value[index], item)) {
-                                         angular.extend(value[index], item);
-                                     }
-                                     
-                                 } else {
-                                     //Add new resource
-                                     value.push(new Resource(item));
+                         if(db.ready){
+                             if (action.isArray) {
+                                 db.query(function(data){
+                                     $rootScope.safeApply(function(){
+                                         for(var key in data){
+                                             //Loop for existing item in value
+                                             var index = indexOfId(value, data[key].id);
+                                             if (index != -1) {
+                                                 angular.copy(data[key], value[index]);
+                                             } else {
+                                                 value.push(new Resource(data[key]));
+                                             }
+                                         }
+                                         (success || angular.noop)(value);
+                                     });
+                                 });
+                             } else {
+                                 db.get(params.id, function(response){
+                                     $rootScope.safeApply(function(){
+                                        angular.copy(new Resource(response), value);
+                                        (success || angular.noop)(value);
+                                     });
+                                 });
+                             }
+                         }else{
+                             if (action.isArray) {
+                                 db.onready = function(){
+                                     db.query(function(data){
+                                         $rootScope.safeApply(function(){
+                                             for(var key in data){
+                                                 //Loop for existing item in value
+                                                 var index = indexOfId(value, data[key].id);
+                                                 if (index != -1) {
+                                                     angular.copy(data[key], value[index]);
+                                                 } else {
+                                                     value.push(new Resource(data[key]));
+                                                 }
+                                             }
+                                             (success || angular.noop)(value);
+                                         });
+                                     });
                                  }
-                                 
-                             })
-                         } else {
-                             //Set Reference as new Resource
-                             value = new Resource(storage.get(params.id));
+                             } else {
+                                 db.onready = function(){
+                                     db.get(params.id, function(response){
+                                         $rootScope.safeApply(function(){
+                                            angular.copy(new Resource(response), value);
+                                            (success || angular.noop)(value);
+                                         });
+                                     });
+                                 }
+                             }
                          }
                      }
                      
@@ -310,7 +348,7 @@ angular.module('employeeApp.services')
                                 }
                             }else{
                                 //Upate the reference with the data
-                                angular.extend(value, response);
+                                angular.copy(new Resource(response), value);
                             }
                         }
                         
@@ -320,9 +358,12 @@ angular.module('employeeApp.services')
                          * both return responses we would save this to the storage. 
                          * For delete requests, we would have to delete the item
                          */
-                      
-                        action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
                         
+                        if(db.ready){
+                            action.method == "DELETE" ? db.remove(params) : hasBody ? db.save(this) : db.save(value);  
+                        }
+                        
+                        //action.method == "DELETE" ? storage.remove(params) : hasBody ? storage.save(this) : storage.save(value);  
                         /*
                          * Last checked
                          */
