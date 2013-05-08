@@ -115,7 +115,10 @@
                     <div class="cell">Acknowledgement Item#:</div>
                     <div class="cell">{{item.id}}</div>
                 </div>
-               
+               <div class="row">
+                    <div class="cell">Acknowledgement#:</div>
+                    <a ng-href="#/order/acknowledgement/{{item.acknowledgement.id}}" class="cell">{{item.acknowledgement.id}}</a>
+                </div>
                 <div class="row">
                     <div class="cell">Description</div>
                     <div class="cell">{{item.description}}</div>
