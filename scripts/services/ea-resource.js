@@ -71,7 +71,7 @@ angular.module('employeeApp.services')
                                    'delete': {method:'DELETE'}},
                 oResource = new $resource(url, paramDefaults, actions),
                 storage = eaStorage(url.split(/\//g)[0]),
-                db = eaIndexedDB(url.split(/\//g)[0]),
+                db = eaIndexedDB(url),
                 value,
                 previousAction,
                 previousParams,
