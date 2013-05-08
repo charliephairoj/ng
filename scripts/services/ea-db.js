@@ -22,7 +22,93 @@
  */
 angular.module('employeeApp.services')
     .factory('eaIndexedDB', ['$q', '$timeout', '$rootScope',  function($q, $timeout, $rootScope) {
+        /*
+         * Helper Functions
+         */
+        function getNamespaces(){
+            //return JSON.parse(window.localStorage.getItem('namespaces')) || [];
+            return ['customer', 
+                    'supplier',
+                    'acknowledgement',
+                    'shipping',
+                    'transaction',
+                    'fabric',
+                    'supply',
+                    'model',
+                    'product',
+                    'configuration']
+        }
+        
+        function saveNamespaces(namespaces){
+            window.localStorage.setItem('namespaces', JSON.stringify(namespaces));
+        }
+        /*
+         * Initialize the IndexedDB
+         * 
+         * We open the database so that child objectstores can be retrieved from
+         * this database instead of making repeated calls to open a new database
+         */
         var database = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        
+        var request = database.open('app', getNamespaces().length);
+        var DBVehicle = {_readyFns:[]};
+        Object.defineProperties(DBVehicle, {
+            onready:{
+                set: function(fn){
+                    this._readyFns.push(fn);
+                },
+                get: function(){
+                    return function(){
+                        for(var key in this._readyFns){
+                            this._readyFns[key]();
+                        }
+                    }
+                }
+            }
+        });
+                
+        /*
+         * The version number is based on the number of namespaces
+         * When the number of namespaces increases, then the version
+         * number increases, initiating an upgrade needed call. 
+         * 
+         * Namespaces that do not have a corresponding object store 
+         * are then associated with a new object store
+         */
+        request.onupgradeneeded = function(event){
+            var namespaces = getNamespaces();
+            
+            //angular.extend(db, request.result);
+            DBVehicle['db'] = request.result;
+            var db = DBVehicle['db'];
+            for(var key in namespaces){
+                if(!db.objectStoreNames.contains(namespaces[key])){
+                    var objectStore = db.createObjectStore(namespaces[key], {keyPath:'id'});
+                    //objectStore.createIndex("idIndex", "id", { unique: true });
+                }
+            }
+        };
+        
+        /*
+         * If the database is successfully opened or upgraded
+         * then the db is assigned to the parent, the ready status
+         * is set to true, and the onready callback is called if 
+         * it is defined. 
+         */
+        request.onsuccess = function(e){
+            DBVehicle['db'] = request.result;
+            DBVehicle.onready();
+        };
+        
+        /*
+         * If the database is unable to open then the error is printed
+         * to the console. 
+         */
+        request.onerror = function(e){
+            console.error(e);
+        };
+        
+        
         function factory(namespace){
             /*
              * Create a store of namespaces in the localStorage
@@ -46,49 +132,27 @@ angular.module('employeeApp.services')
             function Database(namespace){
                 this.namespace = namespace;
                 this.indexedDB = database;
-                this.ready = false;
-                
-                var request = this.indexedDB.open('app', namespaces.length);
-                
-                /*
-                 * The version number is based on the number of namespaces
-                 * When the number of namespaces increases, then the version
-                 * number increases, initiating an upgrade needed call. 
-                 * 
-                 * Namespaces that do not have a corresponding object store 
-                 * are then associated with a new object store
-                 */
-                request.onupgradeneeded = function(event){
-                    this.db = event.target.result;
-                    for(var key in namespaces){
-                        console.log(namespaces[key]);
-                        console.log(this.db.objectStoreNames.contains(namespaces[key]));
-                        if(!this.db.objectStoreNames.contains(namespaces[key])){
-                            var objectStore = this.db.createObjectStore(namespaces[key], {keyPath:'id'});
-                            objectStore.createIndex("idIndex", "id", { unique: true });
+                this.DBVehicle = DBVehicle
+                Object.defineProperties(this, {
+                    db:{
+                        get: function(){
+                            return this.DBVehicle["db"]
+                        }  
+                    },
+                    ready:{
+                        get: function(){
+                            return this.DBVehicle['db'] ? true : false;
+                        }
+                    },
+                    onready:{
+                        set: function(fn){
+                            this.DBVehicle.onready = fn;
                         }
                     }
-                }.bind(this);
+                });
                 
-                /*
-                 * If the database is successfully opened or upgraded
-                 * then the db is assigned to the parent, the ready status
-                 * is set to true, and the onready callback is called if 
-                 * it is defined. 
-                 */
-                request.onsuccess = function(e){
-                    this.db = request.result;
-                    this.ready = true;
-                    (this.onready || angular.noop)();
-                }.bind(this);
                 
-                /*
-                 * If the database is unable to open then the error is printed
-                 * to the console. 
-                 */
-                request.onerror = function(e){
-                    console.error(e);
-                }.bind(this);
+                
             }
             
             /*
@@ -151,7 +215,7 @@ angular.module('employeeApp.services')
             
             Database.prototype._query = function(param, success, error){
                 var data = [];
-                var objectStore = this.db.transaction([this.namespace], 'readwrite')
+                var objectStore = this.db.transaction([this.namespace], 'readonly')
                     .objectStore(this.namespace);
                         
                 var request = objectStore.openCursor().onsuccess = function(evt){
