@@ -4,12 +4,13 @@ angular.module('employeeApp.filters')
     .filter('exclude', [function () {
         //function to compare
           return function(array, key, value) {
+              console.log(array);
             if (!(array instanceof Array)) {return []};
            
             var filtered = [];
             
             for(var i in array){
-                if(!angular.equal(array[i][key], value)){
+                if(array[i][key] != value){
                     filtered.push(array[i]);
                 }
             }

@@ -19,7 +19,7 @@
     <div class="workspace">
         <div class="listContainer">
             <div class="list">              
-                <a ng-repeat="item in itemList | exclude:'status':'ACKNOWLEDGED' | exclude:'status':'SHIPPED' | filter:query | orderBy: 'description' | limitTo:50" class="row" ng-href="#/order/acknowledgement/item/{{item.id}}">
+                <a ng-repeat="item in itemList | exclude:'status':'SHIPPED' | exclude:'status':'ACKNOWLEDGED' | filter:query | orderBy: 'description' | limitTo:50" class="row" ng-href="#/order/acknowledgement/item/{{item.id}}">
                         <div class="profile-img cell">
                             <div>
                                 <img fade-load ng-src="{{item.image.url}}" />

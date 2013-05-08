@@ -10,7 +10,7 @@ angular.module('employeeApp').config(function($httpProvider){
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function($rootScope, CurrentUser){
+angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner){
     
     $rootScope.safeApply = function(fn){
         if(!this.$$phase){
@@ -22,4 +22,5 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser){
     
     $rootScope.currentUser = CurrentUser;
     
+    scanner.enable();
 });
