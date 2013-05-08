@@ -36,7 +36,8 @@ angular.module('employeeApp.services')
                     'supply',
                     'model',
                     'product',
-                    'configuration']
+                    'configuration',
+                    'upholstery']
         }
         
         function saveNamespaces(namespaces){
