@@ -29,7 +29,11 @@ angular.module('employeeApp.services')
             //return JSON.parse(window.localStorage.getItem('namespaces')) || [];
             return ['customer', 
                     'supplier',
+                    'supplier-contact',
+                    'permission',
                     'acknowledgement',
+                    'acknowledgement-item',
+                    'contact',
                     'shipping',
                     'transaction',
                     'fabric',
@@ -38,6 +42,8 @@ angular.module('employeeApp.services')
                     'product',
                     'configuration',
                     'upholstery']
+                    'group',
+                    'user']
         }
         
         function saveNamespaces(namespaces){
