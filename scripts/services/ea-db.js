@@ -57,6 +57,9 @@ angular.module('employeeApp.services')
                 str = '';
                 for(var key in strArray){
                     if(!re.test(strArray[key])){
+                        if(str.length > 0){
+                            str += '-';
+                        }
                         str += strArray[key];
                     }
                 }
