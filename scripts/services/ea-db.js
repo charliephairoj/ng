@@ -49,6 +49,23 @@ angular.module('employeeApp.services')
         function saveNamespaces(namespaces){
             window.localStorage.setItem('namespaces', JSON.stringify(namespaces));
         }
+        
+        function formatNamespace(str){
+            try{
+                var strArray = str.split(/\//);
+                var re = new RegExp(/^\:/);
+                str = '';
+                for(var key in strArray){
+                    if(!re.test(strArray[key])){
+                        str += strArray[key];
+                    }
+                }
+                return str;
+            }catch(e){
+                throw new TypeError("Must be a string");
+            }
+            
+        }
         /*
          * Initialize the IndexedDB
          * 
@@ -117,6 +134,7 @@ angular.module('employeeApp.services')
         
         
         function factory(namespace){
+            namespace = formatNamespace(namespace);
             /*
              * Create a store of namespaces in the localStorage
              */
