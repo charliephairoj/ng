@@ -43,4 +43,8 @@ angular.module('employeeApp')
                 $location.path('/product/upholstery');
             });
         };
+        
+        $scope.$on('$destroy', function(){
+            $scope.update(); 
+        });
     }]);
