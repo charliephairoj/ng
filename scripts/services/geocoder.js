@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('employeeApp')
-    .factory('geocoder', ['$q', function($q) {
+angular.module('employeeApp.services')
+    .factory('Geocoder', ['$q', '$rootScope', function($q, $rootScope) {
             
         /*Helper functions*/
         function prepareAddress(obj){
-            addrStr = '';
+            var addrStr = '';
             
             if(obj.hasOwnProperty('address') || obj.hasOwnProperty('address1')){
                 addrStr += obj['address'] || obj['address1'];
@@ -40,10 +40,13 @@ angular.module('employeeApp')
             return addrStr;
         }
         
-        function Geocoder(){
+        var Geocoder = {};
+        
+        Geocoder.init = function(){
             this.geocoder = new google.maps.Geocoder();
         }
         
+        /*
         Object.defineProperties(Geocoder.prototype, {
             address:{
                 get:function(){return this._address;},
@@ -64,9 +67,9 @@ angular.module('employeeApp')
                     this._region = this._getRegion(this._country);
                 }
             }
-        });
+        });*/
         
-        Geocoder.prototype._getRegion = function(country){
+        Geocoder._getRegion = function(country){
             switch(country.toLocaleLowerCase()){
                 case "thailand":
                     return 'TH';
@@ -94,9 +97,9 @@ angular.module('employeeApp')
         };
         
   
-        Geocoder.prototype._lookup = function(addr, callback, errback){
-            var addr = prepareAddress(addr);
-            this.geocoder.geocode( { 'address': addr}, function(results, status) {
+        Geocoder._lookup = function(addr, callback, errback){
+            var addrStr = prepareAddress(addr);
+            this.geocoder.geocode( { 'address': addrStr, 'region': this._getRegion(addr.country)}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     (callback || angular.noop)(results);
                 } else {
@@ -106,21 +109,26 @@ angular.module('employeeApp')
             });
         };
         
-        Geocoder.prototype.geocode = function(arg){
+        Geocoder.geocode = function(arg){
             if(angular.isObject(arg)) {
                 var deferred = $q.defer();
-                var promise = deferred.promise;
                 
                 this._lookup(arg, function(results){
-                    deferred.resolve(results);
+                    $rootScope.safeApply(function(){
+                        deferred.resolve(results);
+                    });
                 }, function(status){
-                    deferred.reject(status);
+                    $rootScope.safeApply(function(){
+                        deferred.reject(status);
+                    });
                 });
-                return promise
+                return deferred.promise
             }else{
                 throw new TypeError("Arguments must be in the form of an object.");
             }
         };
         
+        Geocoder.init();
+        return Geocoder;
         
     }]);
