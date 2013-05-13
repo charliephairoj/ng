@@ -43,7 +43,8 @@ angular.module('employeeApp.services')
                     'configuration',
                     'upholstery',
                     'group',
-                    'user']
+                    'user', 
+                    'delivery']
         }
         
         function saveNamespaces(namespaces){
