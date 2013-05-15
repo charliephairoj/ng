@@ -73,26 +73,37 @@ angular.module('employeeApp.services')
             switch(country.toLocaleLowerCase()){
                 case "thailand":
                     return 'TH';
+                    break;
                 case "usa":
                     return "US";
+                    break;
                 case "us":
                     return 'US';
+                    break;
                 case "italy":
                     return 'IT';
+                    break;
                 case 'spain':
                     return 'ES';
+                    break;
                 case 'germany':
                     return 'DE';
+                    break;
                 case 'china':
                     return 'CN';
+                    break;
                 case 'india':
                     return 'IN';
+                    break;
                 case 'new zealand':
                     return 'NZ';
+                    break;
                 case 'australia':
                     return 'AU';
+                    break;
                 default:
                     return false;
+                    break;
             }
         };
         

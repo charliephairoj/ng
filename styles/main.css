@@ -2629,13 +2629,8 @@ select {
   background-color: #313131;
 }
 .createAcknowledgementPage .quantity_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   text-align: center;
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .quantity_modal input {
   width: 100px;
@@ -2657,13 +2652,8 @@ select {
   background-color: #313131;
 }
 .createAcknowledgementPage .vat_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   text-align: center;
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .vat_modal input {
   width: 100px;
@@ -2676,12 +2666,7 @@ select {
   text-align: center;
 }
 .createAcknowledgementPage .vat_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .vat_modal input {
   width: 50px;
@@ -2703,13 +2688,8 @@ select {
   background-color: #313131;
 }
 .createAcknowledgementPage .po_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   text-align: center;
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .po_modal input {
   width: 100px;
@@ -2722,12 +2702,7 @@ select {
   text-align: center;
 }
 .createAcknowledgementPage .po_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .po_modal input {
   width: 50px;
@@ -2883,13 +2858,8 @@ select {
   background-color: #313131;
 }
 .createAcknowledgementPage .remarks_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   text-align: center;
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .remarks_modal input {
   width: 100px;
@@ -2902,12 +2872,7 @@ select {
   text-align: center;
 }
 .createAcknowledgementPage .remarks_modal .title {
-<<<<<<< HEAD
-  font-size: 0.8em;
-  padding: 0.6em 0em;
-=======
   padding: 0.2em 0em;
->>>>>>> test
 }
 .createAcknowledgementPage .remarks_modal input {
   width: 50px;
@@ -4126,7 +4091,7 @@ select {
   margin: 0;
   float: right;
 }
-.customer_details_page {
+.customer-details-page {
   height: 100%;
   left: 200px;
   right: 0px;
@@ -4134,26 +4099,26 @@ select {
   position: absolute;
   font-family: proxima;
 }
-.customer_details_page .workspace {
+.customer-details-page .workspace {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: #313131;
 }
-.customer_details_page .workspace .details {
+.customer-details-page .workspace .details {
   position: relative;
   height: auto;
   width: 100%;
   border-bottom: 1px solid #282828;
 }
-.customer_details_page .workspace .details .table {
+.customer-details-page .workspace .details .table {
   margin: 10px;
   display: table;
 }
-.customer_details_page .workspace .details .table .row {
+.customer-details-page .workspace .details .table .row {
   display: table-row;
 }
-.customer_details_page .workspace .details .table .row .cell {
+.customer-details-page .workspace .details .table .row .cell {
   display: table-cell;
   padding: 0.4em;
   font-size: 0.8em;
@@ -4161,26 +4126,26 @@ select {
   font-family: proxima;
   letter-spacing: 0.08em;
 }
-.customer_details_page .workspace .items {
+.customer-details-page .workspace .items {
   position: relative;
   height: 100%;
   width: 100%;
   overflow-y: scroll;
 }
-.customer_details_page .workspace .items .table {
+.customer-details-page .workspace .items .table {
   display: table;
   width: 100%;
   margin-bottom: 100px;
 }
-.customer_details_page .workspace .items .table .row {
+.customer-details-page .workspace .items .table .row {
   display: table-row;
   width: 100%;
 }
-.customer_details_page .workspace .items .table .row.header {
+.customer-details-page .workspace .items .table .row.header {
   position: absolute;
   top: 0px;
 }
-.customer_details_page .workspace .items .table .row .cell {
+.customer-details-page .workspace .items .table .row .cell {
   color: #CCC;
   font-family: proxima;
   display: table-cell;
@@ -4190,50 +4155,62 @@ select {
   border-bottom: 1px solid #282828;
   letter-spacing: 0.08em;
 }
-.customer_details_page table td {
+.customer-details-page table td {
   padding: 3px;
 }
-.customer_details_page .map_modal {
+.customer-details-page .map_modal {
   background-color: #313131;
 }
-.customer_details_page .map_modal .container {
+.customer-details-page .map_modal .container {
   bottom: 40px;
 }
-.customer_details_page .map_modal .container .map_container {
+.customer-details-page .map_modal .container .map_container {
   position: absolute;
   top: 5px;
   right: 5px;
   bottom: 5px;
   left: 5px;
 }
-.customer_details_page .map_modal .container .map_container #map_canvas {
+.customer-details-page .map_modal .container .map_container #map_canvas {
   height: 100%;
   width: 100%;
 }
-.customer_details_page .workspace .customer {
+.customer-details-page .workspace .customer {
   margin-left: 20px;
   margin-top: 40px;
+  color: #CCC;
 }
-.customer_details_page .workspace .customer .details .title {
+.customer-details-page .workspace .customer .details .title {
   font-size: 18px;
 }
-.customer_details_page .workspace .customer .details .details {
+.customer-details-page .workspace .customer .details .details {
   margin-top: 20px;
 }
-.customer_details_page .workspace .customer .details .details tr td {
+.customer-details-page .workspace .customer .details .details tr td {
   font-size: 12px;
   line-height: 18px;
 }
-.customer_details_page .workspace .customer .details .details tr td:first-child {
+.customer-details-page .workspace .customer .details .details tr td:first-child {
   color: #6B6B6B;
 }
-.customer_details_page .workspace .customer .details .details tr td:last-child {
+.customer-details-page .workspace .customer .details .details tr td:last-child {
   color: #828282;
   padding-left: 20px;
 }
-.customer_details_page .workspace .address {
+.customer-details-page .workspace .address {
   margin-left: 20px;
   margin-top: 20px;
+}
+.customer-details-page .workspace .map-container {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  bottom: 1em;
+  right: 40%;
+}
+.customer-details-page .workspace .map-container #map_canvas {
+  margin: 1px;
+  background-color: pink;
 }
 /*Model Page*/
 .fabricDetailsPage {
@@ -7810,32 +7787,39 @@ select {
 .viewCustomerPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
 }
-.viewCustomerPage .customer_modal {
+.viewCustomerPage .add-modal {
   background-color: #313131;
   width: 650px;
-  margin-left: -325px;
+  margin: 0;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  width: auto;
+  height: auto;
 }
-.viewCustomerPage .customer_modal .title {
+.viewCustomerPage .add-modal .title {
   text-align: center;
 }
-.viewCustomerPage .customer_modal .container {
-  position: relative;
-}
-.viewCustomerPage .customer_modal .container table {
+.viewCustomerPage .add-modal .container table {
   position: absolute;
   left: 15px;
   top: 20px;
 }
-.viewCustomerPage .customer_modal .container table td {
-  font-size: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+.viewCustomerPage .add-modal .container table td {
+  font-size: 0.85em;
+  padding: 0.2em 0em;
+  letter-spacing: 0.08em;
+  font-family: proxima;
+  color: #CCC;
 }
-.viewCustomerPage .customer_modal .container table td input {
-  font-size: 12px;
+.viewCustomerPage .add-modal .container table td input {
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
   border-radius: 2px;
-  color: #FFFFFF;
-  background-color: grey;
+  color: #CCC;
+  background-color: #282828;
+  border: none;
   outline: none;
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
@@ -7843,24 +7827,87 @@ select {
   -ms-transition: all 250ms ease;
   transition: all 250ms ease;
 }
-.viewCustomerPage .customer_modal .container table td input:focus {
+.viewCustomerPage .add-modal .container table td input:focus {
   background-color: #FFFFFF;
   color: #000000;
 }
-.viewCustomerPage .customer_modal .container table td:first-child {
+.viewCustomerPage .add-modal .container table td:first-child {
   color: #FFFFFF;
   padding-right: 5px;
 }
-.viewCustomerPage .customer_modal .container .map_container {
+.viewCustomerPage .add-modal .container .map_container {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 300px;
-  height: 300px;
+  top: 1em;
+  right: 1em;
+  bottom: 1em;
+  left: 50%;
 }
-.viewCustomerPage .customer_modal .container .map_container #map_canvas {
+.viewCustomerPage .add-modal .container .map_container #map_canvas {
+  position: absolute;
   height: 100%;
   width: 100%;
+  background-color: red;
+}
+.viewCustomerPage .modal.add {
+  background-color: #313131;
+  width: 650px;
+  margin: 0;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  width: auto;
+  height: auto;
+}
+.viewCustomerPage .modal.add .title {
+  text-align: center;
+}
+.viewCustomerPage .modal.add .container table {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+}
+.viewCustomerPage .modal.add .container table td {
+  font-size: 0.85em;
+  padding: 0.2em 0em;
+  letter-spacing: 0.08em;
+  font-family: proxima;
+  color: #CCC;
+}
+.viewCustomerPage .modal.add .container table td input {
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  color: #CCC;
+  background-color: #282828;
+  border: none;
+  outline: none;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.viewCustomerPage .modal.add .container table td input:focus {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.viewCustomerPage .modal.add .container table td:first-child {
+  color: #FFFFFF;
+  padding-right: 5px;
+}
+.viewCustomerPage .modal.add .container .map_container {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  bottom: 1em;
+  left: 50%;
+}
+.viewCustomerPage .modal.add .container .map_container #map_canvas {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: red;
 }
 .viewCustomerPage .workspace .cell .details {
   font-family: proxima;
