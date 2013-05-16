@@ -76,8 +76,8 @@ angular.module('employeeApp.services')
          * this database instead of making repeated calls to open a new database
          */
         var database = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-        
-        var request = database.open('app', getNamespaces().length);
+        var version = getNamespaces().length;
+        var request = database.open('app',  18);
         var DBVehicle = {_readyFns:[]};
         Object.defineProperties(DBVehicle, {
             onready:{

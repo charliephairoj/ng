@@ -4280,7 +4280,7 @@ select {
 .fabricDetailsPage table td {
   padding: 3px;
 }
-.fabricDetailsPage .modal {
+.fabricDetailsPage .d-modal {
   background: #313131;
   height: 10em;
   width: 20em;
@@ -4290,17 +4290,17 @@ select {
   margin-top: -5em;
   border: 5px;
 }
-.fabricDetailsPage .modal .title {
+.fabricDetailsPage .d-modal .title {
   border-bottom: 1px solid #282828;
   color: #CCC;
   padding: 0.9em 0em;
   text-align: center;
   font-size: 1em;
 }
-.fabricDetailsPage .modal table {
+.fabricDetailsPage .d-modal table {
   margin: 0.8em;
 }
-.fabricDetailsPage .modal table tr td {
+.fabricDetailsPage .d-modal table tr td {
   color: #CCC;
 }
 .fabricDetailsPage .addModal {
@@ -4326,39 +4326,126 @@ select {
 .fabricDetailsPage .addModal table tr td {
   color: #CCC;
 }
-.fabricDetailsPage .logContainer {
-  position: absolute;
-  right: 0px;
-  left: 100%;
-  height: 100%;
-  background-color: white;
-  overflow: scroll;
-  -webkit-transition: left 500ms linear;
-  -moz-transition: left 500ms linear;
-  -o-transition: left 500ms linear;
-  -ms-transition: left 500ms linear;
-  transition: left 500ms linear;
+.fabricDetailsPage .modal {
+  top: 50%;
+  left: 50%;
 }
-.fabricDetailsPage .logContainer .log {
+.fabricDetailsPage .modal.add {
+  height: 18em;
+  width: 40em;
+  margin-top: -9em;
+  margin-left: -20em;
+}
+.fabricDetailsPage .modal.add .container {
+  text-align: center;
+}
+.fabricDetailsPage .modal.add .container table {
+  display: inline-block;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.add .container table td:first-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.add .container table td:last-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.reserve {
+  height: 10em;
+  width: 40em;
+  margin-top: -5em;
+  margin-left: -20em;
+}
+.fabricDetailsPage .modal.reserve .container {
+  text-align: center;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.reserve .container table {
+  display: inline-block;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.reserve .container table td:first-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.subtract {
+  height: 10em;
+  width: 40em;
+  margin-top: -5em;
+  margin-left: -20em;
+}
+.fabricDetailsPage .modal.subtract .container {
+  text-align: center;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.subtract .container table {
+  display: inline-block;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.subtract .container table td:first-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.reset {
+  height: 18em;
+  width: 40em;
+  margin-top: -9em;
+  margin-left: -20em;
+}
+.fabricDetailsPage .modal.reset .container {
+  text-align: center;
+}
+.fabricDetailsPage .modal.reset .container table {
+  display: inline-block;
+  margin: 0.5em;
+}
+.fabricDetailsPage .modal.reset .container table td:first-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.reset .container table td:last-child {
+  text-align: left;
+}
+.fabricDetailsPage .modal.log {
+  top: 10%;
+  right: 10%;
+  left: 10%;
+  bottom: 10%;
+  margin: 0;
+  height: auto;
+  width: auto;
+  color: #CCC;
+}
+.fabricDetailsPage .modal.log .container {
+  y-overflow: scroll;
+}
+.fabricDetailsPage .modal.log .container table {
   width: 100%;
 }
-.fabricDetailsPage .logContainer .log tr th {
-  font-size: 18px;
-  padding: 5px;
+.fabricDetailsPage .modal.log .container table th {
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.fabricDetailsPage .logContainer .log tr td {
-  padding: 5px;
+.fabricDetailsPage .modal.log .container table tr {
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
 }
-.fabricDetailsPage .logContainer .log tr.subtract {
-  background-color: red;
-  opacity: 0.7;
+.fabricDetailsPage .modal.log .container table tr .log {
+  width: 30%;
 }
-.fabricDetailsPage .logContainer .log tr.reserve {
-  background-color: yellow;
-  opacity: 0.7;
+.fabricDetailsPage .modal.log .container table tr .acknowledgement {
+  width: 5%;
+  text-align: center;
 }
-.fabricDetailsPage .logContainer.active {
-  left: 0px;
+.fabricDetailsPage .modal.log .container table tr .employee {
+  width: 20%;
+  text-align: center;
+}
+.fabricDetailsPage .modal.log .container table tr .quantity {
+  width: 7%;
+  text-align: right;
+}
+.fabricDetailsPage .modal.log .container table tr .remarks {
+  width: 10%;
+}
+.fabricDetailsPage .modal.log .container table tr .timestamp {
+  width: 20%;
 }
 .fabricDetailsPage .workspace .details {
   border: none;
@@ -7814,6 +7901,7 @@ select {
   color: #CCC;
 }
 .viewCustomerPage .add-modal .container table td input {
+  width: 20em;
   font-size: 0.85em;
   letter-spacing: 0.08em;
   border-radius: 2px;
@@ -7875,6 +7963,7 @@ select {
   color: #CCC;
 }
 .viewCustomerPage .modal.add .container table td input {
+  width: 20em;
   font-size: 0.85em;
   letter-spacing: 0.08em;
   border-radius: 2px;

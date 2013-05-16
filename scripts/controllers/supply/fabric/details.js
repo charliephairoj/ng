@@ -54,16 +54,16 @@ angular.module('employeeApp')
             $scope['show'+capitalizeFirstLetter(name)] = false;
             //Declare Ajax call vars
             var url = "fabric/"+$scope.fabric.id+"/"+name;
-            var data = {lenght:$scope[name+'Length'], remark:$scope[name+'Remark']};
+            var data = {quantity:$scope['quantity'], remarks:$scope['remarks']};
             //clear the form
-            $scope[name+'Length'] = null;
-            $scope[name+'Remark'] = null;
+            $scope['quantity'] = null;
+            $scope['remarks'] = null;
             //Ajax call
             $http.post(url, JSON.stringify(data)).success(function(data){
                 //Reload the log
-                $scope.viewLog();
-                angular.copy(data, $scope.fabric);
-                $scope.fabric.$save();
+                $scope.safeApply(function(){
+                    $scope.fabric.quantity = data.quantity;
+                })
             });
         } 
     });
@@ -71,8 +71,10 @@ angular.module('employeeApp')
     $scope.viewLog = function(){
         
         $http.get("fabric/"+$scope.fabric.id+"/log").success(function(data){
-                $scope.logs = $scope.logs || [];
-                angular.copy(data, $scope.logs);
+                $scope.logs = [];
+                angular.forEach(data, function(item){
+                    $scope.logs.push(item);
+                });
         });
     };
     
