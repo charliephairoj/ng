@@ -137,7 +137,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="log in logs | orderBy:'timestamp'"> 
+                    <tr ng-repeat="log in logs | orderBy:'-timestamp'"> 
                         <td class="log">{{log.event}}</td>
                         <td class="acknowledgement">{{log.acknowledgement_id}}</td>
                         <td class="employee">{{log.employee}}</td>
