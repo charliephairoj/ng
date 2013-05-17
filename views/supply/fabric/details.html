@@ -40,18 +40,20 @@
     <!--
         Reserve Length Modal
     -->
-    <form name="reserveForm" novalidate modal ng-model="showReserve">
+    <form name="reserveForm" class="reserve" novalidate modal ng-model="showReserve">
         <div class="title" ng-click="showReserve=false">Reserve Fabric Length</div>
-        <table class="container">
-            <tr>
-                <td>Length</td>
-                <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="reserveLength" /></td>
-            </tr>
-            <tr>
-                <td>Acknowledgement</td>
-                <td><input ng-model="reserveRemark"/></textarea></td>
-            </tr>
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <td>Length</td>
+                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
+                </tr>
+                <tr>
+                    <td>Acknowledgement</td>
+                    <td><input ng-model="remarks"/></textarea></td>
+                </tr>
+            </table>
+        </div>
         <div class="bottom-bar">
             <button type="button" ng-disabled="reserveForm.$invalid" ng-click="reserve()">Reserve</button>
         </div>
@@ -60,18 +62,20 @@
     <!--
         Add Length Modal
     -->
-    <form name="addForm" novalidate modal ng-model="showAdd">
+    <form name="addForm" class="add" novalidate modal ng-model="showAdd">
         <div class="title" ng-click="showAdd=false">Add Fabric Length</div>
-        <table class="container">
-            <tr>
-                <td>Length</td>
-                <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="addLength" /></td>
-            </tr>
-            <tr>
-                <td>Acknowledgement</td>
-                <td><textarea cols="25" rows="8" ng-model="addRemark"/></textarea></td>
-            </tr>
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <td>Length</td>
+                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
+                </tr>
+                <tr>
+                    <td>Remarks</td>
+                    <td><textarea cols="25" rows="8" ng-model="remarks"></textarea></td>
+                </tr>
+            </table>
+            </div>
         <div class="bottom-bar">
             <button type="button" ng-disabled="addForm.$invalid" ng-click="add()">Add</button>
         </div>
@@ -79,18 +83,20 @@
     <!--
         Subtract Length Modal
     -->
-    <form name="subtractForm" novalidate modal ng-model="showSubtract">
+    <form name="subtractForm" class="subtract" novalidate modal ng-model="showSubtract">
         <div class="title" ng-click="showSubtract=false">Subtract Fabric Length</div>
-        <table class="container">
-            <tr>
-                <td>Length</td>
-                <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="subtractLength" /></td>
-            </tr>
-            <tr>
-                <td>Acknowledgement</td>
-                <td><input ng-model="subtractRemark" /></textarea></td>
-            </tr>
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <td>Length</td>
+                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
+                </tr>
+                <tr>
+                    <td>Acknowledgement</td>
+                    <td><input ng-model="remarks" /></textarea></td>
+                </tr>
+            </table>
+        </div>
         <div class="bottom-bar">
             <button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Subtract</button>
         </div>
@@ -98,48 +104,56 @@
     <!--
         Reset Length Modal
     -->
-    <form name="resetForm" novalidate modal ng-model="showReset">
+    <form name="resetForm" class="reset" novalidate modal ng-model="showReset">
         <div class="title" ng-click="showReset=false">Reset Fabric Length</div>
-        <table class="container">
-            <tr>
-                <td>Length</td>
-                <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="resetLength" /></td>
-            </tr>
-            <tr>
-                <td>Acknowledgement</td>
-                <td><textarea cols="25" rows="8"  ng-model="resetRemark" /></textarea></td>
-            </tr>   
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <td>Length</td>
+                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
+                </tr>
+                <tr>
+                    <td>Remarks</td>
+                    <td><textarea cols="25" rows="8"  ng-model="remarks" /></textarea></td>
+                </tr>   
+            </table>
+        </div>
         <div class="bottom-bar">
             <button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Reset</button>
         </div>
     </form>
     
-    <div class="logContainer" ng-class="{active:showLog}">
-        <table class="log">
-            <thead>
-                <tr>
-                    <th>Action</th>
-                    <th>Employee</th>
-                    <th>Length</th>
-                    <th>Current Length</th>
-                    <th>Remarks</th>
-                    <th>Timestamp</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="log in logs" ng-class="{subtract:log.action=='Subtract', reserve:log.action=='Reserve'}"> 
-                    <td>{{log.action}}</td>
-                    <td>{{log.employee}}</td>
-                    <td>{{log.length}}</td>
-                    <td>{{log.total}}</td>
-                    <td>{{log.remarks}}</td>
-                    <td>{{log.timestamp}}</td>
-                </tr>
-            </tbody>
-                    
-        </table>
+    <div class="log" data-modal data-ng-model="showLog">
+        <div class="container">
+            <table class="log">
+                <thead>
+                    <tr>
+                        <th class="log">Log</th>
+                        <th class="acknowledgement">Ack#</th>
+                        <th class="employee">Employee</th>
+                        <th class="quantity">Length</th>
+                        <th class="remarks">Remarks</th>
+                        <th class="timestamp">Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="log in logs | orderBy:'-timestamp'"> 
+                        <td class="log">{{log.event}}</td>
+                        <td class="acknowledgement">{{log.acknowledgement_id}}</td>
+                        <td class="employee">{{log.employee}}</td>
+                        <td class="quantity">{{log.quantity}}</td>
+                        <td class="remarks">{{log.remarks}}</td>
+                        <td class="timestamp">{{log.timestamp}}</td>
+                    </tr>
+                </tbody>
+                        
+            </table>
+        </div>
+        <div class="bottom-bar">
+            <button data-ng-click="showLog=false">Close</button>
+        </div>
     </div>
+    
     <form class="workspace">
         
         <table class="details">
@@ -183,12 +197,9 @@
                 </tr>
                 <tr>
                     <td><label>Current Length</label></td>
-                    <td>{{fabric.depth}}</td>
+                    <td>{{fabric.quantity}}</td>
                 </tr> 
-                <tr>
-                    <td><label>Reserved Length</label></td>
-                    <td>{{fabric.reserved_length}}</td>
-                </tr> 
+                
                 
             </table>
             

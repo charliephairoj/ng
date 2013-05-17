@@ -8,9 +8,15 @@ angular.module('employeeApp')
           var input;
           var model = attrs.ngModel || 'query'
           element.addClass('search-bar');
-          input = angular.element('<input size="40" placeholder="Search" ng-model="'+model+'" />');
+          if(attrs.searchBarDate != undefined){
+              input = angular.element('<div data-ng-model="'+model+'" class="datepicker" ui-date></div>');
+              element.addClass('date');
+          }else{
+              input = angular.element('<input size="40" placeholder="Search" ng-model="'+model+'" />');
+          }
           $compile(input)(scope);
           element.append(input);
+          
           
           /*
            * The handler will detect if ctrl/cmd+F 

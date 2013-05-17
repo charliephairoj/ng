@@ -164,6 +164,10 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/order/acknowledgement/details.html',
         controller: 'OrderAcknowledgementDetailsCtrl'
       })
+      .when('/order/shipping/delivery', {
+        templateUrl: 'views/order/shipping/delivery.html',
+        controller: 'OrderShippingDeliveryCtrl'
+      })
       /*
       .when('/order/shipping/deliveries/week', {
         templateUrl: 'views/order/acknowledgement/weekly.html',
@@ -201,6 +205,7 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/product/inventory.html',
         controller: 'ProductInventoryCtrl'
       })
+      
       .otherwise({
         redirectTo: '/'
       });

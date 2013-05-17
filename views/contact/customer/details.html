@@ -1,4 +1,4 @@
-<div class="customer_details_page"  ng-init="showAddContact=false; viewMap=false;">
+<div class="customer-details-page"  ng-init="showAddContact=false; viewMap=false;">
     
     <!--Modals-->
     <form class="map_modal" data-modal ng-model="viewMap">
@@ -66,7 +66,7 @@
                 <tr>
                     <td>Currency</td>
                     <td>
-                        <select required ng-change="update()" ng-model="customer.currency">
+                        <select required ng-change="updatePosition()" ng-model="customer.currency">
                             <option value="USD">US Dollar</option>
                             <option value="EUR">Euro</option>
                             <option value="THB">Thai Baht</option>
@@ -90,7 +90,10 @@
                 </table>
             </div>
         </div>
-            
+        <div class="map-container">
+            <div map id="map_canvas"></div>
+        </div>
+        
     </div>
         
     
