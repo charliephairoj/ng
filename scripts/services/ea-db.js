@@ -78,7 +78,7 @@ angular.module('employeeApp.services')
          */
         var database = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
         var version = getNamespaces().length;
-        var request = database.open('app',  18);
+        var request = database.open('app',  version);
         var DBVehicle = {_readyFns:[]};
         Object.defineProperties(DBVehicle, {
             onready:{
