@@ -4228,11 +4228,11 @@ select {
   top: 1em;
   right: 1em;
   bottom: 1em;
-  right: 40%;
+  left: 30em;
 }
 .customer-details-page .workspace .map-container #map_canvas {
-  margin: 1px;
-  background-color: pink;
+  height: 100%;
+  width: 100%;
 }
 /*Model Page*/
 .fabricDetailsPage {

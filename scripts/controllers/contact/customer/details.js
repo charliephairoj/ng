@@ -3,10 +3,19 @@
 angular.module('employeeApp')
   .controller('ContactCustomerDetailsCtrl', function ($scope, Customer, $routeParams, $location, Notification, Geocoder) {
     $scope.customer =  Customer.get({'id':$routeParams.id}, function(){
-        var promise = Geocoder.geocode($scope.customer.address);
-        promise.then(function(results){
-            updatePosition(results);
-        });
+        
+        
+        try{
+            $scope.marker = $scope.map.createMarker({
+                lat: $scope.customer.address.lat,
+                lng: $scope.customer.adress.lng
+            })
+        }catch(e){
+            var promise = Geocoder.geocode($scope.customer.addresses[0]);
+            promise.then(function(results){
+                updatePosition(results);
+            });
+        }
     }); 
     
     function updatePosition(results){
@@ -16,8 +25,8 @@ angular.module('employeeApp')
             $scope.marker = $scope.map.createMarker(results[0].geometry.location);
             $scope.marker.onchange = function(latLng){
                 //Set address lat and lng
-                $scope.customer.address.lat = $scope.marker.lat;
-                $scope.customer.address.lng = $scope.marker.lng;
+                $scope.customer.address[0].lat = $scope.marker.lat;
+                $scope.customer.address[0].lng = $scope.marker.lng;
             };
         }
       
@@ -25,8 +34,8 @@ angular.module('employeeApp')
         $scope.map.setPosition(results[0].geometry.location);
       
         //Set the Address lat and lng
-        $scope.customer.address.lat = $scope.marker.lat;
-        $scope.customer.address.lng = $scope.marker.lng;
+        $scope.customer.address[0].lat = $scope.marker.lat;
+        $scope.customer.address[0].lng = $scope.marker.lng;
     }
     
     //Mehtods
