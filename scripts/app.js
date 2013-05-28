@@ -206,6 +206,10 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         controller: 'ProductInventoryCtrl'
       })
       
+      .when('/hr', {
+        templateUrl: 'views/hr.html',
+        controller: 'HrCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
