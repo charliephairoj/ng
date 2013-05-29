@@ -4719,6 +4719,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .acknowledgementDetailsPage .log-modal .container .grid .header .row {
   display: table-row;
@@ -4726,12 +4729,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .acknowledgementDetailsPage .log-modal .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .acknowledgementDetailsPage .log-modal .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -4740,6 +4745,8 @@ select {
 .acknowledgementDetailsPage .log-modal .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .acknowledgementDetailsPage .log-modal .container .grid .body .row {
   text-decoration: none;
@@ -4751,13 +4758,13 @@ select {
 .acknowledgementDetailsPage .log-modal .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .acknowledgementDetailsPage .log-modal .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -5068,6 +5075,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .view-grid .header .row {
   display: table-row;
@@ -5075,12 +5085,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .view-grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .view-grid .header.ui-scrollfix {
   position: absolute;
@@ -5089,6 +5101,8 @@ select {
 .view-grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .view-grid .body .row {
   text-decoration: none;
@@ -5100,13 +5114,77 @@ select {
 .view-grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .view-grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.grid {
+  display: table;
+  height: auto;
+  width: 100%;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.grid .header {
+  display: table-header-group;
+  width: 100%;
+  height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
+}
+.grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #FFFFFF;
+  border: none;
+  height: 2.6em;
+}
+.grid .header .row .cell {
+  font-size: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #313131;
+  color: #FFF;
+}
+.grid .header.ui-scrollfix {
+  position: absolute;
+  top: 0px;
+}
+.grid .body {
+  display: table-row-group;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+.grid .body .row {
+  text-decoration: none;
+  display: table-row;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+.grid .body .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  color: grey;
+}
+.grid .body .row .cell label {
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -5156,6 +5234,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewPage .workspace .container .grid .header .row {
   display: table-row;
@@ -5163,12 +5244,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -5177,6 +5260,8 @@ select {
 .viewPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -5188,13 +5273,13 @@ select {
 .viewPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -5546,6 +5631,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .view-page .workspace .container .grid .header .row {
   display: table-row;
@@ -5553,12 +5641,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .view-page .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .view-page .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -5567,6 +5657,8 @@ select {
 .view-page .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .view-page .workspace .container .grid .body .row {
   text-decoration: none;
@@ -5578,13 +5670,13 @@ select {
 .view-page .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .view-page .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -5936,6 +6028,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .acknowledgementViewPage .workspace .container .grid .header .row {
   display: table-row;
@@ -5943,12 +6038,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .acknowledgementViewPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .acknowledgementViewPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -5957,6 +6054,8 @@ select {
 .acknowledgementViewPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .acknowledgementViewPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -5968,13 +6067,13 @@ select {
 .acknowledgementViewPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .acknowledgementViewPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -6284,11 +6383,81 @@ select {
 .acknowledgementViewPage .workspace .listContainer .list .row:last-child {
   border-bottom: none;
 }
+.acknowledgementViewPage .workspace {
+  overflow: hidden;
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .header {
+  display: table;
+  width: 100%;
+  position: absolute;
+  height: 2.6em;
+  background: #CCC;
+}
+.acknowledgementViewPage .workspace .header .row {
+  display: table-row;
+  width: 100%;
+  height: 100%;
+}
+.acknowledgementViewPage .workspace .header .row .cell {
+  display: table-cell;
+  font-size: 1em;
+  padding: 0.8em 0.8em;
+}
+.acknowledgementViewPage .workspace .header .row .cell.id {
+  width: 10%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.customer {
+  width: 25%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.order-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.delivery-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.processed-by {
+  width: 20%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.status {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
 .acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-data.acknowledged {
   color: yellow;
 }
 .acknowledgementViewPage .workspace .listContainer .list .row .cell .details .details-row .details-data.shipped {
   color: #00FF00;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row.acknowledged {
+  background-color: yellow;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row.shipped {
+  background-color: green;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.id {
+  width: 10%;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.customer {
+  width: 25%;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.order-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.delivery-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.processed-by {
+  width: 20%;
+}
+.acknowledgementViewPage .workspace .listContainer .grid .row .cell.status {
+  width: 15%;
 }
 .viewFabricPage {
   font-family: Helvetica, Tahoma, sans-serif;
@@ -6332,6 +6501,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewFabricPage .workspace .container .grid .header .row {
   display: table-row;
@@ -6339,12 +6511,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewFabricPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewFabricPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -6353,6 +6527,8 @@ select {
 .viewFabricPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewFabricPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -6364,13 +6540,13 @@ select {
 .viewFabricPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewFabricPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -6722,6 +6898,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewGluePage .workspace .container .grid .header .row {
   display: table-row;
@@ -6729,12 +6908,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewGluePage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewGluePage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -6743,6 +6924,8 @@ select {
 .viewGluePage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewGluePage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -6754,13 +6937,13 @@ select {
 .viewGluePage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewGluePage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -7116,6 +7299,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewSuppliersPage .workspace .container .grid .header .row {
   display: table-row;
@@ -7123,12 +7309,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewSuppliersPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewSuppliersPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -7137,6 +7325,8 @@ select {
 .viewSuppliersPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewSuppliersPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -7148,13 +7338,13 @@ select {
 .viewSuppliersPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewSuppliersPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -7548,6 +7738,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewCustomerPage .workspace .container .grid .header .row {
   display: table-row;
@@ -7555,12 +7748,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewCustomerPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewCustomerPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -7569,6 +7764,8 @@ select {
 .viewCustomerPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewCustomerPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -7580,13 +7777,13 @@ select {
 .viewCustomerPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewCustomerPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -8083,6 +8280,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewLibraryPage .workspace .container .grid .header .row {
   display: table-row;
@@ -8090,12 +8290,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewLibraryPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewLibraryPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -8104,6 +8306,8 @@ select {
 .viewLibraryPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewLibraryPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -8115,13 +8319,13 @@ select {
 .viewLibraryPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewLibraryPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -8543,6 +8747,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .viewTransactionsPage .workspace .container .grid .header .row {
   display: table-row;
@@ -8550,12 +8757,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .viewTransactionsPage .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .viewTransactionsPage .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -8564,6 +8773,8 @@ select {
 .viewTransactionsPage .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .viewTransactionsPage .workspace .container .grid .body .row {
   text-decoration: none;
@@ -8575,13 +8786,13 @@ select {
 .viewTransactionsPage .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .viewTransactionsPage .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -8936,6 +9147,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .view-prop-page .workspace .container .grid .header .row {
   display: table-row;
@@ -8943,12 +9157,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .view-prop-page .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .view-prop-page .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -8957,6 +9173,8 @@ select {
 .view-prop-page .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .view-prop-page .workspace .container .grid .body .row {
   text-decoration: none;
@@ -8968,13 +9186,13 @@ select {
 .view-prop-page .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .view-prop-page .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;
@@ -9333,6 +9551,9 @@ select {
   display: table-header-group;
   width: 100%;
   height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
 }
 .delivery-page .workspace .container .grid .header .row {
   display: table-row;
@@ -9340,12 +9561,14 @@ select {
   height: auto;
   color: #FFFFFF;
   border: none;
+  height: 2.6em;
 }
 .delivery-page .workspace .container .grid .header .row .cell {
+  font-size: 1em;
   display: table-cell;
   vertical-align: middle;
-  padding: 0.8em;
   border-bottom: 1px solid #313131;
+  color: #FFF;
 }
 .delivery-page .workspace .container .grid .header.ui-scrollfix {
   position: absolute;
@@ -9354,6 +9577,8 @@ select {
 .delivery-page .workspace .container .grid .body {
   display: table-row-group;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .delivery-page .workspace .container .grid .body .row {
   text-decoration: none;
@@ -9365,13 +9590,13 @@ select {
 .delivery-page .workspace .container .grid .body .row .cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0.8em;
   border-top: 1px solid #3c3c3c;
   border-bottom: 1px solid #282828;
   color: grey;
 }
 .delivery-page .workspace .container .grid .body .row .cell label {
-  font-size: 10pt;
+  font-size: 0.8em;
   color: #C1C1C1;
   -webkit-transition: all 250ms linear;
   -moz-transition: all 250ms linear;

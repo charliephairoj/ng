@@ -29,8 +29,36 @@
     -->
     
     <div class="workspace">
+        <div class="header">
+            <div class="row">
+                <div class="cell id">Ack#</div>
+                <div class="cell customer">Customer</div>
+                <div class="cell status">Status</div>
+                <div class="cell delivery-date">Delivery Date</div>
+                <div class="cell order-date">Order Date</div>
+                <div class="cell processed-by">Processed By</div>
+               
+            </div>
+        </div>
         <div class="listContainer">
+            
+            <div class="grid">
+                
+                <div class="body">
+                    <a class="row" data-ng-repeat="ack in ackList | filter:query | orderBy:'status' | orderBy:'-id' | limitTo:50" ng-href="#/order/acknowledgement/{{ack.id}}" ng-class="{acknowledged:ack.status == 'ACKNOWLEDGED',shipped:ack.status=='SHIPPED'}">
+                        <div class="cell id">{{ack.id}}</div>
+                        <div class="cell customer">{{ack.customer.name}}</div>
+                        <div class="cell status">{{ack.status}}</div>
+                        <div class="cell delivery-date">{{ack.delivery_date | date:"MMMM d, yyyy"}}</div>
+                        <div class="cell order-date">{{ack.time_created | date:"MMMM d, yyyy"}}</div>
+                        <div class="cell processed-by">{{ack.employee}}</div>
+                        
+                    </a>
+                </div>
+            </div>
             <div class="list">
+                
+                    <!--
                     <a ng-repeat="ack in ackList | filter:query | orderBy:'-id' | limitTo:50" class="row" ng-href="#/order/acknowledgement/{{ack.id}}">
                         <div class="cell">
                             <div class="details">
@@ -62,6 +90,7 @@
                             </div>
                         </div>
                     </a>
+                    -->
             </div>
         </div>
     </div>
