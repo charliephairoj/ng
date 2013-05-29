@@ -28,7 +28,7 @@
         Workspace
     -->
     
-    <div class="workspace">
+    <div class="workspace grid">
         <div class="header">
             <div class="row">
                 <div class="cell id">Ack#</div>
@@ -45,7 +45,7 @@
             <div class="grid">
                 
                 <div class="body">
-                    <a class="row" data-ng-repeat="ack in ackList | filter:query | orderBy:'status' | orderBy:'-id' | limitTo:50" ng-href="#/order/acknowledgement/{{ack.id}}" ng-class="{acknowledged:ack.status == 'ACKNOWLEDGED',shipped:ack.status=='SHIPPED'}">
+                    <a class="row" data-ng-repeat="ack in ackList | filter:query | orderBy:'status' | orderBy:'-id' | limitTo:100" ng-href="#/order/acknowledgement/{{ack.id}}" ng-class="{acknowledged:ack.status == 'ACKNOWLEDGED',shipped:ack.status=='SHIPPED'}">
                         <div class="cell id">{{ack.id}}</div>
                         <div class="cell customer">{{ack.customer.name}}</div>
                         <div class="cell status">{{ack.status}}</div>

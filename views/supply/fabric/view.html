@@ -27,8 +27,35 @@
         Workspace
     -->
     
-    <div class="workspace" style="z-index:1;">
+    <div class="workspace grid" style="z-index:1;">
+        <div class="header">
+            <div class="row">
+                <div class="cell preview">Preview</div>
+                <div class="cell id">ID</div>
+                <div class="cell supplier">Supplier</div>
+                <div class="cell pattern">Pattern</div>
+                <div class="cell color">Color</div>
+                <div class="cell quantity">Quantity</div>
+            </div>
+        </div>
         <div class="listContainer">
+            <div class="grid">
+                <div class="body">
+                    <a ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/fabric/{{fabric.id}}">
+                        
+                        <div class="cell preview">
+                            <img ng-src="{{fabric.image_url}}" />
+                        </div>
+                        
+                        <div class="cell id">{{fabric.id}}</div>
+                        <div class="cell supplier">{{fabric.supplier.name}}</div>
+                        <div class="cell pattern">{{fabric.pattern}}</div>
+                        <div class="cell color">{{fabric.color}}</div>
+                        <div class="cell quantity">{{fabric.quantity}}</div>
+                    </a>
+                </div>
+            </div>
+            <!--
             <div class="list">
                 
                     <a ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/fabric/{{fabric.id}}">
@@ -71,7 +98,7 @@
                             </div>
                         </div>                      
                     </a>
-            </div>
+            </div>-->
         </div>
     </div>
     

@@ -1,4 +1,4 @@
-<div class="viewPage">
+<div class="shipping-view-page">
     
     <!--
         Sidebar
@@ -31,7 +31,34 @@
         Workspace
     -->
     
-    <div class="workspace">
+    <div class="workspace grid">
+        
+        <div class="header">
+            <div class="row">
+                <div class="cell id">Shipping#</div>
+                <div class="cell customer">Customer</div>
+                <div class="cell delivery-date">Delivery Date</div>
+                <div class="cell processed-by">Processed By</div>
+               
+            </div>
+        </div>
+        <div class="listContainer">
+            
+            <div class="grid">
+                
+                <div class="body">
+                    <a ng-repeat="shipping in shippingList | filter:query | limitTo:50 | orderBy:'-id'" class="row" ng-href="#/order/shipping/{{shipping.id}}">
+                        <div class="cell id">{{shipping.id}}</div>
+                        <div class="cell customer">{{shipping.customer.name}}</div>
+                        <div class="cell delivery-date">{{shipping.delivery_date | date:"MMMM d, yyyy"}}</div>
+                        <div class="cell processed-by">{{shipping.employee}}</div>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!--
         <div class="listContainer">
             <div class="list">
                 
@@ -60,7 +87,7 @@
                     </a>
                 
             </div>
-        </div>
+        </div>-->
     </div>
     
 </div>

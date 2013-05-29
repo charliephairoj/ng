@@ -1,4 +1,4 @@
-<div class="viewPage">
+<div class="model-view-page">
     
     
     <div class="sidebar">
@@ -18,7 +18,33 @@
         
     <div data-search-bar></div>
     
-    <div class="workspace">
+    <div class="workspace grid">
+        <div class="header">
+            <div class="row">
+                <div class="cell preview">Preview</div>
+                <div class="cell model">Model</div>
+                <div class="cell name">Name</div>
+                <div class="cell collection">Collection</div>
+            </div>
+        </div>
+        <div class="listContainer">
+            <div class="grid">
+                <div class="body">
+                    <a ng-repeat="model in modelList | filter:query | orderBy: 'model'" class="row" ng-href="#/product/model/{{model.id}}">
+                        
+                        <div class="cell preview">
+                            <img ng-src="{{model.images[0]}}" />
+                        </div>
+                        
+                        <div class="cell model">{{model.model}}</div>
+                        <div class="cell name">{{model.name}}</div>
+                        <div class="cell collection">{{model.collection}}</div>
+                     
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--
         <div class="listContainer">
             <div class="list">
                 
@@ -48,6 +74,6 @@
                         
                 
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

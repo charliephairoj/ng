@@ -105,8 +105,26 @@
         Workspace
     -->
     
-    <div class="workspace">
+    <div class="workspace grid">
+        <div class="header">
+            <div class="row">
+                <div class="cell id">ID#</div>
+                <div class="cell customer">Customer</div>
+               
+            </div>
+        </div>
         <div class="listContainer">
+            <div class="grid">
+                <div class="body">
+                    <a ng-repeat="customer in customerList | filter:query | orderBy:'name'" class="row" ng-href="#/contact/customer/{{customer.id}}">
+                        <div class="cell id">{{customer.id}}</div>
+                        <div class="cell customer">{{customer.name}}</div>
+                    </a> 
+                </div>
+                
+            </div>
+            
+            <!--
             <div class="list">
                 
                     <a ng-repeat="customer in customerList | filter:query | orderBy:'name'" class="row" ng-href="#/contact/customer/{{customer.id}}">
@@ -130,6 +148,8 @@
                     </a>
                 
             </div>
+        -->
+            
         </div>
     </div>
     

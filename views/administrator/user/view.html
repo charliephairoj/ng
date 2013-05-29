@@ -1,4 +1,4 @@
-<div class="viewPage">
+<div class="user-view-page">
     
     <!--
         Sidebar
@@ -20,7 +20,33 @@
     
     <div data-search-bar></div>
     
-    <div class="workspace">
+    <div class="workspace grid">
+        <div class="header">
+            <div class="row">
+                <div class="cell id">ID</div>
+                <div class="cell name">Name</div>
+                <div class="cell email">Email</div>
+                <div class="cell last-login">Last Login</div>
+            </div>
+        </div>
+        <div class="listContainer">
+            <div class="grid">
+                <div class="body">
+                    <a ng-repeat="user in userList | filter:query | orderBy:'first_name'" class="row" ng-href="#/administrator/user/{{user.id}}">
+                        
+                       
+                        
+                        <div class="cell id">{{user.id}}</div>
+                        <div class="cell name">{{user.first_name+' '+user.last_name}}</div>
+                        <div class="cell email">{{user.email}}</div>
+                        <div class="cell last-login">{{user.last_login | date:"MMM d, y h:mm:ss a"}}</div>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!--
         <div class="listContainer">
             <div class="list">
                     <a ng-repeat="user in userList | filter:query | orderBy:'first_name'" class="row" ng-href="#/administrator/user/{{user.id}}">
@@ -46,7 +72,7 @@
                         </div>
                     </a>
             </div>
-        </div>
+        </div>-->
     </div>
     
 </div>

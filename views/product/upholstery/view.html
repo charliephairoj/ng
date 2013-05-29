@@ -1,4 +1,4 @@
-<div class="viewPage">
+<div class="upholstery-view-page">
     
     <div class="sidebar">
         <header>
@@ -18,7 +18,41 @@
     <div data-search-bar></div>
     
     
-    <div class="workspace">
+    <div class="workspace grid">
+        <div class="header">
+            <div class="row">
+                <div class="cell preview">Preview</div>
+                <div class="cell id">ID</div>
+                <div class="cell model">Model</div>
+                <div class="cell name">Name</div>
+                <div class="cell configuration">Configuration</div>
+                <div class="cell width">Width</div>
+                <div class="cell depth">Depth</div>
+                <div class="cell height">Height</div>
+            </div>
+        </div>
+        <div class="listContainer">
+            <div class="grid">
+                <div class="body">
+                    <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model'" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
+                        
+                        <div class="cell preview">
+                            <img ng-src="{{uphol.url}}" />
+                        </div>
+                        
+                        <div class="cell id">{{uphol.id}}</div>
+                        <div class="cell model">{{uphol.model.model}}</div>
+                        <div class="cell name">{{uphol.model.name}}</div>
+                        <div class="cell configuration">{{uphol.configuration.configuration}}</div>
+                        <div class="cell width">{{uphol.width}}</div>
+                        <div class="cell depth">{{uphol.depth}}</div>
+                        <div class="cell height">{{uphol.height}}</div>
+                    
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--
         <div class="listContainer">
             <div class="list">              
                 <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model' | limitTo:50" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
@@ -68,6 +102,7 @@
                         </div>
                 </a>
             </div>
-        </div>
+        </div>-->
+        
     </div>
 </div>
