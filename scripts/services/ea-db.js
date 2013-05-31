@@ -44,7 +44,8 @@ angular.module('employeeApp.services')
                     'upholstery',
                     'group',
                     'user', 
-                    'delivery']
+                    'delivery',
+                    'table']
         }
         
         function saveNamespaces(namespaces){
