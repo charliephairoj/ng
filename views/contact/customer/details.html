@@ -79,13 +79,19 @@
             <div ng-repeat="address in customer.addresses">
                 <table>
                     <tr>
-                        <td>{{address.address1}}</td>
+                        <td><input type="text" class="address" data-ng-model="address.address1" /></td>
                     </tr>
                     <tr>
-                        <td>{{address.city}}, {{address.territory}}</td>
+                        <td>
+                            <input type="text" data-ng-model="address.city" />
+                           <input type="text" data-ng-model="address.territory" />
+                        </td>
                     </tr>
                     <tr>
-                        <td>{{address.country}} {{address.zipcode}}</td>
+                        <td>   
+                            <input type="text" data-ng-model="address.country" />
+                            <input type="text" data-ng-model="address.zipcode" />
+                        </td>
                     </tr>
                 </table>
             </div>

@@ -1,5 +1,9 @@
 <div class="upholstery-view-page">
     
+    <form class="addTable" >
+        
+    </form>
+    
     <div class="sidebar">
         <header>
             <h1><span>Table</span></h1>
@@ -37,7 +41,7 @@
                     <a ng-repeat="table in tableList | filter:query | orderBy: 'model.model'" class="row" ng-href="#/product/table/{{table.id}}">
                         
                         <div class="cell preview">
-                            <img ng-src="{{uphol.url}}" />
+                            <img ng-src="{{table.image.url}}" />
                         </div>
                         
                         <div class="cell id">{{table.id}}</div>

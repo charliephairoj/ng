@@ -54,12 +54,7 @@
         .grid{
             .row{
               
-              &.acknowledged{
-                  background-color:yellow;
-              }
-              &.shipped{
-                  background-color:green;
-              }
+              
               .cell{
                   &.id{
                       width:10%;
@@ -78,6 +73,12 @@
                   }
                   &.status{
                       width:15%;
+                      &.acknowledged{
+                          color:#FFED68;
+                      }
+                      &.shipped{
+                          color:#7ED136;
+                      }
                   }
               }
            }

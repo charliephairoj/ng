@@ -1,5 +1,7 @@
 <div class="upholstery-view-page">
     
+    
+    
     <div class="sidebar">
         <header>
             <h1><span>Upholstery</span></h1>
@@ -29,6 +31,9 @@
                 <div class="cell width">Width</div>
                 <div class="cell depth">Depth</div>
                 <div class="cell height">Height</div>
+                <div class="cell manufacture-price">Manufacture Price</div>
+                <div class="cell wholesale-price">Wholesale Price</div>
+                <div class="cell export-price">Export Price</div>
             </div>
         </div>
         <div class="listContainer">
@@ -47,7 +52,9 @@
                         <div class="cell width">{{uphol.width}}</div>
                         <div class="cell depth">{{uphol.depth}}</div>
                         <div class="cell height">{{uphol.height}}</div>
-                    
+                        <div class="cell manufacture-price">{{uphol.manufacture_price | number:0}}</div>
+                        <div class="cell wholesale-price">{{uphol.wholesale_price | number:0}}</div>
+                        <div class="cell export-price">{{uphol.export_price | number:0}}</div>
                     </a>
                 </div>
             </div>

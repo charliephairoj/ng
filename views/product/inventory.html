@@ -1,13 +1,89 @@
 
 <div class="inventory-page">
     
+    <!--
+        Forms
+    -->
+    
+    <div class="add-inventory" novalidate data-modal data-ng-model="addInventory" ng-init="selection='upholstery'" ng-switch on="selection">
+        <div class="title">Inventory Item</div>
+        <div class="selector">
+            <ul>
+                <li data-ng-click="selection='upholstery'" data-ng-class="{'active':selection=='upholstery'}">Upholstery</li>
+                <li data-ng-click="selection='table'" data-ng-class="{'active':selection=='table'}">Table</li>
+                <li data-ng-click="selection='custom'" data-ng-class="{'active':selection=='custom'}">Custom</li>
+            </ul>
+        </div>
+        <div class="details upholstery" ng-switch-default>
+            <div data-search-bar data-ng-model="upholsteryQuery"></div>
+            <div class="list">
+                <div class="row" data-ng-repeat="upholstery in upholsteryList | filter:upholsteryQuery">
+                    <div class="cell image">
+                                <img ng-src="{{upholstery.url}}" />
+                    </div>
+                    <div class="cell">{{upholstery.description}}</div>
+                </div>
+            </div>
+            
+        </div>
+        <form class="details custom" name="form" novalidate ng-switch-when="custom">
+                <table>
+                    <tr class="description">
+                        <td>Description</td>
+                        <td><input type="text" ng-model="item.description" required /></td>
+                    </tr>
+                    <tr class="quantity">
+                        <td>Quantity</td>
+                        <td><input type="text" ng-model="item.quantity" required ng-pattern="/^\d+$/" /></td>
+                    </tr>
+                    <tr class="quantity">
+                        <td>Location</td>
+                        <td><input type="text" ng-model="item.location" required/></td>
+                    </tr>
+                </table>
+                <div class="image-controller">
+                    <h2>Image Controls</h2>
+                    <button data-ng-click="cropper.crop()">Crop</button>
+                    <button data-ng-click="cropper.save()">Save</button>
+                    <button data-ng-click="previewCustomImage(cropper.getImageAsURL())">Preview</button>
+                    <table>
+                        <tr>
+                            <td>Width:</td>
+                            <td>{{cropper.image.scaled_width | number:0}}px</td>
+                        </tr>
+                        <tr>
+                            <td>Height:</td>
+                            <td>{{cropper.image.scaled_height | number:0}}px</td>
+                        </tr>
+                        <tr>
+                            <td>Scale:</td>
+                            <td><input type="number" data-ng-model="cropper.scale" min="0" max="100">%</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="image-preview" file-cropper>
+                </div>
+                
+                <div class="bottom_bar">
+                    <button ng-disabled="form.$invalid || uploading" ng-click="addItem()">Add Item</button>
+                </div>
+        </form>
+    </div>
+    
+    
+    <!--
+        Sidebar
+    -->
     <div class="sidebar">
         <header>
             <h1><span>Inventory</span></h1>
         </header>
         <nav>
             <ul>
-                
+                <li>
+                    <button ng-click="addInventory=true">Add Inventory</button>
+                </li>
             </ul>
         </nav>
     </div>

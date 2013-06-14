@@ -5,51 +5,83 @@
   .viewPage;
   
   .workspace{
-      .header{
-          .cell{
-              &.preview{
-                  height:auto;
-                  width:20%;
-                  padding:0em;
-                  img{
-                      width:100%;
+      &.grid{
+          .header{
+              .row{
+                  .cell{
+                      font-size:0.9em;
+                      @text-font-size:0.7em;
+                      &.preview{
+                          height:auto;
+                          width:10%;
+                          padding:0em;
+                          font-size:@text-font-size;
+                          text-align:center;
+                          img{
+                              width:100%;
+                          }
+                      }
+                      &.id{
+                        text-align:center;
+                        width:9%;
+                        font-size:@text-font-size;
+                      }
+                      &.model{
+                        text-align:center;
+                        width:9%;
+                        font-size:@text-font-size;
+                      }
+                      &.name{
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.configuration{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.width{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.depth{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.height{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.manufacture-price{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.wholesale-price{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                      &.export-price{
+                          text-align:center;  
+                          width:9%;
+                          font-size:@text-font-size;
+                      }
+                    
+                     
                   }
               }
-              &.id{
-                text-align:center;
-                width:10%
+          }
+          .listContainer{
+              .header;
+              .body{
+                  font-size:1em;
               }
-              &.model{
-                text-align:center;
-                width:10%
-              }
-              &.name{
-                  width:10%;
-              }
-              &.configuration{
-                  text-align:center;  
-                  width:20%;
-              }
-              &.width{
-                  text-align:center;  
-                  width:10%;
-              }
-              &.depth{
-                  text-align:center;  
-                  width:10%;
-              }
-              &.height{
-                  text-align:center;  
-                  width:10%;
-              }
-            
-             
           }
       }
-      .listContainer{
-          .header;
-      }
-      
   }
   
 }

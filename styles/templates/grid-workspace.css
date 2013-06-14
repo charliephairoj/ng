@@ -1,9 +1,7 @@
 .grid-workspace {
   position: absolute;
-  right: 0px;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
+  height: 100%;
+  width: 100%;
   z-index: 1;
   overflow: hidden;
 }
@@ -12,7 +10,7 @@
   width: 100%;
   position: absolute;
   height: 2.6em;
-  background: #CCC;
+  background: #282828;
 }
 .grid-workspace .header .row {
   display: table-row;

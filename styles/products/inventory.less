@@ -4,6 +4,210 @@
 .inventory-page{
   .viewPage;
   
+  /*
+   * Add Inventory Modal
+   */
+  .add-inventory{
+      margin: 0;
+      width:auto;
+      height:auto;
+      top:5%;
+      left:5%;
+      bottom:5%;
+      right:5%;
+      background-color:#313131;
+      color:#FFFFFF;
+      .title{
+          text-align:center;
+      }
+      .selector{
+          position:absolute;
+          top:3.2em;
+          bottom:0px;
+          left:0px;
+          width:8em;
+          border-right:1px solid #282828;
+          cursor:pointer;
+          
+          ul{
+              li{
+                  padding:0.5em 0em 0.5em 0.4em;
+                  font-family:proxima;
+                  font-size:1.2em;
+                  border-top: 1px solid #3c3c3c;
+                  border-bottom: 1px solid #282828;
+                  
+                  &.active{
+                      background-color:purple;
+                      border:1px solid transparent;
+                  }
+              }
+          }
+      }
+      .details{
+          position:absolute;
+          top:3.2em;
+          bottom:0em;
+          left:8em;
+          right:0em;
+          text-align:center;
+          
+          .search-bar{
+              position:absolute;
+              top:0em;
+              right:1em;
+          }
+          &.upholstery{
+              overflow-y:scroll;
+              overflow-x:hidden;
+              
+              .list{
+                  height:auto;
+                  width:100%;
+                  display:table;
+                  
+                  .row{
+                      display:table-row;
+                      width:100%;
+                      
+                      .cell{
+                          display:table-cell;
+                          border-top: 1px solid #3c3c3c;
+                          border-bottom: 1px solid #282828;
+                          font-family:proxima;
+                          font-size:1em;
+                          vertical-align:middle;
+                          
+                          &.image{
+                              width:10em;
+                              height:auto;
+                              img{
+                                  width:100%;
+                                  height:auto;
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+          
+          &.custom{
+            
+          
+              table{
+                  margin-top:10px;
+                  margin-left:10px;
+                  tr{
+                      td{
+                          vertical-align:middle;
+                          font-size:1em;
+                          color:#6B6B6B;  
+                          &:first-child{
+                              text-align:left;
+                              padding-right:5px;
+                          }
+                          &:last-child{
+                              padding-left:5px;
+                              text-align:left;
+                          }
+                      }
+                  }
+              }
+              //Controll Panel for the image
+              .image-controller{
+                  padding:10px;
+                  margin-top:1em;
+                  text-align:left;
+                  h2{
+                      font-family:proxima;
+                      font-size:1.4em;
+                      letter-spacing:0.08em;
+                      color:#CCC;
+                      margin-bottom:1em;
+                  }
+                  
+                  button{
+                      padding:0.5em;
+                      border-radius:2px;
+                      background-color:#414141;
+                      border:1px solid #282828;
+                      color:#CCC;
+                      cursor:pointer;
+                  }
+                  
+                  table{
+                      margin:0;
+                      margin-top:20px;
+                      tr{
+                          td{
+                              padding:0.2em 0em;
+                              
+                              &:first-child{
+                                  padding-right:0.2em;
+                              }
+                              
+                              &:last-child{
+                                  color:#CCC;
+                              }
+                          }
+                      }
+                  }
+              }
+              
+              .image-preview{
+                  position:absolute;
+                  top:55px;
+                  bottom:55px;
+                  right:10px;
+                  width:70%;
+                  overflow:none;
+                  border:2px dashed grey;
+                  border-radius:5px;
+                  .transition(all, 250ms, linear);
+                  .file-cropper{
+                    position:absolute;
+                    top:0px;
+                    left:0px;
+                  }
+                  
+                  
+                  
+                  /*
+                   * Active States for dragging and dropping
+                   */
+                  &.drag-drop-active{
+                      border:2px dashed green;
+                      background-color:#768452;
+                  }
+              }
+              
+              .target{
+                  color:grey;
+                  font-size:12px;
+                  right:25px;
+                  left:25px;
+                  position:absolute;
+                  bottom:40px; 
+                  padding:50px 0px;
+                  border:3px dashed grey;
+                  border-radius:5px;
+                  .transition(all, 250ms, ease);
+                  text-align:center;
+              }
+              
+              //State
+              &.active{
+                  .target{
+                      border:3px dashed #85C181;
+                      background-color:#64876D;
+                      color:black;
+                  }
+              }
+          }
+      }
+  }
+  
+  
   .workspace{
       .header{
           .cell{

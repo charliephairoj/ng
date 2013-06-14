@@ -210,6 +210,34 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/product/table/view.html',
         controller: 'ProductTableViewCtrl'
       })
+      .when('/product/rug', {
+        templateUrl: 'views/product/rug.html',
+        controller: 'ProductRugCtrl'
+      })
+      .when('/product/rug/view', {
+        templateUrl: 'views/product/rug/view.html',
+        controller: 'ProductRugViewCtrl'
+      })
+      .when('/product/rug/add', {
+        templateUrl: 'views/product/rug/add.html',
+        controller: 'ProductRugAddCtrl'
+      })
+      .when('/product/table/add', {
+        templateUrl: 'views/product/table/add.html',
+        controller: 'ProductTableAddCtrl'
+      })
+      .when('/product/table/:id', {
+        templateUrl: 'views/product/table/details.html',
+        controller: 'ProductTableDetailsCtrl'
+      })
+      .when('/project', {
+        templateUrl: 'views/project/view.html',
+        controller: 'ProjectViewCtrl'
+      })
+      .when('/project/:id', {
+        templateUrl: 'views/project/details.html',
+        controller: 'ProjectDetailsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

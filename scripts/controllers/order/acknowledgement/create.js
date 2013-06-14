@@ -1,20 +1,29 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', 'Upholstery', 'Fabric', '$filter', 'Notification',
-    function ($scope, Acknowledgement, Customer, Upholstery, Fabric, $filter, Notification) {
+  .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', 'Upholstery', 'Fabric', '$filter', 'Table', 'Notification',
+    function ($scope, Acknowledgement, Customer, Upholstery, Fabric, $filter, Table, Notification) {
         //Vars
         $scope.show_fabric = false;
         $scope.uploading = false;
         $scope.customImageScale = 100;
         $scope.customerList = Customer.poll().query();
         $scope.upholsteryList = Upholstery.poll().query();
+        $scope.tableList = Table.poll().query();
         $scope.fabricList = Fabric.poll().query();
         $scope.ack = new Acknowledgement();
         
         var uploadTargets = [];
+        var storage = window.localStorage;
         
+        if(storage.getItem('acknowledgement-create')){
+            angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
+        }
         
+        $scope.tempSave = function(){
+            storage.setItem('acknowledgement-create', JSON.stringify($scope.ack));
+            console.log(JSON.parse(storage.getItem('acknowledgement-create')));
+        }
         
         $scope.addCustomer = function(index){
             //Set Customer
@@ -24,8 +33,12 @@ angular.module('employeeApp')
             $scope.showCustomers = false;
         };
         
-        $scope.addUpholstery = function(index){
-            
+        $scope.addUpholstery = function(product){
+            console.log(product);
+            $scope.ack.products = $scope.ack.products || [];
+            $scope.ack.products.push(angular.copy(product));
+            $scope.selection = "quantity";
+            /*
             //Create products array if not exists
             $scope.ack.products = $scope.ack.products || [];
             //Add New compy of product
@@ -33,19 +46,47 @@ angular.module('employeeApp')
             //Close Modal
             $scope.show_upholstery = false;
             $scope.show_quantity = true;
+            */
+            $scope.tempSave()
         };
         
-        $scope.addCustomItem = function(){
-          
-           
-            var item = angular.copy($scope.custom);
-            item.is_custom = true;
+        $scope.addTable = function(product){
+            
             $scope.ack.products = $scope.ack.products || [];
-            $scope.ack.products.push(item);
-            //Reset input
-            $scope.custom = {};
-            //Close Modal
-            $scope.showCustom = false;  
+            $scope.ack.products.push(angular.copy(product));
+            $scope.selection = "quantity";
+            $scope.tempSave()
+        };
+        
+        $scope.setQuantity = function(){
+            if($scope.ack.products[$scope.ack.products.length-1].type.toLowerCase() == "upholstery"){
+                $scope.selection = 'fabric';
+            }else{
+                $scope.showProducts = false;
+                $scope.selection = 'upholstery';
+            }
+            $scope.tempSave()
+        }
+        
+        $scope.setFabric = function(){
+            $scope.showProducts = false;
+            $scope.selection = 'upholstery';
+            $scope.tempSave()
+        }
+        
+        $scope.addCustomItem = function(item, image){
+            
+            $scope.uploadImage(image, function(response){
+                item.is_custom = true;
+                item.type = 'custom';
+                item.image = {}
+                angular.copy(response, item.image);
+                $scope.ack.products = $scope.ack.products || [];
+                $scope.ack.products.push(item);
+                $scope.selection = 'quantity';
+                $scope.tempSave()
+            });
+           
         };
         
         $scope.cropCustomImage = function(){
@@ -59,11 +100,11 @@ angular.module('employeeApp')
             $scope.uploadImage($scope.cropper.getImage());
         };
         
-        $scope.previewCustomImage = function(){
-            window.open($scope.cropper.getImageAsURL());
+        $scope.previewCustomImage = function(url){
+            window.open(url);
         };
         
-        $scope.uploadImage = function(image){
+        $scope.uploadImage = function(image, callback){
             //Display Notification
             Notification.display('Uploading Image', false);
             //Set the upload Target
@@ -79,17 +120,8 @@ angular.module('employeeApp')
                processData:false,
                contentType:false,
                success: function(response){
-                   console.log(response);
-                   //Copy image to custom item
-                   $scope.custom = $scope.custom || {is_custom:true};
-                   $scope.custom.image = {};
-                   angular.copy(response, $scope.custom.image);
-                   //add subproperty so image can be viewed
-                   $scope.custom.url = $scope.custom.image.url;
-                   //Clear $scope of old Image
                    Notification.display('Image Uploaded');
-                   $scope.uploading = false;
-                   
+                   (callback || angular.noop)(response);
                }
             });
         };
@@ -107,6 +139,7 @@ angular.module('employeeApp')
                     Notification.display('Acknowledgement created');
                     window.open(response.acknowledgement_url);
                     window.open(response.production_url);
+                    storage.removeItem('acknowledgement-create');
                 }, function(){
                     Notification.display('There an error in creating the Acknowledgement', false);
                 });
@@ -115,6 +148,11 @@ angular.module('employeeApp')
             }
             
         };
+        
+        $scope.reset = function(){
+            $scope.ack = new Acknowledgement;
+            storage.removeItem('acknowledgement-create');
+        }
         
         //Validations
         $scope.isValidated = function(){
@@ -142,5 +180,6 @@ angular.module('employeeApp')
             Customer.stopPolling();
             Upholstery.stopPolling();
             Fabric.stopPolling();
+            Table.stopPolling();
         });
   }]);
