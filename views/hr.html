@@ -1,0 +1,18 @@
+<div>
+    <div class="sidebar">
+        <header>
+            <h1>
+                <span>Human Resources</span>
+            </h1>
+        </header>
+        <nav>
+            <ul class="list">
+                
+                <li ng-show="currentUser.hasPermission('add_supplier')"><a ng-href="#/contact/supplier">Employees</a></li>
+                <li ng-show="currentUser.hasPermission('add_customer')"><a ng-href="#/contact/customer">Attendance</a></li>
+               
+            </ul>
+        </nav>
+        
+    </div>
+</div>

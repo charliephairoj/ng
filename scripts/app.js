@@ -237,6 +237,7 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
       .when('/project/:id', {
         templateUrl: 'views/project/details.html',
         controller: 'ProjectDetailsCtrl'
+
       })
       .otherwise({
         redirectTo: '/'
