@@ -370,12 +370,19 @@ angular.module('employeeApp.directives')
                 };
                 
                 scope.cropper.getImage = function(){
-                    console.log(scene.getImageAsBlob());
-                    return scene.getImageAsBlob();
+                    if(scene){
+                        return scene.getImageAsBlob();
+                    }else{
+                        return null;
+                    }
                 }
                 
                 scope.cropper.getImageAsURL = function(){
-                    return scene.getImageAsURL();
+                    if(scene){
+                        return scene.getImageAsURL();
+                    }else{
+                        return null;
+                    }
                 }
             }
         };

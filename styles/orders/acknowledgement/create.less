@@ -13,20 +13,16 @@
             li{
               
                 .customer{
-                    background-color:#BBFF9E;
-                    color:grey;
-                    //State
-                    &.dirty{
-                        background-color:#EFE28D;
-                        //border-bottom: 1px solid #EDD855;
-                        //border-top: 1px solid #EAD975;
-                        color:grey;
-                        &:hover{
-                            background-color:#E5CC50;
+                    
+                    span{
+                        &.checkmark{
+                          margin-left:1em;
+                          color:green;
                         }
-                    }
-                    &:hover{
-                        background-color:#A7FF82;
+                        &.x-mark{
+                          margin-left:1em;
+                          color:red;
+                        }
                     }
                 }
                 .delivery_date{

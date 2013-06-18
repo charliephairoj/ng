@@ -76,16 +76,26 @@ angular.module('employeeApp')
         
         $scope.addCustomItem = function(item, image){
             
-            $scope.uploadImage(image, function(response){
+            if(image){
+                
+                $scope.uploadImage(image, function(response){
+                    item.is_custom = true;
+                    item.type = 'custom';
+                    item.image = {}
+                    angular.copy(response, item.image);
+                    $scope.ack.products = $scope.ack.products || [];
+                    $scope.ack.products.push(item);
+                    $scope.selection = 'quantity';
+                    $scope.tempSave();
+                });
+            }else{
                 item.is_custom = true;
                 item.type = 'custom';
-                item.image = {}
-                angular.copy(response, item.image);
                 $scope.ack.products = $scope.ack.products || [];
                 $scope.ack.products.push(item);
                 $scope.selection = 'quantity';
-                $scope.tempSave()
-            });
+                $scope.tempSave();
+            }
            
         };
         
@@ -170,6 +180,9 @@ angular.module('employeeApp')
                 return false;
             }
             if(!$scope.ack.delivery_date){
+                return false;
+            }
+            if(!$scope.ack.po_id){
                 return false;
             }
             //Return true for form validated
