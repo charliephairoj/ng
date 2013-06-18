@@ -79,7 +79,7 @@
                 </div>
                 
                 <div class="bottom_bar">
-                    <button ng-disabled="form.$invalid || uploading" ng-click="addCustomItem(item, cropper.getImage())">Add Item</button>
+                    <button ng-disabled="form.$invalid || uploading" ng-click="addCustomItem(item, cropper.getImage()); item={};">Add Item</button>
                 </div>
         </form>
         <div class="details quantity" data-ng-switch-when="quantity">
