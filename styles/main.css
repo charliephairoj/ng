@@ -208,6 +208,7 @@ select {
   margin-top: 5px;
   overflow: hidden;
   border-radius: 2px;
+  height: 10em;
 }
 .sidebar header .profilePic img {
   height: 100%;
@@ -219,6 +220,7 @@ select {
   margin-top: 5px;
   overflow: hidden;
   border-radius: 2px;
+  height: 10em;
 }
 .sidebar header .profile-pic img {
   height: 100%;
