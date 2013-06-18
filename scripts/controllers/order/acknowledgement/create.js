@@ -20,6 +20,8 @@ angular.module('employeeApp')
             angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
         }
         
+        $scope.ack.products = $scope.ack.products || [];
+        
         $scope.tempSave = function(){
             storage.setItem('acknowledgement-create', JSON.stringify($scope.ack));
             console.log(JSON.parse(storage.getItem('acknowledgement-create')));
@@ -161,6 +163,7 @@ angular.module('employeeApp')
         
         $scope.reset = function(){
             $scope.ack = new Acknowledgement;
+            $scope.ack.products = [];
             storage.removeItem('acknowledgement-create');
         }
         

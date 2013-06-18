@@ -2443,27 +2443,43 @@ select {
   left: 200px;
 }
 .createAcknowledgementPage .sidebar ul li .customer span.checkmark {
+  margin-left: 2em;
   color: green;
 }
 .createAcknowledgementPage .sidebar ul li .customer span.x-mark {
+  margin-left: 2em;
   color: red;
 }
 .createAcknowledgementPage .sidebar ul li .delivery_date span.checkmark {
+  margin-left: 2em;
   color: green;
 }
 .createAcknowledgementPage .sidebar ul li .delivery_date span.x-mark {
+  margin-left: 2em;
   color: red;
 }
 .createAcknowledgementPage .sidebar ul li .upholstery span.checkmark {
+  margin-left: 2em;
   color: green;
 }
 .createAcknowledgementPage .sidebar ul li .upholstery span.x-mark {
+  margin-left: 2em;
   color: red;
 }
 .createAcknowledgementPage .sidebar ul li .vat span.checkmark {
+  margin-left: 2em;
   color: green;
 }
 .createAcknowledgementPage .sidebar ul li .vat span.x-mark {
+  margin-left: 2em;
+  color: red;
+}
+.createAcknowledgementPage .sidebar ul li .po span.checkmark {
+  margin-left: 2em;
+  color: green;
+}
+.createAcknowledgementPage .sidebar ul li .po span.x-mark {
+  margin-left: 2em;
   color: red;
 }
 .createAcknowledgementPage .modal.products {

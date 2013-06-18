@@ -178,13 +178,13 @@
             </header>
             <nav>
                 <ul class="list">
-                    <li><div checkmark="isValidated()" x-mark="!isValidated()" ng-click="create()" >Create</div></li>
-                    <li><div class="customer" checkmark="ack.customer" x-mark="ack.customer" ng-click="showCustomers=!showCustomers">Add Customer</div></li>
-                    <li><div class="upholstery" checkmark="ack.products" x-mark="!ack.products" ng-click="showProducts=true">Add Product</div></li>
+                    <li><div ng-click="create()" >Create</div></li>
+                    <li><div class="customer" checkmark="ack.customer" x="!ack.customer" ng-click="showCustomers=!showCustomers">Add Customer</div></li>
+                    <li><div class="upholstery" checkmark="ack.products.length>0" x="ack.products.length==0" ng-click="showProducts=true">Add Product</div></li>
                    
-                    <li><div class="delivery_date" checkmark="ack.delivery_date" x-mark="!ack.delivery_date" ng-click="show_calendar=true">Set Delivery Date</div></li>
-                    <li><div class="vat" checkmark="ack.vat" x-mark="!ack.vat" ng-click="show_vat=true">Set Vat</div></li>
-                    <li><div checkmark="ack.po_id" x-mark="!ack.po_id" ng-click="show_po=true">Set Purchase Order</div></li>
+                    <li><div class="delivery_date" checkmark="ack.delivery_date" x="!ack.delivery_date" ng-click="show_calendar=true">Set Delivery Date</div></li>
+                    <li><div class="vat" checkmark="ack.vat" x="!ack.vat" ng-click="show_vat=true">Set Vat</div></li>
+                    <li><div class="po" checkmark="ack.po_id" x="!ack.po_id" ng-click="show_po=true">Set Purchase Order</div></li>
                     <li><div ng-click="showRemarks=true">Add Remarks</div></li>
                     <li><div ng-click="reset()" >Reset</div></li>
                 </ul>
