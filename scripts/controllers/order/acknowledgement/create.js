@@ -144,14 +144,14 @@ angular.module('employeeApp')
         };
         
         $scope.create = function(){
-            
+            $scope.tempSave();
             if($scope.isValidated()){
                 Notification.display('Creating Acknowledgement...', false);
                 $scope.ack.$save(function(response){
                     Notification.display('Acknowledgement created');
                     window.open(response.acknowledgement_url);
                     window.open(response.production_url);
-                    storage.removeItem('acknowledgement-create');
+                    angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
                 }, function(){
                     Notification.display('There an error in creating the Acknowledgement', false);
                 });
