@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('employeeApp.services')
     .factory('Geocoder', ['$q', '$rootScope', function($q, $rootScope) {
             
@@ -43,7 +44,13 @@ angular.module('employeeApp.services')
         var Geocoder = {};
         
         Geocoder.init = function(){
-            this.geocoder = new google.maps.Geocoder();
+            var google = google || undefined;
+            if(google){
+                this.geocoder = new google.maps.Geocoder();
+            }else{
+                this.geocoder = {};
+            }
+            
         }
         
         /*

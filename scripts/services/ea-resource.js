@@ -236,7 +236,7 @@ angular.module('employeeApp.services')
                          if(db.ready){
                              if (action.isArray) {
                                  db.query(function(data){
-                                     $rootScope.safeApply(function(){
+                                     var fn =  function(){
                                          for(var key in data){
                                              //Loop for existing item in value
                                              var index = indexOfId(value, data[key].id);
@@ -247,21 +247,37 @@ angular.module('employeeApp.services')
                                              }
                                          }
                                          (success || angular.noop)(value);
-                                     });
+                                     };
+                                     
+                                     if($rootScope.$$phase == "$apply" || $rootScope.$$phase == "$digest"){
+                                         fn();
+                                     }else{
+                                         $rootScope.$apply(function(){
+                                             fn();
+                                         })
+                                     }
                                  });
                              } else {
                                  db.get(params.id, function(response){
-                                     $rootScope.safeApply(function(){
+                                     var fn = function(){
                                         angular.copy(new Resource(response), value);
                                         (success || angular.noop)(value);
-                                     });
+                                     };
+                                     
+                                     if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
+                                         fn();
+                                     }else{
+                                         $rootScope.$apply(function(){
+                                             fn(); 
+                                         });
+                                     }
                                  });
                              }
                          }else{
                              if (action.isArray) {
                                  db.onready = function(){
                                      db.query(function(data){
-                                         $rootScope.safeApply(function(){
+                                         var fn = function(){
                                              for(var key in data){
                                                  //Loop for existing item in value
                                                  var index = indexOfId(value, data[key].id);
@@ -272,16 +288,32 @@ angular.module('employeeApp.services')
                                                  }
                                              }
                                              (success || angular.noop)(value);
-                                         });
+                                         };
+                                         
+                                         if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
+                                             fn();
+                                         }else{
+                                             $rootScope.$apply(function(){
+                                                 fn(); 
+                                             });
+                                         }
                                      });
                                  }
                              } else {
                                  db.onready = function(){
                                      db.get(params.id, function(response){
-                                         $rootScope.safeApply(function(){
+                                         var fn = function(){
                                             angular.copy(new Resource(response), value);
                                             (success || angular.noop)(value);
-                                         });
+                                         };
+                                         
+                                         if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
+                                             fn();
+                                         }else{
+                                             $rootScope.$apply(function(){
+                                                 fn(); 
+                                             });
+                                         }
                                      });
                                  }
                              }
@@ -337,7 +369,8 @@ angular.module('employeeApp.services')
                                         * If they are not equal then we perform an extend
                                         */
                                         if (!angular.equals(value[index], response[i])) {
-                                            value[index] = new Resource(response[i]);
+                                            angular.extend(value[index], new Resource(response[i]));
+                                            //value[index] = new Resource(response[i]);
                                         }
                                         
                                     }else{
@@ -348,7 +381,7 @@ angular.module('employeeApp.services')
                                 }
                             }else{
                                 //Upate the reference with the data
-                                angular.copy(new Resource(response), value);
+                                angular.extend(value, new Resource(response));
                             }
                         }
                         

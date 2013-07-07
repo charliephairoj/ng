@@ -147,19 +147,19 @@
     </form>
     
     
-    <form name="vatForm" class="vat_modal" novalidate data-modal ng-model="show_vat">
+    <form name="vatForm" class="vat_modal" novalidate data-modal ng-model="showVat">
         <div class="title">Vat</div>
         <input ng-model="ack.vat" required ng-pattern="/^\d{1,2}$/" /><span>%</span>
         <div class="bottom_bar">
-            <button ng-disabled="vatForm.$invalid" ng-click="show_vat=false">Submit</button>
+            <button ng-disabled="vatForm.$invalid" ng-click="showVat=false">Submit</button>
         </div>
     </form>
     
-    <form name="poForm" class="po_modal" novalidate data-modal ng-model="show_po">
+    <form name="poForm" class="po_modal" novalidate data-modal ng-model="showPO">
         <div class="title">PO Number</div>
         <input ng-model="ack.po_id"  size="40"/>
         <div class="bottom_bar">
-            <button ng-click="show_po=false">Submit</button>
+            <button ng-click="showPO=false">Submit</button>
         </div>
     </form>
     
@@ -183,8 +183,8 @@
                     <li><div class="upholstery" checkmark="ack.products.length>0" x="ack.products.length==0" ng-click="showProducts=true">Add Product</div></li>
                    
                     <li><div class="delivery_date" checkmark="ack.delivery_date" x="!ack.delivery_date" ng-click="show_calendar=true">Set Delivery Date</div></li>
-                    <li><div class="vat" checkmark="ack.vat" x="!ack.vat" ng-click="show_vat=true">Set Vat</div></li>
-                    <li><div class="po" checkmark="ack.po_id" x="!ack.po_id" ng-click="show_po=true">Set Purchase Order</div></li>
+                    <li><div class="vat" checkmark="ack.vat" x="!ack.vat" ng-click="showVat=true">Set Vat</div></li>
+                    <li><div class="po" checkmark="ack.po_id" x="!ack.po_id" ng-click="showPO=true">Set Purchase Order</div></li>
                     <li><div ng-click="showRemarks=true">Add Remarks</div></li>
                     <li><div ng-click="reset()" >Reset</div></li>
                 </ul>
@@ -203,7 +203,7 @@
             <div class="container">
                 <search-bar data-ng-model="queryCustomer"></search-bar>
                 <ul class="list">
-                    <li class="item" ng-click="addCustomer($index)" ng-repeat="customer in customerList | filter:queryCustomer | orderBy:'name'">{{customer.name}}</li>
+                    <li class="item" ng-click="addCustomer(customer)" ng-repeat="customer in customerList | filter:queryCustomer | orderBy:'name'">{{customer.name}}</li>
                 </ul>
             </div>
             
@@ -279,7 +279,7 @@
                 </div>
                 
             
-            <div class="products" ng-show="ack.products">
+            <div class="products" ng-show="ack.products.length>0">
                 <div class="title">Products</div>
                 <div class="product" ng-repeat="product in ack.products">
                     {{product.description}}

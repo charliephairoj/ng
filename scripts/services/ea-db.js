@@ -200,32 +200,40 @@ angular.module('employeeApp.services')
                 return obj;
             }
             Database.prototype._save = function(obj, success, error){
-                var cleanObj = this._cleanObj(obj);
-                
-                var request = this.db.transaction([this.namespace], 'readwrite')
-                    .objectStore(this.namespace)
-                    .put(cleanObj);
-                       
-                request.onsuccess = function(evt){
-                    (success || angular.noop)();
-                };
-                    
-                request.onerror = function(evt){
-                    (error || angular.noop)();
-                };
+                try{
+                    var cleanObj = this._cleanObj(obj);
+                    var request = this.db.transaction([this.namespace], 'readwrite')
+                        .objectStore(this.namespace)
+                        .put(cleanObj);
+                           
+                    request.onsuccess = function(evt){
+                        (success || angular.noop)();
+                    };
+                        
+                    request.onerror = function(evt){
+                        console.error(evt);
+                        (error || angular.noop)(evt);
+                    };
+                }catch(e){
+                    console.error(e);
+                    (error || angular.noop)(e);
+                }
                
             }
             
             Database.prototype._get = function(param, success, error){
-                param = parseFloat(param);
-                var request = this.db.transaction(this.namespace)
-                    .objectStore(this.namespace)
-                    .openCursor(IDBKeyRange.only(param)).onsuccess = function(evt){
-                        var cursor = evt.target.result;
-                        if(cursor){
-                           (success || angular.noop)(cursor.value);
+                try{
+                    param = parseFloat(param);
+                    var store = this.db.transaction(this.namespace)
+                        .objectStore(this.namespace)
+                        .get(param).onsuccess = function(evt){
+                            var response = evt.target.result || null;
+                            (success || angular.noop)(response);
                         }
-                    }
+                }catch(e){
+                    console.error(e.stack);
+                    (error || angular.noop)();
+                }
                     /*
                     .get(param);
                 
@@ -248,8 +256,10 @@ angular.module('employeeApp.services')
                 var objectStore = this.db.transaction([this.namespace], 'readonly')
                     .objectStore(this.namespace);
                         
-                var request = objectStore.openCursor().onsuccess = function(evt){
+                var request = objectStore.openCursor();
+                request.onsuccess = function(evt){
                     var cursor = evt.target.result;
+                   
                     if(cursor){
                         data.push(cursor.value);
                         cursor.continue();
@@ -262,10 +272,12 @@ angular.module('employeeApp.services')
                     (error || angular.noop)();
                 }
             }
+            
             Database.prototype._remove = function(arg, success, error){
                 var request = this.db.transaction([this.namespace], "readwrite")
                     .objectStore(this.namespace)
                     .delete(arg);
+                    
                 request.onsuccess = function(evt){
                     (success || angular.noop)();
                 };
@@ -274,6 +286,23 @@ angular.module('employeeApp.services')
                 };
             }
             
+            /*
+             * Private Clear method
+             */
+            Database.prototype._clear = function(success, error){
+                try{
+                    var store = this.db.transaction(this.namespace, "readwrite")
+                    .objectStore(this.namespace);
+                    
+                    store.clear().onsuccess = function(){
+                        (success || angular.noop)();
+                    }
+                }catch(e){
+                    console.error(e.stack);
+                    (error || angular.noop)(e);
+                }
+               
+            };
             /*
              * This section will implements the public facing APIs that
              * are available to retrieve data
@@ -286,11 +315,6 @@ angular.module('employeeApp.services')
                     
                 switch(arguments.length){
                     case 1:
-                        if(angular.isFunction(arg1)){
-                            success = arg1;
-                        }else{
-                            param = arg1;
-                        }
                         angular.isFunction(arg1) ? success = arg1 : param = arg1;
                         break;
                     case 2:
@@ -328,7 +352,6 @@ angular.module('employeeApp.services')
                 if(arguments.length < 1 && arguments.length > 3){
                     throw new RangeError("Expects between 1-3 argumeents");
                 }
-                
                 try{
                     this._get(param, success, error);
                 }catch(e){
@@ -347,7 +370,7 @@ angular.module('employeeApp.services')
                         this._save(obj, success, error);
                     }
                 }catch(e){
-                    console.error(e);
+                    console.error(e.stack);
                 }
             };
             
@@ -360,16 +383,14 @@ angular.module('employeeApp.services')
             };
             
             Database.prototype.clear = function(success, error){
-                this._query({}, function(data){
-                    for(var key in data){
-                        this._remove(data[key].id);
-                    }
-                });
-            }
+                this._clear(success, error);
+            };
             
-            Database.prototype.destroy = function(){
-                this.indexedDB.deleteDatabase('app');
-            }
+            Database.prototype.destroy = function(success){
+                this.indexedDB.deleteDatabase('app').onsuccess = function(){
+                    (success || angular.noop)();
+                };
+            };
             
             return new Database(namespace);
         }

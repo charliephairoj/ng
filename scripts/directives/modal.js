@@ -12,6 +12,7 @@ angular.module('employeeApp')
         scope: false,
         require:'ngModel',
         link: function(scope, element, attr, controller){
+            console.log(attr.ngModel);
             element.addClass('modal hide');
             var children = element.children();
             for(var i=0; i<children.length; i++){
@@ -22,9 +23,10 @@ angular.module('employeeApp')
                 }
             }
             var backdrop = create_backdrop();
-            backdrop.bind('mouseenter', function(){
+            
+            backdrop.bind('click', function(){
                 console.log('ok');
-                attr.$set('ngModel', false);
+                scope.$set(attr.ngModel, false);
             });
             
             
@@ -32,6 +34,7 @@ angular.module('employeeApp')
                 backdrop.remove();
             });
             scope.$watch(attr.ngModel, function(value){
+                console.log(value);
                if(value){
                    element.removeClass('hide');
                    $(document.body).append(backdrop);

@@ -46,7 +46,7 @@ angular.module('employeeApp')
         $scope.customer.$save(function(){
             $scope.addCustomer = false;
             $scope.customerList.push(angular.copy($scope.customer));
-            $scope.customer = {address:{}};
+            $scope.customer = new Customer();
         }, function(){
             Notification.display("Unable to save customer", false);
         });

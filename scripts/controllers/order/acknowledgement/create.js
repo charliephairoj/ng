@@ -4,7 +4,7 @@ angular.module('employeeApp')
   .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', 'Upholstery', 'Fabric', '$filter', 'Table', 'Notification',
     function ($scope, Acknowledgement, Customer, Upholstery, Fabric, $filter, Table, Notification) {
         //Vars
-        $scope.show_fabric = false;
+        $scope.showFabric = false;
         $scope.uploading = false;
         $scope.customImageScale = 100;
         $scope.customerList = Customer.poll().query();
@@ -24,19 +24,16 @@ angular.module('employeeApp')
         
         $scope.tempSave = function(){
             storage.setItem('acknowledgement-create', JSON.stringify($scope.ack));
-            console.log(JSON.parse(storage.getItem('acknowledgement-create')));
         }
         
-        $scope.addCustomer = function(index){
+        $scope.addCustomer = function(customer){
             //Set Customer
-            $scope.ack.customer = $filter('orderBy')($filter('filter')($scope.customerList, $scope.queryCustomers), 'name')[index];
-            
+            $scope.ack.customer = customer
             //Hide Customer Panel
             $scope.showCustomers = false;
         };
         
         $scope.addUpholstery = function(product){
-            console.log(product);
             $scope.ack.products = $scope.ack.products || [];
             $scope.ack.products.push(angular.copy(product));
             $scope.selection = "quantity";
@@ -63,6 +60,7 @@ angular.module('employeeApp')
         $scope.setQuantity = function(){
             if($scope.ack.products[$scope.ack.products.length-1].type.toLowerCase() == "upholstery"){
                 $scope.selection = 'fabric';
+                $scope.showProducts = true;
             }else{
                 $scope.showProducts = false;
                 $scope.selection = 'upholstery';
@@ -73,7 +71,7 @@ angular.module('employeeApp')
         $scope.setFabric = function(){
             $scope.showProducts = false;
             $scope.selection = 'upholstery';
-            $scope.tempSave()
+            $scope.tempSave();
         }
         
         $scope.addCustomItem = function(item, image){
@@ -145,20 +143,22 @@ angular.module('employeeApp')
         
         $scope.create = function(){
             $scope.tempSave();
-            if($scope.isValidated()){
-                Notification.display('Creating Acknowledgement...', false);
-                $scope.ack.$save(function(response){
-                    Notification.display('Acknowledgement created');
-                    window.open(response.acknowledgement_url);
-                    window.open(response.production_url);
-                    angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
-                }, function(){
-                    Notification.display('There an error in creating the Acknowledgement', false);
-                });
-            }else{
-                Notification.display('The Order is Not Complete')
+            try{
+                if($scope.isValidated()){
+                    Notification.display('Creating Acknowledgement...', false);
+                    $scope.ack.$save(function(response){
+                        Notification.display('Acknowledgement created');
+                        window.open(response.acknowledgement_url);
+                        window.open(response.production_url);
+                        angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
+                    }, function(e){
+                        console.log(e);
+                        Notification.display('There an error in creating the Acknowledgement', false);
+                    });
+                }
+            }catch(e){
+                Notification.display(e.message);
             }
-            
         };
         
         $scope.reset = function(){
@@ -174,19 +174,38 @@ angular.module('employeeApp')
              * The property has already been added
              */
             if(!$scope.ack.customer){
-                return false;
+                throw new TypeError("Customer is not an object");
+            }else{
+                if(!$scope.ack.customer.hasOwnProperty('id')){
+                    throw new ReferenceError("Missin customer ID");
+                }
             }
             if(!$scope.ack.products){
-                return false;
+                throw new TypeError("Products is not an array");
+            }else{
+                if(!$scope.ack.products.length > 0){
+                    throw new RangeError("No products added to the order");
+                }else{
+                    for(var i in $scope.ack.products){
+                        if(!$scope.ack.products[i].hasOwnProperty('has_price')){
+                            //throw new ReferenceError("Product missing 'has_price' attribute");
+                        }else{
+                            if(!$scope.ack.products[i].has_price){
+                                //throw new TypeError("Product missing price");
+                            }
+                        }
+                    }
+                }
             }
-            if(!$scope.ack.vat){
-                return false;
+            
+            if($scope.ack.vat === undefined || $scope.ack.vat === null){
+                throw new TypeError("Vat is not a number");
             }
             if(!$scope.ack.delivery_date){
-                return false;
+                throw new TypeError("Delivery Date is not a valid Date type");
             }
             if(!$scope.ack.po_id){
-                return false;
+                throw new TypeError("PO# is not defined");
             }
             //Return true for form validated
             return true;
