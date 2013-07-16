@@ -428,7 +428,7 @@ angular.module('employeeApp.directives')
                 }
                 
                 scope.cropper.getImageAsURL = function(){
-                    return cropper.getImageURL();
+                    return scope.cropper.getImageURL();
                 }
                 
                 scope.cropper.getImageURL = function(){
