@@ -1,0 +1,75 @@
+/*
+ * The LESS file for the cropper too
+ */
+.cropper {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: none;
+  border: 1px solid #282828;
+}
+.cropper .cropper-message {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  text-align: center;
+}
+.cropper .cropper-message h3 {
+  font-family: proxima;
+  margin-top: 35%;
+}
+.cropper .cropper-controller {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 150px;
+  position: absolute;
+  background: #313131;
+  border-right: 1px solid #282828;
+  padding-top: 1em;
+}
+.cropper .cropper-controller button {
+  padding: 0.5em;
+  width: 90%;
+  border-radius: 2px;
+  background-color: #414141;
+  border: 1px solid #282828;
+  color: #CCC;
+  cursor: pointer;
+}
+.cropper .cropper-controller .cropper-scale {
+  margin-left: 0.6em;
+  color: #CCC;
+  font-family: proxima;
+}
+.cropper .cropper-controller .cropper-scale tr td .scale {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  color: #CCC;
+  text-align: right;
+  outline: none;
+}
+.cropper .cropper-controller .cropper-scale tr td:first-child {
+  text-align: left;
+}
+.cropper .cropper-controller .cropper-scale tr td:last-child {
+  text-align: right;
+}
+.cropper .canvas-container {
+  position: absolute;
+  top: 0px;
+  left: 150px;
+  right: 0px;
+  bottom: 0px;
+}
+.cropper .canvas-container .cropper-canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

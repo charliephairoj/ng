@@ -246,6 +246,10 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/hr/employee/view.html',
         controller: 'HrEmployeeViewCtrl'
       })
+      .when('/project/room/:id', {
+        templateUrl: 'views/project/room/details.html',
+        controller: 'ProjectRoomDetailsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

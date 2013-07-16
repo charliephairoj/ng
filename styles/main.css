@@ -705,6 +705,381 @@ select {
   border-width: 0 5px 5px;
   border-bottom-color: #000000;
 }
+/*File Handler*/
+/*
+ * LESS file for the file handler
+ * directives
+ */
+.file-handler {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  color: #CCC;
+}
+.file-handler .file-handler-message {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  text-align: center;
+}
+.file-handler .file-handler-message h3 {
+  font-family: proxima;
+  margin-top: 35%;
+}
+.file-handler .file-handler-list {
+  position: absolute:
+        height:100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.file-handler .file-handler-list ul {
+  list-style: none;
+  margin: 0.8em 0.8em 0.8em 0em;
+}
+.file-handler .file-handler-list ul li {
+  padding: 0.8em;
+}
+/*File Cropper*/
+/*
+ * The LESS file for the cropper too
+ */
+.cropper {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: none;
+  border: 1px solid #282828;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.cropper .cropper-message {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  text-align: center;
+}
+.cropper .cropper-message h3 {
+  font-family: proxima;
+  margin-top: 35%;
+}
+.cropper .cropper-controller {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 150px;
+  position: absolute;
+  background: #313131;
+  border-right: 1px solid #282828;
+  padding-top: 1em;
+}
+.cropper .cropper-controller button {
+  padding: 0.5em;
+  width: 90%;
+  border-radius: 2px;
+  background-color: #414141;
+  border: 1px solid #282828;
+  color: #CCC;
+  cursor: pointer;
+}
+.cropper .cropper-controller .cropper-scale {
+  margin-left: 0.6em;
+  color: #CCC;
+  font-family: proxima;
+}
+.cropper .cropper-controller .cropper-scale tr td .scale {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  color: #CCC;
+  text-align: right;
+  outline: none;
+}
+.cropper .cropper-controller .cropper-scale tr td:first-child {
+  text-align: left;
+}
+.cropper .cropper-controller .cropper-scale tr td:last-child {
+  text-align: right;
+}
+.cropper .canvas-container {
+  position: absolute;
+  top: 0px;
+  left: 150px;
+  right: 0px;
+  bottom: 0px;
+}
+.cropper .canvas-container .cropper-canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.cropper.drag-drop-active {
+  background: #CCC;
+}
+/*Product Selector*/
+/*
+ * LESS file for the product selector
+ */
+.product-selector {
+  margin: 0;
+  width: auto;
+  height: auto;
+  top: 5%;
+  left: 5%;
+  bottom: 5%;
+  right: 5%;
+  background-color: #313131;
+  color: #FFFFFF;
+}
+.product-selector .title {
+  text-align: left;
+  padding: 0.8em 1.5em;
+}
+.product-selector .selector {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0px;
+  left: 0px;
+  width: 8em;
+  border-right: 1px solid #282828;
+  cursor: pointer;
+}
+.product-selector .selector ul li {
+  padding: 0.5em 0em 0.5em 0.4em;
+  font-family: proxima;
+  font-size: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.product-selector .selector ul li.active {
+  background-color: purple;
+  border: 1px solid transparent;
+}
+.product-selector .details {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0em;
+  left: 8em;
+  right: 0em;
+  text-align: center;
+  z-index: -1;
+}
+.product-selector .details .search-bar {
+  position: absolute;
+  right: 1em;
+}
+.product-selector .details .bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  border-top: 1px solid #282828;
+  border-radius: 0px 0px 2px 2px;
+  text-align: center;
+}
+.product-selector .details .bottom-bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 0.3em 2%;
+  padding: 0.2em;
+  font-size: 1em;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.product-selector .details .bottom-bar button:hover {
+  background-color: #3A3A3A;
+}
+.product-selector .details .bottom-bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.product-selector .details.upholstery .container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.upholstery .container .list {
+  height: auto;
+  width: 100%;
+  display: table;
+}
+.product-selector .details.upholstery .container .list .row {
+  display: table-row;
+  width: 100%;
+}
+.product-selector .details.upholstery .container .list .row .cell {
+  display: table-cell;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  font-family: proxima;
+  font-size: 1em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.product-selector .details.upholstery .container .list .row .cell.image {
+  width: 10em;
+  height: auto;
+}
+.product-selector .details.upholstery .container .list .row .cell.image img {
+  width: 100%;
+  height: auto;
+}
+.product-selector .details.custom .new-custom-inventory-item {
+  margin-top: 1em;
+  width: 300px;
+  font-family: proxima;
+}
+.product-selector .details.custom .new-custom-inventory-item tr {
+  width: 100%;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td {
+  width: 100%;
+  padding: 0.15em 0em 0.15em 0.8em;
+  vertical-align: middle;
+  font-size: 1em;
+  color: #6B6B6B;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:first-child {
+  width: 30%;
+  text-align: left;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child {
+  width: 70%;
+  padding-left: 5px;
+  text-align: center;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child input {
+  width: 90%;
+  border-radius: 2px;
+  background-color: #CCC;
+}
+.product-selector .details.custom .new-custom-inventory-item tr.description td {
+  padding-bottom: 1.5em;
+}
+.product-selector .details.custom .cropper {
+  top: 0px;
+  bottom: 1.8em;
+  right: 0px;
+  left: 300px;
+}
+.product-selector .details.quantity table {
+  margin: 0 auto;
+  margin-top: 8em;
+}
+.product-selector .details.quantity table tr td {
+  padding: 0.5em;
+}
+.product-selector .details.fabric {
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.product-selector .details.fabric .product_container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 60%;
+  bottom: 36px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-right: 1px solid #282828;
+  text-align: left;
+}
+.product-selector .details.fabric .product_container .product {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .product .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .product .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .product.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .product_container .pillow {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .pillow .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .pillow .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .pillow.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .fabric_container {
+  position: absolute;
+  top: 0px;
+  bottom: 36px;
+  right: 0px;
+  width: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.fabric .fabric_container .list .item {
+  cursor: move;
+  position: relative;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+}
+.product-selector .details.fabric .fabric_container .list .item .details {
+  position: absolute;
+  font-size: 1em;
+  padding: 1.25em 1em;
+  z-index: 1;
+  top: 0em;
+  left: 5em;
+}
+.product-selector .details.fabric .fabric_container .list .item img {
+  position: absolute;
+  height: 100%;
+  width: 5em;
+  top: 0em;
+  left: 0em;
+  z-index: 1;
+}
 /*Modal*/
 .modal {
   position: fixed;
@@ -841,6 +1216,7 @@ select {
   bottom: 0px;
   opacity: 0;
   z-index: 100;
+  cursor: pointer;
 }
 #backdrop.active {
   opacity: 1;
@@ -2598,105 +2974,36 @@ select {
   width: 100%;
   height: auto;
 }
-.createAcknowledgementPage .modal.products .details.custom table {
-  margin-top: 10px;
-  margin-left: 10px;
+.createAcknowledgementPage .modal.products .details.custom .custom-item {
+  margin-top: 2em;
+  width: 300px;
 }
-.createAcknowledgementPage .modal.products .details.custom table tr td {
+.createAcknowledgementPage .modal.products .details.custom .custom-item tr {
+  width: 100%;
+}
+.createAcknowledgementPage .modal.products .details.custom .custom-item tr td {
+  width: 100%;
   vertical-align: middle;
   font-size: 1em;
   color: #6B6B6B;
 }
-.createAcknowledgementPage .modal.products .details.custom table tr td:first-child {
+.createAcknowledgementPage .modal.products .details.custom .custom-item tr td:first-child {
+  padding: 10px 0px;
   text-align: left;
-  padding-right: 5px;
+  padding-left: 5px;
+  width: 30%;
 }
-.createAcknowledgementPage .modal.products .details.custom table tr td:last-child {
+.createAcknowledgementPage .modal.products .details.custom .custom-item tr td:last-child {
   padding-left: 5px;
   text-align: left;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller {
-  padding: 10px;
-  margin-top: 1em;
-  text-align: left;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller h2 {
-  font-family: proxima;
-  font-size: 1.4em;
-  letter-spacing: 0.08em;
-  color: #CCC;
-  margin-bottom: 1em;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller button {
-  padding: 0.5em;
-  border-radius: 2px;
-  background-color: #414141;
-  border: 1px solid #282828;
-  color: #CCC;
-  cursor: pointer;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller table {
-  margin: 0;
-  margin-top: 20px;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller table tr td {
-  padding: 0.2em 0em;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller table tr td:first-child {
-  padding-right: 0.2em;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-controller table tr td:last-child {
-  color: #CCC;
-}
-.createAcknowledgementPage .modal.products .details.custom .image-preview {
-  position: absolute;
-  top: 55px;
-  bottom: 55px;
-  right: 10px;
   width: 70%;
-  overflow: none;
-  border: 2px dashed grey;
-  border-radius: 5px;
-  -webkit-transition: all 250ms linear;
-  -moz-transition: all 250ms linear;
-  -o-transition: all 250ms linear;
-  -ms-transition: all 250ms linear;
-  transition: all 250ms linear;
-  /*
-                         * Active States for dragging and dropping
-                         */
-
 }
-.createAcknowledgementPage .modal.products .details.custom .image-preview .file-cropper {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+.createAcknowledgementPage .modal.products .details.custom .custom-item tr td:last-child input {
+  width: 90%;
+  background-color: #CCC;
 }
-.createAcknowledgementPage .modal.products .details.custom .image-preview.drag-drop-active {
-  border: 2px dashed green;
-  background-color: #768452;
-}
-.createAcknowledgementPage .modal.products .details.custom .target {
-  color: grey;
-  font-size: 12px;
-  right: 25px;
-  left: 25px;
-  position: absolute;
-  bottom: 40px;
-  padding: 50px 0px;
-  border: 3px dashed grey;
-  border-radius: 5px;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-  text-align: center;
-}
-.createAcknowledgementPage .modal.products .details.custom.active .target {
-  border: 3px dashed #85C181;
-  background-color: #64876D;
-  color: black;
+.createAcknowledgementPage .modal.products .details.custom .cropper {
+  left: 300px;
 }
 .createAcknowledgementPage .modal.products .details.quantity table {
   margin: 0 auto;
@@ -3969,6 +4276,73 @@ select {
   letter-spacing: 0.08em;
 }
 .detailsPage table td {
+  padding: 3px;
+}
+.details-page {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #313131;
+  position: absolute;
+  font-family: proxima;
+}
+.details-page .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.details-page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.details-page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.details-page .workspace .details .table .row {
+  display: table-row;
+}
+.details-page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.details-page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.details-page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.details-page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.details-page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.details-page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.details-page table td {
   padding: 3px;
 }
 .upholstery-details-page {
@@ -5356,6 +5730,244 @@ select {
   width: 75px;
 }
 /*
+ * LESS file for the project details view page
+ */
+.project-details-page {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #313131;
+  position: absolute;
+  font-family: proxima;
+  /*
+     * Modal Section
+     */
+
+}
+.project-details-page .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.project-details-page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.project-details-page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.project-details-page .workspace .details .table .row {
+  display: table-row;
+}
+.project-details-page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.project-details-page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.project-details-page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.project-details-page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.project-details-page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.project-details-page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.project-details-page table td {
+  padding: 3px;
+}
+.project-details-page .modal {
+  /*
+         * Adding a new Room section
+         */
+
+}
+.project-details-page .modal.add-room .selector {
+  position: absolute;
+  right: 50%;
+  width: 200px;
+  border-left: 1px solid #282828;
+  height: 100%;
+  top: 0px;
+}
+.project-details-page .modal.add-room .selector ul {
+  list-style: none;
+}
+.project-details-page .modal.add-room .selector ul li {
+  border-bottom: 1px solid #282828;
+  padding: 0.8em 0em 0.8em 1em;
+  text-align: left;
+  cursor: pointer;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-details-page .modal.add-room .selector ul li:hover {
+  background-color: red;
+}
+.project-details-page .modal.add-room .media-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 50%;
+  border-left: 1px solid #282828;
+}
+.project-details-page .modal.add-room .media-container .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 1.8em;
+  background-color: #313131;
+  border-top: 1px solid #282828;
+  border-radius: 0px 0px 2px 2px;
+  text-align: center;
+}
+.project-details-page .modal.add-room .media-container .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 0.3em 2%;
+  padding: 0.2em;
+  font-size: 0.8em;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.project-details-page .modal.add-room .media-container .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.project-details-page .modal.add-room .media-container .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.project-details-page .modal.add-room .media-container.image .cropper {
+  bottom: 1.8em;
+}
+.project-details-page .modal.add-room .media-container.files .file-handler {
+  bottom: 1.8em;
+}
+.project-details-page .workspace .details {
+  color: #CCC;
+}
+.project-details-page .workspace .rooms-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.project-details-page .workspace .rooms-container .room {
+  height: auto;
+  min-height: 10em;
+  width: 20%;
+  margin: 2.4%;
+  background: orange;
+  opacity: 0.5;
+  border: 1px solid green;
+  float: left;
+}
+.room-details-page {
+  height: 100%;
+  left: 200px;
+  right: 0px;
+  background: #313131;
+  position: absolute;
+  font-family: proxima;
+}
+.room-details-page .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.room-details-page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.room-details-page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.room-details-page .workspace .details .table .row {
+  display: table-row;
+}
+.room-details-page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.room-details-page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.room-details-page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.room-details-page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.room-details-page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.room-details-page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.room-details-page table td {
+  padding: 3px;
+}
+.room-details-page .details {
+  width: 100%;
+}
+/*
  * View Page Imports 
  */
 /*
@@ -5513,48 +6125,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.grid-workspace .header .row .cell.id {
-  width: 10%;
-}
-.grid-workspace .header .row .cell.customer {
-  width: 25%;
-}
-.grid-workspace .header .row .cell.order-date {
-  width: 15%;
-}
-.grid-workspace .header .row .cell.delivery-date {
-  width: 15%;
-}
-.grid-workspace .header .row .cell.processed-by {
-  width: 20%;
-}
-.grid-workspace .header .row .cell.status {
-  width: 15%;
-}
 .grid-workspace .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.grid-workspace .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.grid-workspace .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.grid-workspace .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.grid-workspace .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.grid-workspace .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.grid-workspace .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .grid-workspace .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -5983,48 +6559,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -6453,48 +6993,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -6923,48 +7427,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.acknowledgementViewPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.acknowledgementViewPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.acknowledgementViewPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.acknowledgementViewPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.acknowledgementViewPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.acknowledgementViewPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .acknowledgementViewPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .acknowledgementViewPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -7361,6 +7829,24 @@ select {
 .acknowledgementViewPage .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
 }
+.acknowledgementViewPage .workspace .header .row .cell.id {
+  width: 10%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.customer {
+  width: 25%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.order-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.delivery-date {
+  width: 15%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.processed-by {
+  width: 20%;
+}
+.acknowledgementViewPage .workspace .header .row .cell.status {
+  width: 15%;
+}
 .acknowledgementViewPage .workspace .listContainer .grid .row {
   /*
                   &.acknowledged{
@@ -7421,48 +7907,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewFabricPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewFabricPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewFabricPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewFabricPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewFabricPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewFabricPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewFabricPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewFabricPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewFabricPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -7945,48 +8395,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewGluePage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewGluePage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewGluePage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewGluePage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewGluePage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewGluePage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewGluePage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewGluePage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewGluePage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -8419,48 +8833,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewSuppliersPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewSuppliersPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewSuppliersPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewSuppliersPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewSuppliersPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewSuppliersPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewSuppliersPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewSuppliersPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -8931,48 +9309,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewCustomerPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewCustomerPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewCustomerPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewCustomerPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewCustomerPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewCustomerPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewCustomerPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewCustomerPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewCustomerPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -9546,48 +9888,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewLibraryPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewLibraryPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewLibraryPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewLibraryPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewLibraryPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewLibraryPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewLibraryPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewLibraryPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewLibraryPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -10086,48 +10392,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.viewTransactionsPage .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.viewTransactionsPage .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.viewTransactionsPage .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.viewTransactionsPage .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.viewTransactionsPage .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.viewTransactionsPage .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .viewTransactionsPage .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .viewTransactionsPage .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -10559,48 +10829,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.view-prop-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.view-prop-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.view-prop-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.view-prop-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.view-prop-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.view-prop-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .view-prop-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.view-prop-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .view-prop-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -11075,48 +11309,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.foam-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.foam-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.foam-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.foam-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.foam-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.foam-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .foam-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.foam-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .foam-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -11591,48 +11789,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.shipping-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.shipping-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.shipping-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.shipping-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.shipping-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.shipping-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .shipping-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.shipping-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .shipping-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -12079,48 +12241,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.delivery-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.delivery-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.delivery-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.delivery-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.delivery-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.delivery-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .delivery-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.delivery-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .delivery-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -12571,48 +12697,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.model-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.model-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.model-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.model-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.model-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.model-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .model-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.model-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .model-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -13079,48 +13169,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.upholstery-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .upholstery-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.upholstery-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .upholstery-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -13651,10 +13705,6 @@ select {
   bottom: 0px;
   right: 0px;
   left: 200px;
-  /*
-   * Add Inventory Modal
-   */
-
 }
 .inventory-page .workspace.grid {
   position: absolute;
@@ -13680,48 +13730,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.inventory-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.inventory-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.inventory-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.inventory-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.inventory-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.inventory-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .inventory-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.inventory-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .inventory-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -14118,316 +14132,6 @@ select {
 .inventory-page .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
 }
-.inventory-page .modal.products {
-  margin: 0;
-  width: auto;
-  height: auto;
-  top: 5%;
-  left: 5%;
-  bottom: 5%;
-  right: 5%;
-  background-color: #313131;
-  color: #FFFFFF;
-}
-.inventory-page .modal.products .title {
-  text-align: left;
-  padding: 0.8em 1.5em;
-}
-.inventory-page .modal.products .selector {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0px;
-  left: 0px;
-  width: 8em;
-  border-right: 1px solid #282828;
-  cursor: pointer;
-}
-.inventory-page .modal.products .selector ul li {
-  padding: 0.5em 0em 0.5em 0.4em;
-  font-family: proxima;
-  font-size: 1em;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-}
-.inventory-page .modal.products .selector ul li.active {
-  background-color: purple;
-  border: 1px solid transparent;
-}
-.inventory-page .modal.products .details {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0em;
-  left: 8em;
-  right: 0em;
-  text-align: center;
-  z-index: -1;
-}
-.inventory-page .modal.products .details .search-bar {
-  position: absolute;
-  right: 1em;
-}
-.inventory-page .modal.products .details .bottom-bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: auto;
-  background-color: #313131;
-  border-top: 1px solid #282828;
-  border-radius: 0px 0px 2px 2px;
-  text-align: center;
-}
-.inventory-page .modal.products .details .bottom-bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 0.3em 2%;
-  padding: 0.2em;
-  font-size: 1em;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.inventory-page .modal.products .details .bottom-bar button:hover {
-  background-color: #3A3A3A;
-}
-.inventory-page .modal.products .details .bottom-bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.inventory-page .modal.products .details.upholstery .container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0em;
-  left: 0em;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.inventory-page .modal.products .details.upholstery .container .list {
-  height: auto;
-  width: 100%;
-  display: table;
-}
-.inventory-page .modal.products .details.upholstery .container .list .row {
-  display: table-row;
-  width: 100%;
-}
-.inventory-page .modal.products .details.upholstery .container .list .row .cell {
-  display: table-cell;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-  font-family: proxima;
-  font-size: 1em;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.inventory-page .modal.products .details.upholstery .container .list .row .cell.image {
-  width: 10em;
-  height: auto;
-}
-.inventory-page .modal.products .details.upholstery .container .list .row .cell.image img {
-  width: 100%;
-  height: auto;
-}
-.inventory-page .modal.products .details.custom table {
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.inventory-page .modal.products .details.custom table tr td {
-  vertical-align: middle;
-  font-size: 1em;
-  color: #6B6B6B;
-}
-.inventory-page .modal.products .details.custom table tr td:first-child {
-  text-align: left;
-  padding-right: 5px;
-}
-.inventory-page .modal.products .details.custom table tr td:last-child {
-  padding-left: 5px;
-  text-align: left;
-}
-.inventory-page .modal.products .details.custom .image-controller {
-  padding: 10px;
-  margin-top: 1em;
-  text-align: left;
-}
-.inventory-page .modal.products .details.custom .image-controller h2 {
-  font-family: proxima;
-  font-size: 1.4em;
-  letter-spacing: 0.08em;
-  color: #CCC;
-  margin-bottom: 1em;
-}
-.inventory-page .modal.products .details.custom .image-controller button {
-  padding: 0.5em;
-  border-radius: 2px;
-  background-color: #414141;
-  border: 1px solid #282828;
-  color: #CCC;
-  cursor: pointer;
-}
-.inventory-page .modal.products .details.custom .image-controller table {
-  margin: 0;
-  margin-top: 20px;
-}
-.inventory-page .modal.products .details.custom .image-controller table tr td {
-  padding: 0.2em 0em;
-}
-.inventory-page .modal.products .details.custom .image-controller table tr td:first-child {
-  padding-right: 0.2em;
-}
-.inventory-page .modal.products .details.custom .image-controller table tr td:last-child {
-  color: #CCC;
-}
-.inventory-page .modal.products .details.custom .image-preview {
-  position: absolute;
-  top: 55px;
-  bottom: 55px;
-  right: 10px;
-  width: 70%;
-  overflow: none;
-  border: 2px dashed grey;
-  border-radius: 5px;
-  -webkit-transition: all 250ms linear;
-  -moz-transition: all 250ms linear;
-  -o-transition: all 250ms linear;
-  -ms-transition: all 250ms linear;
-  transition: all 250ms linear;
-  /*
-                         * Active States for dragging and dropping
-                         */
-
-}
-.inventory-page .modal.products .details.custom .image-preview .file-cropper {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-.inventory-page .modal.products .details.custom .image-preview.drag-drop-active {
-  border: 2px dashed green;
-  background-color: #768452;
-}
-.inventory-page .modal.products .details.custom .target {
-  color: grey;
-  font-size: 12px;
-  right: 25px;
-  left: 25px;
-  position: absolute;
-  bottom: 40px;
-  padding: 50px 0px;
-  border: 3px dashed grey;
-  border-radius: 5px;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-  text-align: center;
-}
-.inventory-page .modal.products .details.custom.active .target {
-  border: 3px dashed #85C181;
-  background-color: #64876D;
-  color: black;
-}
-.inventory-page .modal.products .details.quantity table {
-  margin: 0 auto;
-  margin-top: 8em;
-}
-.inventory-page .modal.products .details.quantity table tr td {
-  padding: 0.5em;
-}
-.inventory-page .modal.products .details.fabric {
-  font-family: proxima;
-  letter-spacing: 0.08em;
-}
-.inventory-page .modal.products .details.fabric .product_container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 60%;
-  bottom: 36px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border-right: 1px solid #282828;
-  text-align: left;
-}
-.inventory-page .modal.products .details.fabric .product_container .product {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.inventory-page .modal.products .details.fabric .product_container .product .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.inventory-page .modal.products .details.fabric .product_container .product .fabric img {
-  height: 100%;
-}
-.inventory-page .modal.products .details.fabric .product_container .product.drag {
-  background-color: #282828;
-}
-.inventory-page .modal.products .details.fabric .product_container .pillow {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.inventory-page .modal.products .details.fabric .product_container .pillow .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.inventory-page .modal.products .details.fabric .product_container .pillow .fabric img {
-  height: 100%;
-}
-.inventory-page .modal.products .details.fabric .product_container .pillow.drag {
-  background-color: #282828;
-}
-.inventory-page .modal.products .details.fabric .fabric_container {
-  position: absolute;
-  top: 0px;
-  bottom: 36px;
-  right: 0px;
-  width: 40%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.inventory-page .modal.products .details.fabric .fabric_container .list .item {
-  cursor: move;
-  position: relative;
-  height: 5em;
-  border-bottom: 1px solid #282828;
-  background-color: #313131;
-}
-.inventory-page .modal.products .details.fabric .fabric_container .list .item .details {
-  position: absolute;
-  font-size: 1em;
-  padding: 1.25em 1em;
-  z-index: 1;
-  top: 0em;
-  left: 5em;
-}
-.inventory-page .modal.products .details.fabric .fabric_container .list .item img {
-  position: absolute;
-  height: 100%;
-  width: 5em;
-  top: 0em;
-  left: 0em;
-  z-index: 1;
-}
 .inventory-page .workspace .header .cell.preview {
   height: auto;
   width: 20%;
@@ -14530,48 +14234,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.user-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.user-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.user-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.user-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.user-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.user-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .user-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.user-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .user-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -15030,48 +14698,12 @@ select {
   font-size: 1em;
   padding: 0.8em 0.8em;
 }
-.group-view-page .workspace.grid .header .row .cell.id {
-  width: 10%;
-}
-.group-view-page .workspace.grid .header .row .cell.customer {
-  width: 25%;
-}
-.group-view-page .workspace.grid .header .row .cell.order-date {
-  width: 15%;
-}
-.group-view-page .workspace.grid .header .row .cell.delivery-date {
-  width: 15%;
-}
-.group-view-page .workspace.grid .header .row .cell.processed-by {
-  width: 20%;
-}
-.group-view-page .workspace.grid .header .row .cell.status {
-  width: 15%;
-}
 .group-view-page .workspace.grid .listContainer {
   overflow-y: scroll;
   top: 2.6em;
   bottom: 0em;
   width: 100%;
   position: absolute;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.id {
-  width: 10%;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.customer {
-  width: 25%;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.order-date {
-  width: 15%;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.delivery-date {
-  width: 15%;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.processed-by {
-  width: 20%;
-}
-.group-view-page .workspace.grid .listContainer .grid .row .cell.status {
-  width: 15%;
 }
 .group-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
   color: #FFED68;
@@ -15481,6 +15113,520 @@ select {
 }
 .group-view-page .workspace .listContainer .cell.name {
   width: 90%;
+}
+/*
+ * LESS file for the project view page
+ */
+.project-view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+}
+.project-view-page .workspace.grid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+.project-view-page .workspace.grid .header {
+  display: table;
+  width: 100%;
+  position: absolute;
+  height: 2.6em;
+  background: #282828;
+}
+.project-view-page .workspace.grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: 100%;
+}
+.project-view-page .workspace.grid .header .row .cell {
+  display: table-cell;
+  font-size: 1em;
+  padding: 0.8em 0.8em;
+}
+.project-view-page .workspace.grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.project-view-page .workspace.grid .listContainer .grid .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.project-view-page .workspace.grid .listContainer .grid .row .cell.status.shipped {
+  color: #7ED136;
+}
+.project-view-page .workspace.list {
+  overflow-y: scroll;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+  /*
+     * Container holding the list. The 
+     * height is auto so that is can 
+     * be put inside a container with 
+     * scroll enabled to allow scrolling
+     */
+}
+.project-view-page .workspace.list.grid {
+  overflow: hidden;
+}
+.project-view-page .workspace.list .container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.project-view-page .workspace.list .container .grid {
+  display: table;
+  height: auto;
+  width: 100%;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.project-view-page .workspace.list .container .grid .header {
+  display: table-header-group;
+  width: 100%;
+  height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
+}
+.project-view-page .workspace.list .container .grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #FFFFFF;
+  border: none;
+  height: 2.6em;
+}
+.project-view-page .workspace.list .container .grid .header .row .cell {
+  font-size: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #313131;
+  color: #FFF;
+}
+.project-view-page .workspace.list .container .grid .header.ui-scrollfix {
+  position: absolute;
+  top: 0px;
+}
+.project-view-page .workspace.list .container .grid .body {
+  display: table-row-group;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+.project-view-page .workspace.list .container .grid .body .row {
+  text-decoration: none;
+  display: table-row;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+.project-view-page .workspace.list .container .grid .body .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  color: grey;
+}
+.project-view-page .workspace.list .container .grid .body .row .cell label {
+  font-size: 0.8em;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.project-view-page .workspace.list .listContainer .list {
+  display: table;
+  height: auto;
+  width: 100%;
+}
+.project-view-page .workspace.list .listContainer .list .listItem {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell .details {
+  display: table;
+  width: auto;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.project-view-page .workspace.list .listContainer .list .listItem .cell.profile-img div img {
+  height: 100%;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td .details {
+  display: table;
+  width: auto;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.project-view-page .workspace.list .listContainer .list .listItem td.profile-img div img {
+  height: 100%;
+}
+.project-view-page .workspace.list .listContainer .list .listItem:hover {
+  background-color: #292929;
+}
+.project-view-page .workspace.list .listContainer .list .listItem:hover td label {
+  color: #FFF;
+}
+.project-view-page .workspace.list .listContainer .list .listItem:last-child {
+  border-bottom: none;
+}
+.project-view-page .workspace.list .listContainer .list .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #313131;
+  background-color: #313131;
+  text-decoration: none;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell .details {
+  display: table;
+  width: auto;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell.profile-img {
+  width: 200px;
+  position: relative;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.project-view-page .workspace.list .listContainer .list .row .cell.profile-img div img {
+  height: 100%;
+}
+.project-view-page .workspace.list .listContainer .list .row td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.project-view-page .workspace.list .listContainer .list .row td label {
+  font-size: 10pt;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.project-view-page .workspace.list .listContainer .list .row td .details {
+  display: table;
+  width: auto;
+}
+.project-view-page .workspace.list .listContainer .list .row td .details .details-row {
+  font-family: proxima;
+  display: table-row;
+  color: grey;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+  margin-bottom: 2em;
+}
+.project-view-page .workspace.list .listContainer .list .row td .details .details-row .details-cell {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .row td .details .details-row .details-title {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+  padding-right: 1em;
+}
+.project-view-page .workspace.list .listContainer .list .row td .details .details-row .details-data {
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: proxima;
+}
+.project-view-page .workspace.list .listContainer .list .row td.profile-img {
+  width: 200px;
+  position: relative;
+}
+.project-view-page .workspace.list .listContainer .list .row td.profile-img div {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.project-view-page .workspace.list .listContainer .list .row td.profile-img div img {
+  height: 100%;
+}
+.project-view-page .workspace.list .listContainer .list .row:hover {
+  background-color: #292929;
+}
+.project-view-page .workspace.list .listContainer .list .row:hover td label {
+  color: #FFF;
+}
+.project-view-page .workspace.list .listContainer .list .row:last-child {
+  border-bottom: none;
+}
+.project-view-page .modal.add-project .add-project-table tr td input {
+  background-color: #CCC;
+  border-radius: 2px;
+}
+.project-view-page .modal.add-project .add-project-table tr td .ui-datepicker {
+  border: 1px solid #282828;
+  width: 300px;
+}
+.project-view-page .workspace.grid .row {
+  width: 100%;
+}
+.project-view-page .workspace.grid .row .cell {
+  padding: 0.8em;
+}
+.project-view-page .workspace.grid .row .cell.name {
+  width: 20%;
+}
+.project-view-page .workspace.grid .row .cell.customer {
+  width: 40%;
+}
+.project-view-page .workspace.grid .row .cell.type {
+  width: 10%;
+}
+.project-view-page .workspace.grid .row .cell.status {
+  width: 10%;
+}
+.project-view-page .workspace.grid .row .cell.due-date {
+  width: 20%;
+}
+.project-view-page .workspace.grid .header .grid .row {
+  width: 100%;
+}
+.project-view-page .workspace.grid .header .grid .row .cell {
+  padding: 0.8em;
+}
+.project-view-page .workspace.grid .header .grid .row .cell.name {
+  width: 20%;
+}
+.project-view-page .workspace.grid .header .grid .row .cell.customer {
+  width: 40%;
+}
+.project-view-page .workspace.grid .header .grid .row .cell.type {
+  width: 10%;
+}
+.project-view-page .workspace.grid .header .grid .row .cell.status {
+  width: 10%;
+}
+.project-view-page .workspace.grid .header .grid .row .cell.due-date {
+  width: 20%;
+}
+.project-view-page .workspace.grid .listContainer .list {
+  width: 100%;
+}
+.project-view-page .workspace.grid .listContainer .list .body {
+  width: 100%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row {
+  width: 100%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell {
+  padding: 0.8em;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell.name {
+  width: 20%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell.customer {
+  width: 40%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell.type {
+  width: 10%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell.status {
+  width: 10%;
+}
+.project-view-page .workspace.grid .listContainer .list .body .row .cell.due-date {
+  width: 20%;
 }
 /* app css stylesheet */
 /*Directives-----------------------------------*/

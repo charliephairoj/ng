@@ -1,14 +1,26 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('AdministratorUserDetailsCtrl', ['$scope', 'Group', 'User', '$routeParams', '$location',
-  function ($scope, Group, User, $routeParams, $location) {
+  .controller('AdministratorUserDetailsCtrl', ['$scope', 'Group', 'User', '$routeParams', '$location', '$http', 'Notification',
+  function ($scope, Group, User, $routeParams, $location, $http, Notification) {
     $scope.groupList = Group.query(function(){
         merge($scope.groupList, $scope.user.groups);
     });
     $scope.user = User.get({'id':$routeParams.id}, function(){
         merge($scope.groupList, $scope.user.groups);
     });
+    
+    $scope.changePassword = function(){
+        var url = "/user/"+$scope.user.id+"/change_password";
+        $http.post(url, $scope.password).success(function(e){
+            console.log(e);
+            Notification.display('Password successfully changed');
+            $scope.password = {};
+            $scope.showChangePassword = false;
+        }).error(function(e){
+             console.log(e);
+        });
+    }
     
     $scope.updateGroup = function(index){
         var group = $scope.groupList[index];

@@ -1,0 +1,69 @@
+<div class="room-details-page">
+    
+    <!--
+        Modals
+    -->
+    
+    <div product-selector="showAddItem" product-selector-add="addProduct(product)"></div>
+    
+    <!--
+        Sidebar
+    -->
+    <div class="sidebar">
+        <header>
+            <h1>
+                <span>Room: {{room.description}}</span>
+            </h1>
+        </header>
+        <nav>
+            <ul class="list">
+                <li>
+                    <button ng-click="showAddItem=true">Add an item</button>
+                </li>
+            </ul>
+        </nav>
+        
+    </div>
+    
+    <!--
+        Workspace
+    -->
+    <div class="workspace">
+        <div class="details">
+            <table>
+                <tr>
+                    <td>Room: </td>
+                    <td>{{room.description}}</td>
+                </tr>
+                <tr>
+                    <td>Reference: </td>
+                    <td>{{room.reference}}</td>
+                </tr>
+                <tr>
+                    <td>Delivery Date: </td>
+                    <td>{{room.delivery | date:"MMMM d, yyyy"}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="items-container">
+            <div class="grid">
+                 <div class="header">
+                     <div class="row">
+                         <div class="cell">Description</div>
+                         <div class="cell">Type</div>
+                         <div class="cell">Delivery Date</div>
+                     </div>
+                 </div>
+                 <div class="body">
+                    <div class="row" ng-repeat="item in room.items">
+                        <div class="cell">{{item.description}}</div>
+                        <div class="cell">{{item.reference}}</div>
+                        <div class="cell">{{item.type}}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="item" >{{item.description}}</div>
+        </div>
+    </div>
+</div>

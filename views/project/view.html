@@ -1,4 +1,47 @@
-<div class="acknowledgementViewPage">
+<div class="project-view-page">
+    
+    <!--
+        Modals
+    -->
+    <div data-modal data-ng-model="addProject" class="add-project">
+        <div class="title"></div>
+        <div class="container">
+            <table class="add-project-table">
+                <tr>
+                    <td>Project Name:</td>
+                    <td><input type="text" data-ng-model="project.name"></td>
+                </tr>
+                <tr>
+                    <td>Project Reference:</td>
+                    <td><input type="text" data-ng-model="project.reference"></td>
+                </tr>
+                <tr>
+                    <td>Project Codename:</td>
+                    <td><input type="text" data-ng-model="project.codename"></td>
+                </tr>
+                <tr>
+                    <td>Project Type:</td>
+                    <td>
+                        <select ng-model="project.type">
+                            <option value="condominium">Condominium</option>
+                            <option value="house">House</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>Customer:</td>
+                    <td><select ng-model="project.customer" ng-options="customer.name for customer in customerList"></select></td>
+                </tr>
+                <tr>
+                    <td>Due Date:</td>
+                    <td><div ui-date ng-model="project.due_date"></div></td>
+                </tr>
+            </table>
+        </div>
+        <div class="bottom-bar"><button data-ng-click="create()">Create Project</button></div>
+    </div>
     
     <!--
         Sidebar
@@ -12,8 +55,8 @@
         </header>
         <nav>
             <ul class="list">
-                <li ui-if="currentUser.hasPermission('add_acknowledgement')">
-                    <a ng-href="#/project/add">Create</a>
+                <li ng-show="currentUser.hasPermission('add_project')">
+                    <button ng-click="addProject=true">Create</button>
                 </li>
             </ul>
         </nav>
@@ -33,27 +76,25 @@
     <div class="workspace grid">
         <div class="header">
             <div class="row">
-                <div class="cell id">Project#</div>
+                <div class="cell name">Project</div>
                 <div class="cell customer">Customer</div>
+                <div class="cell type">Type</div>
                 <div class="cell status">Status</div>
-                <div class="cell delivery-date">Delivery Date</div>
-                <div class="cell order-date">Order Date</div>
-                <div class="cell processed-by">Processed By</div>
+                <div class="cell due-date">Due Date</div>
                
             </div>
         </div>
         <div class="listContainer">
             
-            <div class="grid">
+            <div class="list">
                 
                 <div class="body">
                     <a class="row" data-ng-repeat="project in projectList | filter:query | orderBy:'status' | orderBy:'-id' | limitTo:100" ng-href="#/project/{{project.id}}" >
-                        <div class="cell id">{{project.id}}</div>
+                        <div class="cell name">{{project.name}}</div>
                         <div class="cell customer">{{project.customer.name}}</div>
-                        <div class="cell status" ng-class="{projectnowledged:project.status == 'projectNOWLEDGED',shipped:project.status=='SHIPPED'}">{{project.status}}</div>
-                        <div class="cell delivery-date">{{project.delivery_date | date:"MMMM d, yyyy"}}</div>
-                        <div class="cell order-date">{{project.time_created | date:"MMMM d, yyyy"}}</div>
-                        <div class="cell processed-by">{{project.employee}}</div>
+                        <div class="cell type">{{project.type}}</div>
+                        <div class="cell status" ng-class="{}">{{project.status}}</div>
+                        <div class="cell due-date">{{project.due_date | date:"MMMM d, yyyy"}}</div>
                         
                     </a>
                 </div>

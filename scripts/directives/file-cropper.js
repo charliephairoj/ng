@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp.directives')
-    .directive('fileCropper', ['Notification', function (Notification) {
+    .directive('fileCropper', ['Notification', '$compile', function (Notification, $compile) {
         function Scene(canvas, ctx, image){
             this.ctx = ctx;
             this.canvas = canvas
@@ -162,11 +162,42 @@ angular.module('employeeApp.directives')
             return new Blob([stream], {type: 'image/jpeg'});
         };
         
+        
+        
         return {
             restrict: 'A',
+            template: '<div class="cropper">\
+                            <div class="cropper-message" ng-show="!cropper.image.loaded"><h3>Drop Image Here</h3></div>\
+                            <div class="cropper-controller" ng-show="cropper.image.loaded">\
+                                <button ng-click="cropper.crop()" ng-show="!cropper.cropping">Crop</button>\
+                                <button ng-click="cropper.save()" ng-show="cropper.cropping">Done Cropping</button>\
+                                <button data-ng-click="preview(cropper.getImageAsURL())">Preview</button>\
+                                <table class="cropper-scale">\
+                                    <tr>\
+                                        <td>Scale:</td>\
+                                        <td><input class="scale" type="number" data-ng-model="cropper.scale" min="0" max="100">%</td>\
+                                    </tr>\
+                                    <tr>\
+                                        <td>Width</td>\
+                                        <td>{{cropper.image.scaled_width | number:0}}px</td>\
+                                    </tr>\
+                                    <tr>\
+                                        <td>Height</td>\
+                                        <td>{{cropper.image.scaled_height | number:0}}px</td>\
+                                    </tr>\
+                                </table>\
+                            </div>\
+                            <div class="canvas-container" ng-show="cropper.image.loaded">\
+                                <canvas class></canvas>\
+                            </div>\
+                        </div>',
+            replace: true,
+            scope:false,
             link: function postLink(scope, element, attrs) {
                 var cubes = []
-                var canvas = angular.element("<canvas></canvas>")[0];
+                var canvasContainer = element.find('.canvas-container');
+                var canvasElement = canvasContainer.find('canvas');
+                var canvas = canvasContainer.find("canvas")[0];
                 var parent = element;
                 var fileReader = new FileReader();
                 var ctx = canvas.getContext('2d');
@@ -176,24 +207,21 @@ angular.module('employeeApp.directives')
                 var scene;
                 var image;
                 var mousedown = false;
-                
-                parent.append(canvas);
-                angular.element(canvas).addClass('file-cropper');
-
+               
                 //Set Canvas to parent width and height
-                canvas.width = parent.outerWidth();
-                canvas.height = parent.outerHeight();
+                canvas.width = canvasContainer.outerWidth();
+                canvas.height = canvasContainer.outerHeight();
                 
                 fileReader.onload = function(evt){
-                    
+                    parent.removeClass('drag-drop-active');
                     //Create Image
                     image = new Image();
                     image.onload = function(e){
                         //Display Notification
                         Notification.display('Image Rendered');
                         //Set canvas dimensions
-                        var height = parent.innerHeight();
-                        var width = parent.innerWidth();
+                        var height = canvasContainer.innerHeight();
+                        var width = canvasContainer.innerWidth();
                         var ratio1 = height/width;
                         var ratio2 = image.height/image.width;
                         if(ratio1>ratio2){
@@ -209,7 +237,7 @@ angular.module('employeeApp.directives')
                         //Create and Draw new Scene
                         scene = new Scene(canvas, ctx, image);
                         scene.drawImage();
-                        scope.safeApply();
+                        scope.$apply();
                     };
                     image.src = evt.target.result;
                     
@@ -246,10 +274,12 @@ angular.module('employeeApp.directives')
                 })
 
                 function mouseDown(e){
+                    e.preventDefault();
                     mousedown = true;
                     mouseX = e.offsetX;
                     mouseY = e.offsetY;
                     corner = scene.inCorner(e.offsetX, e.offsetY);
+                    scene.canvas.style.cursor = 'move';
                 }
                 
                 function mouseMove(e){
@@ -278,14 +308,25 @@ angular.module('employeeApp.directives')
                                     break;
                             }
                         }else{
-                            scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
-                            scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
+                            var topLeft = scene.corners['topLeft'],
+                                bottomRight = scene.corners['bottomRight'];
+                           
+                            if(topLeft.y - (mouseY-e.offsetY) > 0 && bottomRight.y - (mouseY-e.offsetY) < scene.img.height*scene.yProportion){
+                                scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
+                            }else{
+                                scene.y = topLeft.y - (mouseY-e.offsetY) <= 0 ? 0 : (scene.canvas.height - (bottomRight.y - topLeft.y))/scene.yProportion;
+                            }
+                            if(topLeft.x - (mouseX-e.offsetX) > 0 && bottomRight.x - (mouseX-e.offsetX) < scene.img.width*scene.xProportion){
+                                scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
+                            }else{
+                                scene.x = topLeft.x - (mouseX-e.offsetX) <= 0 ? 0 : (scene.canvas.width - (bottomRight.x - topLeft.x))/scene.xProportion;
+                            }                            
                         }
                         
                         mouseX = e.offsetX;
                         mouseY = e.offsetY;
                         scene.draw();
-                        scope.safeApply();
+                        scope.$apply();
                         
                     }
                 }
@@ -311,7 +352,7 @@ angular.module('employeeApp.directives')
                  * -save
                  * -getImage
                  */
-                scope.cropper = {image:{}};
+                scope.cropper = {cropping:false, image:{}};
                 
                 Object.defineProperties(scope.cropper, {
                     scale:{
@@ -346,27 +387,36 @@ angular.module('employeeApp.directives')
                         get:function(){
                             return scene ? scene.w ? scene.w*scene.scale : 0 : 0;
                         }
+                    },
+                    loaded:{
+                        get:function(){
+                            return scene ? true : false;
+                        }
                     }
                 }); 
                 
                 scope.cropper.crop = function(){
+                    scope.cropper.cropping = true;
                     scene.x = 10;
                     scene.y = 10;
                     scene.w = scene.w - 20;
                     scene.h = scene.h - 20;
+                    scene.canvas.style.cursor = 'move';
                     scene.draw();
-                    element.bind('mousedown', mouseDown);
-                    element.bind('mousemove', mouseMove);
-                    element.bind('mouseup', mouseUp);
-                    element.bind('mouseleave', mouseLeave);
+                    canvasElement.bind('mousedown', mouseDown);
+                    canvasElement.bind('mousemove', mouseMove);
+                    canvasElement.bind('mouseup', mouseUp);
+                    canvasElement.bind('mouseleave', mouseLeave);
                 };
                 
                 scope.cropper.save = function(){
+                    scope.cropper.cropping = false;
+                    scene.canvas.style.cursor = 'move';
                     scene.crop(element.innerWidth(), element.innerHeight());
-                    element.unbind('mousedown', mouseDown);
-                    element.unbind('mousemove', mouseMove);
-                    element.unbind('mouseup', mouseUp);
-                    element.unbind('mouseleave', mouseLeave);
+                    canvasElement.unbind('mousedown', mouseDown);
+                    canvasElement.unbind('mousemove', mouseMove);
+                    canvasElement.unbind('mouseup', mouseUp);
+                    canvasElement.unbind('mouseleave', mouseLeave);
                 };
                 
                 scope.cropper.getImage = function(){
@@ -378,12 +428,27 @@ angular.module('employeeApp.directives')
                 }
                 
                 scope.cropper.getImageAsURL = function(){
+                    return cropper.getImageURL();
+                }
+                
+                scope.cropper.getImageURL = function(){
                     if(scene){
                         return scene.getImageAsURL();
                     }else{
                         return null;
                     }
                 }
+                
+                scope.preview = function(url){
+                    if(url){
+                        window.open(url);
+                    }
+                }
+                
+                scope.cropper.reset = function(){
+                    scene = undefined;
+                }
+                
             }
         };
     }]);

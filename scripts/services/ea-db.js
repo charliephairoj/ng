@@ -45,7 +45,11 @@ angular.module('employeeApp.services')
                     'group',
                     'user', 
                     'delivery',
-                    'table']
+                    'table',
+                    'project',
+                    'project-room',
+                    'project-item', 
+                    'test']
         }
         
         function saveNamespaces(namespaces){
