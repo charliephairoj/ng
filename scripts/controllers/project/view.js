@@ -21,7 +21,7 @@ angular.module('employeeApp')
                 Notification.display('New project created.');
                 $scope.projectList.push(response);
                 $scope.project = {};
-                Scope.addProject = false;
+                $scope.addProject = false;
             });
         };
         
