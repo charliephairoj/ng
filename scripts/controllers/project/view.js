@@ -5,7 +5,7 @@ angular.module('employeeApp')
     function ($scope, Project, Notification, Customer, $location) {
         
         //Controlling attributes
-        $scope.addProject = false;
+        $scope.showAddProject = false;
         
         //Query the server for projects continouosly
         $scope.projectList = Project.poll().query();
@@ -21,7 +21,7 @@ angular.module('employeeApp')
                 Notification.display('New project created.');
                 $scope.projectList.push(response);
                 $scope.project = {};
-                $scope.addProject = false;
+                $scope.showAddProject = false;
             });
         };
         

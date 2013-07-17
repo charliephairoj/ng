@@ -3,7 +3,7 @@
     <!--
         Modals
     -->
-    <div data-modal data-ng-model="addProject" class="add-project">
+    <form name="addForm" novalidate data-modal data-ng-model="showAddProject" class="add-project">
         <div class="title"></div>
         <div class="container">
             <table class="add-project-table">
@@ -40,8 +40,8 @@
                 </tr>
             </table>
         </div>
-        <div class="bottom-bar"><button data-ng-click="create()">Create Project</button></div>
-    </div>
+        <div class="bottom-bar"><button ng-disabled="addForm.$invalid" data-ng-click="create()">Create Project</button></div>
+    </form>
     
     <!--
         Sidebar
@@ -56,7 +56,7 @@
         <nav>
             <ul class="list">
                 <li ng-show="currentUser.hasPermission('add_project')">
-                    <button ng-click="addProject=true">Create</button>
+                    <button ng-click="showAddProject=true">Create</button>
                 </li>
             </ul>
         </nav>

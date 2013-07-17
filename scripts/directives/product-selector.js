@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('employeeApp')
-    .directive('productSelector', ['Upholstery', 'Fabric', 'Table', '$rootScope', 'Notification',
-    function (Upholstery, Fabric, Table, $rootScope, Notification) {
+    .directive('productSelector', ['Upholstery', 'Fabric', 'Table', '$rootScope', 'Notification', 'FileUploader',
+    function (Upholstery, Fabric, Table, $rootScope, Notification, FileUploader) {
         return {
             templateUrl: 'views/templates/product-selector.html',
             replace: true,
@@ -72,6 +72,12 @@ angular.module('employeeApp')
                     });
                 };
                 
+                function add(){
+                    var newProduct = angular.copy(scope.product);
+                    scope.add({product:newProduct});
+                }
+                
+                
                 scope.addUpholstery = function(upholstery){
                     if(upholstery){
                         scope.product = upholstery;
@@ -95,7 +101,8 @@ angular.module('employeeApp')
                 scope.addCustomItem = function(item, image){
                     
                     if(item && image){
-                        uploadImage(image, function(response){
+                        var promise = FileUploader.upload(image, scope.url);
+                        promise.then(function(response){
                             scope.product = item;
                             scope.product.is_custom = true;
                             scope.product.type = 'custom';
@@ -119,7 +126,8 @@ angular.module('employeeApp')
                         scope.modal.hide(function(){
                             scope.selection = 'upholstery';
                         });
-                        scope.add({product:scope.product});
+                        var newProduct = angular.copy(scope.product);
+                        scope.add({product:newProduct});
                     }
                 };
                 
@@ -128,7 +136,9 @@ angular.module('employeeApp')
                     scope.modal.hide(function(){
                         scope.selection = 'upholstery';
                     });
-                    scope.add({product:scope.product});
+                    
+                    var newProduct = angular.copy(scope.product);
+                    scope.add({product:newProduct});
                 };
                 
                 scope.reset = function(){
