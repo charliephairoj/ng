@@ -94,6 +94,9 @@
                 <li ng-show="currentUser.hasPermission('change_acknowledgement')">
                     <div ng-click="showFabric=true">Add Fabric</div>
                 </li>
+                <li ng-show="currentUser.hasPermission('delete_acknowledgement_item')">
+                    <div ng-click="remove()">Delete Item</div>
+                </li>
                 <!--
                 <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
                     <div ng-click="remove()">Delete</div>

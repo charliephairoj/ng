@@ -59,8 +59,8 @@
  * -$query()
  */
 angular.module('employeeApp.services')
-  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout', 'eaIndexedDB',
-  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexedDB) {
+  .factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout', 'eaIndexedDB', 'Notification', 
+  function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexedDB, Notification) {
       function ResourceFactory(url, paramDefaults, actions){
             //Default methods available to the public
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
@@ -243,7 +243,11 @@ angular.module('employeeApp.services')
                                              if (index != -1) {
                                                  angular.copy(data[key], value[index]);
                                              } else {
-                                                 value.push(new Resource(data[key]));
+                                                 try{
+                                                    value.push(new Resource(data[key]));
+                                                 }catch(e){
+                                                     console.warn(e.stack);
+                                                 }
                                              }
                                          }
                                          (success || angular.noop)(value);
@@ -284,7 +288,11 @@ angular.module('employeeApp.services')
                                                  if (index != -1) {
                                                      angular.copy(data[key], value[index]);
                                                  } else {
-                                                     value.push(new Resource(data[key]));
+                                                     try{
+                                                        value.push(new Resource(data[key]));
+                                                    }catch(e){
+                                                        console.warn(e.stack);   
+                                                    }
                                                  }
                                              }
                                              (success || angular.noop)(value);
@@ -370,18 +378,33 @@ angular.module('employeeApp.services')
                                         */
                                         if (!angular.equals(value[index], response[i])) {
                                             angular.extend(value[index], new Resource(response[i]));
-                                            //value[index] = new Resource(response[i]);
+                                            if(value[index].deleted){
+                                                value.splice(index, 1);
+                                                var item = new Array();
+                                                item.splice(index);
+                                            }
                                         }
                                         
                                     }else{
                                         //Add the new item
-                                        value.push(new Resource(response[i])); 
+                                        if(!response[i].deleted){
+                                            try{
+                                                value.push(new Resource(response[i])); 
+                                            }catch(e){
+                                                console.warn(e.stack);
+                                            }
+                                        }
                                     }
                                     
                                 }
                             }else{
                                 //Upate the reference with the data
-                                angular.extend(value, new Resource(response));
+                                if(response.deleted){
+                                    angular.copy({}, value);
+                                    Notification.display("This resource no longer exists.");
+                                }else{
+                                    angular.extend(value, new Resource(response));
+                                }
                             }
                         }
                         

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('OrderAcknowledgementItemDetailsCtrl', ['$scope', '$routeParams', 'AcknowledgementItem', 'Fabric', 'Notification',  
-  function ($scope, $routeParams, AcknowledgementItem, Fabric, Notification) {
+  .controller('OrderAcknowledgementItemDetailsCtrl', ['$scope', '$routeParams', 'AcknowledgementItem', 'Fabric', 'Notification', '$location', 
+  function ($scope, $routeParams, AcknowledgementItem, Fabric, Notification, $location) {
       $scope.fabricList = Fabric.query();
       $scope.item = AcknowledgementItem.get({id:$routeParams.id});
       
@@ -14,6 +14,14 @@ angular.module('employeeApp')
               Notification.display("There was an error in saving "+$scope.item.description, false);
           });
       };
+      
+      $scope.remove = function(){
+          Notification.display("Deleting "+$scope.item.description, false);
+          $scope.item.$delete(function(){
+              Notification.display("Deleting "+$scope.item.description);
+              $location.path('/order/acknowledgement');
+          });
+      }
       
       
   }]);
