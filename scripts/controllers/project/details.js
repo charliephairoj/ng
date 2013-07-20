@@ -1,21 +1,24 @@
 'use strict';
 
 angular.module('employeeApp')
-    .controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification',
-    function ($scope, Project, $routeParams, Room, Notification) {
+    .controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification', 'FileUploader',
+    function ($scope, Project, $routeParams, Room, Notification, FileUploader) {
         
         $scope.showAddRoom = false;
+        $scope.flag = false;
         $scope.project = Project.poll().get({id:$routeParams.id});
         $scope.room = {};
         
         $scope.addImage = function(image){
-            console.log(image);
-            $scope.room.image = image;
-            $scope.cropper.reset();
+            var promise = FileUploader.upload(image, 'project/room/image');
+            promise.then(function(response){
+                $scope.room.image = response;
+                $scope.cropper.reset();
+            });
         };
         
         $scope.addSchematic = function(files){
-            console.log(files);
+            $scope.room.schematic = angular.isArray(files) ? files[0] : files;
         };
         
         $scope.addRoom = function(){
@@ -27,6 +30,9 @@ angular.module('employeeApp')
                 Notification.display($scope.room.description+" added.");
                 $scope.showAddRoom = false;
                 $scope.project.rooms.push(room);
+            }, function(e){
+                $scope.flag = true; 
+                console.log(e);
             });
         }
         $scope.$on('$destroy', function(){

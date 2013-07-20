@@ -419,12 +419,12 @@ angular.module('employeeApp.directives')
                     canvasElement.unbind('mouseleave', mouseLeave);
                 };
                 
+                scope.cropper.upload = function(){
+                    
+                }
+                
                 scope.cropper.getImage = function(){
-                    if(scene){
-                        return scene.getImageAsBlob();
-                    }else{
-                        return null;
-                    }
+                    return scene ? scene.getImageAsBlob() : null;
                 }
                 
                 scope.cropper.getImageAsURL = function(){
@@ -432,11 +432,7 @@ angular.module('employeeApp.directives')
                 }
                 
                 scope.cropper.getImageURL = function(){
-                    if(scene){
-                        return scene.getImageAsURL();
-                    }else{
-                        return null;
-                    }
+                    return scene ? scene.getImageAsURL() : null;
                 }
                 
                 scope.preview = function(url){

@@ -57,7 +57,7 @@ angular.module('employeeApp')
                     });
                 }
             }catch(e){
-                Notification.display(e.message);
+                Notification.display(e.message, false);
             }
         };
         
@@ -83,10 +83,18 @@ angular.module('employeeApp')
             if(!$scope.ack.products){
                 throw new TypeError("Products is not an array");
             }else{
-                if(!$scope.ack.products.length > 0){
+                if($scope.ack.products.length <= 0){
                     throw new RangeError("No products added to the order");
                 }else{
                     for(var i in $scope.ack.products){
+                        /*
+                         * Check that there is a quantity 
+                         * for each piece of product
+                         */
+                        console.log($scope.ack.products[i])
+                        if(!$scope.ack.products[i].hasOwnProperty('quantity') || !$scope.ack.products[i].quantity){
+                            throw new RangeError("Expecting a quantity of at least 1 for "+$scope.ack.products[i].description);
+                        }
                         if(!$scope.ack.products[i].hasOwnProperty('has_price')){
                             //throw new ReferenceError("Product missing 'has_price' attribute");
                         }else{

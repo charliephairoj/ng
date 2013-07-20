@@ -6,10 +6,8 @@
     <div modal class="add-room" ng-model="showAddRoom" >
         <div class="title">Add a New Room</div>
         <div class="container" ng-switch on="addSelector" ng-init="addSelector='image'">
-            <table>
-                <tr>
-                    <td><img ng-src="{{room.image}}" /></td>
-                </tr>
+            <table class="details">
+               
                 <tr>
                     <td>Room Type</td>
                     <td>
@@ -33,6 +31,9 @@
                     <td>Reference</td>
                     <td><input type="text" ng-model="room.reference"/></td>
                 </tr>
+                 <tr>
+                    <td colspan="2" class="image"><img ng-src="{{room.image.url}}" /></td>
+                </tr>
             </table>
             <div class="selector">
                 <ul>
@@ -43,7 +44,7 @@
             <div class="media-container image" ng-switch-default>
                 <div file-cropper></div>
                 <div class="bottom-bar">
-                    <button ng-click="addImage(cropper.getImageURL())">Save Image</button>
+                    <button ng-click="addImage(cropper.getImage())">Save Image</button>
                 </div>
             </div>
             <div class="media-container files" ng-switch-when="schematic">
