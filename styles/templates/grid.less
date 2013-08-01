@@ -61,6 +61,32 @@
             }
         }
     }
+    
+    .listContainer{
+        overflow-y:scroll;
+        top:2.6em;
+        bottom:0em;
+        width:100%;
+        position:absolute;
+        //Grid
+        .body{
+            .row{
+              
+              
+              .cell{
+                  
+                  &.status{
+                      &.acknowledged{
+                          color:#FFED68;
+                      }
+                      &.shipped{
+                          color:#7ED136;
+                      }
+                  }
+              }
+           }
+        }
+    }
 }
 
 .grid{

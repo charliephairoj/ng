@@ -1,66 +1,92 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('AdministratorGroupDetailsCtrl', ['$scope', 'Group', 'Permission', '$routeParams', '$location', '$filter',
-  function ($scope, Group, Permission, $routeParams, $location, $filter) {
-    $scope.permissionList = Permission.query(function(){
-        console.log($scope.permissionList);
-        merge($scope.permissionList, $scope.group.permissions);
-    });
-    $scope.group = Group.get({'id':$routeParams.id}, function(){
-        merge($scope.permissionList, $scope.group.permissions);
-    });
-    
-    
-    
-    $scope.updatePermission = function(index){
-        
-        var perm = $filter('filter')($scope.permissionList, $scope.query)[index];
-        $scope.permissionList[index].status = perm.checked;
-        if(perm.checked){
+    .controller('AdministratorGroupDetailsCtrl', ['$scope', 'Group', 'Permission', '$routeParams', '$location',
+    function ($scope, Group, Permission, $routeParams, $location) {
+      
+        /*
+         * Return the index of the first
+         * occurence of the id in the list
+         */
+        function indexById(list, item){
+            if(!list.hasOwnProperty('length')){
+                throw new TypeError("Expecting an Array");
+            }
+            if(typeof(item) == 'object'){
+                if(!item.hasOwnProperty('id')){
+                    throw new TypeError('Expecting an id property for argument 2');
+                }
+            }
             
-            search($scope.group.permissions, 'id', perm.id, angular.noop,
-            function(){
-                perm.status = 'add';
-                $scope.group.permissions.push(angular.copy(perm));
-            });
-        }else{
-            search($scope.group.permissions, 'id', perm.id, function(item, index){
-                $scope.group.permissions[index].status = 'delete';
-            }, 
-            function(){
-                 
+            //Set the id var
+            var id = typeof(item) == 'object' ? item.id : item;
+            for(var i in list){
+                if(list[i].id == id){
+                    return i;
+                }
+            }
+            
+            return -1;
+        }
+        
+        /*
+         * Marks all items in list1 with $checked = true
+         * property if it is in list 2
+         */
+        function merge(list1, list2){
+            for(var i in list1){
+                for(var h in list2){
+                    if(list1[i].id == list2[h].id){
+                        list1[i].$checked = true;
+                    }
+                    
+                }
+            }
+        }
+        
+        /*
+         * Calls for updated verions of the resources
+         */
+        $scope.permissionList = Permission.query(function(){
+            merge($scope.permissionList, $scope.group.permissions);
+        });
+        $scope.group = Group.get({'id':$routeParams.id}, function(){
+            merge($scope.permissionList, $scope.group.permissions);
+        });
+        
+        
+        /*
+         * Removes or adds a permission to the group
+         * permissions based on whether or not 
+         */
+        $scope.updatePermission = function(permission){
+            
+            if(permission.$checked){
+                if(indexById($scope.group.permissions, permission) == -1){
+                    $scope.group.permissions.push(angular.copy(permission));
+                }
+            }else{
+                var index = indexById($scope.group.permissions, permission);
+                if(index > -1){
+                    $scope.group.permissions.splice(index, 1); 
+                }
+            }
+            
+            $scope.group.$save(function(){
+                
             });
         }
-        $scope.group.$save(function(){
-            //$apply changes to the model
-            angular.forEach($scope.group.permissions, function(permission, index){
-                if(permission.hasOwnProperty('status')) {
-                    switch (permission.status) {
-                        //Delete the group
-                        case "delete":
-                            $scope.group.permissions.splice(index, 1);
-                            break;
-                        //Delete the status
-                        case "add":
-                            delete permission.status;
-                            break;
-                        default:
-                            delete permission.status;
-                            break;
-                    }
-                }
+        
+        /*
+         * Deletes the group
+         */
+        $scope.remove = function(){
+            $scope.group.$delete(function(){
+                $location.path("/groups");
             });
+        };
+        
+        $scope.$on('$destroy', function(){
+            $scope.group.$save();
         });
-    }
-    
-    $scope.remove = function(){
-        $scope.group.$delete(function(){
-            $location.path("/groups");
-        });
-    };
-    
-    $scope.$on('$destroy', function(){
-        $scope.group.$save();
-    });
-  }]);
+    }]);

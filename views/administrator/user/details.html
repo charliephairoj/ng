@@ -70,7 +70,7 @@
             <div class="table">
                 <div class="row" ng-repeat="group in groupList">
                     <div class="cell">
-                        <input type="checkbox" ng-model="group.checked" ng-checked="group.status" ng-click="updateGroup($index)"/>
+                        <input type="checkbox" ng-model="group.$checked" ng-click="updateGroup(group)"/>
                     </div>
                     <div class="cell">{{group.name}}</div>
                 </div>

@@ -1,14 +1,37 @@
 .room-details-page{
     .details-page;
     
-    .details{
-        width:100%;
-        
-        table{
+    .workspace{
+        .details{
+            width:100%;
             
+            table{
+                
+            }
+        }
+        .items-container{
+            height:100%;
+            width:100%;
+            overflow:hidden;
+            position:relative;
+            .gridStyle{
+                position:absolute;
+                height:100%;
+                width:100%;
+                background-color:transparent;
+                font-family:proxima;
+                color:#CCC;
+                .ngTopPanel{
+                    background-color:transparent;
+                    font-size:1.2em;
+                    border-bottom:1px solid #282828;
+                }
+                .ngRow{
+                    background:transparent;
+                    border-bottom:1px solid #282828;
+                }
+            }
         }
     }
-    .items-container{
-      
-    }
+    
 }

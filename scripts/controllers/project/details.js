@@ -18,7 +18,11 @@ angular.module('employeeApp')
         };
         
         $scope.addSchematic = function(files){
-            $scope.room.schematic = angular.isArray(files) ? files[0] : files;
+            var file = angular.isArray(files) ? files[0] : files;
+            var promise = FileUploader.upload(file, 'project/room/schematic');
+            promise.then(function(response){
+                $scope.room.schematic = response; 
+            });
         };
         
         $scope.addRoom = function(){

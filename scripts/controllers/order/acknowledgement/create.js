@@ -91,7 +91,6 @@ angular.module('employeeApp')
                          * Check that there is a quantity 
                          * for each piece of product
                          */
-                        console.log($scope.ack.products[i])
                         if(!$scope.ack.products[i].hasOwnProperty('quantity') || !$scope.ack.products[i].quantity){
                             throw new RangeError("Expecting a quantity of at least 1 for "+$scope.ack.products[i].description);
                         }

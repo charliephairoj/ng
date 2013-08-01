@@ -3,7 +3,16 @@
 angular.module('employeeApp')
     .controller('ProjectRoomDetailsCtrl', ['$scope', 'Room', '$routeParams', 'ProjectItem', 'Notification', 
     function ($scope, Room, $routeParams, ProjectItem, Notification) {
+        
         $scope.room = Room.poll().get({id:$routeParams.id});
+        $scope.gridOptions = {
+            data: 'room.items',
+            columnDefs: [{field: 'description', displayName: 'Description'},
+                         {field: 'reference', displayName: 'Reference'},
+                         {field: 'type', displayName: 'Type'},
+                         {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'}]
+            
+        }
         
         $scope.addProduct = function(product){
             //Notification of product add to which room
@@ -14,10 +23,11 @@ angular.module('employeeApp')
             item.product = product;
             item.type = "product";
             item.room = {id:$scope.room.id};
+            item.reference = $scope.room.reference + ($scope.room.items.length + 1);
             
             //Save the Item to the server
             item.$save(function(){
-                Notification.display(item.description+' added to '+$scope.room.description, false);
+                Notification.display(item.description+' added to '+$scope.room.description);
                 //Add item to current room on display
                 $scope.room.items.push(item);    
             });

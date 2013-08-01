@@ -6,6 +6,37 @@
     
     <div product-selector="showAddItem" product-selector-add="addProduct(product)"></div>
     
+    <div modal ng-model="showAddBuildIn">
+        <div class="title">
+            Add Build-In
+        </div>
+        <div class="container">
+            <table class="description">
+                <tr>
+                    <td>Description</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Depth</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td><input type="text" /></td>
+                </tr>
+            </table>
+            
+            <div file-handler></div>
+        </div>
+        <div class="bottom-bar">
+            <button>Add Build-In</button>
+        </div>
+    </div>
+    
     <!--
         Sidebar
     -->
@@ -18,7 +49,10 @@
         <nav>
             <ul class="list">
                 <li>
-                    <button ng-click="showAddItem=true">Add an item</button>
+                    <button ng-click="showAddItem=true">Add a Product</button>
+                </li>
+                <li>
+                    <button ng-click="showAddBuildIn=true">Add a Build-In Item</button>
                 </li>
             </ul>
         </nav>
@@ -46,24 +80,8 @@
             </table>
         </div>
         <div class="items-container">
-            <div class="grid">
-                 <div class="header">
-                     <div class="row">
-                         <div class="cell">Description</div>
-                         <div class="cell">Type</div>
-                         <div class="cell">Delivery Date</div>
-                     </div>
-                 </div>
-                 <div class="body">
-                    <div class="row" ng-repeat="item in room.items">
-                        <div class="cell">{{item.description}}</div>
-                        <div class="cell">{{item.reference}}</div>
-                        <div class="cell">{{item.type}}</div>
-                    </div>
-                </div>
-            </div>
+            <div class="gridStyle" ng-grid="gridOptions"></div>
             
-            <div class="item" >{{item.description}}</div>
         </div>
     </div>
 </div>

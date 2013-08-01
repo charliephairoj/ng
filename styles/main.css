@@ -1,4 +1,6 @@
 @import "../components/angular-ui/build/angular-ui.min.css";
+
+@import "../components/ng-grid/ng-grid.min.css";
 /* app css stylesheet */
 * {
   margin: 0;
@@ -620,6 +622,7 @@ select {
   right: 0px;
   left: 0px;
   background-color: #313131;
+  overflow: hidden;
 }
 .mainContainer input {
   border: 1px solid grey;
@@ -4218,6 +4221,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .detailsPage .workspace {
   position: absolute;
@@ -4285,6 +4290,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .details-page .workspace {
   position: absolute;
@@ -4380,6 +4387,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
   background-color: #313131;
 }
 .userDetailsPage .workspace {
@@ -4509,6 +4518,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
   background-color: #313131;
 }
 .groupDetailsPage .workspace {
@@ -4624,6 +4635,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .supplierDetailsPage .workspace {
   position: absolute;
@@ -4791,6 +4804,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .customer-details-page .workspace {
   position: absolute;
@@ -4913,6 +4928,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .fabricDetailsPage .workspace {
   position: absolute;
@@ -5180,6 +5197,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .acknowledgementDetailsPage .workspace {
   position: absolute;
@@ -5443,6 +5462,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.acknowledgementDetailsPage .log-modal .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.acknowledgementDetailsPage .log-modal .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .acknowledgementDetailsPage .workspace .table .row .cell {
   text-decoration: none;
 }
@@ -5502,6 +5534,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
   /*Status Modal*/
 
   /*Fabric Modal*/
@@ -5739,6 +5773,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
   /*
      * Modal Section
      */
@@ -5921,6 +5957,8 @@ select {
   background: #313131;
   position: absolute;
   font-family: proxima;
+  top: 0;
+  bottom: 0;
 }
 .room-details-page .workspace {
   position: absolute;
@@ -5981,8 +6019,31 @@ select {
 .room-details-page table td {
   padding: 3px;
 }
-.room-details-page .details {
+.room-details-page .workspace .details {
   width: 100%;
+}
+.room-details-page .workspace .items-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.room-details-page .workspace .items-container .gridStyle {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  font-family: proxima;
+  color: #CCC;
+}
+.room-details-page .workspace .items-container .gridStyle .ngTopPanel {
+  background-color: transparent;
+  font-size: 1.2em;
+  border-bottom: 1px solid #282828;
+}
+.room-details-page .workspace .items-container .gridStyle .ngRow {
+  background: transparent;
+  border-bottom: 1px solid #282828;
 }
 /*
  * View Page Imports 
@@ -6054,6 +6115,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.view-grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.view-grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.view-grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .grid {
   display: table;
   height: auto;
@@ -6117,6 +6191,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .grid-workspace {
   position: absolute;
@@ -6242,6 +6329,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.list-workspace .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.list-workspace .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.list-workspace .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .list-workspace .listContainer {
   position: relative;
@@ -6678,6 +6778,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .viewPage .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -7113,6 +7226,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .view-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -7547,6 +7673,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.acknowledgementViewPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.acknowledgementViewPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.acknowledgementViewPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .acknowledgementViewPage .workspace.list .listContainer {
   position: relative;
@@ -8028,6 +8167,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewFabricPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewFabricPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewFabricPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .viewFabricPage .workspace.list .listContainer {
   position: relative;
@@ -8518,6 +8670,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewGluePage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewGluePage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewGluePage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .viewGluePage .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -8956,6 +9121,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewSuppliersPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewSuppliersPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewSuppliersPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .viewSuppliersPage .workspace.list .listContainer {
   position: relative;
@@ -9433,6 +9611,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.viewCustomerPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewCustomerPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewCustomerPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .viewCustomerPage .workspace.list .listContainer {
   position: relative;
@@ -10014,6 +10205,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewLibraryPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewLibraryPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewLibraryPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .viewLibraryPage .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -10519,6 +10723,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.viewTransactionsPage .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.viewTransactionsPage .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.viewTransactionsPage .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .viewTransactionsPage .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -10956,6 +11173,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.view-prop-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.view-prop-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.view-prop-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .view-prop-page .workspace.list .listContainer {
   position: relative;
@@ -11438,6 +11668,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.foam-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.foam-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.foam-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .foam-view-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -11919,6 +12162,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.shipping-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.shipping-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.shipping-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .shipping-view-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -12371,6 +12627,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.delivery-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.delivery-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.delivery-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .delivery-page .workspace.list .listContainer {
   position: relative;
@@ -12828,6 +13097,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.model-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.model-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.model-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .model-view-page .workspace.list .listContainer {
   position: relative;
@@ -13301,6 +13583,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.upholstery-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.upholstery-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.upholstery-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .upholstery-view-page .workspace.list .listContainer {
   position: relative;
@@ -13864,6 +14159,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.inventory-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.inventory-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.inventory-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .inventory-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -14369,6 +14677,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.user-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.user-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.user-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .user-view-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -14834,6 +15155,19 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
+.group-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.group-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.group-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
 .group-view-page .workspace.list .listContainer {
   position: relative;
   width: 100%;
@@ -15285,6 +15619,19 @@ select {
   -o-transition: all 250ms linear;
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
+}
+.project-view-page .workspace.list .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.project-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.project-view-page .workspace.list .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
 }
 .project-view-page .workspace.list .listContainer {
   position: relative;
