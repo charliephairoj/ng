@@ -15,9 +15,7 @@ angular.module('employeeApp')
         $scope.gridOptions = {
             data: 'projectList',
             columnDefs: [{field: 'description', displayName: 'Description'},
-                         {field: 'customer',
-                          displayName: 'customer',
-                          cellTemplate: "<div>{{row.getProperty(col.field).name}}<div>"},
+                         {field: 'customer.name', displayName: 'customer'},
                          {field: 'type', displayName: 'Type'},
                          {field: 'status', displayName:'Status'},
                          {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'}]

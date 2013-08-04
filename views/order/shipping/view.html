@@ -32,62 +32,8 @@
     -->
     
     <div class="workspace grid">
+        <div class="grid-style" ng-grid="gridOptions"></div>
         
-        <div class="header">
-            <div class="row">
-                <div class="cell id">Shipping#</div>
-                <div class="cell customer">Customer</div>
-                <div class="cell delivery-date">Delivery Date</div>
-                <div class="cell processed-by">Processed By</div>
-               
-            </div>
-        </div>
-        <div class="listContainer">
-            
-            <div class="grid">
-                
-                <div class="body">
-                    <a ng-repeat="shipping in shippingList | filter:query | limitTo:50 | orderBy:'-id'" class="row" ng-href="#/order/shipping/{{shipping.id}}">
-                        <div class="cell id">{{shipping.id}}</div>
-                        <div class="cell customer">{{shipping.customer.name}}</div>
-                        <div class="cell delivery-date">{{shipping.delivery_date | date:"MMMM d, yyyy"}}</div>
-                        <div class="cell processed-by">{{shipping.employee}}</div>
-                        
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!--
-        <div class="listContainer">
-            <div class="list">
-                
-                    <a ng-repeat="shipping in shippingList | filter:query | limitTo:50 | orderBy:'-id'" class="row" ng-href="#/order/shipping/{{shipping.id}}">
-                        <div class="cell">
-                            <div class="details">
-                                <div class="details-row">
-                                    <div class="details-title">Shipping#:</div>
-                                    <div class="details-data">{{shipping.id}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Customer:</div>
-                                    <div class="details-data">{{shipping.customer.name}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Delivery Date:</div>
-                                    <div class="details-data">{{shipping.delivery_date | date:"MMMM d, yyyy"}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Ordered By:</div>
-                                    <div class="details-data">{{shipping.employee | date:"MMMM d, yyyy"}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </a>
-                
-            </div>
-        </div>-->
     </div>
     
 </div>
