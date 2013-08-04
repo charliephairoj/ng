@@ -8,7 +8,7 @@ angular.module('employeeApp')
         $scope.gridOptions = {
             data: 'room.items',
             columnDefs: [{field: 'description', displayName: 'Description'},
-                         
+                         {field: 'status', displayName: 'Status'},
                          {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'},
                          {field: 'schematic',
                           displayName:'Schematic',
