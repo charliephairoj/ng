@@ -29,28 +29,7 @@
     -->
     
     <div class="workspace grid">
-        <div class="header">
-            <div class="row">
-                <div class="cell id">ID#</div>
-                <div class="cell customer">Supplier</div>
-               
-            </div>
-        </div>
-        <div class="listContainer">
-            <div class="grid">
-                <div class="body">
-                    <a class="row" ng-repeat="supplier in supplierList | filter:query | orderBy:'name'" class="listItem" ng-href="#/contact/supplier/{{supplier.id}}">
-                        <div class="cell id">{{supplier.id}}</div>
-                        <div class="cell customer">{{supplier.name}}</div>
-                    </a> 
-                </div>
-                
-            </div>
-            
-            
-            
-        </div>
-            
+    	<div class="grid-style" ng-grid="gridOptions"></div>
     </div>
     
     

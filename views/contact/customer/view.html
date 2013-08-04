@@ -106,51 +106,7 @@
     -->
     
     <div class="workspace grid">
-        <div class="header">
-            <div class="row">
-                <div class="cell id">ID#</div>
-                <div class="cell customer">Customer</div>
-               
-            </div>
-        </div>
-        <div class="listContainer">
-            <div class="grid">
-                <div class="body">
-                    <a ng-repeat="customer in customerList | filter:query | orderBy:'name'" class="row" ng-href="#/contact/customer/{{customer.id}}">
-                        <div class="cell id">{{customer.id}}</div>
-                        <div class="cell customer">{{customer.name}}</div>
-                    </a> 
-                </div>
-                
-            </div>
-            
-            <!--
-            <div class="list">
-                
-                    <a ng-repeat="customer in customerList | filter:query | orderBy:'name'" class="row" ng-href="#/contact/customer/{{customer.id}}">
-                        <div class="cell">
-                            <div class="details">
-                                <div class="name">
-                                    {{customer.name}}
-                                </div>
-                                <div class="address">
-                                    <span>{{customer.addresses[0].address1}}</span>
-                                    <br />
-                                    <span>{{customer.addresses[0].address2}}</span>
-                                    <br />
-                                    <span>{{customer.addresses[0].city+","+customer.addresses[0].territory}}</span>
-                                    <br />
-                                    <span>{{customer.addresses[0].country+" "+customer.addresses[0].zipcode}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                
-            </div>
-        -->
-            
-        </div>
+    	<div class="grid-style" ng-grid="gridOptions"></div>
     </div>
     
     
