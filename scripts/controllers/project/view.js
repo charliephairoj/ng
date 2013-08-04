@@ -11,6 +11,18 @@ angular.module('employeeApp')
         $scope.projectList = Project.poll().query();
         $scope.customerList = Customer.poll().query();
         
+        //Grid options
+        $scope.gridOptions = {
+            data: 'projectList',
+            columnDefs: [{field: 'description', displayName: 'Description'},
+                         {field: 'customer',
+                          displayName: 'customer',
+                          cellTemplate: "<div>{{row.getProperty(col.field).name}}<div>"},
+                         {field: 'type', displayName: 'Type'},
+                         {field: 'status', displayName:'Status'},
+                         {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'}]
+            
+        }
         
         //Create new project
         $scope.create = function(){

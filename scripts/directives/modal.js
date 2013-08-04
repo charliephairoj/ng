@@ -36,6 +36,7 @@ angular.module('employeeApp.directives')
                         element.addClass('hide');
                         scope.$broadcast('hidden');
                     });
+                    
                     if(backdrop){
                         backdrop.fadeOut(500, function(){
                             backdrop.remove();
@@ -53,9 +54,16 @@ angular.module('employeeApp.directives')
                     }
                     
                 }
-        
+        		
+        		/*
+        		 * Hide the modal when the page
+        		 * changes based on the scope 
+        		 * messages
+        		 */
                 scope.$on('$destroy', function(){
-                    backdrop.remove();
+                	if(backdrop){
+                    	backdrop.remove();
+                    }
                 });
                 
                 if(attr.ngModel){

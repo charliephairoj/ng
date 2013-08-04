@@ -617,16 +617,12 @@ select {
 /*Main Container*/
 .mainContainer {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   top: 50px;
-  right: 0px;
-  left: 0px;
+  right: 0;
+  left: 0;
   background-color: #313131;
   overflow: hidden;
-}
-.mainContainer input {
-  border: 1px solid grey;
-  background-color: #FFFFFF;
 }
 /*Tooltip*/
 .tooltip {
@@ -1083,6 +1079,11 @@ select {
   left: 0em;
   z-index: 1;
 }
+/*Grid*/
+/*
+ * LESS file for the grid
+ * component: ngGrid
+ */
 /*Modal*/
 .modal {
   position: fixed;
@@ -4215,14 +4216,13 @@ select {
  * Details Page
  */
 .detailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .detailsPage .workspace {
   position: absolute;
@@ -4284,14 +4284,13 @@ select {
   padding: 3px;
 }
 .details-page {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .details-page .workspace {
   position: absolute;
@@ -4381,14 +4380,13 @@ select {
   letter-spacing: 0.08em;
 }
 .userDetailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
   background-color: #313131;
 }
 .userDetailsPage .workspace {
@@ -4512,14 +4510,13 @@ select {
   letter-spacing: 0.08em;
 }
 .groupDetailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
   background-color: #313131;
 }
 .groupDetailsPage .workspace {
@@ -4629,14 +4626,13 @@ select {
   letter-spacing: 0.08em;
 }
 .supplierDetailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .supplierDetailsPage .workspace {
   position: absolute;
@@ -4798,14 +4794,13 @@ select {
   float: right;
 }
 .customer-details-page {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .customer-details-page .workspace {
   position: absolute;
@@ -4922,14 +4917,13 @@ select {
 }
 /*Model Page*/
 .fabricDetailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .fabricDetailsPage .workspace {
   position: absolute;
@@ -5191,14 +5185,13 @@ select {
   background: #414141;
 }
 .acknowledgementDetailsPage {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .acknowledgementDetailsPage .workspace {
   position: absolute;
@@ -5528,14 +5521,13 @@ select {
   bottom: 0px;
 }
 .ack-item-details-page {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
   /*Status Modal*/
 
   /*Fabric Modal*/
@@ -5767,14 +5759,13 @@ select {
  * LESS file for the project details view page
  */
 .project-details-page {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
   /*
      * Modal Section
      */
@@ -5951,14 +5942,13 @@ select {
   float: left;
 }
 .room-details-page {
-  height: 100%;
   left: 200px;
   right: 0px;
+  top: 0;
+  bottom: 0;
   background: #313131;
   position: absolute;
   font-family: proxima;
-  top: 0;
-  bottom: 0;
 }
 .room-details-page .workspace {
   position: absolute;
@@ -6021,29 +6011,35 @@ select {
 }
 .room-details-page .workspace .details {
   width: 100%;
+  height: 6em;
+  color: #CCC;
 }
-.room-details-page .workspace .items-container {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.room-details-page .workspace .items-container .gridStyle {
+.room-details-page .workspace .gridStyle {
   position: absolute;
-  height: 100%;
+  top: 6em;
+  bottom: 0px;
   width: 100%;
   background-color: transparent;
   font-family: proxima;
   color: #CCC;
 }
-.room-details-page .workspace .items-container .gridStyle .ngTopPanel {
-  background-color: transparent;
+.room-details-page .workspace .gridStyle .ngTopPanel {
   font-size: 1.2em;
-  border-bottom: 1px solid #282828;
+  background-color: #282828;
 }
-.room-details-page .workspace .items-container .gridStyle .ngRow {
+.room-details-page .workspace .gridStyle .ngRow {
   background: transparent;
   border-bottom: 1px solid #282828;
+}
+.room-details-page .workspace .gridStyle .ngRow .ngCell .file-handler {
+  -webkit-transition: height 250ms linear;
+  -moz-transition: height 250ms linear;
+  -o-transition: height 250ms linear;
+  -ms-transition: height 250ms linear;
+  transition: height 250ms linear;
+}
+.room-details-page .workspace .gridStyle .ngRow .ngCell .file-handler.drag-over {
+  height: 6em;
 }
 /*
  * View Page Imports 
@@ -15935,11 +15931,17 @@ select {
 .project-view-page .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
 }
-.project-view-page .modal.add-project .add-project-table tr td input {
+.project-view-page .modal.add-project .add-project-table {
+  margin: 1em;
+}
+.project-view-page .modal.add-project .add-project-table > tr > td {
+  padding: 0.2em;
+}
+.project-view-page .modal.add-project .add-project-table > tr > td input {
   background-color: #CCC;
   border-radius: 2px;
 }
-.project-view-page .modal.add-project .add-project-table tr td .ui-datepicker {
+.project-view-page .modal.add-project .add-project-table > tr > td .ui-datepicker {
   border: 1px solid #282828;
   width: 300px;
 }
