@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp')
-  	.controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location, Geocoder) {
+  	.controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location, Geocoder, $filter) {
 	    
 	    //Display system notification
 	    Notification.display('Loading Customers...', false);
@@ -11,12 +11,22 @@ angular.module('employeeApp')
 	        Notification.hide();
 	    });
 	    
+	    //Search Mechanism
+	    $scope.$watch('query', function(query){
+	    	$scope.data = $filter('filter')($scope.customerList, query);
+	    });
+	    
 	    //Grid Options
 	    $scope.gridOptions = {
-	    	data: 'customerList',
-	    	columnDefs: [{field: 'id', displayName: 'ID'}
+	    	data: 'data',
+	    	columnDefs: [{field: 'id', displayName: 'ID', width: '50px'},
 	    				 {field: 'name', displayName: 'Name'},
-	    				 {field: 'address.address1', displayName: 'Address'}]
+	    				 {field: 'addresses[0]',
+	    				  displayName: 'Address',
+	    				  cellTemplate: '{{row.getProperty(col.field).address1}}<br />\
+	    				  				 {{row.getProperty(col.field).city}}, {{row.getProperty(col.field).territory}}<br />\
+	    				  				 {{row.getProperty(col.field).country}} {{row.getProperty(col.field).zipcode}}'}],
+	    	filterOptions: {useExternalFilter: true}
 	    };
 	    
 	    $scope.customer = new Customer();

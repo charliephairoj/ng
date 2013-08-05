@@ -5,8 +5,11 @@
 
 .grid-style{
     position:absolute;
-    top:6em;
-    bottom:0px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    height:100%;
     width:100%;
     background-color:transparent;
     font-family:proxima;
@@ -18,13 +21,12 @@
     .ngRow{
         background:transparent;
         border-bottom:1px solid #282828;
+        
         .ngCell{
-            .file-handler{
-                .transition(height, 250ms, linear);
-                &.drag-over{
-                    height:6em;
-                }
+            .ngVerticalBar{
+                background-color:#282828;
             }
+            
         }
     }
 }
