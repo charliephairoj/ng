@@ -1,21 +1,25 @@
 'use strict';
 
 angular.module('employeeApp')
-  	.controller('ContactSupplierViewCtrl', ['$scope', 'Supplier', 'Notification', 
-  	function ($scope, Supplier, Notification) {
+  	.controller('ContactSupplierViewCtrl', ['$scope', 'Supplier', 'Notification', '$filter',
+  	function ($scope, Supplier, Notification, $filter) {
   		
   		//System message
   		Notification.display('Loading suppliers...', false);
   		
   		//Poll the server for suppliers
-	    $scope.supplierList = Supplier.poll().query(function(){
+	    var supplierList = Supplier.poll().query(function(){
 	    	Notification.hide();
 	    });
 	    
+	    //Search Mechanism
+	    $scope.$watch('query', function(query){
+	    	$scope.data = $filter('filter')(supplierList, query);
+	    });
 	    //Grid Options
 	    $scope.gridOptions = {
-	    	data: 'supplierList', 
-	    	columnDefs: [{field: 'id', displayName: 'ID'},
+	    	data: 'data', 
+	    	columnDefs: [{field: 'id', displayName: 'ID', width:'50px'},
 	    				 {field: 'name', displayName: 'Supplier'}]
 	    }
 	    
