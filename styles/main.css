@@ -9027,6 +9027,17 @@ select {
 .viewGluePage .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
 }
+/*
+ * LESS file for the supply view
+ */
+.supply-view-page .grid-style .image {
+  height: 200px;
+  width: 100px;
+}
+.supply-view-page .grid-style .image img {
+  height: 100%;
+  width: auto;
+}
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;

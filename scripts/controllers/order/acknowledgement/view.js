@@ -11,8 +11,6 @@ angular.module('employeeApp')
       	var ackList = Acknowledgement.poll().query();
       	
       	$scope.$watch('query', function(query){
-      		if(ackList[0]){
-      		console.log(typeof(ackList[0].delivery_date));}
       		$scope.data = $filter('orderBy')($filter('filter')(ackList, query), 'id', true);
       	});
       	
