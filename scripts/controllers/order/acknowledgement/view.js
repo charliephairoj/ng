@@ -11,23 +11,21 @@ angular.module('employeeApp')
       	var ackList = Acknowledgement.poll().query();
       	
       	$scope.$watch('query', function(query){
-      		if(ackList[0]){
-      		console.log(typeof(ackList[0].delivery_date));}
       		$scope.data = $filter('orderBy')($filter('filter')(ackList, query), 'id', true);
       	});
       	
       	//Grid Options
       	$scope.gridOptions = {
       		data: 'data',
-      		columnDefs: [{field: 'id', displayName: 'Ack#'},
+      		columnDefs: [{field: 'id', displayName: 'Ack#', width:'75px'},
       					 {field: 'customer.name', displayName: 'Customer'},
       					 {field: 'status', 
       				      displayName: 'Status',
       				      cellTemplate: '<div>\
       				      					{{row.getProperty(col.field)}}\
       				      				</div>'},
-      					 {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'}, 
-      					 {field: 'time_created', displayName: 'Order Date', filter: 'date:"MMMM d, yyyy"'}]
+      					 {field: 'delivery_date', displayName: 'Delivery Date', cellFilter: 'date:"MMMM d, yyyy"'}, 
+      					 {field: 'time_created', displayName: 'Order Date', cellFilter: 'date:"MMMM d, yyyy"'}]
       	}
       
       	//Destructor
