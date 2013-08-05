@@ -2,17 +2,22 @@
  * All shipped orders view
  */
 angular.module('employeeApp')
-  	.controller('OrderShippingViewCtrl', ['$scope', 'Shipping', function ($scope, Shipping) {
+  	.controller('OrderShippingViewCtrl', ['$scope', 'Shipping', '$filter', function ($scope, Shipping, $filter) {
   		
   		//Poll the server for shipped items
-    	$scope.shippingList = Shipping.poll().query();
+    	var shippingList = Shipping.poll().query();
+    	
+    	//Seach mechanism
+    	$scope.$watch('query', function(query){
+    		$scope.data = $filter('fitler')(shippingList, query);
+    	});
     	
     	///Grid Options
     	$scope.gridOptions = {
-    		data: 'shippingList',
+    		data: 'data',
     		columnDefs: [{field: 'id', displayName: 'Shipping#'},
     					 {field: 'acknowledgement.id', displayName: 'Ack#'},
-    					 {field: 'customer.name', displayName: 'Customer'}
+    					 {field: 'customer.name', displayName: 'Customer'},
     					 {field: 'delivery_date', displayName: 'Delivery Date', fiter: 'date:"MMMM d, yyyy"'},
     					 {field: 'employee', displayName: 'Shipped By'}]
     	}
