@@ -1084,6 +1084,60 @@ select {
  * LESS file for the grid
  * component: ngGrid
  */
+.grid-style {
+  position: absolute;
+  top: 6em;
+  bottom: 0px;
+  width: 100%;
+  background-color: transparent;
+  font-family: proxima;
+  color: #CCC;
+}
+.grid-style .ngTopPanel {
+  font-size: 1.2em;
+  background-color: #282828;
+}
+.grid-style .ngRow {
+  background: transparent;
+  border-bottom: 1px solid #282828;
+}
+.grid-style .ngRow .ngCell .file-handler {
+  -webkit-transition: height 250ms linear;
+  -moz-transition: height 250ms linear;
+  -o-transition: height 250ms linear;
+  -ms-transition: height 250ms linear;
+  transition: height 250ms linear;
+}
+.grid-style .ngRow .ngCell .file-handler.drag-over {
+  height: 6em;
+}
+.gridStyle {
+  position: absolute;
+  top: 6em;
+  bottom: 0px;
+  width: 100%;
+  background-color: transparent;
+  font-family: proxima;
+  color: #CCC;
+}
+.gridStyle .ngTopPanel {
+  font-size: 1.2em;
+  background-color: #282828;
+}
+.gridStyle .ngRow {
+  background: transparent;
+  border-bottom: 1px solid #282828;
+}
+.gridStyle .ngRow .ngCell .file-handler {
+  -webkit-transition: height 250ms linear;
+  -moz-transition: height 250ms linear;
+  -o-transition: height 250ms linear;
+  -ms-transition: height 250ms linear;
+  transition: height 250ms linear;
+}
+.gridStyle .ngRow .ngCell .file-handler.drag-over {
+  height: 6em;
+}
 /*Modal*/
 .modal {
   position: fixed;

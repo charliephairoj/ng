@@ -13,7 +13,7 @@ angular.module('employeeApp')
       	//Grid Options
       	$scope.gridOptions = {
       		data: 'ackList',
-      		columnDefs: [{field: 'id', displayName: 'Ack#'},
+      		columnDefs: [{field: 'id', displayName: 'Ack#', width: '75px'},
       					 {field: 'customer.name', displayName: 'Customer'},
       					 {field: 'status', 
       				      displayName: 'Status',
