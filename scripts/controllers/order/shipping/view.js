@@ -9,7 +9,7 @@ angular.module('employeeApp')
     	
     	//Seach mechanism
     	$scope.$watch('query', function(query){
-    		$scope.data = $filter('fitler')(shippingList, query);
+    		$scope.data = $filter('orderBy')($filter('filter')(shippingList, query), 'id', true);
     	});
     	
     	///Grid Options
