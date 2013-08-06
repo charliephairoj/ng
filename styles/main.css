@@ -1103,9 +1103,21 @@ select {
 .grid-style .ngRow {
   background: transparent;
   border-bottom: 1px solid #282828;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+  /*
+         * States
+         */
+
 }
 .grid-style .ngRow .ngCell .ngVerticalBar {
   background-color: #282828;
+}
+.grid-style .ngRow:hover {
+  background-color: orange;
 }
 .gridStyle {
   position: absolute;
@@ -1126,9 +1138,21 @@ select {
 .gridStyle .ngRow {
   background: transparent;
   border-bottom: 1px solid #282828;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+  /*
+         * States
+         */
+
 }
 .gridStyle .ngRow .ngCell .ngVerticalBar {
   background-color: #282828;
+}
+.gridStyle .ngRow:hover {
+  background-color: orange;
 }
 /*Modal*/
 .modal {
@@ -9026,6 +9050,13 @@ select {
 }
 .viewGluePage .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
+}
+/*
+ * LESS file for the supply view
+ */
+.supply-view-page .grid-style .ngRow .image img {
+  height: auto;
+  width: 100%;
 }
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;
