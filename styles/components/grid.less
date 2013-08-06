@@ -21,12 +21,19 @@
     .ngRow{
         background:transparent;
         border-bottom:1px solid #282828;
-        
+        .transition(background-color, 250ms, linear);
         .ngCell{
             .ngVerticalBar{
                 background-color:#282828;
             }
             
+        }
+        
+        /*
+         * States
+         */
+        &:hover{
+            background-color:orange;
         }
     }
 }
