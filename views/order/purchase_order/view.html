@@ -1,1 +1,35 @@
-<p>This is the order/purchase_order/view view.</p>
+<div class="po-view-page view-page">
+    
+    <!--
+        Sidebar
+    -->
+    
+    <div class="sidebar">
+        <header>
+            <h1>
+                <span>Purchase Order</span>
+            </h1>
+        </header>
+        <nav>
+            <ul class="list">
+                <li ui-if="currentUser.hasPermission('add_acknowledgement')"><a ng-href="#/order/purchase_order/create">Create</a></li>
+            </ul>
+        </nav>
+        
+    </div>
+    
+    <!--
+        Search Bar
+    -->
+    
+    <div data-search-bar></div>
+    
+    <!--
+        Workspace
+    -->
+    
+    <div class="workspace grid">
+    	<div class="grid-style" ng-grid="gridOptions"></div>
+    </div>
+    
+</div>

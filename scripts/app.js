@@ -251,9 +251,13 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/project/room/details.html',
         controller: 'ProjectRoomDetailsCtrl'
       })
-      .when('order/purchase_order', {
+      .when('/order/purchase_order', {
         templateUrl: 'views/order/purchase_order/view.html',
         controller: 'OrderPurchaseOrderViewCtrl'
+      })
+      .when('/order/purchase_order/create', {
+        templateUrl: 'views/order/purchase_order/create.html',
+        controller: 'OrderPurchaseOrderCreateCtrl'
       })
       .otherwise({
         redirectTo: '/'
