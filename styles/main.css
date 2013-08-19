@@ -252,6 +252,14 @@ select {
                  */
 
 }
+.sidebar nav ul li span.checkmark {
+  margin-left: 2em;
+  color: green;
+}
+.sidebar nav ul li span.x-mark {
+  margin-left: 2em;
+  color: red;
+}
 .sidebar nav ul li .textholder {
   font-size: 12px;
   display: block;
