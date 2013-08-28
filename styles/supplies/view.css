@@ -1,11 +1,7 @@
 /*
  * LESS file for the supply view
  */
-.supply-view-page .grid-style .image {
-  height: 200px;
-  width: 100px;
-}
-.supply-view-page .grid-style .image img {
-  height: 100%;
-  width: auto;
+.supply-view-page .grid-style .ngRow .image img {
+  height: auto;
+  width: 100%;
 }

@@ -1099,6 +1099,11 @@ select {
 .grid-style .ngTopPanel {
   font-size: 1.2em;
   background-color: #282828;
+  border-bottom: none;
+  text-align: center;
+}
+.grid-style .ngTopPanel .ngVerticalBar {
+  background-color: transparent;
 }
 .grid-style .ngRow {
   background: transparent;
@@ -1134,6 +1139,11 @@ select {
 .gridStyle .ngTopPanel {
   font-size: 1.2em;
   background-color: #282828;
+  border-bottom: none;
+  text-align: center;
+}
+.gridStyle .ngTopPanel .ngVerticalBar {
+  background-color: transparent;
 }
 .gridStyle .ngRow {
   background: transparent;
