@@ -119,7 +119,8 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/administrator.html'
       })
       .when('/supply', {
-        templateUrl: 'views/supply.html'
+        templateUrl: 'views/supply/view.html',
+        controller: 'SupplyViewCtrl'
       })
       .when('/supply/fabric', {
         templateUrl: 'views/supply/fabric/view.html',
@@ -250,9 +251,13 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
         templateUrl: 'views/project/room/details.html',
         controller: 'ProjectRoomDetailsCtrl'
       })
-      .when('/supply/view', {
-        templateUrl: 'views/supply/view.html',
-        controller: 'SupplyViewCtrl'
+      .when('/order/purchase_order', {
+        templateUrl: 'views/order/purchase_order/view.html',
+        controller: 'OrderPurchaseOrderViewCtrl'
+      })
+      .when('/order/purchase_order/create', {
+        templateUrl: 'views/order/purchase_order/create.html',
+        controller: 'OrderPurchaseOrderCreateCtrl'
       })
       .otherwise({
         redirectTo: '/'

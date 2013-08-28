@@ -49,6 +49,7 @@ angular.module('employeeApp.services')
                     'project',
                     'project-room',
                     'project-item', 
+                    'purchase-order',
                     'test']
         }
         
