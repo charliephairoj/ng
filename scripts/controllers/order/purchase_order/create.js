@@ -33,8 +33,10 @@ angular.module('employeeApp')
     	$scope.addItem = function(item){
     		//Hide Modal
     		$scope.showSupplies = false;
+    		var purchasedItem = angular.copy(item);
     		
-    		$scope.po.items.push(angular.copy(item));
+    		delete purchasedItem.quantity;
+    		$scope.po.items.push(purchasedItem);
     	};
     	
     	/*

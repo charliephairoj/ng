@@ -9,8 +9,8 @@
         </header>
         <nav>
             <ul>
-                <li>
-                    <a ng-href="#/supply/fabric/add">Add Supply</a>
+                <li ng-show="currentUser.hasPermission('add_supply')">
+                	<button ng-click="showAddSupply">Fabric</button>
                 </li>
                 <li ng-show="currentUser.hasPermission('add_fabric')"><a ng-href="#/supply/fabric">Fabric</a></li>
                 <li ng-show="currentUser.hasPermission('add_foam')"><a ng-href="#/supply/foam">Foam</a></li>

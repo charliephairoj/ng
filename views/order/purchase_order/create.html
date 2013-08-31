@@ -62,8 +62,8 @@
             <nav>
                 <ul class="list">
                     <li><div ng-click="save()" >Create</div></li>
-                    <li><div class="supplier" checkmark="po.supplier" x="!po.supplier" ng-click="showSuppliers=!showSuppliers">Add Supplier</div></li>
-                    <li><div class="supply" checkmark="po.items.length>0" x="po.items.length==0" ng-click="showSupplies=!showSupplies">Add Supply</div></li>
+                    <li><div class="supplier" checkmark="po.supplier" x="!po.supplier" ng-click="showSuppliers=true">Add Supplier</div></li>
+                    <li><div class="supply" checkmark="po.items.length>0" x="po.items.length==0" ng-click="showSupplies=true">Add Supply</div></li>
                    
                     <li><div class="vat" checkmark="po.vat" x="!po.vat" ng-click="showVat=!showVat">Set Vat</div></li>
                     <li><div ng-click="reset()" >Reset</div></li>
@@ -140,7 +140,7 @@
                     <table class="details">
                         <tr>
                             <td>Qty:</td>
-                            <td>{{supply.quantity}}</td>
+                            <td><input ng-model="supply.quantity" /></td>
                         </tr>
                        
                     </table>
