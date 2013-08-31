@@ -1,4 +1,82 @@
 <div class="view-page supply-view-page">
+	
+	<!--
+		Modals
+	-->
+	<form name="form" class="new-supply" modal ng-model="showAddSupply">
+		<div class="title">Add Supply</div>
+		<div class="container">
+			<table class="details">
+				<tr>
+					<td>Supplier</td>
+					<td><select required ng-options="supplier.name for supplier in supplierList" ng-model="newSupply"></select></td>
+				</tr>
+				<tr>
+					<td>Description(English)</td>
+					<td><input required ng-model="newSupply.description.en" /></td>
+				</tr>
+				<tr>
+					<td>Description(Thai)</td>
+					<td><input ng-model="newSupply.description.th" /></td>
+				</tr>
+				<tr>
+					<td>Purchasing Units</td>
+					<td>
+						<select ng-model="newSupply.units">
+							<option value="piece" selected>Piece</option>
+							<option value="meter">Meter</option>
+							<option value="kilogram">Kilogram</option>
+							<option value="millimeter">Millimeter</option>
+							<option value="pack">Pack</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showWidth()">
+					<td>Width</td>
+					<td>
+						<input required ng-model="newSupply.width" />
+						<select required ng-model="newSupply.width_units">
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showDepth()">
+					<td>Depth</td>
+					<td>
+						<input required ng-model="newSupply.depth" />
+						<select required ng-model="newSupply.depth_units">
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showHeight()">
+					<td>Height</td>
+					<td>
+						<input required ng-model="newSupply.height" />
+						<select required ng-model="newSupply.height_units">
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr ui-if="newSupply.units == 'pack'">
+					<td>Pieces per Pack</td>
+					<td><input required ng-model="newSupply.piece_per_pack" /></td>
+				</tr>
+				<tr>
+					<td>Price per {{newSupply.units | beautify}}</td>
+					<td><input required ng-model="newSupply.unit_price" /></td>
+				</tr>
+			</table>
+		</div>
+		<div class="bottom-bar"><button ng-disabled="form.$invalid" ng-click="addSupply()">Add</button></div>
+	</form>
 
     <!--
         Sidebar
@@ -10,7 +88,7 @@
         <nav>
             <ul>
                 <li ng-show="currentUser.hasPermission('add_supply')">
-                	<button ng-click="showAddSupply">Fabric</button>
+                	<button ng-click="showAddSupply=true">Add Supply</button>
                 </li>
                 <li ng-show="currentUser.hasPermission('add_fabric')"><a ng-href="#/supply/fabric">Fabric</a></li>
                 <li ng-show="currentUser.hasPermission('add_foam')"><a ng-href="#/supply/foam">Foam</a></li>

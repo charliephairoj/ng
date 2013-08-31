@@ -8955,6 +8955,21 @@ select {
 /*
  * LESS file for the supply view
  */
+.supply-view-page .new-supply {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+}
+.supply-view-page .new-supply .details {
+  margin-left: 2em;
+  margin-top: 2em;
+}
+.supply-view-page .new-supply .details tr td {
+  padding: 0.2em 0em;
+}
+.supply-view-page .new-supply .details tr td:last-child {
+  padding-left: 0.2em;
+}
 .supply-view-page .grid-style .ngRow .image img {
   height: auto;
   width: 100%;

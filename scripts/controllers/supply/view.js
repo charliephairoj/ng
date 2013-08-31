@@ -1,13 +1,38 @@
 'use strict';
 
 angular.module('employeeApp')
-   .controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter',
-   function ($scope, Supply, Notification, $filter) {
+   .controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'Supplier',
+   function ($scope, Supply, Notification, $filter, Supplier) {
      	
      	//system message
      	Notification.display('Loading supplies...', false);
      	
-     	//Poll server for supplies
+     	//New Supply
+     	
+     	$scope.showWidth = function(){
+     		var units = $scope.newSupply.units;
+     		return units == "meter" || units == "piece" ? true : false;
+     	}
+     	
+     	$scope.showDepth = function(){
+     		var units = $scope.newSupply.units;
+     		return units == "piece" ? true : false;
+     	}
+     	
+     	$scope.showHeight = function(){
+     		var units = $scope.newSupply.units;
+     		return units == "piece" ? true : false;
+     	}
+     	
+     	$scope.addSupply = function(){
+     		$scope.newSupply.$save();
+     		$scope.showAddSupply = false;
+     	}
+     	
+     	//Set Vars
+     	$scope.newSupply = new Supply();
+     	$scope.newSupply.units = 'piece';
+     	$scope.supplierList = Supplier.query();
      	var supplyList = Supply.poll().query(function(){
      		Notification.hide();
      	});
