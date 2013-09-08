@@ -1,0 +1,26 @@
+.add-supply {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+}
+.add-supply .details {
+  margin-left: 2em;
+  margin-top: 2em;
+}
+.add-supply .details tr td {
+  padding: 0.2em 0em;
+}
+.add-supply .details tr td input.dimension {
+  text-align: right;
+  padding-right: 0.2em;
+  width: 4em;
+}
+.add-supply .details tr td input.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td select.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td:last-child {
+  padding-left: 0.4em;
+}

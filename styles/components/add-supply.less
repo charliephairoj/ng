@@ -1,0 +1,42 @@
+.add-supply{
+        left:50%;
+        margin-left:-20em;
+        width: 40em;
+        .details{
+            margin-left:2em;
+            margin-top:2em;
+            tr{
+                td{
+                    padding:0.2em 0em;
+                    
+                    input{
+                        
+                        &.dimension{
+                            text-align:right;
+                            padding-right:0.2em;
+                            width:4em;
+                            
+                        }
+                        
+                        &.ng-invalid{
+                            border:1px solid red;
+                        }
+                    }
+                    
+                    select{
+                        
+                        &.ng-invalid{
+                            border:1px solid red;
+                        }
+                    }
+                    
+                    &:first-child{
+                    }
+                    
+                    &:last-child{
+                        padding-left:0.4em;
+                    }
+                }
+            }
+        }
+    }

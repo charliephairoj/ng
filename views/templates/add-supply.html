@@ -1,0 +1,95 @@
+<form name="form" class="add-supply" modal>
+		<div class="title">Add Supply</div>
+		<div class="container">
+			<table class="details">
+				<tr>
+					<td>Supplier</td>
+					<td><select required ng-options="supplier.name for supplier in supplierList | orderBy:'name'" ng-model="supply.supplier"></select></td>
+				</tr>
+				<tr>
+					<td>Description(English)</td>
+					<td><input required ng-model="supply.description.en" /></td>
+				</tr>
+				<tr>
+					<td>Description(Thai)</td>
+					<td><input ng-model="supply.description.th" /></td>
+				</tr>
+				<tr>
+					<td>Reference</td>
+					<td><input ng-model="supply.reference" type="text" placeholder="Reference" /></td>
+				</tr>
+				<tr>
+					<td>Type</td>
+					<td>
+						<select>
+							<option value="foam">Foam</option>
+							<option value="polishing">Polishing</option>
+							<option value="canvas">Canvas</option>
+							<option value="glue">Glue</option>
+							<option value="fiber">Fiber</option>
+							
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Purchasing Units</td>
+					<td>
+						<select ng-model="supply.units">
+							<option value="piece" selected>Piece</option>
+							<option value="container" selected>Container</option>
+							<option value="meter">Meter</option>
+							<option value="kilogram">Kilogram</option>
+							<option value="millimeter">Millimeter</option>
+							<option value="pack">Pack</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showWidth()">
+					<td>Width</td>
+					<td>
+						<input class="dimension" required ng-pattern="/\d+/" ng-model="supply.width" />
+						<select required ng-model="supply.width_units">
+							<option value="inch">Inch</option>
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showDepth()">
+					<td>Depth</td>
+					<td>
+						<input class="dimension" required ng-pattern="/\d+/" ng-model="supply.depth" />
+						<select required ng-model="supply.depth_units">
+							<option value="inch">Inch</option>
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				<tr ui-if="showHeight()">
+					<td>Height</td>
+					<td>
+						<input class="dimension" required ng-pattern="/\d+/" ng-model="supply.height" />
+						<select required ng-model="supply.height_units">
+							<option value="inch">Inch</option>
+							<option value="millimeter">Millimeter</option>
+							<option value="centimeter">Centimeter</option>
+							<option value="meter">Meter</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr ui-if="supply.units == 'pack'">
+					<td>Pieces per Pack</td>
+					<td><input required ng-model="supply.piece_per_pack" /></td>
+				</tr>
+				<tr>
+					<td>Price per {{supply.units | beautify}}</td>
+					<td><input required ng-model="supply.unit_cost" /></td>
+				</tr>
+			</table>
+		</div>
+		<div class="bottom-bar"><button ng-disabled="form.$invalid" ng-click="add()">Add</button></div>
+	</form>
