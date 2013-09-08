@@ -68,7 +68,11 @@ angular.module('employeeApp')
     		if($scope.verifyOrder()) {
 	    		Notification.display('Creating purchase order...', false);
 	    		$scope.po.$save(function(response) {
+	    			try{
 	    			window.open(response.pdf.url);
+	    			}catch(e){
+	    				console.log(e);
+	    			}
 	    			Notification.display('Purchase order created.');
 	    		}, function() {
 	    			Notification.display('ooops');

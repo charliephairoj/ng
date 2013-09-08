@@ -19,6 +19,10 @@ angular.module('employeeApp')
 	    //Grid Options
 	    $scope.gridOptions = {
 	    	data: 'data',
+	    	beforeSelectionChange: function(state){
+	    		$location.path('/contact/customer/'+state.entity.id);
+	    		return false;
+	    	},
 	    	columnDefs: [{field: 'id', displayName: 'ID', width: '50px'},
 	    				 {field: 'name', displayName: 'Name'},
 	    				 {field: 'addresses[0]',
@@ -28,6 +32,8 @@ angular.module('employeeApp')
 	    				  				 {{row.getProperty(col.field).country}} {{row.getProperty(col.field).zipcode}}'}],
 	    	filterOptions: {useExternalFilter: true}
 	    };
+	    
+	   
 	    
 	    $scope.customer = new Customer();
 	    $scope.address = {};

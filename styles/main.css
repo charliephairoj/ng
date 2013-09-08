@@ -835,258 +835,6 @@ select {
 .cropper.drag-drop-active {
   background: #CCC;
 }
-/*Product Selector*/
-/*
- * LESS file for the product selector
- */
-.product-selector {
-  margin: 0;
-  width: auto;
-  height: auto;
-  top: 5%;
-  left: 5%;
-  bottom: 5%;
-  right: 5%;
-  background-color: #313131;
-  color: #FFFFFF;
-}
-.product-selector .title {
-  text-align: left;
-  padding: 0.8em 1.5em;
-}
-.product-selector .selector {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0px;
-  left: 0px;
-  width: 8em;
-  border-right: 1px solid #282828;
-  cursor: pointer;
-}
-.product-selector .selector ul li {
-  padding: 0.5em 0em 0.5em 0.4em;
-  font-family: proxima;
-  font-size: 1em;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-}
-.product-selector .selector ul li.active {
-  background-color: purple;
-  border: 1px solid transparent;
-}
-.product-selector .details {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0em;
-  left: 8em;
-  right: 0em;
-  text-align: center;
-  z-index: -1;
-}
-.product-selector .details .search-bar {
-  position: absolute;
-  right: 1em;
-}
-.product-selector .details .bottom-bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: auto;
-  background-color: #313131;
-  border-top: 1px solid #282828;
-  border-radius: 0px 0px 2px 2px;
-  text-align: center;
-}
-.product-selector .details .bottom-bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 0.3em 2%;
-  padding: 0.2em;
-  font-size: 1em;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.product-selector .details .bottom-bar button:hover {
-  background-color: #3A3A3A;
-}
-.product-selector .details .bottom-bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.product-selector .details.upholstery .container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0em;
-  left: 0em;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.product-selector .details.upholstery .container .list {
-  height: auto;
-  width: 100%;
-  display: table;
-}
-.product-selector .details.upholstery .container .list .row {
-  display: table-row;
-  width: 100%;
-}
-.product-selector .details.upholstery .container .list .row .cell {
-  display: table-cell;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-  font-family: proxima;
-  font-size: 1em;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.product-selector .details.upholstery .container .list .row .cell.image {
-  width: 10em;
-  height: auto;
-}
-.product-selector .details.upholstery .container .list .row .cell.image img {
-  width: 100%;
-  height: auto;
-}
-.product-selector .details.custom .new-custom-inventory-item {
-  margin-top: 1em;
-  width: 300px;
-  font-family: proxima;
-}
-.product-selector .details.custom .new-custom-inventory-item tr {
-  width: 100%;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td {
-  width: 100%;
-  padding: 0.15em 0em 0.15em 0.8em;
-  vertical-align: middle;
-  font-size: 1em;
-  color: #6B6B6B;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:first-child {
-  width: 30%;
-  text-align: left;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:last-child {
-  width: 70%;
-  padding-left: 5px;
-  text-align: center;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:last-child input {
-  width: 90%;
-  border-radius: 2px;
-  background-color: #CCC;
-}
-.product-selector .details.custom .new-custom-inventory-item tr.description td {
-  padding-bottom: 1.5em;
-}
-.product-selector .details.custom .cropper {
-  top: 0px;
-  bottom: 1.8em;
-  right: 0px;
-  left: 300px;
-}
-.product-selector .details.quantity table {
-  margin: 0 auto;
-  margin-top: 8em;
-}
-.product-selector .details.quantity table tr td {
-  padding: 0.5em;
-}
-.product-selector .details.fabric {
-  font-family: proxima;
-  letter-spacing: 0.08em;
-}
-.product-selector .details.fabric .product_container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 60%;
-  bottom: 36px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border-right: 1px solid #282828;
-  text-align: left;
-}
-.product-selector .details.fabric .product_container .product {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.product-selector .details.fabric .product_container .product .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.product-selector .details.fabric .product_container .product .fabric img {
-  height: 100%;
-}
-.product-selector .details.fabric .product_container .product.drag {
-  background-color: #282828;
-}
-.product-selector .details.fabric .product_container .pillow {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.product-selector .details.fabric .product_container .pillow .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.product-selector .details.fabric .product_container .pillow .fabric img {
-  height: 100%;
-}
-.product-selector .details.fabric .product_container .pillow.drag {
-  background-color: #282828;
-}
-.product-selector .details.fabric .fabric_container {
-  position: absolute;
-  top: 0px;
-  bottom: 36px;
-  right: 0px;
-  width: 40%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.product-selector .details.fabric .fabric_container .list .item {
-  cursor: move;
-  position: relative;
-  height: 5em;
-  border-bottom: 1px solid #282828;
-  background-color: #313131;
-}
-.product-selector .details.fabric .fabric_container .list .item .details {
-  position: absolute;
-  font-size: 1em;
-  padding: 1.25em 1em;
-  z-index: 1;
-  top: 0em;
-  left: 5em;
-}
-.product-selector .details.fabric .fabric_container .list .item img {
-  position: absolute;
-  height: 100%;
-  width: 5em;
-  top: 0em;
-  left: 0em;
-  z-index: 1;
-}
 /*Grid*/
 /*
  * LESS file for the grid
@@ -1577,6 +1325,317 @@ select {
 /*
  * Modal Theming
  */
+/*Add Supplier*/
+.add-supplier {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+  height: 96%;
+  top: 2%;
+}
+.add-supplier .container {
+  overflow-y: scroll;
+}
+.add-supplier .container .details {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+.add-supplier .container .details tr td {
+  padding: 0.2em 0em;
+}
+.add-supplier .container .details tr td input.dimension {
+  text-align: right;
+  padding-right: 0.2em;
+  width: 4em;
+}
+.add-supplier .container .details tr td input.ng-invalid {
+  border: 1px solid red;
+}
+.add-supplier .container .details tr td select.ng-invalid {
+  border: 1px solid red;
+}
+.add-supplier .container .details tr td:last-child {
+  padding-left: 0.4em;
+}
+/*Add Supply*/
+.add-supply {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+}
+.add-supply .details {
+  margin-left: 2em;
+  margin-top: 2em;
+}
+.add-supply .details tr td {
+  padding: 0.2em 0em;
+}
+.add-supply .details tr td input.dimension {
+  text-align: right;
+  padding-right: 0.2em;
+  width: 4em;
+}
+.add-supply .details tr td input.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td select.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td:last-child {
+  padding-left: 0.4em;
+}
+/*Product Selector*/
+/*
+ * LESS file for the product selector
+ */
+.product-selector {
+  margin: 0;
+  width: auto;
+  height: auto;
+  top: 5%;
+  left: 5%;
+  bottom: 5%;
+  right: 5%;
+  background-color: #313131;
+  color: #FFFFFF;
+}
+.product-selector .title {
+  text-align: left;
+  padding: 0.8em 1.5em;
+}
+.product-selector .selector {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0px;
+  left: 0px;
+  width: 8em;
+  border-right: 1px solid #282828;
+  cursor: pointer;
+}
+.product-selector .selector ul li {
+  padding: 0.5em 0em 0.5em 0.4em;
+  font-family: proxima;
+  font-size: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.product-selector .selector ul li.active {
+  background-color: purple;
+  border: 1px solid transparent;
+}
+.product-selector .details {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0em;
+  left: 8em;
+  right: 0em;
+  text-align: center;
+  z-index: -1;
+}
+.product-selector .details .search-bar {
+  position: absolute;
+  right: 1em;
+}
+.product-selector .details .bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  border-top: 1px solid #282828;
+  border-radius: 0px 0px 2px 2px;
+  text-align: center;
+}
+.product-selector .details .bottom-bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 0.3em 2%;
+  padding: 0.2em;
+  font-size: 1em;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.product-selector .details .bottom-bar button:hover {
+  background-color: #3A3A3A;
+}
+.product-selector .details .bottom-bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.product-selector .details.upholstery .container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.upholstery .container .list {
+  height: auto;
+  width: 100%;
+  display: table;
+}
+.product-selector .details.upholstery .container .list .row {
+  display: table-row;
+  width: 100%;
+}
+.product-selector .details.upholstery .container .list .row .cell {
+  display: table-cell;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  font-family: proxima;
+  font-size: 1em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.product-selector .details.upholstery .container .list .row .cell.image {
+  width: 10em;
+  height: auto;
+}
+.product-selector .details.upholstery .container .list .row .cell.image img {
+  width: 100%;
+  height: auto;
+}
+.product-selector .details.custom .new-custom-inventory-item {
+  margin-top: 1em;
+  width: 300px;
+  font-family: proxima;
+}
+.product-selector .details.custom .new-custom-inventory-item tr {
+  width: 100%;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td {
+  width: 100%;
+  padding: 0.15em 0em 0.15em 0.8em;
+  vertical-align: middle;
+  font-size: 1em;
+  color: #6B6B6B;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:first-child {
+  width: 30%;
+  text-align: left;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child {
+  width: 70%;
+  padding-left: 5px;
+  text-align: center;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child input {
+  width: 90%;
+  border-radius: 2px;
+  background-color: #CCC;
+}
+.product-selector .details.custom .new-custom-inventory-item tr.description td {
+  padding-bottom: 1.5em;
+}
+.product-selector .details.custom .cropper {
+  top: 0px;
+  bottom: 1.8em;
+  right: 0px;
+  left: 300px;
+}
+.product-selector .details.quantity table {
+  margin: 0 auto;
+  margin-top: 8em;
+}
+.product-selector .details.quantity table tr td {
+  padding: 0.5em;
+}
+.product-selector .details.fabric {
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.product-selector .details.fabric .product_container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 60%;
+  bottom: 36px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-right: 1px solid #282828;
+  text-align: left;
+}
+.product-selector .details.fabric .product_container .product {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .product .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .product .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .product.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .product_container .pillow {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .pillow .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .pillow .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .pillow.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .fabric_container {
+  position: absolute;
+  top: 0px;
+  bottom: 36px;
+  right: 0px;
+  width: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.fabric .fabric_container .list .item {
+  cursor: move;
+  position: relative;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+}
+.product-selector .details.fabric .fabric_container .list .item .details {
+  position: absolute;
+  font-size: 1em;
+  padding: 1.25em 1em;
+  z-index: 1;
+  top: 0em;
+  left: 5em;
+}
+.product-selector .details.fabric .fabric_container .list .item img {
+  position: absolute;
+  height: 100%;
+  width: 5em;
+  top: 0em;
+  left: 0em;
+  z-index: 1;
+}
 /*
  * imports
  */
@@ -8968,7 +9027,7 @@ select {
   padding: 0.2em 0em;
 }
 .supply-view-page .new-supply .details tr td:last-child {
-  padding-left: 0.2em;
+  padding-left: 0.4em;
 }
 .supply-view-page .grid-style .ngRow .image img {
   height: auto;

@@ -17,8 +17,14 @@ angular.module('employeeApp')
     	
     	$scope.gridOptions = {
     		data: 'data',
+    		beforeSelectionChange: function(state){
+	    		$location.path('/order/purchase_order/'+state.entity.id);
+	    		return false;
+	    	},
     		columnDefs: [{field: 'id', displayName: 'PO#'},
     					 {field: 'supplier.name', displayName: 'Supplier'},
+    					 {field: 'order_date', displayName: 'Order Date', cellFilter: 'date:"MMMM d, yyyy"'},
+    					 {field: 'total', displayName:'Total'}
     					 ]
     	}
     	//Destructor

@@ -7,32 +7,7 @@ angular.module('employeeApp')
      	//system message
      	Notification.display('Loading supplies...', false);
      	
-     	//New Supply
      	
-     	$scope.showWidth = function(){
-     		var units = $scope.newSupply.units;
-     		return units == "meter" || units == "piece" ? true : false;
-     	}
-     	
-     	$scope.showDepth = function(){
-     		var units = $scope.newSupply.units;
-     		return units == "piece" ? true : false;
-     	}
-     	
-     	$scope.showHeight = function(){
-     		var units = $scope.newSupply.units;
-     		return units == "piece" ? true : false;
-     	}
-     	
-     	$scope.addSupply = function(){
-     		$scope.newSupply.$save();
-     		$scope.showAddSupply = false;
-     	}
-     	
-     	//Set Vars
-     	$scope.newSupply = new Supply();
-     	$scope.newSupply.units = 'piece';
-     	$scope.supplierList = Supplier.query();
      	var supplyList = Supply.poll().query(function(){
      		Notification.hide();
      	});
