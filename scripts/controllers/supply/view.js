@@ -21,6 +21,10 @@ angular.module('employeeApp')
      	$scope.gridOptions = {
      		data: 'data',
      		rowHeight: 150,
+     		beforeSelectionChange: function(state){
+	    		//$location.path('/contact/customer/'+state.entity.id);
+	    		return false;
+	    	},
      		columnDefs: [{field: 'id', displayName: 'ID', width: '75px'},
      					 {field: 'image.url',
      					  width: '150px',

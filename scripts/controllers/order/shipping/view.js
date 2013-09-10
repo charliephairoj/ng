@@ -15,6 +15,10 @@ angular.module('employeeApp')
     	///Grid Options
     	$scope.gridOptions = {
     		data: 'data',
+    		beforeSelectionChange: function(state){
+	    		$location.path('/order/shipping/'+state.entity.id);
+	    		return false;
+	    	},
     		columnDefs: [{field: 'id', displayName: 'Shipping#'},
     					 {field: 'acknowledgement.id', displayName: 'Ack#'},
     					 {field: 'customer.name', displayName: 'Customer'},

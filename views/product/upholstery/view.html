@@ -20,96 +20,9 @@
     <div data-search-bar></div>
     
     
-    <div class="workspace grid">
-        <div class="header">
-            <div class="row">
-                <div class="cell preview">Preview</div>
-                <div class="cell id">ID</div>
-                <div class="cell model">Model</div>
-                <div class="cell name">Name</div>
-                <div class="cell configuration">Configuration</div>
-                <div class="cell width">Width</div>
-                <div class="cell depth">Depth</div>
-                <div class="cell height">Height</div>
-                <div class="cell manufacture-price">Manufacture Price</div>
-                <div class="cell wholesale-price">Wholesale Price</div>
-                <div class="cell export-price">Export Price</div>
-            </div>
-        </div>
-        <div class="listContainer">
-            <div class="grid">
-                <div class="body">
-                    <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model'" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
-                        
-                        <div class="cell preview">
-                            <img ng-src="{{uphol.url}}" />
-                        </div>
-                        
-                        <div class="cell id">{{uphol.id}}</div>
-                        <div class="cell model">{{uphol.model.model}}</div>
-                        <div class="cell name">{{uphol.model.name}}</div>
-                        <div class="cell configuration">{{uphol.configuration.configuration}}</div>
-                        <div class="cell width">{{uphol.width}}</div>
-                        <div class="cell depth">{{uphol.depth}}</div>
-                        <div class="cell height">{{uphol.height}}</div>
-                        <div class="cell manufacture-price">{{uphol.manufacture_price | number:0}}</div>
-                        <div class="cell wholesale-price">{{uphol.wholesale_price | number:0}}</div>
-                        <div class="cell export-price">{{uphol.export_price | number:0}}</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--
-        <div class="listContainer">
-            <div class="list">              
-                <a ng-repeat="uphol in upholList | filter:query | orderBy: 'model.model' | limitTo:50" class="row" ng-href="#/product/upholstery/{{uphol.id}}">
-                        <div class="profile-img cell">
-                            <div>
-                                <img fade-load ng-src="{{uphol.url}}" />
-                            </div>
-                            
-                        </div>
-                        <div class="cell">
-                            <div class="details">
-                                <div class="details-row">
-                                    <div class="details-title">Product ID</div>
-                                    <div class="details-data">{{uphol.id}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Model Name:</div>
-                                    <div class="details-data">{{uphol.model.name}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Model Number:</div>
-                                    <div class="details-data">{{uphol.model.model}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Configuration:</div>
-                                    <div class="details-data">{{uphol.configuration.configuration}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Manufacture Price:</div>
-                                    <div class="details-data">{{uphol.manufacture_price}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Wholesale Price:</div>
-                                    <div class="details-data">{{uphol.wholesale_price}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Retail Price:</div>
-                                    <div class="details-data">{{uphol.retail_price}}</div>
-                                </div>
-                                <div class="details-row">
-                                    <div class="details-title">Export Price:</div>
-                                    <div class="details-data">{{uphol.export_price}}</div>
-                                </div>
-                                
-                                
-                            </div>
-                        </div>
-                </a>
-            </div>
-        </div>-->
+    <div class="workspace grid" style="z-index:1;">
+    	<div class="grid-style" ng-grid="gridOptions"></div>
         
     </div>
+        
 </div>

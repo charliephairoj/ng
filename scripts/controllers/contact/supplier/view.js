@@ -19,6 +19,10 @@ angular.module('employeeApp')
 	    //Grid Options
 	    $scope.gridOptions = {
 	    	data: 'data', 
+	    	beforeSelectionChange: function(state){
+	    		$location.path('/contact/supplier/'+state.entity.id);
+	    		return false;
+	    	},
 	    	columnDefs: [{field: 'id', displayName: 'ID', width:'50px'},
 	    				 {field: 'name', displayName: 'Supplier'}]
 	    }
