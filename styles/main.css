@@ -252,6 +252,14 @@ select {
                  */
 
 }
+.sidebar nav ul li span.checkmark {
+  margin-left: 2em;
+  color: green;
+}
+.sidebar nav ul li span.x-mark {
+  margin-left: 2em;
+  color: red;
+}
 .sidebar nav ul li .textholder {
   font-size: 12px;
   display: block;
@@ -827,258 +835,6 @@ select {
 .cropper.drag-drop-active {
   background: #CCC;
 }
-/*Product Selector*/
-/*
- * LESS file for the product selector
- */
-.product-selector {
-  margin: 0;
-  width: auto;
-  height: auto;
-  top: 5%;
-  left: 5%;
-  bottom: 5%;
-  right: 5%;
-  background-color: #313131;
-  color: #FFFFFF;
-}
-.product-selector .title {
-  text-align: left;
-  padding: 0.8em 1.5em;
-}
-.product-selector .selector {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0px;
-  left: 0px;
-  width: 8em;
-  border-right: 1px solid #282828;
-  cursor: pointer;
-}
-.product-selector .selector ul li {
-  padding: 0.5em 0em 0.5em 0.4em;
-  font-family: proxima;
-  font-size: 1em;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-}
-.product-selector .selector ul li.active {
-  background-color: purple;
-  border: 1px solid transparent;
-}
-.product-selector .details {
-  position: absolute;
-  top: 3.2em;
-  bottom: 0em;
-  left: 8em;
-  right: 0em;
-  text-align: center;
-  z-index: -1;
-}
-.product-selector .details .search-bar {
-  position: absolute;
-  right: 1em;
-}
-.product-selector .details .bottom-bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: auto;
-  background-color: #313131;
-  border-top: 1px solid #282828;
-  border-radius: 0px 0px 2px 2px;
-  text-align: center;
-}
-.product-selector .details .bottom-bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 0.3em 2%;
-  padding: 0.2em;
-  font-size: 1em;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.product-selector .details .bottom-bar button:hover {
-  background-color: #3A3A3A;
-}
-.product-selector .details .bottom-bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.product-selector .details.upholstery .container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0em;
-  left: 0em;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.product-selector .details.upholstery .container .list {
-  height: auto;
-  width: 100%;
-  display: table;
-}
-.product-selector .details.upholstery .container .list .row {
-  display: table-row;
-  width: 100%;
-}
-.product-selector .details.upholstery .container .list .row .cell {
-  display: table-cell;
-  border-top: 1px solid #3c3c3c;
-  border-bottom: 1px solid #282828;
-  font-family: proxima;
-  font-size: 1em;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.product-selector .details.upholstery .container .list .row .cell.image {
-  width: 10em;
-  height: auto;
-}
-.product-selector .details.upholstery .container .list .row .cell.image img {
-  width: 100%;
-  height: auto;
-}
-.product-selector .details.custom .new-custom-inventory-item {
-  margin-top: 1em;
-  width: 300px;
-  font-family: proxima;
-}
-.product-selector .details.custom .new-custom-inventory-item tr {
-  width: 100%;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td {
-  width: 100%;
-  padding: 0.15em 0em 0.15em 0.8em;
-  vertical-align: middle;
-  font-size: 1em;
-  color: #6B6B6B;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:first-child {
-  width: 30%;
-  text-align: left;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:last-child {
-  width: 70%;
-  padding-left: 5px;
-  text-align: center;
-}
-.product-selector .details.custom .new-custom-inventory-item tr td:last-child input {
-  width: 90%;
-  border-radius: 2px;
-  background-color: #CCC;
-}
-.product-selector .details.custom .new-custom-inventory-item tr.description td {
-  padding-bottom: 1.5em;
-}
-.product-selector .details.custom .cropper {
-  top: 0px;
-  bottom: 1.8em;
-  right: 0px;
-  left: 300px;
-}
-.product-selector .details.quantity table {
-  margin: 0 auto;
-  margin-top: 8em;
-}
-.product-selector .details.quantity table tr td {
-  padding: 0.5em;
-}
-.product-selector .details.fabric {
-  font-family: proxima;
-  letter-spacing: 0.08em;
-}
-.product-selector .details.fabric .product_container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 60%;
-  bottom: 36px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border-right: 1px solid #282828;
-  text-align: left;
-}
-.product-selector .details.fabric .product_container .product {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.product-selector .details.fabric .product_container .product .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.product-selector .details.fabric .product_container .product .fabric img {
-  height: 100%;
-}
-.product-selector .details.fabric .product_container .product.drag {
-  background-color: #282828;
-}
-.product-selector .details.fabric .product_container .pillow {
-  min-height: 50px;
-  padding: 1em;
-  border-bottom: 1px solid #282828;
-  -webkit-transition: all 250ms ease;
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -ms-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-.product-selector .details.fabric .product_container .pillow .fabric {
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 50px;
-}
-.product-selector .details.fabric .product_container .pillow .fabric img {
-  height: 100%;
-}
-.product-selector .details.fabric .product_container .pillow.drag {
-  background-color: #282828;
-}
-.product-selector .details.fabric .fabric_container {
-  position: absolute;
-  top: 0px;
-  bottom: 36px;
-  right: 0px;
-  width: 40%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.product-selector .details.fabric .fabric_container .list .item {
-  cursor: move;
-  position: relative;
-  height: 5em;
-  border-bottom: 1px solid #282828;
-  background-color: #313131;
-}
-.product-selector .details.fabric .fabric_container .list .item .details {
-  position: absolute;
-  font-size: 1em;
-  padding: 1.25em 1em;
-  z-index: 1;
-  top: 0em;
-  left: 5em;
-}
-.product-selector .details.fabric .fabric_container .list .item img {
-  position: absolute;
-  height: 100%;
-  width: 5em;
-  top: 0em;
-  left: 0em;
-  z-index: 1;
-}
 /*Grid*/
 /*
  * LESS file for the grid
@@ -1097,15 +853,32 @@ select {
   color: #CCC;
 }
 .grid-style .ngTopPanel {
-  font-size: 1.2em;
+  font-size: 1em;
   background-color: #282828;
+  border-bottom: none;
+  text-align: center;
+}
+.grid-style .ngTopPanel .ngVerticalBar {
+  background-color: transparent;
 }
 .grid-style .ngRow {
   background: transparent;
   border-bottom: 1px solid #282828;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+  /*
+         * States
+         */
+
 }
 .grid-style .ngRow .ngCell .ngVerticalBar {
   background-color: #282828;
+}
+.grid-style .ngRow:hover {
+  background-color: orange;
 }
 .gridStyle {
   position: absolute;
@@ -1120,15 +893,32 @@ select {
   color: #CCC;
 }
 .gridStyle .ngTopPanel {
-  font-size: 1.2em;
+  font-size: 1em;
   background-color: #282828;
+  border-bottom: none;
+  text-align: center;
+}
+.gridStyle .ngTopPanel .ngVerticalBar {
+  background-color: transparent;
 }
 .gridStyle .ngRow {
   background: transparent;
   border-bottom: 1px solid #282828;
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+  /*
+         * States
+         */
+
 }
 .gridStyle .ngRow .ngCell .ngVerticalBar {
   background-color: #282828;
+}
+.gridStyle .ngRow:hover {
+  background-color: orange;
 }
 /*Modal*/
 .modal {
@@ -1535,6 +1325,317 @@ select {
 /*
  * Modal Theming
  */
+/*Add Supplier*/
+.add-supplier {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+  height: 96%;
+  top: 2%;
+}
+.add-supplier .container {
+  overflow-y: scroll;
+}
+.add-supplier .container .details {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+.add-supplier .container .details tr td {
+  padding: 0.2em 0em;
+}
+.add-supplier .container .details tr td input.dimension {
+  text-align: right;
+  padding-right: 0.2em;
+  width: 4em;
+}
+.add-supplier .container .details tr td input.ng-invalid {
+  border: 1px solid red;
+}
+.add-supplier .container .details tr td select.ng-invalid {
+  border: 1px solid red;
+}
+.add-supplier .container .details tr td:last-child {
+  padding-left: 0.4em;
+}
+/*Add Supply*/
+.add-supply {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+}
+.add-supply .details {
+  margin-left: 2em;
+  margin-top: 2em;
+}
+.add-supply .details tr td {
+  padding: 0.2em 0em;
+}
+.add-supply .details tr td input.dimension {
+  text-align: right;
+  padding-right: 0.2em;
+  width: 4em;
+}
+.add-supply .details tr td input.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td select.ng-invalid {
+  border: 1px solid red;
+}
+.add-supply .details tr td:last-child {
+  padding-left: 0.4em;
+}
+/*Product Selector*/
+/*
+ * LESS file for the product selector
+ */
+.product-selector {
+  margin: 0;
+  width: auto;
+  height: auto;
+  top: 5%;
+  left: 5%;
+  bottom: 5%;
+  right: 5%;
+  background-color: #313131;
+  color: #FFFFFF;
+}
+.product-selector .title {
+  text-align: left;
+  padding: 0.8em 1.5em;
+}
+.product-selector .selector {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0px;
+  left: 0px;
+  width: 8em;
+  border-right: 1px solid #282828;
+  cursor: pointer;
+}
+.product-selector .selector ul li {
+  padding: 0.5em 0em 0.5em 0.4em;
+  font-family: proxima;
+  font-size: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+}
+.product-selector .selector ul li.active {
+  background-color: purple;
+  border: 1px solid transparent;
+}
+.product-selector .details {
+  position: absolute;
+  top: 3.2em;
+  bottom: 0em;
+  left: 8em;
+  right: 0em;
+  text-align: center;
+  z-index: -1;
+}
+.product-selector .details .search-bar {
+  position: absolute;
+  right: 1em;
+}
+.product-selector .details .bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  background-color: #313131;
+  border-top: 1px solid #282828;
+  border-radius: 0px 0px 2px 2px;
+  text-align: center;
+}
+.product-selector .details .bottom-bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 0.3em 2%;
+  padding: 0.2em;
+  font-size: 1em;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.product-selector .details .bottom-bar button:hover {
+  background-color: #3A3A3A;
+}
+.product-selector .details .bottom-bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.product-selector .details.upholstery .container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.upholstery .container .list {
+  height: auto;
+  width: 100%;
+  display: table;
+}
+.product-selector .details.upholstery .container .list .row {
+  display: table-row;
+  width: 100%;
+}
+.product-selector .details.upholstery .container .list .row .cell {
+  display: table-cell;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  font-family: proxima;
+  font-size: 1em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.product-selector .details.upholstery .container .list .row .cell.image {
+  width: 10em;
+  height: auto;
+}
+.product-selector .details.upholstery .container .list .row .cell.image img {
+  width: 100%;
+  height: auto;
+}
+.product-selector .details.custom .new-custom-inventory-item {
+  margin-top: 1em;
+  width: 300px;
+  font-family: proxima;
+}
+.product-selector .details.custom .new-custom-inventory-item tr {
+  width: 100%;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td {
+  width: 100%;
+  padding: 0.15em 0em 0.15em 0.8em;
+  vertical-align: middle;
+  font-size: 1em;
+  color: #6B6B6B;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:first-child {
+  width: 30%;
+  text-align: left;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child {
+  width: 70%;
+  padding-left: 5px;
+  text-align: center;
+}
+.product-selector .details.custom .new-custom-inventory-item tr td:last-child input {
+  width: 90%;
+  border-radius: 2px;
+  background-color: #CCC;
+}
+.product-selector .details.custom .new-custom-inventory-item tr.description td {
+  padding-bottom: 1.5em;
+}
+.product-selector .details.custom .cropper {
+  top: 0px;
+  bottom: 1.8em;
+  right: 0px;
+  left: 300px;
+}
+.product-selector .details.quantity table {
+  margin: 0 auto;
+  margin-top: 8em;
+}
+.product-selector .details.quantity table tr td {
+  padding: 0.5em;
+}
+.product-selector .details.fabric {
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.product-selector .details.fabric .product_container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 60%;
+  bottom: 36px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-right: 1px solid #282828;
+  text-align: left;
+}
+.product-selector .details.fabric .product_container .product {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .product .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .product .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .product.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .product_container .pillow {
+  min-height: 50px;
+  padding: 1em;
+  border-bottom: 1px solid #282828;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  -ms-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.product-selector .details.fabric .product_container .pillow .fabric {
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 50px;
+}
+.product-selector .details.fabric .product_container .pillow .fabric img {
+  height: 100%;
+}
+.product-selector .details.fabric .product_container .pillow.drag {
+  background-color: #282828;
+}
+.product-selector .details.fabric .fabric_container {
+  position: absolute;
+  top: 0px;
+  bottom: 36px;
+  right: 0px;
+  width: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-selector .details.fabric .fabric_container .list .item {
+  cursor: move;
+  position: relative;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+}
+.product-selector .details.fabric .fabric_container .list .item .details {
+  position: absolute;
+  font-size: 1em;
+  padding: 1.25em 1em;
+  z-index: 1;
+  top: 0em;
+  left: 5em;
+}
+.product-selector .details.fabric .fabric_container .list .item img {
+  position: absolute;
+  height: 100%;
+  width: 5em;
+  top: 0em;
+  left: 0em;
+  z-index: 1;
+}
 /*
  * imports
  */
@@ -2362,7 +2463,7 @@ select {
 /*
  * Orders
  */
-.createPOPage {
+.create-po-page {
   opacity: 0;
   -webkit-transition: opacity 1s linear;
   -moz-transition: opacity 1s linear;
@@ -2386,23 +2487,23 @@ select {
     */
 
 }
-.createPOPage .workspace {
+.create-po-page .workspace {
   position: absolute;
   top: 0px;
   width: 100%;
   bottom: 0px;
 }
-.createPOPage .workspace .inputTable {
+.create-po-page .workspace .inputTable {
   position: absolute;
   top: 20px;
   left: 10px;
 }
-.createPOPage .workspace .inputTable tr td {
+.create-po-page .workspace .inputTable tr td {
   padding: 5px;
   vertical-align: middle;
   color: grey;
 }
-.createPOPage .workspace .inputTable tr td input {
+.create-po-page .workspace .inputTable tr td input {
   padding: 5px 10px;
   font-size: 12px;
   border: 1px solid #CCCCCC;
@@ -2412,33 +2513,33 @@ select {
   -ms-transition: border 250ms linear;
   transition: border 250ms linear;
 }
-.createPOPage .workspace .inputTable tr td input:focus {
+.create-po-page .workspace .inputTable tr td input:focus {
   outline: none;
   border: 1px solid grey;
 }
-.createPOPage .workspace .inputTable tr td select {
+.create-po-page .workspace .inputTable tr td select {
   border: 1px solid #CCCCCC;
 }
-.createPOPage .workspace .inputTable tr td select:focus {
+.create-po-page .workspace .inputTable tr td select:focus {
   outline: none;
   border: 1px solid grey;
 }
-.createPOPage.fadeIn {
+.create-po-page.fadeIn {
   left: 200px;
 }
-.createPOPage .suppliers {
+.create-po-page .suppliers {
   background-color: #313131;
 }
-.createPOPage .suppliers .container {
+.create-po-page .suppliers .container {
   position: absolute;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.createPOPage .suppliers .container .list {
+.create-po-page .suppliers .container .list {
   width: 100%;
 }
-.createPOPage .suppliers .container .list .item {
+.create-po-page .suppliers .container .list .item {
   width: 100%;
   background: #313131;
   padding: 1em;
@@ -2454,23 +2555,23 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.createPOPage .suppliers .container .list .item:hover {
+.create-po-page .suppliers .container .list .item:hover {
   background: orange;
   color: #FFFFFF;
 }
-.createPOPage .supplies {
+.create-po-page .supplies {
   background-color: #313131;
 }
-.createPOPage .supplies .container {
+.create-po-page .supplies .container {
   position: absolute;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.createPOPage .supplies .container .list {
+.create-po-page .supplies .container .list {
   width: 100%;
 }
-.createPOPage .supplies .container .list .item {
+.create-po-page .supplies .container .list .item {
   width: 100%;
   background: #313131;
   padding: 1em;
@@ -2486,149 +2587,22 @@ select {
   -ms-transition: all 250ms linear;
   transition: all 250ms linear;
 }
-.createPOPage .supplies .container .list .item:hover {
+.create-po-page .supplies .container .list .item:hover {
   background: orange;
   color: #FFFFFF;
 }
-.createPOPage .quantity_modal {
-  width: 24em;
-  margin-top: -10.25em;
-  top: 50%;
-  left: 50%;
-  height: 20.5em;
-  margin-left: -12em;
-  font-family: proxima;
+.create-po-page .quantity_modal {
   width: 200px;
   margin-left: -100px;
   height: 125px;
   top: 150px;
-  background-color: #313131;
 }
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header {
-  padding: 0.8em 0em;
-  position: relative;
-  text-align: center;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header .ui-datepicker-title {
-  display: inline;
-  color: #CCC;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header .ui-datepicker-title span {
-  font-size: 1em;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header .ui-button {
-  position: absolute;
-  cursor: pointer;
-  top: 0.7em;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  border-bottom: 0.6em solid transparent;
-  border-top: 0.6em solid transparent;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
-  position: absolute;
-  cursor: pointer;
-  top: 0.7em;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  border-bottom: 0.6em solid transparent;
-  border-top: 0.6em solid transparent;
-  border-right: 0.8em solid #CCC;
-  left: 0.5em;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-header .ui-datepicker-next {
-  position: absolute;
-  cursor: pointer;
-  top: 0.7em;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  border-bottom: 0.6em solid transparent;
-  border-top: 0.6em solid transparent;
-  border-left: 0.8em solid #CCC;
-  right: 0.5em;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar {
-  width: 100%;
-  background-color: #313131;
-  border: none;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar thead tr th {
-  padding: 0.8em 0em;
-  font-size: 0.8em;
-  background-color: #121212;
-  color: #cccccc;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td {
-  text-align: center;
-  padding: 0.8em;
-  cursor: pointer;
-  background-color: #313131;
-  font-size: 0.8em;
-  border: 1px solid #000;
-  color: #CCC;
-  -webkit-transition: all 250ms linear;
-  -moz-transition: all 250ms linear;
-  -o-transition: all 250ms linear;
-  -ms-transition: all 250ms linear;
-  transition: all 250ms linear;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td:first-child {
-  border-left: none;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td:last-child {
-  border-right: none;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td:hover {
-  background-color: grey;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td.ui-datepicker-current-day {
-  background-color: #181818;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td.ui-datepicker-unselectable:hover {
-  background-color: #313131;
-}
-.createPOPage .quantity_modal .ui-datepicker .ui-datepicker-calendar tbody tr td a {
-  text-decoration: none;
-  color: #CCC;
-}
-.createPOPage .quantity_modal .bottom_bar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  height: 36px;
-  background-color: #313131;
-  border-radius: 0px 0px 2px 2px;
-}
-.createPOPage .quantity_modal .bottom_bar button {
-  color: #FFFFFF;
-  width: 96%;
-  margin: 5px 2%;
-  padding: 3px;
-  font-size: 14px;
-  background-color: #313131;
-  border: 1px solid #282828;
-  cursor: pointer;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
-}
-.createPOPage .quantity_modal .bottom_bar button:hover {
-  background-color: #3A3A3A;
-}
-.createPOPage .quantity_modal .bottom_bar button:active {
-  background-color: #444444;
-  color: #000000;
-}
-.createPOPage .quantity_modal .title {
+.create-po-page .quantity_modal .title {
   text-align: center;
   min-height: 0px;
   padding: 0.4em;
 }
-.createPOPage .quantity_modal input {
+.create-po-page .quantity_modal input {
   width: 100px;
   position: absolute;
   top: 50px;
@@ -2638,7 +2612,58 @@ select {
   padding: 0px;
   text-align: center;
 }
-.createPOPage .po {
+.create-po-page .quantity_modal {
+  width: 200px;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+  height: 125px;
+  background-color: #313131;
+}
+.create-po-page .quantity_modal .title {
+  text-align: center;
+  padding: 0.2em 0em;
+}
+.create-po-page .quantity_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.create-po-page .vat_modal {
+  height: 8em;
+  top: 50%;
+  left: 50%;
+  width: 20em;
+  margin-top: -4em;
+  margin-left: -10em;
+}
+.create-po-page .vat_modal .title {
+  padding: 0.2em 0em;
+}
+.create-po-page .vat_modal input {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+}
+.create-po-page .vat_modal span {
+  top: 50px;
+  position: absolute;
+  right: 90px;
+  text-align: left;
+  color: #FFFFFF;
+}
+.create-po-page .po {
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
@@ -2648,63 +2673,63 @@ select {
   right: 0px;
   background: #313131;
 }
-.createPOPage .po .workspace {
+.create-po-page .po .workspace {
   height: 100%;
   width: 100%;
   z-index: 1;
   padding-bottom: 50px;
 }
-.createPOPage .po .workspace .supplier {
+.create-po-page .po .workspace .supplier {
   position: relative;
   margin-left: 20px;
   margin-top: 40px;
   color: #FFF;
 }
-.createPOPage .po .workspace .supplier .title {
+.create-po-page .po .workspace .supplier .title {
   font-size: 18px;
 }
-.createPOPage .po .workspace .supplier .details {
+.create-po-page .po .workspace .supplier .details {
   margin-top: 20px;
 }
-.createPOPage .po .workspace .supplier .details tr td {
+.create-po-page .po .workspace .supplier .details tr td {
   line-height: 1.6em;
   font-size: 0.8em;
   font-family: proxima;
   letter-spacing: 0.08em;
 }
-.createPOPage .po .workspace .supplier .details tr td:first-child {
+.create-po-page .po .workspace .supplier .details tr td:first-child {
   color: #6B6B6B;
 }
-.createPOPage .po .workspace .supplier .details tr td:last-child {
+.create-po-page .po .workspace .supplier .details tr td:last-child {
   color: #828282;
   padding-left: 20px;
 }
-.createPOPage .po .workspace .order {
+.create-po-page .po .workspace .order {
   position: relative;
   margin-left: 20px;
   margin-top: 40px;
   color: #FFF;
 }
-.createPOPage .po .workspace .order .title {
+.create-po-page .po .workspace .order .title {
   font-size: 18px;
 }
-.createPOPage .po .workspace .order .details {
+.create-po-page .po .workspace .order .details {
   margin-top: 20px;
 }
-.createPOPage .po .workspace .order .details tr td {
+.create-po-page .po .workspace .order .details tr td {
   line-height: 1.6em;
   font-size: 0.8em;
   font-family: proxima;
   letter-spacing: 0.08em;
 }
-.createPOPage .po .workspace .order .details tr td:first-child {
+.create-po-page .po .workspace .order .details tr td:first-child {
   color: #6B6B6B;
 }
-.createPOPage .po .workspace .order .details tr td:last-child {
+.create-po-page .po .workspace .order .details tr td:last-child {
   color: #828282;
   padding-left: 20px;
 }
-.createPOPage .po .workspace .supplies {
+.create-po-page .po .workspace .supplies {
   position: relative;
   height: auto;
   margin-left: 20px;
@@ -2713,14 +2738,15 @@ select {
   margin-bottom: 50px;
   color: #FFFFFF;
 }
-.createPOPage .po .workspace .supplies .title {
+.create-po-page .po .workspace .supplies .title {
   font-size: 24px;
 }
-.createPOPage .po .workspace .supplies .supply {
+.create-po-page .po .workspace .supplies .supply {
   color: #828282;
   font-size: 14px;
   position: relative;
   width: 80%;
+  height: 120px;
   margin-right: 20px;
   margin-top: 30px;
   border: 1px solid #282828;
@@ -2731,22 +2757,22 @@ select {
   -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
   box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
 }
-.createPOPage .po .workspace .supplies .supply .details {
+.create-po-page .po .workspace .supplies .supply .details {
   margin-top: 5px;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td {
+.create-po-page .po .workspace .supplies .supply .details tr td {
   padding: 2px 0px 2px;
   vertical-align: middle;
   color: #828282;
   font-size: 12px;
   line-height: 18px;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td input {
+.create-po-page .po .workspace .supplies .supply .details tr td input {
   outline: none;
   color: #828282;
   font-size: 12px
                                     padding:0px;
-  background-color: transparent;
+  background-color: #282828;
   border: 1px solid transparent;
   width: 60px;
   padding: 0px;
@@ -2757,32 +2783,32 @@ select {
   -ms-transition: all 250ms ease;
   transition: all 250ms ease;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td input.active {
+.create-po-page .po .workspace .supplies .supply .details tr td input.active {
   background-color: #474747;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td input.active:focus {
+.create-po-page .po .workspace .supplies .supply .details tr td input.active:focus {
   background-color: #FFFFFF;
   color: #000000;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td img {
+.create-po-page .po .workspace .supplies .supply .details tr td img {
   margin-left: 5px;
   height: 30px;
   width: auto;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td:first-child {
+.create-po-page .po .workspace .supplies .supply .details tr td:first-child {
   color: #6B6B6B;
 }
-.createPOPage .po .workspace .supplies .supply .details tr td:last-child {
+.create-po-page .po .workspace .supplies .supply .details tr td:last-child {
   padding-left: 20px;
 }
-.createPOPage .po .workspace .supplies .supply > img {
-  height: 150px;
+.create-po-page .po .workspace .supplies .supply > img {
+  height: 100px;
   position: absolute;
   right: 0px;
   top: 0px;
   border-radius: 0px 2px 0px 0px;
 }
-.createPOPage .po .workspace .supplies .supply .remove_btn {
+.create-po-page .po .workspace .supplies .supply .remove_btn {
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -2800,10 +2826,10 @@ select {
   -ms-transition: all 250ms ease;
   transition: all 250ms ease;
 }
-.createPOPage .po .workspace .supplies .supply .remove_btn:hover {
+.create-po-page .po .workspace .supplies .supply .remove_btn:hover {
   color: #FFFFFF;
 }
-.createPOPage.fadeIn {
+.create-po-page.fadeIn {
   opacity: 1;
 }
 .createAcknowledgementPage {
@@ -2825,8 +2851,6 @@ select {
   -o-transition: all 500ms linear;
   -ms-transition: all 500ms linear;
   transition: all 500ms linear;
-  /*Sidebar*/
-
   /*Modals*/
 
 }
@@ -2869,46 +2893,6 @@ select {
 }
 .createAcknowledgementPage.fadeIn {
   left: 200px;
-}
-.createAcknowledgementPage .sidebar ul li .customer span.checkmark {
-  margin-left: 2em;
-  color: green;
-}
-.createAcknowledgementPage .sidebar ul li .customer span.x-mark {
-  margin-left: 2em;
-  color: red;
-}
-.createAcknowledgementPage .sidebar ul li .delivery_date span.checkmark {
-  margin-left: 2em;
-  color: green;
-}
-.createAcknowledgementPage .sidebar ul li .delivery_date span.x-mark {
-  margin-left: 2em;
-  color: red;
-}
-.createAcknowledgementPage .sidebar ul li .upholstery span.checkmark {
-  margin-left: 2em;
-  color: green;
-}
-.createAcknowledgementPage .sidebar ul li .upholstery span.x-mark {
-  margin-left: 2em;
-  color: red;
-}
-.createAcknowledgementPage .sidebar ul li .vat span.checkmark {
-  margin-left: 2em;
-  color: green;
-}
-.createAcknowledgementPage .sidebar ul li .vat span.x-mark {
-  margin-left: 2em;
-  color: red;
-}
-.createAcknowledgementPage .sidebar ul li .po span.checkmark {
-  margin-left: 2em;
-  color: green;
-}
-.createAcknowledgementPage .sidebar ul li .po span.x-mark {
-  margin-left: 2em;
-  color: red;
 }
 .createAcknowledgementPage .modal.products {
   margin: 0;
@@ -9026,6 +9010,28 @@ select {
 }
 .viewGluePage .workspace.list .listContainer .list .row:last-child {
   border-bottom: none;
+}
+/*
+ * LESS file for the supply view
+ */
+.supply-view-page .new-supply {
+  left: 50%;
+  margin-left: -20em;
+  width: 40em;
+}
+.supply-view-page .new-supply .details {
+  margin-left: 2em;
+  margin-top: 2em;
+}
+.supply-view-page .new-supply .details tr td {
+  padding: 0.2em 0em;
+}
+.supply-view-page .new-supply .details tr td:last-child {
+  padding-left: 0.4em;
+}
+.supply-view-page .grid-style .ngRow .image img {
+  height: auto;
+  width: 100%;
 }
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;
