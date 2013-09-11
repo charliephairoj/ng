@@ -8,14 +8,15 @@ angular.module('employeeApp')
      	Notification.display('Loading supplies...', false);
      	
      	
-     	var supplyList = Supply.poll().query(function(){
+     	$scope.supplyList = Supply.poll().query(function(){
      		Notification.hide();
      	});
      	
-     	//Search Mechanism
-     	$scope.$watch('query', function(query){
-     		$scope.data = $filter('limitTo')($filter('filter')(supplyList, query), 50);
-     	});
+     	var filterFn = function(){
+      		$scope.data = $filter('orderBy')($filter('filter')($scope.supplyList, $scope.query), 'id', true);
+      	};
+      	
+      	$scope.$watch('supplyList.length+query', filterFn);
      	
      	//Grid Options
      	$scope.gridOptions = {

@@ -11,8 +11,7 @@ angular.module('employeeApp')
       		$scope.data = $filter('orderBy')($filter('filter')($scope.shippingList, $scope.query), 'id', true);
       	};
       	
-      	$scope.$watch('ackList.length', filterFn);
-      	$scope.$watch('query', filterFn);
+      	$scope.$watch('shippingList.length+query', filterFn);
     	
     	///Grid Options
     	$scope.gridOptions = {

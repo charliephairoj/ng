@@ -4,14 +4,16 @@ angular.module('employeeApp')
     .controller('ProductUpholsteryViewCtrl', ['$scope', 'Upholstery', 'Notification', '$filter', '$location',
     function ($scope, Upholstery, Notification, $filter, $location) {
         Notification.display('Loading Upholstery...');
-        var upholList = Upholstery.poll().query(function(){
+        
+        $scope.upholList = Upholstery.poll().query(function(){
             Notification.hide();
-            $scope.data = $filter('limitTo')($filter('filter')(upholList, $scope.query), 50);
         });
         
-        $scope.$watch('query', function(query){
-        	$scope.data = $filter('limitTo')($filter('filter')(upholList, query), 50);
-        });
+        var filterFn = function(){
+      		$scope.data = $filter('orderBy')($filter('filter')($scope.upholList, $scope.query), 'id', true);
+      	};
+      	
+      	$scope.$watch('upholList.length+query', filterFn);
         
         $scope.gridOptions = {
         	data: 'data',
