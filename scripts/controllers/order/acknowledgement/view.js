@@ -8,11 +8,14 @@ angular.module('employeeApp')
       	Notification.display('Loading Acknowledgements...');
       	
       	//Poll the server for acknowledgements
-      	var ackList = Acknowledgement.poll().query();
+      	$scope.ackList = Acknowledgement.poll().query();
       	
-      	$scope.$watch('query', function(query){
-      		$scope.data = $filter('orderBy')($filter('filter')(ackList, query), 'id', true);
-      	});
+      	var filterFn = function(){
+      		$scope.data = $filter('orderBy')($filter('filter')($scope.ackList, $scope.query), 'id', true);
+      	};
+      	
+      	$scope.$watch('ackList.length', filterFn);
+      	$scope.$watch('query', filterFn);
       	
       	//Grid Options
       	$scope.gridOptions = {
