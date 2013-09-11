@@ -8,12 +8,15 @@ angular.module('employeeApp')
     	Notification.display('Loading purchase orders...', false);
     	
     	//Poll Server for pos
-    	var poList = PurchaseOrder.poll().query();
+    	$scope.poList = PurchaseOrder.poll().query();
     	
-    	//Search Mechanism
-    	$scope.$watch('query', function(query){
-    		$scope.data = $filter('filter')(poList, query);
-    	});
+    	var filterFn = function(){
+      		$scope.data = $filter('orderBy')($filter('filter')($scope.poList, $scope.query), 'id', true);
+      	};
+      	
+      	$scope.$watch('ackList.length', filterFn);
+      	$scope.$watch('query', filterFn);
+    	
     	
     	$scope.gridOptions = {
     		data: 'data',

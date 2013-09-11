@@ -5,12 +5,14 @@ angular.module('employeeApp')
   	.controller('OrderShippingViewCtrl', ['$scope', 'Shipping', '$filter', function ($scope, Shipping, $filter) {
   		
   		//Poll the server for shipped items
-    	var shippingList = Shipping.poll().query();
+    	$scope.shippingList = Shipping.poll().query();
     	
-    	//Seach mechanism
-    	$scope.$watch('query', function(query){
-    		$scope.data = $filter('orderBy')($filter('filter')(shippingList, query), 'id', true);
-    	});
+    	var filterFn = function(){
+      		$scope.data = $filter('orderBy')($filter('filter')($scope.shippingList, $scope.query), 'id', true);
+      	};
+      	
+      	$scope.$watch('ackList.length', filterFn);
+      	$scope.$watch('query', filterFn);
     	
     	///Grid Options
     	$scope.gridOptions = {
