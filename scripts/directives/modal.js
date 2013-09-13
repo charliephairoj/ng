@@ -42,8 +42,11 @@ angular.module('employeeApp.directives')
                             backdrop.remove();
                             
                             (callback || angular.noop)();
-                            (scope.modal._onhide || angular.noop)();
-                                
+                            try{
+                            	(scope.modal._onhide || angular.noop)();
+                            }catch(e){
+                            	console.warn(e);
+                            }
                             
                             if(attr.ngModel){
                                 scope.$apply(function(){

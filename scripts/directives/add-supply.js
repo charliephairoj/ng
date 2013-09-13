@@ -40,7 +40,7 @@ angular.module('employeeApp.directives')
                 
                 scope.showWidth = function(){
 		     		var units = scope.supply.units;
-		     		return units == "meter" || units == "piece" || units == "pack" ? true : false;
+		     		return units == "meter" || units == "piece" || units == "pack" || units == "yard" ? true : false;
 		     	};
 		     	
 		     	scope.showDepth = function(){
