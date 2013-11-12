@@ -9,8 +9,10 @@
     </div>
     
     <div class="details upholstery" data-ng-switch-default>
+    	<div upholstery-list on-select="addUpholstery($upholstery)"></div>
+    	<!--
         <div data-search-bar data-ng-model="upholsteryQuery"></div>
-        <div class="container">
+        <div class="container" on-scroll-end="loadMoreUpholstery()">
             <div class="list">
                 <div class="row" data-ng-repeat="upholstery in upholsteryList| filter:upholsteryQuery" data-ng-click="addUpholstery(upholstery)">
                     <div class="cell image">
@@ -22,12 +24,14 @@
                 </div>
             </div>  
         </div>
-                      
+       -->
     </div>
     
     <div class="details upholstery" data-ng-switch-when="table">
+    	<div table-list on-select="addTable($table)"></div>
+    	<!--
         <div data-search-bar data-ng-model="tableQuery"></div>
-        <div class="container">
+        <div class="container"  on-scroll-end="loadMoreTable()">
             <div class="list">
                 <div class="row" data-ng-repeat="table in tableList| filter:tableQuery" data-ng-click="addTable(table)">
                     <div class="cell image">
@@ -38,7 +42,7 @@
                     </div>
                 </div>
             </div>  
-        </div>
+        </div>-->
                       
     </div>
     <form class="details custom" name="form" novalidate ng-switch-when="custom">
@@ -73,7 +77,9 @@
         </div>
     </form>
     <form class="details fabric" data-ng-switch-when="fabric">
-        <search-bar data-ng-model="queryFabric"></search-bar>
+    	<div fabric-selector product="product" on-complete="setFabric()"></div>
+    	<!--
+        <search-bar data-ng-model="fabricQuery"></search-bar>
         <div class="product_container">
             <div class="product" data-drop-on="product.fabric">
                 <div>{{product.description}}</div>
@@ -93,7 +99,7 @@
             </div>
         </div>
         <div class="fabric_container">
-            <ul class="list">
+            <ul class="list"  on-scroll-end="loadMoreFabric()">
                 <li class="item" ng-repeat="fabric in fabricList | filter:queryFabric " data-drag-on="fabric">
                     <img ng-src="{{fabric.image_url}}" />
                     <div class="details">
@@ -107,7 +113,9 @@
         </div>
         <div class="bottom-bar">
             <button ng-click="setFabric()">Set Fabrics</button>
-        </div>
+        </div>-->
+        
+        
     </form>
 </div>
     

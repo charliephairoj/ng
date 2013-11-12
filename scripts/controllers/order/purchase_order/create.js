@@ -81,6 +81,14 @@ angular.module('employeeApp')
     	};
     	
     	/*
+    	 * Reset the order
+    	 */
+    	$scope.reset = function() {
+    		$scope.po = new PurchaseOrder();
+    		$scope.po.items = [];
+    	};
+    	
+    	/*
     	 * Destructor
     	 */
     	$scope.$on('$destroy', function() {

@@ -2,15 +2,12 @@
 
 angular.module('employeeApp')
   .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', 'Upholstery', 'Fabric', '$filter', 'Table', 'Notification',
-    function ($scope, Acknowledgement, Customer, Upholstery, Fabric, $filter, Table, Notification) {
+    function ($scope, Acknowledgement, Customer, $filter, Notification) {
         //Vars
         $scope.showFabric = false;
         $scope.uploading = false;
         $scope.customImageScale = 100;
-        $scope.customerList = Customer.poll().query();
-        $scope.upholsteryList = Upholstery.poll().query();
-        $scope.tableList = Table.poll().query();
-        $scope.fabricList = Fabric.poll().query();
+      
         $scope.ack = new Acknowledgement();
         
         var uploadTargets = [];
@@ -20,7 +17,8 @@ angular.module('employeeApp')
             angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
         }
         
-        $scope.ack.products = $scope.ack.products || [];
+        $scope.ack.items = $scope.ack.items || [];
+        $scope.employee = {id:$scope.currentUser.id};
         
         $scope.tempSave = function(){
             storage.setItem('acknowledgement-create', JSON.stringify($scope.ack));
@@ -31,25 +29,29 @@ angular.module('employeeApp')
             $scope.ack.customer = customer
             //Hide Customer Panel
             $scope.showCustomers = false;
+            $scope.tempSave();
         };
         
-        $scope.addProduct = function(product){
-            $scope.ack.products.push(product);
+        $scope.addItem = function(product){
+            $scope.ack.items.push(product);
+            $scope.tempSave();
         }
         
-        $scope.removeProduct = function(index){
-            $scope.ack.products.splice(index, 1);
+        $scope.removeItem = function(index){
+            $scope.ack.items.splice(index, 1);
+            $scope.tempSave();
         };
         
         $scope.create = function(){
+        	$scope.ack.employee = $scope.currentUser;
             $scope.tempSave();
             try{
                 if($scope.isValidated()){
                     Notification.display('Creating Acknowledgement...', false);
-                    $scope.ack.$save(function(response){
+                    $scope.ack.$create(function(response){
                         Notification.display('Acknowledgement created');
-                        window.open(response.acknowledgement_url);
-                        window.open(response.production_url);
+                        window.open(response.pdf.acknowledgement);
+                        window.open(response.pdf.production);
                         angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
                     }, function(e){
                         console.log(e);
@@ -57,13 +59,14 @@ angular.module('employeeApp')
                     });
                 }
             }catch(e){
+            	throw Error(e);
                 Notification.display(e.message, false);
             }
         };
         
         $scope.reset = function(){
             $scope.ack = new Acknowledgement;
-            $scope.ack.products = [];
+            $scope.ack.items = [];
             storage.removeItem('acknowledgement-create');
         }
         
@@ -80,24 +83,24 @@ angular.module('employeeApp')
                     throw new ReferenceError("Missin customer ID");
                 }
             }
-            if(!$scope.ack.products){
+            if(!$scope.ack.items){
                 throw new TypeError("Products is not an array");
             }else{
-                if($scope.ack.products.length <= 0){
+                if($scope.ack.items.length <= 0){
                     throw new RangeError("No products added to the order");
                 }else{
-                    for(var i in $scope.ack.products){
+                    for (var i=0; i<$scope.ack.items.length; i++) {
                         /*
                          * Check that there is a quantity 
                          * for each piece of product
                          */
-                        if(!$scope.ack.products[i].hasOwnProperty('quantity') || !$scope.ack.products[i].quantity){
-                            throw new RangeError("Expecting a quantity of at least 1 for "+$scope.ack.products[i].description);
+                        if(!$scope.ack.items[i].hasOwnProperty('quantity') || !$scope.ack.items[i].quantity){
+                            throw new RangeError("Expecting a quantity of at least 1 for "+$scope.ack.items[i].description);
                         }
-                        if(!$scope.ack.products[i].hasOwnProperty('has_price')){
+                        if(!$scope.ack.items[i].hasOwnProperty('has_price')){
                             //throw new ReferenceError("Product missing 'has_price' attribute");
                         }else{
-                            if(!$scope.ack.products[i].has_price){
+                            if(!$scope.ack.items[i].has_price){
                                 //throw new TypeError("Product missing price");
                             }
                         }
@@ -118,10 +121,4 @@ angular.module('employeeApp')
             return true;
         };
         
-        $scope.$on('$destroy', function(){
-            Customer.stopPolling();
-            Upholstery.stopPolling();
-            Fabric.stopPolling();
-            Table.stopPolling();
-        });
   }]);

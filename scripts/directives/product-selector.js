@@ -13,7 +13,7 @@ angular.module('employeeApp')
                 add: '&productSelectorAdd'
             },
             link: function postLink(scope, element, attrs) {
-                
+            	
                 /*
                  * Visibility Controll
                  * 
@@ -43,12 +43,17 @@ angular.module('employeeApp')
                         scope.modal.hide();
                     }
                 });
-          
-                
-                scope.upholsteryList = Upholstery.poll().query();
-                scope.fabricList = Fabric.poll().query();
-                scope.tableList = Table.poll().query();
+          		
+          		
+                scope.fabricList = Fabric.query();
+                scope.tableList = Table.query();
                 scope.product = {};
+                
+               
+				
+				
+
+              
                 
                 function uploadImage(image, callback){
                     //Display Notification

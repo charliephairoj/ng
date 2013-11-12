@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('AdministratorUserViewCtrl', ['$scope', 'User', function ($scope, User) {
-     $scope.userList = User.poll().query();
+  	.controller('AdministratorUserViewCtrl', ['$scope', 'User', function ($scope, User) {
+     	
+     	//Request users from the server
+     	$scope.users = User.query({limit:0});
      
-     $scope.$on('$destroy', function(){
-         User.stopPolling(); 
-     });
-  }]);
+  	}]);

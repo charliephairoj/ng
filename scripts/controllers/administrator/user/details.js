@@ -36,7 +36,7 @@ angular.module('employeeApp')
             }
         }
       
-        $scope.groupList = Group.query(function(){
+        $scope.groupList = Group.query({limit:0}, function(){
             merge($scope.groupList, $scope.user.groups);
         });
         $scope.user = User.get({'id':$routeParams.id}, function(){
@@ -69,7 +69,7 @@ angular.module('employeeApp')
                 }
             }
             //Save the model
-            $scope.user.$save(function(response){
+            $scope.user.$update(function(response){
                 
             });
         };
@@ -81,7 +81,7 @@ angular.module('employeeApp')
         };
         
         $scope.update = function(){
-            $scope.user.$save();
+            $scope.user.$update();
         };
         
         $scope.$on('$destroy', function(){

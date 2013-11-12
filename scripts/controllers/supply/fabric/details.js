@@ -48,25 +48,21 @@ angular.module('employeeApp')
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     
-    angular.forEach(DEFAULT_ACTIONS, function(name){
-        $scope[name] = function(){
-            //close modal
-            $scope['show'+capitalizeFirstLetter(name)] = false;
-            //Declare Ajax call vars
-            var url = "fabric/"+$scope.fabric.id+"/"+name;
-            var data = {quantity:$scope['quantity'], remarks:$scope['remarks']};
-            //clear the form
-            $scope['quantity'] = null;
-            $scope['remarks'] = null;
-            //Ajax call
-            $http.post(url, JSON.stringify(data)).success(function(data){
-                //Reload the log
-                $scope.safeApply(function(){
-                    $scope.fabric.quantity = data.quantity;
-                })
-            });
-        } 
-    });
+    $scope.add = function(){
+    	$scope.fabric.$add({quantity:$scope.quantity}, function () {
+    		
+    	});
+    	$scope.showAdd = false;
+    	$scope.quantity = null;
+    }
+    
+    $scope.subtract = function() {
+    	$scope.fabric.$subtract({quantity: $scope.quantity}, function () {
+    		
+    	});
+    	$scope.showSubtract = false;
+    	$scope.quantity = null;
+    }
    
     $scope.viewLog = function(){
         
@@ -95,6 +91,6 @@ angular.module('employeeApp')
     
     $scope.update = function(){
         Notification.display('Updating Fabric...', false)
-        $scope.fabric.$save(Notification.display('Fabric Updated'));
+        $scope.fabric.$update(Notification.display('Fabric Updated'));
     };
   }]);

@@ -90,6 +90,10 @@
 					<td>Price per {{supply.units | beautify}}</td>
 					<td><input required ng-model="supply.unit_cost" /></td>
 				</tr>
+				<tr>
+					<td>Notes</td>
+					<td><textarea rows="6" cols="30"></textarea></td>
+				</tr>
 			</table>
 		</div>
 		<div class="bottom-bar"><button ng-disabled="form.$invalid" ng-click="add()">Add</button></div>

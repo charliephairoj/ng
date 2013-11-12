@@ -47,7 +47,7 @@ angular.module('employeeApp')
         /*
          * Calls for updated verions of the resources
          */
-        $scope.permissionList = Permission.query(function(){
+        $scope.permissionList = Permission.query({limit:0}, function(){
             merge($scope.permissionList, $scope.group.permissions);
         });
         $scope.group = Group.get({'id':$routeParams.id}, function(){
@@ -72,8 +72,8 @@ angular.module('employeeApp')
                 }
             }
             
-            $scope.group.$save(function(){
-                
+            $scope.group.$update(function(response){
+                console.log(response);
             });
         }
         
@@ -87,6 +87,6 @@ angular.module('employeeApp')
         };
         
         $scope.$on('$destroy', function(){
-            $scope.group.$save();
+            $scope.group.$update();
         });
     }]);

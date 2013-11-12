@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('employeeApp')
-  .factory('Supply', ['eaResource', function(eaResource) {
-    return eaResource('supply/:id', {id:'@id'});   
+  .factory('Supply', ['$resource', function($resource) {
+    return $resource('/api/v1/supply/:id', {id:'@id'});   
   }]);

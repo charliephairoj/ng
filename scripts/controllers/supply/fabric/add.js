@@ -23,9 +23,9 @@ angular.module('employeeApp')
         //Checks the form is valid
         if($scope.form.$valid){
             //save to database
-            $scope.fabric.$save(function(){
+            $scope.fabric.$create(function(){
                 Notification.display('Fabric Saved');
-                $location.path('/fabric');
+                $location.path('supply/fabric');
             });
         }
        

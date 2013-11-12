@@ -11,7 +11,7 @@ angular.module('employeeApp')
     	$scope.showCal = false;
     	
     	//GET request server for Acknowledgements
-    	$scope.acknowledgement = Acknowledgement.get({'id':$routeParams.id}, function(){
+    	$scope.acknowledgement = Acknowledgement.get({'id':$routeParams.id, 'pdf': true}, function(){
         	Notification.display('Acknowledgement Loaded');
     	});
     	
@@ -23,15 +23,15 @@ angular.module('employeeApp')
     
     	//Request pdf for acknowledgements from server
 	    $scope.getPDF = function(type) {
-	        Notification.display('Retrieving PDF...', false);
-	        $http.get("acknowledgement/"+$scope.acknowledgement.id+"/pdf", {params:{type:type}}).
-	            success(function(response){
-	                Notification.hide();
-	                window.open(response.url);
-	            }).
-	            error(function(response){
-	            	Notification.display('Unable to retrieve PDFs', false);
-	            });
+	    	try{
+	    		var address = $scope.acknowledgement.pdf[type.toLowerCase()];
+	    		window.open(address);
+	    	} catch (e) {
+	    		var message = "Missing "+type+" pdf for Acknowledgement #"+$scope.acknowledgement.id;
+	    		Notification.display(message);
+	    		throw Error(message);
+	    	}
+	    	
 	    };
     
     	//Request log data for acknowledgement
@@ -47,15 +47,14 @@ angular.module('employeeApp')
 	    }
 	    
 	    //Save updates to the server
-	    $scope.save = function(){
-	        Notification.display('Saving Acknowledgement...', false);
-	        $scope.acknowledgement.$save(function(response){
-	            window.open(response.acknowledgement_url);
-	            window.open(response.production_url);
-	            Notification.display('Acknowledgement '+$scope.acknowledgement.id+' Saved');
+	    $scope.update = function(){ 
+	        Notification.display('Updating Acknowledgement...', false);
+	        $scope.acknowledgement.$update(function(response){
+	            
+	            Notification.display('Acknowledgement '+$scope.acknowledgement.id+' updated.');
 	        }, 
 	        function(){
-	            Notification.display('Failed to save acknowledgement '+$scope.acknowledgement.id, false);
+	            Notification.display('Failed to update acknowledgement '+$scope.acknowledgement.id, false);
 	        });
 	    };
   	}]);

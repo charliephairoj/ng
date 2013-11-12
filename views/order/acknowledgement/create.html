@@ -4,7 +4,7 @@
     <!--
         Forms
     -->
-    <div product-selector="showProducts" product-selector-add="addProduct(product)" product-selector-upload-url="acknowledgement/item/image"></div>
+    <div product-selector="showProducts" product-selector-add="addItem(product)" product-selector-upload-url="api/v1/acknowledgement/item/image"></div>
     
     
     <form name="remarksForm" novalidate class="remarks_modal" data-modal ng-model="showRemarks">
@@ -49,7 +49,7 @@
                 <ul class="list">
                     <li><div ng-click="create()" >Create</div></li>
                     <li><div class="customer" checkmark="ack.customer" x="!ack.customer" ng-click="showCustomers=!showCustomers">Add Customer</div></li>
-                    <li><div class="upholstery" checkmark="ack.products.length>0" x="ack.products.length==0" ng-click="showProducts=true">Add Product</div></li>
+                    <li><div class="upholstery" checkmark="ack.items.length>0" x="ack.items.length==0" ng-click="showProducts=true">Add Product</div></li>
                    
                     <li><div class="delivery_date" checkmark="ack.delivery_date" x="!ack.delivery_date" ng-click="show_calendar=true">Set Delivery Date</div></li>
                     <li><div class="vat" checkmark="ack.vat" x="!ack.vat" ng-click="showVat=true">Set Vat</div></li>
@@ -65,18 +65,7 @@
             Panels
         -->
         
-        <div class="customer-modal" data-modal ng-model="showCustomers">
-            <div class="title">
-                Customers
-            </div>
-            <div class="container">
-                <search-bar data-ng-model="queryCustomer"></search-bar>
-                <ul class="list">
-                    <li class="item" ng-click="addCustomer(customer)" ng-repeat="customer in customerList | filter:queryCustomer | orderBy:'name'">{{customer.name}}</li>
-                </ul>
-            </div>
-            
-        </div>
+        <div customer-list="showCustomers" on-select="addCustomer(customer);"></div>
         
         
         
@@ -148,9 +137,9 @@
                 </div>
                 
             
-            <div class="products" ng-show="ack.products.length>0">
+            <div class="products" ng-show="ack.items.length>0">
                 <div class="title">Products</div>
-                <div class="product" ng-repeat="product in ack.products">
+                <div class="product" ng-repeat="product in ack.items">
                     {{product.description}}
                     <table class="details">
                         <tr>
@@ -181,7 +170,7 @@
                             <td>Fabric: </td>
                             <td>
                                 {{product.fabric.description}}
-                                <img ng-src="{{product.fabric.image_url}}" />
+                                <img ng-src="{{product.fabric.image.url}}" />
                             </td>
                             <td>
                                 
@@ -190,7 +179,7 @@
                         </tr>
                         <tr ng-repeat="pillow in product.pillows">
                             <td>{{pillow.type | beautify}} Pillow</td>
-                            <td>{{pillow.fabric.description}}<img ng-src="{{pillow.fabric.image_url}}" /></td>
+                            <td>{{pillow.fabric.description}}<img ng-src="{{pillow.fabric.image.url}}" /></td>
                         </tr>
                         <tr>
                             <td>Comments:</td>

@@ -3,38 +3,40 @@
 angular.module('employeeApp')
     .controller('ProductUpholsteryViewCtrl', ['$scope', 'Upholstery', 'Notification', '$filter', '$location',
     function ($scope, Upholstery, Notification, $filter, $location) {
-        Notification.display('Loading Upholstery...');
+    	
+    	var fetching = false;
+    	
+        Notification.display('Loading Upholstery...', false);
         
-        $scope.upholList = Upholstery.poll().query(function(){
+        $scope.resources = Upholstery.query({limit:20}, function(){
             Notification.hide();
         });
         
-        var filterFn = function(){
-      		$scope.data = $filter('orderBy')($filter('filter')($scope.upholList, $scope.query), 'id', true);
-      	};
-      	
-      	$scope.$watch('upholList.length+query', filterFn);
-        
-        $scope.gridOptions = {
-        	data: 'data',
-        	beforeSelectionChange: function(state){
-	    		$location.path('/product/upholstery/'+state.entity.id);
-	    		return false;
-	    	},
-     		columnDefs: [{field: 'id', displayName: 'ID', width: '75px'},
-     					 {field: 'image.url',
-     					  width: '150px',
-     					  displayName: 'Example',
-     					  cellClass: 'image',
-     					  cellTemplate: '<img ng-src="{{row.getProperty(col.field)}}"/>'},
-     					 {field: 'model.model', displayName: 'Model'},
-     					 {field: 'model.name', displayName: 'Name'},
-     					 {field: 'width', displayName: 'Width'},
-     					 {field: 'depth', displayName: 'Depth'},
-     					 {field: 'height', displayName: 'Height'}]
-        }
-        $scope.$on('$destroy', function(){
-            Upholstery.stopPolling();
+        $scope.$watch('query', function(q) {
+        	if (q) {
+	        	Upholstery.query({q:q, limit:5}, function(resources) {
+	        		for(var i=0; i<resources.length; i++) {
+	        			if($scope.resources.indexOfById(resources[i]) == -1) {
+	        				$scope.resources.push(resources[i]);
+	        			}
+	        		}
+	        	});
+        	}
         });
+        
+        $scope.loadNext = function() {
+        	if(!fetching) {
+        		Notification.display('Loading more upholstery...', false);
+        		Upholstery.query({
+        			offset: $scope.resources.length,
+        			limit: 10
+        		}, function(resources) {
+        			Notification.hide();
+        			for(var i=0; i<resources.length; i++) {
+        				$scope.resources.push(resources[i]);
+        			}
+        		});
+        	}
+        }
    
     }]);

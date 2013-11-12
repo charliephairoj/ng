@@ -11,10 +11,14 @@ angular.module('employeeApp')
                 lng: $scope.customer.adress.lng
             })
         }catch(e){
-            var promise = Geocoder.geocode($scope.customer.addresses[0]);
-            promise.then(function(results){
-                updatePosition(results);
-            });
+        	try{
+	            var promise = Geocoder.geocode($scope.customer.addresses[0]);
+	            promise.then(function(results){
+	                updatePosition(results);
+	            });
+            }catch(e){
+           		//console.log(e);
+            }
         }
     }); 
     
@@ -42,7 +46,7 @@ angular.module('employeeApp')
     
     $scope.update = function(){
         Notification.display('Updating...', false);
-        $scope.customer.$save(function(){
+        $scope.customer.$update(function(){
             Notification.display('Customer Save'); 
         }, function(){
             Notification.display('Unable to Update Customer');

@@ -56,10 +56,13 @@ angular.module('employeeApp')
     
     $scope.update = function(){
         Notification.display('Saving Model...', false)
-        $scope.model.$save(Notification.display('Model Updated'));
+        $scope.model.$update(function() {
+        	Notification.display('Model Updated');
+        });
     };
     
     $scope.$on('$destroy', function(){
         $scope.update();
     });
+    
   }]);

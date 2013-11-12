@@ -25,14 +25,27 @@
         Search Bar
     -->
     
-    <div data-search-bar></div>
+    <div data-search-bar ng-model="query"></div> 
     
     <!--
         Workspace
     -->
     
-    <div class="workspace grid">
-        <div class="grid-style" ng-grid="gridOptions"></div>
+    <div class="workspace">
+    	<div class="shipping-container" on-scroll-end="loadNext()">
+    		<ul class="shippings">
+	        	<li class="shipping" ng-repeat="shipping in shippingList | filter:query" >
+	        		<a ng-href="#/order/shipping/{{shipping.id}}">
+	        			{{shipping.id}}
+		        		<br />
+		        		{{shipping.customer.name}}
+	        		</a>
+	        		
+	        		
+	        	</li>
+	        </ul>
+    	</div>
+        
         
     </div>
     

@@ -3,34 +3,50 @@
 angular.module('employeeApp')
   	.controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location, Geocoder, $filter) {
 	    
+	    var fetching = false;
 	    //Display system notification
 	    Notification.display('Loading Customers...', false);
 	    
 	    //Poll the server for customers
-	    $scope.customerList = Customer.poll().query(function(){
+	    $scope.customers = Customer.query(function(){
 	        Notification.hide();
 	    });
 	    
-	    //Search Mechanism
-	    $scope.$watch('query', function(query){
-	    	$scope.data = $filter('filter')($scope.customerList, query);
+	    /*
+	     * Searches the server
+	     * 
+	     * This function will search the server via GET
+	     * with the query string as a parameter
+	     * if the query string is not undefined
+	     * 
+	     * The resources returned are then added to the 
+	     * list of they are are not already in the list
+	     */
+	    $scope.$watch('query', function(q){
+	    	if(q) {
+	    		Customer.query({q:q}, function(resources) {
+		    		for(var i=0; i<resources.length; i++) {
+		    			if($scope.customers.indexOfById(resources[i]) == -1) {
+		    				$scope.customers.push(resources[i]);
+		    			}
+		    		}
+		    	});
+	    	}
 	    });
 	    
-	    //Grid Options
-	    $scope.gridOptions = {
-	    	data: 'data',
-	    	beforeSelectionChange: function(state){
-	    		$location.path('/contact/customer/'+state.entity.id);
-	    		return false;
-	    	},
-	    	columnDefs: [{field: 'id', displayName: 'ID', width: '50px'},
-	    				 {field: 'name', displayName: 'Name'},
-	    				 {field: 'addresses[0]',
-	    				  displayName: 'Address',
-	    				  cellTemplate: '{{row.getProperty(col.field).address1}}<br />\
-	    				  				 {{row.getProperty(col.field).city}}, {{row.getProperty(col.field).territory}}<br />\
-	    				  				 {{row.getProperty(col.field).country}} {{row.getProperty(col.field).zipcode}}'}],
-	    	filterOptions: {useExternalFilter: true}
+	    $scope.loadNext = function() {
+	    	if(!fetching) {
+	    		fetching = true;
+		    	Customer.query({
+		    		offset: $scope.customers.length,
+		    		limit: 50
+		    	}, function(resources) {
+		    		fetching = false;
+		    		for(var i=0; i<resources.length; i++) {
+		    			$scope.customers.push(resources[i]);
+		    		}
+		    	});
+	    	}
 	    };
 	    
 	   
@@ -71,21 +87,18 @@ angular.module('employeeApp')
 	    };
 	    
 	    //Save the Customer to the database
-	    $scope.saveCustomer = function(){
+	    $scope.save = function(){
 	        //system display
 	        Notification.display("Saving customer...");
 	        //POST requests
 	        $scope.customer.$save(function(){
 	            $scope.addCustomer = false;
-	            $scope.customerList.push(angular.copy($scope.customer));
+	            $scope.customers.push(angular.copy($scope.customer));
 	            $scope.customer = new Customer();
 	        }, function(){
 	            Notification.display("Unable to save customer", false);
 	        });
 	    };
 	    
-	    //Destructor
-	    $scope.$on('$destroy', function(){
-	    	Customer.stopPolling();
-	    });
+	   
   	});

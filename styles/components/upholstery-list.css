@@ -1,0 +1,21 @@
+.upholstery-list {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: proxima;
+  color: #CCC;
+  background-color: #313131;
+}
+.upholstery-list .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  bottom: 0em;
+}
+.upholstery-list .container .upholstery-container .upholstery {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #282828;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+}

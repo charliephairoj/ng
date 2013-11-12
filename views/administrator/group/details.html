@@ -42,7 +42,7 @@
                 </div>-->
                 <div class="row" ng-repeat='perm in permissionList | filter:query'>
                     <div class="cell">
-                        <input type="checkbox" ng-model="perm.checked" ng-click="updatePermission(permission)">                    
+                        <input type="checkbox" ng-model="perm.$checked" ng-click="updatePermission(perm)">                    
                     </div>
                     <div class="cell">  
                         {{perm.app}}

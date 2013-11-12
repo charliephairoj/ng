@@ -44,7 +44,7 @@ angular.module('employeeApp')
         
         $scope.save = function(){
             Notification.display('Saving Upholstery Product...');
-            $scope.upholstery.$save(function(){
+            $scope.upholstery.$create(function(){
                 Notification.display('Upholstery Product Saved');
                 $location.path('/product/upholstery');
             }); 

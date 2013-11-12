@@ -43,7 +43,7 @@ angular.module('employeeApp')
         
         $scope.save = function(){
             Notification.display('Saving Table Product...');
-            $scope.table.$save(function(){
+            $scope.table.$create(function(){
                 Notification.display('Table Product Saved');
                 $location.path('/product/table');
             }); 

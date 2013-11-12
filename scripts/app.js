@@ -264,7 +264,6 @@ angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'em
       });
   }]);
 
-
 function search(list, key, value, callback, error){        
     for(var i=0; i<list.length; i++){
         if(list[i].hasOwnProperty(key)){

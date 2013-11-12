@@ -52,6 +52,7 @@ angular.module('employeeApp.directives')
 		     		var units = scope.supply.units;
 		     		return units == "piece" || units == "pack" ? true : false;
 		     	};
+		     	
                 scope.supply = new Supply();
                 scope.supply.units = 'piece';
 	      		scope.supplierList = Supplier.poll().query();
@@ -61,7 +62,7 @@ angular.module('employeeApp.directives')
 	        		if(scope.form.$valid){
 	        			Notification.display('Add supply...', false);
 		        		scope.supply.$save(function(response){
-		        			Notification.display(scope.supply.description.en+" added");
+		        			Notification.display(scope.supply.description+" added");
 		        			scope.visible = false;
 		        			scope.supply = new Supply();
 		        			console.log(response);

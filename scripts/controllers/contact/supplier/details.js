@@ -2,6 +2,8 @@
 
 angular.module('employeeApp')
   .controller('ContactSupplierDetailsCtrl', function ($scope, Supplier, $routeParams, $location, SupplierContact, Notification) {
+    
+    //Retreive the supplier from the server
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
     //addS  contact to the supplier
@@ -39,23 +41,17 @@ angular.module('employeeApp')
     $scope.update = function(){
         //Notify
         Notification.display('Updating Supplier...', false); 
-        $scope.map.getPosition($scope.supplier.address, function(position){
-            //if
-            //angular.extend($scope.supplier.address, position);
-            $scope.supplier.$save(function(data){
-                Notification.display('Supplier Updated');
-            });
-        }, function(){
-            $scope.supplier.$save(function(){
-                Notification.display('Updated');  
-            });
+        //if
+        //angular.extend($scope.supplier.address, position);
+        $scope.supplier.$update(function(data){
+            Notification.display('Supplier Updated');
         });
+       
         
     };
     
     $scope.remove = function(){
         $scope.supplier.$remove(function(){
-            
             $location.path('/contact/supplier');
         });
         

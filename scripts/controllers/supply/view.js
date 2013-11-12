@@ -8,7 +8,7 @@ angular.module('employeeApp')
      	Notification.display('Loading supplies...', false);
      	
      	
-     	$scope.supplyList = Supply.poll().query(function(){
+     	$scope.supplyList = Supply.query(function(){
      		Notification.hide();
      	});
      	
@@ -35,11 +35,9 @@ angular.module('employeeApp')
      					 {field: 'supplier.name', displayName: 'Supplier'},
      					 {field: 'description', displayName: 'Description'},
      					 {field: 'type', displayName: 'Type', width: '75px'},
-     					 {field: 'quantity', displayName: 'Quantity in Stock'}]
+     					 {field: 'quantity', displayName: 'Quantity in Stock'},
+     					 {field: 'notes', displayName: 'Notes'}]
      	};
      	
-     	//Destructor
-     	$scope.$on('$destroy', function(){;
-			Supply.stopPolling();     	
-     	});
+     	
    }]);

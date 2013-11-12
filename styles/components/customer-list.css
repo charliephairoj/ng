@@ -1,0 +1,22 @@
+.customer-list {
+  height: 80%;
+  width: 80%;
+  margin: 0;
+  top: 10%;
+  left: 10%;
+  font-family: proxima;
+  color: #CCC;
+  background-color: #313131;
+}
+.customer-list .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  bottom: 0em;
+}
+.customer-list .container .customer-list .customer {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #282828;
+  font-size: 1em;
+  letter-spacing: 0.08em;
+}

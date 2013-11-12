@@ -16,7 +16,7 @@
     </div>
         
         
-    <div data-search-bar></div>
+    <div data-search-bar data-ng-model="query"></div>
     
     <div class="workspace grid">
         <div class="header">
@@ -28,12 +28,11 @@
             </div>
         </div>
         <div class="listContainer">
-            <div class="grid">
-                <div class="body">
+                <div class="body"  on-scroll-end="loadNext()">
                     <a ng-repeat="model in modelList | filter:query | orderBy: 'model'" class="row" ng-href="#/product/model/{{model.id}}">
                         
                         <div class="cell preview">
-                            <img ng-src="{{model.images[0]}}" />
+                            <img ng-src="{{model.images[0].url}}" />
                         </div>
                         
                         <div class="cell model">{{model.model}}</div>
@@ -42,7 +41,6 @@
                      
                     </a>
                 </div>
-            </div>
         </div>
         <!--
         <div class="listContainer">

@@ -15,18 +15,14 @@
         </header>
         <nav>
             <ul>
-                <li>
-                    <div ng-click="showReserve=!showReserve">Reserve Length</div>
-                </li>
+                
                 <li>
                     <div ng-click="showAdd=!showAdd">Add Length</div>
                 </li>
                 <li>
                     <div ng-click="showSubtract=!showSubtract">Subtract Length</div>
                 </li>
-                <li>
-                    <div ng-click="showReset=!showReset">Reset Length</div>
-                </li>
+               
                 <li>
                     <div ng-click="viewLog();showLog=!showLog">View Log</div>
                 </li>
@@ -37,28 +33,7 @@
             </ul>
         </nav>
     </div>
-    <!--
-        Reserve Length Modal
-    -->
-    <form name="reserveForm" class="reserve" novalidate modal ng-model="showReserve">
-        <div class="title" ng-click="showReserve=false">Reserve Fabric Length</div>
-        <div class="container">
-            <table>
-                <tr>
-                    <td>Length</td>
-                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
-                </tr>
-                <tr>
-                    <td>Acknowledgement</td>
-                    <td><input ng-model="remarks"/></textarea></td>
-                </tr>
-            </table>
-        </div>
-        <div class="bottom-bar">
-            <button type="button" ng-disabled="reserveForm.$invalid" ng-click="reserve()">Reserve</button>
-        </div>
-    </form>
-    
+   
     <!--
         Add Length Modal
     -->
@@ -101,27 +76,7 @@
             <button type="button" ng-disabled="subtractForm.$invalid" ng-click="subtract()">Subtract</button>
         </div>
     </form>
-    <!--
-        Reset Length Modal
-    -->
-    <form name="resetForm" class="reset" novalidate modal ng-model="showReset">
-        <div class="title" ng-click="showReset=false">Reset Fabric Length</div>
-        <div class="container">
-            <table>
-                <tr>
-                    <td>Length</td>
-                    <td><input beautify type="text" ng-pattern="/^(\d+)?(\.\d+)?$/" required ng-model="quantity" /></td>
-                </tr>
-                <tr>
-                    <td>Remarks</td>
-                    <td><textarea cols="25" rows="8"  ng-model="remarks" /></textarea></td>
-                </tr>   
-            </table>
-        </div>
-        <div class="bottom-bar">
-            <button type="button" ng-disabled="resetForm.$invalid" ng-click="reset()">Reset</button>
-        </div>
-    </form>
+
     
     <div class="log" data-modal data-ng-model="showLog">
         <div class="container">

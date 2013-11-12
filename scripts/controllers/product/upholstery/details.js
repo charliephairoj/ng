@@ -31,7 +31,7 @@ angular.module('employeeApp')
         
         $scope.update = function() {
             Notification.display('Saving Upholsterty...', false);
-            $scope.uphol.$save(function() {
+            $scope.uphol.$update(function() {
                 Notification.display('Upholstery Saved');
             });
         };

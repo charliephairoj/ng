@@ -4,39 +4,58 @@ angular.module('employeeApp')
   	.controller('OrderAcknowledgementViewCtrl', ['$scope', 'Acknowledgement', 'Notification', '$location', '$filter',
   	function ($scope, Acknowledgement, Notification, $location, $filter) {
   		
+  		
+  		/*
+  		 * Vars
+  		 * 
+  		 * -fetching: this is a switch to see if there is currently a call being made
+  		 */
+  		var fetching = true;
   		//Display Program Notification
-      	Notification.display('Loading Acknowledgements...');
+      	Notification.display('Loading Acknowledgements...', false);
       	
       	//Poll the server for acknowledgements
-      	$scope.ackList = Acknowledgement.poll().query();
+      	$scope.acknowledgements = Acknowledgement.query({limit:20},function(e){
+      		Notification.hide();
+      		fetching = false;
+      	});
       	
-      	var filterFn = function(){
-      		$scope.data = $filter('orderBy')($filter('filter')($scope.ackList, $scope.query), 'id', true);
-      	};
+      	/*
+      	 * Take the query in the searchbar and then sends 
+      	 * the query to the server to get more results. The
+      	 * resuls are then integrated with the current list of
+      	 * resources;
+      	 */
+      	$scope.$watch('query', function(q) {
+      		if (q) {
+      			Acknowledgement.query({q:q, limit:5}, function(resources) {
+	      			for(var i=0; i < resources.length; i++) {
+		      			if($scope.acknowledgements.indexOfById(resources[i].id) == -1) {
+		      				$scope.acknowledgements.push(resources[i]);
+		      			}
+	      			}
+	      			
+	      		});
+      		}
+      	});
       	
-      	$scope.$watch('ackList.lengt+query', filterFn);
-      	
-      	//Grid Options
-      	$scope.gridOptions = {
-      		data: 'data',
-      		beforeSelectionChange: function(state){
-	    		$location.path('/order/acknowledgement/'+state.entity.id);
-	    		return false;
-	    	},
-      		columnDefs: [{field: 'id', displayName: 'Ack#', width:'75px'},
-      					 {field: 'customer.name', displayName: 'Customer'},
-      					 {field: 'status', 
-      				      displayName: 'Status',
-      				      cellTemplate: '<div>\
-      				      					{{row.getProperty(col.field)}}\
-      				      				</div>'},
-      					 {field: 'delivery_date', displayName: 'Delivery Date', cellFilter: 'date:"MMMM d, yyyy"'}, 
-      					 {field: 'time_created', displayName: 'Order Date', cellFilter: 'date:"MMMM d, yyyy"'}]
+      	//Loads the next set of data
+      	$scope.loadNext = function() {
+      		if(!fetching) {
+      			fetching = true;
+	      		Notification.display("Loading more acknowledgements", false);
+	      		Acknowledgement.query({
+	      			limit:50, 
+	      			offset:$scope.acknowledgements.length
+	      		}, function(resources) {
+	      			fetching = false;
+	      			Notification.hide();
+	      			for(var i=0; i<resources.length; i++) {
+	      				$scope.acknowledgements.push(resources[i]);
+	      			}
+	      		});
+      		}
       	}
-      
-      	//Destructor
-      	$scope.$on('$destroy', function(){
-      		//Stop Polling
-          	Acknowledgement.stopPolling();
-     	});
+      	
+
   	}]);

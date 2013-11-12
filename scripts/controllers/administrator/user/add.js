@@ -5,29 +5,32 @@ angular.module('employeeApp')
   function ($scope, User, Group, $location) {
     $scope.user = new User();
     $scope.user.groups = [];
-    $scope.groupList = Group.query();
-    
-    $scope.add = function(){
-        angular.forEach($scope.groupList, function(group){
-            if($scope.data.id === group.id){
-                $scope.user.groups.push(group);
-                $scope.$apply();
-                
-            }
-        });
-    };
-    
+    $scope.groups = Group.query({limit:0});
     
     $scope.save = function(){
-        
-        
         //Validates the form
         if($scope.form.$valid){
             
-            $scope.user.$save(function(){
+        	/*
+        	 * Adds groups to the user
+        	 * 
+        	 * Runs through all the groups and checks if 
+        	 * it hs been checked off. Groups that have been 
+        	 * checked off are then added to the user groups
+        	 */
+        	for (var i=0; i<$scope.groups.length; i++) {
+        		if ($scope.groups[i].$checked) {
+        			$scope.user.groups.push(angular.copy($scope.groups[i]));
+        		}
+        	}
+        	
+        	/*
+        	 * Saves the user by sending a POST request to the server
+        	 */
+            $scope.user.$create(function(){
                 $location.path("/administrator/user");
             });
-        }
+       }
          
          
          

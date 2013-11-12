@@ -7,28 +7,34 @@ angular.module('employeeApp')
   		//System message
   		Notification.display('Loading suppliers...', false);
   		
-  		//Poll the server for suppliers
-	    var supplierList = Supplier.poll().query(function(){
+  		//Load initial suppliers
+	    $scope.suppliers = Supplier.query(function(){
 	    	Notification.hide();
 	    });
 	    
-	    //Search Mechanism
-	    $scope.$watch('query', function(query){
-	    	$scope.data = $filter('filter')(supplierList, query);
+	    /*
+	     * Search Mechanism
+	     */
+	    $scope.$watch('query', function(q) {
+	    	if(q) {
+	    		Supplier.query({q:q}, function(resources) {
+		    		for(var i=0; i<resources.length; i++) {
+		    			if($scope.suppliers.indexOfById(resources[i]) == -1) {
+		    				$scope.suppliers.push(resources[i]);
+		    			}
+		    		}
+		    	});
+	    	}
 	    });
-	    //Grid Options
-	    $scope.gridOptions = {
-	    	data: 'data', 
-	    	beforeSelectionChange: function(state){
-	    		$location.path('/contact/supplier/'+state.entity.id);
-	    		return false;
-	    	},
-	    	columnDefs: [{field: 'id', displayName: 'ID', width:'50px'},
-	    				 {field: 'name', displayName: 'Supplier'}]
-	    }
 	    
-	    //Destructor
-	    $scope.$on('$destroy', function(){
-	        Supplier.stopPolling(); 
-	    });
+	    $scope.loadNext = function() {
+	    	Supplier.query({
+	    		offset: $scope.suppliers.length,
+	    		limit: 50
+	    	}, function(resources) {
+	    		for(var i=0; i<resources.length; i++) {
+	    			$scope.suppliers.push(resources[i]);
+	    		}
+	    	});
+	    }
   	}]);

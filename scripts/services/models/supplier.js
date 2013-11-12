@@ -1,6 +1,13 @@
 'use strict';
 
 angular.module('employeeApp.services')
-  .factory('Supplier', ['eaResource',function(eaResource) {
-      return eaResource('supplier/:id', {id:'@id'});   
-  }]);
+  	.factory('Supplier', ['$resource',function($resource) {
+      	return $resource('/api/v1/supplier/:id', {id:'@id'}, {
+      		update: {
+            	method: 'PUT'
+            },
+            create: {
+            	method: 'POST'
+            }
+      	});   
+  	}]);

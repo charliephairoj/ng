@@ -20,7 +20,7 @@
     <!--
         Search Bar
     -->
-    <div data-search-bar></div>
+    <div data-search-bar ng-model='query'></div>
     
     
     <!--
@@ -38,13 +38,12 @@
                 <div class="cell quantity">Quantity</div>
             </div>
         </div>
-        <div class="listContainer">
-            <div class="grid">
+        <div class="listContainer" on-scroll-end="loadNext()">
                 <div class="body">
-                    <a ng-repeat="fabric in fabricList | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/fabric/{{fabric.id}}">
+                    <a ng-repeat="fabric in fabrics | filter:query | orderBy:'supplier.name'" class="row" ng-href="#/supply/fabric/{{fabric.id}}">
                         
                         <div class="cell preview">
-                            <img ng-src="{{fabric.image_url}}" />
+                            <img ng-src="{{fabric.image.url}}" />
                         </div>
                         
                         <div class="cell id">{{fabric.id}}</div>
@@ -54,7 +53,6 @@
                         <div class="cell quantity">{{fabric.quantity}}</div>
                     </a>
                 </div>
-            </div>
             <!--
             <div class="list">
                 

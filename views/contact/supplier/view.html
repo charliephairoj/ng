@@ -28,8 +28,16 @@
         Workspace
     -->
     
-    <div class="workspace grid">
-    	<div class="grid-style" ng-grid="gridOptions"></div>
+    <div class="workspace list">
+    	<div class="outer-container" on-scroll-end="loadNext()">
+    		<ul class="inner-container">
+    			<li class="item-container" ng-repeat="supplier in suppliers | filter:query">
+    				<a class="item" ng-href="#/contact/supplier/{{supplier.id}}">
+    					<span class="description">{{supplier.name}}</span>
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
     </div>
     
     

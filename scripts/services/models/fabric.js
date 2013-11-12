@@ -1,6 +1,21 @@
 'use strict';
 
 angular.module('employeeApp.services')
-  .factory('Fabric', ['eaResource', function(eaResource) {
-    return eaResource('fabric/:id', {id:'@id'});   
-  }]);
+  	.factory('Fabric', ['$resource', function($resource) {
+    	return $resource('/api/v1/fabric/:id/:action', {id:'@id'}, {
+    		update: {
+    			method: 'PUT'
+    		},
+    		create: {
+    			method: 'POST'
+    		},
+    		add: {
+    			method: 'POST',
+    			params: {action: 'add'},
+    		},
+    		subtract: {
+    			method: 'POST',
+    			params: {action: 'subtract'},
+    		}
+    	});   
+  	}]);

@@ -2,6 +2,7 @@
     
     
     <!--Add Customer Modal-->
+    <!--
     <form name="customerForm" novalidate class="add" data-modal ng-model="addCustomer">
         <div class="title">Add Customer</div>
         <div class="container">
@@ -73,11 +74,11 @@
         </div>
         <div class="bottom_bar">
             <button ng-disabled="customerForm.$invalid" ng-click="saveCustomer()">Add</button>
-            <!--
-            <button ng-disabled="customerForm.$invalid" ng-click="addCustomer=false">Cancel</button>
-            -->
+          
         </div>
     </form>
+    -->
+    
     <!-- 
         Sidebar
     -->
@@ -99,14 +100,22 @@
     <!--
         Search Bar
     -->
-    <div data-search-bar></div>
+    <div data-search-bar ng-model="query"></div>
     
     <!--
         Workspace
     -->
     
-    <div class="workspace grid">
-    	<div class="grid-style" ng-grid="gridOptions"></div>
+    <div class="workspace list">
+    	<div class="outer-container" on-scroll-end="loadNext()">
+    		<ul class="inner-container">
+    			<li class="item-container" ng-repeat="customer in customers | filter:query">
+    				<a class="item" ng-href="#/contact/customer/{{customer.id}}">
+    					<span class="description">{{customer.name}}</span>
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
     </div>
     
     

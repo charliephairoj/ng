@@ -50,7 +50,7 @@ angular.module('employeeApp.directives')
 	        		if(scope.form.$valid){
 	        			Notification.display('Adding supplier...', false);
 		        		scope.supplier.$save(function(response){
-		        			Notification.display('Supplier added');
+		        			Notification.display(scope.supplier.name+' added');
 		        			scope.visible = false;
 		        			scope.supplier = new Supplier();
 		        		}, function(reason){

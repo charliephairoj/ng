@@ -184,106 +184,11 @@
                     }
                 }
                 
-                &.fabric{
-                    font-family:proxima;
-                    letter-spacing:0.08em;
-                    .product_container{
-                          position:absolute;
-                          top:0px;
-                          left:0px;
-                          width:60%;
-                          bottom:36px;
-                          overflow-y:scroll;
-                          overflow-x:hidden;
-                          border-right:1px solid #282828;
-                          text-align:left;
-                          .product{
-                              min-height:50px;
-                              padding:1em;
-                              border-bottom:1px solid #282828;
-                              .transition(all, 250ms, ease);
-                              .fabric{
-                                  margin-top:5px;
-                                  margin-left:20px;
-                                  height:50px;
-                                  img{
-                                      height:100%;    
-                                  }
-                              }
-                              //States for product
-                              &.drag{
-                                  background-color:#282828;    
-                              }
-                          }
-                          .pillow{
-                              .product;    
-                          }
-                      }
-                      .fabric_container{
-                          position:absolute;
-                          top:0px;
-                          bottom:36px;
-                          right:0px;
-                          width:40%;
-                          overflow-y:scroll;
-                          overflow-x:hidden;
-                          .list{
-                              .item{
-                                  cursor:move;
-                                  position:relative;
-                                  height:5em;
-                                  border-bottom:1px solid #282828;
-                                  background-color:#313131;
-                                  
-                                  .details{
-                                      position:absolute;
-                                      font-size:1em;
-                                      padding:1.25em 1em;
-                                      z-index:1;
-                                      top:0em;
-                                      left:5em;
-                                  }
-                                  img{
-                                      position:absolute;
-                                      height:100%;
-                                      width:5em;
-                                      top:0em;
-                                      left:0em;
-                                      z-index:1;
-                                  }
-                              }
-                          }
-                      }
-                }
+                
             }
         }
     }
-    //Customer Modal
-    .customer-modal{
-        height:80%;
-        width:80%;
-        margin:0;
-        top:10%;
-        left:10%;
-        font-family:proxima;
-        color:#CCC;
-        background-color:#313131;
-        .container{
-            overflow-y:scroll;
-            overflow-x:hidden;
-            bottom:0em;
-            .list{
-                .item{
-                    cursor:pointer;
-                    padding:10px;  
-                    border-bottom:1px solid #282828;
-                    font-size:1em; 
-                    letter-spacing:0.08em;
-                }
-            }
-        }
-        
-    }
+    
     .fabric_modal{
         font-family:proxima;
         color:#CCC;

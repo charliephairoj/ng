@@ -41,21 +41,14 @@
         <div class="ack_modal" data-modal ng-model="showAck">
             <div class="title">
                 Acknowledgements
-                <input type="text" class="search" ng-model="queryAck" />
+                <input type="text" class="search" ng-model="query" />
             </div>
-            <div class="container">
-                <ul class="list">
-                    <li class="item" ng-click="addAcknowledgement($index)" ng-repeat="ack in ackList | filter:queryAck | orderBy:'id':'true'">
-                        <table>
-                            <tr>
-                                <td>Acknowledgement ID</td>
-                                <td>{{ack.id}}</td>
-                            </tr>
-                            <tr>
-                                <td>Customer</td>
-                                <td>{{ack.customer.name}}</td>
-                            </tr>
-                        </table>
+            <div class="container" on-scroll-end="loadNext()">
+                <ul class="acknowledgements">
+                    <li class="item" ng-click="addAcknowledgement(ack)" ng-repeat="ack in acknowledgements | filter:query | orderBy:'id':'true'">
+                        {{ack.id}}
+                        <br />
+                        {{ack.customer.name}}
                     </li>
                 </ul>
             </div>
@@ -87,6 +80,10 @@
                         <tr>
                             <td>ID:</td>
                             <td>{{shipping.acknowledgement.id}}</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td>{{shipping.acknowledgement.status}}</td>
                         </tr>
                             
                     </table>
@@ -128,9 +125,9 @@
                 </div>
                 
             
-            <div class="products" ng-show="shipping.products">
-                <div class="title">Products to Ship</div>
-                <div class="product" ng-repeat="product in shipping.products">
+            <div class="products" ng-show="shipping.items">
+                <div class="title">Items to Ship</div>
+                <div class="product" ng-repeat="product in shipping.items">
                     {{product.description}}
                     <table class="details">
                         <tr>

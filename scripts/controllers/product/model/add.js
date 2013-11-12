@@ -14,7 +14,7 @@ angular.module('employeeApp')
         //Adds a new models
         $scope.save = function(model){
             Notification.display('Saving Model...', false);
-            $scope.model.$save(function(){
+            $scope.model.$create(function(){
                 $location.path('/product/model');
                 Notification.display('Model Saved'); 
                 

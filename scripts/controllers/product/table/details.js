@@ -32,7 +32,7 @@ angular.module('employeeApp')
          
          $scope.update = function() {
              Notification.display('Saving Table...', false);
-             $scope.table.$save(function() {
+             $scope.table.$update(function() {
                  Notification.display('Table Saved');
              });
          };
