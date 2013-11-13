@@ -47,14 +47,14 @@ angular.module('employeeApp')
 	    }
 	    
 	    //Save updates to the server
-	    $scope.update = function(){ 
-	        Notification.display('Updating Acknowledgement...', false);
+	    $scope.save = function(){ 
+	        Notification.display('Saving Acknowledgement...', false);
 	        $scope.acknowledgement.$update(function(response){
 	            
-	            Notification.display('Acknowledgement '+$scope.acknowledgement.id+' updated.');
+	            Notification.display('Acknowledgement '+$scope.acknowledgement.id+' saved.');
 	        }, 
 	        function(){
-	            Notification.display('Failed to update acknowledgement '+$scope.acknowledgement.id, false);
+	            Notification.display('Failed to save acknowledgement '+$scope.acknowledgement.id, false);
 	        });
 	    };
   	}]);
