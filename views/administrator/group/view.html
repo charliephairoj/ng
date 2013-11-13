@@ -13,24 +13,26 @@
         </nav>
     </div>
     
-    <div data-search-bar></div>
+    <div data-search-bar ng-model='query'></div>
     
     <div class="workspace grid">
          <div class="header">
             <div class="row">
                 <div class="cell id">ID</div>
                 <div class="cell name">Name</div>
+                <div class="cell name">Number of Permissions</div>
             </div>
         </div>
         <div class="listContainer">
             <div class="grid">
                 <div class="body">
-                    <a class="row" ng-repeat="group in groupList" ng-href="#/administrator/group/{{group.id}}">
+                    <a class="row" ng-repeat="group in groups | filter:query" ng-href="#/administrator/group/{{group.id}}">
                         
                        
                         
                         <div class="cell id">{{group.id}}</div>
                         <div class="cell name">{{group.name}}</div>
+                        <div class="cell name">{{group.permissions.length}}</div>
                         
                     </a>
                 </div>
