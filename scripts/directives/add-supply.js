@@ -32,9 +32,13 @@ angular.module('employeeApp.directives')
                                 });
                             }
                         }
+                        try{
                         scope.modal.show();
+                        }catch(e){}
                     }else{
+                    	try{
                         scope.modal.hide();
+                        }catch(e){}
                     }
                 });
                 
@@ -55,13 +59,13 @@ angular.module('employeeApp.directives')
 		     	
                 scope.supply = new Supply();
                 scope.supply.units = 'piece';
-	      		scope.supplierList = Supplier.poll().query();
+	      		scope.suppliers = Supplier.query({limit:0});
 	        
 	        	
 	        	scope.add = function(){
 	        		if(scope.form.$valid){
 	        			Notification.display('Add supply...', false);
-		        		scope.supply.$save(function(response){
+		        		scope.supply.$create(function(response){
 		        			Notification.display(scope.supply.description+" added");
 		        			scope.visible = false;
 		        			scope.supply = new Supply();
@@ -74,9 +78,6 @@ angular.module('employeeApp.directives')
 	        		}
 	        	};
 	        	
-	        	scope.$on('$destroy', function(){
-	        		Supplier.stopPolling();
-	        	});
 	      	}
     	};
   	}]);

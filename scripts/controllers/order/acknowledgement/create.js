@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeApp')
-  .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', 'Upholstery', 'Fabric', '$filter', 'Table', 'Notification',
+  .controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', '$filter', 'Notification',
     function ($scope, Acknowledgement, Customer, $filter, Notification) {
         //Vars
         $scope.showFabric = false;
