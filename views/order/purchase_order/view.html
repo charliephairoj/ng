@@ -22,14 +22,28 @@
         Search Bar
     -->
     
-    <div data-search-bar></div>
+    <div data-search-bar ng-model="query"></div>
     
     <!--
         Workspace
     -->
     
-    <div class="workspace grid">
-    	<div class="grid-style" ng-grid="gridOptions"></div>
+    <div class="workspace">
+    	<div class="outer-container">
+    		<ul class="inner-container">
+    			<li class="item-container" ng-repeat="po in poList | filter:query">
+    				<a class="item" ng-href="#/order/purchase_order/{{po.id}}">
+    					<span class="description">{{po.id}}</span>
+	    				<span class="customer">{{po.supplier.name}}</span>
+	    				<span class="status" ng-class="{acknowledged:ack.status == 'ACKNOWLEDGED', shipped:ack.status == 'SHIPPED'}">
+	    					{{po.status}}
+	    				</span>
+	    				<span class="items">{{po.items.length}} Items</span>
+	    				<span class="delivery-date">{{po.delivery_date | date: "MMM d, yyyy"}}</span>
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
     </div>
     
 </div>

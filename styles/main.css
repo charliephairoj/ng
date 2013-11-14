@@ -6561,6 +6561,106 @@ select {
   color: #9B9B9B;
   left: 1.3em;
 }
+.po-view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  left: 0;
+  background-color: #313131;
+}
+.po-view-page span {
+  font-family: proxima;
+  spacing: 0.08em;
+}
+.po-view-page .workspace {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 200px;
+}
+.po-view-page .workspace .outer-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.po-view-page .workspace .outer-container .inner-container {
+  width: 100%;
+  height: auto;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container {
+  width: 100%;
+  position: relative;
+  height: 5em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container:hover {
+  background-color: red;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item {
+  width: 100%;
+  background-color: #313131;
+  position: absolute;
+  left: 0;
+  font-size: 1em;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  text-decoration: none;
+  color: #E5E5E5;
+  cursor: pointer;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  transition: all 150ms linear;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item:active {
+  background-color: #D8D8D8;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span {
+  left: 1em;
+  font-size: 1em;
+  position: absolute;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span .details {
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.description {
+  top: 0.8em;
+  color: #E5E5E5;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.customer {
+  top: 2.4em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status {
+  top: 2em;
+  left: 80%;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status.acknowledged {
+  color: #E2A356;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status.shipped {
+  color: #97E053;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.items {
+  top: 3.6em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.delivery-date {
+  top: 4.8em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
 .viewFabricPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
