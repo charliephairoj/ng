@@ -8,11 +8,11 @@
 				</tr>
 				<tr>
 					<td>Description(English)</td>
-					<td><input required ng-model="supply.description.en" /></td>
+					<td><input required ng-model="supply.description" size="40"/></td>
 				</tr>
 				<tr>
 					<td>Description(Thai)</td>
-					<td><input ng-model="supply.description.th" /></td>
+					<td><input ng-model="supply.description_th" size="40"/></td>
 				</tr>
 				<tr>
 					<td>Reference</td>
@@ -21,13 +21,15 @@
 				<tr>
 					<td>Type</td>
 					<td>
-						<select>
+						<select ng-model="supply.type">
 							<option value="foam">Foam</option>
 							<option value="polishing">Polishing</option>
 							<option value="canvas">Canvas</option>
 							<option value="glue">Glue</option>
 							<option value="fiber">Fiber</option>
-							
+							<option value="packaging">Packaging</option>
+							<option value="nail">Nail</option>
+							<option value="staple">Staple</option>
 						</select>
 					</td>
 				</tr>
@@ -35,13 +37,14 @@
 					<td>Purchasing Units</td>
 					<td>
 						<select ng-model="supply.units">
-							<option value="piece" selected>Piece</option>
+							<option value="pc" selected>Piece</option>
 							<option value="container" selected>Container</option>
-							<option value="meter">Meter</option>
-							<option value="yard">Yard</option>
-							<option value="kilogram">Kilogram</option>
-							<option value="millimeter">Millimeter</option>
+							<option value="m">Meter</option>
+							<option value="yd">Yard</option>
+							<option value="kg">Kilogram</option>
+							<option value="mm">Millimeter</option>
 							<option value="pack">Pack</option>
+							<option value="pack">Box</option>
 						</select>
 					</td>
 				</tr>
@@ -66,6 +69,7 @@
 							<option value="millimeter">Millimeter</option>
 							<option value="centimeter">Centimeter</option>
 							<option value="meter">Meter</option>
+							<option value="yard">Yard</option>
 						</select>
 					</td>
 				</tr>
@@ -82,7 +86,7 @@
 					</td>
 				</tr>
 				
-				<tr ui-if="supply.units == 'pack'">
+				<tr ui-if="supply.units == 'pack' || supply.units == 'box'">
 					<td>Pieces per Pack</td>
 					<td><input required ng-model="supply.piece_per_pack" /></td>
 				</tr>
@@ -92,7 +96,7 @@
 				</tr>
 				<tr>
 					<td>Notes</td>
-					<td><textarea rows="6" cols="30"></textarea></td>
+					<td><textarea ng-model="supply.notes" rows="6" cols="30"></textarea></td>
 				</tr>
 			</table>
 		</div>

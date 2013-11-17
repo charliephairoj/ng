@@ -9,7 +9,7 @@ angular.module('employeeApp')
     	 */
     	$scope.showSuppliers = false;
     	$scope.showSupplies = false;
-    	$scope.supplierList = Supplier.poll().query();
+    	$scope.suppliers = Supplier.query({limit:0});
     	$scope.po = new PurchaseOrder();
     	$scope.po.items = [];
     	
@@ -21,8 +21,9 @@ angular.module('employeeApp')
     		$scope.showSuppliers = false;
     		
     		$scope.po.supplier = supplier;
-    		$scope.supplyList = $filter('filter')(Supply.query({supplier_id:supplier.id}, function(response) {
-    			$scope.supplyList = $filter('filter')(response, supplier.name);
+    		$scope.supplies = $filter('filter')(Supply.query({supplier_id:supplier.id}, function(response) {
+    			$scope.supplies = $filter('filter')(response, supplier.name);
+    			
     		}), supplier.name);
  
     	}
@@ -46,6 +47,28 @@ angular.module('employeeApp')
     		$scope.po.items.splice(index, 1);
     	}
     	
+    	/*
+    	 * Calculate the subtotal
+    	 */
+    	$scope.subtotal = function () {
+    		var subtotal = 0;
+    		for (var i=0; i<$scope.po.items.length; i++) {
+    			subtotal += (Number($scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
+    		}
+    		return subtotal.toFixed(2);
+    	}
+    	/*
+    	 * Calculate the total
+    	 */
+    	$scope.total = function () {
+    		
+    		var subtotal = Number($scope.subtotal());
+    		//Calculate vat
+    		var vat = subtotal * (Number($scope.po.vat || 0)/100)
+    		
+    		//Return subtotal + vat
+    		return (vat + subtotal)
+    	};
     	/*
     	 * Verfication of order
     	 */
@@ -88,10 +111,5 @@ angular.module('employeeApp')
     		$scope.po.items = [];
     	};
     	
-    	/*
-    	 * Destructor
-    	 */
-    	$scope.$on('$destroy', function() {
- 			Supplier.stopPolling();
-    	});
+    	
     }]);

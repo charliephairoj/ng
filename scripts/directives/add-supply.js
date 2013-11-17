@@ -44,17 +44,20 @@ angular.module('employeeApp.directives')
                 
                 scope.showWidth = function(){
 		     		var units = scope.supply.units;
-		     		return units == "meter" || units == "piece" || units == "pack" || units == "yard" ? true : false;
+		     		var type = scope.supply.type;
+		     		return units == "m" || units == "pc" || units == "pack" || units == "yd" ||
+		     		(units == "kg" && type == "packaging") ? true : false;
 		     	};
 		     	
 		     	scope.showDepth = function(){
 		     		var units = scope.supply.units;
-		     		return units == "piece" || units == "pack" ? true : false;
+		     		return units == "pc" || units == "pack" ? true : false;
 		     	};
 		     	
 		     	scope.showHeight = function(){
 		     		var units = scope.supply.units;
-		     		return units == "piece" || units == "pack" ? true : false;
+		     		var type = scope.supply.type;
+		     		return units == "pc" || units == "pack" || (units == "kg" && type == "packaging") ? true : false;
 		     	};
 		     	
                 scope.supply = new Supply();
@@ -69,7 +72,6 @@ angular.module('employeeApp.directives')
 		        			Notification.display(scope.supply.description+" added");
 		        			scope.visible = false;
 		        			scope.supply = new Supply();
-		        			console.log(response);
 		        		}, function(reason){
 		        			console.log(reason);
 		        		});

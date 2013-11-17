@@ -2870,6 +2870,38 @@ select {
   z-index: 1;
   padding-bottom: 50px;
 }
+.create-po-page .po .workspace .summary {
+  position: fixed;
+  border: 1px solid #282828;
+  background-color: #313131;
+  border-radius: 0.5em;
+  top: 5em;
+  right: 1em;
+  color: #FFF;
+  font-family: proxima;
+  padding: 1em;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.25);
+  z-index: 101;
+}
+.create-po-page .po .workspace .summary table {
+  width: 12em;
+}
+.create-po-page .po .workspace .summary table tbody tr.subtotal {
+  border-top: 1px solid #6B6B6B;
+}
+.create-po-page .po .workspace .summary table tbody tr td {
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+}
+.create-po-page .po .workspace .summary table tbody tr td:first-child {
+  width: 4em;
+  padding: 0.25em 0;
+}
+.create-po-page .po .workspace .summary table tbody tr td:last-child {
+  width: 8em;
+  padding-left: 0.5em;
+}
 .create-po-page .po .workspace .supplier {
   position: relative;
   margin-left: 20px;
@@ -6595,18 +6627,15 @@ select {
   width: 100%;
   position: relative;
   height: 5em;
-}
-.po-view-page .workspace .outer-container .inner-container .item-container:hover {
-  background-color: red;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
 }
 .po-view-page .workspace .outer-container .inner-container .item-container .item {
   width: 100%;
-  background-color: #313131;
   position: absolute;
   left: 0;
   font-size: 1em;
   height: 5em;
-  border-bottom: 1px solid #282828;
   text-decoration: none;
   color: #E5E5E5;
   cursor: pointer;
@@ -6734,24 +6763,73 @@ select {
 /*
  * LESS file for the supply view
  */
-.supply-view-page .new-supply {
-  left: 50%;
-  margin-left: -20em;
-  width: 40em;
+.supply-view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
 }
-.supply-view-page .new-supply .details {
-  margin-left: 2em;
-  margin-top: 2em;
+.supply-view-page .workspace {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
-.supply-view-page .new-supply .details tr td {
-  padding: 0.2em 0em;
+.supply-view-page .workspace .outer-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
 }
-.supply-view-page .new-supply .details tr td:last-child {
-  padding-left: 0.4em;
-}
-.supply-view-page .grid-style .ngRow .image img {
+.supply-view-page .workspace .outer-container .inner-container {
   height: auto;
   width: 100%;
+  list-style-type: none;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container {
+  width: 100%;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+  position: relative;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item {
+  width: 100%;
+  color: #FFF;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .img-container {
+  position: absolute;
+  height: 100%;
+  width: 5em;
+  overflow: hidden;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .img-container img {
+  height: 100%;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .description {
+  position: absolute;
+  top: 0;
+  left: 5em;
+  padding: 0.5em;
+  bottom: 0;
+  right: 0;
+  vertical-align: center;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .description .quantity {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 14em;
+  padding: 2em 0;
+  padding-right: 0.5em;
 }
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;

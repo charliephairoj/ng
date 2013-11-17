@@ -11,7 +11,7 @@
         <div class="container">
             <search-bar data-ng-model="querySupplier"></search-bar>
             <ul class="list">
-                <li class="item" ng-click="addSupplier(supplier)" ng-repeat="supplier in supplierList | filter:querySupplier | orderBy:'name'">{{supplier.name}}</li>
+                <li class="item" ng-click="addSupplier(supplier)" ng-repeat="supplier in suppliers | filter:querySupplier | orderBy:'name'">{{supplier.name}}</li>
             </ul>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="container">
             <search-bar data-ng-model="querySupply"></search-bar>
             <ul class="list">
-                <li class="item" ng-click="addItem(supply)" ng-repeat="supply in supplyList | filter:querySupply | orderBy:'name'">{{supply.description}}</li>
+                <li class="item" ng-click="addItem(supply)" ng-repeat="supply in supplies | filter:querySupply | orderBy:'name'">{{supply.description}}</li>
             </ul>
         </div>
     </div>
@@ -87,7 +87,35 @@
             Workspace
         -->
         <div class="workspace">
-                
+                <div class="summary">
+                	<table>
+                		<tr>
+                			<td>Supplier: </td>
+                			<td>{{po.supplier.name}}</td>
+                		</tr>
+                		<tr>
+                			<td>Items:</td>
+                			<td></td>
+                		</tr>
+                		<tr ng-repeat="item in po.items">
+                			<td colspan="2">- {{item.description}}
+                				<br />Qty: {{item.quantity}}
+                			</td>
+                		</tr>
+                		<tr class="subtotal">
+                			<td>Subtotal:</td>
+                			<td>{{subtotal()}}{{po.supplier.currency}}</td>
+                		</tr>
+                		<tr>
+                			<td>Vat {{po.vat || 0}}%</td>
+                			<td>{{((po.vat || 0)/100) * subtotal() | number:2}}</td>
+                		</tr>
+                		<tr>
+                			<td>Total:</td>
+                			<td>{{total() || subtotal() | number:2}}{{po.supplier.currency}}</td>
+                		</tr>
+                	</table>
+                </div>
                 <div class="supplier">
                     <span class="title">Supplier</span>
                     <table class="details">
@@ -140,7 +168,15 @@
                     <table class="details">
                         <tr>
                             <td>Qty:</td>
-                            <td><input ng-model="supply.quantity" /></td>
+                            <td><input ng-model="supply.quantity" />{{supply.purchasing_units}}s</td>
+                        </tr>
+                        <tr>
+                        	<td>Unit Cost:</td>
+                            <td>{{supply.cost | number:2}}{{po.supplier.currency}}</td>
+                        </tr>
+                        <tr>
+                        	<td>Total Cost:</td>
+                            <td>{{supply.cost*supply.quantity || 0 | number:2}}{{po.supplier.currency}}</td>
                         </tr>
                        
                     </table>

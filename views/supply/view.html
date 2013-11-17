@@ -46,8 +46,27 @@
         Workspace
     -->
     
-    <div class="workspace grid" style="z-index:1;">
-    	<div class="grid-style" ng-grid="gridOptions"></div>
+    <div class="workspace" style="z-index:1;">
+    	<div class="outer-container" on-scroll-end="loadNext()">
+    		<ul class="inner-container">
+    			<li class="item-container" ng-repeat="supply in supplies | filter:query">
+    				<a class="item" ng-href="#/supply/{{supply.id}}">
+    					<div class="img-container">
+    						<img ng-src="{{supply.image.url}}" />
+    					</div>
+    					<div class="description">
+    						{{supply.description}}
+    						<br />
+    						{{supply.supplier.name}}
+    						<div class="quantity">
+    							Current Quantity: {{supply.quantity}}{{supply.units}}
+    						</div>
+    					</div>
+    					
+    				</a>
+    			</li>
+    		</ul>
+    	</div>
         
     </div>
     

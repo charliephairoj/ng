@@ -3,36 +3,71 @@
  */
 
 .supply-view-page{
-  
-    .new-supply{
-        left:50%;
-        margin-left:-20em;
-        width: 40em;
-        .details{
-            margin-left:2em;
-            margin-top:2em;
-            tr{
-                td{
-                    padding:0.2em 0em;
-                    &:first-child{
-                    }
-                    
-                    &:last-child{
-                        padding-left:0.4em;
-                    }
-                }
-            }
-        }
-    }
-    .grid-style{
-        .ngRow{
-            .image{
-            
-                img{
-                    height:auto;
+    .view-page;
+    
+    .workspace{
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        .outer-container{
+            height:100%;
+            width:100%;
+            overflow-y:scroll;
+            .inner-container{
+                height:auto;
+                width:100%;
+                list-style-type:none;
+                .item-container{
                     width:100%;
+                    height:5em;
+                    border-bottom:1px solid #282828;
+                    background-color:#313131;
+                    position:relative;
+                    .item{
+                        width:100%;
+                        color:#FFF;
+                        font-family:proxima;
+                        letter-spacing:0.08em;
+                        text-decoration:none;
+                        position:absolute;
+                        top:0;
+                        height:100%;
+                        
+                        .img-container{
+                            position:absolute;
+                            height:100%;
+                            width:5em;
+                            overflow:hidden;
+                            img{ 
+                                height:100%;
+                            }
+                        }
+                        
+                        .description{
+                            position:absolute;
+                            top:0;
+                            left:5em;
+                            padding:0.5em;
+                            bottom:0;
+                            right:0;
+                            vertical-align:center;
+                            
+                            .quantity{
+                                position:absolute;
+                                right:0;
+                                top:0;
+                                width:14em;
+                                padding: 2em 0;
+                                padding-right:0.5em;
+                                
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
+  
