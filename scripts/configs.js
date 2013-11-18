@@ -47,6 +47,13 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner){
 		return -1;
 	}
     
+    /*
+     * Finding a key by value
+     * 
+     * This function finds the first instance of a key 
+     * based on the value provided
+     */
+   
     
     $rootScope.safeApply = function(fn){
         if(!this.$$phase){
@@ -56,7 +63,21 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner){
         }
     };
     
+    /*
+     * Set values and objects that are used throughout
+     * the application
+     */
     $rootScope.currentUser = CurrentUser;
-    
+    $rootScope.units = {
+    		'in': "Inch",
+    		cm: 'Centimeter',
+    		m: 'Meter',
+    		mm: 'Millimeter',
+    		yd: 'Yard',
+    		kg: 'Kilogram',
+    		pack: 'Pack',
+    		container: 'Container',
+    		pc: 'Piece'
+   	};
     scanner.enable();
 });

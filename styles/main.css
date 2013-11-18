@@ -2870,6 +2870,38 @@ select {
   z-index: 1;
   padding-bottom: 50px;
 }
+.create-po-page .po .workspace .summary {
+  position: fixed;
+  border: 1px solid #282828;
+  background-color: #313131;
+  border-radius: 0.5em;
+  top: 5em;
+  right: 1em;
+  color: #FFF;
+  font-family: proxima;
+  padding: 1em;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.25);
+  z-index: 101;
+}
+.create-po-page .po .workspace .summary table {
+  width: 12em;
+}
+.create-po-page .po .workspace .summary table tbody tr.subtotal {
+  border-top: 1px solid #6B6B6B;
+}
+.create-po-page .po .workspace .summary table tbody tr td {
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+}
+.create-po-page .po .workspace .summary table tbody tr td:first-child {
+  width: 4em;
+  padding: 0.25em 0;
+}
+.create-po-page .po .workspace .summary table tbody tr td:last-child {
+  width: 8em;
+  padding-left: 0.5em;
+}
 .create-po-page .po .workspace .supplier {
   position: relative;
   margin-left: 20px;
@@ -5296,6 +5328,85 @@ select {
 .fabricDetailsPage .workspace .details tr td input:focus {
   background: #414141;
 }
+.supply-details-page {
+  left: 200px;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  background: #313131;
+  position: absolute;
+  font-family: proxima;
+}
+.supply-details-page .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.supply-details-page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.supply-details-page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.supply-details-page .workspace .details .table .row {
+  display: table-row;
+}
+.supply-details-page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.supply-details-page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.supply-details-page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.supply-details-page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.supply-details-page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.supply-details-page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.supply-details-page table td {
+  padding: 3px;
+}
+.supply-details-page .workspace {
+  color: #FFF;
+}
+.supply-details-page .workspace table.details {
+  margin: 1em;
+  width: auto;
+  border: none;
+}
+.supply-details-page .workspace table.details tbody tr td:last-child {
+  padding: 0.25em 1em;
+}
 .acknowledgementDetailsPage {
   left: 200px;
   right: 0px;
@@ -5866,6 +5977,342 @@ select {
 .ack-item-details-page .fabric_modal .fabric_container .list .item img {
   height: 100%;
   width: 75px;
+}
+.po-details-page {
+  left: 200px;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  background: #313131;
+  position: absolute;
+  font-family: proxima;
+}
+.po-details-page .workspace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}
+.po-details-page .workspace .details {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #282828;
+}
+.po-details-page .workspace .details .table {
+  margin: 10px;
+  display: table;
+}
+.po-details-page .workspace .details .table .row {
+  display: table-row;
+}
+.po-details-page .workspace .details .table .row .cell {
+  display: table-cell;
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: #CCC;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.po-details-page .workspace .items {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.po-details-page .workspace .items .table {
+  display: table;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.po-details-page .workspace .items .table .row {
+  display: table-row;
+  width: 100%;
+}
+.po-details-page .workspace .items .table .row.header {
+  position: absolute;
+  top: 0px;
+}
+.po-details-page .workspace .items .table .row .cell {
+  color: #CCC;
+  font-family: proxima;
+  display: table-cell;
+  font-size: 0.8em;
+  padding: 1em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  letter-spacing: 0.08em;
+}
+.po-details-page table td {
+  padding: 3px;
+}
+.po-details-page .log-modal {
+  width: 24em;
+  margin-top: -10.25em;
+  top: 50%;
+  left: 50%;
+  height: 20.5em;
+  margin-left: -12em;
+  font-family: proxima;
+  height: 80%;
+  width: 80%;
+  margin: 0;
+  top: 10%;
+  left: 10%;
+  background-color: #313131;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header {
+  padding: 0.8em 0em;
+  position: relative;
+  text-align: center;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+  display: inline;
+  color: #CCC;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header .ui-datepicker-title span {
+  font-size: 1em;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header .ui-button {
+  position: absolute;
+  cursor: pointer;
+  top: 0.7em;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  border-bottom: 0.6em solid transparent;
+  border-top: 0.6em solid transparent;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+  position: absolute;
+  cursor: pointer;
+  top: 0.7em;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  border-bottom: 0.6em solid transparent;
+  border-top: 0.6em solid transparent;
+  border-right: 0.8em solid #CCC;
+  left: 0.5em;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+  position: absolute;
+  cursor: pointer;
+  top: 0.7em;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  border-bottom: 0.6em solid transparent;
+  border-top: 0.6em solid transparent;
+  border-left: 0.8em solid #CCC;
+  right: 0.5em;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar {
+  width: 100%;
+  background-color: #313131;
+  border: none;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar thead tr th {
+  padding: 0.8em 0em;
+  font-size: 0.8em;
+  background-color: #121212;
+  color: #cccccc;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td {
+  text-align: center;
+  padding: 0.8em;
+  cursor: pointer;
+  background-color: #313131;
+  font-size: 0.8em;
+  border: 1px solid #000;
+  color: #CCC;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td:first-child {
+  border-left: none;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td:last-child {
+  border-right: none;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td:hover {
+  background-color: grey;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td.ui-datepicker-current-day {
+  background-color: #181818;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td.ui-datepicker-unselectable:hover {
+  background-color: #313131;
+}
+.po-details-page .log-modal .ui-datepicker .ui-datepicker-calendar tbody tr td a {
+  text-decoration: none;
+  color: #CCC;
+}
+.po-details-page .log-modal .bottom_bar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 36px;
+  background-color: #313131;
+  border-radius: 0px 0px 2px 2px;
+}
+.po-details-page .log-modal .bottom_bar button {
+  color: #FFFFFF;
+  width: 96%;
+  margin: 5px 2%;
+  padding: 3px;
+  font-size: 14px;
+  background-color: #313131;
+  border: 1px solid #282828;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.06), 1px 1px 0 rgba(255, 255, 255, 0.03), -1px -1px 0 rgba(0, 0, 0, 0.02), inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+.po-details-page .log-modal .bottom_bar button:hover {
+  background-color: #3A3A3A;
+}
+.po-details-page .log-modal .bottom_bar button:active {
+  background-color: #444444;
+  color: #000000;
+}
+.po-details-page .log-modal .container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  bottom: 45px;
+}
+.po-details-page .log-modal .container .grid {
+  display: table;
+  height: auto;
+  width: 100%;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+}
+.po-details-page .log-modal .container .grid .header {
+  display: table-header-group;
+  width: 100%;
+  height: auto;
+  height: 2.6em;
+  z-index: 1;
+  background-color: #313131;
+}
+.po-details-page .log-modal .container .grid .header .row {
+  display: table-row;
+  width: 100%;
+  height: auto;
+  color: #FFFFFF;
+  border: none;
+  height: 2.6em;
+}
+.po-details-page .log-modal .container .grid .header .row .cell {
+  font-size: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #313131;
+  color: #FFF;
+}
+.po-details-page .log-modal .container .grid .header.ui-scrollfix {
+  position: absolute;
+  top: 0px;
+}
+.po-details-page .log-modal .container .grid .body {
+  display: table-row-group;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+.po-details-page .log-modal .container .grid .body .row {
+  text-decoration: none;
+  display: table-row;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+.po-details-page .log-modal .container .grid .body .row .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8em;
+  border-top: 1px solid #3c3c3c;
+  border-bottom: 1px solid #282828;
+  color: grey;
+}
+.po-details-page .log-modal .container .grid .body .row .cell label {
+  font-size: 0.8em;
+  color: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  -ms-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.po-details-page .log-modal .container .grid .listContainer {
+  overflow-y: scroll;
+  top: 2.6em;
+  bottom: 0em;
+  width: 100%;
+  position: absolute;
+}
+.po-details-page .log-modal .container .grid .listContainer .body .row .cell.status.acknowledged {
+  color: #FFED68;
+}
+.po-details-page .log-modal .container .grid .listContainer .body .row .cell.status.shipped {
+  color: #7ED136;
+}
+.po-details-page .workspace .table .row .cell {
+  text-decoration: none;
+}
+.po-details-page .workspace .table .row .cell.acknowledged {
+  color: yellow;
+}
+.po-details-page .workspace .table .row .cell.shipped {
+  color: #00FF00;
+}
+.po-details-page .workspace .products .table {
+  position: relative;
+}
+.po-details-page .workspace .products .table .row {
+  position: relative;
+  text-decoration: none;
+}
+.po-details-page .workspace .products .table .row .cell {
+  position: relative;
+}
+.po-details-page .workspace .products .table .row .cell.product-img {
+  height: 150px;
+  width: 225px;
+  position: relative;
+  overflow: hidden;
+}
+.po-details-page .workspace .products .table .row .cell .details {
+  width: 100%;
+  display: table;
+  border: none;
+}
+.po-details-page .workspace .products .table .row .cell .details .details-row {
+  width: 100%;
+  display: table-row;
+}
+.po-details-page .workspace .products .table .row .cell .details .details-row .details-data {
+  display: table-cell;
+  color: #CCC;
+  border: none;
+  font-size: 1em;
+  font-family: proxima;
+  padding: 0.3em;
+}
+.po-details-page .workspace .products .table .row .cell .details .details-row .details-data img {
+  height: 2em;
+  width: auto;
+}
+.po-details-page .workspace .products .table .row .cell img {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  bottom: 0px;
 }
 /*
  * LESS file for the project details view page
@@ -6561,6 +7008,103 @@ select {
   color: #9B9B9B;
   left: 1.3em;
 }
+.po-view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
+  left: 0;
+  background-color: #313131;
+}
+.po-view-page span {
+  font-family: proxima;
+  spacing: 0.08em;
+}
+.po-view-page .workspace {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 200px;
+}
+.po-view-page .workspace .outer-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.po-view-page .workspace .outer-container .inner-container {
+  width: 100%;
+  height: auto;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container {
+  width: 100%;
+  position: relative;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  font-size: 1em;
+  height: 5em;
+  text-decoration: none;
+  color: #E5E5E5;
+  cursor: pointer;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  transition: all 150ms linear;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item:active {
+  background-color: #D8D8D8;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span {
+  left: 1em;
+  font-size: 1em;
+  position: absolute;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span .details {
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.description {
+  top: 0.8em;
+  color: #E5E5E5;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.customer {
+  top: 2.4em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status {
+  top: 2em;
+  left: 80%;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status.acknowledged {
+  color: #E2A356;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.status.shipped {
+  color: #97E053;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.items {
+  top: 3.6em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
+.po-view-page .workspace .outer-container .inner-container .item-container .item span.delivery-date {
+  top: 4.8em;
+  font-size: 0.8em;
+  color: #9B9B9B;
+  left: 1.3em;
+}
 .viewFabricPage {
   font-family: Helvetica, Tahoma, sans-serif;
   position: absolute;
@@ -6634,24 +7178,73 @@ select {
 /*
  * LESS file for the supply view
  */
-.supply-view-page .new-supply {
-  left: 50%;
-  margin-left: -20em;
-  width: 40em;
+.supply-view-page {
+  font-family: Helvetica, Tahoma, sans-serif;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 200px;
 }
-.supply-view-page .new-supply .details {
-  margin-left: 2em;
-  margin-top: 2em;
+.supply-view-page .workspace {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
-.supply-view-page .new-supply .details tr td {
-  padding: 0.2em 0em;
+.supply-view-page .workspace .outer-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
 }
-.supply-view-page .new-supply .details tr td:last-child {
-  padding-left: 0.4em;
-}
-.supply-view-page .grid-style .ngRow .image img {
+.supply-view-page .workspace .outer-container .inner-container {
   height: auto;
   width: 100%;
+  list-style-type: none;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container {
+  width: 100%;
+  height: 5em;
+  border-bottom: 1px solid #282828;
+  background-color: #313131;
+  position: relative;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item {
+  width: 100%;
+  color: #FFF;
+  font-family: proxima;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .img-container {
+  position: absolute;
+  height: 100%;
+  width: 5em;
+  overflow: hidden;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .img-container img {
+  height: 100%;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .description {
+  position: absolute;
+  top: 0;
+  left: 5em;
+  padding: 0.5em;
+  bottom: 0;
+  right: 0;
+  vertical-align: center;
+}
+.supply-view-page .workspace .outer-container .inner-container .item-container .item .description .quantity {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 14em;
+  padding: 2em 0;
+  padding-right: 0.5em;
 }
 .viewSuppliersPage {
   font-family: Helvetica, Tahoma, sans-serif;

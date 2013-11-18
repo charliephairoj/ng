@@ -6,9 +6,33 @@ angular.module('employeeApp')
     	
     	Notification.display('Retrieving supply...', false);
     	
+    	$scope.showQuantity = false;
     	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
     		Notification.hide();	
     	});
+    	
+    	var validWidth = ['m', 'yd', 'pc', 'pack', 'container', 'fabric'];
+    	var validDepth = ['pc', 'pack', 'container'];
+    	var validHeight = ['pack', 'pc'];
+    	
+    	/*
+    	 * Seletively show dimensions
+    	 */
+    	$scope.showWidth = function () {
+    		
+    		return validWidth.indexOf($scope.supply.units) > -1 || 
+    		validWidth.indexOf($scope.supply.type) > -1 ||
+    		($scope.supply.units == 'kg' && $scope.supply.type == 'packaging') ? true : false;
+    	}
+    	
+    	$scope.showDepth = function () {
+    		return validDepth.indexOf($scope.supply.units) > -1 ? true : false;
+    	}
+    	
+    	$scope.showHeight = function () {
+    		return validHeight.indexOf($scope.supply.units) > -1 ||
+    		($scope.supply.units == 'kg' && $scope.supply.type == 'packaging') ? true : false;
+    	}
     	
     	/*
     	 * Update the supply
@@ -30,6 +54,7 @@ angular.module('employeeApp')
     	 * the quanttity as a parameter
     	 */
     	$scope.add = function (quantity) {
+    		$scope.showQuantity = false;
     		if (!quantity) {
     			var quantity = $scope.quantity;
     		}
@@ -46,6 +71,7 @@ angular.module('employeeApp')
     	 * quantity as a parameter
     	 */
     	$scope.subtract = function (quantity) {
+    		$scope.showQuantity = false;
     		if (!quantity) {
     			var quantity = $scope.quantity;
     		}
@@ -54,6 +80,17 @@ angular.module('employeeApp')
     			
     		});
     	}
+    	
+    	/*
+    	 * Change quantity
+    	 */
+    	$scope.changeQuantity = function(action, quantity) {
+    		if (!quantity) {
+    			throw ValueError("Expecting a quantity");
+    		}
+    		$scope[action]();
+    		
+    	};
     	
     	$scope.$on('$destroy', function () {
     		$scope.update();
