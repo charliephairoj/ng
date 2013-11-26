@@ -69,8 +69,9 @@ angular.module('employeeApp')
                 }
             }
             //Save the model
+            Notification.display('Updating '+$scope.user.username+'...', false);
             $scope.user.$update(function(response){
-                
+                Notification.display($scope.user.username+' updated.');
             });
         };
         
@@ -85,7 +86,7 @@ angular.module('employeeApp')
         };
         
         $scope.$on('$destroy', function(){
-            $scope.user.$save(); 
+            $scope.user.$update(); 
         });
     
     }]);

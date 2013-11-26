@@ -80,6 +80,12 @@ angular.module('employeeApp.directives')
 	        		}
 	        	};
 	        	
+	        	scope.addImage = function (data) {
+	        		
+	        		scope.supply.image = data;
+	        		
+	        	};
+	        	
 	      	}
     	};
   	}]);

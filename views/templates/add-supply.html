@@ -98,7 +98,12 @@
 					<td>Notes</td>
 					<td><textarea ng-model="supply.notes" rows="6" cols="30"></textarea></td>
 				</tr>
+				<tr>
+					<td>Preview</td>
+					<td class="preview"><img ng-src="{{supply.image.url}}"/></td>
+				</tr>
 			</table>
+			<div image-uploader url='/api/v1/supply/image' on-upload="addImage(data)"></div>
 		</div>
 		<div class="bottom-bar"><button ng-disabled="form.$invalid" ng-click="add()">Add</button></div>
 	</form>

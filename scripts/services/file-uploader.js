@@ -9,7 +9,7 @@ angular.module('employeeApp')
                 throw new TypeError("Expectina a file");
             }
             var type = file.isPrototypeOf(Image) ? 'Image' : 'File';
-            Notification.display('Uploading '+type+'...');
+            Notification.display('Uploading '+type+'...', false);
             var fd = new FormData();
             fd.append(type.toLowerCase(), file);
             for(var i in data){

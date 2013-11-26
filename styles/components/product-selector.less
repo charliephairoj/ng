@@ -128,7 +128,8 @@
         }
         
         &.custom{
-            .new-custom-inventory-item{
+            .custom-item{
+             
                 margin-top:1em;
                 width:300px;
                 font-family:proxima;
@@ -161,16 +162,31 @@
                             padding-bottom:1.5em;
                         }
                     }
+                    
+                    &.preview{
+                        width:100%;
+                        .image-container{
+                            width:50%;
+                            height:auto;
+                            overflow:hidden;
+                            img{
+                                width:90%;
+                                height:auto;
+                            }
+                        }
+                    }
                 }
             }
             
-            
-            .cropper{
-                top:0px;
+            .image-uploader{
+                position:absolute;
+                right:0;
+                top:0;
                 bottom:1.8em;
-                right:0px;
                 left:300px;
             }
+            
+           
             
             
         }

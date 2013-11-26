@@ -51,13 +51,17 @@
                     <td>Description</td>
                     <td><input type="text" ng-model="item.description" required /></td>
                 </tr>
+                <tr class="preview">
+                    <td>Preview</td>
+                    <td class="image-container"><img ng-src="{{product.image.url}}" /></td>
+                </tr>
             </table>
             
-            <div file-cropper>
+            <div image-uploader url="api/v1/acknowledgement/item/image" on-upload="addImage(data)">
             </div>
             
             <div class="bottom_bar">
-                <button ng-disabled="form.$invalid" ng-click="addCustomItem(item, cropper.getImage())">Add Item</button>
+                <button ng-disabled="form.$invalid" ng-click="addCustomItem(item)">Add Item</button>
             </div>
     </form>
     <form name="quantityForm" class="details quantity" data-ng-switch-when="quantity">

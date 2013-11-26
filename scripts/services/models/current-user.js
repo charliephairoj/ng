@@ -3,8 +3,17 @@
 angular.module('employeeApp.services')
     .factory('CurrentUser', ['$http', function($http) {
         //Create the initial object
-        function User(){ 
-            angular.copy(window.current_user||{}, this);
+        function User() { 
+        	console.log('ok');
+        	 var promise = $http.get('/api/v1/current_user');
+        	 promise.then(function (response) {
+        		console.log(response);
+        		angular.copy(response.data || {}, this);
+        		
+        		console.log(this);
+        		console.log(this.hasModule('orders'));
+        	}.bind(this));
+            //angular.copy(window.current_user||{}, this);
         }
         
         //checks if user has a permission

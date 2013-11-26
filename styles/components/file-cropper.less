@@ -9,7 +9,6 @@
     left:0px;
     right:0px;
     overflow:none;
-    border:1px solid #282828;
     .transition(all, 250ms, linear);
     .cropper-message{
         position:absolute;
@@ -21,26 +20,29 @@
         text-align:center;
         h3{
             font-family:proxima;
-            margin-top:35%;
+            margin-top:45%;
         }
     }
     .cropper-controller{
-        top:0px;
+        bottom:0;
         left:0px;
-        height:100%;
-        width:150px;
+        right:0;
+        margin:0 0.5em;
+        height:6em;
         position:absolute;
         background:#313131;
-        border-right:1px solid #282828;
+        border:1px solid #282828;
         padding-top:1em;
         button{
             padding:0.5em;
-            width:90%;
+            width:30%;
             border-radius:2px;
             background-color:#414141;
             border:1px solid #282828;
             color:#CCC;
             cursor:pointer;
+            display:inline-block;
+            outline:none;
         }
         
         .cropper-scale{
@@ -69,14 +71,17 @@
     }
     .canvas-container{
         position:absolute;
-        top:0px;
-        left:150px;
-        right:0px;
-        bottom:0px;
+        top:0;
+        left:1em;
+        right:1em;
+        bottom:8em;
+        border-bottom:1px solid #282828;
         .cropper-canvas{
           position:absolute;
           top:0px;
-          left:0px;
+          left:0;
+          bottom:0;
+          right:0;
         }
     }
     

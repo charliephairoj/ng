@@ -28,7 +28,12 @@ angular.module('employeeApp').config(function($httpProvider){
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner){
+angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $http){
+	
+	/*
+	 * Get the current user and place it at the top scope
+	 */
+	$rootScope.currentUser = CurrentUser
     
     /*
      * Prototypical extension of core classes
@@ -67,7 +72,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner){
      * Set values and objects that are used throughout
      * the application
      */
-    $rootScope.currentUser = CurrentUser;
+    
     $rootScope.units = {
     		'in': "Inch",
     		cm: 'Centimeter',

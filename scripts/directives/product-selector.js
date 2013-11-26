@@ -82,6 +82,10 @@ angular.module('employeeApp')
                     scope.add({product:newProduct});
                 }
                 
+                scope.addImage = function (data) {
+                	console.log(data);
+                	scope.product.image = data;
+                }
                 
                 scope.addUpholstery = function(upholstery){
                     if(upholstery){
@@ -105,18 +109,19 @@ angular.module('employeeApp')
                 
                 scope.addCustomItem = function(item, image){
                     
-                    if(item && image){
+                    if(item){
+                    	/*
                         var promise = FileUploader.upload(image, scope.url);
                         promise.then(function(response){
-                            scope.product = item;
-                            scope.product.is_custom = true;
-                            scope.product.type = 'custom';
-                            scope.product.image = {}
+                            
                             angular.copy(response, scope.product.image);
                                             
-                            scope.selection = 'quantity';
-                        });
-                        
+                            
+                        });*/
+	                    angular.extend(scope.product, item);
+	                    scope.product.is_custom = true;
+	                    scope.product.type = 'custom';
+	                    scope.selection = 'quantity';
                     }else{
                         throw new TypeError("Expecting a Custom Item and Image.");
                     }
@@ -129,7 +134,7 @@ angular.module('employeeApp')
                     }else{
                         scope.visible = false;
                         scope.modal.hide(function(){
-                            scope.selection = 'upholstery';
+                            scope.reset();
                         });
                         var newProduct = angular.copy(scope.product);
                         scope.add({product:newProduct});
@@ -139,7 +144,7 @@ angular.module('employeeApp')
                 scope.setFabric = function(){
                     scope.visible = false;
                     scope.modal.hide(function(){
-                        scope.selection = 'upholstery';
+                        scope.reset();
                     });
                     
                     var newProduct = angular.copy(scope.product);
@@ -151,12 +156,7 @@ angular.module('employeeApp')
                     scope.selection = 'upholstery';  
                 };
                 
-                scope.$on('$destroy', function(){
-                    Upholstery.stopPolling();
-                    Fabric.stopPolling();
-                    Table.stopPolling(); 
-                });
-                
+               
                
                          
             }
