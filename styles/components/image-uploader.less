@@ -1,0 +1,52 @@
+/*
+ * LESS file for the Image-Uploader
+ */
+
+.image-uploader{
+    position:relative;
+    min-width:20em;
+    min-height:15em;
+    border: 1px solid #282828;
+    .workspace{
+        .cropper{
+            right:0;
+            top:0;
+            left:0;
+            bottom:1.8em;
+        }
+    }
+    .button-container{
+        position: absolute;
+        bottom:0;
+        right:0;
+        left:0;
+        height:1.8em;
+        top:1px solid #282828;
+        button{
+            position:absolute;
+            bottom:0;
+            color:#FFFFFF;
+            left:0;
+            right:0;
+            width:96%;
+            margin:0.3em 2%;
+            padding:0.2em;
+            font-size:1em;
+            background-color:#313131;
+            border:1px solid #282828;
+            cursor:pointer;
+            border-radius:2px;
+            -webkit-box-shadow: 0px 1px 0 rgba(255,255,255,.06),1px 1px 0 rgba(255,255,255,.03),-1px -1px 0 rgba(0,0,0,.02),inset 1px 1px 0 rgba(255,255,255,0.05);
+            box-shadow: 0px 1px 0 rgba(255,255,255,.06),1px 1px 0 rgba(255,255,255,.03),-1px -1px 0rgba(0,0,0,.02),inset 1px 1px 0 rgba(255,255,255,0.05);
+            //.transition(all, 250ms, ease);
+            //States
+            &:hover{
+                background-color:#3A3A3A;
+            }
+            &:active{
+                background-color:#444444;
+                color:#000000;
+            }
+        }
+    }
+}
