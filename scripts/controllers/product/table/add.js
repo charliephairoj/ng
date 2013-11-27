@@ -4,8 +4,8 @@ angular.module('employeeApp')
     .controller('ProductTableAddCtrl', ['$scope', 'Table', 'Configuration', 'Model', 'Notification', '$location',
     function ($scope, Table, Configuration, Model, Notification, $location) {
         
-        $scope.configurationList = Configuration.poll().query();
-        $scope.modelList = Model.poll().query();
+        $scope.configurationList = Configuration.query({limit:0});
+        $scope.modelList = Model.query({limit:0});
         $scope.table = new Table();
         
         //Text for tooltips
@@ -49,8 +49,5 @@ angular.module('employeeApp')
             }); 
         };
 
-        $scope.$on('$destroy', function(){
-            Configuration.stopPolling();
-            Model.stopPolling();
-        });
+        
     }]);
