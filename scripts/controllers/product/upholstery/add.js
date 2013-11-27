@@ -3,8 +3,8 @@
 angular.module('employeeApp')
     .controller('ProductUpholsteryAddCtrl', ['$scope', 'Model', 'Configuration', 'Upholstery', 'Notification', '$location',
     function ($scope, Model, Configuration, Upholstery, Notification, $location) {
-        $scope.modelList = Model.query();
-        $scope.configurationList = Configuration.query();
+        $scope.modelList = Model.query({limit:0});
+        $scope.configurationList = Configuration.query({limit:0});
         $scope.upholstery = new Upholstery();
         
         //Text for tooltips
