@@ -76,6 +76,10 @@
                     <td><input size="40" type="text" ng-model="supply.description" ec-blur="update()" /></td>
                 </tr>
                 <tr>
+                    <td><label>Description (Thai)</label></td>
+                    <td><input size="40" type="text" ng-model="supply.description_th" ec-blur="update()" /></td>
+                </tr>
+                <tr>
                     <td><label>Reference Number</label></td>
                     <td><input type="text" ng-model="supply.reference" ec-blur="update()" /></td>
                 </tr>
@@ -83,6 +87,8 @@
         			<td><label>Type</label></td>
         			<td>
         				<select ng-model="supply.type">
+							<option value="metal">Metal</option>
+        					<option value="wood">Wood</option>
         					<option value="foam">Foam</option>
 							<option value="polishing">Polishing</option>
 							<option value="canvas">Canvas</option>
@@ -90,6 +96,7 @@
 							<option value="fiber">Fiber</option>
 							<option value="packaging">Packaging</option>
 							<option value="nail">Nail</option>
+							<option value="screw">Screw</option>
 							<option value="staple">Staple</option>
         				</select>
         			</td>
@@ -133,7 +140,11 @@
                 </tr>
                 <tr>
                     <td><label>Cost per {{units[supply.units]}}</label></td>
-                    <td><input class="price" type="text" ng-model="supply.cost" ec-blur="update()"  ng-pattern="/^[1-9](\d+)?(\.\d{2})?$/" /> {{supply.supplier.currency}}</td>
+                    <td><input class="price" type="text" ng-model="supply.cost" ec-blur="update()"  ng-pattern="/^[0-9](\d+)?(\.\d{2})?$/" /> {{supply.supplier.currency}}</td>
+                </tr>
+                <tr>
+                    <td><label>Discount</label></td>
+                    <td><input class="price" size="3" maxlength="2" type="text" ng-model="supply.discount" ec-blur="update()"  ng-pattern="/^[0-9](\d+)?(\.\d{2})?$/" />%</td>
                 </tr>
                 <tr>
                     <td><label>Current Quantity</label></td>

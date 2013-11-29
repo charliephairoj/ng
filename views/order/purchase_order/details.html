@@ -20,14 +20,17 @@
         </header>
         <nav>
             <ul>
-                <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                <li ng-show="currentUser.hasPermission('change_purchaseorder')">
                     <div ng-click="save()">Save</div>
                 </li>
-                <li ng-show="currentUser.hasPermission('change_acknowledgement')">
+                <li ng-show="currentUser.hasPermission('change_purchaseorder')">
                     <div ng-click="receive()">Receive</div>
                 </li>
+                 <li ng-show="currentUser.hasPermission('change_purchaseorder')">
+                    <div ng-click="pay()">Pay</div>
+                </li>
                 <li>
-                    <div ng-click="getPDF('production')">View Production</div>
+                    <div ng-click="viewPDF()">View PDF</div>
                 </li>
                 <li ui-if="currentUser.hasPermission('delete_acknowledgement')">
                     <div ng-click="remove()">Delete</div>
