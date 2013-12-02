@@ -7855,132 +7855,36 @@ select {
   right: 0px;
   left: 200px;
 }
-.upholstery-view-page .workspace.grid .header .row .cell {
-  font-size: 0.9em;
+.upholstery-view-page .workspace .outer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
-.upholstery-view-page .workspace.grid .header .row .cell.preview {
-  height: auto;
-  width: 10%;
-  padding: 0em;
-  font-size: 0.7em;
-  text-align: center;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.preview img {
+.upholstery-view-page .workspace .outer-container .inner-container {
   width: 100%;
 }
-.upholstery-view-page .workspace.grid .header .row .cell.id {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.model {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.name {
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.configuration {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.width {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.depth {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.height {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.manufacture-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.wholesale-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .header .row .cell.export-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell {
-  font-size: 0.9em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.preview {
-  height: auto;
-  width: 10%;
-  padding: 0em;
-  font-size: 0.7em;
-  text-align: center;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.preview img {
+.upholstery-view-page .workspace .outer-container .inner-container .item-container {
   width: 100%;
 }
-.upholstery-view-page .workspace.grid .listContainer .row .cell.id {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
+.upholstery-view-page .workspace .outer-container .inner-container .item-container .item {
+  width: 100%;
+  height: 5em;
 }
-.upholstery-view-page .workspace.grid .listContainer .row .cell.model {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
+.upholstery-view-page .workspace .outer-container .inner-container .item-container .item .description {
+  left: 11em;
 }
-.upholstery-view-page .workspace.grid .listContainer .row .cell.name {
-  width: 9%;
-  font-size: 0.7em;
+.upholstery-view-page .workspace .outer-container .inner-container .item-container .item .thumbnail {
+  height: 100%;
+  width: 10em;
+  overflow: hidden;
+  background: white;
 }
-.upholstery-view-page .workspace.grid .listContainer .row .cell.configuration {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.width {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.depth {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.height {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.manufacture-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.wholesale-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .row .cell.export-price {
-  text-align: center;
-  width: 9%;
-  font-size: 0.7em;
-}
-.upholstery-view-page .workspace.grid .listContainer .body {
-  font-size: 1em;
+.upholstery-view-page .workspace .outer-container .inner-container .item-container .item .thumbnail img {
+  height: 100%;
+  width: auto;
 }
 .inventory-page {
   font-family: Helvetica, Tahoma, sans-serif;

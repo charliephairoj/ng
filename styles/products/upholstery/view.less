@@ -5,83 +5,43 @@
   .viewPage;
   
   .workspace{
-      &.grid{
-          .header{
-              .row{
-                  .cell{
-                      font-size:0.9em;
-                      @text-font-size:0.7em;
-                      &.preview{
-                          height:auto;
-                          width:10%;
-                          padding:0em;
-                          font-size:@text-font-size;
-                          text-align:center;
-                          img{
-                              width:100%;
-                          }
-                      }
-                      &.id{
-                        text-align:center;
-                        width:9%;
-                        font-size:@text-font-size;
-                      }
-                      &.model{
-                        text-align:center;
-                        width:9%;
-                        font-size:@text-font-size;
-                      }
-                      &.name{
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.configuration{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.width{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.depth{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.height{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.manufacture-price{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.wholesale-price{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
-                      &.export-price{
-                          text-align:center;  
-                          width:9%;
-                          font-size:@text-font-size;
-                      }
+      
+       .outer-container{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            
+            overflow-y:scroll;
+            .inner-container{
+                width:100%;
+                
+                .item-container{
+                    width:100%;
                     
-                     
-                  }
-              }
-          }
-          .listContainer{
-              .header;
-              .body{
-                  font-size:1em;
-              }
-          }
-      }
+                    .item{
+                        width:100%;
+                        height:5em;
+                        
+                        .description{
+                            left: 11em;
+                        }
+                        .thumbnail{
+                            height:100%;
+                            width:10em;
+                            overflow:hidden;
+                            background:white;
+                            img{
+                                height:100%;
+                                width:auto;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+       }
   }
   
 }
