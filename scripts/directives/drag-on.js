@@ -1,7 +1,6 @@
-'use strict';
 
 angular.module('employeeApp')
-  .directive('dragOn', [function () {
+.directive('dragOn', [function () {
     return {
         restrict:'A',
         replace:false,
@@ -13,5 +12,5 @@ angular.module('employeeApp')
             });
             
         }
-    }
-  }]);
+    };
+}]);

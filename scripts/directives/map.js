@@ -1,7 +1,6 @@
-'use strict';
 
 angular.module('employeeApp.directives')
-  .directive('map', ['mapMarker', function (mapMarker) {
+.directive('map', ['mapMarker', function (mapMarker) {
     //Create the variables to be used
     var latLng = {},
         map,
@@ -17,30 +16,29 @@ angular.module('employeeApp.directives')
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
-            console.log(element);
             scope.map = {
                 Marker: mapMarker,
                 LatLng: google.maps.LatLng
-            }
+            };
             scope.map.map = new google.maps.Map(element.get(0), mapOptions);
             
             //Refresh the map if a shown event is broadcast
-            scope.$on('shown', function(){
-              google.maps.event.trigger(scope.map.map, 'resize');
+            scope.$on('shown', function () {
+				google.maps.event.trigger(scope.map.map, 'resize');
             });
             
-            scope.map.refresh = function(){
+            scope.map.refresh = function () {
                 google.maps.event.triggger(this.map);    
             };
             
             //Create a marker and adds to scope.map.markers
-            scope.map.createMarker = function(obj){
-                if(obj instanceof google.maps.LatLng){
-                    var latLng = obj;
-                }else if(obj.hasOwnProperty('lat') && obj.hasOwnProperty('lng')){
-                    var latLng = new google.maps.LatLng(obj.lat, obj.lng);
-                }else{
-                    var latLng = null;
+            scope.map.createMarker = function (obj) {
+                if (obj instanceof google.maps.LatLng) {
+                    latLng = obj;
+                } else if (obj.hasOwnProperty('lat') && obj.hasOwnProperty('lng')) {
+                    latLng = new google.maps.LatLng(obj.lat, obj.lng);
+                } else {
+                    latLng = null;
                 }
                 
                 return new scope.map.Marker({
@@ -50,10 +48,10 @@ angular.module('employeeApp.directives')
             };
             //Set map position
             scope.map.setPosition = function(obj){
-                if(obj instanceof google.maps.LatLng){
-                    var latLng = obj;
-                }else{
-                    var latLng = new google.maps.LatLng(obj.lat, obj.lng);
+                if (obj instanceof google.maps.LatLng) {
+                    latLng = obj;
+                } else {
+                    latLng = new google.maps.LatLng(obj.lat, obj.lng);
                 }
                 
                 this.map.panTo(latLng);
@@ -64,4 +62,4 @@ angular.module('employeeApp.directives')
           
         }
     };
-  }]);
+}]);

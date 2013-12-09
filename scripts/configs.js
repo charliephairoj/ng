@@ -33,7 +33,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 	/*
 	 * Get the current user and place it at the top scope
 	 */
-	$rootScope.currentUser = CurrentUser
+	$rootScope.currentUser = new CurrentUser();
     
     /*
      * Prototypical extension of core classes

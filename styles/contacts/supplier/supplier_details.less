@@ -1,38 +1,43 @@
 
-.supplierDetailsPage{
+.supplier-details-page{
   
   .detailsPage;
   
   .workspace{
-    .contactInfo{
-      tr{
-        td{
-          //TD States
-          &:first-child{
-            color:grey;
+      overflow-y:scroll;
+      .details{
+          width:auto;
+          tr{
+              td{ 
+                  color:#666;
+                  padding: 0.5em;
+                  .input-style{
+                    background:#282828;
+                    border:none;
+                    color:#999;
+                    font-size:1em;
+                    outline:none; 
+                    
+                  }
+                  input{
+                      .input-style;
+                  }
+                  textarea{
+                      .input-style;
+                      .transition(all, 250ms, linear);
+                       height:4em;
+                       width:8em;
+                       padding:0.4em;
+                       &:focus{
+                          height:8em;
+                          width:20em;
+                       }
+                  }
+                
+                
+              }
           }
-          &:last-child{
-            color:#3D3D3D;
-            padding-left:100px;
-          }
-        }
       }
-    }
-    .contactInput{
-      .contactInfo;
-      tr{
-        td{
-          
-          input{
-            background:transparent;
-            color:#000;
-            font-size:10px;
-          }
-          
-          
-        }
-      }
-    }
   }
   .mapContainer{
     position:absolute;

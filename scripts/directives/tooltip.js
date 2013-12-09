@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('employeeApp.directives')
-  .directive('tooltip', [function () {
+.directive('tooltip', [function () {
           
-      function getText(scope, attrs) {
-          switch (attrs.tooltip) {
-              case "price":
-                  return "Enter a price in the format of 100 or 123.45";
-                  break;
-              default:
-                  return scope.$eval(attrs.tooltip);
-                  break;
-          }
-      }
+	function getText(scope, attrs) {
+		switch (attrs.tooltip) {
+			case "price":
+				return "Enter a price in the format of 100 or 123.45";
+				break;
+			default:
+				return scope.$eval(attrs.tooltip);
+				break;
+		}
+	}
       
       return {
           restrict: 'A',

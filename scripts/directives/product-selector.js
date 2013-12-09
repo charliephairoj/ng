@@ -1,7 +1,6 @@
-'use strict';
 
 angular.module('employeeApp')
-    .directive('productSelector', ['Upholstery', 'Fabric', 'Table', '$rootScope', 'Notification', 'FileUploader',
+.directive('productSelector', ['Upholstery', 'Fabric', 'Table', '$rootScope', 'Notification', 'FileUploader',
     function (Upholstery, Fabric, Table, $rootScope, Notification, FileUploader) {
         return {
             templateUrl: 'views/templates/product-selector.html',
@@ -13,8 +12,7 @@ angular.module('employeeApp')
                 add: '&productSelectorAdd'
             },
             link: function postLink(scope, element, attrs) {
-            	
-                /*
+				/*
                  * Visibility Controll
                  * 
                  * This section controls whether the product selector 
@@ -27,24 +25,22 @@ angular.module('employeeApp')
                  * and an "onhide" function that is called once the selector is 
                  * hidden
                  */
-                scope.$watch('visible', function(val){
+                scope.$watch('visible', function (val) {
                     if(val){
-                        scope.modal.onhide = function(){
+                        scope.modal.onhide = function () {
                             if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
                                 scope.visible = false;
                             }else{
-                                $rootScope.$apply(function(){
+                                $rootScope.$apply(function () {
                                     scope.visible = false; 
                                 });
                             }
-                        }
+                        };
                         scope.modal.show();
                     }else{
                         scope.modal.hide();
                     }
-                });
-          		
-          		
+                });    
                 scope.fabricList = Fabric.query();
                 scope.tableList = Table.query();
                 scope.product = {};
@@ -64,53 +60,51 @@ angular.module('employeeApp')
                     var fd = new FormData();
                     fd.append('image', image);
                     //Upload the image
-                    console.log(scope.url);
                     jQuery.ajax(scope.url || "upload/images", {
-                       type:'POST',
-                       data:fd,
-                       processData:false,
-                       contentType:false,
-                       success: function(response){
-                           Notification.display('Image Uploaded');
-                           (callback || angular.noop)(response);
-                       }
-                    });
-                };
+						type:'POST',
+						data:fd,
+						processData:false,
+						contentType:false,
+						success: function(response){
+							Notification.display('Image Uploaded');
+							(callback || angular.noop)(response);
+						}
+					});
+                }
                 
-                function add(){
+                function add() {
                     var newProduct = angular.copy(scope.product);
                     scope.add({product:newProduct});
                 }
                 
                 scope.addImage = function (data) {
-                	console.log(data);
-                	scope.product.image = data;
-                }
+					scope.product.image = data;
+                };
                 
-                scope.addUpholstery = function(upholstery){
-                    if(upholstery){
+                scope.addUpholstery = function (upholstery) {
+                    if (upholstery) {
                         scope.product = upholstery;
                         scope.selection = 'quantity';  
-                    }else{
+                    } else {
                         throw new TypeError("Expecting an Upholstery.");
                     }
                     
                 };
                 
-                scope.addTable = function(table){
-                    if(table){
+                scope.addTable = function (table) {
+                    if (table) {
                         scope.product = table;
                         scope.selection = 'quantity';
-                    }else{
+                    } else {
                         throw new TypeError("Expecting a Table.");
                     }
                     
-                }
-                
+                };
+
                 scope.addCustomItem = function(item, image){
                     
-                    if(item){
-                    	/*
+                    if (item) { 
+						/*
                         var promise = FileUploader.upload(image, scope.url);
                         promise.then(function(response){
                             
@@ -118,22 +112,22 @@ angular.module('employeeApp')
                                             
                             
                         });*/
-	                    angular.extend(scope.product, item);
-	                    scope.product.is_custom = true;
-	                    scope.product.type = 'custom';
-	                    scope.selection = 'quantity';
-                    }else{
+						angular.extend(scope.product, item);
+						scope.product.is_custom = true;
+						scope.product.type = 'custom';
+						scope.selection = 'quantity';
+					} else {
                         throw new TypeError("Expecting a Custom Item and Image.");
                     }
-                }
+                };
                 
                 scope.setQuantity = function(quantity){
                     scope.product.quantity = quantity;
-                    if(scope.product.type.toLowerCase() == 'upholstery'){
+                    if (scope.product.type.toLowerCase() == 'upholstery') {
                         scope.selection = 'fabric';
-                    }else{
+                    } else {
                         scope.visible = false;
-                        scope.modal.hide(function(){
+                        scope.modal.hide(function () {
                             scope.reset();
                         });
                         var newProduct = angular.copy(scope.product);
@@ -141,9 +135,9 @@ angular.module('employeeApp')
                     }
                 };
                 
-                scope.setFabric = function(){
+                scope.setFabric = function () {
                     scope.visible = false;
-                    scope.modal.hide(function(){
+                    scope.modal.hide(function () {
                         scope.reset();
                     });
                     
@@ -151,7 +145,7 @@ angular.module('employeeApp')
                     scope.add({product:newProduct});
                 };
                 
-                scope.reset = function(){
+                scope.reset = function () {
                     scope.product = {};
                     scope.selection = 'upholstery';  
                 };

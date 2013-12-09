@@ -35,11 +35,15 @@
     				<a class="item" ng-href="#/order/purchase_order/{{po.id}}">
     					<span class="description">{{po.id}}</span>
 	    				<span class="customer">{{po.supplier.name}}</span>
-	    				<span class="status" ng-class="{acknowledged:ack.status == 'ACKNOWLEDGED', shipped:ack.status == 'SHIPPED'}">
+	    				<span class="status" 
+	    					ng-class="{ordered:po.status == 'Ordered',
+	    							   paid:po.status == 'Paid',
+	    							   received:po.status == 'Received'}">
 	    					{{po.status}}
 	    				</span>
 	    				<span class="items">{{po.items.length}} Items</span>
-	    				<span class="delivery-date">{{po.delivery_date | date: "MMM d, yyyy"}}</span>
+	    				<span class="order-date">Order Date: {{po.created | date:"MMMM d, yyyy"}}</span>
+	    				<span class="receive-date">Receive Date: {{po.receive_date  || "Awaiting Delivery" | date: "MMM d, yyyy"}}</span>
     				</a>
     			</li>
     		</ul>

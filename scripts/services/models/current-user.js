@@ -31,5 +31,5 @@ angular.module('employeeApp.services')
         };
         
         //return the user
-        return new User();
+        return User;
     }]);

@@ -1,9 +1,8 @@
-'use strict';
 
 angular.module('employeeApp')
-  .directive('dropOn', [function () {
+.directive('dropOn', [function () {
     function emptyStrFilter(element, index, array){
-        return (element != "");
+        return (element !== "");
     }
     /*
      * Function helps get the target object
@@ -48,7 +47,7 @@ angular.module('employeeApp')
         restrict:'A',
         replace:false,
         link: function(scope, element, attrs){
-            element.bind('drop', function(event){
+            element.bind('drop', function (event) {
                 preventPropagation(event);
                 element.removeClass('drag');
                 /*
@@ -56,19 +55,19 @@ angular.module('employeeApp')
                  * the data from the dragged 
                  * object to it
                  */
-                scope.$apply(function(){
+                scope.$apply(function () {
                     var target = getTarget(scope, attrs.dropOn);
                     angular.copy(getData(event), target);
                 });
                 
                 
-            }).bind('dragover', function(event){
+            }).bind('dragover', function (event) {
                 preventPropagation(event);
                 element.addClass('drag');
-            }).bind('dragleave', function(event){
+            }).bind('dragleave', function (event) {
                 preventPropagation(event);
                 element.removeClass('drag');
             });
         }
-    }
-  }]);
+    };
+}]);

@@ -3,7 +3,7 @@
 angular.module('employeeApp.services', ['ngResource']);
 angular.module('employeeApp.directives', []);
 angular.module('employeeApp.filters', []);
-angular.module('employeeApp', ['ngResource', 'ui', 'employeeApp.directives', 'employeeApp.filters',
+angular.module('employeeApp', ['ngRoute', 'ngResource', 'ui', 'employeeApp.directives', 'employeeApp.filters',
                                'employeeApp.services', 'ngGrid'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
