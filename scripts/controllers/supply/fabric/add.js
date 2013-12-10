@@ -1,8 +1,7 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyFabricAddCtrl', ['$scope', 'Supplier', 'Fabric', '$location', 'Notification', 
-  function ($scope, Supplier, Fabric, $location, Notification) {
+.controller('SupplyFabricAddCtrl', ['$scope', 'Supplier', 'Fabric', '$location', 'Notification', 
+function ($scope, Supplier, Fabric, $location, Notification) {
     $scope.supplierList = Supplier.query();
     $scope.fabric = new Fabric();
     
@@ -45,15 +44,15 @@ angular.module('employeeApp')
         $scope.addRemark = null;
         
         jQuery.ajax("fabric/image", {
-           type:'POST',
-           data:fd,
-           processData:false,
-           contentType:false,
-           success: function(responseData){
-               Notification.display('Image Updated');
-               angular.copy(responseData, $scope.fabric);
-               $scope.$apply();
-           }
+			type:'POST',
+			data:fd,
+			processData:false,
+			contentType:false,
+			success: function(responseData){
+				Notification.display('Image Updated');
+				angular.copy(responseData, $scope.fabric);
+				$scope.$apply();
+			}
         });
     };
-  }]);
+}]);

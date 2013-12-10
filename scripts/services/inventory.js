@@ -1,7 +1,6 @@
-'use strict';
 
 angular.module('employeeApp')
-  .factory('inventory', [function() {
+.factory('inventory', [function() {
     // Service logic
     // ...
 
@@ -9,8 +8,8 @@ angular.module('employeeApp')
 
     // Public API here
     return {
-      someMethod: function() {
-        return meaningOfLife;
-      }
+		someMethod: function() {
+			return meaningOfLife;
+		}
     };
-  }]);
+}]);

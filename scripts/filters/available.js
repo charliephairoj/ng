@@ -1,8 +1,7 @@
-'use strict';
 
 angular.module('employeeApp')
-  .filter('available', [function () {
-    return function (input) {
-      return 'available filter: ' + input;
-    };
-  }]);
+.filter('available', [function () {
+	return function (input) {
+		return 'available filter: ' + input;
+	};
+}]);

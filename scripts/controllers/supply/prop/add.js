@@ -1,16 +1,15 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', '$location', '$q',
-  function ($scope, Supplier, Supply, Notification, $location, $q) {
+.controller('SupplyPropAddCtrl', ['$scope', 'Supplier', 'Supply', 'Notification', '$location', '$q',
+function ($scope, Supplier, Supply, Notification, $location, $q) {
       
-      var deferred,
-          promise,
-          uploading = false;
+	var deferred,
+		promise,
+		uploading = false;
       
     $scope.supplierList = Supplier.query();
     $scope.prop = new Supply();
-    $scope.prop.type = "prop"
+    $scope.prop.type = "prop";
     //Tooltips
     $scope.supplierText = "Choose a Supplier for this Fabric";
     $scope.referenceText = "Enter the Supplier's Reference Number";
@@ -101,16 +100,16 @@ angular.module('employeeApp')
         uploading = true;
         
         jQuery.ajax("supply/image", {
-           type:'POST',
-           data:fd,
-           processData:false,
-           contentType:false,
-           success: function(response){
-               deferred.resolve(response);
-           },
-           error: function(){
-               deferred.reject();
-           }
-        });
-    };
-  }]);
+			type:'POST',
+			data:fd,
+			processData:false,
+			contentType:false,
+			success: function(response){
+				deferred.resolve(response);
+			},
+			error: function(){
+				deferred.reject();
+			}
+		});
+	};
+}]);

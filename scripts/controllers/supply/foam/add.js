@@ -1,8 +1,7 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyFoamAddCtrl', ['$scope', 'Foam', 'Supplier', '$location', 'Notificaiton',
-  function ($scope, Foam, Supplier, $location, Notification) {
+.controller('SupplyFoamAddCtrl', ['$scope', 'Foam', 'Supplier', '$location', 'Notificaiton',
+function ($scope, Foam, Supplier, $location, Notification) {
     $scope.supplierList = Supplier.query();
     $scope.foam = new Foam();
     //Methods
@@ -28,16 +27,16 @@ angular.module('employeeApp')
         $scope.addRemark = null;
         
         jQuery.ajax("supply/image", {
-           type:'POST',
-           data:fd,
-           processData:false,
-           contentType:false,
-           success: function(responseData){
-               Notification.display('Image Updated');
-               $scope.foam.image = $scope.foam.image || {};
-               angular.copy(responseData, $scope.foam.image);
-               $scope.$apply();
-           }
-        });
-    };
-  }]);
+			type:'POST',
+			data:fd,
+			processData:false,
+			contentType:false,
+			success: function(responseData){
+				Notification.display('Image Updated');
+				$scope.foam.image = $scope.foam.image || {};
+				angular.copy(responseData, $scope.foam.image);
+				$scope.$apply();
+			}
+		});
+	};
+}]);

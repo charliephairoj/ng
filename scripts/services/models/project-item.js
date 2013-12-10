@@ -1,6 +1,5 @@
-'use strict';
 
 angular.module('employeeApp')
-    .factory('ProjectItem', ['eaResource', function(eaResource) {
-        return eaResource('project/item/:id', {id:'@id'});   
-    }]);
+.factory('ProjectItem', ['eaResource', function(eaResource) {
+    return eaResource('project/item/:id', {id:'@id'});   
+}]);

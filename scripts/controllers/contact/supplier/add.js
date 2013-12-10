@@ -1,9 +1,8 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('ContactSupplierAddCtrl', function ($scope, Supplier, $location, Notification) {
+.controller('ContactSupplierAddCtrl', function ($scope, Supplier, $location, Notification) {
       
-      $scope.supplier = new Supplier();
+	$scope.supplier = new Supplier();
     //Mehtods
     
     //addS  contact to the supplier
@@ -23,25 +22,26 @@ angular.module('employeeApp')
         
     };
     
-    $scope.getLocation = function(){
-         var position = $scope.map.getPosition($scope.supplier.address, function(response){
-             angular.extend($scope.supplier.address, response);
-             $scope.map.setPosition({lat:response.lat,
-                                     lng:response.lng,
-                                     updateMarker: true});
-         });
-         
-    };
+    $scope.getLocation = function () {
+		var position = $scope.map.getPosition($scope.supplier.address, function (response) {
+			angular.extend($scope.supplier.address, response);
+			$scope.map.setPosition({
+				lat:response.lat,
+				lng:response.lng,
+				updateMarker: true
+			});
+		});
+	};
     
     //Method to save the supplier to the database
-    $scope.save = function(){
+    $scope.save = function () {
         
         if($scope.form.$valid){
             //Notify
             Notification.display('Saving Supplier...', false);
           
                     
-            $scope.supplier.$save(function(){
+            $scope.supplier.$save(function () {
                 //Notify
                 Notification.display('Supplier Saved');
                 $location.path('/contact/supplier');
@@ -52,4 +52,4 @@ angular.module('employeeApp')
         
         
     };
-  });
+});

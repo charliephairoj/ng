@@ -1,10 +1,9 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('AccountingTransactionViewCtrl', ['$scope', 'Transaction', function ($scope, Transaction) {
-    $scope.transactionList = Transaction.poll().query();
+.controller('AccountingTransactionViewCtrl', ['$scope', 'Transaction', function ($scope, Transaction) {
+	$scope.transactionList = Transaction.poll().query();
     
-    $scope.$on('$destroy', function(){
-        Transaction.stopPolling(); 
-    });
-  }]);
+	$scope.$on('$destroy', function(){
+		Transaction.stopPolling(); 
+	});
+}]);

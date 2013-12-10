@@ -1,12 +1,11 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('ProductModelDetailsCtrl', ['$scope', 'Model', '$routeParams', '$location', 'Notification', '$http',
-  function ($scope, Model, $routeParams, $location, Notification, $http) {
+.controller('ProductModelDetailsCtrl', ['$scope', 'Model', '$routeParams', '$location', 'Notification', '$http',
+function ($scope, Model, $routeParams, $location, Notification, $http) {
     $scope.model = Model.get({'id':$routeParams.id});
     
     //Uploads Profie Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         //display notification
         Notification.display('Uploading Model Image...', false);
         
@@ -19,33 +18,31 @@ angular.module('employeeApp')
         $scope.addRemark = null;
         
         jQuery.ajax("fabric/"+$scope.model.id+"/image", {
-           type:'POST',
-           data:fd,
-           processData:false,
-           contentType:false,
-           success: function(response){
-               Notification.display('Model Image Updated');
-               $scope.model.image =  $scope.model.image || {};
-               angular.copy(response, $scope.model.image);
-               $scope.model.$save();
-               $scope.imagePreviews = null;
-               $scope.images = null;
-               $scope.$apply();
-               console.log($scope);
-           }
-        });
-        
-         
-    };
+			type:'POST',
+			data:fd,
+			processData:false,
+			contentType:false,
+			success: function (response) {
+				Notification.display('Model Image Updated');
+				$scope.model.image =  $scope.model.image || {};
+				angular.copy(response, $scope.model.image);
+				$scope.model.$save();
+				$scope.imagePreviews = null;
+				$scope.images = null;
+				$scope.$apply();
+				console.log($scope);
+			}
+		});
+	};
     
     
     
-    $scope.remove = function(){
+    $scope.remove = function () {
         //Notify
         Notification.display('Deleting Model...');
         
         //Ajax call to delete
-        $scope.model.$delete(function(){
+        $scope.model.$delete(function () {
             //Notify
             Notification.display('Model Deleted');
             //Reroute to view page
@@ -54,15 +51,15 @@ angular.module('employeeApp')
         
     };
     
-    $scope.update = function(){
-        Notification.display('Saving Model...', false)
-        $scope.model.$update(function() {
-        	Notification.display('Model Updated');
+    $scope.update = function () {
+        Notification.display('Saving Model...', false);
+        $scope.model.$update(function () {
+			Notification.display('Model Updated');
         });
     };
     
-    $scope.$on('$destroy', function(){
+    $scope.$on('$destroy', function (){
         $scope.update();
     });
     
-  }]);
+}]);

@@ -1,4 +1,3 @@
-//'use strict';
 
 angular.module('employeeApp.services')
 .factory('scanner', ['$location', '$rootScope', function ($location, $rootScope) {

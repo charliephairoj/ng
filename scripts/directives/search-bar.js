@@ -2,13 +2,14 @@
 
 angular.module('employeeApp')
 .directive('searchBar', ['$compile', function ($compile) {
+	"use strict";
 	return {
 		restrict: 'EA',
 		scope: {
 			query:	'=ngModel'
 		},
 		link: function postLink(scope, element, attrs) {
-			var input;
+			var input = null;
 			var model = attrs.ngModel || 'query';
 			element.addClass('search-bar');
 			if (attrs.searchBarDate !== undefined) {
@@ -45,11 +46,18 @@ angular.module('employeeApp')
 				}
 			}
 			//Bind an action 
-			$(window).on('keydown', searchHandler);
+			$(window).on('keydown', function (evt) {
+				scope.$apply(function() {
+					searchHandler(evt);
+				});
+				
+			});
 
 			//Unbind when leaving the Page
 			scope.$on('$destroy', function () {
-				$(window).off('keydown', searchHandler); 
+				$(window).off('keydown', function (evt) {
+					searchHandler(evt);
+				}); 
 			});
 		}
 	};

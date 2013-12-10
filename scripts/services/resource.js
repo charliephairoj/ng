@@ -1,7 +1,6 @@
-'use strict';
-
+/* jshint ignore: start */
 angular.module('employeeApp.services')
-  .factory('ecResource', ['$storage', '$rootScope', '$http', '$q', '$parse', '$resource', function($storage, $rootScope, $http, $q, $parse, $resource) {
+.factory('ecResource', ['$storage', '$rootScope', '$http', '$q', '$parse', '$resource', function($storage, $rootScope, $http, $q, $parse, $resource) {
     function ResourceFactory(url, paramDefaults, actions){
          
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
@@ -227,4 +226,9 @@ angular.module('employeeApp.services')
             return Resource;
         }
         return ResourceFactory;
-  }]);
+}]);
+
+/* jshint ignore:end */
+
+
+

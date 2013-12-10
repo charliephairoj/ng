@@ -1,6 +1,5 @@
-'use strict';
 
 angular.module('employeeApp')
-    .controller('OrderShippingDeliveryCtrl', ['$scope', 'Delivery', function ($scope, Delivery) {
-        $scope.deliveryList = Delivery.query()
-    }]);
+.controller('OrderShippingDeliveryCtrl', ['$scope', 'Delivery', function ($scope, Delivery) {
+    $scope.deliveryList = Delivery.query();
+}]);

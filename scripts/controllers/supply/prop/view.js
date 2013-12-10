@@ -1,16 +1,15 @@
-'use strict';
 
 angular.module('employeeApp')
-  .controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification', '$location',
-  function ($scope, Supply, $filter, $q, Notification, $location) {
-    $scope.supplyList = Supply.poll().query({type:'prop'});
+.controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification', '$location',
+function ($scope, Supply, $filter, $q, Notification, $location) {
+    $scope.supplyList = Supply.query({type:'prop'});
     
     //Change page to add page
     $scope.add = function(){
         $scope.safeApply(function(){
             $location.path('/supply/prop/add');
         });
-     };
+	};
       
     $scope.upload = function(index, image){
      
@@ -26,18 +25,18 @@ angular.module('employeeApp')
         promise = deferred.promise;
         
         //Create promise events
-        promise.then(function(data){
+        promise.then(function (data) {
             /*The success fulfillment of the
              * promise will kick in the events:
              * -Show success notice
              * -update image property of prop
              */
-             Notification.display('Image Updated');
+			Notification.display('Image Updated');
             
             //Perform scope updates if
             //The scope still exists
             
-            $scope.safeApply(function(){
+			$scope.safeApply(function(){
                 resource.image = resource.image || {};
                 angular.copy(data, resource.image);
                 resource.$save(function(){
@@ -54,21 +53,16 @@ angular.module('employeeApp')
         //Append image and upload the form data
         fd.append('image', image);
         jQuery.ajax("supply/image", {
-           type:'POST',
-           data:fd,
-           processData:false,
-           contentType:false,
-           success: function(response){
-               deferred.resolve(response);
-           },
-           error: function(){
-               deferred.reject();
-           }
-        });
-    };
-    
-    $scope.$on('$destroy', function(){
-        Supply.stopPolling(); 
-    });
-    
-  }]);
+			type:'POST',
+			data:fd,
+			processData:false,
+			contentType:false,
+			success: function(response){
+				deferred.resolve(response);
+			},
+			error: function(){
+				deferred.reject();
+			}
+		});
+	};
+}]);
