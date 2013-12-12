@@ -87,16 +87,23 @@ angular.module('employeeApp')
     
     //Save the Customer to the database
     $scope.save = function () {
-        //system display
-        Notification.display("Saving customer...");
-        //POST requests
-        $scope.customer.$save(function () {
-            $scope.addCustomer = false;
-            $scope.customers.push(angular.copy($scope.customer));
-            $scope.customer = new Customer();
-        }, function () {
-            Notification.display("Unable to save customer", false);
-        });
+    	
+    	if ($scope.customerForm.$valid) {
+	        //system display
+	        Notification.display("Saving customer...", false);
+	        //POST requests
+	        $scope.customer.$save(function () {
+	        	Notification.display("Customer saved.");
+	            $scope.addCustomer = false;
+	            $scope.customers.push(angular.copy($scope.customer));
+	            $scope.customer = new Customer();
+	        }, function () {
+	            Notification.display("Unable to save customer", false);
+	        });
+        
+        } else {
+        	Notification.display("Missing information");
+        }
     };
     
    
