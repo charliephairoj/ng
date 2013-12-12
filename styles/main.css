@@ -8653,7 +8653,7 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: grey;
 }
 
 .viewCustomerPage .modal.add {
@@ -8724,7 +8724,7 @@ select {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: grey;
 }
 
 .viewCustomerPage .workspace .cell .details {
