@@ -51,19 +51,18 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
             $scope.password = {};
             $scope.showChangePassword = false;
         }).error(function(err){
-			console.log(err);
+			console.error(err);
 		});
     };
     
     $scope.updateGroup = function(group){
-        
         if(group.$checked){
-            if(indexById($scope.user.groups, group) == -1){
+            if($scope.user.groups.indexOfById(group.id) == -1){
                 $scope.user.groups.push(angular.copy(group));
             }
         }else{
-            var index = indexById($scope.user.groups, group);
-            if(index > -1){
+			var index = $scope.user.groups.indexOfById(group.id);
+            if (index != -1) {
                 $scope.user.groups.splice(index, 1); 
             }
         }

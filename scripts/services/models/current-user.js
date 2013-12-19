@@ -3,12 +3,19 @@ angular.module('employeeApp.services')
 .factory('CurrentUser', ['$http', function($http) {
 	//Create the initial object
 	function User() { 
-		console.log('ok');
+		//Declare flags and array holder for fns
+		this.ready = false;
+		this._onready = [];
+
+		//Get information about the current user
 		var promise = $http.get('/api/v1/current_user');
 		promise.then(function (response) {
-			angular.copy(response.data || {}, this);
+			angular.extend(this, response.data || {});
+			this.ready = true;
+			for (var i=0; i<this._onready.length; i++) {
+				this._onready[i](response.data);
+			}
 		}.bind(this));
-		//angular.copy(window.current_user||{}, this);
     }
     
     //checks if user has a permission
@@ -25,6 +32,15 @@ angular.module('employeeApp.services')
         return this.modules ? this.modules.indexOf(moduleStr) !== -1 ? true :false : false;
     };
     
+    Object.defineProperties(User.prototype, {
+		onready: {
+			set: function (fn) {
+				if (typeof(fn) == 'function') {
+					this._onready.push(fn);
+				}
+			}
+		}
+	});
     //return the user
     return User;
 }]);

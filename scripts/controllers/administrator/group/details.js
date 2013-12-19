@@ -72,7 +72,7 @@ function ($scope, Group, Permission, $routeParams, $location) {
         }
         
         $scope.group.$update(function (response) {
-            console.log(response);
+
         });
     };
     

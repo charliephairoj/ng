@@ -4,21 +4,22 @@ angular.module('employeeApp')
     $scope.customer =  Customer.get({'id':$routeParams.id}, function () {
         
         
-        try{
-            $scope.marker = $scope.map.createMarker({
+		if ($scope.customer.address.lat && $scope.customer.address.lng) {
+			$scope.marker = $scope.map.createMarker({
                 lat: $scope.customer.address.lat,
-                lng: $scope.customer.adress.lng
+                lng: $scope.customer.address.lng
             });
-        }catch(e){
+		} else if (!$scope.customer.address.user_defined_latlng) {
 			try {
-				var promise = Geocoder.geocode($scope.customer.addresses[0]);
+				var promise = Geocoder.geocode($scope.customer.address);
 				promise.then(function (results) {
 					updatePosition(results);
 				});
 			} catch(err) {
-				console.log(err);
-            }
-        }
+				console.warn(err);
+			}
+		}
+        
     }); 
     
     function updatePosition(results){
@@ -28,8 +29,10 @@ angular.module('employeeApp')
             $scope.marker = $scope.map.createMarker(results[0].geometry.location);
             $scope.marker.onchange = function (latLng) {
                 //Set address lat and lng
-                $scope.customer.address[0].lat = $scope.marker.lat;
-                $scope.customer.address[0].lng = $scope.marker.lng;
+                $scope.customer.address.lat = $scope.marker.lat;
+                $scope.customer.address.lng = $scope.marker.lng;
+                $scope.customer.address.user_defined_latlng = true;
+                $scope.customer.$update();
             };
         }
       

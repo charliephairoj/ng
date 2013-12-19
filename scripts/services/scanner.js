@@ -3,10 +3,10 @@ angular.module('employeeApp.services')
 .factory('scanner', ['$location', '$rootScope', function ($location, $rootScope) {
 		
 	var code = '';
-
     function Scanner() {
 		this._activeParse = false;
 		this._onscan = null;
+		
     }
     
     Scanner.prototype._check = function (evt, customFn) {

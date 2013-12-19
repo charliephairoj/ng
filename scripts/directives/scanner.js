@@ -4,8 +4,6 @@ angular.module('employeeApp')
 	var code = '';
 	function dispatch(code){
 		var codes = code.split('-');
-		console.log(code);
-		console.log(codes);
 		if (codes.length > 1) {
 			switch(codes[0]){
 				case 'A':

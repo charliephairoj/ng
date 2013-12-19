@@ -91,7 +91,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter) {
 				try{
 					window.open(response.pdf.url);
 				}catch(e){
-					console.log(e);
+					console.warn(e);
 				}
 				Notification.display('Purchase order created.');
 			}, function () {

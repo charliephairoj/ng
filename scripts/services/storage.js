@@ -101,10 +101,11 @@ angular.module('employeeApp.services')
             
             this.keys = [];
             this.storage.setItem(this.key, JSON.stringify(this.keys));
-            if(JSON.parse(this.storage.getItem(this.key)).length===0){
+            if (JSON.parse(this.storage.getItem(this.key)).length===0) {
                 return true;
-            }else
+            } else {
                 return false;
+			}
         };
         
         //Get a key

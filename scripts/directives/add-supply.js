@@ -78,7 +78,7 @@ angular.module('employeeApp.directives')
 						scope.visible = false;
 						scope.supply = new Supply();
 					}, function(reason){
-						console.log(reason);
+						console.error(reason);
 					});
 				} else {
 					Notification.display('Please fill out the form properly');

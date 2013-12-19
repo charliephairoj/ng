@@ -83,7 +83,6 @@ angular.module('employeeApp.services')
 		/*Disabled*/
 		//Get Length of collection
 		storage.__defineGetter__("length", function(){
-			console.log('test');
 			return 'ok';//Object.keys(this.collection).length; 
 		});
 		/*

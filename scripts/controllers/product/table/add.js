@@ -30,7 +30,6 @@ function ($scope, Table, Configuration, Model, Notification, $location) {
 			processData:false,
 			contentType:false,
 			success: function (responseData) {
-				console.log(responseData);
 				Notification.display('Image Uploaded');
 				$scope.table.image = $scope.table.image || {};
 				angular.copy(responseData, $scope.table.image);

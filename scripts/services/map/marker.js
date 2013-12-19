@@ -15,41 +15,48 @@ angular.module('employeeApp.services')
                     throw new TypeError("Is not an instance of google.maps.LatLng");
                 }
                 
-                this._marker = new google.maps.Marker({ 
+                this.prototype = new google.maps.Marker({ 
                     position: configs.position,
                     map: this._map,
                     draggable: true,
                     animation: google.maps.Animation.DROP
                 });
                 
-                google.maps.event.addListener(this._marker, 'dragend', function(e){
-                    (this.onchange || angular.noop)(e.latLng);
+                google.maps.event.addListener(this, 'dragend', function(e){
+                    (this.onchange || angular.noop)({
+						lat: this.lat, 
+						lng: this.lng
+                    });
                 }.bind(this));
             }
         }
         
         Object.defineProperties(Marker.prototype, {
             lat:{
-                get:function(){return this._marker.getPosition().lat() || null;}
+                get:function(){return this.getPosition().lat() || null;}
             },
             lng:{
-                get:function(){return this._marker.getPosition().lng() || null;}
+                get:function(){return this.getPosition().lng() || null;}
             }
         });
         
         Marker.prototype.setPosition = function(latLng){
             if(latLng instanceof google.maps.LatLng){
-                this._marker.setPosition(latLng);
+                this.setPosition(latLng);
             }
         };
         
         Marker.prototype.hide = function(){
-            this._marker.setMap(null);
+            this.setMap(null);
         };
         
         Marker.prototype.show = function(){
-            this._marker.setMap(this._map);
+            this.setMap(this._map);
         };
+        
+        Marker.prototype.focus = function () {
+			this.setCenter(this._marker.getPosition());
+		};
         
         return new Marker(configs);
     }

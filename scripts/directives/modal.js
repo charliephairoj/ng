@@ -69,7 +69,6 @@ angular.module('employeeApp.directives')
             
             if(attr.ngModel){
                 scope.$watch(attr.ngModel, function(value){
-                    console.log(value);
                     if(value){
                         show(scope, element);
                     }else{

@@ -35,7 +35,6 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader) {
             $scope.project.rooms.push(room);
         }, function (e) {
             $scope.flag = true; 
-            console.log(e);
         });
     };
     

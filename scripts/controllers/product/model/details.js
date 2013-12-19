@@ -30,7 +30,6 @@ function ($scope, Model, $routeParams, $location, Notification, $http) {
 				$scope.imagePreviews = null;
 				$scope.images = null;
 				$scope.$apply();
-				console.log($scope);
 			}
 		});
 	};

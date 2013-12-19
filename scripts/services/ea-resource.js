@@ -451,7 +451,9 @@ function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexe
                     }   
                     //Run success call back
                     success(response);
-                }.bind(this), function(e){console.log(e);});
+                }.bind(this), function(e){
+					
+                });
                 //return placeholder
                 
                 /*

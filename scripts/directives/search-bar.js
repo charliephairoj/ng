@@ -4,7 +4,7 @@ angular.module('employeeApp')
 .directive('searchBar', ['$compile', function ($compile) {
 	"use strict";
 	return {
-		restrict: 'EA',
+		restrict: 'A',
 		scope: {
 			query:	'=ngModel'
 		},
@@ -32,7 +32,6 @@ angular.module('employeeApp')
 			function searchHandler(evt) {
 				if ((evt.which == "70" && (evt.metaKey || evt.ctrlKey))) {
 					evt.preventDefault();
-
 					//Determine
 					if (element.hasClass('focus')) {
 						//Hide object and blur
@@ -45,19 +44,15 @@ angular.module('employeeApp')
 					}
 				}
 			}
+			
 			//Bind an action 
-			$(window).on('keydown', function (evt) {
-				scope.$apply(function() {
-					searchHandler(evt);
-				});
-				
-			});
+			$(window).on('keydown', searchHandler);
+			
+			
 
 			//Unbind when leaving the Page
 			scope.$on('$destroy', function () {
-				$(window).off('keydown', function (evt) {
-					searchHandler(evt);
-				}); 
+				$(window).off('keydown', searchHandler);    
 			});
 		}
 	};

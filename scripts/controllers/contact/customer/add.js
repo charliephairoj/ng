@@ -39,7 +39,7 @@ function ($scope, Customer, $location, Notification, Geocoder) {
 				$scope.customer.address.lng = $scope.marker.lng;
                   
 			}, function(status){
-				console.log(status);
+				console.error(status);
 			});
 		}
 	};

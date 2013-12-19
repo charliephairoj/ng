@@ -25,7 +25,6 @@ function ($scope, Fabric, $routeParams, $location, Notification, $http) {
 			success: function(responseData){
 				//display success mesage
 				Notification.display('Image Updated');
-				console.log(responseData);
 				$scope.fabric.image = {};
 				angular.copy(responseData, $scope.fabric.image);
 				$scope.fabric.$save();

@@ -3,11 +3,12 @@ angular.module('employeeApp.services', ['ngResource']);
 angular.module('employeeApp.directives', []);
 angular.module('employeeApp.filters', []);
 angular.module('employeeApp', ['ngRoute', 'ngResource', 'ui', 'employeeApp.directives', 'employeeApp.filters',
-                               'employeeApp.services', 'ngGrid'])
+                               'employeeApp.services', 'ngGrid', 'pascalprecht.translate'])
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	.when('/', {
-		templateUrl: 'views/main.html'
+		templateUrl: 'views/main.html',
+		controller: 'MainCtrl'
 	})
 	.when('/contact/customer/add', {
 		templateUrl: 'views/contact/customer/add.html',

@@ -247,7 +247,7 @@ angular.module('employeeApp.directives')
                     try{
 						scope.onLoad();
                     } catch (evt) {
-						console.log(evt);
+						console.warn(evt);
                     }
                     
                     scope.$apply();

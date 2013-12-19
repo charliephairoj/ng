@@ -2,7 +2,7 @@
 angular.module('employeeApp')
 .directive('imageDropTarget', ['$parse', function ($parse) {
     return {
-        restrict: 'EA',
+        restrict: 'A',
         replace:false,
         link: function ($scope, element, attrs) {
             
@@ -14,7 +14,6 @@ angular.module('employeeApp')
             var fileReader = new FileReader();
             
             fileReader.onload = function (evt) {
-                console.log(evt);
                 
                 var image = {
                     'url':evt.target.result

@@ -53,7 +53,7 @@ function ($scope, Acknowledgement, Customer, $filter, Notification) {
                     window.open(response.pdf.production);
                     angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
                 }, function (e) {
-                    console.log(e);
+                    console.error(e);
                     Notification.display('There an error in creating the Acknowledgement', false);
                 });
             }

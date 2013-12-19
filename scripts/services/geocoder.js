@@ -40,17 +40,11 @@ angular.module('employeeApp.services')
         return addrStr;
     }
     
-    var Geocoder = {};
     
-    Geocoder.init = function(){
-        var google = google || undefined;
-        if(google){
-            this.geocoder = new google.maps.Geocoder();
-        }else{
-            this.geocoder = {};
-        }
-        
-    };
+	function Geocoder() {
+		this.google = google;
+		this.geocoder = new google.maps.Geocoder();
+    }
     
     /*
     Object.defineProperties(Geocoder.prototype, {
@@ -74,8 +68,8 @@ angular.module('employeeApp.services')
             }
         }
     });*/
-    
-    Geocoder._getRegion = function(country){
+     
+    Geocoder.prototype._getRegion = function(country){
         switch(country.toLocaleLowerCase()){
             case "thailand":
                 return 'TH';
@@ -103,7 +97,7 @@ angular.module('employeeApp.services')
 	};
         
   
-	Geocoder._lookup = function(addr, callback, errback){
+	Geocoder.prototype._lookup = function(addr, callback, errback){
 		var addrStr = prepareAddress(addr);
 		this.geocoder.geocode( { 'address': addrStr, 'region': this._getRegion(addr.country)}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
@@ -115,7 +109,7 @@ angular.module('employeeApp.services')
 		});
     };
     
-    Geocoder.geocode = function(arg){
+    Geocoder.prototype.geocode = function(arg){
         if(angular.isObject(arg)) {
             var deferred = $q.defer();
             
@@ -134,7 +128,6 @@ angular.module('employeeApp.services')
         }
     };
     
-    Geocoder.init();
-    return Geocoder;
+    return new Geocoder();
     
 }]);
