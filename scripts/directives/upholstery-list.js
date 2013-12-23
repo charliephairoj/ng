@@ -11,7 +11,7 @@ angular.module('employeeApp')
 		link: function postLink(scope, element, attrs) {
 			var fetching = true,
 				currentSelection;
-			scope.currentIndex = 0;
+			//scope.currentIndex = 0;
 			
             /*
              * Initial fetching of the customers.
@@ -85,10 +85,11 @@ angular.module('employeeApp')
 				scope.onSelect({$upholstery:upholstery});
 			};
 			
+			/*
 			scope.$destroy(function () {
 				console.log('bye');
 				$(window).off('keydown', parseKeydown);
-			});
+			});*/
 		}
 	};
 }]);

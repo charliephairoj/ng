@@ -8,6 +8,7 @@
     color:#CCC;
     background-color:#313131;
     .container{
+        padding:0;
         bottom:0em;
         z-index:0;
         .search-bar{
@@ -30,6 +31,23 @@
                     letter-spacing:0.08em;
                     height:6em;
                     position:relative;
+                    
+                    .dimensions{
+                        position:absolute;
+                        left:80%;
+                        color:#CCC;
+                        
+                        tr{
+                            td{
+                                text-align:left;
+                                
+                                &:last-child{
+                                    padding-left:1em;
+                                }
+                            }
+                        }
+                        
+                    }
                     .image-container{
                         position:absolute;
                         top:0;
@@ -43,6 +61,8 @@
                             width:auto;
                             
                         }
+                        
+                        
                     }
                     
                 }
