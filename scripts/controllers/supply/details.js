@@ -1,15 +1,20 @@
 
 angular.module('employeeApp')
-.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply',
-function ($scope, $routeParams, Notification, Supply) {
+.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout',
+function ($scope, $routeParams, Notification, Supply, $timeout) {
 	
 	Notification.display('Retrieving supply...', false);
 	
+	/*
+	 * Vars
+	 */
 	$scope.showQuantity = false;
 	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
 		Notification.hide();	
 	});
 	
+	var updateLoopActive = false,
+		timeoutPromise;
 	var validWidth = ['m', 'yd', 'pc', 'pack', 'container', 'fabric'];
 	var validDepth = ['pc', 'pack', 'container'];
 	var validHeight = ['pack', 'pc'];
@@ -37,14 +42,32 @@ function ($scope, $routeParams, Notification, Supply) {
 	 * Update the supply
 	 * 
 	 * Sends a PUT request to the server with all the values
-	 * of the entire resource
+	 * of the entire resource. We implement this by watching the supply
+	 * object. 
+	 * 
+	 * We utilize a custom listener function because we must delete, 
+	 * all dynamically generated content from the server, such as 
+	 * last_modifed, and unique url, as this will cause a loop
+	 * when the updating begins
 	 */
-	$scope.update = function () {
-		Notification.display('Updating '+$scope.supply.description+'...', false);
-		$scope.supply.$update(function () {
-			Notification.display($scope.supply.description+' updated.');
-		});
-	};
+	$scope.$watch(function () {
+		var supply = angular.copy($scope.supply);
+		delete supply.last_modified;
+		delete supply.image;
+		delete supply.supplier;
+		return supply;
+	}, function (old, newVal) {
+		if (!updateLoopActive) {
+			updateLoopActive = true;
+			timeoutPromise = $timeout(function () {
+				Notification.display('Updating '+$scope.supply.description+'...', false);
+				$scope.supply.$update(function () {
+					updateLoopActive = false;
+					Notification.display($scope.supply.description+' updated.');
+				});
+			}, 5000);
+		}
+	}, true);
 	
 	/*
 	 * Add a quantity
@@ -92,6 +115,10 @@ function ($scope, $routeParams, Notification, Supply) {
 	};
 	
 	$scope.$on('$destroy', function () {
-		$scope.update();
+		$timeout.cancel(timeoutPromise);
+		Notification.display('Updating '+$scope.supply.description+'...', false);
+		$scope.supply.$update(function () {
+			Notification.display($scope.supply.description+' updated.');
+		});
 	});
 }]);

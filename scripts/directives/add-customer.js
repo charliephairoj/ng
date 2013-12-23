@@ -7,30 +7,20 @@ angular.module('employeeApp.directives')
 		restrict: 'A',
 		scope: {visible: '=addCustomer'},
 		link: function postLink(scope, element, attrs) {
-			//Controll the Visibility of the modal
 			
-			//If the value changes, then the watcher 
-			//will be trigger. if the value is positive 
-			//then the modal will fade in. If it is negative
-			//then the modal will fade out
-			scope.$watch('visible', function(val){
-                if(val){
-                    scope.modal.onhide = function(){
-                        if(scope.$$phase == "$digest" || scope.$$phase == "$apply"){
-                            scope.visible = false;
-                        }else{
-                            scope.$apply(function(){
-                                scope.visible = false; 
-                            });
-                        }
-                    };
-                    scope.modal.show();
-                }else{
-                    scope.modal.hide();
-                }
-            });
-            
             scope.customer = new Customer();
+            
+            /*
+             * List of tips
+             * 
+             * The tips are to be used with the tooltips
+             */
+            scope.firstNameTip = "Enter the customer's first name or name (required)";
+            scope.lastNameTip = "Enter the customer's last name if applicable";
+            scope.emailTip = "Enter a valid email address (required)";
+            scope.telTip = "Enter a valid phone number (required)";
+            scope.typeTip = "What type of customer is this? (required)";
+            scope.currencyTip = "What currency does this customer deal in? (required)";
             
             //Get the longitude and latitude of the customer's address
 			scope.getLocation = function (){

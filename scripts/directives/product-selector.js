@@ -12,46 +12,14 @@ angular.module('employeeApp')
                 add: '&productSelectorAdd'
             },
             link: function postLink(scope, element, attrs) {
-				/*
-                 * Visibility Controll
-                 * 
-                 * This section controls whether the product selector 
-                 * is visible or not. By watching the "visible" attribute,
-                 * which has two way binding with the controller, we can see
-                 * when the controller wants the selector to be displayed
-                 * 
-                 * If the selector is shown, and the background is click, the
-                 * attribute in the controller is changed via two way binding 
-                 * and an "onhide" function that is called once the selector is 
-                 * hidden
-                 */
-                scope.$watch('visible', function (val) {
-                    if(val){
-                        scope.modal.onhide = function () {
-                            if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
-                                scope.visible = false;
-                            }else{
-                                $rootScope.$apply(function () {
-                                    scope.visible = false; 
-                                });
-                            }
-                        };
-                        scope.modal.show();
-                    }else{
-                        scope.modal.hide();
-                    }
-                });    
+				
+                
+                
                 scope.fabricList = Fabric.query();
                 scope.tableList = Table.query();
                 scope.product = {};
                 
-               
-				
-				
-
-              
-                
-                function uploadImage(image, callback){
+				function uploadImage(image, callback){
                     //Display Notification
                     Notification.display('Uploading Image', false);
                     //Set the upload Target
@@ -127,21 +95,16 @@ angular.module('employeeApp')
                         scope.selection = 'fabric';
                     } else {
                         scope.visible = false;
-                        scope.modal.hide(function () {
-                            scope.reset();
-                        });
-                        var newProduct = angular.copy(scope.product);
+                        var newProduct = angular.copy(scope.product); 
+                        scope.reset();
                         scope.add({product:newProduct});
                     }
                 };
                 
                 scope.setFabric = function () {
                     scope.visible = false;
-                    scope.modal.hide(function () {
-                        scope.reset();
-                    });
-                    
                     var newProduct = angular.copy(scope.product);
+                    scope.reset();
                     scope.add({product:newProduct});
                 };
                 

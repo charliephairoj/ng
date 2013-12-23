@@ -27,7 +27,7 @@ function ($scope, Model, Configuration, Upholstery, Notification, $location) {
 		$scope.addLength = null;
 		$scope.addRemark = null;
         
-		jQuery.ajax("upholstery/image", {
+		jQuery.ajax("/api/v1/upholstery/image", {
 			type:'POST',
 			data:fd,
 			processData:false,

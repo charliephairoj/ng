@@ -186,7 +186,7 @@ angular.module('employeeApp.directives')
                                 </tr>\
                             </table>\
                         </div>\
-                        <div class="canvas-container" ng-show="cropper.image.loaded">\
+                        <div class="canvas-container" ng-class="{show:cropper.image.loaded}">\
                             <canvas class="cropper-canvas"></canvas>\
                         </div>\
                     </div>',
@@ -209,7 +209,7 @@ angular.module('employeeApp.directives')
             var scene;
             var image;
             var mousedown = false;
-           
+
             //Set Canvas to parent width and height
             canvas.width = canvasContainer.outerWidth();
             canvas.height = canvasContainer.outerHeight();
@@ -222,8 +222,10 @@ angular.module('employeeApp.directives')
                     //Display Notification
                     Notification.display('Image Rendered');
                     //Set canvas dimensions
-                    var height = canvasContainer.innerHeight();
-                    var width = canvasContainer.innerWidth();
+                    
+                   
+                    var height = canvasContainer.outerHeight();
+                    var width = canvasContainer.outerWidth();
                     var ratio1 = height/width;
                     var ratio2 = image.height/image.width;
                     if (ratio1 > ratio2) {

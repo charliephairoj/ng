@@ -2,8 +2,8 @@
 angular.module('employeeApp.services', ['ngResource']);
 angular.module('employeeApp.directives', []);
 angular.module('employeeApp.filters', []);
-angular.module('employeeApp', ['ngRoute', 'ngResource', 'ui', 'employeeApp.directives', 'employeeApp.filters',
-                               'employeeApp.services', 'ngGrid', 'pascalprecht.translate'])
+angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives', 'employeeApp.filters',
+                               'employeeApp.services', 'ui.date'])
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	.when('/', {

@@ -29,19 +29,66 @@ body{
 
 /*Model Section Form*/
 input{
-	border:1px solid grey;
-	border-radius:2px;
-	background-color: #FFFFFF;
-	font-size:14px;
-	padding-left: 6px;
-	padding: 3px;
+  	border:none;
+  	border-radius:2px;
+  	background-color: #282828;
+  	font-size:14px;
+  	padding-left: 6px;
+  	padding: 3px;
+  	outline:none;
+  	color:#CCC;
+	  &[disabled]{
+        background:#313131;
+    }
+    
+    &.price{
+        width:3em;
+        text-align:right;
+    }
+    
+    &.cost{
+        .price;
+    }
+	  .transition(all, 250ms, linear);
+  	&.ng-invalid{
+  	   background-color:#A54243;
+  	}
 }
+
+textarea{
+    outline:none;
+    background:#282828;
+    color:#CCC;
+    border:none;
+    border-radius:2px;
+    width:10em;
+    height:4em;
+    .transition(all, 250ms, ease);
+    &[disabled]{
+        background:#313131;
+    }
+    
+    &:focus{
+        width:20em;
+        height:10em;
+    }
+    
+    &.ng-invalid{
+        background-color:#A54243
+    }
+}
+
 
 select{
 	border:1px solid grey;
 	border-radius:2px;
 	background-color: #FFFFFF;
 	font-size: 14px;
+	outline:none;
+	.transition(all, 500ms, linear);
+	&.ng-invalid{
+	   background-color:#A54243;
+	}
 }
 
 /*

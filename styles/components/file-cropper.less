@@ -76,12 +76,17 @@
         right:1em;
         bottom:8em;
         border-bottom:1px solid #282828;
+        visibility:hidden;
         .cropper-canvas{
           position:absolute;
           top:0px;
           left:0;
           bottom:0;
           right:0;
+        }
+        
+        &.show{
+            visibility:visible;
         }
     }
     

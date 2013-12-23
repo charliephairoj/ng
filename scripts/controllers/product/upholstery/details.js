@@ -10,7 +10,7 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
         var fd = new FormData();
         
         fd.append('image', $scope.images[0]);
-		jQuery.ajax("upholstery/image", {
+		jQuery.ajax("/api/v1/upholstery/image", {
 			type:'POST',
 			data:fd,
 			cache:false,
@@ -20,7 +20,7 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 				Notification.display('Image Updated');
 				$scope.uphol.image = {};
 				angular.copy(responseData, $scope.uphol.image);
-				$scope.uphol.$save();
+				$scope.uphol.$update();
 				$scope.imagePreviews = null;
 				$scope.images = null;
 				$scope.$apply();

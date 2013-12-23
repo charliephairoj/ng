@@ -1,6 +1,6 @@
 
 angular.module('employeeApp')
-.directive('upholsteryList', ['Upholstery', 'Notification', function (Upholstery, Notification) {
+.directive('upholsteryList', ['Upholstery', 'Notification', '$filter', function (Upholstery, Notification, $filter) {
 	return {
 		templateUrl: 'views/templates/upholstery-list.html',
 		replace: true,
@@ -9,7 +9,10 @@ angular.module('employeeApp')
 			onSelect: '&'
 		},
 		link: function postLink(scope, element, attrs) {
-			var fetching = true;   
+			var fetching = true,
+				currentSelection;
+			scope.currentIndex = 0;
+			
             /*
              * Initial fetching of the customers.
              * 
@@ -25,7 +28,7 @@ angular.module('employeeApp')
 			*/
 			scope.$watch('query', function(q){
 				if (q) {
-					Upholstery.query({q:q, limit:10}, function (resources) {
+					Upholstery.query({q:q, limit:10 + (scope.query.length*2)}, function (resources) {
 						for (var i=0; i < resources.length; i++) {
 							if (scope.upholsteries.indexOfById(resources[i].id) == -1) {
 								scope.upholsteries.push(resources[i]);
@@ -55,10 +58,37 @@ angular.module('employeeApp')
 					});
 				}
 			};
-
+			/*
+			function parseKeydown(evt) {
+				console.log(evt);
+				if (evt.which === 38) {
+					if (scope.currentIndex != 0) {
+						scope.currentIndex -= 1;
+					}
+				} else if (evt.which === 40) {
+					if (scope.currentIndex < $filter('filter')(scope.upholsteries, scope.query)) {
+						scope.currentIndex += 1;
+					}
+				}
+			}
+			
+			$(window).keydown(parseKeydown);
+			
+			
+			scope.$watch('currentIndex', function (val) {
+				console.log(val);
+				currentSelection = $filter('filter')(scope.upholsteries, scope.query);
+				console.log(currentSelection);
+			}); 
+			*/
 			scope.select = function (upholstery) {
 				scope.onSelect({$upholstery:upholstery});
 			};
+			
+			scope.$destroy(function () {
+				console.log('bye');
+				$(window).off('keydown', parseKeydown);
+			});
 		}
 	};
 }]);

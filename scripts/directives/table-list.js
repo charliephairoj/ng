@@ -41,7 +41,7 @@ angular.module('employeeApp')
 			*/
 			scope.loadNext = function(){
 				if(!fetching) {
-					Notification.display("Loading more upholsteries...", false);
+					Notification.display("Loading more tables...", false);
 					fetching = true;
 					Table.query({
 						offset: scope.tables.length,
@@ -51,6 +51,9 @@ angular.module('employeeApp')
 						Notification.hide();
 						for (var i=0; i<resources.length; i++) {
 							scope.tables.push(resources[i]);
+						}
+						if (resources.length === 0) {
+							fetching = true;
 						}
 					});
 				}

@@ -5,7 +5,44 @@
 
 /*Directives-----------------------------------*/
 
+/*
+ * IMG
+ */
+img{
+    //top:0;
+    //left:0;
+    //position:absolute;
+    opacity:1;
+    .transition(opacity, 500ms, ease);
+    &.preloaded{
+        opacity:0;
+    }
+}
 
+/*
+ * INPUT
+ */
+/*
+input[type=text]{
+    outline:none;
+    background:#282828;
+    color:#CCC;
+    border:none;
+    border-radius:2px;
+    &[disabled]{
+        background:#313131;
+    }
+    
+    &.price{
+        width:3em;
+        text-align:right;
+    }
+    
+    &.cost{
+        .price;
+    }
+}
+*/
 
 
 

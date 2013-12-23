@@ -7,45 +7,7 @@ angular.module('employeeApp.directives')
 		restrict: 'EA',
 		scope: {'visible': '=addSupply'},
 		link: function postLink(scope, element, attrs) {
-			/*
-			 * Visibility Controll
-			 * 
-			 * This section controls whether the product selector 
-			 * is visible or not. By watching the "visible" attribute,
-			 * which has two way binding with the controller, we can see
-			 * when the controller wants the selector to be displayed
-			 * 
-			 * If the selector is shown, and the background is click, the
-			 * attribute in the controller is changed via two way binding 
-			 * and an "onhide" function that is called once the selector is 
-			 * hidden
-			 */
-			scope.$watch('visible', function (val)  {
-				if (val) {
-					scope.modal.onhide = function () {
-						if ($rootScope.$$phase == "$digest" || $rootScope.$$phase === "$apply") {
-							scope.visible = false;
-						} else {
-							$rootScope.$apply(function () {
-								scope.visible = false; 
-							});
-						}
-					};
-					
-					try {
-						scope.modal.show();
-					} catch (e) {
-
-					}
-
-				} else {
-					try {
-						scope.modal.hide();
-					} catch (e) {
-
-					}
-				}
-			});
+			
 			
 			scope.showWidth = function () {
 				var units = scope.supply.units;

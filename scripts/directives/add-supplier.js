@@ -7,37 +7,26 @@ angular.module('employeeApp.directives')
 		restrict: 'EA',
 		scope: {'visible': '=addSupplier'},
 		link: function postLink(scope, element, attrs) {
-			/*
-             * Visibility Controll
-             * 
-             * This section controls whether the product selector 
-             * is visible or not. By watching the "visible" attribute,
-             * which has two way binding with the controller, we can see
-             * when the controller wants the selector to be displayed
-             * 
-             * If the selector is shown, and the background is click, the
-             * attribute in the controller is changed via two way binding 
-             * and an "onhide" function that is called once the selector is 
-             * hidden
-             */
-            scope.$watch('visible', function(val){
-                if(val){
-                    scope.modal.onhide = function(){
-                        if($rootScope.$$phase == "$digest" || $rootScope.$$phase == "$apply"){
-                            scope.visible = false;
-                        }else{
-                            $rootScope.$apply(function(){
-                                scope.visible = false; 
-                            });
-                        }
-                    };
-                    scope.modal.show();
-                }else{
-                    scope.modal.hide();
-                }
-            });
+			
             scope.supplier = new Supplier();
 			
+			/*
+			 * Tips for the form
+			 * 
+			 * A list of tooltip texts for help the user navigate the form
+			 */
+			scope.nameTip = "What is the supplier's name (required)";
+			scope.thaiNameTip = "Enter the supplier's name in Thai";
+			scope.emailTip = "Enter a valid email address (required)";
+            scope.telTip = "Enter a valid phone number (required)";
+            scope.currencyTip = "What currency does this supplier deal in? (required)";
+            scope.discountTip = "What discount do we get? (required)";
+            scope.termsTip = "How many days of credit do we get? (required)";
+            scope.addrTip = "What is the supplier's address (required)";
+            scope.cityTip = "What city is the supplier in? (required)";
+            scope.territoryTip = "What chaengwat/territory/state is the supplier in? (required)";
+            scope.countryTip = "What country is the supplier in? (requied)";
+            scope.zipcodeTip = "What zipcode is the supplier in? (required)";
 			scope.add = function(){
 				if (scope.form.$valid) {
 					Notification.display('Adding supplier...', false);

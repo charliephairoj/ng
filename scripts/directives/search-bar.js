@@ -19,8 +19,11 @@ angular.module('employeeApp')
 				input = angular.element('<input size="40" placeholder="Search" ng-model="query" />');
 			}
 			
+			var clearButton = angular.element("<span class='close-button'>&times;</span>");
+			
 			$compile(input)(scope);
 			element.append(input);
+			element.append(clearButton);
 	
 			/*
 			* The handler will detect if ctrl/cmd+F 
@@ -33,22 +36,31 @@ angular.module('employeeApp')
 				if ((evt.which == "70" && (evt.metaKey || evt.ctrlKey))) {
 					evt.preventDefault();
 					//Determine
-					if (element.hasClass('focus')) {
-						//Hide object and blur
-						input.blur();
-						element.removeClass('focus');
-					} else {
-						//Show and focus
-						input.focus();
-						element.addClass('focus');   
-					}
+					scope.$apply(function () {
+						if (element.hasClass('focus')) {
+							//Hide object and blur
+							input.blur();
+							element.removeClass('focus');
+						} else {
+							//Show and focus
+							input.focus();
+							element.addClass('focus');   
+						}
+					});
 				}
 			}
 			
 			//Bind an action 
 			$(window).on('keydown', searchHandler);
 			
-			
+			/*
+			 * Clear Button
+			 */
+			clearButton.click(function () {
+				scope.$apply(function () {
+					scope.query = '';
+				});
+			});
 
 			//Unbind when leaving the Page
 			scope.$on('$destroy', function () {
