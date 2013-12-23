@@ -85,10 +85,12 @@ angular.module('employeeApp')
 				scope.onSelect({$upholstery:upholstery});
 			};
 			
+			/*
 			scope.$destroy(function () {
 				console.log('bye');
 				$(window).off('keydown', parseKeydown);
 			});
+			*/
 		}
 	};
 }]);
