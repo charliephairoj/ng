@@ -89,7 +89,9 @@ angular.module('employeeApp')
 			scope.$destroy(function () {
 				console.log('bye');
 				$(window).off('keydown', parseKeydown);
-			});*/
+
+			});
+			*/
 		}
 	};
 }]);
