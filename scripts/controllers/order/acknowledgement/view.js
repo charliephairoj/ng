@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderAcknowledgementViewCtrl', ['$scope', 'Acknowledgement', 'Notification', '$location', '$filter',
-function ($scope, Acknowledgement, Notification, $location, $filter) {
+.controller('OrderAcknowledgementViewCtrl', ['$scope', 'Acknowledgement', 'Notification', '$location', '$filter', 'KeyboardNavigation',
+function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNavigation) {
 	
 	
 	/*
@@ -9,7 +9,9 @@ function ($scope, Acknowledgement, Notification, $location, $filter) {
 	 * 
 	 * -fetching: this is a switch to see if there is currently a call being made
 	 */
-	var fetching = true;
+	var fetching = true,
+		index = 0,
+		currentSelection;
 	//Display Program Notification
 	Notification.display('Loading Acknowledgements...', false);
 
@@ -17,6 +19,7 @@ function ($scope, Acknowledgement, Notification, $location, $filter) {
 	$scope.acknowledgements = Acknowledgement.query({limit:20}, function (e) {
 		Notification.hide();
 		fetching = false;
+		changeSelection(index);
 	});
 
 	/*
@@ -33,6 +36,9 @@ function ($scope, Acknowledgement, Notification, $location, $filter) {
 						$scope.acknowledgements.push(resources[i]);
 					}
 				}
+				index = 0;
+				changeSelection(index);
+				
 			});
 		}
 	});
@@ -54,4 +60,65 @@ function ($scope, Acknowledgement, Notification, $location, $filter) {
 			});
 		}
 	};
+	
+	function filter(array) {
+		return $filter('filter')(array, $scope.query);
+	}
+			
+	function changeSelection(i) {
+				
+		$scope.safeApply(function () {
+			if (currentSelection) {
+				currentSelection.$selected = false;
+			}
+			
+			currentSelection = filter($scope.acknowledgements)[i];
+			
+			if (currentSelection) {
+				currentSelection.$selected = true;
+			}
+		});
+	
+		var selection = $('.item.selected');
+		var container = selection.parents('.outer-container');
+		var scrollTop = container.scrollTop();
+		var cHeight = container.innerHeight();
+		
+		
+		if (scrollTop > (selection.outerHeight() * i)) {
+			container.scrollTop(selection.outerHeight() * i);
+		} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+			container.scrollTop(selection.outerHeight() * i);
+		}
+				
+	}
+	
+	var keyboardNav = new KeyboardNavigation();
+			
+	keyboardNav.ondown = function () {
+		if (index < filter($scope.acknowledgements).length - 1) {
+			index += 1;
+			changeSelection(index);
+		}
+	}
+	
+	keyboardNav.onup = function () {
+		if (index != 0) {
+			index -= 1;
+			changeSelection(index);
+		}
+	}
+	
+	keyboardNav.onenter = function () {
+		$scope.safeApply(function () {
+			$location.path('/order/acknowledgement/'+currentSelection.id);
+		});
+	}
+	
+	keyboardNav.enable();
+	
+	$scope.$on('$destroy', function () {
+		keyboardNav.disable();
+	});
+	
 }]);

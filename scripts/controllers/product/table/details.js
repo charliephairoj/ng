@@ -11,7 +11,7 @@ function ($scope, Table, $routeParams, Notification, $location) {
 		var fd = new FormData();
         
 		fd.append('image', $scope.images[0]);
-		jQuery.ajax("upholstery/image", {
+		jQuery.ajax("/api/v1/upholstery/image", {
 			type:'POST',
 			data:fd,
 			cache:false,

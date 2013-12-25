@@ -1,6 +1,7 @@
 
 angular.module('employeeApp')
-.directive('customerList', ['Customer', 'Notification', '$parse', function (Customer, Notification, $parse) {
+.directive('customerList', ['Customer', 'Notification', 'KeyboardNavigation', '$rootScope', '$filter',
+function (Customer, Notification, KeyboardNavigation, $rootScope, $filter) {
 	return {
 		templateUrl: 'views/templates/customer-list.html',
 		replace: true,
@@ -11,8 +12,8 @@ angular.module('employeeApp')
 		},
 		link: function postLink(scope, element, attrs) {
 			var fetching = true,
-				currentSelection;
-			scope.currentIndex = 0;
+				currentSelection,
+				index = 0;
 			
 			/*
 			* Initial fetching of the customers.
@@ -22,6 +23,7 @@ angular.module('employeeApp')
 			*/
 			scope.customers = Customer.query({limit:20}, function (response) {
 				fetching = false;
+				changeSelection(index);
 			});
 			
 			/*
@@ -35,6 +37,8 @@ angular.module('employeeApp')
 								scope.customers.push(resources[i]);
 							}
 						}
+						index = 0;
+						changeSelection(index);
 					});
 				}
 			});
@@ -66,21 +70,71 @@ angular.module('employeeApp')
 				scope.onSelect({'customer': customer});
 			};
 			
-			/*
-			function parseKeydown(evt) {
-				console.log(evt);
-				if (evt.which === 38) {
-					scope.currentIndex -= 1;
-				} else if (evt.which === 40) {
-					scope.currentIndex += 1;
+			function filter(array) {
+				return $filter('orderBy')($filter('filter')(scope.customers, scope.query), 'name');
+			}
+			function changeSelection(i) {
+				
+				$rootScope.safeApply(function () {
+					if (currentSelection) {
+						currentSelection.$selected = false;
+					}
+					
+					currentSelection = filter(scope.customers)[i];
+					
+					if (currentSelection) {
+						currentSelection.$selected = true;
+					}
+				});
+			
+				var selection = $('.customer.selected');
+				var container = selection.parents('.inner-container');
+				var scrollTop = container.scrollTop();
+				var cHeight = container.innerHeight();
+				
+				
+				if (scrollTop > (selection.outerHeight() * i)) {
+					container.scrollTop(selection.outerHeight() * i);
+				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+					container.scrollTop(selection.outerHeight() * i);
+				}
+				
+			}
+			
+			var keyboardNav = new KeyboardNavigation();
+			
+			keyboardNav.ondown = function () {
+				if (index < filter(scope.customers).length - 1) {
+					index += 1;
+					changeSelection(index);
 				}
 			}
 			
-			scope.$watch('currentIndex', function (val) {
-				console.log(val);
+			keyboardNav.onup = function () {
+				if (index != 0) {
+					index -= 1;
+					changeSelection(index);
+				}
+			}
+			
+			keyboardNav.onenter = function () {
+				$rootScope.safeApply(function () {
+					scope.select(currentSelection);
+				});
+			}
+			
+			scope.$watch('visible', function (val) {
+				if (val) {
+					keyboardNav.enable();
+				} else {
+					keyboardNav.disable();
+				}
 			});
-			*/
-			$(window).keydown(parseKeydown);
+			
+			scope.$on('$destroy', function () {
+				keyboardNav.disable();
+			});
+			
 		}
     };
 }]);

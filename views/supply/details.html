@@ -151,6 +151,10 @@
                     <td>{{supply.quantity}} {{supply.units}}</td>
                 </tr> 
                 <tr>
+                    <td><label>Admin Only</label></td>
+                    <td><input type="checkbox" ng-model="supply.admin_only" ng-change="update()" /></td>
+                </tr> 
+                <tr>
                     <td><label>Notes</label></td>
                     <td><textarea ng-model="supply.notes"></textarea></td>
                 </tr> 

@@ -9,7 +9,7 @@ data-ng-switch on="selection" data-ng-init="selection='upholstery'">
     </div>
     
     <div class="details upholstery" data-ng-switch-default>
-    	<div upholstery-list on-select="addUpholstery($upholstery)"></div>
+    	<div upholstery-list on-select="addUpholstery($upholstery)" visible="visible"></div>
     	<!--
         <div data-search-bar data-ng-model="upholsteryQuery"></div>
         <div class="container" on-scroll-end="loadMoreUpholstery()">
@@ -28,7 +28,7 @@ data-ng-switch on="selection" data-ng-init="selection='upholstery'">
     </div>
     
     <div class="details upholstery" data-ng-switch-when="table">
-    	<div table-list on-select="addTable($table)"></div>
+    	<div table-list on-select="addTable($table)" visible="visible"></div>
     	<!--
         <div data-search-bar data-ng-model="tableQuery"></div>
         <div class="container"  on-scroll-end="loadMoreTable()">
@@ -71,7 +71,7 @@ data-ng-switch on="selection" data-ng-init="selection='upholstery'">
                     Quantity: 
                 </td>
                 <td>
-                    <input ng-model="quantity" required ng-pattern="/^\d+$/" />
+                    <input ng-model="quantity" required ng-pattern="/^\d+$/" autofocus />
                 </td>
             </tr>
         </table>
