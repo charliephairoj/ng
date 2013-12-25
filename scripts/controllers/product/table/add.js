@@ -34,6 +34,7 @@ function ($scope, Table, Configuration, Model, Notification, $location) {
 				$scope.table.image = $scope.table.image || {};
 				angular.copy(responseData, $scope.table.image);
 				$scope.$apply();
+				$scope.table.$update();
 			}
 		});
 	};

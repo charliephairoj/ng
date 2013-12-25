@@ -31,7 +31,7 @@ function ($scope, Model, Notification, $location) {
 		$scope.addLength = null;
 		$scope.addRemark = null;
 
-		jQuery.ajax("model/image", {
+		jQuery.ajax("/api/v1/model/image", {
 			type:'POST',
 			data:fd,
 			processData:false,
@@ -40,6 +40,7 @@ function ($scope, Model, Notification, $location) {
 				Notification.display('Image Uploaded');
 				$scope.model.image = $scope.model.image || {};
 				angular.copy(responseData, $scope.model.image);
+				$scope.$update();
 				$scope.$apply();
 			}
 		});

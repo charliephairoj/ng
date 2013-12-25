@@ -20,8 +20,8 @@ function ($scope, Table, $routeParams, Notification, $location) {
             success: function (responseData) {
 				Notification.display('Image Updated');
                 $scope.table.image = {};
-                angular.copy(responseData, $scope.uphol.image);
-                $scope.table.$save();
+                angular.copy(responseData, $scope.table.image);
+                $scope.table.$update();
                 $scope.imagePreviews = null;
                 $scope.images = null;
                 $scope.$apply();
