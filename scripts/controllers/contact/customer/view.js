@@ -1,6 +1,6 @@
 
 angular.module('employeeApp')
-.controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location, Geocoder, $filter) {
+.controller('ContactCustomerViewCtrl', function ($scope, Customer, Notification, $location, $filter) {
 	
 	var fetching = false;
     //Display system notification

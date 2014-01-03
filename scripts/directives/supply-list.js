@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp')
 .directive('supplyList', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope',
@@ -23,10 +22,8 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 			* We will turn the fetching flag to false
 			* once we received the results
 			*/
-			console.log(scope.supplier);
 			if (attrs.supplier) {
 				scope.$watch('supplier', function (val) {
-					console.log(val);
 					if (val) {
 						scope.supplies = Supply.query({supplier_id:val.id, limit:20}, function (response) {
 							fetching = false;
@@ -46,7 +43,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Supply.query({q:q, limit:5}, function(resources) {
+					Supply.query({q:q, limit:10+(q.length * 2)}, function(resources) {
 						for (var i=0; i < resources.length; i++) {
 							if (scope.supplies.indexOfById(resources[i].id) == -1) {
 								scope.supplies.push(resources[i]);
@@ -57,6 +54,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 					});
 				}
 			});
+			
 			/*
 			 * Loads the next set of supplies if there is no fetching
 			 * currently running
@@ -65,7 +63,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 				if (!fetching) {
 					Notification.display("Loading more supplies...", false);
 					fetching = true;
-					Supplier.query({
+					Supply.query({
 						offset: scope.supplies.length,
 						limit: 50
 					}, function (resources) {
@@ -123,20 +121,20 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 					index += 1;
 					changeSelection(index);
 				}
-			}
+			};
 			
 			keyboardNav.onup = function () {
-				if (index != 0) {
+				if (index !== 0) {
 					index -= 1;
 					changeSelection(index);
 				}
-			}
+			};
 			
 			keyboardNav.onenter = function () {
 				$rootScope.safeApply(function () {
 					scope.select(currentSelection);
 				});
-			}
+			};
 			
 			scope.$watch('visible', function (val) {
 				if (val) {

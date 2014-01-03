@@ -100,20 +100,20 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 			index += 1;
 			changeSelection(index);
 		}
-	}
+	};
 	
 	keyboardNav.onup = function () {
-		if (index != 0) {
+		if (index !== 0) {
 			index -= 1;
 			changeSelection(index);
 		}
-	}
+	};
 	
 	keyboardNav.onenter = function () {
 		$scope.safeApply(function () {
 			$location.path('/order/acknowledgement/'+currentSelection.id);
 		});
-	}
+	};
 	
 	keyboardNav.enable();
 	

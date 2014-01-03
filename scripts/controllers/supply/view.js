@@ -99,20 +99,20 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 			index += 1;
 			changeSelection(index);
 		}
-	}
+	};
 	
 	keyboardNav.onup = function () {
-		if (index != 0) {
+		if (index !== 0) {
 			index -= 1;
 			changeSelection(index);
 		}
-	}
+	};
 	
 	keyboardNav.onenter = function () {
 		$rootScope.safeApply(function () {
 			$location.path('/supply/'+currentSelection.id);
 		});
-	}
+	};
 	
 	keyboardNav.enable();
 	

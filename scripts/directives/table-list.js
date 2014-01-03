@@ -109,20 +109,20 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 					index += 1;
 					changeSelection(index);
 				}
-			}
+			};
 			
 			keyboardNav.onup = function () {
-				if (index != 0) {
+				if (index !== 0) {
 					index -= 1;
 					changeSelection(index);
 				}
-			}
+			};
 			
 			keyboardNav.onenter = function () {
 				$rootScope.safeApply(function () {
 					scope.select(currentSelection);
 				});
-			}
+			};
 			
 			keyboardNav.enable();
 			

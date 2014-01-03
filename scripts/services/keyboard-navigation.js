@@ -1,18 +1,18 @@
-'use strict';
 
 angular.module('employeeApp.services')
-.factory('KeyboardNavigation',[function KeyboardNavigation() {
+.factory('KeyboardNavigation', ['$rootScope', function KeyboardNavigation($rootScope) {
 	function KeyboardNavigationFactory(configs) {
 		
 		var currentIndex = 0,
 			enabled = false,
-			configs = configs || {},
-			scope = configs.scope,
+			scope = configs ? configs.scope ? configs.scope  : $rootScope.$new() : $rootScope.$new(),
 			onleft,
 			onright, 
 			onup,
 			ondown,
 			onenter;
+			
+		configs = configs || {};
 			
 		function changeIndex(valInc){
 			if (configs.array) {
@@ -69,10 +69,11 @@ angular.module('employeeApp.services')
 		
 		KeyboardNav.prototype.disable = function () {
 			disable();
-		}
+		};
+		
 		KeyboardNav.prototype.enable = function () {
 			enable();
-		}
+		};
 		
 		Object.defineProperties(KeyboardNav.prototype, {
 			onup: {
@@ -105,5 +106,5 @@ angular.module('employeeApp.services')
 		return new KeyboardNav();
 	}
 	
-	return KeyboardNavigationFactory
+	return KeyboardNavigationFactory;
 }]);
