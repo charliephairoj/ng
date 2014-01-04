@@ -1,12 +1,14 @@
 
 angular.module('employeeApp')
-.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'Supplier',
-function ($scope, Supply, Notification, $filter, Supplier) {
+.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location',
+function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location) {
 
 	/*
 	* Vars and flags
 	*/
-	var fetching = true;
+	var fetching = true,
+		index = 0,
+		currentSelection;
 
 	//system message
 	Notification.display('Loading supplies...', false);
@@ -15,6 +17,7 @@ function ($scope, Supply, Notification, $filter, Supplier) {
 	$scope.supplies = Supply.query(function(){
 		fetching = false;
 		Notification.hide();
+		changeSelection(index);
 	});
 
 	/*
@@ -32,6 +35,8 @@ function ($scope, Supply, Notification, $filter, Supplier) {
 						$scope.supplies.push(resources[i]);
 					}
 				}
+				index = 0;
+				changeSelection(index);
 			});
 		}
 	});
@@ -54,6 +59,67 @@ function ($scope, Supply, Notification, $filter, Supplier) {
 			});
 		}
 	};
+	
+	function filter(array) {
+		return $filter('filter')($scope.supplies, $scope.query);
+	}
+			
+	function changeSelection(i) {
+				
+		$rootScope.safeApply(function () {
+			if (currentSelection) {
+				currentSelection.$selected = false;
+			}
+			
+			currentSelection = filter($scope.supplies)[i];
+			
+			if (currentSelection) {
+				currentSelection.$selected = true;
+			}
+		});
+	
+		var selection = $('.item.selected');
+		var container = selection.parents('.outer-container');
+		var scrollTop = container.scrollTop();
+		var cHeight = container.innerHeight();
+		
+		
+		if (scrollTop > (selection.outerHeight() * i)) {
+			container.scrollTop(selection.outerHeight() * i);
+		} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+			container.scrollTop(selection.outerHeight() * i);
+		}
+				
+	}
+	
+	var keyboardNav = new KeyboardNavigation();
+			
+	keyboardNav.ondown = function () {
+		if (index < filter($scope.supplies).length - 1) {
+			index += 1;
+			changeSelection(index);
+		}
+	};
+	
+	keyboardNav.onup = function () {
+		if (index !== 0) {
+			index -= 1;
+			changeSelection(index);
+		}
+	};
+	
+	keyboardNav.onenter = function () {
+		$rootScope.safeApply(function () {
+			$location.path('/supply/'+currentSelection.id);
+		});
+	};
+	
+	keyboardNav.enable();
+	
+	$scope.$on('$destroy', function () {
+		keyboardNav.disable();
+	});
+	
 }]);
 
 

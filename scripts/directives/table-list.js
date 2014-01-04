@@ -1,15 +1,19 @@
 
 angular.module('employeeApp')
-.directive('tableList', ['Table', 'Notification', function (Table, Notification) {
+.directive('tableList', ['Table', 'Notification', 'KeyboardNavigation', '$rootScope', '$filter',
+function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 	return {
 		templateUrl: 'views/templates/table-list.html',
 		replace: true,
 		restrict: 'A',
 		scope: {
-			onSelect: '&'
+			onSelect: '&',
+			visible: '='
 		},
 		link: function postLink(scope, element, attrs) {
-			var fetching = true;
+			var fetching = true,
+				currentSelection,
+				index = 0;
             
             /*
              * Initial fetching of the customers.
@@ -19,6 +23,7 @@ angular.module('employeeApp')
              */
 			scope.tables = Table.query({limit:20}, function (response) {
 				fetching = false;
+				changeSelection(index);
 			});
 			/*
 			 * Search
@@ -31,6 +36,8 @@ angular.module('employeeApp')
 								scope.tables.push(resources[i]);
 							}
 						}
+						index = 0;
+						changeSelection(index);
 					});
 				}
 			});
@@ -62,6 +69,76 @@ angular.module('employeeApp')
 			scope.select = function (table) {
 				scope.onSelect({$table:table});
 			};
+			
+			function changeSelection(i) {
+				
+				$rootScope.safeApply(function () {
+					if (currentSelection) {
+						currentSelection.$selected = false;
+					}
+					
+					currentSelection = $filter('filter')(scope.tables, scope.query)[i];
+					
+					if (currentSelection) {
+						currentSelection.$selected = true;
+					}
+				});
+			
+				var selection = $('.table.selected');
+				var container = selection.parents('.inner-container');
+				var scrollTop = container.scrollTop();
+				var cHeight = container.innerHeight();
+				
+				
+				if (scrollTop > (selection.outerHeight() * i)) {
+					container.scrollTop(selection.outerHeight() * i);
+				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+					container.scrollTop(selection.outerHeight() * i);
+				}
+				
+			}
+			
+			scope.select = function (table) {
+				scope.onSelect({$table:table});
+			};
+			
+			var keyboardNav = new KeyboardNavigation();
+			
+			keyboardNav.ondown = function () {
+				if (index < $filter('filter')(scope.tables, scope.query).length - 1) {
+					index += 1;
+					changeSelection(index);
+				}
+			};
+			
+			keyboardNav.onup = function () {
+				if (index !== 0) {
+					index -= 1;
+					changeSelection(index);
+				}
+			};
+			
+			keyboardNav.onenter = function () {
+				$rootScope.safeApply(function () {
+					scope.select(currentSelection);
+				});
+			};
+			
+			keyboardNav.enable();
+			
+			scope.$watch('visible', function (val){
+				console.log(val);
+				if (val) {
+					keyboardNav.enable();
+				} else{
+					keyboardNav.disable();
+				}
+			});
+			
+			
+			scope.$on('$destroy', function () {
+				keyboardNav.disable();
+			});
 		}
 	};
 }]);

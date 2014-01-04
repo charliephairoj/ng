@@ -60,12 +60,16 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
    
     
     $rootScope.safeApply = function(fn){
-        if (!this.$$phase) {
-            this.$apply(fn);
-        } else {
-            this.$eval(fn);
-        }
+		var phase = this.$root.$$phase;
+		if (phase == '$apply' || phase == '$digest') {
+			if(fn && (typeof(fn) === 'function')) {
+				fn();
+			}
+		} else {
+			this.$apply(fn);
+		}
     };
+    
     
     /*
      * Set values and objects that are used throughout

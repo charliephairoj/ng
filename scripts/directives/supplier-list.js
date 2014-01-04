@@ -1,75 +1,78 @@
 
 angular.module('employeeApp')
-.directive('upholsteryList', ['Upholstery', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope',
-function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
+.directive('supplierList', ['Supplier', 'Notification', 'KeyboardNavigation', '$rootScope', '$filter',
+function (Supplier, Notification, KeyboardNavigation, $rootScope, $filter) {
 	return {
-		templateUrl: 'views/templates/upholstery-list.html',
+		templateUrl: 'views/templates/supplier-list.html',
 		replace: true,
 		restrict: 'A',
 		scope: {
-			onSelect: '&',
-			safeApply: '&',
-			visible: '='
+			visible: '=supplierList',
+			onSelect: '&'
 		},
 		link: function postLink(scope, element, attrs) {
 			var fetching = true,
 				currentSelection,
 				index = 0;
 			
-            /*
-             * Initial fetching of the customers.
-             * 
-             * We will turn the fetching flag to false
-             * once we received the results
-             */
-			scope.upholsteries = Upholstery.query({limit:20}, function (response) {
+			/*
+			* Initial fetching of the suppliers.
+			* 
+			* We will turn the fetching flag to false
+			* once we received the results
+			*/
+			scope.suppliers = Supplier.query({limit:20}, function (response) {
 				fetching = false;
 				changeSelection(index);
 			});
-
+			
 			/*
-			* Search
-			*/
-			scope.$watch('query', function(q){
+			 * Search
+			 */
+			scope.$watch('query', function (q) {
 				if (q) {
-					scope.currentIndex = 0;
-					Upholstery.query({q:q, limit:10 + (scope.query.length*2)}, function (resources) {
+					Supplier.query({q:q, limit:5}, function(resources) {
 						for (var i=0; i < resources.length; i++) {
-							if (scope.upholsteries.indexOfById(resources[i].id) == -1) {
-								scope.upholsteries.push(resources[i]);
+							if (scope.suppliers.indexOfById(resources[i].id) == -1) {
+								scope.suppliers.push(resources[i]);
 							}
 						}
-						
 						index = 0;
 						changeSelection(index);
 					});
 				}
 			});
-			
 			/*
-			* Loads the next set of customers if there is no fetching
-			* currently running
-			*/
+			 * Loads the next set of suppliers if there is no fetching
+			 * currently running
+			 */
 			scope.loadNext = function () {
 				if (!fetching) {
-					Notification.display("Loading more upholsteries...", false);
+					Notification.display("Loading more suppliers...", false);
 					fetching = true;
-					Upholstery.query({
-						offset: scope.upholsteries.length,
+					Supplier.query({
+						offset: scope.suppliers.length,
 						limit: 50
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i=0; i<resources.length; i++) {
-							scope.upholsteries.push(resources[i]);
+						for(var i=0; i<resources.length; i++) {
+							scope.suppliers.push(resources[i]);
 						}
 					});
 				}
 			};
 			
+			/*
+			 * The function to run when a customer is selected
+			 */
+			scope.select = function (supplier) {
+				scope.onSelect({'$supplier': supplier});
+			};
 			
-			
-			
+			function filter(array) {
+				return $filter('orderBy')($filter('filter')(scope.suppliers, scope.query), 'name');
+			}
 			function changeSelection(i) {
 				
 				$rootScope.safeApply(function () {
@@ -77,14 +80,14 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 						currentSelection.$selected = false;
 					}
 					
-					currentSelection = $filter('filter')(scope.upholsteries, scope.query)[i];
+					currentSelection = filter(scope.suppliers)[i];
 					
 					if (currentSelection) {
 						currentSelection.$selected = true;
 					}
 				});
 			
-				var selection = $('.upholstery.selected');
+				var selection = $('.supplier.selected');
 				var container = selection.parents('.inner-container');
 				var scrollTop = container.scrollTop();
 				var cHeight = container.innerHeight();
@@ -98,14 +101,10 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 				
 			}
 			
-			scope.select = function (upholstery) {
-				scope.onSelect({$upholstery:upholstery});
-			};
-			
 			var keyboardNav = new KeyboardNavigation();
 			
 			keyboardNav.ondown = function () {
-				if (index < $filter('filter')(scope.upholsteries, scope.query).length - 1) {
+				if (index < filter(scope.suppliers).length - 1) {
 					index += 1;
 					changeSelection(index);
 				}
@@ -124,21 +123,19 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 				});
 			};
 			
-			
-			scope.$watch('visible', function (val){
-				console.log(val);
+			scope.$watch('visible', function (val) {
 				if (val) {
 					keyboardNav.enable();
-				} else{
+				} else {
 					keyboardNav.disable();
 				}
 			});
-			
 			
 			scope.$on('$destroy', function () {
 				keyboardNav.disable();
 			});
 			
 		}
-	};
+    };
+
 }]);

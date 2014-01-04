@@ -42,7 +42,7 @@ angular.module('employeeApp.services')
     
     
 	function Geocoder() {
-		this.google = google;
+		this.google = google || {};
 		this.geocoder = new google.maps.Geocoder();
     }
     

@@ -1,9 +1,9 @@
 
 angular.module('employeeApp')
-.controller('ContactCustomerDetailsCtrl', function ($scope, Customer, $routeParams, $location, Notification, Geocoder) {
+.controller('ContactCustomerDetailsCtrl', function ($scope, Customer, $routeParams, $location, Notification) {
     $scope.customer =  Customer.get({'id':$routeParams.id}, function () {
         
-        
+        /*
 		if ($scope.customer.address.lat && $scope.customer.address.lng) {
 			$scope.marker = $scope.map.createMarker({
                 lat: $scope.customer.address.lat,
@@ -18,10 +18,11 @@ angular.module('employeeApp')
 			} catch(err) {
 				console.warn(err);
 			}
-		}
+		}*/
         
-    }); 
+    });
     
+    /*
     function updatePosition(results){
         if ($scope.marker) {
             $scope.marker.setPosition(results[0].geometry.location);
@@ -43,7 +44,8 @@ angular.module('employeeApp')
         $scope.customer.address[0].lat = $scope.marker.lat;
         $scope.customer.address[0].lng = $scope.marker.lng;
     }
-    
+    */
+   
     //Mehtods
     
     $scope.update = function () {
@@ -55,12 +57,13 @@ angular.module('employeeApp')
         });
     };
     
+    /*
     $scope.updatePosition = function () {
         var promise = Geocoder.geocode($scope.customer.address);
         promise.then(function (results) {
             updatePosition(results);
         });
-    };
+    };*/
     
     $scope.remove = function () {
         $scope.customer.$delete(function () {

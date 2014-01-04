@@ -1,45 +1,54 @@
 
 angular.module('employeeApp')
-.directive('upholsteryList', ['Upholstery', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope',
-function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
+.directive('supplyList', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope',
+function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 	return {
-		templateUrl: 'views/templates/upholstery-list.html',
+		templateUrl: 'views/templates/supply-list.html',
 		replace: true,
 		restrict: 'A',
 		scope: {
+			visible: '=supplyList',
 			onSelect: '&',
-			safeApply: '&',
-			visible: '='
+			supplier: '='
 		},
 		link: function postLink(scope, element, attrs) {
 			var fetching = true,
 				currentSelection,
 				index = 0;
 			
-            /*
-             * Initial fetching of the customers.
-             * 
-             * We will turn the fetching flag to false
-             * once we received the results
-             */
-			scope.upholsteries = Upholstery.query({limit:20}, function (response) {
-				fetching = false;
-				changeSelection(index);
-			});
-
 			/*
-			* Search
+			* Initial fetching of the supplies.
+			* 
+			* We will turn the fetching flag to false
+			* once we received the results
 			*/
-			scope.$watch('query', function(q){
+			if (attrs.supplier) {
+				scope.$watch('supplier', function (val) {
+					if (val) {
+						scope.supplies = Supply.query({supplier_id:val.id, limit:20}, function (response) {
+							fetching = false;
+							changeSelection(index);
+						});
+					}
+				});
+			} else {
+				scope.supplies = Supply.query({limit:20}, function (response) {
+					fetching = false;
+					changeSelection(index);
+				});
+			}
+			
+			/*
+			 * Search
+			 */
+			scope.$watch('query', function (q) {
 				if (q) {
-					scope.currentIndex = 0;
-					Upholstery.query({q:q, limit:10 + (scope.query.length*2)}, function (resources) {
+					Supply.query({q:q, limit:10+(q.length * 2)}, function(resources) {
 						for (var i=0; i < resources.length; i++) {
-							if (scope.upholsteries.indexOfById(resources[i].id) == -1) {
-								scope.upholsteries.push(resources[i]);
+							if (scope.supplies.indexOfById(resources[i].id) == -1) {
+								scope.supplies.push(resources[i]);
 							}
 						}
-						
 						index = 0;
 						changeSelection(index);
 					});
@@ -47,29 +56,36 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 			});
 			
 			/*
-			* Loads the next set of customers if there is no fetching
-			* currently running
-			*/
+			 * Loads the next set of supplies if there is no fetching
+			 * currently running
+			 */
 			scope.loadNext = function () {
 				if (!fetching) {
-					Notification.display("Loading more upholsteries...", false);
+					Notification.display("Loading more supplies...", false);
 					fetching = true;
-					Upholstery.query({
-						offset: scope.upholsteries.length,
+					Supply.query({
+						offset: scope.supplies.length,
 						limit: 50
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i=0; i<resources.length; i++) {
-							scope.upholsteries.push(resources[i]);
+						for(var i=0; i<resources.length; i++) {
+							scope.supplies.push(resources[i]);
 						}
 					});
 				}
 			};
 			
+			/*
+			 * The function to run when a customer is selected
+			 */
+			scope.select = function (supply) {
+				scope.onSelect({'$supply': supply});
+			};
 			
-			
-			
+			function filter(array) {
+				return $filter('filter')(array, scope.query);
+			}
 			function changeSelection(i) {
 				
 				$rootScope.safeApply(function () {
@@ -77,14 +93,14 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 						currentSelection.$selected = false;
 					}
 					
-					currentSelection = $filter('filter')(scope.upholsteries, scope.query)[i];
+					currentSelection = filter(scope.supplies)[i];
 					
 					if (currentSelection) {
 						currentSelection.$selected = true;
 					}
 				});
 			
-				var selection = $('.upholstery.selected');
+				var selection = $('.supply.selected');
 				var container = selection.parents('.inner-container');
 				var scrollTop = container.scrollTop();
 				var cHeight = container.innerHeight();
@@ -98,14 +114,10 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 				
 			}
 			
-			scope.select = function (upholstery) {
-				scope.onSelect({$upholstery:upholstery});
-			};
-			
 			var keyboardNav = new KeyboardNavigation();
 			
 			keyboardNav.ondown = function () {
-				if (index < $filter('filter')(scope.upholsteries, scope.query).length - 1) {
+				if (index < filter(scope.supplies).length - 1) {
 					index += 1;
 					changeSelection(index);
 				}
@@ -124,21 +136,18 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 				});
 			};
 			
-			
-			scope.$watch('visible', function (val){
-				console.log(val);
+			scope.$watch('visible', function (val) {
 				if (val) {
 					keyboardNav.enable();
-				} else{
+				} else {
 					keyboardNav.disable();
 				}
 			});
-			
 			
 			scope.$on('$destroy', function () {
 				keyboardNav.disable();
 			});
 			
 		}
-	};
+    };
 }]);

@@ -61,9 +61,23 @@ angular.module('employeeApp')
 			/*
 			 * The function to run when a customer is selected
 			 */
-			scope.done = function (customer) {
+			scope.done = function () {
 				scope.onComplete();
 			};
+			
+			function parseKeydown(evt) {
+				if (evt.which === 13) {
+					scope.$apply(function () {
+						scope.done();
+					});
+				}
+			}
+			
+			$(window).on('keydown', parseKeydown);
+			
+			scope.$on('$destroy', function () {
+				$(window).off('keydown', parseKeydown);
+			});
 		}
 	};
 }]);
