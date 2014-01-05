@@ -8,7 +8,7 @@ angular.module('employeeApp.services')
 		this._onready = [];
 
 		//Get information about the current user
-		/*
+		
 		var promise = $http.get('/api/v1/current_user');
 		promise.then(function (response) {
 			angular.extend(this, response.data || {});
@@ -17,7 +17,7 @@ angular.module('employeeApp.services')
 				this._onready[i](response.data);
 			}
 		}.bind(this));
-		*/
+		
     }
     
     //checks if user has a permission
