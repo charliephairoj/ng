@@ -46,7 +46,7 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 		}
 		return uphol;
 	}, function (newVal, oldVal) {
-    	if (!$scope.updateLoopActive && oldVal.hasOwnProperty('id')) {
+		if (!$scope.updateLoopActive && oldVal.hasOwnProperty('id')) {
 			$scope.updateLoopActive = true;
 			Notification.display('Updating '+$scope.uphol.description+'...', false);
 			$scope.uphol.$update(function () {

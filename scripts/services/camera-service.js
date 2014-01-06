@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp.services')
 .service('CameraService', function CameraService() {
@@ -8,13 +7,13 @@ angular.module('employeeApp.services')
 									window.navigator.webkitGetUserMedia ||
 									window.navigator.mozGetUserMedia || 
 									window.navigator.msGetUserMedia);
-    	return navigator.getUserMedia;
+		return navigator.getUserMedia;
 	}
 	
-    return {
-    	hasUserMedia: function () {
-    		return !!getUserMedia();
-    	},
-    	getUserMedia: getUserMedia
-    };
+	return {
+		hasUserMedia: function () {
+			return !!getUserMedia();
+		},
+		getUserMedia: getUserMedia
+	};
 });
