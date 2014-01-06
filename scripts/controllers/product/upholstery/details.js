@@ -2,7 +2,15 @@
 angular.module('employeeApp')
 .controller('ProductUpholsteryDetailsCtrl', ['$scope', 'Upholstery', '$routeParams', 'Notification', '$location',
 function ($scope, Upholstery, $routeParams, Notification, $location) {
-    $scope.uphol = Upholstery.get({'id':$routeParams.id});    
+	
+	$scope.updateLoopActive = true;
+	
+    $scope.uphol = Upholstery.get({'id':$routeParams.id}, function () {
+		$scope.safeApply(function () {
+			$scope.updateLoopActive = false;
+		});
+    });    
+    
     //Upload Image
     $scope.upload = function () {
         //Notify of uploading image
@@ -27,6 +35,26 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 			}
 		});
 	};
+    
+    $scope.$watch(function () {
+		var uphol = angular.copy($scope.uphol);
+		try {
+			delete uphol.last_modified;
+			delete uphol.image;
+		}catch (e) {
+			
+		}
+		return uphol;
+	}, function (newVal, oldVal) {
+    	if (!$scope.updateLoopActive && oldVal.hasOwnProperty('id')) {
+			$scope.updateLoopActive = true;
+			Notification.display('Updating '+$scope.uphol.description+'...', false);
+			$scope.uphol.$update(function () {
+				$scope.updateLoopActive = false;
+				Notification.display($scope.uphol.description+' updated.');
+			});
+		}
+    }, true);
     
     $scope.update = function () {
         Notification.display('Saving Upholsterty...', false);

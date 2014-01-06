@@ -56,8 +56,8 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 		delete supply.image;
 		delete supply.supplier;
 		return supply;
-	}, function (old, newVal) {
-		if (!updateLoopActive) {
+	}, function (newVal, oldVal) {
+		if (!updateLoopActive && oldVal.hasOwnProperty('id')) {
 			updateLoopActive = true;
 			timeoutPromise = $timeout(function () {
 				Notification.display('Updating '+$scope.supply.description+'...', false);
