@@ -1,0 +1,81 @@
+.camera{
+    position:absolute;
+    text-align:center;
+    font-family:Tahoma;
+    @button-size: 3em;
+    @image-margin: 10%;
+    video{
+        position:absolute;
+        z-index:1;
+        top:@image-margin;
+        left:0;
+        width:100%;
+    }
+    canvas{
+        position:absolute;
+        z-index:0;
+        top:@image-margin;
+        left:0;
+        width:100%;
+        &.active{
+            //z-index:2;
+            
+            &~.camera-video{
+                visibility:hidden;
+            }
+            
+            &~.snapshot-btn{
+                visibility:hidden;
+                display:none;
+            }
+            
+            &~.retake-btn{
+                visibility:visible;
+                display:block;
+            }
+        }
+        
+    }
+    .snapshot-btn{
+        width:@button-size;
+        height:@button-size;
+        border-radius:2em;
+        background-color:grey;
+        z-index: 5;
+        position:absolute;
+        top:auto;
+        bottom:1em;
+        left:50%;
+        cursor:pointer;
+        margin-left: -(@button-size/2);
+        display:block;
+        
+        &:hover{
+            background-color:#666;
+        }
+        
+        &:active{
+            background-color:#CCC;
+        }
+    }
+    
+    .retake-btn{
+        width:auto;
+        height:auto;
+        padding: 1em;
+        border-radius:0.5em;
+        background-color:#999;
+        color:#313131;
+        letter-spacing:0.08em;
+        //border:1px solid white;
+        z-index: 5;
+        position:absolute;
+        top:auto;
+        bottom:1em;
+        left:50%;
+        cursor:pointer;
+        margin-left: -1.5em;
+        visibility:hidden;
+        display:none;
+    }
+}
