@@ -3,7 +3,15 @@
 angular.module('employeeApp.directives')
 .directive('camera', ['CameraService', function (CameraService) {
 	return {
-		template: '<div class="camera"><canvas></canvas><video class="camera-video"></video><div class="snapshot-btn"></div><div class="retake-btn">Retake</div></div>',
+		template: '<div class="camera">'+
+					'<canvas></canvas>'+
+					'<video class="camera-video"></video>'+
+					'<div class="snapshot-btn" ng-click="takeSnapshot()"></div>'+
+					'<div class="btn-menu">'+
+						'<div  class="save-btn" ng-click="save()">Save</div>'+
+						'<div class="retake-btn" ng-click="retake()">Retake</div>'+
+					'</div>'+
+				'</div>',
 		restrict: 'EA',
 		replace: true,
 		scope: {
@@ -15,8 +23,6 @@ angular.module('employeeApp.directives')
 			if (!CameraService.hasUserMedia()) {return}
 			
 			var userMedia = CameraService.getUserMedia,
-				btn = element.find('.snapshot-btn'),
-				retakeBtn = element.find('.retake-btn'),
 				canvas = element.find('canvas')[0],
 				ctx = canvas.getContext('2d'),
 				video = element.find('video')[0],
@@ -31,13 +37,7 @@ angular.module('employeeApp.directives')
 				video.play();
 				console.log(video.videoWidth);
 				console.log(video.videoHeight)
-				btn.click(function () {
-					takeSnapshot();
-				});
 				
-				retakeBtn.click(function () {
-					retake();
-				});
 			}
 			
 			navigator.getUserMedia({
@@ -61,11 +61,17 @@ angular.module('employeeApp.directives')
 		        return new Blob([stream], {type: 'image/jpeg'});
 			}
 			
-			function retake() {
+			scope.retake = function () {
 				$(canvas).removeClass('active');
 			}
 			
-			function takeSnapshot() {
+			scope.save = function() {
+				var img = getImageAsBlob(canvas.toDataURL("image/jpeg"));
+      			scope.onSnapshot({$image: img});
+      			scope.retake();
+			}
+			
+			scope.takeSnapshot = function() {
 				width = video.videoWidth;
 				height = video.videoHeight;
 				
@@ -75,8 +81,7 @@ angular.module('employeeApp.directives')
 				ctx.fillRect(0, 0, width, height);
       			ctx.drawImage(video, 0, 0, width, height);
       			$(canvas).addClass('active');
-      			var img = getImageAsBlob(canvas.toDataURL("image/jpeg"));
-      			scope.onSnapshot({$image: img});
+      			
 			}
 		}
 	};

@@ -29,53 +29,80 @@
                 display:none;
             }
             
-            &~.retake-btn{
+            &~.btn-menu{
                 visibility:visible;
                 display:block;
             }
         }
         
     }
+    
     .snapshot-btn{
         width:@button-size;
         height:@button-size;
         border-radius:2em;
-        background-color:grey;
+        background:red;
         z-index: 5;
         position:absolute;
         top:auto;
-        bottom:1em;
+        bottom:.75em;
         left:50%;
         cursor:pointer;
         margin-left: -(@button-size/2);
         display:block;
-        
-        &:hover{
-            background-color:#666;
+        @-webkit-keyframes test{
+            from {
+                background:#662021;
+            }
+            50% {
+                background:#DD373A;
+            }
+            to {
+                background:#662021;
+            }
         }
+        -webkit-animation: test 3s;
+        -webkit-animation-iteration-count: infinite;
         
-        &:active{
-            background-color:#CCC;
+    }
+    
+    .btn-menu{
+        visibility:hidden;
+        display:none;
+        height:1.8em;
+        width:100%;
+        position:absolute;
+        bottom:0;
+        border-top:1px solid #282828;
+        background-color:#282828;
+        overflow:hidden;
+        div{
+            width:49.90%;
+            height:auto;
+            padding: 0.6em 0;
+            float:left;
+            letter-spacing:0.08em;
+            cursor:pointer;
+            font-family:proxima;
+            font-size:0.8em;
+            color:#CCC;
+            position:absolute;
+            bottom:0;
+            background-color:#313131;
+            &:hover{
+                background-color:#474747;
+            }
+            &:active{
+                background-color:#282828;
+            }
+            &.save-btn{
+                left:0;
+            }
+            &.retake-btn{
+                right:0;
+            }          
+           
         }
     }
     
-    .retake-btn{
-        width:auto;
-        height:auto;
-        padding: 1em;
-        border-radius:0.5em;
-        background-color:#999;
-        color:#313131;
-        letter-spacing:0.08em;
-        //border:1px solid white;
-        z-index: 5;
-        position:absolute;
-        top:auto;
-        bottom:1em;
-        left:50%;
-        cursor:pointer;
-        margin-left: -1.5em;
-        visibility:hidden;
-        display:none;
-    }
 }

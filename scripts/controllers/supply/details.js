@@ -38,6 +38,9 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 		($scope.supply.units == 'kg' && $scope.supply.type == 'packaging') ? true : false;
 	};
 	
+	$scope.addImage = function (image) {
+		$scope.supply.image = image;
+	}
 	/*
 	 * Update the supply
 	 * 
