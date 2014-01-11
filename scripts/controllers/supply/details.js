@@ -40,7 +40,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 	
 	$scope.addImage = function (image) {
 		$scope.supply.image = image;
-	}
+	};
 	/*
 	 * Update the supply
 	 * 
