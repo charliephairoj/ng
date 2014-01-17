@@ -28,7 +28,7 @@ angular.module('employeeApp.directives')
 			};
 			
 			scope.supply = new Supply();
-			scope.supply.units = 'piece';
+			scope.supply.units = 'pc';
 			scope.suppliers = Supplier.query({limit:0});
 			
 			
