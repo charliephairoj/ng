@@ -45,7 +45,13 @@
                                 height:100%;
                             }
                         }
-                        
+                        .star{
+                            color:yellow;
+                            position:absolute;
+                            top:1em;
+                            right:1em;
+                            
+                        }
                         .description{
                             position:absolute;
                             top:0;
@@ -72,6 +78,10 @@
                         
                         &.admin-only{
                             background-color:blue;
+                            
+                            &.selected{
+                                background:purple;
+                            }
                         }
                     }
                 }
