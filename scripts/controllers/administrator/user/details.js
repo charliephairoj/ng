@@ -3,6 +3,7 @@ angular.module('employeeApp')
 .controller('AdministratorUserDetailsCtrl', ['$scope', 'Group', 'User', '$routeParams', '$location', '$http', 'Notification',
 function ($scope, Group, User, $routeParams, $location, $http, Notification) {
     
+    var destroyed = false;
     function indexById(list, item){
         if(!list.hasOwnProperty('length')){
             throw new TypeError("Expecting an Array");
@@ -73,10 +74,15 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
         });
     };
     
-    $scope.remove = function(){
-        $scope.user.$delete(function(){
-            $location.path("/users");
-        });
+	$scope.remove = function(){
+    	if ($scope.currentUser.hasPermission('delete_user')) {
+    		Notification.display('Deleting user '+$scope.user.username+'...', false);
+			$scope.user.$delete(function(){
+				Notification.display($scope.user.username+' deleted.');
+				destroyed = true;
+				$location.path("/administrator/user");
+			});
+       	}
     };
     
     $scope.update = function(){
@@ -84,7 +90,9 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
     };
     
     $scope.$on('$destroy', function(){
-        $scope.user.$update(); 
+    	if (!destroyed) {
+			$scope.user.$update(); 
+		}
     });
 
 }]);
