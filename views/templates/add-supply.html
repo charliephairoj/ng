@@ -97,6 +97,10 @@
 					<td>Price per {{supply.units | beautify}}</td>
 					<td><input required ng-model="supply.unit_cost" /></td>
 				</tr>
+				<tr>
+					<td>Discount</td>
+					<td><input required maxlength="2" size="2" ng-model="supply.discount" />%</td>
+				</tr>
 				<tr ng-show="currentUser.hasModule('Administrator')">
 					<td>Administrator Only</td>
 					<td><input type="checkbox" ng-model="supply.admin_only" /></td>

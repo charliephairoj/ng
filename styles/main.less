@@ -54,7 +54,10 @@ input{
   	&.ng-invalid{
   	   background-color:#A54243;
   	}
+  	
 }
+
+
 
 textarea{
     outline:none;
@@ -97,7 +100,7 @@ select{
  */
 
 /*general mixins*/
-.transition (@prop: all, @time: 1s, @ease: linear){
+.transition (@prop: all; @time: 1s; @ease: linear;){
     -webkit-transition: @prop @time @ease;
     -moz-transition: @prop @time @ease;
     -o-transition: @prop @time @ease;
@@ -105,6 +108,10 @@ select{
     transition: @prop @time @ease;
 }
 
+.opacity(@opacity: 0){
+    opacity: @opacity;
+    
+}
 
 /*Menu
  * 

@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter',
-function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter) {
+.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter', '$timeout',
+function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeout) {
 	
 	/*
 	 * Setup vars
@@ -45,12 +45,37 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter) {
 	};
 	
 	/*
+	 * Watch Items for change
+	 */
+	$scope.$watch('po.items', function (newVal, oldVal) {
+		for (var i=0; i<newVal.length; i++) {
+			if (Number(newVal[i].cost) !== Number(oldVal[i].cost)) {
+				var cost = Number(newVal[i].cost);
+				var obj = newVal[i];
+				$timeout(function () {
+
+					if (obj.cost == cost) {
+						console.log(obj);
+						if (obj.isPrototypeOf(Supply)) {
+							obj.$update();
+						} else {
+							supply = new Supply(obj);
+							console.log(supply)
+						}
+					}
+				}, 5000);
+				
+			}
+		}
+	}, true);
+	
+	/*
 	 * Calculate the subtotal
 	 */
 	$scope.subtotal = function () {
 		var subtotal = 0;
 		for (var i=0; i<$scope.po.items.length; i++) {
-			subtotal += (Number($scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
+			subtotal += (Number($scope.po.items[i].override_cost ? $scope.po.items[i].override_cost_amount : $scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
 		}
 		return subtotal.toFixed(2);
 	};

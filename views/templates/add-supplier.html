@@ -3,12 +3,12 @@
 			<table class="details">
 				<tr>
 					<td><span>Name (English)</span></td>
-					<td><input ng-model="supplier.name" required size="60" 
+					<td><input ng-model="supplier.name" required size="50" 
 						tooltip="{{nameTip}}" tooltip-trigger="focus"/></td>
 				</tr>
 				<tr>
 					<td><span>Name (Thai)</span></td>
-					<td><input ng-model="supply.name_th" size="60"
+					<td><input ng-model="supply.name_th" size="50"
 						tooltip="{{thaiNameTip}}" tooltip-trigger="focus"/></td>
 				</tr>
 				<tr>
@@ -67,6 +67,7 @@
                     	tooltip="{{termsTip}}" tooltip-trigger="focus"/> Days</td>
                 </tr>
                 <tr>
+                	<td>Currency</td>
                     <td>
                         <select ng-model="supplier.currency" required>
                             <option value="THB">Thai Baht</option>
@@ -77,10 +78,42 @@
                 </tr>
                 <tr>
                 	<td>
+                		Notes
+                	</td>
+                	<td>
                 		<textarea ng-model="supplier.notes" cols="30" rows="6"></textarea>
                 	</td>
                 </tr>
 			</table>
+			<div class="contacts">
+				<table class="new-contact">
+					<tr>
+						<td>Name</td>
+						<td><input type="text" size="30" ng-model="contact.name" /></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="text" size="30" ng-model="contact.email" /></td>
+					</tr>
+					<tr>
+						<td>Telephone</td>
+						<td><input type="text" size="30" ng-model="contact.telephone" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div class="add-contact-btn" ng-click="addContact(contact)"=>Add</div></td>
+					</tr>
+				</table>
+				<div class="added-contacts">
+					<div class="contact" ng-repeat="contact in supplier.contacts">
+						<span>{{contact.name}}</span>
+						<br />
+						<span>{{contact.email}}</span>
+						<br />
+						<span>{{contact.telephone}}</span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="bottom-bar"><button ng-disabled="form.$invalid" ng-click="add()">Add</button></div>
 	</form>

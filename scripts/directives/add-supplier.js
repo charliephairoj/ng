@@ -27,6 +27,13 @@ angular.module('employeeApp.directives')
             scope.territoryTip = "What chaengwat/territory/state is the supplier in? (required)";
             scope.countryTip = "What country is the supplier in? (requied)";
             scope.zipcodeTip = "What zipcode is the supplier in? (required)";
+            
+            scope.addContact = function (contact) {
+            	scope.supplier.contacts = scope.supplier.contacts || [];
+            	scope.supplier.contacts.push(contact);
+            	scope.contact = {};	
+            };
+            
 			scope.add = function(){
 				if (scope.form.$valid) {
 					Notification.display('Adding supplier...', false);

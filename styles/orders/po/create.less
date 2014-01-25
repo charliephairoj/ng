@@ -255,7 +255,6 @@
                                     color:#828282;
                                     font-size:12px
                                     padding:0px;
-                                    background-color:#282828;
                                     border:1px solid transparent;
                                     width:60px;
                                     padding:0px;
@@ -269,6 +268,15 @@
                                             color:#000000;
                                      
                                         }
+                                    }
+                                    
+                                    &.override_cost{
+                                        .opacity(1);
+                                        
+                                        &[disabled]{
+                                            .opacity(0);
+                                        }
+                                        
                                     }
                                     
                                 }
