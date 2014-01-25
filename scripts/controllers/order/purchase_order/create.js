@@ -46,25 +46,40 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	
 	/*
 	 * Watch Items for change
+	 * 
+	 * We initially tests that the lengths are the same, 
+	 * in order to eliminate add and subtracting items.
+	 * 
+	 * We then loop through all the items and find the item
+	 * that has changed, and then we compare the costs and the id
+	 * to ensure the the same item has change. The costs is saved, 
+	 * and a reference object is made.
+	 * 
+	 * After a delay of 5 seconds, we compare the saved costs with the
+	 * current item cost, by using a reference. 
 	 */
 	$scope.$watch('po.items', function (newVal, oldVal) {
-		for (var i=0; i<newVal.length; i++) {
-			if (Number(newVal[i].cost) !== Number(oldVal[i].cost)) {
-				var cost = Number(newVal[i].cost);
-				var obj = newVal[i];
-				$timeout(function () {
-
-					if (obj.cost == cost) {
-						console.log(obj);
-						if (obj.isPrototypeOf(Supply)) {
-							obj.$update();
-						} else {
-							supply = new Supply(obj);
-							console.log(supply)
+		//Filter out changes in length
+		if (newVal.length == oldVal.length && newVal.length > 1) {
+			//Loop through all the items;
+			for (var i=0; i < newVal.length; i++) {
+				//Tests if the costs are different but the id is the same
+				if (newVal[i].cost != oldVal[i].cost && newVal[i].id == oldVal[i].id) {
+					var cost = newVal[i].cost;
+					/*We make a reference to the original object, 
+					 *So that we can make sure the price has settled
+					 *in x milliseconds.*/
+					var obj = newVal[i];
+					$timeout(function () {
+						//Tests to make sure the cost has settled
+						if (obj.cost == cost) {
+							var supply = obj.isPrototypeOf(Supply) ? obj : new Supply(obj);
+							supply.$update();
 						}
-					}
-				}, 5000);
+					}, 5000);
+				}
 				
+				//if (po.items[i].cost == newVal[i].cost)
 			}
 		}
 	}, true);

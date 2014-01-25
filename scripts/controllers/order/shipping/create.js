@@ -72,7 +72,9 @@ function ($scope, Acknowledgement, $filter, Notification, Shipping, $location, s
             Notification.display('Creating Acknowledgement...', false);
             $scope.shipping.$save(function (resource) {
                 Notification.display('Shipping manifest created');
-                window.open(resource.pdf.url);
+                if (resource.pdf.url) {
+                	window.open(resource.pdf.url);
+                }
                 $location.path('/order/shipping');
             }, 
             function () {

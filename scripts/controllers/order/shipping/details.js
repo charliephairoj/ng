@@ -14,7 +14,9 @@ function ($scope, Shipping, $routeParams, Notification, $http) {
 
 	$scope.getPDF = function() {
 		Notification.display('Retrieving PDF...', false);
-		window.open($scope.shipping.pdf.url);
+		if ($scope.shipping.pdf.url) {
+			window.open($scope.shipping.pdf.url);
+		}
 	};
 
 	$scope.save = function(){

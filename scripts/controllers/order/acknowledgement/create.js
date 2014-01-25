@@ -49,8 +49,12 @@ function ($scope, Acknowledgement, Customer, $filter, Notification) {
                 Notification.display('Creating Acknowledgement...', false);
                 $scope.ack.$create(function (response) {
                     Notification.display('Acknowledgement created');
-                    window.open(response.pdf.acknowledgement);
-                    window.open(response.pdf.production);
+                    if (response.pdf.acknowledgement) {
+                    	window.open(response.pdf.acknowledgement);
+                    }
+                    if (response.pdf.production) {
+                    	window.open(response.pdf.production);
+                    }
                     angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
                 }, function (e) {
                     console.error(e);

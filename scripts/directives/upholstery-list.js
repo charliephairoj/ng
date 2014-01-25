@@ -126,7 +126,6 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 			
 			
 			scope.$watch('visible', function (val){
-				console.log(val);
 				if (val) {
 					keyboardNav.enable();
 				} else{
