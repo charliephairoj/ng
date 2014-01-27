@@ -70,6 +70,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 					 *So that we can make sure the price has settled
 					 *in x milliseconds.*/
 					var obj = newVal[i];
+					/* jshint ignore:start */
 					$timeout(function () {
 						//Tests to make sure the cost has settled
 						if (obj.cost == cost) {
@@ -77,6 +78,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 							supply.$update();
 						}
 					}, 5000);
+					/* jshint ignore:end */
 				}
 				
 				//if (po.items[i].cost == newVal[i].cost)

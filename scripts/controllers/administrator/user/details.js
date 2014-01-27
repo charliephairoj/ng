@@ -75,14 +75,14 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
     };
     
 	$scope.remove = function(){
-    	if ($scope.currentUser.hasPermission('delete_user')) {
-    		Notification.display('Deleting user '+$scope.user.username+'...', false);
+		if ($scope.currentUser.hasPermission('delete_user')) {
+			Notification.display('Deleting user '+$scope.user.username+'...', false);
 			$scope.user.$delete(function(){
 				Notification.display($scope.user.username+' deleted.');
 				destroyed = true;
 				$location.path("/administrator/user");
 			});
-       	}
+		}
     };
     
     $scope.update = function(){
@@ -90,7 +90,7 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
     };
     
     $scope.$on('$destroy', function(){
-    	if (!destroyed) {
+		if (!destroyed) {
 			$scope.user.$update(); 
 		}
     });

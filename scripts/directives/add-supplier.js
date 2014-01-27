@@ -30,13 +30,13 @@ angular.module('employeeApp.directives')
             scope.zipcodeTip = "What zipcode is the supplier in? (required)";
             
             scope.addContact = function (contact) {
-            	scope.supplier.contacts = scope.supplier.contacts || [];
-            	if (scope.supplier.contacts.length == 0) {
-            		var contact = contact || scope.contact;
-            		contact.primary = true;
-            	}
-            	scope.supplier.contacts.push(contact);
-            	scope.contact = {};	
+				scope.supplier.contacts = scope.supplier.contacts || [];
+				if (scope.supplier.contacts.length === 0) {
+					contact = contact || scope.contact;
+					contact.primary = true;
+				}
+				scope.supplier.contacts.push(contact);
+				scope.contact = {};	
             };
 			
 			scope.validation = function () {
@@ -48,7 +48,7 @@ angular.module('employeeApp.directives')
 				}
 				
 				if (primary.length != 1) {
-					throw ValueError("There can only be 1 primary contact")
+					throw ValueError("There can only be 1 primary contact");
 				}
 			};
             
