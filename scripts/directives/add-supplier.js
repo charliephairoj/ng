@@ -31,22 +31,43 @@ angular.module('employeeApp.directives')
             
             scope.addContact = function (contact) {
             	scope.supplier.contacts = scope.supplier.contacts || [];
-            	scope.supplier.contacts.push(contact || scope.contact);
+            	if (scope.supplier.contacts.length == 0) {
+            		var contact = contact || scope.contact;
+            		contact.primary = true;
+            	}
+            	scope.supplier.contacts.push(contact);
             	scope.contact = {};	
             };
+			
+			scope.validation = function () {
+				var primary = [];
+				for (var i=0; i<(scope.supplier.contacts && scope.supplier.contacts.length); i++) {
+					if (scope.supplier.contacts[i].primary) {
+						primary.append(scope.supplier.contacts[i]);
+					}
+				}
+				
+				if (primary.length != 1) {
+					throw ValueError("There can only be 1 primary contact")
+				}
+			};
             
 			scope.add = function(){
-				if (scope.form.$valid) {
-					Notification.display('Adding supplier...', false);
-					scope.supplier.$save(function (response) {
-						Notification.display(scope.supplier.name+' added');
-						scope.visible = false;
-						scope.supplier = new Supplier();
-					}, function (reason) {
-						console.error(reason);
-					});
-				} else {
-					Notification.display('Please fill out the form properly');
+				try{
+					if (scope.form.$valid) {
+						Notification.display('Adding supplier...', false);
+						scope.supplier.$save(function (response) {
+							Notification.display(scope.supplier.name+' added');
+							scope.visible = false;
+							scope.supplier = new Supplier();
+						}, function (reason) {
+							console.error(reason);
+						});
+					} else {
+						Notification.display('Please fill out the form properly');
+					}
+				} catch(e) {
+					Notification.display(e);
 				}
 			};
 		}
