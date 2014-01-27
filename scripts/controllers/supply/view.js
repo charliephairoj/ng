@@ -116,6 +116,26 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	
 	keyboardNav.enable();
 	
+	/*
+	 * When adding suppliers or supply
+	 * disable the keyboard navigation
+	 */
+	$scope.$watch('showAddSupply', function (val, oldVal) {
+		if (val && !oldVal) {
+			keyboardNav.disable();
+		} else if (!val && oldVal) {
+			keyboardNav.enable();
+		}
+	});
+	
+	$scope.$watch('showAddSupplier', function (val, oldVal) {
+		if (val && !oldVal) {
+			keyboardNav.disable();
+		} else if (!val && oldVal) {
+			keyboardNav.enable();
+		}
+	});
+	
 	$scope.$on('$destroy', function () {
 		keyboardNav.disable();
 	});
