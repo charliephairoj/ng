@@ -21,7 +21,7 @@
 				<tr>
 					<td>Type</td>
 					<td>
-						<select required ng-model="supply.type">
+						<select class="type" required ng-model="supply.type">
 							<option value="metal">Metal</option>
 							<option value="wood">Wood</option>
         					<option value="foam">Foam</option>
@@ -33,7 +33,9 @@
 							<option value="nail">Nail</option>
 							<option value="screw">Screw</option>
 							<option value="staple">Staple</option>
+							<option value="custom">Custom</option>
 						</select>
+						<input ng-if="supply.type == 'custom'" class="custom-type" type="text" ng-model="supply.custom_type" />
 					</td>
 				</tr>
 				<tr>

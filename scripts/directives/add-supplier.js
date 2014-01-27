@@ -9,6 +9,7 @@ angular.module('employeeApp.directives')
 		link: function postLink(scope, element, attrs) {
 			
             scope.supplier = new Supplier();
+            scope.contact = {};
 			
 			/*
 			 * Tips for the form
@@ -30,7 +31,7 @@ angular.module('employeeApp.directives')
             
             scope.addContact = function (contact) {
             	scope.supplier.contacts = scope.supplier.contacts || [];
-            	scope.supplier.contacts.push(contact);
+            	scope.supplier.contacts.push(contact || scope.contact);
             	scope.contact = {};	
             };
             
