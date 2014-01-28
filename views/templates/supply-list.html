@@ -2,10 +2,8 @@
     <div class="container">
     	<div search-bar data-ng-model="query">
     		<div class="filter-by">Filter By: 
-	    		<select ng-model="search.type">
-	    			<option value="" selected=""></option>
-	    			<option value="wood">Wood</option>
-	    			<option value="fabric">Fabric</option>
+	    		<select ng-model="search.type" ng-options="t|beautify for t in types">
+	    			<option value="">All</option>
 	    		</select>
     		</div>
     	</div>

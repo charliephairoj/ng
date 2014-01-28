@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.directive('supplyList', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope',
-function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
+.directive('supplyList', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope', '$http',
+function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) {
 	return {
 		templateUrl: 'views/templates/supply-list.html',
 		replace: true,
@@ -16,6 +16,12 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope) {
 				currentSelection,
 				index = 0;
 			
+			var promise = $http.get('/api/v1/supply/type')
+			promise.success(function (d) {
+				scope.types = d;
+				scope.types.splice(scope.types.indexOf(null), 1);
+			});
+
 			/*
 			* Initial fetching of the supplies.
 			* 

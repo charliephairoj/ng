@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location',
-function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location) {
+.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http',
+function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http) {
 
 	/*
 	* Vars and flags
@@ -13,7 +13,11 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	//system message
 	Notification.display('Loading supplies...', false);
 
-
+	$http.get('/api/v1/supply/type').success(function (response) {
+		$scope.types = response;
+		$scope.types.splice($scope.types.indexOf(null), 1);
+	});
+	
 	$scope.supplies = Supply.query(function(){
 		fetching = false;
 		Notification.hide();

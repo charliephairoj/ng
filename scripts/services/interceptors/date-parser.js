@@ -18,7 +18,9 @@ angular.module('employeeApp.services')
 			var data = response.data;
 			if(angular.isArray(data)){
 				for(var i=0; i<data.length; i++){
-					data[i] = formatter(data[i]);
+					try{
+						data[i] = formatter(data[i]);
+					} catch(e) {}
 				}
 			}else if(angular.isObject(data)){
 				data = formatter(data);

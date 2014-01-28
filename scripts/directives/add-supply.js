@@ -1,6 +1,7 @@
 
 angular.module('employeeApp.directives')
-.directive('addSupply', ['$rootScope', 'Supplier', 'Supply', 'Notification', function ($rootScope, Supplier, Supply, Notification) {
+.directive('addSupply', ['$rootScope', 'Supplier', 'Supply', 'Notification', '$http',
+function ($rootScope, Supplier, Supply, Notification, $http) {
 	return {
 		templateUrl: 'views/templates/add-supply.html',
 		replace: true,
