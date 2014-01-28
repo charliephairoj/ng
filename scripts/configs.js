@@ -85,7 +85,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 		kg: 'Kilogram',
 		pack: 'Pack',
 		container: 'Container',
-		pc: 'Piece'
+		pc: 'Piece',
 	};
     scanner.enable();
 });
