@@ -16,7 +16,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 				currentSelection,
 				index = 0;
 			
-			var promise = $http.get('/api/v1/supply/type')
+			var promise = $http.get('/api/v1/supply/type');
 			promise.success(function (d) {
 				scope.types = d;
 				scope.types.splice(scope.types.indexOf(null), 1);
