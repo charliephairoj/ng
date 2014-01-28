@@ -9,7 +9,7 @@
     	</div>
     	<div class="inner-container"  on-scroll-end="loadNext()">
 	        <ul class="customer-container">
-	            <li class="supply" ng-class="{'selected':supply.$selected}" ng-click="select(supply)" ng-repeat="supply in supplies | filter:search:strict | filter:query">
+	            <li class="supply" ng-class="{'selected':supply.$selected}" ng-click="select(supply)" ng-repeat="supply in supplies | filter:search:strict | filter:query | orderBy:'description'">
 	            	{{supply.description}}
 	            	
 	            	<span class="cost">{{supply.unit_cost || cost}}{{supplier.currency}}</span>
