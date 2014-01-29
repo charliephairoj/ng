@@ -6,18 +6,18 @@ angular.module('employeeApp')
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
     //addS  contact to the supplier
-    $scope.addContact = function () {
+    $scope.addContact = function (contact) {
         
         $scope.supplier.contacts = $scope.supplier.contacts || [];
-        
-        $scope.supplier.contacts.push(angular.copy($scope.contact));
+        var contact = contact || $scope.contact;
+        $scope.supplier.contacts.push(contact);
         
         $scope.contact = {};
         
         $scope.showAddContact = false;
         
         //Save changes
-        $scope.supplier.$save();
+        $scope.supplier.$update();
         
     };
     
