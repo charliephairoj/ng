@@ -114,6 +114,14 @@
                 			<td>{{subtotal() | number:2}}{{po.supplier.currency}}</td>
                 		</tr>
                 		<tr>
+                			<td>Supplier's Discount {{(po.supplier && po.supplier.discount) || 0}}%</td>
+                			<td>{{supplierDiscount() | number:2}}</td>
+                		</tr>
+                		<tr>
+                			<td>Additional Discount {{po.discount || 0}}%</td>
+                			<td>{{discount() | number:2}}</td>
+                		</tr>
+                		<tr>
                 			<td>Vat {{po.vat || 0}}%</td>
                 			<td>{{((po.vat || 0)/100) * subtotal() | number:2}}</td>
                 		</tr>
@@ -168,6 +176,18 @@
                             <td>Project:</td>
                             <td>
                                 <input type="text" size="40" ng-model="po.project" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Discount:</td>
+                            <td>
+                                <input type="text" size="40" ng-model="po.discount" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Deposit:</td>
+                            <td>
+                                <input type="text" size="40" ng-model="po.deposit" />
                             </td>
                         </tr>
                     </table>

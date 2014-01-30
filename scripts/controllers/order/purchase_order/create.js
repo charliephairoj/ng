@@ -94,7 +94,18 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		for (var i=0; i<$scope.po.items.length; i++) {
 			subtotal += (Number($scope.po.items[i].override_cost ? $scope.po.items[i].override_cost_amount : $scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
 		}
-		return subtotal.toFixed(2);
+		return Number(subtotal.toFixed(2));
+	};
+	
+	$scope.supplierDiscount = function () {
+		var subtotal = Number($scope.subtotal());
+		//Calcuate the subtotal with the supplies's discount
+		return ((($scope.po.supplier && $scope.po.supplier.discount) || 0) / 100) * subtotal;
+	}
+	
+	$scope.discount = function () {
+		var subtotal = Number($scope.subtotal()) - Number($scope.supplierDiscount());
+		return (($scope.po.discount || 0) / 100) * subtotal;
 	};
 	/*
 	 * Calculate the total
@@ -102,6 +113,13 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	$scope.total = function () {
 		
 		var subtotal = Number($scope.subtotal());
+		
+		//Calcuate the subtotal with the supplies's discount
+		subtotal = subtotal - ((($scope.po.supplier && $scope.po.supplier.discount) || 0) / 100) * subtotal;
+		
+		//Calculate the subtotal with the order's discount
+		subtotal = subtotal - (($scope.po.discount || 0) / 100) * subtotal;
+		
 		//Calculate vat
 		var vat = subtotal * (Number($scope.po.vat || 0)/100);
 		
