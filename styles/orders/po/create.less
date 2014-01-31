@@ -167,6 +167,7 @@
                           border-top:1px solid #6B6B6B;
                       }
                       td{ 
+                          white-space:nowrap;
                           font-size:0.8em;
                           letter-spacing:0.08em;
                           &:first-child{
@@ -176,6 +177,7 @@
                           &:last-child{
                               width:8em;
                               padding-left:0.5em;
+                              text-align:right;
                           }
                       }
                   }
@@ -213,6 +215,12 @@
       
       .order{
           .supplier;
+          
+          tr{
+              td{
+                  padding:0.25em 0;
+              }
+          }
       }      
       .supplies{
           position:relative;
@@ -226,7 +234,7 @@
                     font-size:24px;   
                 }
                 .supply{
-                    color:#828282;
+                    //color:#828282;
                     font-size:14px;
                     position:relative;
                     width:80%;
@@ -252,7 +260,7 @@
                                 line-height:18px;
                                 input{
                                     outline:none;
-                                    color:#828282;
+                                    //color:#828282;
                                     font-size:12px
                                     padding:0px;
                                     border:1px solid transparent;
@@ -270,7 +278,14 @@
                                         }
                                     }
                                     
-                                    &.override_cost{
+                                    &.override-cost-checkbox{
+                                        margin-left:2em;
+                                        margin-right:0em;
+                                        width:auto;
+                                    }
+                                    
+                                    &.override-cost{
+                                        margin-left:0.5em;
                                         .opacity(1);
                                         
                                         &[disabled]{
