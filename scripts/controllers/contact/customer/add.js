@@ -6,13 +6,17 @@ function ($scope, Customer, $location, Notification, Geocoder) {
 	$scope.customer = new Customer();
       
 	$scope.save = function(){
-		Notification.display('Creating customer...', false);
-		$scope.customer.$save(function(){
-			Notification.display('Customer created');
-			$location.path('/contact/customer');
-		}, function (e) {
-			Notification.display('There was an error in creating the customer', false);
-		});
+		if ($scope.form.$valid) {
+			Notification.display('Creating customer...', false);
+			$scope.customer.$save(function(){
+				Notification.display('Customer created');
+				$location.path('/contact/customer');
+			}, function (e) {
+				Notification.display('There was an error in creating the customer', false);
+			});
+		} else {
+			Notification.display('Please fill out all required fields correctly', false);
+		}
 	};
   
 	$scope.getPosition = function(){
