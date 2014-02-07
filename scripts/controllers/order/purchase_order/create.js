@@ -130,13 +130,19 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 * Verfication of order
 	 */
 	$scope.verifyOrder = function () {
-		if(!$scope.po.hasOwnProperty('supplier')) {
-			return false;
+		if (!$scope.po.hasOwnProperty('supplier')) {
+			throw new Error("Please select a supplier");
 		}
 		
-		if($scope.po.items.length <= 0) {
-			return false;
+		if ($scope.po.items.length <= 0) {
+			throw new Error("Please add items to the purchase order");
 		}
+		
+		for (var i=0; i<$scope.po.items.length; i++){
+			if (!$scope.po.items[i].quantity || $scope.po.items[i].quantity <= 0) {
+				throw new Error($scope.po.items[i].description + " is missing a quantity");
+			}
+		} 
 		
 		return true;
 	};
@@ -145,18 +151,22 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 * Save the purchase order to the server
 	 */
 	$scope.save = function () {
-		if($scope.verifyOrder()) {
-			Notification.display('Creating purchase order...', false);
-			$scope.po.$save(function (response) {
-				try{
-					window.open(response.pdf.url);
-				}catch(e){
-					console.warn(e);
-				}
-				Notification.display('Purchase order created.');
-			}, function () {
-				Notification.display('ooops');
-			});
+		try {
+			if ($scope.verifyOrder()) {
+				Notification.display('Creating purchase order...', false);
+				$scope.po.$save(function (response) {
+					try{
+						window.open(response.pdf.url);
+					}catch(e){
+						console.warn(e);
+					}
+					Notification.display('Purchase order created.');
+				}, function (e) {
+					Notification.display('There was an error in creating the purchase order.');
+				});
+			}
+		} catch (e) {
+			Notification.display(e.message);
 		}
 	};
 	
