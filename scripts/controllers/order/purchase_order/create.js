@@ -101,7 +101,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		var subtotal = Number($scope.subtotal());
 		//Calcuate the subtotal with the supplies's discount
 		return ((($scope.po.supplier && $scope.po.supplier.discount) || 0) / 100) * subtotal;
-	}
+	};
 	
 	$scope.discount = function () {
 		var subtotal = Number($scope.subtotal()) - Number($scope.supplierDiscount());

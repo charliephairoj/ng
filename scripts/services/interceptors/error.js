@@ -10,7 +10,8 @@ angular.module('employeeApp.services')
 			console.error(rejection);
 			return $q.reject(rejection);
 		}
-	}
+	};
+	
 }]).config(function($httpProvider){
 	$httpProvider.interceptors.push('requestError');
 });

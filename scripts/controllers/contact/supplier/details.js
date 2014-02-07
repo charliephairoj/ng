@@ -9,7 +9,7 @@ angular.module('employeeApp')
     $scope.addContact = function (contact) {
         
         $scope.supplier.contacts = $scope.supplier.contacts || [];
-        var contact = contact || $scope.contact;
+        contact = contact || $scope.contact;
         $scope.supplier.contacts.push(contact);
         
         $scope.contact = {};

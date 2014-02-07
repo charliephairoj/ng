@@ -36,7 +36,7 @@ angular.module('employeeApp.services')
 		'responseError': function (rejection) {
 			return $q.reject(rejection);
 		}
-	}
+	};
 	
 }]).config(function($httpProvider){
 	$httpProvider.interceptors.push('dateParser');
