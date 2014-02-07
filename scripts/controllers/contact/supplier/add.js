@@ -38,15 +38,19 @@ angular.module('employeeApp')
         
         if($scope.form.$valid){
             //Notify
-            Notification.display('Saving Supplier...', false);
+            Notification.display('Saving supplier...', false);
           
                     
             $scope.supplier.$save(function () {
                 //Notify
                 Notification.display('Supplier Saved');
                 $location.path('/contact/supplier');
-            });
-        }
+            }, function (e) {
+				Notification.display('There was an error in creating this supplier', false);
+			});
+		} else {
+			Notification.display("Please fill out all required sections correctly");			
+		}
         
         
         

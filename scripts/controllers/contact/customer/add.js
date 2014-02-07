@@ -6,10 +6,12 @@ function ($scope, Customer, $location, Notification, Geocoder) {
 	$scope.customer = new Customer();
       
 	$scope.save = function(){
-		Notification.display('Saving Customer...', false);
+		Notification.display('Creating customer...', false);
 		$scope.customer.$save(function(){
-			Notification.display('Customer Saved');
+			Notification.display('Customer created');
 			$location.path('/contact/customer');
+		}, function (e) {
+			Notification.display('There was an error in creating the customer', false);
 		});
 	};
   
