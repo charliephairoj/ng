@@ -58,7 +58,7 @@ function ($scope, Acknowledgement, Customer, $filter, Notification) {
                     angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
                 }, function (e) {
                     console.error(e);
-                    Notification.display('There an error in creating the Acknowledgement', false);
+                    Notification.display('There was an error in creating the Acknowledgement', false);
                 });
             }
         } catch (e) {
@@ -70,6 +70,7 @@ function ($scope, Acknowledgement, Customer, $filter, Notification) {
         $scope.ack = new Acknowledgement();
         $scope.ack.items = [];
         storage.removeItem('acknowledgement-create');
+        Notification.display('Acknowledgement reset.');
     };
     
     //Validations
