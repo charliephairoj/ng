@@ -57,13 +57,14 @@ angular.module('employeeApp.directives')
 			
             scope.add = function(){
 				if (scope.form.$valid) {
-					Notification.display('Adding customer:+ '+scope.customer.first_name+'...', false);
+					Notification.display('Creating customer...', false);
 					scope.customer.$save(function (response) {
-						Notification.display(scope.customer.first_name+' added');
+						Notification.display('Customer created');
 						scope.visible = false;
 						scope.customer = new Customer();
 					}, function (reason) {
 						console.error(reason);
+						Notification.display("There was an error in creating the customer");
 					});
 				} else {
 					Notification.display('Please fill out the form properly');

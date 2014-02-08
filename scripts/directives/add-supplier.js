@@ -55,13 +55,14 @@ angular.module('employeeApp.directives')
 			scope.add = function(){
 				try{
 					if (scope.form.$valid) {
-						Notification.display('Adding supplier...', false);
+						Notification.display('Creating supplier...', false);
 						scope.supplier.$save(function (response) {
-							Notification.display(scope.supplier.name+' added');
+							Notification.display('Supplier created');
 							scope.visible = false;
 							scope.supplier = new Supplier();
 						}, function (reason) {
 							console.error(reason);
+							Notification.display('There was an error in creating the supplier', false);
 						});
 					} else {
 						Notification.display('Please fill out the form properly');
