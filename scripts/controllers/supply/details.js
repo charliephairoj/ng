@@ -64,9 +64,12 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 			updateLoopActive = true;
 			timeoutPromise = $timeout(function () {
 				Notification.display('Updating '+$scope.supply.description+'...', false);
-				$scope.supply.$update(function () {
+				var supply = angular.copy($scope.supply);
+				supply.$update(function () {
 					updateLoopActive = false;
-					Notification.display($scope.supply.description+' updated.');
+					Notification.display($scope.supply.description+' updated');
+				}, function () {
+					Notification.display("There was an error in updating "+$scope.supply.description)
 				});
 			}, 5000);
 		}
