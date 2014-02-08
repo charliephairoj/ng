@@ -69,7 +69,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 					updateLoopActive = false;
 					Notification.display($scope.supply.description+' updated');
 				}, function () {
-					Notification.display("There was an error in updating "+$scope.supply.description)
+					Notification.display("There was an error in updating "+$scope.supply.description);
 				});
 			}, 5000);
 		}

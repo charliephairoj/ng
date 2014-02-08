@@ -1,40 +1,19 @@
 
 angular.module('employeeApp')
 .factory('FileUploader', ['$q', '$http', 'Notification', function($q, $http, Notification) {
-    var uploader = {},
-    	type,
-    	fd;
-    
-    function oldUpload (formData) {
-    	var promise = $q.deferred();
-    	jQuery.ajax(url || "upload/images", {
-			type:'POST',
-			data:formData,
-			processData:false,
-			contentType:false,
-			success: function(response){
-				Notification.display(type+' Uploaded');
-				deferred.resolve(response);
-			},
-			error: function(response){
-				console.error(response);
-				Notification.display('There was an error in uploading the file', false);
-				deferred.reject(response);
-			}
-		});
-		
-		return promise;
-    }
-    
-    uploader.upload = function(file, url, data){
+	var uploader = {},
+		type,
+		fd;
+
+    uploader.upload = function (file, url, data) {
         
         //if(!file.isPrototypeOf){
             //throw new TypeError("Expectina a file");
         //}
         //Determine file type and data
-       	type = file.isPrototypeOf(Image) ? 'Image' : 'File';
-       	fd = new FormData();
-        	
+		type = file.isPrototypeOf(Image) ? 'Image' : 'File';
+		fd = new FormData();
+	
         Notification.display('Uploading '+type+'...', false);
         
         //Attch the file to be sent
@@ -55,22 +34,20 @@ angular.module('employeeApp')
          * the data is not serialized
          */
         var promise = $http({
-        	method: 'POST', 
-        	url: url || "upload/images", 
-        	data: formData, 
-        	headers: {'Content-Type': undefined}, 
-        	transformRequest: angular.identity
-        })
+			method: 'POST', 
+			url: url || "upload/images", 
+			data: formData, 
+			headers: {'Content-Type': undefined}, 
+			transformRequest: angular.identity
+		});
         
-        promise.success(function(data, status, headers, config) {
-			
+		promise.success(function(data, status, headers, config) {
+
 		}).error(function (response) {
 			Notification.display("There was an error in uploading the "+type, false);
 		});
-        
-        
-        
-        return promise;
+		
+		return promise;
     };
     
     return uploader;
