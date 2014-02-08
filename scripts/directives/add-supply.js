@@ -35,13 +35,14 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			
 			scope.add = function () {
 				if (scope.form.$valid) {
-					Notification.display('Add supply...', false);
+					Notification.display('Creating supply...', false);
 					scope.supply.$create(function (response) {
-						Notification.display(scope.supply.description+" added");
+						Notification.display('Supply created');
 						scope.visible = false;
 						scope.supply = new Supply();
 					}, function(reason){
 						console.error(reason);
+						Notification.display('There was an error in creating the supply', false);
 					});
 				} else {
 					Notification.display('Please fill out the form properly');
