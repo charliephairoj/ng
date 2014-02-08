@@ -1,6 +1,11 @@
 
 angular.module('employeeApp')
-.controller('ContactCustomerDetailsCtrl', function ($scope, Customer, $routeParams, $location, Notification) {
+.controller('ContactCustomerDetailsCtrl', ['$scope', 'Customer', '$routeParams', '$location', 'Notification', '$timeout',
+function ($scope, Customer, $routeParams, $location, Notification, $timeout) {
+    
+    var updateLoopActive = false,
+    	timeoutPromise;
+    
     $scope.customer =  Customer.get({'id':$routeParams.id}, function () {
         
         /*
@@ -49,13 +54,36 @@ angular.module('employeeApp')
     //Mehtods
     
     $scope.update = function () {
+    	/*
         Notification.display('Updating...', false);
         $scope.customer.$update(function () {
             Notification.display('Customer Save'); 
         }, function () {
             Notification.display('Unable to Update Customer');
         });
+        */
     };
+    
+	$scope.$watch(function () {
+		var customer = angular.copy($scope.customer);
+		delete customer.last_modified;
+		return customer;
+	}, function (newVal, oldVal) {
+		if (oldVal.hasOwnProperty('id') && !updateLoopActive) {
+			updateLoopActive = true;
+			timeoutPromise = $timeout(function () {
+				Notification.display('Updating customer...', false);
+				var customer = angular.copy($scope.customer);
+				customer.$update(function () {
+					updateLoopActive = false;
+					Notification.display('Customer updated');
+				}, function () { 
+					Notification.display('There was an error updating the customer');
+				});
+			
+			}, 5000);
+		}
+	}, true);
     
     /*
     $scope.updatePosition = function () {
@@ -71,4 +99,12 @@ angular.module('employeeApp')
         });
         
     };
-});
+    
+	$scope.$on('$destroy', function () {
+		$timeout.cancel(timeoutPromise);
+		Notification.display('Updating customer...', false);
+		$scope.customer.$update(function () {
+			Notification.display('Customer updated.');
+		});
+	})
+}]);

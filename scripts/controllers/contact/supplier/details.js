@@ -1,7 +1,11 @@
 
 angular.module('employeeApp')
-.controller('ContactSupplierDetailsCtrl', function ($scope, Supplier, $routeParams, $location, SupplierContact, Notification) {
+.controller('ContactSupplierDetailsCtrl', ['$scope', 'Supplier', '$routeParams', '$location', 'SupplierContact', 'Notification', '$timeout',
+function ($scope, Supplier, $routeParams, $location, SupplierContact, Notification, $timeout) {
     
+	var updateLoopActive = false,
+		timeoutPromise;
+	
 	//Retreive the supplier from the server
     $scope.supplier =  Supplier.get({'id':$routeParams.id});
     
@@ -36,8 +40,30 @@ angular.module('employeeApp')
     
     };
     
+	$scope.$watch(function () {
+		var supplier = angular.copy($scope.supplier);
+		delete supplier.last_modified;
+		return supplier;	
+	}, function (newVal, oldVal) {
+		
+		if (!updateLoopActive && oldVal.hasOwnProperty('id')) {
+			updateLoopActive = true;
+			timeoutPromise = $timeout(function () {
+				Notification.display('Updating supplier...', false);
+				var supplier = angular.copy($scope.supplier);
+				supplier.$update(function () {
+					updateLoopActive = false;
+					Notification.display('Supplier updated');
+				}, function () { 
+					Notification.display('There was an error updating the supplier');
+				});
+			
+			}, 5000);
+		}
+	}, true);
     
     $scope.update = function () {
+    	/*
         //Notify
         Notification.display('Updating Supplier...', false); 
         //if
@@ -46,7 +72,7 @@ angular.module('employeeApp')
             Notification.display('Supplier Updated');
         });
        
-        
+        */
     };
     
     $scope.remove = function(){
@@ -56,4 +82,13 @@ angular.module('employeeApp')
         
     };
     
-});
+    $scope.$on('$destroy', function () {
+    	Notification.display('Updating supplier...', false);
+    	$scope.supplier.$update(function () {
+    		Notification.display('Supplier updated');
+    	}, function (e) {
+    		Notification.display('There was an error updating the supplier');
+    	});
+    });
+    
+}]);
