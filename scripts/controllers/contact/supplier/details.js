@@ -63,7 +63,7 @@ function ($scope, Supplier, $routeParams, $location, SupplierContact, Notificati
 	}, true);
     
     $scope.update = function () {
-    	/*
+		/*
         //Notify
         Notification.display('Updating Supplier...', false); 
         //if
@@ -82,13 +82,13 @@ function ($scope, Supplier, $routeParams, $location, SupplierContact, Notificati
         
     };
     
-    $scope.$on('$destroy', function () {
-    	Notification.display('Updating supplier...', false);
-    	$scope.supplier.$update(function () {
-    		Notification.display('Supplier updated');
-    	}, function (e) {
-    		Notification.display('There was an error updating the supplier');
-    	});
-    });
+	$scope.$on('$destroy', function () {
+		Notification.display('Updating supplier...', false);
+		$scope.supplier.$update(function () {
+			Notification.display('Supplier updated');
+		}, function (e) {
+			Notification.display('There was an error updating the supplier');
+		});
+	});
     
 }]);

@@ -4,7 +4,7 @@ angular.module('employeeApp')
 function ($scope, Customer, $routeParams, $location, Notification, $timeout) {
     
     var updateLoopActive = false,
-    	timeoutPromise;
+		timeoutPromise;
     
     $scope.customer =  Customer.get({'id':$routeParams.id}, function () {
         
@@ -54,7 +54,7 @@ function ($scope, Customer, $routeParams, $location, Notification, $timeout) {
     //Mehtods
     
     $scope.update = function () {
-    	/*
+		/*
         Notification.display('Updating...', false);
         $scope.customer.$update(function () {
             Notification.display('Customer Save'); 
@@ -106,5 +106,5 @@ function ($scope, Customer, $routeParams, $location, Notification, $timeout) {
 		$scope.customer.$update(function () {
 			Notification.display('Customer updated.');
 		});
-	})
+	});
 }]);
