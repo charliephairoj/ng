@@ -20,14 +20,28 @@ angular.module('employeeApp.services')
     }
     
 	Scanner.prototype._check = function (evt, customFn) {
+		/*
+		 * Checks if the character is the start code for the 
+		 * scanner. If it is the start code, then turn on the parse
+		 * switch to get the successive characters
+		 */
 		if (evt.keyCode === 76 && evt.altKey) {
 			evt.preventDefault();
 			this._activeParse = true;
+		
+		/*
+		 * Checks if the character is the end code for the scanner.
+		 * If it is, then turn off the parse switch, send the code to dispatch,
+		 * and reset the code variable
+		 */
 		} else if (evt.altKey && evt.keyCode == 71) {
 			evt.preventDefault();
 			this._activeParse = false;
 			this._dispatch(code);
 			code = '';
+		/*
+		 * If the parse switch is on, add the keypressed character to the code string
+		 */
 		} else {
 			if (this._activeParse) {
 				evt.preventDefault();

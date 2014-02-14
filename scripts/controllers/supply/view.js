@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http',
-function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http) {
+.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 'scanner',
+function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http, scanner) {
 
 	/*
 	* Vars and flags
@@ -18,6 +18,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		$scope.types.splice($scope.types.indexOf(null), 1);
 	});
 	
+	$scope.scannerMode = false;
 	$scope.supplies = Supply.query(function(){
 		fetching = false;
 		Notification.hide();
@@ -139,6 +140,16 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 			keyboardNav.enable();
 		}
 	});
+	
+	$scope.$watch('scannerMode', function (val, oldVal) {
+		if (val && !oldVal) {
+			scanner.disableStandard();
+			keyboardNav.disable();
+		}else if (!val && oldVal) {
+			scanner.enableStandard();
+			keyboardNav.enable();
+		}
+	})
 	
 	$scope.$on('$destroy', function () {
 		keyboardNav.disable();
