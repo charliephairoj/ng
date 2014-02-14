@@ -4,13 +4,13 @@ angular.module('employeeApp.services')
 		
 	var code = '',
 		codes = '',
-		standardCodes = [
+		standardCodes = [ 
 		[/^PO-\d+$/, '/order/purchase_order/'],
 		[/^A-\d+$/, '/order/acknowledgement/'],
 		[/^AI-\d+$/, '/order/acknowledgement/item/'],
 		[/^S-\d+$/, '/order/shipping/']
 	],
-		customeCodes = [],
+		customCodes = [],
 		parseStandardCodes = true;
 		
     function Scanner() {
@@ -77,7 +77,7 @@ angular.module('employeeApp.services')
 
 		for (var h=0; h<customCodes.length; h++) {
 			if (customCodes[h][0].test(code)) {
-				customcodes[h][1](code);
+				customCodes[h][1](code);
 			}
 		}
 	};
@@ -113,7 +113,7 @@ angular.module('employeeApp.services')
 	Scanner.deregister = function (re) {
 		for (var i=0; i<customCodes.length; i++) {
 			if (customCodes[i][0] == re) {
-				customCode.splice(i);
+				customCodes.splice(i);
 			}
 		}
 	};
