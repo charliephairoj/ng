@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout', '$location',
-function ($scope, $routeParams, Notification, Supply, $timeout, $location) {
+.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout', '$location', 'scanner',
+function ($scope, $routeParams, Notification, Supply, $timeout, $location, scanner) {
 	
 	Notification.display('Retrieving supply...', false);
 	
@@ -41,6 +41,14 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location) {
 	$scope.addImage = function (image) {
 		$scope.supply.image = image;
 	};
+	
+	scanner.enable();
+	scanner.disableStandard();
+	scanner.register(/^\d+(\-\d+)*$/, function (code) {
+		if (!$scope.supply.upc) {
+			$scope.supply.upc = code
+		}
+	});
 	/*
 	 * Update the supply
 	 * 

@@ -23,7 +23,7 @@ angular.module('employeeApp.directives')
 							*/
 						});
 					});
-					scanner.register(/^\d+(-\d+)+?$/, function (code) {
+					scanner.register(/^\d+(\-\d+)*$/, function (code) {
 						scope.supply = Supply.get({upc:code});
 					});
 				} else {

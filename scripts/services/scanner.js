@@ -15,6 +15,7 @@ angular.module('employeeApp.services')
 		
     function Scanner() {
 		this._activeParse = false;
+		this.enabled = false;
 		this._onscan = null;
 		Object.defineProperties(this, {
 			_code: {
@@ -96,12 +97,22 @@ angular.module('employeeApp.services')
      * -onscan
      */
     
+    Object.defineProperties(Scanner.prototype, {
+    	standardEnabled: {
+    		get: function () {
+    			return parseStandardCodes;
+    		}
+    	}
+    });
+    
 	Scanner.prototype.enable = function () {
 		angular.element(document.body).bind('keydown', this._check.bind(this));
+		this.enabled = true;
 	};
     
 	Scanner.prototype.disable = function () {
 		angular.element(document.body).unbind('keydown', this._check.bind(this));
+		this.enabled = false;
 	};
     
 	Scanner.prototype.disableStandard = function () {
