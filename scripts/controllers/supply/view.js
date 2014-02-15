@@ -19,6 +19,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	$scope.scannerMode = false;
+	scanner.enable();
 	$scope.supplies = Supply.query(function(){
 		fetching = false;
 		Notification.hide();
@@ -54,10 +55,12 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	*/
 	$scope.loadNext = function () {
 		if (!fetching) {
+			Notification.display('Loading more supplies...', false);
 			Supply.query({
 				offset: $scope.supplies.length,
 				limit: 50
 			}, function (resources) {
+				Notification.hide();
 				for (var i=0; i<resources.length; i++) {
 					$scope.supplies.push(resources[i]);
 				}
@@ -66,7 +69,10 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	};
 	
 	function filter(array) {
-		return $filter('filter')($scope.supplies, $scope.query);
+		array = $filter('filter')(array, $scope.search);
+		array = $filter('filter')(array, $scope.query);
+		array = $filter('orderBy')(array, 'description');
+		return array;
 	}
 			
 	function changeSelection(i) {
@@ -153,6 +159,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	
 	$scope.$on('$destroy', function () {
 		keyboardNav.disable();
+		scanner.disable();
 	});
 	
 }]);

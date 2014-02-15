@@ -5,18 +5,24 @@ angular.module('employeeApp.services')
 	var code = '',
 		codes = '',
 		standardCodes = [ 
-		[/^PO-\d+$/, '/order/purchase_order/'],
-		[/^A-\d+$/, '/order/acknowledgement/'],
-		[/^AI-\d+$/, '/order/acknowledgement/item/'],
-		[/^S-\d+$/, '/order/shipping/']
-	],
+			[/^PO-\d+$/, '/order/purchase_order/'],
+			[/^A-\d+$/, '/order/acknowledgement/'],
+			[/^AI-\d+$/, '/order/acknowledgement/item/'],
+			[/^S-\d+$/, '/order/shipping/']
+		],
 		customCodes = [],
 		parseStandardCodes = true;
 		
     function Scanner() {
 		this._activeParse = false;
 		this._onscan = null;
-		this._code = '';
+		Object.defineProperties(this, {
+			_code: {
+				get: function () {
+					return code;
+				}
+			}
+		})
     }
     
 	Scanner.prototype._check = function (evt, customFn) {

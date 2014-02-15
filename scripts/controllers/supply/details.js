@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout',
-function ($scope, $routeParams, Notification, Supply, $timeout) {
+.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout', '$location',
+function ($scope, $routeParams, Notification, Supply, $timeout, $location) {
 	
 	Notification.display('Retrieving supply...', false);
 	
@@ -127,4 +127,17 @@ function ($scope, $routeParams, Notification, Supply, $timeout) {
 			Notification.display($scope.supply.description+' updated.');
 		});
 	});
+	
+	/*
+	 * Remove
+	 */
+	$scope.remove = function () {
+		if ($scope.currentUser.hasPermission('delete_supply')) {
+			Notification.display('Deleting supply...', false);
+			$scope.supply.$delete(function () {
+				Notification.display('Supply deleted');
+				$location.path('/supply');
+			});
+		}
+	}
 }]);

@@ -63,9 +63,13 @@ angular.module('employeeApp.directives')
 								}
 
 								if(attrs.ngModel || attrs.modal){
-									scope.$apply(function(){
+									if (scope.$$phase == '$apply' || scope.$$phase == '$digest') {
 										scope[attrs.ngModel || attrs.modal] = false;
-									});
+									} else {
+										scope.$apply(function () {
+											scope[attrs.ngModel || attrs.modal] = false;
+										});
+									}
 								}
 
 								if (attrs.onhide) {
