@@ -154,7 +154,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 			globalScanner.enable();
 			keyboardNav.enable();
 		}
-	})
+	});
 	
 	$scope.$on('$destroy', function () {
 		keyboardNav.disable();

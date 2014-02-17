@@ -15,11 +15,11 @@ angular.module('employeeApp.services')
 		
 		
 	var check = function (evt) {
-    	this._check(evt);
-    }
+		this._check(evt);
+	};
     
     function Scanner(identity) {
-    	this._identity = identity;
+		this._identity = identity;
 		this._activeParse = false;
 		this.enabled = false;
 		this._onscan = null;
@@ -30,7 +30,7 @@ angular.module('employeeApp.services')
 					return code;
 				}
 			}
-		})
+		});
     }
     
 	Scanner.prototype._check = function (evt, customFn) {
@@ -106,12 +106,12 @@ angular.module('employeeApp.services')
      */
     
     Object.defineProperties(Scanner.prototype, {
-    	standardEnabled: {
-    		get: function () {
-    			return parseStandardCodes;
-    		}
-    	}
-    });
+		standardEnabled: {
+			get: function () {
+				return parseStandardCodes;
+			}
+		}
+	});
     
     
     
@@ -147,7 +147,6 @@ angular.module('employeeApp.services')
 	
 	Scanner.prototype.destroy = function () {
 		this.disable();
-		delete this;
 	};
     
 	Object.defineProperty(Scanner.prototype, 'onscan', {

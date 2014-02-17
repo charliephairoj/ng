@@ -47,7 +47,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	scanner.disableStandard();
 	scanner.register(/^\d+(\-\d+)*$/, function (code) {
 		if (!$scope.supply.upc) {
-			$scope.supply.upc = code
+			$scope.supply.upc = code;
 		}
 	});
 	/*
@@ -149,5 +149,5 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 				$location.path('/supply');
 			});
 		}
-	}
+	};
 }]);

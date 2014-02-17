@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp.directives')
 .directive('supplyScannerModal', ['scanner', 'Supply', 'Notification', function (scanner, Supply, Notification) {
@@ -15,7 +14,7 @@ angular.module('employeeApp.directives')
 				if (val) {
 					//Disable the global scanner
 					try {
-						globalScanner.disable();
+						window.globalScanner.disable();
 					} catch (e) {
 						
 					}
