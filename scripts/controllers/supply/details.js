@@ -12,7 +12,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
 		Notification.hide();	
 	});
-	
+	globalScanner.disable();
 	var updateLoopActive = false,
 		timeoutPromise;
 	var validWidth = ['m', 'yd', 'pc', 'pack', 'container', 'fabric'];
@@ -42,6 +42,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		$scope.supply.image = image;
 	};
 	
+	scanner = new scanner('supply/details');
 	scanner.enable();
 	scanner.disableStandard();
 	scanner.register(/^\d+(\-\d+)*$/, function (code) {
@@ -134,6 +135,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		$scope.supply.$update(function () {
 			Notification.display($scope.supply.description+' updated.');
 		});
+		globalscanner.enable();
 	});
 	
 	/*

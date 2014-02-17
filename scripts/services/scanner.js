@@ -13,10 +13,17 @@ angular.module('employeeApp.services')
 		customCodes = [],
 		parseStandardCodes = true;
 		
-    function Scanner() {
+		
+	var check = function (evt) {
+    	this._check(evt);
+    }
+    
+    function Scanner(identity) {
+    	this._identity = identity;
 		this._activeParse = false;
 		this.enabled = false;
 		this._onscan = null;
+		this.f = check.bind(this);
 		Object.defineProperties(this, {
 			_code: {
 				get: function () {
@@ -68,6 +75,7 @@ angular.module('employeeApp.services')
 	};
 
 	Scanner.prototype._dispatch = function (code) {
+		//console.debug(this._identity+' status: '+this.enabled+' / code: '+this._code);
 		codes = code.split('-');
 		if (parseStandardCodes) {
 			for (var i=0; i<standardCodes.length; i++) {
@@ -105,13 +113,15 @@ angular.module('employeeApp.services')
     	}
     });
     
+    
+    
 	Scanner.prototype.enable = function () {
-		angular.element(document.body).bind('keydown', this._check.bind(this));
+		angular.element(document.body).on('keydown', this.f);
 		this.enabled = true;
 	};
     
 	Scanner.prototype.disable = function () {
-		angular.element(document.body).unbind('keydown', this._check.bind(this));
+		angular.element(document.body).off('keydown',this.f);
 		this.enabled = false;
 	};
     
@@ -134,12 +144,22 @@ angular.module('employeeApp.services')
 			}
 		}
 	};
+	
+	Scanner.prototype.destroy = function () {
+		this.disable();
+		delete this;
+	};
     
 	Object.defineProperty(Scanner.prototype, 'onscan', {
 		set: function (fn) {
 			this._onscan = fn;
 		}
 	});
-	return new Scanner();
+	
+	function ScannerFactory(identity) {
+		return new Scanner(identity);
+	}
+	
+	return ScannerFactory;
 	
 }]);

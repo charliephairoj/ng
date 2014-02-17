@@ -87,5 +87,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 		container: 'Container',
 		pc: 'Piece',
 	};
-    //scanner.enable();
+    
+    window.globalScanner = new scanner('global');
+    globalScanner.enable();
 });

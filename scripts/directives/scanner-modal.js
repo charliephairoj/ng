@@ -10,11 +10,24 @@ angular.module('employeeApp.directives')
 		},
 		link: function postLink(scope, element, attrs) {
 			
-			scanner.enable();
+			scope.scanner = new scanner('supply-scanner-modal');
 			scope.$watch('visible', function (val) {
 				if (val) {
-					scanner.disableStandard();
-					scanner.register(/^DRS-\d+$/, function (code) {
+					//Disable the global scanner
+					try {
+						globalScanner.disable();
+					} catch (e) {
+						
+					}
+					
+					//Enable the scanner and disable the standard codes
+					scope.scanner.enable();
+					scope.scanner.disableStandard();
+					
+					/*
+					 * Register the supply code regex
+					 */
+					scope.scanner.register(/^DRS-\d+$/, function (code) {
 						scope.supply = Supply.get({id:code.split('-')[1]}, function(){}, function () {
 							/*
 							scope.supply = Supply.get({id:code}, function () {
@@ -23,12 +36,20 @@ angular.module('employeeApp.directives')
 							*/
 						});
 					});
-					scanner.register(/^\d+(\-\d+)*$/, function (code) {
+					/*
+					 * Register the upc regex
+					 */
+					scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
 						scope.supply = Supply.get({upc:code});
 					});
 				} else {
-					scanner.enableStandard();
+					scope.scanner.disable();
+					scope.scanner.enableStandard();
 				}
+			});
+			
+			scope.$on('$destroy', function () {
+				scope.scanner.disable();
 			});
 			
 		
