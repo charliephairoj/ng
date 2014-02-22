@@ -30,9 +30,10 @@ angular.module('employeeApp')
                    
 					var promise = FileUploader.upload(image, scope.url || 'upload/images');
 
-					promise.success(function () {
+					promise.then(function (response) {
 						Notification.display('Image Uploaded');
-					}).error(function () {
+						(callback || angular.noop)(response);
+					}, function () {
 						Notification.display('Failed to upload image.');
 					});
                     

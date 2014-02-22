@@ -53,12 +53,13 @@ angular.module('employeeApp')
 			transformRequest: angular.identity
 		});
         
+        /*
 		promise.success(function(data, status, headers, config) {
 
 		}).error(function (response) {
 			Notification.display("There was an error in uploading the "+type.toLowerCase(), false);
 		});
-		
+		*/
 		return promise;
     };
     
