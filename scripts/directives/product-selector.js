@@ -21,13 +21,22 @@ angular.module('employeeApp')
                 
 				function uploadImage(image, callback){
                     //Display Notification
-                    Notification.display('Uploading Image', false);
+                    Notification.display('Uploading image...', false);
                     //Set the upload Target
                     
                     //Get new image and add to form data
                     var fd = new FormData();
                     fd.append('image', image);
-                    //Upload the image
+                    
+                    var promise = FileUploader.upload(image, scope.url || 'upload/images');
+                    
+                    promise.success(function () {
+                    	Notification.display('Image Uploaded');
+                    }).error(function () {
+                    	Notification.display('Failed to upload image.');
+                    });
+                    
+                    /*//Upload the image
                     jQuery.ajax(scope.url || "upload/images", {
 						type:'POST',
 						data:fd,
@@ -38,6 +47,7 @@ angular.module('employeeApp')
 							(callback || angular.noop)(response);
 						}
 					});
+					*/
                 }
                 
                 function add() {

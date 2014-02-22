@@ -11,8 +11,16 @@ angular.module('employeeApp')
             //throw new TypeError("Expectina a file");
         //}
         //Determine file type and data
-		type = file.isPrototypeOf(Image) ? 'Image' : 'File';
-		fd = new FormData();
+        try {
+        	var type = file.type.split('/')[0];
+        } catch (e) {
+        	
+        }
+        
+		type = file.isPrototypeOf(Image) || type === 'image' ? 'Image' : 'File';
+		
+		var fd = new FormData();
+		//fd = data.isPrototypeOf(FormData) ? data : new FormData();
 	
         Notification.display('Uploading '+type+'...', false);
         
@@ -20,9 +28,13 @@ angular.module('employeeApp')
         fd.append(type.toLowerCase(), file);
         
         //Add additional data to the form data
-        for(var i in data){
-            fd.append(i, data[i]);
-        }
+        try {
+	        for(var i in data){
+	            fd.append(i, data[i]);
+	        }
+	    } catch (e) {
+	    	
+	    }
         
         /*
          * We use the angular $http module to send the image
@@ -36,7 +48,7 @@ angular.module('employeeApp')
         var promise = $http({
 			method: 'POST', 
 			url: url || "upload/images", 
-			data: formData, 
+			data: fd, 
 			headers: {'Content-Type': undefined}, 
 			transformRequest: angular.identity
 		});
@@ -44,7 +56,7 @@ angular.module('employeeApp')
 		promise.success(function(data, status, headers, config) {
 
 		}).error(function (response) {
-			Notification.display("There was an error in uploading the "+type, false);
+			Notification.display("There was an error in uploading the "+type.toLowerCase(), false);
 		});
 		
 		return promise;

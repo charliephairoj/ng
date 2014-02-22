@@ -13,25 +13,26 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			scope.showWidth = function () {
 				var units = scope.supply.units;
 				var type = scope.supply.type;
-				return units === "m" || units === "pc" || units === "pack" || units === "yd" ||
-				(units === "kg" && type === "packaging") ? true : false;
+				return scope.supply.new_supply ? (units === "m" || units === "pc" || units === "pack" || units === "yd" ||
+				(units === "kg" && type === "packaging") ? true : false) : false ;
 			};
 			
 			scope.showDepth = function () {
 				var units = scope.supply.units;
-				return units === "pc" || units === "pack" ? true : false;
+				return scope.supply.new_supply ? (units === "pc" || units === "pack" ? true : false) : false;
 			};
 			
 			scope.showHeight = function () {
 				var units = scope.supply.units;
 				var type = scope.supply.type;
-				return units === "pc" || units === "pack" || (units === "kg" && type === "packaging") ? true : false;
+				return scope.supply.new_supply ? (units === "pc" || units === "pack" ||
+				(units === "kg" && type === "packaging") ? true : false) : false;
 			};
 			
 			scope.supply = new Supply();
 			scope.supply.units = 'pc';
 			scope.suppliers = Supplier.query({limit:0});
-			
+			scope.supplies = Supply.query({limit:0});
 			
 			scope.add = function () {
 				if (scope.form.$valid) {
