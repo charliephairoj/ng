@@ -17,7 +17,7 @@ angular.module('employeeApp')
                 
                 scope.fabricList = Fabric.query();
                 scope.tableList = Table.query();
-                scope.product = {};
+				scope.product = {};
                 
 				function uploadImage(image, callback){
                     //Display Notification
@@ -25,16 +25,16 @@ angular.module('employeeApp')
                     //Set the upload Target
                     
                     //Get new image and add to form data
-                    var fd = new FormData();
-                    fd.append('image', image);
-                    
-                    var promise = FileUploader.upload(image, scope.url || 'upload/images');
-                    
-                    promise.success(function () {
-                    	Notification.display('Image Uploaded');
-                    }).error(function () {
-                    	Notification.display('Failed to upload image.');
-                    });
+                    //var fd = new FormData();
+                    //fd.append('image', image);
+                   
+					var promise = FileUploader.upload(image, scope.url || 'upload/images');
+
+					promise.success(function () {
+						Notification.display('Image Uploaded');
+					}).error(function () {
+						Notification.display('Failed to upload image.');
+					});
                     
                     /*//Upload the image
                     jQuery.ajax(scope.url || "upload/images", {

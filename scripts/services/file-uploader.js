@@ -5,36 +5,36 @@ angular.module('employeeApp')
 		type,
 		fd;
 
-    uploader.upload = function (file, url, data) {
+	uploader.upload = function (file, url, data) {
         
         //if(!file.isPrototypeOf){
             //throw new TypeError("Expectina a file");
         //}
         //Determine file type and data
-        try {
-        	var type = file.type.split('/')[0];
-        } catch (e) {
-        	
-        }
+		try {
+			type = file.type.split('/')[0];
+		} catch (e) {
+
+		}
         
 		type = file.isPrototypeOf(Image) || type === 'image' ? 'Image' : 'File';
-		
+				
 		var fd = new FormData();
 		//fd = data.isPrototypeOf(FormData) ? data : new FormData();
 	
-        Notification.display('Uploading '+type+'...', false);
+		Notification.display('Uploading '+type+'...', false);
         
         //Attch the file to be sent
-        fd.append(type.toLowerCase(), file);
+		fd.append(type.toLowerCase(), file);
         
         //Add additional data to the form data
-        try {
-	        for(var i in data){
-	            fd.append(i, data[i]);
-	        }
-	    } catch (e) {
-	    	
-	    }
+		try {
+			for(var i in data){
+				fd.append(i, data[i]);
+			}
+		} catch (e) {
+
+		}
         
         /*
          * We use the angular $http module to send the image
