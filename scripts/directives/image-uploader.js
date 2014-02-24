@@ -24,12 +24,15 @@ angular.module('employeeApp')
 			* Upload Image
 			* 
 			* Uploads image to the designated url. It then calls
-			* the on upload function that is 
+			* the on-upload function that is 
 			*/
-			scope.upload = function ($image) {
+			scope.upload = function ($image, callback) {
 				var promise = FileUploader.upload($image, scope.url);
 				promise.then(function (data) {
-					scope.onUpload({data: data}); 
+					scope.onUpload({data: data});
+					(callback || angular.noop)(data);
+				}, function () {
+					Notification.display('There was an error uploading the file');
 				});
 			};
 		}
