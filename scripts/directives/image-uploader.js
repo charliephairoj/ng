@@ -29,6 +29,7 @@ angular.module('employeeApp')
 			scope.upload = function ($image, callback) {
 				var promise = FileUploader.upload($image, scope.url);
 				promise.then(function (data) {
+					Notification.display("File was uploaded");
 					scope.onUpload({data: data});
 					(callback || angular.noop)(data);
 				}, function () {

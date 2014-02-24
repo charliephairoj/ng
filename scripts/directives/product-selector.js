@@ -57,7 +57,8 @@ angular.module('employeeApp')
                 }
                 
                 scope.addImage = function (data) {
-					scope.product.image = data;
+                	var image = data.hasOwnProperty('data') ? data.data : data;
+					scope.product.image = image;
                 };
                 
                 scope.addUpholstery = function (upholstery) {
