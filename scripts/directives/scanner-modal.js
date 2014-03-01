@@ -28,7 +28,7 @@ angular.module('employeeApp.directives')
 					 */
 					scope.scanner.register(/^DRS-\d+$/, function (code) {
 						scope.supply = Supply.get({id:code.split('-')[1]}, function(response){
-							console.log(response)
+							console.log(response);
 						}, function () {
 							/*
 							scope.supply = Supply.get({id:code}, function () {
