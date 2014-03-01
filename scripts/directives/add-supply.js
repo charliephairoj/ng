@@ -32,19 +32,40 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			scope.supply = new Supply();
 			scope.supply.units = 'pc';
 			scope.suppliers = Supplier.query({limit:0});
-			scope.supplies = Supply.query({limit:0});
+			scope.supplies = Supply.query({limit:5});
+			
+			scope.changeSupply = function (supply) {
+				angular.extend(scope.supply, supply);
+			};
 			
 			scope.add = function () {
 				if (scope.form.$valid) {
 					Notification.display('Creating supply...', false);
-					scope.supply.$create(function (response) {
-						Notification.display('Supply created');
-						scope.visible = false;
-						scope.supply = new Supply();
-					}, function(reason){
-						console.error(reason);
-						Notification.display('There was an error in creating the supply', false);
-					});
+					//Moves the supply and adds the the supplier array
+					scope.supply.suppliers = scope.supply.suppliers || [];
+					if (scope.supply.suppliers.indexOfById(scope.supply.supplier)) {
+						scope.supply.suppliers.push(scope.supply.supplier);
+					}
+					delete scope.supply.supplier;
+					
+					//Decides whether to update or create based on presence of id
+					if (scope.supply.hasOwnProperty('id')) {
+						scope.supply.$update(function (response) {
+							scope.visible = false;
+							scope.supply = new Supply();
+						}, function (reason) {
+							console.error(reason);
+						});
+					} else {
+						scope.supply.$create(function (response) {
+							Notification.display('Supply created');
+							scope.visible = false;
+							scope.supply = new Supply();
+						}, function(reason){
+							console.error(reason);
+							Notification.display('There was an error in creating the supply', false);
+						});
+					}
 				} else {
 					Notification.display('Please fill out the form properly');
 				}

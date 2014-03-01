@@ -43,12 +43,13 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	};
 	
 	scanner = new scanner('supply/details');
-	scanner.enable();
+	//scanner.enable();
 	scanner.disableStandard();
 	scanner.register(/^\d+(\-\d+)*$/, function (code) {
-		if (!$scope.supply.upc) {
-			$scope.supply.upc = code;
-		}
+		$scope.safeApply(function () {
+			$scope.selectedSupplier.upc = code;
+			$scope.showAddUPC = false;
+		});
 	});
 	/*
 	 * Update the supply
@@ -84,6 +85,19 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		}
 	}, true);
 	
+	/*
+	 * Adding a upc
+	 * 
+	 * Detects the switch and opens the modal accordingly
+	 * 
+	 */
+	$scope.$watch('showAddUPC', function (newVal, oldVal) {
+		if (newVal) {
+			scanner.enable();
+		} else {
+			scanner.disable();
+		}
+	});
 	/*
 	 * Add a quantity
 	 * 

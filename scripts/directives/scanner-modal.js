@@ -27,7 +27,9 @@ angular.module('employeeApp.directives')
 					 * Register the supply code regex
 					 */
 					scope.scanner.register(/^DRS-\d+$/, function (code) {
-						scope.supply = Supply.get({id:code.split('-')[1]}, function(){}, function () {
+						scope.supply = Supply.get({id:code.split('-')[1]}, function(response){
+							console.log(response)
+						}, function () {
 							/*
 							scope.supply = Supply.get({id:code}, function () {
 								Notification.display('Unable to find supply', false);
@@ -39,7 +41,15 @@ angular.module('employeeApp.directives')
 					 * Register the upc regex
 					 */
 					scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
-						scope.supply = Supply.get({upc:code});
+						Supply.query({upc:code}, function (response) {
+							try {
+								scope.supply = response[0];
+							} catch (e) {
+								console.log(e);
+							}
+						}, function (reason) {
+							console.log(reason);
+						});
 					});
 				} else {
 					scope.scanner.disable();
