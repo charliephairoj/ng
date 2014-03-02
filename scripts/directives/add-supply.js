@@ -32,7 +32,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			scope.supply = new Supply();
 			scope.supply.units = 'pc';
 			scope.suppliers = Supplier.query({limit:0});
-			scope.supplies = Supply.query({limit:5});
+			scope.supplies = Supply.query({limit:0});
 			
 			scope.changeSupply = function (supply) {
 				angular.extend(scope.supply, supply);
@@ -72,6 +72,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			};
 
 			scope.addImage = function (data) {
+				console.log(data);
 				scope.supply.image = data;
 			};
 	
