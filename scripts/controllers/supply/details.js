@@ -8,6 +8,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	/*
 	 * Vars
 	 */
+	$scope.action = 'subtract';
 	$scope.showQuantity = false;
 	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
 		Notification.hide();	
@@ -18,7 +19,6 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	var validWidth = ['m', 'yd', 'pc', 'pack', 'container', 'fabric'];
 	var validDepth = ['pc', 'pack', 'container'];
 	var validHeight = ['pack', 'pc'];
-	
 	/*
 	 * Seletively show dimensions
 	 */
@@ -88,6 +88,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	/*
 	 * Adding a upc
 	 * 
+	 * Set Keyboard Navigation
 	 * Detects the switch and opens the modal accordingly
 	 * 
 	 */
@@ -144,6 +145,8 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	};
 	
 	$scope.$on('$destroy', function () {
+		//Turn off scanner and keyboard Navigation
+		scanner.disable();
 		$timeout.cancel(timeoutPromise);
 		Notification.display('Updating '+$scope.supply.description+'...', false);
 		$scope.supply.$update(function () {

@@ -3,7 +3,6 @@ angular.module('employeeApp')
 .directive('img', [function () {
 	
 	function position(spec) {
-		console.log(spec);
 		if (spec.height && spec.parentHeight && spec.elementHeight) {
 			var heightDiff = spec.parentHeight - spec.elementHeight;
 			spec.element.css('top', heightDiff/2);
@@ -26,7 +25,7 @@ angular.module('employeeApp')
 					var parent = element.parent();
 					var pWidth = parent.innerWidth();
 					var pHeight = parent.innerWidth();
-					element.one('load', function () {
+					element.on('load', function () {
 						if (iAttrs.center) {
 							position({
 								element: element,

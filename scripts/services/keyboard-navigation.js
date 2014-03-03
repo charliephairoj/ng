@@ -1,6 +1,6 @@
 
 angular.module('employeeApp.services')
-.factory('KeyboardNavigation', ['$rootScope', function KeyboardNavigation($rootScope) {
+.factory('KeyboardNavigation', ['$rootScope', '$log', function KeyboardNavigation($rootScope, $log) {
 	function KeyboardNavigationFactory(configs) {
 		
 		var currentIndex = 0,
@@ -24,6 +24,9 @@ angular.module('employeeApp.services')
 		
 		function parseKeydown(evt) {
 			switch(evt.which) {
+				case 37:
+					if (onleft) {onleft();}
+					break;
 				case 38:
 					changeIndex(-1);
 					if (onup) {onup();}
