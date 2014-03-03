@@ -22,16 +22,17 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			};
 			
 			scope.changeQuantity = function (quantity) {
-				var quantity = quantity || scope.quantity;
+				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0) {
 					scope.supply['$'+scope.action]({quantity:quantity}, function () {
 						scope.quantity = 0;
 						$timeout(function () {
 							scope.supply = undefined;
-						}, 5000)
+						}, 5000);
 					});
 				}
-			}
+			};
+			
 			/*
 			 * Register the supply code regex
 			 */
