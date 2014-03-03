@@ -1,0 +1,135 @@
+/*
+ * LESS for supply scanner modal
+ */
+.supply-scanner{
+    height:15em;
+    top:50%;
+    margin-top:-7.5em; 
+    .container{
+        bottom:0;
+        
+        .ready-container{
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            z-index:1;
+            background-color:#313131;
+            .inner-container{
+                position:absolute;
+                top:2em;
+                bottom:2em;
+                right:2em;
+                left:2em;
+                border:0.25em gray dashed;
+                border-radius:0.25em;
+                h2{
+                    width:100%;
+                    text-align:center;
+                    font-family:proxima;
+                    color:#CCC;
+                    margin-top:1.5em;
+                }
+            }
+        } 
+        
+        .supply{
+            font-family:proxima;
+            position:absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right:13em;
+            .image-container{
+                position:absolute;
+                top:1em;
+                left:1em;
+                bottom:1em;
+                width:14em;
+                background-color:#282828;
+                color:#CCC;
+                text-align:center;
+                overflow:hidden;
+                img{
+                    height:100%;
+                }
+            }
+            table{
+                margin-left:16em;
+                margin-top:1em;
+                tr{
+                    td{
+                        &:first-child{
+                            padding-right:1em;
+                        }
+                        &:last-child{
+                            text-align:right;
+                        }
+                    }
+                }
+            }
+        }
+        .quantity-container{
+            position:absolute;
+            top:0;
+            right:0;
+            width:13em;
+            bottom:0;
+            font-size:1em;
+            //padding:2em;
+            border-left:1px solid #282828;
+            
+            h3{
+                position:absolute;
+                top:2em;
+                left:1.8em;
+                font-family:proxima;
+            }
+            
+            input{
+                position:absolute;
+                top:2.8em;
+                right:2.2em;
+                width:4em;
+                text-align:right;
+            }
+            
+            button{
+                position:absolute;
+                top:5em;
+                background-color:#313131;
+                border: 1px solid #282828;
+                border-radius:2px;
+                
+                padding:0.1em;
+                width:4em;
+                .transition(all, 50ms, linear);
+                
+                span{
+                    font-family:proxima;
+                    font-size:0.8em;
+                    color:#CCC;
+                    margin:0;
+                    padding:0;
+                }
+                
+                &.active{
+                    background-color:orange;
+                    color:#000;
+                    span{
+                        color:#000;
+                    }
+                }
+                
+                &.add{
+                   left:2em;
+                }
+                
+                &.subtract{
+                    right:2em;
+                }
+            }
+        }
+    }
+}
