@@ -42,13 +42,13 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		$scope.supply.image = image;
 	};
 	
-	$scope.showStickers = function () {
+	$scope.viewStickers = function () {
 		try {
 			window.open($scope.supply.sticker.url);
 		} catch (e) {
-			Notification.display("This supply is missing a sticker")
+			Notification.display("This supply is missing a sticker");
 		}
-	}
+	};
 	
 	scanner = new scanner('supply/details');
 	//scanner.enable();
