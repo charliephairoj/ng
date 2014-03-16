@@ -25,6 +25,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0) {
 					scope.supply['$'+scope.action]({quantity:quantity}, function () {
+						Notification.display('Quantity of '+scope.supply.description+' changed to '+scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
 							scope.supply = undefined;
@@ -37,10 +38,12 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			 * Register the supply code regex
 			 */
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
+				Notification.display("Looking up supply...", false);
 				scope.supply = Supply.get({id:code.split('-')[1]}, function(response){
+					Notification.hide();
 					focusOnQuantity();
-					console.log(response);
 				}, function () {
+					Notification.display('Unable to find supply.', false);
 					/*
 					scope.supply = Supply.get({id:code}, function () {
 						Notification.display('Unable to find supply', false);

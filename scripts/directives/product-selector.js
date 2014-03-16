@@ -32,7 +32,7 @@ angular.module('employeeApp')
 
 					promise.then(function (response) {
 						Notification.display('Image Uploaded');
-						(callback || angular.noop)(response);
+						(callback || angular.noop)(response.data);
 					}, function () {
 						Notification.display('Failed to upload image.');
 					});

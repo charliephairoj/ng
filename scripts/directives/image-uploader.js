@@ -28,10 +28,10 @@ angular.module('employeeApp')
 			*/
 			scope.upload = function ($image, callback) {
 				var promise = FileUploader.upload($image, scope.url);
-				promise.then(function (data) {
+				promise.then(function (dataObj) {
 					Notification.display("File was uploaded");
-					scope.onUpload({data: data});
-					(callback || angular.noop)(data);
+					scope.onUpload({data: dataObj.data, $image:dataObj.data});
+					(callback || angular.noop)(dataObj.data);
 				}, function () {
 					Notification.display('There was an error uploading the file');
 				});
