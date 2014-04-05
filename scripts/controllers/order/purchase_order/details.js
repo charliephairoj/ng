@@ -9,6 +9,12 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		Notification.hide();
 	});
 	
+	$scope.update = function () {
+		$scope.po.$update(function () {
+			
+		});
+	};
+	
 	$scope.viewPDF = function () {
 		window.open($scope.po.pdf.url);	
 	};
