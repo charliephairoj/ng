@@ -12,6 +12,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	$scope.showQuantity = false;
 	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
 		Notification.hide();	
+		$scope.suppliers = $scope.supply.suppliers;
 	});
 	globalScanner.disable();
 	var updateLoopActive = false,
@@ -76,6 +77,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		delete supply.last_modified;
 		delete supply.image;
 		delete supply.supplier;
+		delete supply.quantity;
 		return supply;
 	}, function (newVal, oldVal) {
 		if (!updateLoopActive && oldVal.hasOwnProperty('id')) {
@@ -120,7 +122,9 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		}
 		
 		$scope.supply.$add({quantity:quantity}, function () {
-			
+			if (!$scope.supply.hasOwnProperty('suppliers')) {
+				$scope.supply.suppliers = $scope.suppliers;
+			}
 		});
 	};
 	
@@ -137,7 +141,9 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		}
 		
 		$scope.supply.$subtract({quantity:quantity}, function () {
-			
+			if (!$scope.supply.hasOwnProperty('suppliers')) {
+				$scope.supply.suppliers = $scope.suppliers;
+			}
 		});
 	};
 	

@@ -5,7 +5,17 @@ function ($scope, User, Group, $location) {
 	$scope.user = new User();
 	$scope.user.groups = [];
 	$scope.groups = Group.query({limit:0});
-
+	
+	/*
+	 * Add Profile Image
+	 * 
+	 * Recieves the image data as an argument. The data is then applied 
+	 * to the user and the user is saved
+	 */
+	$scope.addImage = function(imageData){
+		$scope.user.image = imageData.hasOwnProperty('data') ? imageData.data : imageData;
+	};
+	
 	$scope.save = function(){
 		//Validates the form
 		if($scope.form.$valid){

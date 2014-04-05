@@ -43,10 +43,20 @@ function ($scope, Group, User, $routeParams, $location, $http, Notification) {
         merge($scope.groupList, $scope.user.groups);
     });
     
-    
+    /*
+	 * Add Profile Image
+	 * 
+	 * Recieves the image data as an argument. The data is then applied 
+	 * to the user and the user is saved
+	 */
+	$scope.addImage = function(imageData){
+		$scope.showAddImage = false;
+		$scope.user.image = imageData.hasOwnProperty('data') ? imageData.data : imageData;
+		$scope.user.$update();	
+	};
     
     $scope.changePassword = function(){
-        var url = "/user/"+$scope.user.id+"/change_password";
+        var url = "/api/v1/user/"+$scope.user.id+"/change_password";
         $http.post(url, $scope.password).success(function(e){
             Notification.display('Password successfully changed');
             $scope.password = {};
