@@ -2,6 +2,11 @@
 
 <div class="po-details-page" >
     
+    <!--
+    	Modals
+   	-->
+   	
+   	<div supply-list="showAddItem" supplier="po.supplier" on-select="addItem($supply)"></div>
     
     <div class="calendar-modal" data-modal  ng-model="showCal">
         <div ui-date ng-model="po.receive_date"></div>
@@ -21,9 +26,12 @@
         <nav>
             <ul>
                 <li ng-show="currentUser.hasPermission('change_purchaseorder')">
-                    <div ng-click="save()">Save</div>
+                    <div ng-click="update()">Save</div>
                 </li>
-                 <li ng-show="currentUser.hasPermission('change_purchaseorder')">
+                <li ng-show="currentUser.hasPermission('change_purchaseorder')">
+                    <div ng-click="showAddItem=true">Add Item</div>
+                </li>
+                <li ng-show="currentUser.hasPermission('change_purchaseorder')">
                     <div ng-click="order()">Order</div>
                 </li>
                 <li ng-show="currentUser.hasPermission('change_purchaseorder')">
@@ -66,7 +74,15 @@
                 </div>
                 <div class="row">
                     <div class="cell">Status</div>
-                    <div class="cell" ng-class="{acknowledged:po.status == 'ACKNOWLEDGED', shipped:po.status == 'SHIPPED'}">{{po.status}}</div>
+                    <div class="cell" ng-class="{acknowledged:po.status == 'ACKNOWLEDGED', shipped:po.status == 'SHIPPED'}">
+                    	{{po.status}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">Discount</div>
+                    <div class="cell">
+                    	<input class="discount" type="text" ng-model="po.discount" />%
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +96,9 @@
                             <div class="details-row">
                                 <div class="details-data">
                                     {{item.description}}
-                                    	<div class="quantity">{{item.quantity}} {{item.units}}</div>
+                                    	<div class="quantity">
+                                    		<input type="text" ng-model="item.quantity" />{{item.units}}
+                                    	</div>
                                 </div>
                                 
                             </div>

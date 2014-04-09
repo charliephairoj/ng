@@ -10,9 +10,28 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 	});
 	
 	$scope.update = function () {
+		Notification.display('Saving changes to Purchase Order for '+$scope.po.id, false);
 		$scope.po.$update(function () {
-			
+			Notification.display('Changes to Purchase Order '+$scope.po.id+' saved.');
+			window.open($scope.po.pdf.url);
+		}, function (e) {
+			console.error(e);
 		});
+	};
+	
+	/*
+	 * Adds a new Item to the Purchase Order. However
+	 * this does not save it to the database on the server
+	 * side. The update function must be called in addition
+	 * to adding the item
+	 */
+	$scope.addItem = function (item) {
+		if ($scope.po.items.indexOfById(item) != -1) {
+			$scope.showAddItem = false;
+			$scope.po.items.push(item);
+		} else {
+			Notification.display('This item is already present in the purchase order');
+		}
 	};
 	
 	$scope.viewPDF = function () {
