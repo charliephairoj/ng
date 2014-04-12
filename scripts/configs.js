@@ -108,7 +108,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 			//Set the success and error callbacks for the promise
 			promise.then(function (results) {
 				//Cycle through componenets to look for country
-				for (i in results[0].address_components) {
+				for (var i in results[0].address_components) {
 					var component = results[0].address_components[i];
 					if (typeof(component.types) == 'object') {
 						if (component.types.indexOf('country') != -1) {
