@@ -27,7 +27,7 @@ angular.module('employeeApp').config(function ($httpProvider) {
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $http){
+angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $http, Geocoder){
 	
 	/*
 	 * Get the current user and place it at the top scope
@@ -90,4 +90,43 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
     
     window.globalScanner = new scanner('global');
     globalScanner.enable();
+    
+	/*
+	 * Geolocating the user
+	 * 
+	 * Establishes the current country that the user is currently in.
+	 * First uses the HTML5 geolocation test to determine, if the browser
+	 * has implemented. And then retrieves the lat and lng. The lat and lng 
+	 * are then reverse geolocated with the google maps reserves geocode
+	 * service. The results are then search for the country code. 
+	 * 
+	 */
+	if ('geolocation' in navigator) {
+		navigator.geolocation.getCurrentPosition(function (position) {
+			//Reverse geocode and returns the promise
+			var promise = Geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude);
+			//Set the success and error callbacks for the promise
+			promise.then(function (results) {
+				//Cycle through componenets to look for country
+				for (i in results[0].address_components) {
+					var component = results[0].address_components[i];
+					if (typeof(component.types) == 'object') {
+						if (component.types.indexOf('country') != -1) {
+							console.log(component);
+							//Set country to main scope, to be called later
+							$rootScope.country = component.short_name;
+						}
+					}
+				}
+			}, function () {
+				console.error('Getting the position failed');
+			});
+		}, function (e) {
+			console.log(e);
+		});
+		
+	} else {
+		console.log('Geolocation not available');
+	}
+	
 });

@@ -128,6 +128,19 @@ angular.module('employeeApp.services')
         }
     };
     
+    Geocoder.prototype.reverseGeocode = function (lat, lng) {
+    	console.log('test');
+    	var deferred = $q.defer();
+    	var latLng = new google.maps.LatLng(lat, lng);
+    	this.geocoder.geocode({'latLng': latLng}, function (results, status) {
+    		console.log(results);
+    		console.log(status);
+    		deferred.resolve(results);
+    	});
+    	
+    	return deferred.promise;
+    }
+    
     return new Geocoder();
     
 }]);

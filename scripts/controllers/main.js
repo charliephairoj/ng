@@ -1,7 +1,8 @@
 
 angular.module('employeeApp')
-.controller('MainCtrl', ['$scope', '$location', function ($scope, $location) {
-
+.controller('MainCtrl', ['$scope', '$location',
+function ($scope, $location) {
+	
 	var user = $scope.currentUser;
 	var changePage = function () {
 		if (user.hasModule('supplies') && !user.hasModule('acknowledgements') && 
