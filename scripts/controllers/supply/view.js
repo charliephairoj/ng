@@ -19,7 +19,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	$scope.scannerMode = false;
-	$scope.supplies = Supply.query(function(){
+	$scope.supplies = Supply.query({'country':$scope.country}, function(){
 		fetching = false;
 		Notification.hide();
 		changeSelection(index);
@@ -34,7 +34,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	*/
 	$scope.$watch('query', function (q) {
 		if (q) {
-			Supply.query({limit:10, q:q}, function (resources) {
+			Supply.query({limit:10, q:q, 'country': $scope.country}, function (resources) {
 				for (var i=0; i<resources.length; i++) {
 					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
 						$scope.supplies.push(resources[i]);
@@ -57,11 +57,14 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 			Notification.display('Loading more supplies...', false);
 			Supply.query({
 				offset: $scope.supplies.length,
-				limit: 50
+				limit: 50,
+				country: $scope.country
 			}, function (resources) {
 				Notification.hide();
 				for (var i=0; i<resources.length; i++) {
-					$scope.supplies.push(resources[i]);
+					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
+						$scope.supplies.push(resources[i]);
+					}
 				}
 			});
 		}

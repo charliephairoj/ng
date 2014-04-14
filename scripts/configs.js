@@ -101,6 +101,9 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 	 * service. The results are then search for the country code. 
 	 * 
 	 */
+	//Set initial country
+	$rootScope.country = 'TH'
+	
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition(function (position) {
 			//Reverse geocode and returns the promise
@@ -114,7 +117,8 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 						if (component.types.indexOf('country') != -1) {
 							console.log(component);
 							//Set country to main scope, to be called later
-							$rootScope.country = component.short_name;
+							$rootScope.country = 'KH';
+							//$rootScope.country = component.short_name;
 						}
 					}
 				}

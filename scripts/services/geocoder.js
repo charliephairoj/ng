@@ -42,8 +42,11 @@ angular.module('employeeApp.services')
     
     
 	function Geocoder() {
-		this.google = google || {};
-		this.geocoder = new google.maps.Geocoder();
+		this.google = "google" in window ? window.google : {maps:{
+				Geocoder:angular.noop,
+				LatLng:angular.noop
+			}};
+		this.geocoder = new this.google.maps.Geocoder();
     }
     
     /*
@@ -131,7 +134,7 @@ angular.module('employeeApp.services')
 	Geocoder.prototype.reverseGeocode = function (lat, lng) {
 
 		var deferred = $q.defer();
-		var latLng = new google.maps.LatLng(lat, lng);
+		var latLng = new this.google.maps.LatLng(lat, lng);
 		this.geocoder.geocode({'latLng': latLng}, function (results, status) {
 			deferred.resolve(results);
 		});

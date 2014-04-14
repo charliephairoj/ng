@@ -10,7 +10,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	 */
 	$scope.action = 'subtract';
 	$scope.showQuantity = false;
-	$scope.supply = Supply.get({'id':$routeParams.id}, function () {
+	$scope.supply = Supply.get({'id':$routeParams.id, 'country': $scope.country}, function () {
 		Notification.hide();	
 		$scope.suppliers = $scope.supply.suppliers;
 	});
@@ -85,7 +85,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			timeoutPromise = $timeout(function () {
 				Notification.display('Updating '+$scope.supply.description+'...', false);
 				var supply = angular.copy($scope.supply);
-				supply.$update(function () {
+				supply.$update({'country': $scope.country}, function () {
 					updateLoopActive = false;
 					Notification.display($scope.supply.description+' updated');
 				}, function () {
@@ -121,7 +121,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			quantity = $scope.quantity;
 		}
 		
-		$scope.supply.$add({quantity:quantity}, function () {
+		$scope.supply.$add({quantity:quantity, 'country': $scope.country}, function () {
 			if (!$scope.supply.hasOwnProperty('suppliers')) {
 				$scope.supply.suppliers = $scope.suppliers;
 			}
@@ -140,7 +140,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			quantity = $scope.quantity;
 		}
 		
-		$scope.supply.$subtract({quantity:quantity}, function () {
+		$scope.supply.$subtract({quantity:quantity, 'country': $scope.country}, function () {
 			if (!$scope.supply.hasOwnProperty('suppliers')) {
 				$scope.supply.suppliers = $scope.suppliers;
 			}
@@ -163,7 +163,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		scanner.disable();
 		$timeout.cancel(timeoutPromise);
 		Notification.display('Updating '+$scope.supply.description+'...', false);
-		$scope.supply.$update(function () {
+		$scope.supply.$update({'country': 'TH'}, function () {
 			Notification.display($scope.supply.description+' updated.');
 		});
 		globalscanner.enable();

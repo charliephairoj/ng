@@ -1,7 +1,7 @@
 
 angular.module('employeeApp.directives')
-.directive('supplyScannerModal', ['scanner', 'Supply', 'Notification', 'KeyboardNavigation', '$timeout',
-function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
+.directive('supplyScannerModal', ['scanner', 'Supply', 'Notification', 'KeyboardNavigation', '$timeout', '$rootScope',
+function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScope) {
 	return {
 		templateUrl: 'views/templates/supply-scanner-modal.html',
 		restrict: 'A',
@@ -10,7 +10,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			'visible': '=supplyScannerModal'
 		},
 		link: function postLink(scope, element, attrs) {
-			
+			console.log(scope.country);
 			/*
 			 * Vars
 			 */
@@ -24,7 +24,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0) {
-					scope.supply['$'+scope.action]({quantity:quantity}, function () {
+					scope.supply['$'+scope.action]({quantity:quantity, 'country':$rootScope.country}, function () {
 						Notification.display('Quantity of '+scope.supply.description+' changed to '+scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
@@ -39,7 +39,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			 */
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
 				Notification.display("Looking up supply...", false);
-				scope.supply = Supply.get({id:code.split('-')[1]}, function(response){
+				scope.supply = Supply.get({id:code.split('-')[1], 'country': $rootScope.country}, function(response){
 					Notification.hide();
 					focusOnQuantity();
 				}, function () {
@@ -55,7 +55,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			 * Register the upc regex
 			 */
 			scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
-				Supply.query({upc:code}, function (response) {
+				Supply.query({upc:code, 'country': $rootScope.country}, function (response) {
 					focusOnQuantity();
 					try {
 						scope.supply = response[0];
@@ -116,7 +116,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout) {
 			});
 			
 			scope.$on('$destroy', function () {
-				keyNav.disable();
+				keyboardNav.disable();
 				scope.scanner.disable();
 			});
 			
