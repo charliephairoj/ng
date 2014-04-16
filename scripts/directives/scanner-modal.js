@@ -21,6 +21,21 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 				element.find('input').focus();
 			};
 			
+			/*
+			 * Watchers
+			 */
+			/*
+			 * This is a hack to rememdy that I cannot
+			 * add an ng-class to the main tag of this
+			 * directive
+			 */
+			scope.$watch('showAddImage', function (val) {
+				if (val) {
+					element.addClass('add-image');
+				} else {
+					element.removeClass('add-image');
+				}
+			});
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0) {
@@ -112,12 +127,14 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					scope.scanner.disable();
 					keyboardNav.disable();
 					scope.scanner.enableStandard();
+					scope.showAddImage = false;
 				}
 			});
 			
 			scope.$on('$destroy', function () {
 				keyboardNav.disable();
 				scope.scanner.disable();
+				scope.showAddImage = false;
 			});
 			
 		

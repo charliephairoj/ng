@@ -5,10 +5,16 @@
     height:15em;
     top:50%;
     margin-top:-7.5em; 
+    .transition(all, 250ms, linear);
+    .image-uploader{
+        .transition(all, 250ms, linear);
+        opacity:0;
+    }
     .container{
         bottom:0;
-        
+        .transition(all, 250ms, linear);
         .ready-container{
+            display:none;
             position:absolute;
             top:0;
             bottom:0;
@@ -40,9 +46,6 @@
                     display:none;
                 }
             }
-            .image-uploader{
-                
-            }
         }
         
         .supply{
@@ -66,9 +69,10 @@
                     height:100%;
                 }
             }
-            table{
+            .supply-details{
                 margin-left:16em;
                 margin-top:1em;
+                .transition(all, 250ms, linear);
                 tr{
                     td{
                         &:first-child{
@@ -141,6 +145,24 @@
                     right:2em;
                 }
             }
+        }
+    }
+    
+    &.add-image{
+        height:30em;
+        margin-top:-15em;
+        width:20em;
+        left:50%;
+        margin-left:-10em;
+        .image-uploader{
+            position:absolute;
+            color:#CCC;
+            top:3.25em;
+            bottom:0em;
+            opacity:1;
+        }
+        .container{
+            opacity:0;
         }
     }
 }
