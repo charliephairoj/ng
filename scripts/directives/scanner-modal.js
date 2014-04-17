@@ -36,6 +36,20 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					element.removeClass('add-image');
 				}
 			});
+			
+			/*
+			 * Add Image
+			 * 
+			 * Updates the image of the currently selected supply
+			 */
+			scope.addImage = function (data) {
+				Notification.display("Updating the supply's image", false);
+				var image = data.hasOwnProperty('data') ? data.data : data;
+				scope.supply.image = image;
+				scope.supply.$update(function () {
+					Notification.display("Supply's image updated.");
+				});
+			};
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0) {

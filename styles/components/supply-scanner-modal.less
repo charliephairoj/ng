@@ -12,6 +12,7 @@
     }
     .container{
         bottom:0;
+        overflow:hidden;
         .transition(all, 250ms, linear);
         .ready-container{
             display:none;
@@ -41,6 +42,8 @@
         } 
         
         .image-container{
+            overflow:hidden;
+            .transition(all, 250ms, linear);
             img {
                 .ng-hide{
                     display:none;
@@ -151,18 +154,27 @@
     &.add-image{
         height:30em;
         margin-top:-15em;
-        width:20em;
-        left:50%;
-        margin-left:-10em;
-        .image-uploader{
-            position:absolute;
-            color:#CCC;
-            top:3.25em;
-            bottom:0em;
-            opacity:1;
-        }
+        //width:20em;
+        //left:50%;
+        //margin-left:-10em;
         .container{
-            opacity:0;
-        }
+            .supply{
+                .image-container{
+                    width:20em;
+                    .image-uploader{
+                        position:absolute;
+                        color:#CCC;
+                        top:0;
+                        bottom:0;
+                        opacity:1;
+                    }
+                }
+                
+                .supply-details{
+                    margin-left:22em;
+                }
+            }
+        } 
+        
     }
 }
