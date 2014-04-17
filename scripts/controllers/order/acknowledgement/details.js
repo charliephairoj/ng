@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderAcknowledgementDetailsCtrl', ['$scope', 'Acknowledgement', '$routeParams', 'Notification', '$http', 
-function ($scope, Acknowledgement, $routeParams, Notification, $http) {
+.controller('OrderAcknowledgementDetailsCtrl', ['$scope', 'Acknowledgement', '$routeParams', 'Notification', '$http', '$window',
+function ($scope, Acknowledgement, $routeParams, Notification, $http, $window) {
 	
 	//Show system notification
 	Notification.display('Loading Acknowledgement...', false);
@@ -24,7 +24,7 @@ function ($scope, Acknowledgement, $routeParams, Notification, $http) {
     $scope.getPDF = function (type) {
 		try{
 			var address = $scope.acknowledgement.pdf[type.toLowerCase()];
-			window.open(address);
+			$window.open(address);
 		} catch (e) {
 			var message = "Missing "+type+" pdf for Acknowledgement #"+$scope.acknowledgement.id;
 			Notification.display(message);

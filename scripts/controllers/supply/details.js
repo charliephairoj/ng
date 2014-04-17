@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout', '$location', 'scanner',
-function ($scope, $routeParams, Notification, Supply, $timeout, $location, scanner) {
+.controller('SupplyDetailsCtrl', ['$scope', '$routeParams', 'Notification', 'Supply', '$timeout', '$location', 'scanner', '$window', 
+function ($scope, $routeParams, Notification, Supply, $timeout, $location, scanner, $window) {
 	
 	Notification.display('Retrieving supply...', false);
 	
@@ -45,7 +45,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	
 	$scope.viewStickers = function () {
 		try {
-			window.open($scope.supply.sticker.url);
+			$window.open($scope.supply.sticker.url);
 		} catch (e) {
 			Notification.display("This supply is missing a sticker");
 		}

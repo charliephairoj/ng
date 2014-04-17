@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter', '$timeout',
-function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeout) {
+.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter', '$timeout', '$window',
+function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeout, $window) {
 	
 	/*
 	 * Setup vars
@@ -156,7 +156,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 				Notification.display('Creating purchase order...', false);
 				$scope.po.$save(function (response) {
 					try{
-						window.open(response.pdf.url);
+						$window.open(response.pdf.url);
 					}catch(e){
 						console.warn(e);
 					}

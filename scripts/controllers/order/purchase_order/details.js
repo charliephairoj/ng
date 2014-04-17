@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderPurchaseOrderDetailsCtrl', ['$scope', '$routeParams', 'PurchaseOrder', 'Notification', '$location',
-function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
+.controller('OrderPurchaseOrderDetailsCtrl', ['$scope', '$routeParams', 'PurchaseOrder', 'Notification', '$location', '$window',
+function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window) {
 	
 	Notification.display('Loading purchase order '+$routeParams.id+'...', false);
 	
@@ -13,7 +13,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		Notification.display('Saving changes to Purchase Order for '+$scope.po.id, false);
 		$scope.po.$update(function () {
 			Notification.display('Changes to Purchase Order '+$scope.po.id+' saved.');
-			window.open($scope.po.pdf.url);
+			$window.open($scope.po.pdf.url);
 		}, function (e) {
 			console.error(e);
 		});
@@ -34,8 +34,19 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		}
 	};
 	
+	/*
+	 * Remove an Item from the the purchase order
+	 * 
+	 * Takes an index as the argment and removes that corresponding item from
+	 * the items array of scope.po. This does not automatically update the server, 
+	 * must be called separately
+	 */
+	$scope.removeItem = function ($index) {
+		$scope.po.items.splice($index, 1);
+	};
+	
 	$scope.viewPDF = function () {
-		window.open($scope.po.pdf.url);	
+		$window.open($scope.po.pdf.url);	
 	};
 	
 	$scope.order = function () {
@@ -44,7 +55,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		//Modify the order
 		$scope.po.status = 'Ordered';
 		//Receive items
-		for (var i=0; i<$scope.po.items.length; i++) {
+		for (var i = 0; i < $scope.po.items.length; i++) {
 			$scope.po.items[i].status = 'Ordered';
 		}
 		
@@ -60,7 +71,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 			//Modify the order
 			$scope.po.status = 'Received';
 			//Receive items
-			for (var i=0; i<$scope.po.items.length; i++) {
+			for (var i = 0; i < $scope.po.items.length; i++) {
 				$scope.po.items[i].status = 'Received';
 			}
 			
@@ -80,7 +91,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		$scope.po.status = 'Paid';
 		
 		//Pay for the items
-		for (var i=0; i<$scope.po.items.length; i++) {
+		for (var i = 0; i < $scope.po.items.length; i++) {
 			$scope.po.items[i].status = 'Paid';
 		}
 		
@@ -95,7 +106,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location) {
 		$scope.po.status = 'Cancelled';
 		
 		//Pay for the items
-		for (var i=0; i<$scope.po.items.length; i++) {
+		for (var i = 0; i<$scope.po.items.length; i++) {
 			$scope.po.items[i].status = 'Cancelled';			
 		}
 		
