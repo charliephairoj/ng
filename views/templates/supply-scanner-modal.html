@@ -9,11 +9,7 @@
 		</div>
 		<div class="supply">
 			<div class="image-container" ng-click="showAddImage=true">
-<<<<<<< HEAD
 				<img ng-hide="showAddImage" ng-src="{{supply.image.url}}" center="true"/>
-=======
-				<img ng-hide="showAddImage" ng-src="{{supply.image.url}}" center="true" />
->>>>>>> 9e3e500a06a8813c33229ef9faa19e706a240308
 				<div ng-show="showAddImage" image-uploader url='/api/v1/supply/image' on-upload="addImage(data)"></div>
 			</div>
 			<table class="supply-details">
@@ -39,6 +35,7 @@
 				</tr>
 			</table>
 		</div>
+		
 		<div class="quantity-container">
 			<h3>Quantity</h3>
 			<input class="quantity" type="number" size="5" autofocus ng-model="quantity" />
@@ -53,5 +50,5 @@
 				</span>
 			</button>
 		</div>
-	</div>
+    </div>
 </div>
