@@ -17,8 +17,11 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			var keyboardNav = new KeyboardNavigation();
 			scope.action = 'subtract';
 			scope.scanner = new scanner('supply-scanner-modal');
+			
 			var focusOnQuantity = function () {
-				element.find('input').focus();
+				var quantity = element.find('input');
+				quantity.focus();
+				quantity.val('');
 			};
 			
 			/*

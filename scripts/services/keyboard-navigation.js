@@ -22,24 +22,33 @@ angular.module('employeeApp.services')
 			}
 		}
 		
+		function directionHandler(evt, fn) {
+			evt.preventDefault();
+			evt.stopPropagation();
+			fn();
+		};
+		
 		function parseKeydown(evt) {
+			
+			evt.preventDefault();
+			evt.stopPropagation();
 			switch(evt.which) {
 				case 37:
-					if (onleft) {onleft();}
+					if (onleft) {directionHandler(evt, onleft);}
 					break;
 				case 38:
 					changeIndex(-1);
-					if (onup) {onup();}
+					if (onup) {directionHandler(evt, onup);}
 					break;
 				case 39:
-					if (onright) {onright();}
+					if (onright) {directionHandler(evt, onright);}
 					break;
 				case 40:
 					changeIndex(1);
-					if (ondown) {ondown();}
+					if (ondown) {directionHandler(evt, ondown);}
 					break;
 				case 13:
-					if (onenter) {onenter();}
+					if (onenter) {directionHandler(evt, onenter);}
 					break;
 			
 			}
