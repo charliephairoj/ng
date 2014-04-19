@@ -12,7 +12,18 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	$scope.showQuantity = false;
 	$scope.supply = Supply.get({'id':$routeParams.id, 'country': $scope.country}, function () {
 		Notification.hide();	
-		$scope.suppliers = $scope.supply.suppliers;
+		//Extract suppliers to be used for if add upc
+		//$scope.suppliers = $scope.supply.suppliers;
+		
+		/*
+		 * Set the selected supplier automatically if 
+		 * there is only 1 supplier. The supply's supplier 
+		 * is automattically because selectedSupplier is 
+		 * referencing it
+		 */
+		if ($scope.suppliers.length == 1) {
+			$scope.selectedSupplier = $scope.suppliers[0];
+		}
 	});
 	globalScanner.disable();
 	var updateLoopActive = false,
@@ -56,6 +67,11 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	scanner.disableStandard();
 	scanner.register(/^\d+(\-\d+)*$/, function (code) {
 		$scope.safeApply(function () {
+			/*
+			 * This adds the upc to the supplier in the supply's
+			 * object because "selectedSupplier" is referencing 
+			 * the original object
+			 */
 			$scope.selectedSupplier.upc = code;
 			$scope.showAddUPC = false;
 		});
