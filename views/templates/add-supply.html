@@ -34,10 +34,11 @@
 				<tr ng-if="supply.new_supply">
 					<td>Type</td>
 					<td>
+						<!--
 						<select class="type" required ng-model="supply.type" ng-options="t|beautify for t in types">
 							<option value="custom">Custom</option>
 						</select>
-						<!--
+						-->
 						<select class="type" required ng-model="supply.type">
 							<option value="metal">Metal</option>
 							<option value="wood">Wood</option>
@@ -52,7 +53,6 @@
 							<option value="staple">Staple</option>
 							<option value="custom">Custom</option>
 						</select>
-						-->
 						<input ng-if="supply.type == 'custom'" required class="custom-type" type="text" ng-model="supply.custom_type" />
 					</td>
 				</tr ng-if="supply.new_supply">
