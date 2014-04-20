@@ -2,7 +2,7 @@
 angular.module('employeeApp')
 .controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 
 function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http) {
-
+	console.log($scope.types);
 	/*
 	* Vars and flags
 	*/

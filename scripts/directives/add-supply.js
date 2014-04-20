@@ -10,6 +10,11 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 		link: function postLink(scope, element, attrs) {
 			
 			
+			/*
+			 * Vars and Properties
+			 */
+			
+			
 			scope.showWidth = function () {
 				var units = scope.supply.units;
 				var type = scope.supply.type;
@@ -27,6 +32,10 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 				var type = scope.supply.type;
 				return scope.supply.new_supply ? (units === "pc" || units === "pack" ||
 				(units === "kg" && type === "packaging") ? true : false) : false;
+			};
+			
+			scope.types = function () {
+				return 'ok';
 			};
 			
 			scope.supply = new Supply();
