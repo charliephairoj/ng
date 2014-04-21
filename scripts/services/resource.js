@@ -1,6 +1,6 @@
 /* jshint ignore: start */
 angular.module('employeeApp.services')
-.factory('ecResource', ['$storage', '$rootScope', '$http', '$q', '$parse', '$resource', function($storage, $rootScope, $http, $q, $parse, $resource) {
+.factory('Resource', ['$storage', '$rootScope', '$http', '$q', '$parse', '$resource', function($storage, $rootScope, $http, $q, $parse, $resource) {
     function ResourceFactory(url, paramDefaults, actions){
          
             var DEFAULT_ACTIONS = {'get':    {method:'GET'},
