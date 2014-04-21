@@ -10,7 +10,7 @@ angular.module('employeeApp')
 		},
 		add: {
 			method: 'POST',
-			params: {action: 'add'},
+			params: {action: 'add'}, 
 		},
 		subtract: {
 			method: 'POST',

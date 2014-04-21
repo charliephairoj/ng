@@ -25,7 +25,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			};
 			
 			scope.fractSize = function () {
-				return scope.supply.units == 'pc' ? 0 : 2;
+				return scope.supply ? scope.supply.units == 'pc' ? 0 : 2 : 2;
 			};
 			
 			/*

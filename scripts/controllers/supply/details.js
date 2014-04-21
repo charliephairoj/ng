@@ -21,8 +21,12 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		 * is automattically because selectedSupplier is 
 		 * referencing it
 		 */
-		if ($scope.suppliers.length == 1) {
-			$scope.selectedSupplier = $scope.suppliers[0];
+		try {
+			if ($scope.supply.suppliers.length == 1) {
+				$scope.selectedSupplier = $scope.supply.suppliers[0];
+			}
+		} catch (e) {
+			
 		}
 	});
 	globalScanner.disable();

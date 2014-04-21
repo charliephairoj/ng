@@ -58,7 +58,40 @@
  * -$query()
  */
 angular.module('employeeApp.services')
-.factory('eaResource', ['eaStorage', '$rootScope', '$http', '$q', '$parse', '$resource', '$timeout', 'eaIndexedDB', 'Notification', 
-function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexedDB, Notification) {
+.factory('eaResource', ['DB', 'Notification', '$resource', '$q',
+function(DB, Notification, $resource, $q) {
 	
+	var DEFAULT_ACTIONS = {'get':    {method:'GET'},
+                           'save':   {method:'POST'},
+                           'update': {method:'PUT'},
+                           'query':  {method:'GET', isArray:true},
+                           'remove': {method:'DELETE'},
+                           'delete': {method:'DELETE'}};
+	
+	function Resource (url, params, methods) {
+		var resource = $resource(url, params, methods);
+		
+		angular.extend(methods, DEFAULT_ACTIONS);
+		angular.forEach(methods, function (params, action) {
+			
+			var actionName = params.method == 'GET' ? action : '$' + action;
+			if (params.method == 'GET') {
+				this[actionName] = function (params, callback, errback) {
+					var reference = resource[actionName](params, callback, errback);
+				};
+				
+			} else {
+				this[actionName] = function (params, callback, errback) {
+					
+				};
+			}
+		});
+	}
+	
+	function ResourceFactory () {
+		
+		return new Resource();
+	}
+	
+	return ResourceFactory;
 }]);
