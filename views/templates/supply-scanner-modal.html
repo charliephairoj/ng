@@ -29,13 +29,10 @@
 					<td>Height</td>
 					<td>{{supply.height}}{{supply.height_units}}</td>
 				</tr>
-				<tr class="quantity">
-					<td>Quantity</td>
-					<td>
-						<span class="quantity">
-							{{supply.quantity}} {{supply.units}}
-						</span>
-						
+				<tr>
+					<td class="quantity" ng-class="{'ok':supply.quantity>0, 'warning':supply.quantity==0}">Quantity(ปริมาณ)</td>
+					<td class="quantity" ng-class="{'ok':supply.quantity>0, 'warning':supply.quantity==0}">
+							{{supply.quantity | number:fractSize()}} {{supply.units}}
 					</td>
 				</tr>
 			</table>
@@ -43,15 +40,15 @@
 		
 		<div class="quantity-container">
 			<h3>Quantity</h3>
-			<input class="quantity" type="number" size="5" autofocus ng-model="quantity" />
+			<input class="quantity" type="text" size="5" autofocus ng-model="quantity" />
 			<button class="add" ng-class="{'active':action=='add'}" ng-click="action='add';changeQuantity(quantity)">
 				<span>
-					Add
+					Add(เพิ่ม)
 				</span>
 			</button>
 			<button class="subtract" ng-class="{'active':action=='subtract'}" ng-click="action='subtract';changeQuantity(quantity)">
 				<span>
-					Subtract
+					Subtract(เบิก)
 				</span>
 			</button>
 		</div>

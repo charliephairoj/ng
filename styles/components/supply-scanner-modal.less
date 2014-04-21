@@ -15,6 +15,7 @@
         overflow:hidden;
         .transition(all, 250ms, linear);
         .ready-container{
+            display:none;
             position:absolute;
             top:0;
             bottom:0;
@@ -84,11 +85,32 @@
                             text-align:right;
                         }
                         
-                        span{
-                            &.class{
-                                color:orange;
+                        .quantityAnimation(@startC; @midC){
+                            color:@startC; 
+                            @-webkit-keyframes quantity{
+                                from {
+                                    color:@startC;
+                                }
+                                50% {
+                                    color:@midC;
+                                }
+                                to {
+                                    color:@startC;
+                                }
+                            } 
+                            -webkit-animation: quantity 3s;
+                            -webkit-animation-iteration-count: infinite;
+                        }
+                        &.quantity{
+                            font-size:1.4em;
+                            &.ok{
+                                .quantityAnimation(#008a00, #52b152);
+                            }
+                            &.warning{
+                                .quantityAnimation(red, #CC4F4F);
                             }
                         }
+                        
                     }
                 }
             }
@@ -124,9 +146,9 @@
                 background-color:#313131;
                 border: 1px solid #282828;
                 border-radius:2px;
-                
+                outline:none;
                 padding:0.1em;
-                width:4em;
+                width:5em;
                 .transition(all, 50ms, linear);
                 
                 span{
@@ -146,11 +168,11 @@
                 }
                 
                 &.add{
-                   left:2em;
+                   left:1em;
                 }
                 
                 &.subtract{
-                    right:2em;
+                    right:1em;
                 }
             }
         }
