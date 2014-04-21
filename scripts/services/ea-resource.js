@@ -506,5 +506,5 @@ function(eaStorage, $rootScope, $http, $q, $parse, $resource, $timeout, eaIndexe
         return Resource;
     }
     return ResourceFactory;
->>>>>>> parent of 4340c50... Deleted version 1 of custom resource
+
 }]);
