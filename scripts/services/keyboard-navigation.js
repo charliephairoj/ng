@@ -30,8 +30,7 @@ angular.module('employeeApp.services')
 		
 		function parseKeydown(evt) {
 			
-			evt.preventDefault();
-			evt.stopPropagation();
+			
 			switch(evt.which) {
 				case 37:
 					if (onleft) {directionHandler(evt, onleft);}
