@@ -186,7 +186,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		$scope.supply.$update({'country': 'TH'}, function () {
 			Notification.display($scope.supply.description+' updated.');
 		});
-		globalscanner.enable();
+		globalScanner.enable();
 	});
 	
 	/*
