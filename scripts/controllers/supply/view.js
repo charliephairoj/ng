@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 
-function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http) {
+.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 'FileUploader', 
+function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http, FileUploader) {
 	console.log($scope.types);
 	/*
 	* Vars and flags
@@ -46,6 +46,8 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		}
 	});
 
+	
+	
 	/*
 	* Load more supplies
 	* 
@@ -69,6 +71,8 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 			});
 		}
 	};
+	
+	
 	
 	function filter(array) {
 		array = $filter('filter')(array, $scope.search);

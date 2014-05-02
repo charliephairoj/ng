@@ -62,21 +62,26 @@
     		<ul class="inner-container">
     			<li class="item-container" ng-repeat="supply in supplies | filter:search:strict | filter:query | orderBy:'description'">
     				
-    				<a class="item" ng-class="{'selected':supply.$selected, 'admin-only':supply.admin_only}" ng-href="#/supply/{{supply.id}}">
+	   				<div class="item" ng-class="{'selected':supply.$selected, 'admin-only':supply.admin_only}" ng-href="#/supply/{{supply.id}}">
     					<div class="img-container">
+    						<input type="file" ng-model="supply.raw_image" class="image-capture" accept="image/*" capture="camera">
+
     						<img ng-src="{{supply.image.url}}" />
     					</div>
     					<!--<span class="star">&#9733;</span>-->
-    					<div class="description">
-    						{{supply.description}}
-    						<br />
-    						{{supply.supplier.name}}
-    						<div class="quantity">
-    							Current Quantity: {{supply.quantity}}{{supply.units}}
-    						</div>
+    					<div class="details">
+    						<span class="description">
+    							{{supply.description}}
+    						</span>
+    						<span class="supplier">
+    							{{supply.supplier.name}}
+    						</span>
+    						<span class="quantity">
+    							Qty: {{supply.quantity}}{{supply.units}}
+    						</span>
     					</div>
     					
-    				</a>
+    				</div>
     			</li>
     		</ul>
     	</div>

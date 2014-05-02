@@ -117,8 +117,8 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 						if (component.types.indexOf('country') != -1) {
 							console.log(component);
 							//Set country to main scope, to be called later
-							$rootScope.country = 'KH';
-							//$rootScope.country = component.short_name;
+							//$rootScope.country = 'KH';
+							$rootScope.country = component.short_name;
 						}
 					}
 				}
