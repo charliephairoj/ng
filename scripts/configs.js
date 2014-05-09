@@ -130,7 +130,38 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 		});
 		
 	} else {
-		console.log('Geolocation not available');
+		console.log('Geolocation not available'); 
 	}
 	
+	/*
+	 * Determine if it is an iOS device
+	 */
+	
+	window.iOS = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
+	
+	/*
+	 * Prevent rubber band effect of iOS webapp
+ 	 */
+	
+	var scrollY = 0;
+
+    $(document).on('touchstart', function( e ){
+        scrollY = e.originalEvent.touches.item(0).clientY;
+    });
+
+    $(document).on('touchmove', function( e ){
+		var container = angular.element(e.target).parents('.scroll-enabled')[0];
+
+		if (container) {
+			var containerHeight = $(container).height();
+			var scrollDelta = scrollY - e.originalEvent.touches.item(0).clientY;
+			if (container.scrollTop == 0 && scrollDelta < 0) {
+				e.preventDefault();
+			} else if (containerHeight + container.scrollTop == container.scrollHeight && scrollDelta > 0) {
+				e.preventDefault();
+			}
+		} else {
+			e.preventDefault();
+		}
+    });
 });

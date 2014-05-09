@@ -58,18 +58,18 @@
     -->
     
     <div class="workspace" style="z-index:1;">
-    	<div class="outer-container" ng-hide="scannerMode" on-scroll-end="loadNext()">
+    	<div class="outer-container scroll-enabled" ng-hide="scannerMode" on-scroll-end="loadNext()">
     		<ul class="inner-container">
     			<li class="item-container" ng-repeat="supply in supplies | filter:search:strict | filter:query | orderBy:'description'">
     				
-	   				<div class="item" ng-class="{'selected':supply.$selected, 'admin-only':supply.admin_only}" ng-href="#/supply/{{supply.id}}">
+	   				<div class="item" ng-class="{'selected':supply.$selected, 'admin-only':supply.admin_only}" touchstart touchmove touchend>
     					<div class="img-container">
-    						<input type="file" ng-model="supply.raw_image" class="image-capture" accept="image/*" capture="camera">
+    						<input type="file" ng-model="supply.raw_image" class="image-capture" accept="image/*" capture="camera" onchange="angular.element(this).scope().addImage(this, angular.element(this).scope().supply)">
 
     						<img ng-src="{{supply.image.url}}" />
     					</div>
     					<!--<span class="star">&#9733;</span>-->
-    					<div class="details">
+    					<a class="details" ng-href="#/supply/{{supply.id}}" touchselect>
     						<span class="description">
     							{{supply.description}}
     						</span>
@@ -79,7 +79,7 @@
     						<span class="quantity">
     							Qty: {{supply.quantity}}{{supply.units}}
     						</span>
-    					</div>
+    					</a>
     					
     				</div>
     			</li>

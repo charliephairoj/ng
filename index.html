@@ -42,16 +42,16 @@
         <img class="logo" src="img/DellaLogo.png" />
         <!--Holds all the different menu options. Determined which are visible based
             on the permissions of the current user-->
-        <div class="mainMenuContainer">
-                <a href="#/contact">Contacts</a>
-                <a href="#/product">Products</a>
-                <a href="#/supply">Supplies</a>
-                <a href="#/order">Orders</a>
-                <a href="#/accounting">Accounting</a>
-                <a href="#/project">Projects</a>
-                <a href="#/administrator">Administrator</a>
+        <div class="mainMenuContainer scroll-enabled">
+                <a href="#/contact" touchstart touchmove touchend>Contacts</a>
+                <a href="#/product" touchstart touchmove touchend>Products</a>
+                <a href="#/supply" touchstart touchmove touchend>Supplies</a>
+                <a href="#/order" touchstart touchmove touchend>Orders</a>
+                <a href="#/accounting" touchstart touchmove touchend>Accounting</a>
+                <a href="#/project" touchstart touchmove touchend>Projects</a>
+                <a href="#/administrator" touchstart touchmove touchend>Administrator</a>
             
-                <a href="#/hr">HR</a>
+                <a href="#/hr" touchstart touchmove touchend>HR</a>
         	<!--
             <li class="menuItem" ng-show="currentUser.hasModule('contacts')">
                 <a href="#/contact">Contacts</a>
@@ -243,6 +243,11 @@
     <script src="scripts/directives/camera.js"></script>
     <script src="scripts/services/interceptors/error.js"></script>
     <script src="scripts/directives/scanner-modal.js"></script>
+    <script src="scripts/services/resizer.js"></script>
+    <script src="scripts/directives/touchstart.js"></script>
+    <script src="scripts/directives/touchmove.js"></script>
+    <script src="scripts/directives/touchend.js"></script>
+    <script src="scripts/directives/touchselect.js"></script>
     <!-- endbuild -->
     
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAOLXHtWOGh4Hh8JkA1u4zbwYZR990668k&sensor=true" type="text/javascript"></script>

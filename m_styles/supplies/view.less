@@ -45,7 +45,9 @@
                         position:absolute;
                         top:0;
                         height:100%;
-                        
+						background-color:#313131;
+                        .transition(background-color, 100ms, linear);
+						
                         .img-container{
                             position:absolute;
                             background: #CCC;
@@ -64,13 +66,7 @@
                                 height:100%;
                             }
                         }
-                        .star{
-                            color:yellow;
-                            position:absolute;
-                            top:1em;
-                            right:1em;
-                            
-                        }
+                
                         .details{
                             position:absolute;
                             top:0;
@@ -79,14 +75,16 @@
                             bottom:0;
                             right:0;
                             vertical-align:center;
-                            
-                            .description{
+							color:#FFF;
+							text-decoration:none;
+							
+                            .description{ 
                                 position:absolute;
                                 left:0.5em;
                                 width:50%;
-                                font-size:0.6em;
+                                font-size:1em;
                             }
-                            
+                             
                             .supplier{
                                 
                             }
@@ -99,18 +97,20 @@
                                 
                             }
                         }
-                        
-                        &.selected{
-                            background-color:orange;
-                        }
-                        
+						
+						/*
+						 * States
+						 */
+						
+						&.touch-start{
+							background-color:orange;
+						}
+						
                         &.admin-only{
                             background-color:blue;
-                            
-                            &.selected{
-                                background:purple;
-                            }
                         }
+						
+						
                     }
                 }
             }

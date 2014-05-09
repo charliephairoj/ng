@@ -24,6 +24,35 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		Notification.hide();
 		changeSelection(index);
 	});
+	
+	/*
+	* Adding image for ipads and iphones
+	* 
+	* This particular function is intended for the iphone and ipad.
+	* It allows the user to directly add an image to the supply from the 
+	* device's camera
+	*/
+	$scope.addImage = function (element, supply) {
+		//Upload the file
+		var promise = FileUploader.upload(element.files[0], '/api/v1/supply/image');
+		
+		//Process the file after a successful upload
+		promise.then(function (data) {
+			Notification.display("Image uploaded");
+			
+			//Apply the image data and url to the supply, 
+			//and then save the supply to the serve
+			$scope.safeApply(function () {
+				supply.image = data.hasOwnProperty('data') ? data.data : data;
+				supply.save();
+			});
+	
+		//Process a failed upload
+		}, function (e) {
+			console.log(e);
+			Notification.display("Unable to upload image", false);
+		})
+	};
 
 	/*
 	* Search mechanism
