@@ -16,6 +16,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 */
 			var keyboardNav = new KeyboardNavigation();
 			scope.action = 'subtract';
+			scope.disabled = true;
 			scope.scanner = new scanner('supply-scanner-modal');
 			
 			var focusOnQuantity = function () {
@@ -59,7 +60,8 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			};
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
-				if (scope.supply.hasOwnProperty('id') && quantity > 0) {
+				if (scope.supply.hasOwnProperty('id') && quantity > 0 && !scope.disabled) {
+					scope.disabled = true;
 					scope.supply['$'+scope.action]({quantity:quantity, 'country':$rootScope.country}, function () {
 						Notification.display('Quantity of '+scope.supply.description+' changed to '+scope.supply.quantity);
 						scope.quantity = 0;
@@ -76,6 +78,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
 				Notification.display("Looking up supply...", false);
 				scope.supply = Supply.get({id:code.split('-')[1], 'country': $rootScope.country}, function(response){
+					scope.disabled = false;
 					Notification.hide();
 					focusOnQuantity();
 				}, function () {
@@ -92,6 +95,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 */
 			scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
 				Supply.query({upc:code, 'country': $rootScope.country}, function (response) {
+					scope.disabled = false;
 					focusOnQuantity();
 					try {
 						scope.supply = response[0];
