@@ -266,11 +266,11 @@ angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives'
       .when('/supply/log', {
         templateUrl: 'views/supply/log.html',
         controller: 'SupplyLogCtrl'
-      })
+    })
       .when('/supply/:id', {
         templateUrl: 'views/supply/details.html',
         controller: 'SupplyDetailsCtrl'
-	  })
+	})
       .otherwise({
         redirectTo: '/'
 	});
