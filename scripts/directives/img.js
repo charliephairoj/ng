@@ -5,10 +5,10 @@ angular.module('employeeApp')
 	function position(spec) {
 		if (spec.height && spec.parentHeight && spec.elementHeight) {
 			var heightDiff = spec.parentHeight - spec.elementHeight;
-			spec.element.css('top', heightDiff/2);
+			spec.element.css('top', heightDiff / 2);
 		} else if (spec.width && spec.parentWidth && spec.elementWidth) {
 			var widthDiff = spec.parentWidth - spec.elementWidth;
-			spec.element.css('left', widthDiff/2);
+			spec.element.css('left', widthDiff / 2);
 		}
 	}
 	
@@ -29,7 +29,7 @@ angular.module('employeeApp')
 						if (iAttrs.center) {
 							position({
 								element: element,
-								width:true,
+								width: true,
 								parentWidth: pWidth,
 								elementWidth: element.outerWidth()
 							});

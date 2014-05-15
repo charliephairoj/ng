@@ -6,7 +6,7 @@ angular.module('employeeApp')
     //Mehtods
     
     //addS  contact to the supplier
-    $scope.addContact = function(){
+    $scope.addContact = function () {
         //Notify
         Notification.display('Contact Added to Supplier'); 
         
@@ -26,8 +26,8 @@ angular.module('employeeApp')
 		var position = $scope.map.getPosition($scope.supplier.address, function (response) {
 			angular.extend($scope.supplier.address, response);
 			$scope.map.setPosition({
-				lat:response.lat,
-				lng:response.lng,
+				lat: response.lat,
+				lng: response.lng,
 				updateMarker: true
 			});
 		});
@@ -36,7 +36,7 @@ angular.module('employeeApp')
     //Method to save the supplier to the database
     $scope.save = function () {
         
-        if($scope.form.$valid){
+        if ($scope.form.$valid) {
             //Notify
             Notification.display('Saving supplier...', false);
           

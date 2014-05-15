@@ -4,33 +4,33 @@ angular.module('employeeApp')
 function ($scope, Acknowledgement, $filter, Notification, Shipping, $location, scanner) {
 
 	var fetchingAck = true;
-	$scope.acknowledgements = Acknowledgement.query({limit:20}, function () {
+	$scope.acknowledgements = Acknowledgement.query({limit: 20}, function () {
 		fetchingAck = false;
 	});
 
 	$scope.shipping = new Shipping();
     var ack;
     
-    scanner.onscan = function (code){
+    scanner.onscan = function (code) {
         var re = new RegExp(/^A\-(s+)?/);
-        if(re.test(code)){
-			Notification.display('Retrieving Acknowledgement# '+code.split('-')[1], false);
-            Acknowledgement.get({id:code.split('-')[1]}, function (response){
+        if (re.test(code)) {
+			Notification.display('Retrieving Acknowledgement# ' + code.split('-')[1], false);
+            Acknowledgement.get({id: code.split('-')[1]}, function (response) {
                 Notification.hide();
                 var ack = response;
-                $scope.shipping.acknowledgement = {id:ack.id};
+                $scope.shipping.acknowledgement = {id: ack.id};
                 $scope.shipping.customer = ack.customer;
                 $scope.shipping.products = ack.products;
                 $scope.shipping.delivery_date = new Date(ack.delivery_date);
             },
-            function (){
-                Notification.display('Unable to locate Acknowledgement#'+code.split('-')[1]);
+            function () {
+                Notification.display('Unable to locate Acknowledgement#' + code.split('-')[1]);
             });
         }
     };
     
-    $scope.addAcknowledgement = function (ack){
-        $scope.shipping.acknowledgement = {id:ack.id};
+    $scope.addAcknowledgement = function (ack) {
+        $scope.shipping.acknowledgement = {id: ack.id};
         $scope.shipping.customer = ack.customer;
         $scope.shipping.items = ack.items;
         $scope.shipping.delivery_date = new Date(ack.delivery_date);
@@ -40,9 +40,9 @@ function ($scope, Acknowledgement, $filter, Notification, Shipping, $location, s
     
     $scope.$watch('query', function (q) {
 		if (q) {
-			Acknowledgement.query({limit:5, q:q}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
-					if($scope.acknowledgements.indexOfById(resources[i].id) == -1) {
+			Acknowledgement.query({limit: 5, q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
+					if ($scope.acknowledgements.indexOfById(resources[i].id) == -1) {
 						$scope.acknowledgements.push(resources[i]);
 					}
 				}
@@ -55,9 +55,9 @@ function ($scope, Acknowledgement, $filter, Notification, Shipping, $location, s
 			fetchingAck = true;
 			Acknowledgement.query({
 				offset: $scope.acknowledgements.length,
-				limit:20
+				limit: 20
 			}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.acknowledgements.push(resources[i]);
 				}
 				fetchingAck = false;

@@ -7,7 +7,7 @@ function ($scope, Supplier, $routeParams, $location, SupplierContact, Notificati
 		timeoutPromise;
 	
 	//Retreive the supplier from the server
-    $scope.supplier =  Supplier.get({'id':$routeParams.id});
+    $scope.supplier =  Supplier.get({'id': $routeParams.id});
     
     //addS  contact to the supplier
     $scope.addContact = function (contact) {
@@ -28,7 +28,7 @@ function ($scope, Supplier, $routeParams, $location, SupplierContact, Notificati
     //Remove a supplier contact
     $scope.deleteContact = function ($index) {
         
-        var contact = SupplierContact.get({'id':$scope.supplier.contacts[$index].id}, function () {
+        var contact = SupplierContact.get({'id': $scope.supplier.contacts[$index].id}, function () {
            
             $scope.supplier.contacts.splice($index, 1);
             contact.$delete();
@@ -75,7 +75,7 @@ function ($scope, Supplier, $routeParams, $location, SupplierContact, Notificati
         */
     };
     
-    $scope.remove = function(){
+    $scope.remove = function () {
         $scope.supplier.$remove(function () {
             $location.path('/contact/supplier');
         });

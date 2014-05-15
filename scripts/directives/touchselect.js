@@ -1,14 +1,13 @@
-'use strict';
 
 angular.module('employeeApp')
 .directive('touchselect', ['$location', function ($location) {
     return {
-      	restrict: 'A',
-      	link: function postLink(scope, element, attrs) {
+		restrict: 'A',
+		link: function postLink(scope, element, attrs) {
 			
 			//Flags
 			var started = false,
-				moved = false
+				moved = false;
 							
 			//Handlers
         	function click(e) {
@@ -16,8 +15,8 @@ angular.module('employeeApp')
         			e.preventDefault();
 					e.stopPropagation();
 			
-        	}
-		 
+			}
+
 			function touchStart() {
 				console.log('touched');
 				started = true;
@@ -43,7 +42,7 @@ angular.module('employeeApp')
 				moved = false;
 			}
 			
-			if (iOS) {
+			if (window.iOS) {
 			
 				
 						

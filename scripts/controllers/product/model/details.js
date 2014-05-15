@@ -2,7 +2,7 @@
 angular.module('employeeApp')
 .controller('ProductModelDetailsCtrl', ['$scope', 'Model', '$routeParams', '$location', 'Notification', '$http',
 function ($scope, Model, $routeParams, $location, Notification, $http) {
-    $scope.model = Model.get({'id':$routeParams.id});
+    $scope.model = Model.get({'id': $routeParams.id});
     
     //Uploads Profie Image
     $scope.upload = function () {
@@ -17,11 +17,11 @@ function ($scope, Model, $routeParams, $location, Notification, $http) {
         $scope.addLength = null;
         $scope.addRemark = null;
         
-        jQuery.ajax("fabric/"+$scope.model.id+"/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
+        jQuery.ajax("fabric/" + $scope.model.id + "/image", {
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
 			success: function (response) {
 				Notification.display('Model Image Updated');
 				$scope.model.image =  $scope.model.image || {};
@@ -57,7 +57,7 @@ function ($scope, Model, $routeParams, $location, Notification, $http) {
         });
     };
     
-    $scope.$on('$destroy', function (){
+    $scope.$on('$destroy', function () {
         $scope.update();
     });
     

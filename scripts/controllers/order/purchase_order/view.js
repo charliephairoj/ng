@@ -32,13 +32,13 @@ function ($scope, PurchaseOrder, $filter, Notification, KeyboardNavigation, $loc
 	 */
 	$scope.$watch('query', function (q) {
 		if (q) {
-			PurchaseOrder.query({limit:5, q:q}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+			PurchaseOrder.query({limit: 5, q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.poList.indexOfById(resources[i].id) == -1) {
 						$scope.poList.push(resources[i]);
 					}
 				}
-				index=0;
+				index = 0;
 				changeSelection(index);
 				
 			});
@@ -49,11 +49,11 @@ function ($scope, PurchaseOrder, $filter, Notification, KeyboardNavigation, $loc
 		if (!fetching) {
 			fetching = true;
 			PurchaseOrder.query({
-				limit:20,
+				limit: 20,
 				offset: $scope.poList.length
 			}, function (resources) {
 				fetching = false;
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.poList.push(resources[i]);
 				}
 			});
@@ -86,7 +86,7 @@ function ($scope, PurchaseOrder, $filter, Notification, KeyboardNavigation, $loc
 		
 		if (scrollTop > (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
-		} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+		} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
 		}
 				
@@ -110,7 +110,7 @@ function ($scope, PurchaseOrder, $filter, Notification, KeyboardNavigation, $loc
 	
 	keyboardNav.onenter = function () {
 		$scope.safeApply(function () {
-			$location.path('/order/purchase_order/'+currentSelection.id);
+			$location.path('/order/purchase_order/' + currentSelection.id);
 		});
 	};
 	

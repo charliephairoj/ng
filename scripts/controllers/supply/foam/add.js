@@ -7,14 +7,14 @@ function ($scope, Foam, Supplier, $location, Notification) {
     //Methods
     
     //Add Lumber
-    $scope.save = function(){       
-        $scope.foam.$save(function(){
+    $scope.save = function () {       
+        $scope.foam.$save(function () {
             $location.path('/foam');
         });
     };
     
     //Upload Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         
         //Notify of uploading image
         Notification.display('Uploading Image...', false);
@@ -27,11 +27,11 @@ function ($scope, Foam, Supplier, $location, Notification) {
         $scope.addRemark = null;
         
         jQuery.ajax("supply/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(responseData){
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (responseData) {
 				Notification.display('Image Updated');
 				$scope.foam.image = $scope.foam.image || {};
 				angular.copy(responseData, $scope.foam.image);

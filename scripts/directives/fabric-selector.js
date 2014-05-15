@@ -27,8 +27,8 @@ angular.module('employeeApp')
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Fabric.query({q:q, limit:5}, function (resources) {
-						for (var i=0; i < resources.length; i++) {
+					Fabric.query({q: q, limit: 5}, function (resources) {
+						for (var i = 0; i < resources.length; i++) {
 							if (scope.fabrics.indexOfById(resources[i].id) == -1) {
 								scope.fabrics.push(resources[i]);
 							}
@@ -51,7 +51,7 @@ angular.module('employeeApp')
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i=0; i<resources.length; i++) {
+						for (var i = 0; i < resources.length; i++) {
 							scope.fabrics.push(resources[i]);
 						}
 					});

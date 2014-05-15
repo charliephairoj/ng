@@ -10,7 +10,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 	 */
 	$scope.action = 'subtract';
 	$scope.showQuantity = false;
-	$scope.supply = Supply.get({'id':$routeParams.id, 'country': $scope.country}, function () {
+	$scope.supply = Supply.get({'id': $routeParams.id, 'country': $scope.country}, function () {
 		Notification.hide();	
 		//Extract suppliers to be used for if add upc
 		//$scope.suppliers = $scope.supply.suppliers;
@@ -103,13 +103,13 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		if (!updateLoopActive && oldVal.hasOwnProperty('id')) {
 			updateLoopActive = true;
 			timeoutPromise = $timeout(function () {
-				Notification.display('Updating '+$scope.supply.description+'...', false);
+				Notification.display('Updating ' + $scope.supply.description + '...', false);
 				var supply = angular.copy($scope.supply);
 				supply.$update({'country': $scope.country}, function () {
 					updateLoopActive = false;
-					Notification.display($scope.supply.description+' updated');
+					Notification.display($scope.supply.description + ' updated');
 				}, function () {
-					Notification.display("There was an error in updating "+$scope.supply.description);
+					Notification.display("There was an error in updating " + $scope.supply.description);
 				});
 			}, 5000);
 		}
@@ -141,7 +141,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			quantity = $scope.quantity;
 		}
 		
-		$scope.supply.$add({quantity:quantity, 'country': $scope.country}, function () {
+		$scope.supply.$add({quantity: quantity, 'country': $scope.country}, function () {
 			if (!$scope.supply.hasOwnProperty('suppliers')) {
 				$scope.supply.suppliers = $scope.suppliers;
 			}
@@ -160,7 +160,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			quantity = $scope.quantity;
 		}
 		
-		$scope.supply.$subtract({quantity:quantity, 'country': $scope.country}, function () {
+		$scope.supply.$subtract({quantity: quantity, 'country': $scope.country}, function () {
 			if (!$scope.supply.hasOwnProperty('suppliers')) {
 				$scope.supply.suppliers = $scope.suppliers;
 			}
@@ -182,9 +182,9 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		//Turn off scanner and keyboard Navigation
 		scanner.disable();
 		$timeout.cancel(timeoutPromise);
-		Notification.display('Updating '+$scope.supply.description+'...', false);
+		Notification.display('Updating ' + $scope.supply.description + '...', false);
 		$scope.supply.$update({'country': 'TH'}, function () {
-			Notification.display($scope.supply.description+' updated.');
+			Notification.display($scope.supply.description + ' updated.');
 		});
 		globalScanner.enable();
 	});

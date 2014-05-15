@@ -2,7 +2,7 @@
 angular.module('employeeApp.filters')
 .filter('exclude', [function () {
     //function to compare
-	return function(array, key, value) {
+	return function (array, key, value) {
           
         if (!(array instanceof Array)) {
 			return [];

@@ -16,7 +16,7 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 	Notification.display('Loading Acknowledgements...', false);
 
 	//Poll the server for acknowledgements
-	$scope.acknowledgements = Acknowledgement.query({limit:20}, function (e) {
+	$scope.acknowledgements = Acknowledgement.query({limit: 20}, function (e) {
 		Notification.hide();
 		fetching = false;
 		changeSelection(index);
@@ -30,8 +30,8 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 	 */
 	$scope.$watch('query', function (q) {
 		if (q) {
-			Acknowledgement.query({q:q, limit:5}, function (resources) {
-				for (var i=0; i < resources.length; i++) {
+			Acknowledgement.query({q: q, limit: 5}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.acknowledgements.indexOfById(resources[i].id) == -1) {
 						$scope.acknowledgements.push(resources[i]);
 					}
@@ -49,12 +49,12 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 			fetching = true;
 			Notification.display("Loading more acknowledgements", false);
 			Acknowledgement.query({
-				limit:50, 
-				offset:$scope.acknowledgements.length
+				limit: 50, 
+				offset: $scope.acknowledgements.length
 			}, function (resources) {
 				fetching = false;
 				Notification.hide();
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.acknowledgements.push(resources[i]);
 				}
 			});
@@ -87,7 +87,7 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 		
 		if (scrollTop > (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
-		} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+		} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
 		}
 				
@@ -111,7 +111,7 @@ function ($scope, Acknowledgement, Notification, $location, $filter, KeyboardNav
 	
 	keyboardNav.onenter = function () {
 		$scope.safeApply(function () {
-			$location.path('/order/acknowledgement/'+currentSelection.id);
+			$location.path('/order/acknowledgement/' + currentSelection.id);
 		});
 	};
 	

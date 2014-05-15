@@ -62,8 +62,8 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0 && !scope.disabled) {
 					scope.disabled = true;
-					scope.supply['$'+scope.action]({quantity:quantity, 'country':$rootScope.country}, function () {
-						Notification.display('Quantity of '+scope.supply.description+' changed to '+scope.supply.quantity);
+					scope.supply['$' + scope.action]({quantity: quantity, 'country': $rootScope.country}, function () {
+						Notification.display('Quantity of ' + scope.supply.description + ' changed to ' + scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
 							scope.supply = undefined;
@@ -77,7 +77,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 */
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
 				Notification.display("Looking up supply...", false);
-				scope.supply = Supply.get({id:code.split('-')[1], 'country': $rootScope.country}, function(response){
+				scope.supply = Supply.get({id:code.split('-')[1], 'country': $rootScope.country}, function (response) {
 					scope.disabled = false;
 					Notification.hide();
 					focusOnQuantity();
@@ -94,7 +94,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 * Register the upc regex
 			 */
 			scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
-				Supply.query({upc:code, 'country': $rootScope.country}, function (response) {
+				Supply.query({upc: code, 'country': $rootScope.country}, function (response) {
 					scope.disabled = false;
 					focusOnQuantity();
 					try {

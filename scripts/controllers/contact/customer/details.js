@@ -6,7 +6,7 @@ function ($scope, Customer, $routeParams, $location, Notification, $timeout) {
     var updateLoopActive = false,
 		timeoutPromise;
     
-    $scope.customer =  Customer.get({'id':$routeParams.id}, function () {
+    $scope.customer =  Customer.get({'id': $routeParams.id}, function () {
         
         /*
 		if ($scope.customer.address.lat && $scope.customer.address.lng) {

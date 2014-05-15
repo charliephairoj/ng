@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp')
 .controller('SupplyLogCtrl', ['$scope', '$http', function ($scope, $http) {

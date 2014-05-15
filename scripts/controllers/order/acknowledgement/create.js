@@ -17,7 +17,7 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window) {
     }
     
     $scope.ack.items = $scope.ack.items || [];
-    $scope.employee = {id:$scope.currentUser.id};
+    $scope.employee = {id: $scope.currentUser.id};
     
     $scope.tempSave = function () {
         storage.setItem('acknowledgement-create', JSON.stringify($scope.ack));
@@ -95,14 +95,14 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window) {
             if ($scope.ack.items.length <= 0) {
                 throw new RangeError("No products added to the order");
             } else {
-                for (var i=0; i<$scope.ack.items.length; i++) {
+                for (var i = 0; i < $scope.ack.items.length; i++) {
 					var item = $scope.ack.items[i];
                     /*
                      * Check that there is a quantity 
                      * for each piece of product
                      */
                     if (!$scope.ack.items[i].hasOwnProperty('quantity') || !$scope.ack.items[i].quantity) {
-                        throw new RangeError("Expecting a quantity of at least 1 for "+$scope.ack.items[i].description);
+                        throw new RangeError("Expecting a quantity of at least 1 for " + $scope.ack.items[i].description);
                     }
                     
                     /*

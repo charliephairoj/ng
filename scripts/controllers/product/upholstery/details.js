@@ -5,7 +5,7 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 	
 	$scope.updateLoopActive = true;
 	
-    $scope.uphol = Upholstery.get({'id':$routeParams.id}, function () {
+    $scope.uphol = Upholstery.get({'id': $routeParams.id}, function () {
 		$scope.safeApply(function () {
 			$scope.updateLoopActive = false;
 		});
@@ -19,12 +19,12 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
         
         fd.append('image', $scope.images[0]);
 		jQuery.ajax("/api/v1/upholstery/image", {
-			type:'POST',
-			data:fd,
-			cache:false,
-			processData:false,
-			contentType:false,
-			success: function(responseData){
+			type: 'POST',
+			data: fd,
+			cache: false,
+			processData: false,
+			contentType: false,
+			success: function (responseData) {
 				Notification.display('Image Updated');
 				$scope.uphol.image = {};
 				angular.copy(responseData, $scope.uphol.image);
@@ -48,30 +48,30 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 	}, function (newVal, oldVal) {
 		if (!$scope.updateLoopActive && oldVal.hasOwnProperty('id')) {
 			$scope.updateLoopActive = true;
-			Notification.display('Updating '+$scope.uphol.description+'...', false);
+			Notification.display('Updating ' + $scope.uphol.description + '...', false);
 			$scope.uphol.$update(function () {
 				$scope.updateLoopActive = false;
-				Notification.display($scope.uphol.description+' updated.');
+				Notification.display($scope.uphol.description + ' updated.');
 			});
 		}
     }, true);
     
     $scope.update = function () {
         Notification.display('Saving Upholsterty...', false);
-        $scope.uphol.$update(function() {
+        $scope.uphol.$update(function () {
             Notification.display('Upholstery Saved');
         });
     };
     
-    $scope.remove = function (){
+    $scope.remove = function () {
         Notification.display('Deleteing Upholstery Product');
-        $scope.uphol.$delete(function(){
+        $scope.uphol.$delete(function () { 
             Notification.display('Upholstery Product Deleted');
             $location.path('/product/upholstery');
         });
     };
     
-    $scope.$on('$destroy', function (){
+    $scope.$on('$destroy', function () {
         $scope.update(); 
     });
 }]);

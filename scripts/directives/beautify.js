@@ -2,8 +2,8 @@
 angular.module('employeeApp')
 .directive('beautify', ['$filter', '$parse', function ($filter, $parse) {
 	return {
-		restrict:'A', 
-		link: function(scope, element, attr){
+		restrict: 'A', 
+		link: function (scope, element, attr) {
 			//bind to blur
             element.bind('blur', function () {
                 //create new beautified version

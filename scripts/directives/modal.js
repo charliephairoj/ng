@@ -4,17 +4,17 @@ angular.module('employeeApp.directives')
     var backdrop;
     var closeButton;
     
-    function create_backdrop(){
+    function create_backdrop() {
         return angular.element('<div id="backdrop"></div>');
     }
     
-    function postLink(scope, element, attr){
+    function postLink(scope, element, attr) {
         
 
     }
     
     return {
-        restrict:'A',
+        restrict: 'A',
         scope: false,
         compile: function () {
 			return {
@@ -22,7 +22,7 @@ angular.module('employeeApp.directives')
 					tElement.addClass('modal hide');
 					if (tAttrs.title) {
 						closeButton = angular.element('<button type="button" class="close">&times;</button>');
-						var title = angular.element('<div class="title"><h4>'+tAttrs.title+'</h4></div>');
+						var title = angular.element('<div class="title"><h4>' + tAttrs.title + '</h4></div>');
 						title.append(closeButton);
 						tElement.append(title);
 					} else {
@@ -45,7 +45,7 @@ angular.module('employeeApp.directives')
 						});
 					}
 	
-					function hide(scope, element, backdrop, callback){
+					function hide(scope, element, backdrop, callback) {
 
 						element.fadeOut(400, function () {
 							element.addClass('hide');
@@ -58,11 +58,11 @@ angular.module('employeeApp.directives')
 								(callback || angular.noop)();
 								try {
 									(scope.modal._onhide && scope.modal || angular.noop)();
-								} catch(e) {
+								} catch (e) {
 									console.warn(e);
 								}
 
-								if(attrs.ngModel || attrs.modal){
+								if (attrs.ngModel || attrs.modal) {
 									if (scope.$$phase == '$apply' || scope.$$phase == '$digest') {
 										scope[attrs.ngModel || attrs.modal] = false;
 									} else {
@@ -83,33 +83,33 @@ angular.module('employeeApp.directives')
 					* changes based on the scope 
 					* messages
 					*/
-					scope.$on('$destroy', function(){
-						if(backdrop){
+					scope.$on('$destroy', function () {
+						if (backdrop) {
 							backdrop.remove();
 						}
 					});
 
-					if(attrs.ngModel || attrs.modal){
-						scope.$watch(attrs.ngModel || attrs.modal, function(value){
-							if(value){
+					if (attrs.ngModel || attrs.modal) {
+						scope.$watch(attrs.ngModel || attrs.modal, function (value) {
+							if (value) {
 								show(scope, element);
-							}else{
+							} else {
 								hide(scope, element, backdrop);
 							}
 						});
 					}
 
 					scope.modal = {_onhide: undefined};
-					scope.modal.show = function(){
+					scope.modal.show = function () {
 						show(scope, element);
 					};
-					scope.modal.hide = function(callback){
+					scope.modal.hide = function (callback) {
 						hide(scope, element, backdrop, callback);
 					};
 
 					Object.defineProperties(scope.modal, {
 						onhide: {
-							set: function(fn){
+							set: function (fn) {
 								this._onhide = fn;
 							}
 						}

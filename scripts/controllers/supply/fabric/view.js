@@ -5,7 +5,7 @@ angular.module('employeeApp')
 	var fetching = true;
 	
 	$scope.fabrics = Fabric.query(function () {
-		fetching=false;
+		fetching = false;
 	});
     
     /*
@@ -18,10 +18,10 @@ angular.module('employeeApp')
      * The results are then added to the '$scope.fabrics', if it 
      * is not already in the list, which is matched by the item id
      */
-    $scope.$watch('query', function(q) {
+    $scope.$watch('query', function (q) {
 		if (q) {
-			Fabric.query({q:q, limit:5}, function (resources) {
-				for (var i=0; i < resources.length; i++) {
+			Fabric.query({q: q, limit: 5}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.fabrics.indexOfById(resources[i].id) == -1) {
 						$scope.fabrics.push(resources[i]);
 					}
@@ -49,7 +49,7 @@ angular.module('employeeApp')
 			}, function (resources) {
 				fetching = false;
 				Notification.hide();
-				for (var i=0; i < resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.fabrics.indexOfById(resources[i].id) == -1) {
 						$scope.fabrics.push(resources[i]);
 					}

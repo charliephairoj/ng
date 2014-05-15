@@ -20,7 +20,7 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
     //Methods
     
     //Add Fabric
-    $scope.save = function(){
+    $scope.save = function () {
         /*
          * The function will first check if the 
          * form is valid
@@ -33,21 +33,21 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
          */
         
         //Checks the form is valid
-        if($scope.form.$valid){
-            if(uploading){
+        if ($scope.form.$valid) {
+            if (uploading) {
                 var prop = angular.copy($scope.prop);
-                promise.then(function(response){
+                promise.then(function (response) {
                     prop.image = prop.image || {};
                     angular.copy(response, prop.image);
                     Notification.display('Saving Prop...', false);
-                    prop.$save(function(){
+                    prop.$save(function () {
                         Notification.display('Prop Saved');
                     });
                 }, angular.noop);
-            }else{
+            } else {
                 Notification.display('Saving Prop...', false);
                 //save to database
-                $scope.prop.$save(function(){
+                $scope.prop.$save(function () {
                     Notification.display('Prop Saved');
                     
                 });
@@ -58,7 +58,7 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
     };
     
     //Upload Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         
         //Notify of uploading image
         Notification.display('Uploading Image...', false);
@@ -75,7 +75,7 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
         promise = deferred.promise;
         
         //Create promise events
-        promise.then(function(data){
+        promise.then(function (data) {
             /*The success fulfillment of the
              * promise will kick in the events:
              * -Show success notice
@@ -85,14 +85,14 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
             
             //Perform scope updates if
             //The scope still exists
-            if ($scope){
-                $scope.$apply(function(){
+            if ($scope) {
+                $scope.$apply(function () {
                     $scope.prop.image = $scope.prop.image || {};
                     angular.copy(data, $scope.prop.image);
                 });
             }
             
-        }, function(reason){
+        }, function (reason) {
             Notification.display('Unable to Upload Image');
         });
         
@@ -100,14 +100,14 @@ function ($scope, Supplier, Supply, Notification, $location, $q) {
         uploading = true;
         
         jQuery.ajax("supply/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(response){
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (response) {
 				deferred.resolve(response);
 			},
-			error: function(){
+			error: function () {
 				deferred.reject();
 			}
 		});

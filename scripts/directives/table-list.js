@@ -21,7 +21,7 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
              * We will turn the fetching flag to false
              * once we received the results
              */
-			scope.tables = Table.query({limit:20}, function (response) {
+			scope.tables = Table.query({limit: 20}, function (response) {
 				fetching = false;
 				changeSelection(index);
 			});
@@ -30,8 +30,8 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Table.query({q:q, limit:10}, function (resources) {
-						for (var i=0; i < resources.length; i++) {
+					Table.query({q: q, limit: 10}, function (resources) {
+						for (var i = 0; i < resources.length; i++) {
 							if (scope.tables.indexOfById(resources[i].id) == -1) {
 								scope.tables.push(resources[i]);
 							}
@@ -46,8 +46,8 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 			* Loads the next set of customers if there is no fetching
 			* currently running
 			*/
-			scope.loadNext = function(){
-				if(!fetching) {
+			scope.loadNext = function () {
+				if (!fetching) {
 					Notification.display("Loading more tables...", false);
 					fetching = true;
 					Table.query({
@@ -56,7 +56,7 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i=0; i<resources.length; i++) {
+						for (var i = 0; i < resources.length; i++) {
 							scope.tables.push(resources[i]);
 						}
 						if (resources.length === 0) {
@@ -67,7 +67,7 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 			};
 
 			scope.select = function (table) {
-				scope.onSelect({$table:table});
+				scope.onSelect({$table: table});
 			};
 			
 			function changeSelection(i) {
@@ -92,14 +92,14 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 				
 				if (scrollTop > (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
-				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+				} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
 				}
 				
 			}
 			
 			scope.select = function (table) {
-				scope.onSelect({$table:table});
+				scope.onSelect({$table: table});
 			};
 			
 			var keyboardNav = new KeyboardNavigation();
@@ -126,11 +126,11 @@ function (Table, Notification, KeyboardNavigation, $rootScope, $filter) {
 			
 			keyboardNav.enable();
 			
-			scope.$watch('visible', function (val){
+			scope.$watch('visible', function (val) {
 				console.log(val);
 				if (val) {
 					keyboardNav.enable();
-				} else{
+				} else {
 					keyboardNav.disable();
 				}
 			});

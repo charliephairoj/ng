@@ -2,10 +2,10 @@
 angular.module('employeeApp')
 .controller('SupplyFabricDetailsCtrl', ['$scope', 'Fabric', '$routeParams', '$location', 'Notification', '$http',
 function ($scope, Fabric, $routeParams, $location, Notification, $http) {
-    $scope.fabric = Fabric.get({'id':$routeParams.id});
+    $scope.fabric = Fabric.get({'id': $routeParams.id});
     
     //Uploads Profie Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         //display notification
         Notification.display('Uploading Image...', false);
         
@@ -17,12 +17,12 @@ function ($scope, Fabric, $routeParams, $location, Notification, $http) {
         $scope.addLength = null;
         $scope.addRemark = null;
         
-        jQuery.ajax("fabric/"+$scope.fabric.id+"/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(responseData){
+        jQuery.ajax("fabric/" + $scope.fabric.id + "/image", {
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (responseData) {
 				//display success mesage
 				Notification.display('Image Updated');
 				$scope.fabric.image = {};
@@ -40,19 +40,19 @@ function ($scope, Fabric, $routeParams, $location, Notification, $http) {
     
     //Create fabric actions
     var DEFAULT_ACTIONS = ['reserve', 'add', 'subtract', 'reset'];
-    function capitalizeFirstLetter(str){
+    function capitalizeFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     
-    $scope.add = function(){
-		$scope.fabric.$add({quantity:$scope.quantity}, function () {
+    $scope.add = function () {
+		$scope.fabric.$add({quantity: $scope.quantity}, function () {
 
 		});
 		$scope.showAdd = false;
 		$scope.quantity = null;
 	};
     
-    $scope.subtract = function() {
+    $scope.subtract = function () {
 		$scope.fabric.$subtract({quantity: $scope.quantity}, function () {
 
 		});
@@ -60,23 +60,23 @@ function ($scope, Fabric, $routeParams, $location, Notification, $http) {
 		$scope.quantity = null;
 	};
    
-    $scope.viewLog = function(){
+    $scope.viewLog = function () {
         
-        $http.get("fabric/"+$scope.fabric.id+"/log").success(function(data){
+        $http.get("fabric/" + $scope.fabric.id + "/log").success(function (data) {
 			$scope.logs = [];
-			angular.forEach(data, function(item){
+			angular.forEach(data, function (item) {
 				$scope.logs.push(item);
 			});
 		});
     };
     
     
-    $scope.remove = function(){
+    $scope.remove = function () {
         //Notify
         Notification.display('Deleting Fabric...');
         
         //Ajax call to delete
-        $scope.fabric.$delete(function(){
+        $scope.fabric.$delete(function () {
             //Notify
             Notification.display('Fabric Deleted');
             //Reroute to view page
@@ -85,7 +85,7 @@ function ($scope, Fabric, $routeParams, $location, Notification, $http) {
         
     };
     
-    $scope.update = function(){
+    $scope.update = function () {
         Notification.display('Updating Fabric...', false);
         $scope.fabric.$update(Notification.display('Fabric Updated'));
     };

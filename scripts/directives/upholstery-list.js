@@ -22,7 +22,7 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
              * We will turn the fetching flag to false
              * once we received the results
              */
-			scope.upholsteries = Upholstery.query({limit:20}, function (response) {
+			scope.upholsteries = Upholstery.query({limit: 20}, function (response) {
 				fetching = false;
 				changeSelection(index);
 			});
@@ -30,11 +30,11 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 			/*
 			* Search
 			*/
-			scope.$watch('query', function(q){
+			scope.$watch('query', function (q) {
 				if (q) {
 					scope.currentIndex = 0;
-					Upholstery.query({q:q, limit:10 + (scope.query.length*2)}, function (resources) {
-						for (var i=0; i < resources.length; i++) {
+					Upholstery.query({q: q, limit: 10 + (scope.query.length * 2)}, function (resources) {
+						for (var i = 0; i < resources.length; i++) {
 							if (scope.upholsteries.indexOfById(resources[i].id) == -1) {
 								scope.upholsteries.push(resources[i]);
 							}
@@ -60,7 +60,7 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i=0; i<resources.length; i++) {
+						for (var i = 0; i<resources.length; i++) {
 							scope.upholsteries.push(resources[i]);
 						}
 					});
@@ -99,7 +99,7 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 			}
 			
 			scope.select = function (upholstery) {
-				scope.onSelect({$upholstery:upholstery});
+				scope.onSelect({$upholstery: upholstery});
 			};
 			
 			var keyboardNav = new KeyboardNavigation();
@@ -125,10 +125,10 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 			};
 			
 			
-			scope.$watch('visible', function (val){
+			scope.$watch('visible', function (val) {
 				if (val) {
 					keyboardNav.enable();
-				} else{
+				} else {
 					keyboardNav.disable();
 				}
 			});

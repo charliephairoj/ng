@@ -2,16 +2,16 @@
 angular.module('employeeApp')
 .controller('SupplyPropViewCtrl', ['$scope', 'Supply', '$filter', '$q', 'Notification', '$location',
 function ($scope, Supply, $filter, $q, Notification, $location) {
-    $scope.supplyList = Supply.query({type:'prop'});
+    $scope.supplyList = Supply.query({type: 'prop'});
     
     //Change page to add page
-    $scope.add = function(){
-        $scope.safeApply(function(){
+    $scope.add = function () {
+        $scope.safeApply(function () {
             $location.path('/supply/prop/add');
         });
 	};
       
-    $scope.upload = function(index, image){
+    $scope.upload = function (index, image) {
      
         Notification.display('Uploading Image...', false);
         
@@ -36,31 +36,31 @@ function ($scope, Supply, $filter, $q, Notification, $location) {
             //Perform scope updates if
             //The scope still exists
             
-			$scope.safeApply(function(){
+			$scope.safeApply(function () {
                 resource.image = resource.image || {};
                 angular.copy(data, resource.image);
-                resource.$save(function(){
+                resource.$save(function () {
                     Notification.display('Prop Saved');
                 });
             });
             
                 
             
-        }, function(reason){
+        }, function (reason) {
             Notification.display('Unable to Upload Image');
         });
         
         //Append image and upload the form data
         fd.append('image', image);
         jQuery.ajax("supply/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(response){
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (response) {
 				deferred.resolve(response);
 			},
-			error: function(){
+			error: function () {
 				deferred.reject();
 			}
 		});

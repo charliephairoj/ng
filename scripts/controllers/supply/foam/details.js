@@ -3,11 +3,11 @@ angular.module('employeeApp')
 .controller('SupplyFoamDetailsCtrl', ['$scope', 'Foam', '$routeParams', '$location', 'Notification',
 function ($scope, Foam, $routeParams, $location, Notification) {
     //Poller.poll($scope, function(){
-    $scope.foam = Foam.get({'id':$routeParams.id});
+    $scope.foam = Foam.get({'id': $routeParams.id});
     //});
     
     //Uploads Profie Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         //display notification
         Notification.display('Uploading Image...', false);
         
@@ -19,12 +19,12 @@ function ($scope, Foam, $routeParams, $location, Notification) {
         $scope.addLength = null;
         $scope.addRemark = null;
         
-        jQuery.ajax("supply/"+$scope.foam.id+"/image", {	
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(responseData){
+        jQuery.ajax("supply/" + $scope.foam.id + "/image", {	
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (responseData) {
 				//display success mesage
 				Notification.display('Image Updated');
 				$scope.foam.image = {};
@@ -40,16 +40,16 @@ function ($scope, Foam, $routeParams, $location, Notification) {
 		});
 	};
     
-    $scope.remove = function(){
-        $scope.foam.$delete(function(){
+    $scope.remove = function () {
+        $scope.foam.$delete(function () {
             $location.path('/foam');
         });
         $scope.foamList = Foam.query();
     };
     
-    $scope.update = function(){
+    $scope.update = function () {
         Notification.display('Updating Foam...', false);
-        $scope.foam.$save(function(){
+        $scope.foam.$save(function () {
             Notification.display('Foam Updated'); 
         });
     };

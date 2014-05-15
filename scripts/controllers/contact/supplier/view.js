@@ -15,9 +15,9 @@ function ($scope, Supplier, Notification, $filter) {
      * Search Mechanism
      */
     $scope.$watch('query', function (q) {
-		if(q) {
-			Supplier.query({q:q}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+		if (q) {
+			Supplier.query({q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.suppliers.indexOfById(resources[i]) == -1) {
 						$scope.suppliers.push(resources[i]);
 					}
@@ -31,7 +31,7 @@ function ($scope, Supplier, Notification, $filter) {
 			offset: $scope.suppliers.length,
 			limit: 50
 		}, function (resources) {
-			for (var i=0; i<resources.length; i++) {
+			for (var i = 0; i < resources.length; i++) {
 				$scope.suppliers.push(resources[i]);
 			}
 		});

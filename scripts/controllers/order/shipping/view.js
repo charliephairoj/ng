@@ -29,8 +29,8 @@ function ($scope, Shipping, $filter, Notification) {
 	 */
 	$scope.$watch('query', function (q) {
 		if (q) {
-			Shipping.query({limit:5, q:q}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+			Shipping.query({limit: 5, q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.shippingList.indexOfById(resources[i].id) == -1) {
 						$scope.shippingList.push(resources[i]);
 					}
@@ -55,7 +55,7 @@ function ($scope, Shipping, $filter, Notification) {
 				limit: 20
 			}, function (resources) {
 				Notification.hide();
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.shippingList.push(resources[i]);
 				}
 			});

@@ -1,14 +1,14 @@
 
 angular.module('employeeApp')
 .directive('dropOn', [function () {
-    function emptyStrFilter(element, index, array){
+    function emptyStrFilter(element, index, array) {
         return (element !== "");
     }
     /*
      * Function helps get the target object
      * in the scope
      */
-    function getTarget(scope, targetString){
+    function getTarget(scope, targetString) {
         //Assigns vars
         
         /*
@@ -33,20 +33,20 @@ angular.module('employeeApp')
      * Function returns the data from the drop event
      * and automatically parses it
      */
-    function getData(event){
+    function getData(event) {
         return JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
     }
     //Prevent Propagation
-    function preventPropagation(event){
+    function preventPropagation(event) {
         event.stopPropagation();
         event.preventDefault();
         event.originalEvent.dataTransfer.effectAllowed = "copy";
     }
     
     return {
-        restrict:'A',
-        replace:false,
-        link: function(scope, element, attrs){
+        restrict: 'A',
+        replace: false,
+        link: function (scope, element, attrs) {
             element.bind('drop', function (event) {
                 preventPropagation(event);
                 element.removeClass('drag');

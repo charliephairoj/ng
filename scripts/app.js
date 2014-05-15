@@ -276,8 +276,8 @@ angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives'
 	});
 }]);
 
-function search(list, key, value, callback, error){        
-    for (var i=0; i<list.length; i++) {
+function search(list, key, value, callback, error) {        
+    for (var i = 0; i < list.length; i++) {
         if (list[i].hasOwnProperty(key)) {
             if (list[i][key] == value) {
                 callback(list[i], i);
@@ -293,7 +293,7 @@ function search(list, key, value, callback, error){
     return false;
 }
 
-function merge(permList, groupPerms){
+function merge(permList, groupPerms) {
     if (permList && groupPerms) {
         angular.forEach(groupPerms, function (perm) {
             search(permList, 'id', perm.id, function (item, index) {                    

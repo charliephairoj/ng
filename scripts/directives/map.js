@@ -8,7 +8,7 @@ angular.module('employeeApp.directives')
         //Options for the map 
 	try {
 		var mapOptions = {
-			center: new google.maps.LatLng(13.776239,100.527884),
+			center: new google.maps.LatLng(13.776239, 100.527884),
 			zoom: 10,
 			mapTypeId: google.maps.MapTypeId.HYBRID
 		};
@@ -17,9 +17,9 @@ angular.module('employeeApp.directives')
 	}
     
     return {
-        restrict:'A',
-        replace:false,
-        link: function(scope, element, attrs){
+        restrict: 'A',
+        replace: false,
+        link: function (scope, element, attrs) {
 			try {
 
 				scope.map = {
@@ -48,12 +48,12 @@ angular.module('employeeApp.directives')
 					}
 
 					return new scope.map.Marker({
-						map:this.map,
-						position:latLng
+						map: this.map,
+						position: latLng
 					});
 				};
 				//Set map position
-				scope.map.setPosition = function(obj){
+				scope.map.setPosition = function (obj) {
 					if (obj instanceof google.maps.LatLng) {
 						latLng = obj;
 					} else {

@@ -19,7 +19,7 @@ angular.module('employeeApp')
                 scope.tableList = Table.query();
 				scope.product = {};
                 
-				function uploadImage(image, callback){
+				function uploadImage(image, callback) {
                     //Display Notification
                     Notification.display('Uploading image...', false);
                     //Set the upload Target
@@ -53,7 +53,7 @@ angular.module('employeeApp')
                 
                 function add() {
                     var newProduct = angular.copy(scope.product);
-                    scope.add({product:newProduct});
+                    scope.add({product: newProduct});
                 }
                 
                 scope.addImage = function (data) {
@@ -81,7 +81,7 @@ angular.module('employeeApp')
                     
                 };
 
-                scope.addCustomItem = function(item, image){
+                scope.addCustomItem = function (item, image) {
                     
                     if (item) { 
 						/*
@@ -101,7 +101,7 @@ angular.module('employeeApp')
                     }
                 };
                 
-                scope.setQuantity = function(quantity){
+                scope.setQuantity = function (quantity) {
                     scope.product.quantity = quantity;
                     if (scope.product.type.toLowerCase() == 'upholstery') {
                         scope.selection = 'fabric';
@@ -109,7 +109,7 @@ angular.module('employeeApp')
                         scope.visible = false;
                         var newProduct = angular.copy(scope.product); 
                         scope.reset();
-                        scope.add({product:newProduct});
+                        scope.add({product: newProduct});
                     }
                 };
                 
@@ -117,7 +117,7 @@ angular.module('employeeApp')
                     scope.visible = false;
                     var newProduct = angular.copy(scope.product);
                     scope.reset();
-                    scope.add({product:newProduct});
+                    scope.add({product: newProduct});
                 };
                 
                 scope.reset = function () {

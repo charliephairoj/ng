@@ -3,7 +3,7 @@ angular.module('employeeApp')
 .directive('imageDropTarget', ['$parse', function ($parse) {
     return {
         restrict: 'A',
-        replace:false,
+        replace: false,
         link: function ($scope, element, attrs) {
             
             /*
@@ -16,7 +16,7 @@ angular.module('employeeApp')
             fileReader.onload = function (evt) {
                 
                 var image = {
-                    'url':evt.target.result
+                    'url': jsevt.target.result
                 };
                 //Create array if not exists
                 $scope.imagePreviews = $scope.imagePreviews || [];
@@ -79,9 +79,9 @@ angular.module('employeeApp')
                 //Loop Through all up loaded files,
                 //validate that they are images and add
                 //it to the "scope.images"
-                for(var i=0; i<files.length; i++){
+                for(var i = 0; i < files.length; i++){
                     
-                    if(files[i].type == "image/png" || files[i].type == "image/jpeg"){
+                    if (files[i].type == "image/png" || files[i].type == "image/jpeg") {
                         //Create array if not exists
                         $scope.images = $scope.images || [];
                         //Push image   

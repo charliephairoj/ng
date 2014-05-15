@@ -3,8 +3,8 @@ angular.module('employeeApp')
 .controller('ProductTableAddCtrl', ['$scope', 'Table', 'Configuration', 'Model', 'Notification', '$location',
 function ($scope, Table, Configuration, Model, Notification, $location) {
     
-    $scope.configurationList = Configuration.query({limit:0});
-    $scope.modelList = Model.query({limit:0});
+    $scope.configurationList = Configuration.query({limit: 0});
+    $scope.modelList = Model.query({limit: 0});
     $scope.table = new Table();
     
     //Text for tooltips
@@ -25,10 +25,10 @@ function ($scope, Table, Configuration, Model, Notification, $location) {
 		$scope.addRemark = null;
         
 		jQuery.ajax("/api/v1/upholstery/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
 			success: function (responseData) {
 				Notification.display('Image Uploaded');
 				$scope.table.image = $scope.table.image || {};

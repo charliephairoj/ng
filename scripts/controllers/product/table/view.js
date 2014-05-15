@@ -11,8 +11,8 @@ angular.module('employeeApp')
     
 	$scope.$watch('query', function (q) {
 		if (q) {
-			Table.query({q:q, limit: 5}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+			Table.query({q: q, limit: 5}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.tableList.indexOfById(resources[i]) == -1) {
 						$scope.tableList.push(resources[i]);
 					}
@@ -27,7 +27,7 @@ angular.module('employeeApp')
 				offset: $scope.tableList.length,
 				limit: 50
 			}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.tableList.push(resources[i]);
 				}
 			});

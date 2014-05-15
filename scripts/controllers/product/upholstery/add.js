@@ -2,8 +2,8 @@
 angular.module('employeeApp')
 .controller('ProductUpholsteryAddCtrl', ['$scope', 'Model', 'Configuration', 'Upholstery', 'Notification', '$location',
 function ($scope, Model, Configuration, Upholstery, Notification, $location) {
-    $scope.modelList = Model.query({limit:0});
-    $scope.configurationList = Configuration.query({limit:0});
+    $scope.modelList = Model.query({limit: 0});
+    $scope.configurationList = Configuration.query({limit: 0});
     $scope.upholstery = new Upholstery();
     
     //Text for tooltips
@@ -28,10 +28,10 @@ function ($scope, Model, Configuration, Upholstery, Notification, $location) {
 		$scope.addRemark = null;
         
 		jQuery.ajax("/api/v1/upholstery/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
 			success: function (responseData) {
 				Notification.display('Image Uploaded');
 				$scope.upholstery.image = $scope.upholstery.image || {};

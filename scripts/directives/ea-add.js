@@ -4,7 +4,7 @@ angular.module('employeeApp')
 	return {
 		restrict: 'A',
 		link: function postLink(scope, element, attrs) {
-			function callback(evt){
+			function callback(evt) {
 				if ((evt.which == "65" && (evt.metaKey || evt.ctrlKey))) {
 					evt.preventDefault();
 					scope.$eval(attrs.eaAdd);

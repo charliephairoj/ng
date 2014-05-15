@@ -32,10 +32,10 @@ function ($scope, Model, Notification, $location) {
 		$scope.addRemark = null;
 
 		jQuery.ajax("/api/v1/model/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
 			success: function (responseData) {
 				Notification.display('Image Uploaded');
 				$scope.model.image = $scope.model.image || {};

@@ -9,7 +9,7 @@ angular.module('employeeApp.directives')
 			}
 			var x = angular.element('<span class="x-mark">𐄂</span>');
             
-			scope.$watch(attrs.x, function(val){
+			scope.$watch(attrs.x, function (val) {
 				if (val) {
 					element.append(x);
 				} else {

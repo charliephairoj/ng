@@ -8,7 +8,7 @@ angular.module('employeeApp')
 				var childHeight = $(element.children()[0]).height();
 				var elHeight = element.height();
 				if (childHeight >= elHeight) {
-					if ((element.scrollTop() + elHeight) >= childHeight - 10 ){
+					if ((element.scrollTop() + elHeight) >= childHeight - 10) {
 						try {
 							scope.$eval(attrs.onScrollEnd);
 						} catch (err) {

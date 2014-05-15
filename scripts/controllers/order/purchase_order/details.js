@@ -3,16 +3,16 @@ angular.module('employeeApp')
 .controller('OrderPurchaseOrderDetailsCtrl', ['$scope', '$routeParams', 'PurchaseOrder', 'Notification', '$location', '$window',
 function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window) {
 	
-	Notification.display('Loading purchase order '+$routeParams.id+'...', false);
+	Notification.display('Loading purchase order ' + $routeParams.id + '...', false);
 	
-	$scope.po = PurchaseOrder.get({id:$routeParams.id, pdf:true}, function () {
+	$scope.po = PurchaseOrder.get({id: $routeParams.id, pdf: true}, function () {
 		Notification.hide();
 	});
 	
 	$scope.update = function () {
-		Notification.display('Saving changes to Purchase Order for '+$scope.po.id, false);
+		Notification.display('Saving changes to Purchase Order for ' + $scope.po.id, false);
 		$scope.po.$update(function () {
-			Notification.display('Changes to Purchase Order '+$scope.po.id+' saved.');
+			Notification.display('Changes to Purchase Order ' + $scope.po.id + ' saved.');
 			$window.open($scope.po.pdf.url);
 		}, function (e) {
 			console.error(e);
@@ -106,12 +106,12 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 		$scope.po.status = 'Cancelled';
 		
 		//Pay for the items
-		for (var i = 0; i<$scope.po.items.length; i++) {
+		for (var i = 0; i < $scope.po.items.length; i++) {
 			$scope.po.items[i].status = 'Cancelled';			
 		}
 		
 		$scope.po.$update(function () {
-			Notification.display("Purchase order "+$scope.po.id+" cancelled.");
+			Notification.display("Purchase order " + $scope.po.id + " cancelled.");
 			$location.path("order/purchase_order");
 		});
 	};

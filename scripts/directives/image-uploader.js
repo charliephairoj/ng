@@ -30,7 +30,7 @@ angular.module('employeeApp')
 				var promise = FileUploader.upload($image, scope.url);
 				promise.then(function (dataObj) {
 					Notification.display("File was uploaded");
-					scope.onUpload({data: dataObj.data, $image:dataObj.data});
+					scope.onUpload({data: dataObj.data, $image: dataObj.data});
 					(callback || angular.noop)(dataObj.data);
 				}, function () {
 					Notification.display('There was an error uploading the file');

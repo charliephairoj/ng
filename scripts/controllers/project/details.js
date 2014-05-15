@@ -5,7 +5,7 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader) {
     
     $scope.showAddRoom = false;
     $scope.flag = false;
-    $scope.project = Project.get({id:$routeParams.id});
+    $scope.project = Project.get({id: $routeParams.id});
     $scope.room = {};
     
     $scope.addImage = function (image) {
@@ -25,12 +25,12 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader) {
     };
     
     $scope.addRoom = function () {
-        Notification.display('Adding '+$scope.room.type, false);
+        Notification.display('Adding ' + $scope.room.type, false);
         var room = new Room();
         angular.extend(room, $scope.room);
-        room.project = {id:$scope.project.id};
+        room.project = {id: $scope.project.id};
         room.$save(function (response) {
-            Notification.display($scope.room.description+" added.");
+            Notification.display($scope.room.description + " added.");
             $scope.showAddRoom = false;
             $scope.project.rooms.push(room);
         }, function (e) {

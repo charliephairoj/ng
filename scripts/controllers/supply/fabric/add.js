@@ -16,13 +16,13 @@ function ($scope, Supplier, Fabric, $location, Notification) {
     //Methods
     
     //Add Fabric
-    $scope.save = function(){
+    $scope.save = function () {
         //Display saving message
         Notification.display('Saving Fabric...', false);
         //Checks the form is valid
-        if($scope.form.$valid){
+        if ($scope.form.$valid) {
             //save to database
-            $scope.fabric.$create(function(){
+            $scope.fabric.$create(function () {
                 Notification.display('Fabric Saved');
                 $location.path('supply/fabric');
             });
@@ -31,7 +31,7 @@ function ($scope, Supplier, Fabric, $location, Notification) {
     };
     
     //Upload Image
-    $scope.upload = function(){
+    $scope.upload = function () {
         
         //Notify of uploading image
         Notification.display('Uploading Image...', false);
@@ -44,11 +44,11 @@ function ($scope, Supplier, Fabric, $location, Notification) {
         $scope.addRemark = null;
         
         jQuery.ajax("fabric/image", {
-			type:'POST',
-			data:fd,
-			processData:false,
-			contentType:false,
-			success: function(responseData){
+			type: 'POST',
+			data: fd,
+			processData: false,
+			contentType: false,
+			success: function (responseData) {
 				Notification.display('Image Updated');
 				angular.copy(responseData, $scope.fabric);
 				$scope.$apply();

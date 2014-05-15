@@ -13,7 +13,7 @@ angular.module('employeeApp')
 			var model = attrs.ngModel || 'query';
 			element.addClass('search-bar');
 			if (attrs.searchBarDate !== undefined) {
-				input = angular.element('<div data-ng-model="'+model+'" class="datepicker" ui-date></div>');
+				input = angular.element('<div data-ng-model="' + model + '" class="datepicker" ui-date></div>');
 				element.addClass('date');
 			} else {
 				input = angular.element('<input size="40" placeholder="Search" ng-model="query" />');

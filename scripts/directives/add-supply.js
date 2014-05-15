@@ -19,7 +19,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 				var units = scope.supply.units;
 				var type = scope.supply.type;
 				return scope.supply.new_supply ? (units === "m" || units === "pc" || units === "pack" || units === "yd" ||
-				(units === "kg" && type === "packaging") ? true : false) : false ;
+				(units === "kg" && type === "packaging") ? true : false) : false;
 			};
 			
 			scope.showDepth = function () {
@@ -40,8 +40,8 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			
 			scope.supply = new Supply();
 			scope.supply.units = 'pc';
-			scope.suppliers = Supplier.query({limit:0});
-			scope.supplies = Supply.query({limit:0});
+			scope.suppliers = Supplier.query({limit: 0});
+			scope.supplies = Supply.query({limit: 0});
 			
 			scope.changeSupply = function (supply) {
 				angular.extend(scope.supply, supply);
@@ -70,7 +70,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 							Notification.display('Supply created');
 							scope.visible = false;
 							scope.supply = new Supply();
-						}, function(reason){
+						}, function (reason) {
 							console.error(reason);
 							Notification.display('There was an error in creating the supply', false);
 						});

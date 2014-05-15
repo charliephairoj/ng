@@ -5,10 +5,10 @@ function ($scope, Customer, $location, Notification, Geocoder) {
       
 	$scope.customer = new Customer();
       
-	$scope.save = function(){
+	$scope.save = function () {
 		if ($scope.form.$valid) {
 			Notification.display('Creating customer...', false);
-			$scope.customer.$save(function(){
+			$scope.customer.$save(function () {
 				Notification.display('Customer created');
 				$location.path('/contact/customer');
 			}, function (e) {
@@ -19,18 +19,18 @@ function ($scope, Customer, $location, Notification, Geocoder) {
 		}
 	};
   
-	$scope.getPosition = function(){
-		if($scope.customer.address.address1 && $scope.customer.address.city && $scope.customer.address.territory &&
-		$scope.customer.address.country && $scope.customer.address.zipcode){
+	$scope.getPosition = function () {
+		if ($scope.customer.address.address1 && $scope.customer.address.city && $scope.customer.address.territory &&
+		$scope.customer.address.country && $scope.customer.address.zipcode) {
           
 			//Get promise and bind to call backs
 			var promise = Geocoder.geocode($scope.customer.address);
-			promise.then(function(results){
-				if($scope.marker){
+			promise.then(function (results) {
+				if ($scope.marker) {
 					$scope.marker.setPosition(results[0].geometry.location);
-				}else{
+				} else {
 					$scope.marker = $scope.map.createMarker(results[0].geometry.location);
-					$scope.marker.onchange = function(latLng){
+					$scope.marker.onchange = function (latLng) {
 						//Set address lat and lng
 						$scope.customer.address.lat = $scope.marker.lat;
 						$scope.customer.address.lng = $scope.marker.lng;
@@ -44,7 +44,7 @@ function ($scope, Customer, $location, Notification, Geocoder) {
 				$scope.customer.address.lat = $scope.marker.lat;
 				$scope.customer.address.lng = $scope.marker.lng;
                   
-			}, function(status){
+			}, function (status) {
 				console.error(status);
 			});
 		}

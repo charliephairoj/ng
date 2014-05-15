@@ -4,7 +4,7 @@
  * just mouse enter/leave, html tooltips, and selector delegatation.
  */
 angular.module('employeeApp.directives')
-.directive( 'tooltipPopup', function () {
+.directive('tooltipPopup', function () {
 	return {
 		restrict: 'EA',
 		replace: true,
@@ -12,20 +12,20 @@ angular.module('employeeApp.directives')
 		templateUrl: 'views/templates/tooltip-popup.html'
 	};
 })
-.directive( 'tooltip', [ '$compile', '$timeout', '$parse', '$window', function ( $compile, $timeout, $parse, $window) {
+.directive('tooltip', ['$compile', '$timeout', '$parse', '$window', function ( $compile, $timeout, $parse, $window) {
 	var template = 
 		'<tooltip-popup '+
-			'tooltip-title="{{tt_tooltip}}" '+
-			'placement="{{tt_placement}}" '+
-			'animation="tt_animation()" '+
-			'is-open="tt_isOpen"'+
-		'>'+
+			'tooltip-title="{{tt_tooltip}}" ' +
+			'placement="{{tt_placement}}" ' +
+			'animation="tt_animation()" ' +
+			'is-open="tt_isOpen"' +
+		'>' +
 		'</tooltip-popup>';
   
 	return {
 		scope: true,
-		link: function ( scope, element, attr ) {
-			var tooltip = $compile( template )( scope ), 
+		link: function (scope, element, attr) {
+			var tooltip = $compile(template)(scope), 
 				transitionTimeout,
 				triggers = {
 					'focus': 'blur',
@@ -33,17 +33,17 @@ angular.module('employeeApp.directives')
 				},
 				triggerChoice = (attr.tooltipTrigger || 'mouseenter').toLowerCase();
 
-			attr.$observe( 'tooltip', function ( val ) {
+			attr.$observe('tooltip', function (val) {
 				scope.tt_tooltip = val;
 			});
 
-			attr.$observe( 'tooltipPlacement', function ( val ) {
+			attr.$observe('tooltipPlacement', function (val) {
 				// If no placement was provided, default to 'top'.
 				scope.tt_placement = val || 'right';
 			});
 
-			attr.$observe( 'tooltipAnimation', function ( val ) {
-				scope.tt_animation = $parse( val );
+			attr.$observe('tooltipAnimation', function (val) {
+				scope.tt_animation = $parse(val);
 			});
 
 			// By default, the tooltip is not open.
@@ -53,8 +53,8 @@ angular.module('employeeApp.directives')
 			function getPosition() {
 				var boundingClientRect = element[0].getBoundingClientRect();
 				return {
-					width: element.prop( 'offsetWidth' ),
-					height: element.prop( 'offsetHeight' ),
+					width: element.prop('offsetWidth'),
+					height: element.prop('offsetHeight'),
 					top: boundingClientRect.top + $window.pageYOffset,
 					left: boundingClientRect.left + $window.pageXOffset
 				};
@@ -74,27 +74,27 @@ angular.module('employeeApp.directives')
 	
 				// If there is a pending remove transition, we must cancel it, lest the
 				// toolip be mysteriously removed.
-				if ( transitionTimeout ) {
-					$timeout.cancel( transitionTimeout );
+				if (transitionTimeout) {
+					$timeout.cancel(transitionTimeout);
 				}
 
 				// Set the initial positioning.
-				tooltip.css({ top: 0, left: 0, display: 'block' });
+				tooltip.css({top: 0, left: 0, display: 'block'});
 
 				// Now we add it to the DOM because need some info about it. But it's not 
 				// visible yet anyway.
-				element.after( tooltip );
+				element.after(tooltip);
 
 				// Get the position of the directive element.
 				position = getPosition();
 
 				// Get the height and width of the tooltip so we can center it.
-				ttWidth = tooltip.prop( 'offsetWidth' );
-				ttHeight = tooltip.prop( 'offsetHeight' );
+				ttWidth = tooltip.prop('offsetWidth');
+				ttHeight = tooltip.prop('offsetHeight');
 
 				// Calculate the tooltip's top and left coordinates to center it with
 				// this directive.
-				switch ( scope.tt_placement ) {
+				switch (scope.tt_placement) {
 					case 'right':
 						ttPosition = {
 							top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
@@ -122,7 +122,7 @@ angular.module('employeeApp.directives')
 				}
 
 				// Now set the calculated positioning.
-				tooltip.css( ttPosition );
+				tooltip.css(ttPosition);
 
 				// And show the tooltip.
 				scope.tt_isOpen = true;
@@ -137,8 +137,8 @@ angular.module('employeeApp.directives')
 				// And now we remove it from the DOM. However, if we have animation, we 
 				// need to wait for it to expire beforehand.
 				// FIXME: this is a placeholder for a port of the transitions library.
-				if ( angular.isDefined( scope.tt_animation ) && scope.tt_animation() ) {
-					transitionTimeout = $timeout( function () { tooltip.remove(); }, 500 );
+				if (angular.isDefined( scope.tt_animation ) && scope.tt_animation()) {
+					transitionTimeout = $timeout(function () {tooltip.remove(); }, 500);
 				} else {
 					tooltip.remove();
 				}
@@ -146,11 +146,11 @@ angular.module('employeeApp.directives')
       
       
 			// Register the event listeners.
-			element.bind( triggerChoice || 'mouseenter', function() {
-				scope.$apply( show );
+			element.bind(triggerChoice || 'mouseenter', function () {
+				scope.$apply(show);
 			});
-			element.bind( triggers[triggerChoice] || 'mouseleave', function() {
-				scope.$apply( hide );
+			element.bind(triggers[triggerChoice] || 'mouseleave', function () {
+				scope.$apply(hide);
 			});
 		}
 	};

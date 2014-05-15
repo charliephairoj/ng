@@ -19,7 +19,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	$scope.scannerMode = false;
-	$scope.supplies = Supply.query({'country':$scope.country}, function(){
+	$scope.supplies = Supply.query({'country': $scope.country}, function () {
 		fetching = false;
 		Notification.hide();
 		changeSelection(index);
@@ -51,7 +51,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		}, function (e) {
 			console.log(e);
 			Notification.display("Unable to upload image", false);
-		})
+		});
 	};
 
 	/*
@@ -63,8 +63,8 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	*/
 	$scope.$watch('query', function (q) {
 		if (q) {
-			Supply.query({limit:10, q:q, 'country': $scope.country}, function (resources) {
-				for (var i=0; i<resources.length; i++) {
+			Supply.query({limit: 10, q: q, 'country': $scope.country}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
 						$scope.supplies.push(resources[i]);
 					}
@@ -92,7 +92,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 				country: $scope.country
 			}, function (resources) {
 				Notification.hide();
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
 						$scope.supplies.push(resources[i]);
 					}
@@ -132,7 +132,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		
 		if (scrollTop > (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
-		} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+		} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 			container.scrollTop(selection.outerHeight() * i);
 		}
 				
@@ -156,7 +156,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	
 	keyboardNav.onenter = function () {
 		$rootScope.safeApply(function () {
-			$location.path('/supply/'+currentSelection.id);
+			$location.path('/supply/' + currentSelection.id);
 		});
 	};
 	
@@ -186,7 +186,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		if (val && !oldVal) {
 			globalScanner.disable();
 			keyboardNav.disable();
-		}else if (!val && oldVal) {
+		} else if (!val && oldVal) {
 			globalScanner.enable();
 			keyboardNav.enable();
 		}

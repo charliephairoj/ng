@@ -23,16 +23,16 @@ angular.module('employeeApp.directives')
             scope.currencyTip = "What currency does this customer deal in? (required)";
             
             //Get the longitude and latitude of the customer's address
-			scope.getLocation = function (){
-				if(scope.customer.address.address1 && scope.customer.address.city && scope.customer.address.territory &&
-				scope.customer.address.country && scope.customer.address.zipcode && !scope.customer.address.user_defined_latlng){
+			scope.getLocation = function () {
+				if (scope.customer.address.address1 && scope.customer.address.city && scope.customer.address.territory &&
+				scope.customer.address.country && scope.customer.address.zipcode && !scope.customer.address.user_defined_latlng) {
 
 					//Get promise and bind to call backs
 					var promise = Geocoder.geocode(scope.customer.address);
 					promise.then(function (results) {
-						if(scope.marker){
+						if (scope.marker) {
 							scope.marker.setPosition(results[0].geometry.location);
-						}else{
+						} else {
 							scope.marker = scope.map.createMarker(results[0].geometry.location);
 							scope.marker.onchange = function (latLng) {
 								//Set address lat and lng
@@ -55,7 +55,7 @@ angular.module('employeeApp.directives')
 				}
 			};
 			
-            scope.add = function(){
+            scope.add = function () {
 				if (scope.form.$valid) {
 					Notification.display('Creating customer...', false);
 					scope.customer.$save(function (response) {

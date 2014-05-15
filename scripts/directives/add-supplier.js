@@ -41,7 +41,7 @@ angular.module('employeeApp.directives')
 			
 			scope.validation = function () {
 				var primary = [];
-				for (var i=0; i<(scope.supplier.contacts && scope.supplier.contacts.length); i++) {
+				for (var i = 0; i < (scope.supplier.contacts && scope.supplier.contacts.length); i++) {
 					if (scope.supplier.contacts[i].primary) {
 						primary.append(scope.supplier.contacts[i]);
 					}
@@ -52,8 +52,8 @@ angular.module('employeeApp.directives')
 				}
 			};
             
-			scope.add = function(){
-				try{
+			scope.add = function () {
+				try {
 					if (scope.form.$valid) {
 						Notification.display('Creating supplier...', false);
 						scope.supplier.$save(function (response) {
@@ -67,7 +67,7 @@ angular.module('employeeApp.directives')
 					} else {
 						Notification.display('Please fill out the form properly');
 					}
-				} catch(e) {
+				} catch (e) {
 					Notification.display(e);
 				}
 			};

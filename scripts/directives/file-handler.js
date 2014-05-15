@@ -2,7 +2,7 @@
 angular.module('employeeApp')
 .directive('fileHandler', ['$rootScope', function ($rootScope) {
     return {
-		/* jshint multistr: true */
+		/*jshint multistr: true */
         template: '<div class="file-handler">\
                         <div class="file-handler-message" ng-hide="files.length>0">\
                             <h3>Drop File Here</h3>\
@@ -14,7 +14,7 @@ angular.module('employeeApp')
                         </div>\
                    </div>',
         restrict: 'A',
-        scope:{files: '=fileHandler'},
+        scope: {files: '=fileHandler'},
         replace: true,
         link: function postLink(scope, element, attrs) {
             var reader = new FileReader();

@@ -21,7 +21,7 @@ function (Customer, Notification, KeyboardNavigation, $rootScope, $filter) {
 			* We will turn the fetching flag to false
 			* once we received the results
 			*/
-			scope.customers = Customer.query({limit:20}, function (response) {
+			scope.customers = Customer.query({limit: 20}, function (response) {
 				fetching = false;
 				changeSelection(index);
 			});
@@ -31,8 +31,8 @@ function (Customer, Notification, KeyboardNavigation, $rootScope, $filter) {
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Customer.query({q:q, limit:5}, function(resources) {
-						for (var i=0; i < resources.length; i++) {
+					Customer.query({q: q, limit: 5}, function (resources) {
+						for (var i = 0; i < resources.length; i++) {
 							if (scope.customers.indexOfById(resources[i].id) == -1) {
 								scope.customers.push(resources[i]);
 							}
@@ -56,7 +56,7 @@ function (Customer, Notification, KeyboardNavigation, $rootScope, $filter) {
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for(var i=0; i<resources.length; i++) {
+						for (var i = 0; i < resources.length; i++) {
 							scope.customers.push(resources[i]);
 						}
 					});
@@ -95,7 +95,7 @@ function (Customer, Notification, KeyboardNavigation, $rootScope, $filter) {
 				
 				if (scrollTop > (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
-				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+				} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
 				}
 				

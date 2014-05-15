@@ -16,7 +16,7 @@ function ($scope, Project, Notification, Customer, $location) {
         columnDefs: [{field: 'description', displayName: 'Description'},
                      {field: 'customer.name', displayName: 'customer'},
                      {field: 'type', displayName: 'Type'},
-                     {field: 'status', displayName:'Status'},
+                     {field: 'status', displayName: 'Status'},
                      {field: 'delivery_date', displayName: 'Delivery Date', filter: 'date:"MMMM d, yyyy"'}]
         
     };

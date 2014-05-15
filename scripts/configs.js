@@ -3,17 +3,17 @@
  */
 angular.module('employeeApp').config(function ($httpProvider) {
     $httpProvider.defaults.headers.post  = {
-		"Cache-Control":"no-cache", 
-		"expires":"-1", 
-		"pragma":"no-cache",
+		"Cache-Control": "no-cache", 
+		"expires": "-1", 
+		"pragma": "no-cache",
 		"Content-Type": "application/json"
 	};
-    $httpProvider.defaults.headers.get  = {"Cache-Control":"no-cache", "expires":"-1", "pragma":"no-cache"};
+    $httpProvider.defaults.headers.get  = {"Cache-Control": "no-cache", "expires": "-1", "pragma": "no-cache"};
       
     /*
      * Takes out the objects from the data 
      */
-    $httpProvider.defaults.transformResponse.push(function(data, headers) {
+    $httpProvider.defaults.transformResponse.push(function (data, headers) {
 		if (typeof(data) == 'object') {
 			if (data.hasOwnProperty('meta') && data.hasOwnProperty('objects')) {
 				return data.objects;
@@ -27,7 +27,7 @@ angular.module('employeeApp').config(function ($httpProvider) {
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $http, Geocoder){
+angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder) {
 	
 	/*
 	 * Get the current user and place it at the top scope
@@ -40,10 +40,10 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
     
     //Array: indexById
     
-    Array.prototype.indexOfById = function(needle) {
+    Array.prototype.indexOfById = function (needle) {
 		needle = typeof(needle) == "object" ? needle.hasOwnProperty('id') ? needle.id : null : needle;
 		var haystack = this;
-		for (var i=0; i < haystack.length; i++) {
+		for (var i = 0; i < haystack.length; i++) {
 			if (haystack[i].id == needle) {
 				return i;
 			}
@@ -59,10 +59,10 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
      */
    
     
-    $rootScope.safeApply = function(fn){
+    $rootScope.safeApply = function (fn) {
 		var phase = this.$root.$$phase;
 		if (phase == '$apply' || phase == '$digest') {
-			if(fn && (typeof(fn) === 'function')) {
+			if (fn && (typeof(fn) === 'function')) {
 				fn();
 			}
 		} else {
@@ -85,7 +85,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 		kg: 'Kilogram',
 		pack: 'Pack',
 		container: 'Container',
-		pc: 'Piece',
+		pc: 'Piece'
 	};
     
     window.globalScanner = new scanner('global');
@@ -102,7 +102,7 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 	 * 
 	 */
 	//Set initial country
-	$rootScope.country = 'TH'
+	$rootScope.country = 'TH';
 	
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition(function (position) {
@@ -141,21 +141,21 @@ angular.module('employeeApp').run(function($rootScope, CurrentUser, scanner, $ht
 	
 	/*
 	 * Prevent rubber band effect of iOS webapp
- 	 */
+     */
 	
 	var scrollY = 0;
 
-    $(document).on('touchstart', function( e ){
+    $(document).on('touchstart', function (e) {
         scrollY = e.originalEvent.touches.item(0).clientY;
     });
 
-    $(document).on('touchmove', function( e ){
+    $(document).on('touchmove', function (e) {
 		var container = angular.element(e.target).parents('.scroll-enabled')[0];
 
 		if (container) {
 			var containerHeight = $(container).height();
 			var scrollDelta = scrollY - e.originalEvent.touches.item(0).clientY;
-			if (container.scrollTop == 0 && scrollDelta < 0) {
+			if (container.scrollTop === 0 && scrollDelta < 0) {
 				e.preventDefault();
 			} else if (containerHeight + container.scrollTop == container.scrollHeight && scrollDelta > 0) {
 				e.preventDefault();

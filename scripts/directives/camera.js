@@ -2,14 +2,14 @@
 angular.module('employeeApp.directives')
 .directive('camera', ['CameraService', function (CameraService) {
 	return {
-		template: '<div class="camera">'+
-					'<canvas></canvas>'+
-					'<video class="camera-video"></video>'+
-					'<div class="snapshot-btn" ng-click="takeSnapshot()"></div>'+
-					'<div class="btn-menu">'+
-						'<div  class="save-btn" ng-click="save()">Save</div>'+
-						'<div class="retake-btn" ng-click="retake()">Retake</div>'+
-					'</div>'+
+		template: '<div class="camera">' +
+					'<canvas></canvas>' +
+					'<video class="camera-video"></video>' +
+					'<div class="snapshot-btn" ng-click="takeSnapshot()"></div>' +
+					'<div class="btn-menu">' +
+						'<div  class="save-btn" ng-click="save()">Save</div>' +
+						'<div class="retake-btn" ng-click="retake()">Retake</div>' +
+					'</div>' +
 				'</div>',
 		restrict: 'EA',
 		replace: true,
@@ -19,7 +19,7 @@ angular.module('employeeApp.directives')
 		link: function postLink(scope, element, attrs) {
 			//console.log('test');
 			//console.log(CameraService.hasUserMedia());
-			if (!CameraService.hasUserMedia()) {return;}
+			if (!CameraService.hasUserMedia()) {return; }
 			
 			var userMedia = CameraService.getUserMedia,
 				canvas = element.find('canvas')[0],
@@ -60,13 +60,13 @@ angular.module('employeeApp.directives')
 				$(canvas).removeClass('active');
 			};
 			
-			scope.save = function() {
+			scope.save = function () {
 				var img = getImageAsBlob(canvas.toDataURL("image/jpeg"));
 				scope.onSnapshot({$image: img});
 				scope.retake();
 			};
 			
-			scope.takeSnapshot = function() {
+			scope.takeSnapshot = function () {
 				width = video.videoWidth;
 				height = video.videoHeight;
 				

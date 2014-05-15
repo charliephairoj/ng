@@ -4,7 +4,7 @@ angular.module('employeeApp')
 function ($scope, User, Group, $location) {
 	$scope.user = new User();
 	$scope.user.groups = [];
-	$scope.groups = Group.query({limit:0});
+	$scope.groups = Group.query({limit: 0});
 	
 	/*
 	 * Add Profile Image
@@ -12,13 +12,13 @@ function ($scope, User, Group, $location) {
 	 * Recieves the image data as an argument. The data is then applied 
 	 * to the user and the user is saved
 	 */
-	$scope.addImage = function(imageData){
+	$scope.addImage = function (imageData) {
 		$scope.user.image = imageData.hasOwnProperty('data') ? imageData.data : imageData;
 	};
 	
-	$scope.save = function(){
+	$scope.save = function () {
 		//Validates the form
-		if($scope.form.$valid){
+		if ($scope.form.$valid) {
     
 			/*
 			* Adds groups to the user
@@ -27,7 +27,7 @@ function ($scope, User, Group, $location) {
 			* it hs been checked off. Groups that have been 
 			* checked off are then added to the user groups
 			*/
-			for (var i=0; i<$scope.groups.length; i++) {
+			for (var i = 0; i < $scope.groups.length; i++) {
 				if ($scope.groups[i].$checked) {
 					$scope.user.groups.push(angular.copy($scope.groups[i]));
 				}
@@ -36,7 +36,7 @@ function ($scope, User, Group, $location) {
 			/*
 			 * Saves the user by sending a POST request to the server
 			 */
-			$scope.user.$create(function(){
+			$scope.user.$create(function () {
 				$location.path("/administrator/user");
 			});
 		}        

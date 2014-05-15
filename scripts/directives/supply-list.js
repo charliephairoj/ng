@@ -31,14 +31,14 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			if (attrs.supplier) {
 				scope.$watch('supplier', function (val) {
 					if (val) {
-						scope.supplies = Supply.query({supplier_id:val.id, limit:20}, function (response) {
+						scope.supplies = Supply.query({supplier_id: val.id, limit: 20}, function (response) {
 							fetching = false;
 							changeSelection(index);
 						});
 					}
 				});
 			} else {
-				scope.supplies = Supply.query({limit:20}, function (response) {
+				scope.supplies = Supply.query({limit: 20}, function (response) {
 					fetching = false;
 					changeSelection(index);
 				});
@@ -49,8 +49,8 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Supply.query({q:q, limit:10+(q.length * 2)}, function(resources) {
-						for (var i=0; i < resources.length; i++) {
+					Supply.query({q: q, limit: 10 + (q.length * 2)}, function(resources) {
+						for (var i = 0; i < resources.length; i++) {
 							if (scope.supplies.indexOfById(resources[i].id) == -1) {
 								scope.supplies.push(resources[i]);
 							}
@@ -75,7 +75,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for(var i=0; i<resources.length; i++) {
+						for(var i = 0; i < resources.length; i++) {
 							scope.supplies.push(resources[i]);
 						}
 					});
@@ -114,7 +114,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 				
 				if (scrollTop > (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
-				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+				} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
 				}
 				

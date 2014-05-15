@@ -1,10 +1,9 @@
-'use strict';
 
 angular.module('employeeApp')
 .directive('touchend', function () {
     return {
-    	restrict: 'A',
-      	link: function postLink(scope, element, attrs) {
+		restrict: 'A',
+		link: function postLink(scope, element, attrs) {
 			function touchEnd(e) {
 				//element.addClass('touch-end');
 				element.removeClass('touch-start');
@@ -12,13 +11,13 @@ angular.module('employeeApp')
 			}
 			
 			//Apply if an iOS device
-			if (iOS) {
+			if (window.iOS) { //jsHint ignore
 				element.on('touchend', touchEnd);
 		
 				scope.$on('$destroy', function () {
 					element.off('touchmove', touchEnd);
 				});
 			}
-      	}
+		}
     };
 });

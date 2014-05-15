@@ -7,7 +7,7 @@ angular.module('employeeApp')
     Notification.display('Loading Customers...', false);
     
     //Poll the server for customers
-    $scope.customers = Customer.query(function(){
+    $scope.customers = Customer.query(function () {
         Notification.hide();
     });
     
@@ -23,9 +23,9 @@ angular.module('employeeApp')
      */
     $scope.$watch('query', function (q) {
 		if (q) {
-			Customer.query({q:q}, function (resources) {
-				for(var i=0; i<resources.length; i++) {
-					if($scope.customers.indexOfById(resources[i]) == -1) {
+			Customer.query({q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
+					if ($scope.customers.indexOfById(resources[i]) == -1) {
 						$scope.customers.push(resources[i]);
 					}
 				}
@@ -34,14 +34,14 @@ angular.module('employeeApp')
 	});
     
     $scope.loadNext = function () {
-		if(!fetching) {
+		if (!fetching) {
 			fetching = true;
 			Customer.query({
 				offset: $scope.customers.length,
 				limit: 50
 			}, function (resources) {
 				fetching = false;
-				for (var i=0; i<resources.length; i++) {
+				for (var i = 0; i < resources.length; i++) {
 					$scope.customers.push(resources[i]);
 				}
 			});
