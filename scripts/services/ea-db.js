@@ -20,7 +20,7 @@
  * -clear()
  */
 angular.module('employeeApp.services')
-.factory('DB', ['$q', '$timeout', '$rootScope',  function($q, $timeout, $rootScope) {
+.factory('DB', ['$q', '$timeout', '$rootScope',  function ($q, $timeout, $rootScope) {
 	/*
 	 * Private Vars
 	 */
@@ -48,9 +48,10 @@ angular.module('employeeApp.services')
 	/*
 	 * Open database
 	 */
-	function openDatabase () {
+	function openDatabase() {
 		
-		var openRequest = indexedDB.open("employee", version);
+		var openRequest = indexedDB.open("employee", version),
+			objectStore;
 		
 		//On success
 		openRequest.onsuccess = function (e) {
@@ -77,9 +78,9 @@ angular.module('employeeApp.services')
 				
 				//Creates the store if not yet created
 				if (!db.objectStoreNames.contains(param.resourceName)) {
-					var objectStore = db.createObjectStore(param.resourceName, {keyPath:param.keyPath});
+					objectStore = db.createObjectStore(param.resourceName, {keyPath: param.keyPath});
 				} else {
-					var objectStore = db.transaction.objectStore(param.resourceName);
+					objectStore = db.transaction.objectStore(param.resourceName);
 				}
 				
 				//Cycle throught the indexes
@@ -95,7 +96,7 @@ angular.module('employeeApp.services')
 		};
 	}
 	
-	function DB (resourceName) {
+	function DB(resourceName) {
 		this.resourceName = resourceName;
 		
 		if (!db) {
@@ -119,7 +120,7 @@ angular.module('employeeApp.services')
 				//Add object to the array and continue to the next one
 				if (cursor) {
 					data.append(cursor.value);
-					cursor.continue();
+					cursor.continue(); //jshint ignore:line
 				
 				//Resolve the promise
 				} else {
@@ -181,9 +182,8 @@ angular.module('employeeApp.services')
 		};
 	}
 	
-    function DBFactory (resourceName) {
-    	
-    	return new DB(resourceName);
+    function DBFactory(resourceName) {
+		return new DB(resourceName);
     }
     
     return DBFactory;

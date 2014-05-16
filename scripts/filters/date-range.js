@@ -6,16 +6,16 @@ angular.module('employeeApp.filters')
             success();
         }
     }
-    function convertToDateObject(arg){
+    function convertToDateObject(arg) {
         switch (typeof(arg)) {
-            case "object":
-                return arg;
-            case 'string':
-                return new Date(arg);
-            case 'number':
-                return new Date(arg);
-            default:
-                return new Date(arg);
+        case "object":
+            return arg;
+        case 'string':
+            return new Date(arg);
+        case 'number':
+            return new Date(arg);
+        default:
+            return new Date(arg);
         }
     }
     return function (array, key, arg1, arg2) {

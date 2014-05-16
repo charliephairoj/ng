@@ -301,40 +301,40 @@ angular.module('employeeApp.directives')
                 if (mousedown) {
                     if (corner) {
                         switch (corner) {
-                       		case "topLeft":
-                                scene.w = scene.w + ((mouseX-e.offsetX) / scene.xProportion);
-                                scene.h = scene.h + ((mouseY-e.offsetY) / scene.yProportion);
-                                scene.y = scene.y - ((mouseY-e.offsetY) / scene.yProportion);
-                                scene.x = scene.x - ((mouseX-e.offsetX) / scene.xProportion);
-                                break;
-                            case "topRight":
-                                scene.w = scene.w - ((mouseX-e.offsetX) / scene.xProportion);
-                                scene.h = scene.h + ((mouseY-e.offsetY) / scene.yProportion);
-                                scene.y = scene.y - ((mouseY-e.offsetY) / scene.yProportion);
-                                break;
-                            case "bottomRight":
-                                scene.w = scene.w - ((mouseX-e.offsetX) / scene.xProportion);
-                                scene.h = scene.h - ((mouseY-e.offsetY) / scene.yProportion);
-                                break;
-                            case "bottomLeft":
-                                scene.x = scene.x - ((mouseX-e.offsetX) / scene.xProportion);
-                                scene.h = scene.h - ((mouseY-e.offsetY) / scene.yProportion);
-                                scene.w = scene.w + ((mouseX-e.offsetX) / scene.xProportion);
-                                break;
+						case "topLeft":
+                            scene.w = scene.w + ((mouseX - e.offsetX) / scene.xProportion);
+                            scene.h = scene.h + ((mouseY - e.offsetY) / scene.yProportion);
+                            scene.y = scene.y - ((mouseY - e.offsetY) / scene.yProportion);
+                            scene.x = scene.x - ((mouseX - e.offsetX) / scene.xProportion);
+                            break;
+                        case "topRight":
+                            scene.w = scene.w - ((mouseX - e.offsetX) / scene.xProportion);
+                            scene.h = scene.h + ((mouseY - e.offsetY) / scene.yProportion);
+                            scene.y = scene.y - ((mouseY - e.offsetY) / scene.yProportion);
+                            break;
+                        case "bottomRight":
+                            scene.w = scene.w - ((mouseX - e.offsetX) / scene.xProportion);
+                            scene.h = scene.h - ((mouseY - e.offsetY) / scene.yProportion);
+                            break;
+                        case "bottomLeft":
+                            scene.x = scene.x - ((mouseX - e.offsetX) / scene.xProportion);
+                            scene.h = scene.h - ((mouseY - e.offsetY) / scene.yProportion);
+                            scene.w = scene.w + ((mouseX - e.offsetX) / scene.xProportion);
+                            break;
                         }
                     } else {
                         var topLeft = scene.corners.topLeft,
                             bottomRight = scene.corners.bottomRight;
                        
-                        if (topLeft.y - (mouseY-e.offsetY) > 0 && bottomRight.y - (mouseY - e.offsetY) < scene.img.height * scene.yProportion) {
-                            scene.y = scene.y - ((mouseY-e.offsetY)/scene.yProportion);
+                        if (topLeft.y - (mouseY - e.offsetY) > 0 && bottomRight.y - (mouseY - e.offsetY) < scene.img.height * scene.yProportion) {
+                            scene.y = scene.y - ((mouseY - e.offsetY) / scene.yProportion);
                         } else {
-                            scene.y = topLeft.y - (mouseY-e.offsetY) <= 0 ? 0 : (scene.canvas.height - (bottomRight.y - topLeft.y))/scene.yProportion;
+                            scene.y = topLeft.y - (mouseY - e.offsetY) <= 0 ? 0 : (scene.canvas.height - (bottomRight.y - topLeft.y)) / scene.yProportion;
                         }
-                        if (topLeft.x - (mouseX-e.offsetX) > 0 && bottomRight.x - (mouseX - e.offsetX) < scene.img.width * scene.xProportion) {
-                            scene.x = scene.x - ((mouseX-e.offsetX)/scene.xProportion);
+                        if (topLeft.x - (mouseX - e.offsetX) > 0 && bottomRight.x - (mouseX - e.offsetX) < scene.img.width * scene.xProportion) {
+                            scene.x = scene.x - ((mouseX - e.offsetX) / scene.xProportion);
                         } else {
-                            scene.x = topLeft.x - (mouseX-e.offsetX) <= 0 ? 0 : (scene.canvas.width - (bottomRight.x - topLeft.x)) / scene.xProportion;
+                            scene.x = topLeft.x - (mouseX - e.offsetX) <= 0 ? 0 : (scene.canvas.width - (bottomRight.x - topLeft.x)) / scene.xProportion;
                         }                            
                     }
                     
@@ -367,14 +367,14 @@ angular.module('employeeApp.directives')
              * -save
              * -getImage
              */
-            scope.cropper = {cropping:false, image:{}};
+            scope.cropper = {cropping: false, image: {}};
             
             Object.defineProperties(scope.cropper, {
-                scale:{
+                scale: {
                     get: function () {
                         return scene ? scene.scale * 100 : 100;
                     },
-                    set: function(scale){
+                    set: function (scale) {
                         if (scene) {
                             scene.scale = scale;
                         }
@@ -383,27 +383,27 @@ angular.module('employeeApp.directives')
             });  
             
             Object.defineProperties(scope.cropper.image, {
-                width:{
+                width: {
                     get: function () {
                         return scene ? scene.w ? scene.w : 0 : 0;
                     }
                 },
-                height:{
+                height: {
                     get: function () {
                         return scene ? scene.h ? scene.h : 0 : 0;
                     }
                 },
-                scaled_height:{
+                scaled_height: {
                     get: function () {
-                        return scene ? scene.h ? scene.h*scene.scale : 0 : 0;
+                        return scene ? scene.h ? scene.h * scene.scale : 0 : 0;
                     }
                 },
-                scaled_width:{
+                scaled_width: {
                     get: function () {
-                        return scene ? scene.w ? scene.w*scene.scale : 0 : 0;
+                        return scene ? scene.w ? scene.w * scene.scale : 0 : 0;
                     }
                 },
-                loaded:{
+                loaded: {
                     get: function () {
                         return scene ? true : false;
                     }
@@ -462,7 +462,7 @@ angular.module('employeeApp.directives')
             
            
             scope.save = function () {
-				scope.onSave({$image:scope.cropper.getImage()});
+				scope.onSave({$image: scope.cropper.getImage()});
 				scope.cropper.reset();
             };
         }

@@ -49,7 +49,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Supply.query({q: q, limit: 10 + (q.length * 2)}, function(resources) {
+					Supply.query({q: q, limit: 10 + (q.length * 2)}, function (resources) {
 						for (var i = 0; i < resources.length; i++) {
 							if (scope.supplies.indexOfById(resources[i].id) == -1) {
 								scope.supplies.push(resources[i]);
@@ -75,7 +75,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for(var i = 0; i < resources.length; i++) {
+						for (var i = 0; i < resources.length; i++) {
 							scope.supplies.push(resources[i]);
 						}
 					});

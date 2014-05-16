@@ -77,7 +77,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 */
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
 				Notification.display("Looking up supply...", false);
-				scope.supply = Supply.get({id:code.split('-')[1], 'country': $rootScope.country}, function (response) {
+				scope.supply = Supply.get({id: code.split('-')[1], 'country': $rootScope.country}, function (response) {
 					scope.disabled = false;
 					Notification.hide();
 					focusOnQuantity();

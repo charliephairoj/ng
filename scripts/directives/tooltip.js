@@ -12,9 +12,9 @@ angular.module('employeeApp.directives')
 		templateUrl: 'views/templates/tooltip-popup.html'
 	};
 })
-.directive('tooltip', ['$compile', '$timeout', '$parse', '$window', function ( $compile, $timeout, $parse, $window) {
+.directive('tooltip', ['$compile', '$timeout', '$parse', '$window', function ($compile, $timeout, $parse, $window) {
 	var template = 
-		'<tooltip-popup '+
+		'<tooltip-popup ' +
 			'tooltip-title="{{tt_tooltip}}" ' +
 			'placement="{{tt_placement}}" ' +
 			'animation="tt_animation()" ' +
@@ -95,30 +95,30 @@ angular.module('employeeApp.directives')
 				// Calculate the tooltip's top and left coordinates to center it with
 				// this directive.
 				switch (scope.tt_placement) {
-					case 'right':
-						ttPosition = {
-							top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
-							left: (position.left + position.width) + 'px'
-						};
-						break;
-					case 'bottom':
-						ttPosition = {
-							top: (position.top + position.height) + 'px',
-							left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
-						};
-						break;
-					case 'left':
-						ttPosition = {
-							top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
-							left: (position.left - ttWidth) + 'px'
-						};
-						break;
-					default:
-						ttPosition = {
-							top: (position.top - ttHeight) + 'px',
-							left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
-						};
-						break;
+				case 'right':
+					ttPosition = {
+						top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
+						left: (position.left + position.width) + 'px'
+					};
+					break;
+				case 'bottom':
+					ttPosition = {
+						top: (position.top + position.height) + 'px',
+						left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
+					};
+					break;
+				case 'left':
+					ttPosition = {
+						top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
+						left: (position.left - ttWidth) + 'px'
+					};
+					break;
+				default:
+					ttPosition = {
+						top: (position.top - ttHeight) + 'px',
+						left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
+					};
+					break;
 				}
 
 				// Now set the calculated positioning.
@@ -137,7 +137,7 @@ angular.module('employeeApp.directives')
 				// And now we remove it from the DOM. However, if we have animation, we 
 				// need to wait for it to expire beforehand.
 				// FIXME: this is a placeholder for a port of the transitions library.
-				if (angular.isDefined( scope.tt_animation ) && scope.tt_animation()) {
+				if (angular.isDefined(scope.tt_animation) && scope.tt_animation()) {
 					transitionTimeout = $timeout(function () {tooltip.remove(); }, 500);
 				} else {
 					tooltip.remove();

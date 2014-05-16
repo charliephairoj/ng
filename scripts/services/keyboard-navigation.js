@@ -26,7 +26,7 @@ angular.module('employeeApp.services')
 			evt.preventDefault();
 			evt.stopPropagation();
 			fn();
-		};
+		}
 		
 		function parseKeydown(evt) {
 			

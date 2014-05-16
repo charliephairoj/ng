@@ -8,7 +8,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 */
 	$scope.showSuppliers = false;
 	$scope.showSupplies = false;
-	$scope.suppliers = Supplier.query({limit:0});
+	$scope.suppliers = Supplier.query({limit: 0});
 	$scope.po = new PurchaseOrder();
 	$scope.po.items = [];
 	
@@ -20,7 +20,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		$scope.showSuppliers = false;
 		
 		$scope.po.supplier = supplier;
-		$scope.supplies = $filter('filter')(Supply.query({supplier_id:supplier.id}, function (response) {
+		$scope.supplies = $filter('filter')(Supply.query({supplier_id: supplier.id}, function (response) {
 			$scope.supplies = $filter('filter')(response, supplier.name);
 		}), supplier.name);
 	};
@@ -62,7 +62,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		//Filter out changes in length
 		if (newVal.length == oldVal.length && newVal.length > 1) {
 			//Loop through all the items;
-			for (var i=0; i < newVal.length; i++) {
+			for (var i = 0; i < newVal.length; i++) {
 				//Tests if the costs are different but the id is the same
 				if (newVal[i].cost != oldVal[i].cost && newVal[i].id == oldVal[i].id) {
 					var cost = newVal[i].cost;
@@ -76,7 +76,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 							var supply = obj.isPrototypeOf(Supply) ? obj : new Supply(obj);
 							supply.$update();
 						}
-					}, 5000);
+					}, 5000); //jshint ignore:line
 				}
 				
 				//if (po.items[i].cost == newVal[i].cost)
@@ -89,7 +89,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 */
 	$scope.subtotal = function () {
 		var subtotal = 0;
-		for (var i=0; i<$scope.po.items.length; i++) {
+		for (var i = 0; i < $scope.po.items.length; i++) {
 			subtotal += (Number($scope.po.items[i].override_cost ? $scope.po.items[i].override_cost_amount : $scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
 		}
 		return Number(subtotal.toFixed(2));
@@ -119,7 +119,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		subtotal = subtotal - (($scope.po.discount || 0) / 100) * subtotal;
 		
 		//Calculate vat
-		var vat = subtotal * (Number($scope.po.vat || 0)/100);
+		var vat = subtotal * (Number($scope.po.vat || 0) / 100);
 		
 		//Return subtotal + vat
 		return (vat + subtotal);
@@ -136,7 +136,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 			throw new Error("Please add items to the purchase order");
 		}
 		
-		for (var i=0; i<$scope.po.items.length; i++){
+		for (var i = 0; i < $scope.po.items.length; i++) {
 			if (!$scope.po.items[i].quantity || $scope.po.items[i].quantity <= 0) {
 				throw new Error($scope.po.items[i].description + " is missing a quantity");
 			}
@@ -153,9 +153,9 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 			if ($scope.verifyOrder()) {
 				Notification.display('Creating purchase order...', false);
 				$scope.po.$save(function (response) {
-					try{
+					try {
 						$window.open(response.pdf.url);
-					}catch(e){
+					} catch (e) {
 						console.warn(e);
 					}
 					Notification.display('Purchase order created.');

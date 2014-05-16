@@ -60,7 +60,7 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 					}, function (resources) {
 						fetching = false;
 						Notification.hide();
-						for (var i = 0; i<resources.length; i++) {
+						for (var i = 0; i < resources.length; i++) {
 							scope.upholsteries.push(resources[i]);
 						}
 					});
@@ -92,7 +92,7 @@ function (Upholstery, Notification, $filter, KeyboardNavigation, $rootScope) {
 				
 				if (scrollTop > (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
-				} else if( (scrollTop + cHeight) < (selection.outerHeight() * i)) {
+				} else if ((scrollTop + cHeight) < (selection.outerHeight() * i)) {
 					container.scrollTop(selection.outerHeight() * i);
 				}
 				

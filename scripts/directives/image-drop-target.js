@@ -32,7 +32,9 @@ angular.module('employeeApp')
             
             //Clear Image
             $scope.clearImages = function () {
+				/* jshint ignore:start */
                 $scope.images ? $scope.images.length = 0 : $scope.images = []; // jshint ignore:line
+				/* jshint ignore:end */ 
             };
             
             /*
@@ -79,7 +81,7 @@ angular.module('employeeApp')
                 //Loop Through all up loaded files,
                 //validate that they are images and add
                 //it to the "scope.images"
-                for(var i = 0; i < files.length; i++){
+                for (var i = 0; i < files.length; i++) {
                     
                     if (files[i].type == "image/png" || files[i].type == "image/jpeg") {
                         //Create array if not exists

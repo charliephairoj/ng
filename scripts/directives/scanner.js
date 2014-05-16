@@ -6,18 +6,18 @@ angular.module('employeeApp')
 		var codes = code.split('-');
 		if (codes.length > 1) {
 			switch (codes[0]) {
-				case 'A':
-					$rootScope.$apply(function () {
-						$location.path('/order/acknowledgement/'+codes[1]);
-					});
-					break;
-				case 'S':
-					$rootScope.$apply(function () {
-						$location.path('/order/shipping/' + codes[1]);
-					});
-					break;
-				default:
-					break;
+			case 'A':
+				$rootScope.$apply(function () {
+					$location.path('/order/acknowledgement/' + codes[1]);
+				});
+				break;
+			case 'S':
+				$rootScope.$apply(function () {
+					$location.path('/order/shipping/' + codes[1]);
+				});
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -31,15 +31,15 @@ angular.module('employeeApp')
 					code += letter;
 				} else {
 					switch (key) {
-						case 13:
-							dispatch(code);
-							code = '';
-							break;
-						case 189:
-							code += '-';
-							break;
-						default:
-							break;
+					case 13:
+						dispatch(code);
+						code = '';
+						break;
+					case 189:
+						code += '-';
+						break;
+					default:
+						break;
 					}
 				}
 			});

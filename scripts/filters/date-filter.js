@@ -3,26 +3,26 @@ angular.module('employeeApp.filters')
 .filter('dateFilter', [function () {
     function filter(item, target, comparison, success) {
         switch (comparison) {
-            case "equals":
-                if ((item.getMonth() == target.getMonth()) && (item.getYear() == target.getYear()) && (item.getDate() == target.getDate())) {
-                    return true;
-                }
-                break;
-            case "greater":
-                if (item.getTime() >= target.getTime()) {
-                    return true;
-                }
-                break;
-            case "less":
-                if (item.getTime() <= target.getTime()) {
-                    return true;
-                }
-                break;
-            default:
-                if ((item.getMonth(item) == target.getMonth()) && (item.getYear() == target.getYear()) && (item.getDate() == target.getDate())) {
-                    return true;
-                }
-                break;
+        case "equals":
+            if ((item.getMonth() == target.getMonth()) && (item.getYear() == target.getYear()) && (item.getDate() == target.getDate())) {
+                return true;
+            }
+            break;
+        case "greater":
+            if (item.getTime() >= target.getTime()) {
+                return true;
+            }
+            break;
+        case "less":
+            if (item.getTime() <= target.getTime()) {
+                return true;
+            }
+            break;
+        default:
+            if ((item.getMonth(item) == target.getMonth()) && (item.getYear() == target.getYear()) && (item.getDate() == target.getDate())) {
+                return true;
+            }
+            break;
         }
         return false;
             

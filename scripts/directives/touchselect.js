@@ -10,10 +10,10 @@ angular.module('employeeApp')
 				moved = false;
 							
 			//Handlers
-        	function click(e) {
+			function click(e) {
 			
-        			e.preventDefault();
-					e.stopPropagation();
+				e.preventDefault();
+				e.stopPropagation();
 			
 			}
 
@@ -60,6 +60,6 @@ angular.module('employeeApp')
 				});
 				
 			}
-      	}
+		}
     };
 }]);

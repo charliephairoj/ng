@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp')
 .factory('SupplyLog', ['$resource', function($resource) {
