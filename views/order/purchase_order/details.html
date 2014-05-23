@@ -93,34 +93,34 @@
             </div>
         </div>
         
-        <div class="products items">
-            <div class="table">
-                <div class="row" ng-repeat="item in po.items">
-                   
-                    <div class="cell">
-                    	<div class="remove-btn" ng-click="removeItem($index)">x</div>
-                        <div class="details">
-                            <div class="details-row">
-                                <div class="details-data">
-                                    {{item.description}}
-                                    	<div class="quantity">
-                                    		<input type="text" ng-model="item.quantity" />{{item.units}}
-                                    	</div>
-                                </div>
-                                
-                            </div>
-                            <div class="details-row">
-                                <div class="details-data">
-                                    Status: {{item.status}}
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+		<div class="order-details">
+			<table>
+				<thead>
+					<tr class='heading'>
+						<td>Description</td>
+						<td>Discount</td>
+						<td>Unit Cost</td>
+						<td>Quantity</td>
+						<td>Total</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="items" ng-repeat="item in po.items">
+						<td>{{item.description}}</td>
+						<td>
+							<input type="text" ng-model="item.quantity"/> 
+						</td>
+						<td>{{item.unit_cost}}</td>
+						<td>
+							<input type="text" ng-model="item.quantity" />
+						</td>
+						<td>{[item.total]}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
     </div>
     
     
