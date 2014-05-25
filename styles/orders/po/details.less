@@ -41,117 +41,93 @@
                 }
             }
         }
-        .products{
-			.headings{
-				float:right;
-				margin-right:2em;
+        
+        .order-details{
+        	table{
+				width:100%;
+				
 				tr{
 					td{
-						padding:0.25em 1em;
-						width:4em;
-						color:#FFF;
-						font-family:proxima;
+						padding:0.25em 0.5em;
 					}
 				}
-			}
-            .table{
-                position:relative;
-				margin-bottom:0;
-                .row{
-                    position:relative;
-                    text-decoration:none;
-                    .cell{
-                        
-                        position:relative;
-                        &.product-img{
-                            height:150px;
-                            width:225px;
-                            position:relative;
-                            overflow:hidden;
-                        }
-                        
-                        .remove-btn{
-                            color:white;
-                            position:absolute;
-                            right:1em;
-                            top:1.5em;
-                            font-family:proxima;
-                            cursor:pointer;
-                            padding:0.1em;
-                            z-index:1;
-							.transition(color, 100ms, linear);
-							&:hover{
-								color:#BBB;
-							}
-                        }
-                        .details{
-                            width:100%;
-                            display:table;
-                            border:none;
-                            .details-row{
-                                width:100%;
-                                display:table-row;
-                                .details-data{
-                                    display:table-cell;
-                                    color:#CCC;
-                                    border:none;
-                                    font-size:1em;
-                                    font-family:proxima;
-                                    padding:0.3em;
-                                    img{
-                                        height:2em;
-                                        width:auto;
-                                    }
-                                    
-									
-                                }
-                            }
-                        }
-                        
-						table{
-							position:absolute;
-							right:2em;
-							top:1.5em;
-							
-							tr{
-								td{
-									font-size:1em;
-									padding:0 1em;
-									width:4em;
-									input{
-										text-align:right;
-										width:3em;
-									}
-								}
-							}
-						}
-						
-                        img{
-                            height:100%;
-                            width:auto;
-                            position:absolute;
-                            bottom:0px;
-                        }
-                    }
-                }
-            }
-			
-			.totals{
-				position:relative;
-				width:100%;
-				height:auto;
-				text-align:right;
-				table{
-					float:right;
+				thead{
 					tr{
 						td{
-							font-family:proxima;
-							color:#CCC; 
-							padding:0.5em 2em;
+							color:#FFF;
+							text-align:center;
 						}
 					}
 				}
-			}
+				tbody{
+					font-family:proxima;
+					letter-spacing:0.08em;
+	        		.items{
+						
+						
+						border:1px solid #282828;
+	        			td{
+	        				color:#CCC;
+							text-align:right;
+						
+							&.description{
+								text-align:left;
+							}
+						
+							&.discount{
+								text-align:center;
+								input{
+									text-align:center;
+									width:2em;
+								}
+							}
+						
+							&.quantity{
+								text-align:center;
+								input{
+									text-align:center;
+									width:3em;
+								}
+							}
+						
+							&.unit-cost{
+								padding-right:3em;
+								width:20%;
+							}
+						
+							&.total{
+								padding-right:3em;
+								width:20%;
+							}
+	        			}
+	        		}
+					
+					.summary{
+						color:#FFF;
+						td{
+							&.title{
+								text-align:right;
+								padding-right:3em;
+							}
+							
+							&:last-child{
+								text-align:right;
+								padding-right:3em;
+							}
+						}
+					}
+					.subtotal{
+						color:#FFF;
+					}
+					
+					.discount{
+						color:#FFF;
+					}
+				}
+				.totals{
+					
+				}
+        	}
         }
         
 		

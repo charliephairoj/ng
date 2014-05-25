@@ -20,6 +20,40 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	};
 	
 	/*
+	 * Unit costs
+	 */
+	$scope.unitCost = function (unitCost, discount) {
+		return unitCost - (unitCost * (discount / 100));
+	}
+	
+	/*
+	 * Functions to get summary totals
+	 */
+	$scope.subtotal = function () {
+		var subtotal = 0;
+		if ($scope.po.items) {
+			for (var i = 0; i < $scope.po.items.length; i++) {
+				var item = $scope.po.items[i];
+				subtotal =+ ($scope.unitCost(item.unit_cost, item.discount) * item.quantity)
+			}
+		}
+		
+		return subtotal;
+	};
+	
+	$scope.discount = function () {
+		return $scope.subtotal() * ($scope.po.discount / 100);
+	};
+	
+	$scope.total = function () {
+		return $scope.subtotal() - $scope.discount(); 
+	};
+	
+	$scope.grandTotal = function () {
+		var total = $scope.total()
+		return total + (total * ($scope.po.vat / 100));
+	};
+	/*
 	 * Adds a new Item to the Purchase Order. However
 	 * this does not save it to the database on the server
 	 * side. The update function must be called in addition
