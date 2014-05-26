@@ -1,5 +1,5 @@
 
 angular.module('employeeApp.services')
-.factory('Project', ['eaResource', function(eaResource) {
-    return eaResource('project/:id', {id:'@id'});   
+.factory('Project', ['$resource', function($resource) {
+    return $resource('/api/v1/project/:id', {id:'@id'});   
 }]);
