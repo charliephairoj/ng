@@ -95,7 +95,7 @@
         
 
         
-		<div class="order-details">
+		<div class="order-details" ng-show="po.items">
 			<table>
 				<thead>
 					<tr class='heading'>
@@ -104,6 +104,7 @@
 						<td>Unit Cost</td>
 						<td>Quantity</td>
 						<td>Total</td>
+						<td></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -117,41 +118,47 @@
 							<input type="text" ng-model="item.quantity" />
 						</td>
 						<td class='total'>{{unitCost(item.unit_cost, item.discount) * item.quantity}}</td>
+							<td><button class="remove-btn" ng-click="removeItem($index)">Remove</td>
 					</tr>
 					<tr class="summary subtotal">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="title">Subtotal</td>
-						<td>{{subtotal() | number:2}}</td>
+						<td class="value">{{subtotal() | number:2}}</td>
+						<td></td>
 					</tr>
 					<tr class="summary discount" ng-show="po.discount">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="title">Discount {{po.discount}}%</td>
-						<td>-{{discount() | number:2}}</td>
+						<td class="value">-{{discount() | number:2}}</td>
+						<td></td>
 					</tr>
-					<tr class="summary total" ng-show="po.discount && po.vat">
+					<tr class="summary total" ng-show="po.discount">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="title">Total</td>
-						<td> {{total() | number:2}}</td>
+						<td class="value"> {{total() | number:2}}</td>
+						<td></td>
 					</tr>
 					<tr class="summary vat" ng-show="po.vat">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="title">Vat {{po.vat}}%</td>
-						<td>{{total() * (po.vat / 100) | number:2}}</td>
+						<td class="value">{{total() * (po.vat / 100) | number:2}}</td>
+						<td></td>
 					</tr>
 					<tr class="summary grand-total" ng-show="po.vat">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="title">Grand Total</td>
-						<td>{{grandTotal() | number:2}}</td>
+						<td class="value">{{grandTotal() | number:2}}</td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

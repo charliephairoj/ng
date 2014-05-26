@@ -99,6 +99,26 @@
 								padding-right:3em;
 								width:20%;
 							}
+							
+							.remove-btn{
+								background-color:#313131;
+								border:1px solid #282828;
+								padding:0.25em 1em;
+								border-radius:0.25em;
+								color:white;
+								font-family:proxima;
+								letter-spacing:0.08em;
+								font-size:0.8em;
+								outline:none;
+								.transition(background-color, 100ms, linear);
+								
+								&:hover{
+									background-color:#2D2D2D;
+								}
+								&:active{
+									background-color:#282828;
+								}
+							}
 	        			}
 	        		}
 					
@@ -110,7 +130,7 @@
 								padding-right:3em;
 							}
 							
-							&:last-child{
+							&.value{
 								text-align:right;
 								padding-right:3em;
 							}

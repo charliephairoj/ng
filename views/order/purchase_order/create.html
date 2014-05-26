@@ -70,7 +70,7 @@
                 <ul class="list">
                     <li><div ng-click="save()" >Create</div></li>
                     <li><div class="supplier" checkmark="po.supplier" x="!po.supplier" ng-click="showSuppliers=true">Add Supplier</div></li>
-                    <li><div class="supply" checkmark="po.items.length>0" x="po.items.length==0" ng-click="showSupplies=true">Add Supply</div></li>
+                    <li><div class="supply" checkmark="po.items && po.items.length" x="po.items.length==0 || !po.items" ng-click="showSupplies=true">Add Supply</div></li>
                    
                     <li><div class="vat" checkmark="po.vat" x="!po.vat" ng-click="showVat=!showVat">Set Vat</div></li>
                     <li><div ng-click="reset()" >Reset</div></li>
@@ -94,45 +94,8 @@
             Workspace
         -->
         <div class="workspace">
-                <div class="summary">
-                	<table>
-                		<tr>
-                			<td>Supplier: </td>
-                			<td>{{po.supplier.name}}</td>
-                		</tr>
-                		<tr>
-                			<td>Items:</td>
-                			<td></td>
-                		</tr>
-                		<tr ng-repeat="item in po.items">
-                			<td>- {{item.description}}
-                				<br />Qty: {{item.quantity}}
-                			</td>
-                			<td>{{(item.override_cost ? item.override_cost_amount : item.cost) * item.quantity || 0 | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                		<tr class="subtotal">
-                			<td>Subtotal:</td>
-                			<td>{{subtotal() | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                		<tr>
-                			<td>Supplier's Discount {{(po.supplier && po.supplier.discount) || 0}}%</td>
-                			<td>{{supplierDiscount() | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                		<tr>
-                			<td>Additional Discount {{po.discount || 0}}%</td>
-                			<td>{{discount() | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                		<tr>
-                			<td>Vat {{po.vat || 0}}%</td>
-                			<td>{{((po.vat || 0)/100) * subtotal() | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                		<tr>
-                			<td>Total:</td>
-                			<td>{{total() || subtotal() | number:2}}{{po.supplier.currency}}</td>
-                		</tr>
-                	</table>
-                </div>
-                <div class="supplier">
+                
+                <div class="supplier" ng-show="po.supplier">
                     <span class="title">Supplier</span>
                     <table class="details">
                         <tr>
@@ -159,7 +122,7 @@
                     </table>
                 </div>
                 
-                <div class="order">
+                <div class="order" ng-show="po.supplier">
                     <table class="details">
                         
         
@@ -201,33 +164,75 @@
                 </div>
                 
             
-            <div class="supplies" ng-show="po.items.length>0">
-                <div class="title">Supplies</div>
-                <div class="supply" ng-repeat="supply in po.items">
-                    {{supply.description}}
-                    <table class="details">
-                        <tr>
-                            <td>Qty:</td>
-                            <td><input ng-model="supply.quantity" />{{supply.units}}s</td>
-                        </tr>
-                        <tr>
-                        	<td>Unit Cost:</td>
-                            <td><input ng-model="supply.cost" ng-disabled="supply.override_cost" type="text"/>{{po.supplier.currency}} 
-                            	<input class="override-cost-checkbox" type="checkbox" ng-model="supply.override_cost"/> Override Cost
-                            	   <input class="override-cost" ng-disabled="!supply.override_cost" type="text" ng-model="supply.override_cost_amount" />
-                            	<span ng-hide="!supply.override_cost">{{po.supplier.currency}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>Total Cost:</td>
-                            <td>{{(supply.override_cost ? supply.override_cost_amount : supply.cost)*supply.quantity || 0 | number:2}}{{po.supplier.currency}}</td>
-                        </tr>
-                       
-                    </table>
-                    <img ng-src="{{supply.image.url}}" />
-                    <div class="remove_btn" ng-click="removeItem($index)">Remove</div>
-                </div>
-                
+			<div class="order-details" ng-show="po.items">
+				<table>
+					<thead>
+						<tr class='heading'>
+							<td>Description</td>
+							<td>Discount</td>
+							<td>Unit Cost</td>
+							<td>Quantity</td>
+							<td>Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="items" ng-repeat="item in po.items">
+							<td class='description'>{{item.description}}</td>
+							<td class='discount'>
+								<input type="text" ng-model="item.discount"/> 
+							</td>
+							<td class='unit-cost'>{{unitCost(item.cost, item.discount)}}</td>
+							<td class='quantity'>
+								<input type="text" ng-model="item.quantity" />
+							</td>
+							<td class='total'>{{unitCost(item.cost, item.discount) * item.quantity || 0 | number:2}}</td>
+							<td><button class="remove-btn" ng-click="removeItem($index)">Remove</td>
+						</tr>
+						<tr class="summary subtotal">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="title">Subtotal</td>
+							<td class="value">{{subtotal() || 0 | number:2}}</td>
+							<td></td>
+						</tr>
+						<tr class="summary discount" ng-show="po.discount">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="title">Discount {{po.discount}}%</td>
+							<td class="value">-{{discount() || 0 | number:2}}</td>
+							<td></td>
+						</tr>
+						<tr class="summary total" ng-show="po.discount">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="title">Total</td>
+							<td class="value"> {{total() || 0 | number:2}}</td>
+							<td></td>
+						</tr>
+						<tr class="summary vat" ng-show="po.vat">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="title">Vat {{po.vat}}%</td>
+							<td class="value">{{total() * (po.vat / 100) || 0 | number:2}}</td>
+							<td></td>
+						</tr>
+						<tr class="summary grand-total" ng-show="po.vat">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="title">Grand Total</td>
+							<td class="value">{{grandTotal() || 0 | number:2}}</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			
+			</div>
                 
             </div>
             

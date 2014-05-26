@@ -10,7 +10,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	$scope.showSupplies = false;
 	$scope.suppliers = Supplier.query({limit: 0});
 	$scope.po = new PurchaseOrder();
-	$scope.po.items = [];
+	
 	
 	/*
 	 * Add a supplier to the purchase order
@@ -20,6 +20,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		$scope.showSuppliers = false;
 		
 		$scope.po.supplier = supplier;
+		$scope.po.discount = supplier.discount;
 		$scope.supplies = $filter('filter')(Supply.query({supplier_id: supplier.id}, function (response) {
 			$scope.supplies = $filter('filter')(response, supplier.name);
 		}), supplier.name);
@@ -31,6 +32,8 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	$scope.addItem = function (item) {
 		//Hide Modal
 		$scope.showSupplies = false;
+		
+		$scope.po.items = $scope.po.items || [];
 		var purchasedItem = angular.copy(item);
 		
 		delete purchasedItem.quantity;
@@ -42,6 +45,10 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 */
 	$scope.removeItem = function (index) {
 		$scope.po.items.splice(index, 1);
+		
+		if ($scope.po.items.length === 0) {
+			delete $scope.po.items;
+		}
 	};
 	
 	/*
@@ -85,44 +92,40 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	}, true);
 	
 	/*
-	 * Calculate the subtotal
+	 * Unit costs
+	 */
+	$scope.unitCost = function (unitCost, discount) {
+		return unitCost - (unitCost * (discount / 100));
+	}
+	
+	/*
+	 * Functions to get summary totals
 	 */
 	$scope.subtotal = function () {
 		var subtotal = 0;
-		for (var i = 0; i < $scope.po.items.length; i++) {
-			subtotal += (Number($scope.po.items[i].override_cost ? $scope.po.items[i].override_cost_amount : $scope.po.items[i].cost) * Number($scope.po.items[i].quantity || 1));
+		console.log($scope.po.items);
+		if ($scope.po.items) {
+			for (var i = 0; i < $scope.po.items.length; i++) {
+				var item = $scope.po.items[i];
+				subtotal += ($scope.unitCost(item.cost, item.discount) * item.quantity)
+				console.log(subtotal);
+			}
 		}
-		return Number(subtotal.toFixed(2));
-	};
-	
-	$scope.supplierDiscount = function () {
-		var subtotal = Number($scope.subtotal());
-		//Calcuate the subtotal with the supplies's discount
-		return ((($scope.po.supplier && $scope.po.supplier.discount) || 0) / 100) * subtotal;
+		console.log(subtotal);
+		return subtotal;
 	};
 	
 	$scope.discount = function () {
-		var subtotal = Number($scope.subtotal()) - Number($scope.supplierDiscount());
-		return (($scope.po.discount || 0) / 100) * subtotal;
+		return $scope.subtotal() * (($scope.po.discount || 0) / 100);
 	};
-	/*
-	 * Calculate the total
-	 */
+	
 	$scope.total = function () {
-		
-		var subtotal = Number($scope.subtotal());
-		
-		//Calcuate the subtotal with the supplies's discount
-		subtotal = subtotal - ((($scope.po.supplier && $scope.po.supplier.discount) || 0) / 100) * subtotal;
-		
-		//Calculate the subtotal with the order's discount
-		subtotal = subtotal - (($scope.po.discount || 0) / 100) * subtotal;
-		
-		//Calculate vat
-		var vat = subtotal * (Number($scope.po.vat || 0) / 100);
-		
-		//Return subtotal + vat
-		return (vat + subtotal);
+		return $scope.subtotal() - $scope.discount(); 
+	};
+	
+	$scope.grandTotal = function () {
+		var total = $scope.total()
+		return total + (total * ($scope.po.vat / 100));
 	};
 	/*
 	 * Verfication of order

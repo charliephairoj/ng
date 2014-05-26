@@ -34,7 +34,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 		if ($scope.po.items) {
 			for (var i = 0; i < $scope.po.items.length; i++) {
 				var item = $scope.po.items[i];
-				subtotal =+ ($scope.unitCost(item.unit_cost, item.discount) * item.quantity)
+				subtotal += ($scope.unitCost(item.unit_cost, item.discount) * item.quantity)
 			}
 		}
 		
@@ -77,6 +77,10 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	 */
 	$scope.removeItem = function ($index) {
 		$scope.po.items.splice($index, 1);
+		
+		if ($scope.po.items.length === 0) {
+			delete $scope.po.items;
+		}
 	};
 	
 	$scope.viewPDF = function () {
