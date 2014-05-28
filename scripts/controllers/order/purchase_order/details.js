@@ -24,7 +24,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	 */
 	$scope.unitCost = function (unitCost, discount) {
 		return unitCost - (unitCost * (discount / 100));
-	}
+	};
 	
 	/*
 	 * Functions to get summary totals
@@ -34,7 +34,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 		if ($scope.po.items) {
 			for (var i = 0; i < $scope.po.items.length; i++) {
 				var item = $scope.po.items[i];
-				subtotal += ($scope.unitCost(item.unit_cost, item.discount) * item.quantity)
+				subtotal += ($scope.unitCost(item.unit_cost, item.discount) * item.quantity);
 			}
 		}
 		
@@ -50,7 +50,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	};
 	
 	$scope.grandTotal = function () {
-		var total = $scope.total()
+		var total = $scope.total();
 		return total + (total * ($scope.po.vat / 100));
 	};
 	/*

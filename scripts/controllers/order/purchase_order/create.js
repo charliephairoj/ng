@@ -102,7 +102,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 */
 	$scope.unitCost = function (unitCost, discount) {
 		return unitCost - (unitCost * (discount / 100));
-	}
+	};
 	
 	/*
 	 * Functions to get summary totals
@@ -112,7 +112,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		if ($scope.po.items) {
 			for (var i = 0; i < $scope.po.items.length; i++) {
 				var item = $scope.po.items[i];
-				subtotal += ($scope.unitCost(item.cost, item.discount) * item.quantity)
+				subtotal += ($scope.unitCost(item.cost, item.discount) * item.quantity);
 			}
 		}
 		return subtotal;
@@ -127,7 +127,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	};
 	
 	$scope.grandTotal = function () {
-		var total = $scope.total()
+		var total = $scope.total();
 		return total + (total * ($scope.po.vat / 100));
 	};
 	/*
