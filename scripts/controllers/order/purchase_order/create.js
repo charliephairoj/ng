@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter', '$timeout', '$window',
-function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeout, $window) {
+.controller('OrderPurchaseOrderCreateCtrl', ['$scope', 'PurchaseOrder', 'Supplier', 'Supply', 'Notification', '$filter', '$timeout', '$window', 'Project',
+function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeout, $window, Project) {
 	
 	/*
 	 * Setup vars
@@ -9,7 +9,11 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	$scope.showSuppliers = false;
 	$scope.showSupplies = false;
 	$scope.suppliers = Supplier.query({limit: 0});
+	$scope.projects = Project.query(function () {
+		console.log($scope.projects);
+	});
 	$scope.po = new PurchaseOrder();
+	
 	
 	
 	/*
@@ -66,28 +70,32 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 * current item cost, by using a reference. 
 	 */
 	$scope.$watch('po.items', function (newVal, oldVal) {
-		//Filter out changes in length
-		if (newVal.length == oldVal.length && newVal.length > 1) {
-			//Loop through all the items;
-			for (var i = 0; i < newVal.length; i++) {
-				//Tests if the costs are different but the id is the same
-				if (newVal[i].cost != oldVal[i].cost && newVal[i].id == oldVal[i].id) {
-					var cost = newVal[i].cost;
-					/*We make a reference to the original object, 
-					 *So that we can make sure the price has settled
-					 *in x milliseconds.*/
-					var obj = newVal[i];
-					$timeout(function () {
-						//Tests to make sure the cost has settled
-						if (obj.cost == cost) {
-							var supply = obj.isPrototypeOf(Supply) ? obj : new Supply(obj);
-							supply.$update();
-						}
-					}, 5000); //jshint ignore:line
-				}
+		try {
+			//Filter out changes in length
+			if (newVal.length == oldVal.length && newVal.length > 1) {
+				//Loop through all the items;
+				for (var i = 0; i < newVal.length; i++) {
+					//Tests if the costs are different but the id is the same
+					if (newVal[i].cost != oldVal[i].cost && newVal[i].id == oldVal[i].id) {
+						var cost = newVal[i].cost;
+						/*We make a reference to the original object, 
+						 *So that we can make sure the price has settled
+						 *in x milliseconds.*/
+						var obj = newVal[i];
+						$timeout(function () {
+							//Tests to make sure the cost has settled
+							if (obj.cost == cost) {
+								var supply = obj.isPrototypeOf(Supply) ? obj : new Supply(obj);
+								//supply.$update();
+							}
+						}, 5000); //jshint ignore:line
+					}
 				
-				//if (po.items[i].cost == newVal[i].cost)
+					//if (po.items[i].cost == newVal[i].cost)
+				}
 			}
+		} catch (e) {
+		
 		}
 	}, true);
 	
@@ -103,15 +111,12 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	 */
 	$scope.subtotal = function () {
 		var subtotal = 0;
-		console.log($scope.po.items);
 		if ($scope.po.items) {
 			for (var i = 0; i < $scope.po.items.length; i++) {
 				var item = $scope.po.items[i];
 				subtotal += ($scope.unitCost(item.cost, item.discount) * item.quantity)
-				console.log(subtotal);
 			}
 		}
-		console.log(subtotal);
 		return subtotal;
 	};
 	
@@ -155,6 +160,16 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		try {
 			if ($scope.verifyOrder()) {
 				Notification.display('Creating purchase order...', false);
+				
+				/*
+				 * Preps for creation of a new project
+				 */
+				if ($scope.po.newProject) {
+					$scope.po.project = {codename: $scope.po.newProjectName};
+					delete $scope.po.newProject;
+					delete $scope.po.newProjectName;
+				}
+				
 				$scope.po.$save(function (response) {
 					try {
 						$window.open(response.pdf.url);
