@@ -1,12 +1,13 @@
 
 angular.module('employeeApp')
-.controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', '$filter', 'Notification', '$window',
-function ($scope, Acknowledgement, Customer, $filter, Notification, $window) {
+.controller('OrderAcknowledgementCreateCtrl', ['$scope', 'Acknowledgement', 'Customer', '$filter', 'Notification', '$window', 'Project',
+function ($scope, Acknowledgement, Customer, $filter, Notification, $window, Project) {
     //Vars
     $scope.showFabric = false;
     $scope.uploading = false;
     $scope.customImageScale = 100;
-  
+	
+	$scope.projects = Project.query();
     $scope.ack = new Acknowledgement();
     
     var uploadTargets = [];
@@ -47,6 +48,16 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window) {
         try {
             if ($scope.isValidated()) {
                 Notification.display('Creating Acknowledgement...', false);
+				
+				/*
+				 * Preps for creation of a new project
+				 */
+				if ($scope.ack.newProject) {
+					$scope.ack.project = {codename: $scope.ack.newProjectName};
+					delete $scope.ack.newProject;
+					delete $scope.ack.newProjectName;
+				}
+				
                 $scope.ack.$create(function (response) {
                     Notification.display('Acknowledgement created');
                     if (response.pdf.acknowledgement) {

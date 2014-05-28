@@ -9,9 +9,7 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 	$scope.showSuppliers = false;
 	$scope.showSupplies = false;
 	$scope.suppliers = Supplier.query({limit: 0});
-	$scope.projects = Project.query(function () {
-		console.log($scope.projects);
-	});
+	$scope.projects = Project.query();
 	$scope.po = new PurchaseOrder();
 	
 	
