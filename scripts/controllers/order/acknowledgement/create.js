@@ -54,6 +54,7 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window, Pro
 				 */
 				if ($scope.ack.newProject) {
 					$scope.ack.project = {codename: $scope.ack.newProjectName};
+
 					delete $scope.ack.newProject;
 					delete $scope.ack.newProjectName;
 				}
