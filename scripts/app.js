@@ -271,6 +271,10 @@ angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives'
         templateUrl: 'views/supply/details.html',
         controller: 'SupplyDetailsCtrl'
 	})
+      .when('/supply/buying_guide', {
+        templateUrl: 'views/supply/buying_guide.html',
+        controller: 'SupplyBuyingGuideCtrl'
+      })
       .otherwise({
         redirectTo: '/'
 	});
