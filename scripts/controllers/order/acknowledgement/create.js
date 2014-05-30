@@ -58,7 +58,6 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window, Pro
 					delete $scope.ack.newProject;
 					delete $scope.ack.newProjectName;
 
-
 				}
 				
                 $scope.ack.$create(function (response) {

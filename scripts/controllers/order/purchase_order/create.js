@@ -112,7 +112,8 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 		if ($scope.po.items) {
 			for (var i = 0; i < $scope.po.items.length; i++) {
 				var item = $scope.po.items[i];
-				subtotal += ($scope.unitCost(item.cost, item.discount) * item.quantity);
+				discount = item.discount || 0;
+				subtotal += ($scope.unitCost(item.cost, discount) * item.quantity);
 			}
 		}
 		return subtotal;
