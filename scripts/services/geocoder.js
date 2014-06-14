@@ -47,6 +47,8 @@ angular.module('employeeApp.services')
 				LatLng:angular.noop
 			}};
 		this.geocoder = new this.google.maps.Geocoder();
+		
+		this.initialized = "google" in window ? true : false;
     }
     
     /*
@@ -132,12 +134,16 @@ angular.module('employeeApp.services')
     };
     
 	Geocoder.prototype.reverseGeocode = function (lat, lng) {
-
+ 
 		var deferred = $q.defer();
 		var latLng = new this.google.maps.LatLng(lat, lng);
-		this.geocoder.geocode({'latLng': latLng}, function (results, status) {
-			deferred.resolve(results);
-		});
+		try {
+			this.geocoder.geocode({'latLng': latLng}, function (results, status) {
+				deferred.resolve(results);
+			});
+		} catch (e) {
+			deferred.reject('ok');
+		}
 
 		return deferred.promise;
 	};

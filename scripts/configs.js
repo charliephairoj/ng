@@ -90,7 +90,7 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
     
     window.globalScanner = new scanner('global');
     globalScanner.enable();
-    
+	//hi
 	/*
 	 * Geolocating the user
 	 * 
@@ -106,25 +106,29 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 	
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition(function (position) {
-			//Reverse geocode and returns the promise
-			var promise = Geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude);
-			//Set the success and error callbacks for the promise
-			promise.then(function (results) {
-				//Cycle through componenets to look for country
-				for (var i in results[0].address_components) {
-					var component = results[0].address_components[i];
-					if (typeof(component.types) == 'object') {
-						if (component.types.indexOf('country') != -1) {
-							console.log(component);
-							//Set country to main scope, to be called later
-							//$rootScope.country = 'KH';
-							$rootScope.country = component.short_name;
+			if (Geocoder.initialized) {
+				//Reverse geocode and returns the promise
+				var promise = Geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude);
+				//Set the success and error callbacks for the promise
+				promise.then(function (results) {
+					//Cycle through componenets to look for country
+					for (var i in results[0].address_components) {
+						var component = results[0].address_components[i];
+						if (typeof(component.types) == 'object') {
+							if (component.types.indexOf('country') != -1) {
+								console.log(component);
+								//Set country to main scope, to be called later
+								//$rootScope.country = 'KH';
+								$rootScope.country = component.short_name;
+							}
 						}
 					}
-				}
-			}, function () {
-				console.error('Getting the position failed');
-			});
+				}, function () {
+					console.error('Getting the position failed');
+				});
+			} else {
+				
+			}
 		}, function (e) {
 			console.log(e);
 		});
