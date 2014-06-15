@@ -1,13 +1,25 @@
 
 angular.module('employeeApp')
-.controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification', 'FileUploader',
-function ($scope, Project, $routeParams, Room, Notification, FileUploader) {
+.controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification', 'FileUploader', '$http',
+function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http) {
     
     $scope.showAddRoom = false;
     $scope.flag = false;
     $scope.project = Project.get({id: $routeParams.id});
     $scope.room = {};
     
+	$scope.addSupply = function ($supply) {
+		
+		//Notify the user
+		Notification.display("Adding "+$supply.description+" to "+$scope.project.codename);
+		var promise = $http.post('/api/v1/project/'+$scope.project.id+'/supply', $supply);
+		
+		promise.then(function () {
+			$scope.project.supplies = $scope.project.supplies || [];
+			$scope.project.supplies.push($supply);
+		});
+	};
+	
     $scope.addImage = function (image) {
         var promise = FileUploader.upload(image, 'project/room/image');
         promise.then(function (response) {

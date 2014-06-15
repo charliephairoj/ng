@@ -3,8 +3,11 @@
     <!--
         Modals
     -->
-    <div modal class="add-room" ng-model="showAddRoom" >
-        <div class="title">Add a New Room</div>
+		
+	<div supply-list="showAddSupply" on-select="addSupply($supply)"></div>
+	
+	
+    <div modal class="add-room" ng-model="showAddRoom" title="Add a New Room" >
         <div class="container" ng-switch on="addSelector" ng-init="addSelector='image'">
             <table class="details">
                
@@ -63,13 +66,14 @@
     <div class="sidebar">
         <header>
             <h1>
-                <span>Project: {{project.name}}</span>
+                <span>Project: {{project.codename}}</span>
             </h1>
         </header>
         <nav>
             <ul class="list">
                 <li>
                     <button ng-show="currentUser.hasPermission('add_room')" ng-click="showAddRoom=true">Add a Room</button>
+					<button ng-click="showAddSupply=true">Add a Supply</button>
                     <button ng-click="addImage=true">Upload Image</button>
                     <button ng>View Build-Ins</button>
                     <button>View Lose Items</button>
@@ -84,7 +88,7 @@
             <table>
                 <tr>
                     <td>Project: </td>
-                    <td>{{project.name}}</td>
+                    <td>{{project.codename}}</td>
                 </tr>
                 <tr>
                     <td>Customer: </td>
@@ -99,6 +103,15 @@
         <div class="rooms-container">
             <a class="room" ng-repeat="room in project.rooms" ng-href="#/project/room/{{room.id}}">{{room.description}}</a>
         </div>
+		<div class="supply-container">
+			<div class="supply" ng-repeat="supply in project.supplies">
+				<div class="image-container">
+					<img ng-src="{{supply.image.url}}" /> 
+				</div>
+				<span class="description">{{supply.description}}</span>
+				<span class="quantity">{{supply.quantity}}</span>
+			</div>
+		</div>
     </div>
     
 </div>

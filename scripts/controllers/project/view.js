@@ -7,8 +7,8 @@ function ($scope, Project, Notification, Customer, $location) {
     $scope.showAddProject = false;
     
     //Query the server for projects continouosly
-    $scope.projectList = Project.query();
-    $scope.customerList = Customer.query();
+    $scope.projects = Project.query();
+    $scope.customers = Customer.query();
     
     //Grid options
     $scope.gridOptions = {

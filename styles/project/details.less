@@ -117,12 +117,16 @@
     
     .workspace{
         .details{
+			height:5em;
             color:#CCC;
         }
+		
         .rooms-container{
             height:100%;
-            width:100%;
-            overflow-y:scroll;
+            width:50%;
+			position:absolute;
+			top:10em;
+			left:0;
             .room{
                 height:auto;
                 min-height:10em;
@@ -134,5 +138,45 @@
                 float:left;
             }
         }
+		
+		.supply-container{
+			position:absolute;
+			top:5em;
+			right:0;
+			height:100%;
+			width:50%;
+			border-left:1px solid #282828;
+			.supply{
+				position:relative;
+				min-height:auto;
+				width:100%;
+				color:#CCC;
+				border-bottom:1px solid #282828;
+				padding:0;
+				
+				.image-container{
+					height:5em;
+					width:8em;
+					overflow:hidden;
+					background-color:#282828;
+					img{
+						height:5em;
+					}
+				}
+				
+				.description{
+					position:absolute;
+					top:2em;
+					left:10em;
+				}
+				
+				.quantity{
+					position:absolute;
+					top:2em;
+					right:1em;
+				}
+				
+			}
+		}
     }
 }
