@@ -25,15 +25,15 @@
           position:absolute;
           width:100%;
           z-index:0;
-          padding:0;
-          .customer-container{
+          padding:0; 
+          .supply-container{
               .supply{
+				  position:relative;
                   cursor:pointer;
-                  padding:1em;  
                   border-bottom:1px solid #282828;
                   font-size:1em; 
                   letter-spacing:0.08em;
-                  
+                  list-style:none;
                   &.selected{
                       background-color:orange;
                       
@@ -42,11 +42,24 @@
                       }
                   }
                   
+				  .image-container{
+				  	  height:4em;
+					  width:4em;
+					  overflow:hidden;
+					  img{
+						  height:100%;
+					  }
+				  }
+				  
+				  .description{
+					  position:absolute;
+					  top:2.25em;
+					  left:4em;
+				  }
                   .cost{
-                      margin-right:1em;
-                      float:right;
-                      width:5em;
-                      text-align:right;                      
+                      position:absolute;
+					  right:1em;
+					  top:2.25em;                  
                   }
                 
               }
