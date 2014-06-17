@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('ProjectRoomDetailsCtrl', ['$scope', 'Room', '$routeParams', 'ProjectItem', 'Notification', 
-function ($scope, Room, $routeParams, ProjectItem, Notification) {
+.controller('ProjectRoomDetailsCtrl', ['$scope', 'Room', '$routeParams', 'Notification', 
+function ($scope, Room, $routeParams, Notification) {
     
     $scope.room = Room.get({id: $routeParams.id});
     $scope.gridOptions = {

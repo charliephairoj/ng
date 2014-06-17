@@ -8,6 +8,11 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http
     $scope.project = Project.get({id: $routeParams.id});
     $scope.room = {};
     
+	$scope.addCustomer = function (customer) {
+		$scope.showCustomers = false;
+		$scope.project.customer = customer;
+	};
+	
 	$scope.addSupply = function ($supply) {
 		
 		//Notify the user
@@ -37,7 +42,7 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http
     };
     
     $scope.addRoom = function () {
-        Notification.display('Adding ' + $scope.room.type, false);
+        Notification.display('Adding ' + $scope.room.description, false);
         var room = new Room();
         angular.extend(room, $scope.room);
         room.project = {id: $scope.project.id};

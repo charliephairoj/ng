@@ -1,5 +1,5 @@
 
 angular.module('employeeApp.services')
 .factory('Room', ['$resource', function($resource) {
-    return $resource('project/room/:id', {id:'@id'});   
+    return $resource('/api/v1/room/:id', {id:'@id'});   
 }]);

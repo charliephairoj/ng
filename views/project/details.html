@@ -6,6 +6,15 @@
 		
 	<div supply-list="showAddSupply" on-select="addSupply($supply)"></div>
 	
+    <div customer-list="showCustomers" on-select="addCustomer(customer);"></div>
+	
+    <div class="calendar-modal" data-modal  ng-model="showCal">
+        <div ui-date ng-model="project.due_date"></div>
+        <div class="bottom_bar">
+            <button ng-click="showCal=false">Select</button>
+        </div>
+            
+    </div>
 	
     <div modal class="add-room" ng-model="showAddRoom" title="Add a New Room" >
         <div class="container" ng-switch on="addSelector" ng-init="addSelector='image'">
@@ -90,18 +99,22 @@
                     <td>Project: </td>
                     <td>{{project.codename}}</td>
                 </tr>
-                <tr>
-                    <td>Customer: </td>
-                    <td>{{project.customer.name}}</td>
+                <tr class="customer">
+                    <td ng-click="showCustomers=true">Customer: </td>
+                    <td ng-click="showCustomers=true">{{project.customer.name}}</td>
                 </tr>
-                <tr>
-                    <td>Due Date: </td>
-                    <td>{{project.due_date | date:"MMMM d, yyyy"}}</td>
+                <tr class="due-date">
+                    <td ng-click="showCal=true">Due Date: </td>
+                    <td ng-click="showCal=true">{{project.due_date | date:"MMMM d, yyyy"}}</td>
                 </tr>
             </table>
         </div>
         <div class="rooms-container">
-            <a class="room" ng-repeat="room in project.rooms" ng-href="#/project/room/{{room.id}}">{{room.description}}</a>
+            <a class="room" ng-repeat="room in project.rooms" ng-href="#/project/room/{{room.id}}">
+				{{room.description}}
+				<br />
+				<span>{{room.reference}}</span>
+			</a>
         </div>
 		<div class="supply-container">
 			<div class="supply" ng-repeat="supply in project.supplies">
