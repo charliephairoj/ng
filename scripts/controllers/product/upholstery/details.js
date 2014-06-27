@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
-.controller('ProductUpholsteryDetailsCtrl', ['$scope', 'Upholstery', '$routeParams', 'Notification', '$location',
-function ($scope, Upholstery, $routeParams, Notification, $location) {
+.controller('ProductUpholsteryDetailsCtrl', ['$scope', 'Upholstery', '$routeParams', 'Notification', '$location', '$timeout',
+function ($scope, Upholstery, $routeParams, Notification, $location, $timeout) {
 	
 	$scope.updateLoopActive = true;
 	
@@ -41,6 +41,8 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 		try {
 			delete uphol.last_modified;
 			delete uphol.image;
+			delete uphol.model;
+			delete uphol.configuration;
 		}catch (e) {
 			
 		}
@@ -48,11 +50,17 @@ function ($scope, Upholstery, $routeParams, Notification, $location) {
 	}, function (newVal, oldVal) {
 		if (!$scope.updateLoopActive && oldVal.hasOwnProperty('id')) {
 			$scope.updateLoopActive = true;
-			Notification.display('Updating ' + $scope.uphol.description + '...', false);
-			$scope.uphol.$update(function () {
-				$scope.updateLoopActive = false;
-				Notification.display($scope.uphol.description + ' updated.');
-			});
+			
+			timeoutPromise = $timeout(function () {
+				Notification.display('Updating ' + $scope.uphol.description + '...', false);
+				$scope.uphol.$update(function () {
+					$scope.updateLoopActive = false;
+					Notification.display($scope.uphol.description + ' updated.');
+				}, function () {
+					Notification.display("Unable to update");
+					$scope.updateLoopActive = false;
+				});
+			}, 5000);
 		}
     }, true);
     
