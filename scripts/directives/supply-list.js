@@ -13,6 +13,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 		},
 		link: function postLink(scope, element, attrs) {
 			var fetching = true,
+				supplierId,
 				currentSelection,
 				index = 0;
 			
@@ -31,6 +32,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			if (attrs.supplier) {
 				scope.$watch('supplier', function (val) {
 					if (val) {
+						supplierId = val.id
 						scope.supplies = Supply.query({supplier_id: val.id, limit: 20}, function (response) {
 							fetching = false;
 							changeSelection(index);
@@ -66,17 +68,28 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			 * currently running
 			 */
 			scope.loadNext = function () {
+				fetching = false;
 				if (!fetching) {
 					Notification.display("Loading more supplies...", false);
 					fetching = true;
-					Supply.query({
+					var options = {
 						offset: scope.supplies.length,
 						limit: 50
-					}, function (resources) {
+					};
+					
+					//Set Supplier ID
+					console.log('supplierID: '+supplierId);
+					if (supplierId) {
+						options['supplier_id'] = supplierId;
+					};
+					
+					Supply.query(options, function (resources) {
 						fetching = false;
 						Notification.hide();
 						for (var i = 0; i < resources.length; i++) {
-							scope.supplies.push(resources[i]);
+							if (scope.supplies.indexOfById(resources[i]) != -1) {
+								scope.supplies.push(resources[i]);
+							};
 						}
 					});
 				}

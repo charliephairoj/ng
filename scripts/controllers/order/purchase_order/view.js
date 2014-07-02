@@ -12,7 +12,7 @@ function ($scope, PurchaseOrder, $filter, Notification, KeyboardNavigation, $loc
 	Notification.display('Loading purchase orders...', false);
 	
 	//Poll Server for pos
-	$scope.poList = PurchaseOrder.query(function () {
+	$scope.poList = PurchaseOrder.query({limit: 20}, function () {
 		fetching = false;
 		Notification.hide();
 		changeSelection(index);

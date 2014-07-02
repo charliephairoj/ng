@@ -54,8 +54,10 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window, Pro
 				 */
 				if ($scope.ack.newProject) {
 					$scope.ack.project = {codename: $scope.ack.newProjectName};
+
 					delete $scope.ack.newProject;
 					delete $scope.ack.newProjectName;
+
 				}
 				
                 $scope.ack.$create(function (response) {
@@ -67,6 +69,10 @@ function ($scope, Acknowledgement, Customer, $filter, Notification, $window, Pro
 						$window.open(response.pdf.production);
                     }
                     angular.extend($scope.ack, JSON.parse(storage.getItem('acknowledgement-create')));
+					
+					delete $scope.ack.newProject;
+					delete $scope.ack.newProjectName;
+					
                 }, function (e) {
                     console.error(e);
                     Notification.display('There was an error in creating the Acknowledgement', false);

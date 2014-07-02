@@ -2,7 +2,7 @@
 angular.module('employeeApp')
 .controller('SupplyFabricAddCtrl', ['$scope', 'Supplier', 'Fabric', '$location', 'Notification', 
 function ($scope, Supplier, Fabric, $location, Notification) {
-    $scope.supplierList = Supplier.query();
+    $scope.suppliers = Supplier.query({limit:0});
     $scope.fabric = new Fabric();
     
     //Tooltips

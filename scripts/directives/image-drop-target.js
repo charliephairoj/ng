@@ -16,7 +16,7 @@ angular.module('employeeApp')
             fileReader.onload = function (evt) {
                 
                 var image = {
-                    'url': jsevt.target.result
+                    'url': evt.target.result
                 };
                 //Create array if not exists
                 $scope.imagePreviews = $scope.imagePreviews || [];
