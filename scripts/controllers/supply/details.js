@@ -39,7 +39,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 									return 'red';
 								} 
 							} catch (e) {
-								return 'black'
+								return 'green'; 
 							}
 					
 						});
