@@ -14,12 +14,12 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 		Notification.hide();
 		
 		for (var index in $scope.supply.suppliers) {
-			var supplier = $scope.supply.suppliers[index]
+			var supplier = $scope.supply.suppliers[index];
 			
 			if (typeof(supplier) == "object") {
 				$http.get('/api/v1/log', {params: {'action': 'PRICE CHANGE', 'supply': $scope.supply.id, 'supplier': supplier.id}}).then(function(response) {
 					var supplier_id = response.config.params.supplier;
-					var prices = []
+					var prices = [];
 					var data = response.data;
 					for (var i = 0; i < response.data.length; i++) {
 						prices.push(response.data[i].cost);
@@ -29,7 +29,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 					console.log(prices);
 					if (prices.length > 0) {
 						var box = d3.select('div.price-chart-supplier-'+supplier_id+' .chart').selectAll('div').data(data).enter().append('div')
-						.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em'})
+						.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em';})
 						.style('background-color', function (d, i) {
 							try {
 							console.log(data[i-1].cost + ':' + d.cost);
@@ -39,32 +39,32 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 									return 'red';
 								} 
 							} catch (e) {
-								return 'green'; 
+								return 'black';  
 							}
 					
 						});
 				
-						var costSpans = box.append('span').text(function (d) {return d.cost+'thb'}).attr('class', 'price');
+						var costSpans = box.append('span').text(function (d) {return d.cost+'thb';}).attr('class', 'price');
 						var dateSpans = box.append('span').attr('class', 'date')
 						.text(function (d) {
 							var date = new Date(d.timestamp);
-							return date.toLocaleDateString('en-us', {year: 'numeric', 'month': 'short', day: 'numeric'})
+							return date.toLocaleDateString('en-us', {year: 'numeric', 'month': 'short', day: 'numeric'});
 						});
 				
 						d3.select('div.price-chart-supplier-'+supplier_id).transition().duration(1000).style('background-color', '#FFF')
 						.style('height', '10em');
 						
-						box.transition().duration(2000).delay(1000).style('height', function (d) { return ((d.cost / largest) * 8) + 'em'});
+						box.transition().duration(2000).delay(1000).style('height', function (d) { return ((d.cost / largest) * 8) + 'em';});
 			
 					} else {
 						d3.select('div.price-chart-supplier-'+supplier_id+' .chart').style('display', 'none');
 					}
-				});
+				}); //jshint ignore:line
 			}
 		}
 		
 		$http.get('/api/v1/log', {params: {'action': 'SUBTRACT', 'supply': $scope.supply.id}}).then(function(response) {
-			var quantities = []
+			var quantities = [];
 			var data = response.data;
 			for (var i = 0; i < response.data.length; i++) {
 				quantities.push(response.data[i].quantity);
@@ -74,7 +74,7 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 			
 			if (quantities.length > 0) {
 				var box = d3.select('div.usage .chart').selectAll('div').data(data).enter().append('div')
-				.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em'})
+				.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em';})
 				.style('background-color', function (d, i) {
 					try {
 					console.log(data[i-1].quantity + ':' + d.quantity);
@@ -84,20 +84,20 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 							return 'red';
 						} 
 					} catch (e) {
-						return 'black'
+						return 'black';
 					}
 					
 				});
 				
-				var costSpans = box.append('span').text(function (d) {return d.quantity}).attr('class', 'price');
+				var costSpans = box.append('span').text(function (d) {return d.quantity;}).attr('class', 'price');
 				var dateSpans = box.append('span').attr('class', 'date')
 				.text(function (d) {
 					var date = new Date(d.timestamp);
-					return date.toLocaleDateString('en-us', {year: 'numeric', 'month': 'short', day: 'numeric'})
+					return date.toLocaleDateString('en-us', {year: 'numeric', 'month': 'short', day: 'numeric'});
 				});
 				
-				d3.select('div.usage').transition().duration(500).style('background-color', '#FFF')
-				box.transition().duration(2000).delay(500).style('height', function (d) { return ((d.quantity / largest) * 8) + 'em'});
+				d3.select('div.usage').transition().duration(500).style('background-color', '#FFF');
+				box.transition().duration(2000).delay(500).style('height', function (d) { return ((d.quantity / largest) * 8) + 'em';});
 			
 			}
 		});

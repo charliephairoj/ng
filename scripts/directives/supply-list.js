@@ -32,7 +32,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			if (attrs.supplier) {
 				scope.$watch('supplier', function (val) {
 					if (val) {
-						supplierId = val.id
+						supplierId = val.id;
 						scope.supplies = Supply.query({supplier_id: val.id, limit: 20}, function (response) {
 							fetching = false;
 							changeSelection(index);
@@ -80,8 +80,8 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 					//Set Supplier ID
 					console.log('supplierID: '+supplierId);
 					if (supplierId) {
-						options['supplier_id'] = supplierId;
-					};
+						options.supplier_id = supplierId;
+					}
 					
 					Supply.query(options, function (resources) {
 						fetching = false;
@@ -89,7 +89,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 						for (var i = 0; i < resources.length; i++) {
 							if (scope.supplies.indexOfById(resources[i]) != -1) {
 								scope.supplies.push(resources[i]);
-							};
+							}
 						}
 					});
 				}
