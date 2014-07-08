@@ -26,11 +26,11 @@ function ($scope, $routeParams, Notification, Supply, $timeout, $location, scann
 					}
 			
 					largest = Math.max.apply(Math, prices);
-					console.log(prices);
+
 					if (prices.length > 0) {
 						var box = d3.select('div.price-chart-supplier-'+supplier_id+' .chart').selectAll('div').data(data).enter().append('div')
 						.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em';})
-						.style('background-color', function (d, i) {
+						.attr('class', function (d, i) {
 							try {
 							console.log(data[i-1].cost + ':' + d.cost);
 								if (Number(data[i-1].cost) > Number(d.cost)) {

@@ -14,6 +14,18 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			 * Vars and Properties
 			 */
 			
+			scope.types = {};
+			
+			$http.get('/api/v1/supply/type').then(function (response) {
+				for (var i = 0; i < response.data.length; i++) {
+					if (response.data[i] && response.data[i] != 'custom' && !scope.types[response.data[i].toLowerCase()]){
+						scope.types[response.data[i]] = response.data[i].toLowerCase();
+					}
+				}
+			});
+		
+			
+			
 			
 			scope.showWidth = function () {
 				var units = scope.supply.units;
@@ -32,10 +44,6 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 				var type = scope.supply.type;
 				return scope.supply.new_supply ? (units === "pc" || units === "pack" ||
 				(units === "kg" && type === "packaging") ? true : false) : false;
-			};
-			
-			scope.types = function () {
-				return 'ok';
 			};
 			
 			scope.supply = new Supply();
@@ -84,6 +92,8 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 				console.log(data);
 				scope.supply.image = data;
 			};
+			
+			console.log(scope);
 	
 		}
 	};

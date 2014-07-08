@@ -27,7 +27,7 @@ angular.module('employeeApp').config(function ($httpProvider) {
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder) {
+angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder, $q) {
 	
 	/*
 	 * Get the current user and place it at the top scope
@@ -87,6 +87,11 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 		container: 'Container',
 		pc: 'Piece'
 	};
+	
+	
+	$http.get('/api/v1/supply/type').then(function (response) {
+		$rootScope.types = response.data;
+	});
     
     window.globalScanner = new scanner('global');
     globalScanner.enable();
