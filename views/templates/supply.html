@@ -1,4 +1,4 @@
-<div class="supply-directive" >
+<div class="supply-directive">
 	<div class="img-container" ng-click="activate()">
 		<input type="file" ng-model="supply.raw_image" class="image-capture" accept="image/*" capture="camera" onchange="angular.element(this).scope().addImage(this, angular.element(this).scope().supply)">
 
@@ -15,7 +15,15 @@
 			Qty: {{supply.quantity}}{{supply.units}}
 		</span>
 	</div>
+	<div class='loading-notification' ng-class="{'active': !fetched}">
+		<span>Loading</span>
+	</div>
 	<div class="supply-details">
+		
+		<div class="supply-menu">
+			<button class="barcode" ng-click="viewStickers()">View</button>
+		</div>
+		
 		<div class="temp">
 			
 	        <table class="details">
@@ -98,7 +106,7 @@
 	                </tr>
 	                <tr>
 	                    <td><label>Current Quantity</label></td>
-	                    <td>{{supply.quantity}} {{supply.units}}</td>
+	                    <td><input type="text" ng-model="supply.quantity"> {{supply.units}}</td>
 	                </tr> 
 	                <tr ng-show="currentUser.hasModule('administrator')">
 	                    <td><label>Admin Only</label></td>

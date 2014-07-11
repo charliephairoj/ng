@@ -51,7 +51,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			 */
 			scope.$watch('query', function (q) {
 				if (q) {
-					Supply.query({q: q, limit: 10 + (q.length * 2)}, function (resources) {
+					Supply.query({q: q, limit: 10 + (q.length * 2), supplier_id: supplierId}, function (resources) {
 						for (var i = 0; i < resources.length; i++) {
 							if (scope.supplies.indexOfById(resources[i].id) == -1) {
 								scope.supplies.push(resources[i]);
