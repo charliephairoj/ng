@@ -19,7 +19,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	$scope.scannerMode = false;
-	$scope.supplies = Supply.query({'country': $scope.country, limit:5}, function () {
+	$scope.supplies = Supply.query({'country': $scope.country}, function () {
 		fetching = false;
 		Notification.hide();
 		changeSelection(index);

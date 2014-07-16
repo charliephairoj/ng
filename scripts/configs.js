@@ -87,12 +87,14 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 		container: 'Container',
 		pc: 'Piece'
 	};
-	
+	/*
 	
 	$http.get('/api/v1/supply/type').then(function (response) {
 		$rootScope.types = response.data;
 	});
     
+	*/
+	 	
     window.globalScanner = new scanner('global');
     globalScanner.enable();
 	//hi

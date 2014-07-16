@@ -70,24 +70,30 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 			scope.loadNext = function () {
 				fetching = false;
 				if (!fetching) {
+
 					Notification.display("Loading more supplies...", false);
 					fetching = true;
+					
 					var options = {
 						offset: scope.supplies.length,
 						limit: 50
 					};
 					
 					//Set Supplier ID
-					console.log('supplierID: '+supplierId);
 					if (supplierId) {
 						options.supplier_id = supplierId;
 					}
-					
+
 					Supply.query(options, function (resources) {
+						console.log(resources);
 						fetching = false;
 						Notification.hide();
 						for (var i = 0; i < resources.length; i++) {
-							if (scope.supplies.indexOfById(resources[i]) != -1) {
+							console.log(scope.supplies);
+							console.log(resources[i]);
+							console.log(scope.supplies.indexOfById(resources[i]));
+							console.log('done');
+							if (scope.supplies.indexOfById(resources[i]) == -1) {
 								scope.supplies.push(resources[i]);
 							}
 						}

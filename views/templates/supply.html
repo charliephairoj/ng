@@ -4,12 +4,9 @@
 
 		<img ng-src="{{supply.image.url}}" />
 	</div>
-	<div class="details" ng-click="activate()"> 
+	<div class="short-details details" ng-click="activate()"> 
 		<span class="description">
 			{{supply.description}}
-		</span>
-		<span class="supplier">
-			{{supply.supplier.name}}
 		</span>
 		<span class="quantity">
 			Qty: {{supply.quantity}}{{supply.units}}
@@ -37,7 +34,7 @@
 	               -->
 	                <tr>
 	                    <td><label>Description</label></td>
-	                    <td><input size="40" type="text" ng-model="supply.description" /></td>
+	                    <td><input class="description" size="40" type="text" ng-model="supply.description" /></td>
 	                </tr>
 	                <tr>
 	                    <td><label>Description (Thai)</label></td>
@@ -106,7 +103,7 @@
 	                </tr>
 	                <tr>
 	                    <td><label>Current Quantity</label></td>
-	                    <td><input type="text" ng-model="supply.quantity"> {{supply.units}}</td>
+	                    <td><input class="quantity" type="text" ng-model="supply.quantity"> {{supply.units}}</td>
 	                </tr> 
 	                <tr ng-show="currentUser.hasModule('administrator')">
 	                    <td><label>Admin Only</label></td>
@@ -114,7 +111,7 @@
 	                </tr> 
 	                <tr>
 	                    <td><label>Notes</label></td>
-	                    <td><textarea ng-model="supply.notes"></textarea></td>
+	                    <td><textarea class="notes" ng-model="supply.notes"></textarea></td>
 	                </tr> 
 	         	</tbody>       
 	         </table>
@@ -163,7 +160,7 @@
         			</tr>
         			<tr>
         				<td>Cost</td>
-        				<td><input type="text" ng-model="supplier.cost"/></td>
+        				<td><input class="cost" type="text" ng-model="supplier.cost"/></td>
         			</tr>
         		</table>
 			

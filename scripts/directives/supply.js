@@ -41,7 +41,7 @@ angular.module('employeeApp.directives')
 			
 			scope.fetched = false;
 			scope.units = angular.copy($rootScope.units);
-			scope.types = angular.copy($rootScope.types);
+			scope.types = angular.copy($rootScope.types || []);
 			
 			var updateLoopActive = false,
 				cancelWatch = angular.noop(),
@@ -53,7 +53,7 @@ angular.module('employeeApp.directives')
 				if (index != -1) {
 					scope.types.splice(scope.types.indexOf(badTypes[y]), 1);
 				}
-			}
+			};
 			
 			/*
 			 * General Functions
@@ -69,15 +69,11 @@ angular.module('employeeApp.directives')
 					}
 					return supply;
 				}, function (newVal, oldVal) {
-					console.log('change');
-					console.log(newVal)
-					console.log(oldVal)
-					console.log(angular.equals(newVal, oldVal));
 					if (!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal)) {
 						updateLoopActive = true;
 						timeoutPromise = $timeout(function () {
+							supply = angular.copy(scope.supply);
 							Notification.display('Updating ' + scope.supply.description + '...', false);
-							var supply = angular.copy(scope.supply);
 							supply.$update({'country': $rootScope.country}, function () {
 								updateLoopActive = false;
 								Notification.display(scope.supply.description + ' updated');
@@ -131,14 +127,13 @@ angular.module('employeeApp.directives')
 			scope.activate = function () {
 				if (element.hasClass('active')) {
 					element.removeClass('active');
-					cancelWatch()
+					cancelWatch();
 				} else {
 					element.addClass('active');
 					
-					
 					Supply.get({id:scope.supply.id}, function (response) {
-						
 						angular.extend(scope.supply, response);
+						
 						startWatch();
 						scope.fetched = true;
 						
@@ -159,13 +154,16 @@ angular.module('employeeApp.directives')
 								$http.get('/api/v1/log', {params: {'action': 'PRICE CHANGE', 'supply': scope.supply.id, 'supplier': supplier.id}}).then(function(response) {
 									var supplier_id = response.config.params.supplier,
 										dataObj = prepareData(response, 'cost');
+										
+									scope.price_logs = scope.price_logs || [];
+									scope.price_logs.push(dataObj.data);
 									
 									if (dataObj.data.length > 0) {
 										createChart(dataObj.data, 'cost', dataObj.largest, 'price-chart-supplier-'+supplier_id);
 									} else {
 										d3.select('div.price-chart-supplier-'+supplier_id+' .chart').style('display', 'none');
 									}
-								}); 
+								}); //jshint ignore:line
 							}
 						}
 					});
