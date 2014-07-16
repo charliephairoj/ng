@@ -26,6 +26,22 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	/*
+	*  Focus the list to the active element
+	*/
+	$scope.focus = function ($element) {
+		var container = $('div.outer-container');
+		/*
+		 * Set new scrollTop to determined by 
+		 * - Scroll Top
+		 * - offset of element
+		 * - mainmenu height 
+		 */
+		container.animate({
+			scrollTop: container.scrollTop() + $element.offset().top - $('.mainMenu').height()
+		});
+	};
+	
+	/*
 	* Adding image for ipads and iphones
 	* 
 	* This particular function is intended for the iphone and ipad.

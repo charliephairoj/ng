@@ -35,7 +35,8 @@ angular.module('employeeApp.directives')
 		replace: true,
   	  	restrict: 'EA',
 		scope: {
-			supply: '='
+			supply: '=',
+			onSelect: '&'
 		},
   	  	link: function postLink(scope, element, attrs) {
 			
@@ -53,7 +54,7 @@ angular.module('employeeApp.directives')
 				if (index != -1) {
 					scope.types.splice(scope.types.indexOf(badTypes[y]), 1);
 				}
-			};
+			}
 			
 			/*
 			 * General Functions
@@ -130,6 +131,12 @@ angular.module('employeeApp.directives')
 					cancelWatch();
 				} else {
 					element.addClass('active');
+					
+					try {
+						scope.onSelect({'$element': element});
+					} catch (e) {
+						console.error(e);
+					}
 					
 					Supply.get({id:scope.supply.id}, function (response) {
 						angular.extend(scope.supply, response);
