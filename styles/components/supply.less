@@ -286,8 +286,10 @@
                 padding:0.25em;
                 border: 1px solid @activeBorderColor;
                 margin-bottom:0.5em;
+				position:relative;
             
 				table{
+					margin-left:6em;
 					
 					tr{
 						
@@ -297,6 +299,33 @@
 					}
 				}
 				
+				.barcode{
+					font-family:Barcode;
+					color:#CCC;
+					background:@activeBackgroundColor;
+					border:1px solid darken(@activeBackgroundColor, 5%);
+					border-radius: 5px;
+					padding:1em;
+					outline:none;
+					margin-top:1em;
+					position:absolute;
+					left:0.5em;
+					top:0.5em;
+					
+					.transition(background, 150ms, linear);
+				
+					&:hover{
+						background:darken(@activeBackgroundColor, 6%);
+					}
+				
+					&:active{
+						background:orange;
+					}
+					
+					&.active{
+						background:orange;
+					}
+				}
 				.prices{
 					margin-top:2em;
 					width:100%;

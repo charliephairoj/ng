@@ -49,8 +49,12 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
 			scope.scanner = new scanner("supply/"+scope.supply.id);
 			scope.scanner.disableStandard();
 			scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
-				scope.upcTarget.code = code;
-				globalScanner.enable();
+				if (scope.upcTarget) {
+					scope.supply.suppliers[scope.supply.suppliers.indexOfById(scope.upcTarget.id)].code = code;
+					scope.scanner.disable();
+					globalScanner.enable();
+					scope.upcTarget = undefined;
+				}
 			});
 			
 			var updateLoopActive = false,
