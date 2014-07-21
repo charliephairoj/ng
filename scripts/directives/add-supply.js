@@ -6,7 +6,10 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 		templateUrl: 'views/templates/add-supply.html',
 		replace: true,
 		restrict: 'EA',
-		scope: {'visible': '=addSupply'},
+		scope: {
+			'visible': '=addSupply',
+			'onAdd': '&'
+		},
 		link: function postLink(scope, element, attrs) {
 			
 			
@@ -77,6 +80,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 						scope.supply.$create(function (response) {
 							Notification.display('Supply created');
 							scope.visible = false;
+							scope.onAdd({$supply:scope.supply});
 							scope.supply = new Supply();
 						}, function (reason) {
 							console.error(reason);
