@@ -9,9 +9,12 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 		scope: {
 			visible: '=supplyList',
 			onSelect: '&',
-			supplier: '='
+			supplier: '=',
+			newSupply: '='
 		},
+		
 		link: function postLink(scope, element, attrs) {
+
 			var fetching = true,
 				supplierId,
 				currentSelection,
@@ -60,6 +63,18 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http) 
 						index = 0;
 						changeSelection(index);
 					});
+				}
+			});
+			
+			/*
+			 * Watch for new items to add
+			 */
+			scope.$watch('newSupply', function (supply) {
+				if (supply instanceof Supply) {
+					scope.supplies = scope.supplies || [];
+					if (scope.supplies.indexOfById(supply.id) == -1) {
+						scope.supplies.push(supply);
+					}
 				}
 			});
 			

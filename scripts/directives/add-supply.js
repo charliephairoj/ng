@@ -10,7 +10,8 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			'visible': '=addSupply',
 			'onAdd': '&'
 		},
-		link: function postLink(scope, element, attrs) {
+		require: '?supplyList',
+		link: function postLink(scope, element, attrs, supplyListCtrl) {
 			
 			
 			/*
