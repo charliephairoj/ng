@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('employeeApp')
-.directive('employee', ['$rootScope', '$timeout', 'Notification', 
-function ($rootScope, $timeout, Notification) {
+.directive('employee', ['$rootScope', '$timeout', 'Notification', 'Attendance',
+function ($rootScope, $timeout, Notification, Attendance) {
     return {
       	templateUrl: 'views/templates/employee.html',
 		replace: true,
@@ -76,6 +76,13 @@ function ($rootScope, $timeout, Notification) {
 					} catch (e) {
 						console.error(e);
 					}
+					
+					scope.attendances = Attendance.query({
+						employee:scope.employee.id
+					}, function (response) {
+						scope.attendances = [];
+						scope.attendances.push.apply(scope.attendances, response);
+					});	
 				}
 			};
       	}
