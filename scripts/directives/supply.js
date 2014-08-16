@@ -1,10 +1,10 @@
 
 angular.module('employeeApp.directives')
-.directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 
-function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
+.directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 'D3',
+function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D3) {
 	
 	function createChart(data, property, largestSize, className) {
-		var box = d3.select('div.'+className+' .chart').selectAll('div').data(data).enter().append('div')
+		var box = D3.select('div.'+className+' .chart').selectAll('div').data(data).enter().append('div')
 		.attr('class', 'price-box').style('left', function (d, i) {return ((i * 6) + i) + 'em';})
 		.attr('class', function (d, i) {
 			try {
@@ -28,7 +28,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
 			return date.toLocaleDateString('en-us', {year: 'numeric', 'month': 'short', day: 'numeric'});
 		});
 
-		d3.select('div.'+className).transition().duration(1000).style('border', '1px solid #CCC').style('height', '10em');
+		D3.select('div.'+className).transition().duration(1000).style('border', '1px solid #CCC').style('height', '10em');
 		box.transition().duration(2000).delay(1000).style('height', function (d) { return (((d[property]) / largestSize) * 8) + 'em';});
 	}
 	return {
@@ -83,6 +83,9 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
 					}
 					return supply;
 				}, function (newVal, oldVal) {
+					dump(newVal.description);
+					dump(oldVal.description);
+					dump(!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal))
 					if (!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal)) {
 						updateLoopActive = true;
 						timeoutPromise = $timeout(function () {
@@ -153,7 +156,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
 					
 					Supply.get({id:scope.supply.id}, function (response) {
 						angular.extend(scope.supply, response);
-						
+						dump(1);
 						startWatch();
 						scope.fetched = true;
 						
@@ -181,7 +184,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner) {
 									if (dataObj.data.length > 0) {
 										createChart(dataObj.data, 'cost', dataObj.largest, 'price-chart-supplier-'+supplier_id);
 									} else {
-										d3.select('div.price-chart-supplier-'+supplier_id+' .chart').style('display', 'none');
+										D3.select('div.price-chart-supplier-'+supplier_id+' .chart').style('display', 'none');
 									}
 								}); //jshint ignore:line
 							}

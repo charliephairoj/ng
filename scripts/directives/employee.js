@@ -78,7 +78,7 @@ function ($rootScope, $timeout, Notification, Attendance) {
 					}
 					
 					scope.attendances = Attendance.query({
-						employee:scope.employee.id
+						employee__id:scope.employee.id
 					}, function (response) {
 						scope.attendances = [];
 						scope.attendances.push.apply(scope.attendances, response);
