@@ -22,11 +22,12 @@ angular.module('employeeApp')
 				post: function postLink(scope, element, iAttrs) {
 					//Add the preclass as soon as possible
 
-					var parent = element.parent();
-					var pWidth = parent.innerWidth();
-					var pHeight = parent.innerWidth();
+					
 					element.on('load', function () {
 						if (iAttrs.center) {
+							var parent = element.parent();
+							var pWidth = parent.innerWidth();
+							var pHeight = parent.innerWidth();
 							position({
 								element: element,
 								width: true,

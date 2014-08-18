@@ -123,7 +123,6 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 						var component = results[0].address_components[i];
 						if (typeof(component.types) == 'object') {
 							if (component.types.indexOf('country') != -1) {
-								console.log(component);
 								//Set country to main scope, to be called later
 								//$rootScope.country = 'KH';
 								$rootScope.country = component.short_name;
@@ -156,11 +155,11 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 	
 	var scrollY = 0;
 
-    $(document).on('touchstart', function (e) {
+    angular.element(document).on('touchstart', function (e) {
         scrollY = e.originalEvent.touches.item(0).clientY;
     });
 
-    $(document).on('touchmove', function (e) {
+    angular.element(document).on('touchmove', function (e) {
 		var container = angular.element(e.target).parents('.scroll-enabled')[0];
 
 		if (container) {

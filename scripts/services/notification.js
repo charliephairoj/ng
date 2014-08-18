@@ -2,17 +2,17 @@
 angular.module('employeeApp.services')
 .factory('Notification', ['$timeout', '$rootScope', function($timeout, $rootScope) {
     function center(target){
-        var width = $(window).width();
-        var tWidth = $(target).width();
-        if ($(target).css('left') === 0) {
-            $(target).css('left', width-tWidth);
+        var width = angular.element(window).width();
+        var tWidth = angular.element(target).width();
+        if (angular.element(target).css('left') === 0) {
+            angular.element(target).css('left', width-tWidth);
         } else {
-            $(target).css('margin-left', -(tWidth/2));
+            angular.element(target).css('margin-left', -(tWidth/2));
         }
     }
     
     function Notifier() {
-        this.notification = angular.element('#notification');
+        this.notification = angular.element(document.getElementById('notification'));
         this.promise = null;
     }
     
