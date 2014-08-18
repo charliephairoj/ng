@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp')
 .directive('employee', ['$rootScope', '$timeout', 'Notification', 'Attendance',
@@ -31,7 +30,7 @@ function ($rootScope, $timeout, Notification, Attendance) {
 				'graphics',
 				'accounting',
 				'landscaping'
-			]
+			];
 			
 			var updateLoopActive = false,
 				timeoutPromise,

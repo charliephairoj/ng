@@ -1,4 +1,3 @@
-'use strict';
 
 
 angular.module('employeeApp')
@@ -22,7 +21,6 @@ angular.module('employeeApp')
 					selectedElements = [],
 					origin;
 					
-					dump(D3);
 				//Flags
 				var mouseDown = false;
 
@@ -63,7 +61,7 @@ angular.module('employeeApp')
 							scope.active = d;
 						});
 						
-						selectedBar.attr('class', 'active')
+						selectedBar.attr('class', 'active');
 					
 					}
 					
@@ -88,7 +86,7 @@ angular.module('employeeApp')
 					mouseDown = true;
 					selectedAttendances.push(d);
 					var evt = D3.event;
-					origin = {x:evt.x, y:evt.y}
+					origin = {x:evt.x, y:evt.y};
 					D3.select(this)
 					.classed('selected', true)
 					.classed('active', false);
@@ -119,7 +117,7 @@ angular.module('employeeApp')
 				.attr('class', 'regular-time')
 				.attr('x', leftMargin)
 				.attr('width', 0)
-				.attr('height', barHeight - 1)
+				.attr('height', barHeight - 1);
 			
 				var date = bar.append("text")
 				.attr('class', 'date')
@@ -156,7 +154,7 @@ angular.module('employeeApp')
 				if (newVal) {
 					activate();
 				}
-			})
+			});
 		}
     };
 }]);
