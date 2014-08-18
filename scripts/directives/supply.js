@@ -83,11 +83,9 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 					}
 					return supply;
 				}, function (newVal, oldVal) {
-					dump(newVal.description);
-					dump(oldVal.description);
-					dump(!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal))
 					if (!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal)) {
 						updateLoopActive = true;
+						
 						timeoutPromise = $timeout(function () {
 							supply = angular.copy(scope.supply);
 							Notification.display('Updating ' + scope.supply.description + '...', false);
@@ -98,6 +96,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 								Notification.display("There was an error in updating " + scope.supply.description);
 							});
 						}, 5000);
+						
 					}
 				}, true);
 			}
@@ -153,12 +152,12 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 					} catch (e) {
 						console.error(e);
 					}
-					
+
 					Supply.get({id:scope.supply.id}, function (response) {
 						angular.extend(scope.supply, response);
-						dump(1);
 						startWatch();
 						scope.fetched = true;
+						
 						
 						$http.get('/api/v1/log', {params: {'action': 'SUBTRACT', 'supply': scope.supply.id}}).then(function(response) {
 							
@@ -168,7 +167,8 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 								createChart(dataObj.data, 'quantity', dataObj.largest, 'usage-chart-supply-'+scope.supply.id);
 							}
 						});
-				
+						
+						
 						for (var index in scope.supply.suppliers) {
 							var supplier = scope.supply.suppliers[index];
 			
@@ -189,6 +189,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 								}); //jshint ignore:line
 							}
 						}
+						
 					});
 				}
 			};
