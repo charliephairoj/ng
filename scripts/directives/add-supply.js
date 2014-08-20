@@ -55,7 +55,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			scope.suppliers = Supplier.query({limit: 0});
 			scope.supplies = Supply.query({limit: 0});
 			
-			scope.changeSupply = function (supply) {
+			scope.selectSupply = function (supply) {
 				angular.extend(scope.supply, supply);
 			};
 			
@@ -74,6 +74,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 						scope.supply.$update(function (response) {
 							scope.visible = false;
 							scope.supply = new Supply();
+							Notification.display('Supply created');
 						}, function (reason) {
 							console.error(reason);
 						});
@@ -94,11 +95,9 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			};
 
 			scope.addImage = function (data) {
-				console.log(data);
 				scope.supply.image = data;
 			};
 			
-			console.log(scope);
 	
 		}
 	};

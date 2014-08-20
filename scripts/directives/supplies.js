@@ -1,9 +1,9 @@
 
 angular.module('employeeApp')
-.directive('supplyList', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope', '$http', '$compile',
+.directive('supplies', ['Supply', '$filter', 'KeyboardNavigation', 'Notification', '$rootScope', '$http', '$compile',
 function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, $compile) {
 	return {
-		templateUrl: 'views/templates/supply-list.html',
+		templateUrl: 'views/templates/supplies.html',
 		replace: true,
 		restrict: 'A',
 		scope: {
@@ -14,7 +14,6 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 		},
 		compile: function compile(tElement, tAttrs, transclude) {
 			return {
-
 				post: function postLink(scope, element, attrs) {
 					var fetching = true,
 						supplierId,
@@ -55,7 +54,16 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 					 */
 					scope.$watch('query', function (q) {
 						if (q) {
-							Supply.query({q: q, limit: 10 + (q.length * 2), supplier_id: supplierId}, function (resources) {
+							options = {
+								q: q, 
+								limit: 10 + (q.length * 2)
+							};
+							
+							if (supplierId) {
+								options['supplier_id'] = supplierId;
+							}
+							
+							Supply.query(options, function (resources) {
 								for (var i = 0; i < resources.length; i++) {
 									if (scope.supplies.indexOfById(resources[i].id) == -1) {
 										scope.supplies.push(resources[i]);
@@ -101,7 +109,6 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 							}
 
 							Supply.query(options, function (resources) {
-								console.log(resources);
 								fetching = false;
 								Notification.hide();
 								for (var i = 0; i < resources.length; i++) {
