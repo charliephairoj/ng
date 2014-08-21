@@ -186,7 +186,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 					});
 			
 				}
-		    }
+		    };
 		        
 		}
     };

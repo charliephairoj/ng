@@ -60,7 +60,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 							};
 							
 							if (supplierId) {
-								options['supplier_id'] = supplierId;
+								options.supplier_id = supplierId;
 							}
 							
 							Supply.query(options, function (resources) {
@@ -193,7 +193,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 					});
 			
 				}
-		    }
+		    };
 		        
 		}
     };

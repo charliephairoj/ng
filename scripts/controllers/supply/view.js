@@ -181,7 +181,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		} else {
 			return true;
 		}
-	}
+	};
 			
 	function changeSelection(i) {
 				
