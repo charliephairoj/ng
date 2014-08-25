@@ -107,7 +107,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 		//To Be deprecated in favor of a timeout based
 		//query mechanism
 		if (q) {
-			Supply.query({limit: 10, q: q, 'country': $scope.country}, function (resources) {
+			Supply.query({limit: q.length, q: q, 'country': $scope.country}, function (resources) {
 				for (var i = 0; i < resources.length; i++) {
 					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
 						$scope.supplies.push(resources[i]);
