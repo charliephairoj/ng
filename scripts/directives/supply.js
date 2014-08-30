@@ -1,7 +1,16 @@
 
 angular.module('employeeApp.directives')
-.directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 'D3',
-function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D3) {
+.directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 'D3', '$compile',
+function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D3, $compile) {
+	
+	console.log('called');
+	var subHTML
+	var promise = $http.get('views/templates/supply-details.html');
+	promise.then(function (response) {
+		subHTML = response.data || response;
+	}, function () {
+		
+	});
 	
 	function createChart(data, property, largestSize, className) {
 		var box = D3.select('div.'+className+' .chart').selectAll('div').data(data).enter().append('div')
@@ -41,6 +50,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 		},
   	  	link: function postLink(scope, element, attrs) {
 			
+			var fullCompiled = false;
 			scope.fetched = false;
 			scope.units = angular.copy($rootScope.units);
 			scope.types = angular.copy($rootScope.types || []);
@@ -58,6 +68,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 			});
 			
 			var updateLoopActive = false,
+				timeoutPromise,
 				cancelWatch = angular.noop(),
 				badTypes = ['custom', null];
 			
@@ -141,6 +152,14 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 			};
 			
 			scope.activate = function () {
+				
+				if (!fullCompiled) {
+					var html = $compile(subHTML)(scope);
+					console.log(html);
+					angular.element(element.find('.supply-details')).html(html);
+					fullCompiled = true;
+				}
+				
 				if (element.hasClass('active')) {
 					element.removeClass('active');
 					cancelWatch();
