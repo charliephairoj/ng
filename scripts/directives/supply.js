@@ -83,17 +83,17 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 					}
 					return supply;
 				}, function (newVal, oldVal) {
-					if (!updateLoopActive && oldVal.hasOwnProperty('id') && !angular.equals(newVal, oldVal)) {
-						updateLoopActive = true;
+					if (oldVal.hasOwnProperty('id')) {
+						
+						$timeout.cancel(timeoutPromise);
 						
 						timeoutPromise = $timeout(function () {
 							supply = angular.copy(scope.supply);
-							Notification.display('Updating ' + scope.supply.description + '...', false);
+							Notification.display('Saving ' + scope.supply.description + '...', false);
 							supply.$update({'country': $rootScope.country}, function () {
-								updateLoopActive = false;
-								Notification.display(scope.supply.description + ' updated');
+								Notification.display(scope.supply.description + ' saved');
 							}, function () {
-								Notification.display("There was an error in updating " + scope.supply.description);
+								Notification.display("There was an error in saving " + scope.supply.description);
 							});
 						}, 5000);
 						
