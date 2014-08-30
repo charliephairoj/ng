@@ -1,14 +1,17 @@
 
 angular.module('employeeApp')
-.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 'FileUploader', 
-function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http, FileUploader) {
+.controller('SupplyViewCtrl', ['$scope', 'Supply', 'Notification', '$filter', 'KeyboardNavigation', '$rootScope', '$location', '$http', 'FileUploader', '$timeout', 
+function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope, $location, $http, FileUploader, $timeout) {
 	console.log($scope.types);
 	/*
 	* Vars and flags
 	*/
 	var fetching = true,
 		index = 0,
-		currentSelection;
+		currentSelection,
+		activeQueryLoop = false,
+		masterList = [],
+		q;
 
 	//system message
 	Notification.display('Loading supplies...', false);
@@ -19,11 +22,27 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	});
 	
 	$scope.scannerMode = false;
-	$scope.supplies = Supply.query({'country': $scope.country}, function () {
+	$scope.supplies = Supply.query({'country': $scope.country}, function (resources) {
 		fetching = false;
 		Notification.hide();
 		changeSelection(index);
 	});
+	
+	/*
+	*  Focus the list to the active element
+	*/
+	$scope.focus = function ($element) {
+		var container = $('div.outer-container');
+		/*
+		 * Set new scrollTop to determined by 
+		 * - Scroll Top
+		 * - offset of element
+		 * - mainmenu height 
+		 */
+		container.animate({
+			scrollTop: container.scrollTop() + $element.offset().top - $('.mainMenu').height()
+		});
+	};
 	
 	/*
 	* Adding image for ipads and iphones
@@ -62,8 +81,33 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	* be sent along as a parameter. 
 	*/
 	$scope.$watch('query', function (q) {
-		if (q) {
+		/*
+		//Set global q to search
+		q = queryStr
+		
+		//checks if the loop is currently active
+		//$scope.supplies = filter(masterList);
+		$timeout(function () {
+			$scope.supplies = filter(masterList);
+		}, 1);
+		
+		var tSwitch = $timeout(function () {
 			Supply.query({limit: 10, q: q, 'country': $scope.country}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
+					if (masterList.indexOfById(resources[i].id) == -1) {
+						masterList.push(resources[i]);
+					}
+				}
+				$scope.supplies = filter(masterList);
+				activeQueryLoop = false;
+			});
+		}, 1);
+		*/
+		
+		//To Be deprecated in favor of a timeout based
+		//query mechanism
+		if (q) {
+			Supply.query({limit: q.length, q: q, 'country': $scope.country}, function (resources) {
 				for (var i = 0; i < resources.length; i++) {
 					if ($scope.supplies.indexOfById(resources[i].id) == -1) {
 						$scope.supplies.push(resources[i]);
@@ -106,9 +150,38 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	function filter(array) {
 		array = $filter('filter')(array, $scope.search);
 		array = $filter('filter')(array, $scope.query);
+		array = $filter('limitTo')(array, 30);
 		array = $filter('orderBy')(array, 'description');
 		return array;
 	}
+	
+	$scope.customFilter = function (obj) {
+		
+		if ($scope.query) {
+			var regex = new RegExp('\\b(' + $scope.query.split(' ') +')', 'i');
+			try {
+				if (regex.test(obj.description)) {
+					return true;
+				}
+			} catch (e) {
+				console.error(e);
+			}
+		
+			try {
+				for (var i = 0; i < obj.suppliers.length; i++) {
+					if (regex.text(obj.suppliers[i].name)) {
+						return true;
+					}
+				}
+			} catch (e) {
+				console.error(e);
+			}
+		 
+			return false;
+		} else {
+			return true;
+		}
+	};
 			
 	function changeSelection(i) {
 				

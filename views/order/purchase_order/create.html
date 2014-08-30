@@ -8,7 +8,9 @@
    
     <div supply-list="showSupplies" supplier="po.supplier" on-select="addItem($supply)"></div>
     
+    <div add-supply="showAddSupply">
     
+    </div>
     
     <form name="vatForm" class="vat_modal" novalidate data-modal ng-model="showVat" title="Vat">
         <input ng-model="po.vat" required ng-pattern="/^\d{1,2}$/" autofocus /><span>%</span>
@@ -37,7 +39,7 @@
                     <li><div ng-click="save()" >Create</div></li>
                     <li><div class="supplier" checkmark="po.supplier" x="!po.supplier" ng-click="showSuppliers=true">Add Supplier</div></li>
                     <li><div class="supply" checkmark="po.items && po.items.length" x="po.items.length==0 || !po.items" ng-click="showSupplies=true">Add Supply</div></li>
-                   
+                   	<li><div class="supply" ng-click="showAddSupply=true">Create a Supply</div></li>
                     <li><div class="vat" checkmark="po.vat" x="!po.vat" ng-click="showVat=!showVat">Set Vat</div></li>
                     <li><div ng-click="reset()" >Reset</div></li>
                 </ul>
@@ -159,7 +161,7 @@
 							<td class='discount'>
 								<input type="text" ng-model="item.discount"/> 
 							</td>
-							<td class='unit-cost'>{{unitCost(item.cost, item.discount)}}</td>
+							<td class='unit-cost'><input type="text" ng-model="item.cost" /></td>
 							<td class='quantity'>
 								<input type="text" ng-model="item.quantity" />
 							</td>

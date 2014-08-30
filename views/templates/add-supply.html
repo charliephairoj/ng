@@ -12,11 +12,17 @@
 						<input type="checkbox" ng-model="supply.new_supply" />
 					</td>
 				</tr>
-				<tr ng-if="!supply.new_supply">
+				<tr class='supply' ng-if="!supply.new_supply">
 					<td>Supply</td>
 					<td>
+						<!--
 						<select class="supply" required ng-options="supply.description for supply in supplies | orderBy:'description'" ng-model="supply" ng-change="changeSupply(supply)">
 						</select>
+							-->
+						<span ng-show="supply.description">
+							Supply: {{supply.description}}
+						</span><br/>
+						<div supplies on-select="selectSupply($supply)"></div>
 					</td>
 				</tr>
 				<tr ng-if="supply.new_supply">
@@ -34,11 +40,13 @@
 				<tr ng-if="supply.new_supply">
 					<td>Type</td>
 					<td>
-						<!--
-						<select class="type" required ng-model="supply.type" ng-options="t|beautify for t in types">
-							<option value="custom">Custom</option>
-						</select>
-						-->
+					
+						<input type="text" required ng-model="supply.type" list="add-supply-type"/>
+						<datalist id="add-supply-type">
+							<select ng-model='selectedType' ng-options="k | beautify as v for (k, v) in types"></select>
+						</datalist>	
+					
+							<!--
 						<select class="type" required ng-model="supply.type">
 							<option value="metal">Metal</option>
 							<option value="wood">Wood</option>
@@ -53,6 +61,7 @@
 							<option value="staple">Staple</option>
 							<option value="custom">Custom</option>
 						</select>
+						-->
 						<input ng-if="supply.type == 'custom'" required class="custom-type" type="text" ng-model="supply.custom_type" />
 					</td>
 				</tr ng-if="supply.new_supply">

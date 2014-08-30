@@ -16,18 +16,18 @@ angular.module('employeeApp.directives')
     return {
         restrict: 'A',
         scope: false,
-        compile: function () {
+        compile: function (Element, Attrs) {
 			return {
 				pre: function (scope, tElement, tAttrs) {
-					tElement.addClass('modal hide');
-					if (tAttrs.title) {
-						closeButton = angular.element('<button type="button" class="close">&times;</button>');
-						var title = angular.element('<div class="title"><h4>' + tAttrs.title + '</h4></div>');
-						title.append(closeButton);
-						tElement.append(title);
-					} else {
-						//throw Error("Missing Title");
-					}
+						tElement.addClass('modal hide');
+						if (tAttrs.title) {
+							closeButton = angular.element('<button type="button" class="close">&times;</button>');
+							var title = angular.element('<div class="title"><h4>' + tAttrs.title + '</h4></div>');
+							title.append(closeButton);
+							tElement.append(title);
+						} else {
+							//throw Error("Missing Title");
+						}
 				},
 				post: function (scope, element, attrs) {
        

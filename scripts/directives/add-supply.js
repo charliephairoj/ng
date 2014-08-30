@@ -6,13 +6,29 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 		templateUrl: 'views/templates/add-supply.html',
 		replace: true,
 		restrict: 'EA',
-		scope: {'visible': '=addSupply'},
-		link: function postLink(scope, element, attrs) {
+		scope: {
+			'visible': '=addSupply',
+			'onAdd': '&'
+		},
+		require: '?supplyList',
+		link: function postLink(scope, element, attrs, supplyListCtrl) {
 			
 			
 			/*
 			 * Vars and Properties
 			 */
+			
+			scope.types = {};
+			
+			$http.get('/api/v1/supply/type').then(function (response) {
+				for (var i = 0; i < response.data.length; i++) {
+					if (response.data[i] && response.data[i] != 'custom' && !scope.types[response.data[i].toLowerCase()]){
+						scope.types[response.data[i]] = response.data[i].toLowerCase();
+					}
+				}
+			});
+		
+			
 			
 			
 			scope.showWidth = function () {
@@ -34,16 +50,12 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 				(units === "kg" && type === "packaging") ? true : false) : false;
 			};
 			
-			scope.types = function () {
-				return 'ok';
-			};
-			
 			scope.supply = new Supply();
 			scope.supply.units = 'pc';
 			scope.suppliers = Supplier.query({limit: 0});
 			scope.supplies = Supply.query({limit: 0});
 			
-			scope.changeSupply = function (supply) {
+			scope.selectSupply = function (supply) {
 				angular.extend(scope.supply, supply);
 			};
 			
@@ -62,6 +74,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 						scope.supply.$update(function (response) {
 							scope.visible = false;
 							scope.supply = new Supply();
+							Notification.display('Supply created');
 						}, function (reason) {
 							console.error(reason);
 						});
@@ -69,6 +82,7 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 						scope.supply.$create(function (response) {
 							Notification.display('Supply created');
 							scope.visible = false;
+							scope.onAdd({$supply:scope.supply});
 							scope.supply = new Supply();
 						}, function (reason) {
 							console.error(reason);
@@ -81,9 +95,9 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			};
 
 			scope.addImage = function (data) {
-				console.log(data);
 				scope.supply.image = data;
 			};
+			
 	
 		}
 	};

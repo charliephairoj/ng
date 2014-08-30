@@ -27,7 +27,7 @@ angular.module('employeeApp').config(function ($httpProvider) {
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder) {
+angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder, $q) {
 	
 	/*
 	 * Get the current user and place it at the top scope
@@ -87,7 +87,14 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 		container: 'Container',
 		pc: 'Piece'
 	};
+	/*
+	
+	$http.get('/api/v1/supply/type').then(function (response) {
+		$rootScope.types = response.data;
+	});
     
+	*/
+	 	
     window.globalScanner = new scanner('global');
     globalScanner.enable();
 	//hi
@@ -116,7 +123,6 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 						var component = results[0].address_components[i];
 						if (typeof(component.types) == 'object') {
 							if (component.types.indexOf('country') != -1) {
-								console.log(component);
 								//Set country to main scope, to be called later
 								//$rootScope.country = 'KH';
 								$rootScope.country = component.short_name;
@@ -149,11 +155,11 @@ angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $h
 	
 	var scrollY = 0;
 
-    $(document).on('touchstart', function (e) {
+    angular.element(document).on('touchstart', function (e) {
         scrollY = e.originalEvent.touches.item(0).clientY;
     });
 
-    $(document).on('touchmove', function (e) {
+    angular.element(document).on('touchmove', function (e) {
 		var container = angular.element(e.target).parents('.scroll-enabled')[0];
 
 		if (container) {
