@@ -1,8 +1,9 @@
 
 angular.module('employeeApp')
-.controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification', 'FileUploader', '$http',
-function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http) {
+.controller('ProjectDetailsCtrl', ['$scope', 'Project', '$routeParams', 'Room', 'Notification', 'FileUploader', '$http', '$timeout',
+function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http, $timeout) {
     
+	var timeoutPromise;
     $scope.showAddRoom = false;
     $scope.flag = false;
     $scope.project = Project.get({id: $routeParams.id});
@@ -15,14 +16,13 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http
 	
 	$scope.addSupply = function ($supply) {
 		
+		$scope.showAddSupply = false;
+		
+		$scope.project.supplies.push($supply);
+		
 		//Notify the user
 		Notification.display("Adding "+$supply.description+" to "+$scope.project.codename);
-		var promise = $http.post('/api/v1/project/'+$scope.project.id+'/supply', $supply);
 		
-		promise.then(function () {
-			$scope.project.supplies = $scope.project.supplies || [];
-			$scope.project.supplies.push($supply);
-		});
 	};
 	
     $scope.addImage = function (image) {
@@ -54,5 +54,24 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http
             $scope.flag = true; 
         });
     };
-    
+	
+	/*
+	 * Watches the project for changes in order to autosave
+	 */
+    $scope.$watch('project', function (newVal, oldVal) {
+    	console.log(newVal, oldVal);
+		
+		if (oldVal.hasOwnProperty('id')) {
+	    	$timeout.cancel(timeoutPromise);
+		
+			timeoutPromise = $timeout(function () {
+				Notification.display('Saving...', false);
+				var project = angular.copy($scope.project);
+				project.$update(function () {
+					Notification.display('Project ' + $scope.project.codename + ' saved');
+				});
+			}, 750);
+		}
+    }, true);
+	
 }]);
