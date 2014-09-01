@@ -121,6 +121,7 @@
 				<div class="image-container">
 					<img ng-src="{{supply.image.url}}" /> 
 				</div>
+				<span class="delete-supply-btn" ng-click="removeSupply($index)">x</span>
 				<span class="description">{{supply.description}}</span>
 				<input class="quantity" ng-model="supply.quantity" />
 			</div>

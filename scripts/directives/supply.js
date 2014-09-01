@@ -3,7 +3,6 @@ angular.module('employeeApp.directives')
 .directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 'D3', '$compile',
 function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D3, $compile) {
 	
-	console.log('called');
 	var subHTML
 	var promise = $http.get('views/templates/supply-details.html');
 	promise.then(function (response) {
@@ -40,6 +39,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 		D3.select('div.'+className).transition().duration(1000).style('border', '1px solid #CCC').style('height', '10em');
 		box.transition().duration(2000).delay(1000).style('height', function (d) { return (((d[property]) / largestSize) * 8) + 'em';});
 	}
+	
 	return {
   		templateUrl: 'views/templates/supply.html',
 		replace: true,
@@ -106,7 +106,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 							}, function () {
 								Notification.display("There was an error in saving " + scope.supply.description);
 							});
-						}, 5000);
+						}, 750);
 						
 					}
 				}, true);
@@ -155,7 +155,6 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 				
 				if (!fullCompiled) {
 					var html = $compile(subHTML)(scope);
-					console.log(html);
 					angular.element(element.find('.supply-details')).html(html);
 					fullCompiled = true;
 				}

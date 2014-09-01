@@ -156,7 +156,7 @@
 			position:absolute;
 			top:5em;
 			right:0;
-			height:100%;
+			bottom:0%;
 			width:50%;
 			border-left:1px solid #282828;
 			overflow-y:scroll;
@@ -168,6 +168,18 @@
 				border-bottom:1px solid #282828;
 				padding:0;
 				overflow:hidden;
+				
+				.delete-supply-btn{
+					position:absolute;
+					top:35%;
+					cursor:pointer;
+					right:1em;
+					.transition(all, 250ms, linear);
+					
+					&:hover{
+						color:red;
+					}
+				}
 				
 				.image-container{
 					height:5em;
@@ -183,13 +195,13 @@
 					position:absolute;
 					top:2em;
 					left:10em;
-					right:6em;
+					right:7em;
 				}
 				
 				.quantity{
 					position:absolute;
 					top:2em;
-					right:1em;
+					right:3em;
 					width:4em;
 				}
 				
