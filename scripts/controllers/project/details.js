@@ -27,7 +27,7 @@ function ($scope, Project, $routeParams, Room, Notification, FileUploader, $http
 	
 	$scope.removeSupply = function ($index) {
 		$scope.project.supplies.splice($index, 1);
-	}
+	};
 	
     $scope.addImage = function (image) {
         var promise = FileUploader.upload(image, 'project/room/image');

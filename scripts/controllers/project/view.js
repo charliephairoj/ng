@@ -21,12 +21,26 @@ function ($scope, Project, Notification, Customer, $location) {
         
     };
     
+	$scope.$watch('query', function (q) {
+		if (q) {
+			Project.query({limit: q.length, q: q}, function (resources) {
+				for (var i = 0; i < resources.length; i++) {
+					if ($scope.projects.indexOfById(resources[i].id) == -1) {
+						$scope.projects.push(resources[i]);
+					}
+				}
+				//index = 0;
+				//changeSelection(index);
+			});
+		}
+	});
+	
     //Create new project
     $scope.create = function () {
         Notification.display('Creating new project...', false);
         var project = new Project();
         angular.extend(project, $scope.project);
-        project.$save(function (response) {
+        project.$create(function (response) {
             Notification.display('New project created.');
             $scope.projectList.push(response);
             $scope.project = {};

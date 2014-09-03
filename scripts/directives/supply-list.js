@@ -58,7 +58,7 @@ function (Supply, $filter, KeyboardNavigation, Notification, $rootScope, $http, 
 							var options = {
 								q: q, 
 								limit: 10 + (q.length * 2)
-							}
+							};
 							
 							if (supplierId) {
 								options.supplier_id = supplierId;

@@ -3,7 +3,7 @@ angular.module('employeeApp.directives')
 .directive('supply', ['$http', 'Supply', '$rootScope', 'Notification', '$timeout', '$window', 'scanner', 'D3', '$compile',
 function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D3, $compile) {
 	
-	var subHTML
+	var subHTML;
 	var promise = $http.get('views/templates/supply-details.html');
 	promise.then(function (response) {
 		subHTML = response.data || response;
