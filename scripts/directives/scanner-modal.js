@@ -1,7 +1,7 @@
 
 angular.module('employeeApp.directives')
-.directive('supplyScannerModal', ['scanner', 'Supply', 'Notification', 'KeyboardNavigation', '$timeout', '$rootScope',
-function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScope) {
+.directive('supplyScannerModal', ['scanner', 'Supply', 'Notification', 'KeyboardNavigation', '$timeout', '$rootScope', 'Equipment',
+function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScope, Equipment) {
 	return {
 		templateUrl: 'views/templates/supply-scanner-modal.html',
 		restrict: 'A',
@@ -58,16 +58,20 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					Notification.display("Supply's image updated.");
 				});
 			};
+			
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0 && !scope.disabled) {
+					if (scope.action == 'subtract' && scope.supply.quantity - quantity < 0) {
+						throw Error("Cannot have a negative quantity");
+					}
 					scope.disabled = true;
 					scope.supply['$' + scope.action]({quantity: quantity, 'country': $rootScope.country}, function () {
 						Notification.display('Quantity of ' + scope.supply.description + ' changed to ' + scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
 							scope.supply = undefined;
-						}, 5000);
+						}, 3000);
 					});
 				}
 			};
@@ -77,6 +81,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 */
 			scope.scanner.register(/^DRS-\d+$/, function (code) {
 				Notification.display("Looking up supply...", false);
+				scope.interfaceType = 'supply';
 				scope.supply = Supply.get({id: code.split('-')[1], 'country': $rootScope.country}, function (response) {
 					scope.disabled = false;
 					Notification.hide();
@@ -94,6 +99,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			 * Register the upc regex
 			 */
 			scope.scanner.register(/^\d+(\-\d+)*$/, function (code) {
+				scope.interfaceType = 'supply';
 				Supply.query({upc: code, 'country': $rootScope.country}, function (response) {
 					scope.disabled = false;
 					focusOnQuantity();
@@ -104,6 +110,20 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					}
 				}, function (reason) {
 					console.log(reason);
+				});
+			});
+			
+			/*
+			 *  Regiester the equipment code
+			 */ 
+			scope.scanner.register(/^DRE-\d+$/, function (code) {
+				Notification.display("Looking up equipment", false);
+				scope.interfaceType = 'equipment';
+				scope.equipment = Equipment.get({id: code.split('-')[1]}, function (response) {
+					scope.disabled = false;
+					Notification.hide();
+				}, function () {
+					Notification.display('Unable to find equipment.', false);
 				});
 			});
 			
