@@ -10,14 +10,15 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 			'visible': '=supplyScannerModal'
 		},
 		link: function postLink(scope, element, attrs) {
-			console.log(scope.country);
 			/*
 			 * Vars
 			 */
 			var keyboardNav = new KeyboardNavigation();
 			scope.action = 'subtract';
-			scope.disabled = true;
+			scope.disabled = false;
 			scope.scanner = new scanner('supply-scanner-modal');
+			scope.equipment = {description: 'F-50', brand: 'Red King'};
+			scope.interfaceType = 'equipment';
 			
 			var focusOnQuantity = function () {
 				var quantity = element.find('input');
