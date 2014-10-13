@@ -66,6 +66,7 @@
                 <a href="#/contact" class="menu-item" ng-show="currentUser.hasModule('contacts')">Contacts</a>
                 <a href="#/product" class="menu-item" ng-show="currentUser.hasModule('products')">Products</a>
                 <a href="#/supply" class="menu-item" ng-show="currentUser.hasModule('supplies')">Supplies</a>
+				 <a href="#/equipment" class="menu-item" ng-show="currentUser.hasModule('supplies')">Equipment</a>
                 <a href="#/order" class="menu-item" ng-show="currentUser.hasModule('acknowledgements') || currentUser.hasModule('shipping') || currentUser.hasModule('po')">Orders</a>
                 <a href="#/accounting" class="menu-item" ng-show="currentUser.hasModule('accounting')">Accounting</a>
                 <a href="#/project" class="menu-item" ng-show="currentUser.hasModule('projects')">Projects</a>
@@ -258,6 +259,9 @@
     <script src="scripts/directives/supplies.js"></script>
     <script src="scripts/services/models/equipment.js"></script>
     <script src="scripts/directives/add-equipment.js"></script>
+    <script src="scripts/controllers/equipment/view.js"></script>
+    <script src="scripts/directives/equipment.js"></script>
+    <script src="scripts/controllers/supplies/shopping_list.js"></script>
     <!-- endbuild -->
     
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAOLXHtWOGh4Hh8JkA1u4zbwYZR990668k&sensor=true" type="text/javascript"></script>

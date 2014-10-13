@@ -34,6 +34,7 @@ function ($rootScope, Supplier, Supply, Notification, $http, Equipment) {
 				'King',
 				'DMax',
 				'Puma',
+				'Ken',
 				'Jumbo',
 				'Makita',
 				'Bosch',
