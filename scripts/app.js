@@ -267,6 +267,10 @@ angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives'
         templateUrl: 'views/supply/log.html',
         controller: 'SupplyLogCtrl'
     })
+    .when('/supply/shopping_list', {
+      templateUrl: 'views/supply/shopping_list.html',
+      controller: 'SupplyShoppingListCtrl'
+    })
     .when('/supply/buying_guide', {
       templateUrl: 'views/supply/buying_guide.html',
       controller: 'SupplyBuyingGuideCtrl'
@@ -276,6 +280,13 @@ angular.module('employeeApp', ['ngRoute', 'ngResource', 'employeeApp.directives'
         controller: 'SupplyDetailsCtrl'
 	})
       
+     
+      .when('/equipment', {
+        templateUrl: 'views/equipment/view.html',
+        controller: 'EquipmentViewCtrl'
+      })
+ 
+     
       .otherwise({
         redirectTo: '/'
 	});

@@ -1,4 +1,4 @@
-<div class="supply-view-page">
+<div class="equipment-view-page">
 	
 	<!--
 		Modals
@@ -9,6 +9,7 @@
 	
 	<div supply-scanner-modal="scannerMode"></div>
 	
+	<div add-equipment="showAddEquipment"></div>
     <!--
         Sidebar
     -->
@@ -23,6 +24,9 @@
                 </li>
                 <li><!-- ng-show="currentUser.hasPermission('add_supply')">-->
                 	<button ng-click="showAddSupply=true">Add Supply</button>
+                </li>
+                <li><!-- ng-show="currentUser.hasPermission('add_supply')">-->
+                	<button ng-click="showAddEquipment=true">Add Equipment</button>
                 </li>
                  <li><!-- ng-show="currentUser.hasPermission('add_supply')">-->
                 	<button class="scanner-mode" ng-class="{'on':scannerMode==true, 'off': scannerMode==false}" ng-click="scannerMode=true">Scanner Mode</button>
