@@ -16,7 +16,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	//system message
 	Notification.display('Loading supplies...', false);
 
-	$http.get('/api/v1/supply/type').success(function (response) {
+	$http.get('/api/v1/supply/type/').success(function (response) {
 		$scope.types = response;
 		$scope.types.splice($scope.types.indexOf(null), 1);
 	});
@@ -53,7 +53,7 @@ function ($scope, Supply, Notification, $filter, KeyboardNavigation, $rootScope,
 	*/
 	$scope.addImage = function (element, supply) {
 		//Upload the file
-		var promise = FileUploader.upload(element.files[0], '/api/v1/supply/image');
+		var promise = FileUploader.upload(element.files[0], '/api/v1/supply/image/');
 		
 		//Process the file after a successful upload
 		promise.then(function (data) {

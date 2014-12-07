@@ -1,7 +1,8 @@
 /*
  * Declare the standard headers
  */
-angular.module('employeeApp').config(function ($httpProvider) {
+angular.module('employeeApp').config(['$httpProvider', '$resourceProvider', function ($httpProvider, $resourceProvider) {
+	
     $httpProvider.defaults.headers.post  = {
 		"Cache-Control": "no-cache", 
 		"expires": "-1", 
@@ -9,26 +10,32 @@ angular.module('employeeApp').config(function ($httpProvider) {
 		"Content-Type": "application/json"
 	};
     $httpProvider.defaults.headers.get  = {"Cache-Control": "no-cache", "expires": "-1", "pragma": "no-cache"};
-      
+
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+    $httpProvider.defaults.stripTrailingSlashes = false;
+		
     /*
      * Takes out the objects from the data 
      */
     $httpProvider.defaults.transformResponse.push(function (data, headers) {
 		if (typeof(data) == 'object') {
-			if (data.hasOwnProperty('meta') && data.hasOwnProperty('objects')) {
-				return data.objects;
+			if (data.hasOwnProperty('results')) {
+				return data.results;
 			}
 		}
 		return data;
 	});
-});
+	
+	
+}]);
 
   
 /*
  * Run top level application code
  */
-angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder, $q) {
+angular.module('employeeApp').run(function ($rootScope, CurrentUser, scanner, $http, Geocoder, $q, $cookies) {
 	
+	$http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
 	/*
 	 * Get the current user and place it at the top scope
 	 */

@@ -60,7 +60,7 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	 * to adding the item
 	 */
 	$scope.addItem = function (item) {
-		if ($scope.po.items.indexOfById(item) != -1) {
+		if ($scope.po.items.indexOfById(item) == -1) {
 			$scope.showAddItem = false;
 			$scope.po.items.push(item);
 		} else {

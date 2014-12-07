@@ -177,7 +177,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 						scope.fetched = true;
 						
 						
-						$http.get('/api/v1/log', {params: {'action': 'SUBTRACT', 'supply': scope.supply.id}}).then(function(response) {
+						$http.get('/api/v1/log/', {params: {'action': 'SUBTRACT', 'supply': scope.supply.id}}).then(function(response) {
 							
 							var dataObj = prepareData(response, 'quantity');
 							
@@ -192,7 +192,7 @@ function ($http, Supply, $rootScope, Notification, $timeout, $window, scanner, D
 			
 							if (typeof(supplier) == "object") {
 								
-								$http.get('/api/v1/log', {params: {'action': 'PRICE CHANGE', 'supply': scope.supply.id, 'supplier': supplier.id}}).then(function(response) {
+								$http.get('/api/v1/log/', {params: {'action': 'PRICE CHANGE', 'supply': scope.supply.id, 'supplier': supplier.id}}).then(function(response) {
 									var supplier_id = response.config.params.supplier,
 										dataObj = prepareData(response, 'cost');
 										

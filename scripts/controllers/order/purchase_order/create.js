@@ -161,6 +161,14 @@ function ($scope, PurchaseOrder, Supplier, Supply, Notification, $filter, $timeo
 				Notification.display('Creating purchase order...', false);
 				
 				/*
+				 * prep the items by moving the supply id to a separate hash
+				 */
+			  	for (var i = 0; i < $scope.po.items.length; i++) {
+					console.log($scope.po.items[i]);
+			  		$scope.po.items[i].supply = {id: $scope.po.items[i].id}
+					delete $scope.po.items[i].id;
+			  	}
+				/*
 				 * Preps for creation of a new project
 				 */
 				if ($scope.po.newProject) {

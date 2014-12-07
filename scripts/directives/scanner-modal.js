@@ -67,12 +67,13 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 						throw Error("Cannot have a negative quantity");
 					}
 					scope.disabled = true;
-					scope.supply['$' + scope.action]({quantity: quantity, 'country': $rootScope.country}, function () {
+					scope.supply.quantity = scope.supply.quantity - quantity;
+					scope.supply.$update({, 'country': $rootScope.country}, function () {
 						Notification.display('Quantity of ' + scope.supply.description + ' changed to ' + scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
 							scope.supply = undefined;
-						}, 3000);
+						}, 1500);
 					});
 				}
 			};

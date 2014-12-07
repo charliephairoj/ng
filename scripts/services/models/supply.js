@@ -1,7 +1,7 @@
 
 angular.module('employeeApp')
 .factory('Supply', ['$resource', function($resource) {
-	return $resource('/api/v1/supply/:id/:action', {id:'@id'}, {
+	return $resource('/api/v1/supply/:id/	', {id:'@id'}, {
 		create: {
 			method: 'POST'
 		},
