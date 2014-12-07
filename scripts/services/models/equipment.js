@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('employeeApp.services')
 .factory('Equipment', ['$resource', '$http', function($resource) {

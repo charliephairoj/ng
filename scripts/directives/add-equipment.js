@@ -54,7 +54,7 @@ function ($rootScope, Supplier, Supply, Notification, $http, Equipment) {
 			scope.selectDescription = function (description) {
 				scope.equipment.description = description.description;
 				scope.showDescription = false;
-			}
+			};
 			
 			/* 
 			 * Create a new Equipment by sending to server
@@ -69,7 +69,7 @@ function ($rootScope, Supplier, Supply, Notification, $http, Equipment) {
 						Notication.display("Could not add " + scope.description, false);
 					});
 				}
-			}
+			};
 
 			scope.addImage = function (data) {
 				scope.equipment.image = data;

@@ -68,7 +68,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					}
 					scope.disabled = true;
 					scope.supply.quantity = scope.supply.quantity - quantity;
-					scope.supply.$update({, 'country': $rootScope.country}, function () {
+					scope.supply.$update({'country': $rootScope.country}, function () {
 						Notification.display('Quantity of ' + scope.supply.description + ' changed to ' + scope.supply.quantity);
 						scope.quantity = 0;
 						$timeout(function () {
