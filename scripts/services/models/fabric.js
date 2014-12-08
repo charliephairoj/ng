@@ -1,7 +1,7 @@
 
 angular.module('employeeApp.services')
 .factory('Fabric', ['$resource', function($resource) {
-	return $resource('/api/v1/fabric/:id/:action', {id:'@id'}, {
+	return $resource('/api/v1/fabric/:id/', {id:'@id'}, {
 		update: {
 			method: 'PUT'
 		},

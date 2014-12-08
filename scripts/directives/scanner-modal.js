@@ -60,14 +60,28 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 				});
 			};
 			
+			scope.supply = Supply.get({id:2493});
+			scope.interfaceType = 'supply';
+			
 			scope.changeQuantity = function (quantity) {
 				quantity = quantity || scope.quantity;
 				if (scope.supply.hasOwnProperty('id') && quantity > 0 && !scope.disabled) {
+					//Verifies that quantity change will not result in negative quantity
 					if (scope.action == 'subtract' && scope.supply.quantity - quantity < 0) {
 						throw Error("Cannot have a negative quantity");
 					}
+					
 					scope.disabled = true;
-					scope.supply.quantity = scope.supply.quantity - quantity;
+					
+					console.log(scope.action, quantity)
+					
+					//Determines wheather to add or subtract quantity from original quantity
+					if (scope.action == 'subtract') {
+						scope.supply.quantity -= Number(quantity);
+					} else if (scope.action == 'add') {
+						scope.supply.quantity += Number(quantity);
+					}
+					
 					scope.supply.$update({'country': $rootScope.country}, function () {
 						Notification.display('Quantity of ' + scope.supply.description + ' changed to ' + scope.supply.quantity);
 						scope.quantity = 0;
