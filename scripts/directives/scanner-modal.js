@@ -60,7 +60,6 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 				});
 			};
 			
-			scope.supply = Supply.get({id:2493});
 			scope.interfaceType = 'supply';
 			
 			scope.changeQuantity = function (quantity) {
@@ -72,9 +71,7 @@ function (scanner, Supply, Notification, KeyboardNavigation, $timeout, $rootScop
 					}
 					
 					scope.disabled = true;
-					
-					console.log(scope.action, quantity)
-					
+										
 					//Determines wheather to add or subtract quantity from original quantity
 					if (scope.action == 'subtract') {
 						scope.supply.quantity -= Number(quantity);
