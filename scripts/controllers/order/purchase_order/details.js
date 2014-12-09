@@ -62,7 +62,12 @@ function ($scope, $routeParams, PurchaseOrder, Notification, $location, $window)
 	$scope.addItem = function (item) {
 		if ($scope.po.items.indexOfById(item) == -1) {
 			$scope.showAddItem = false;
-			$scope.po.items.push(item);
+			var purchasedItem = angular.copy(item);
+		
+			delete purchasedItem.quantity;
+			purchasedItem.supply = {id:purchasedItem.id};
+			delete purchasedItem.id;
+			$scope.po.items.push(purchasedItem);
 		} else {
 			Notification.display('This item is already present in the purchase order');
 		}
