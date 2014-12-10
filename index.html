@@ -66,8 +66,12 @@
 				 <a href="#/equipment" class="menu-item" ng-show="currentUser.hasModule('supplies')">Equipment</a>
                 <a href="#/order" class="menu-item" ng-show="currentUser.hasModule('acknowledgements') || currentUser.hasModule('shipping') || currentUser.hasModule('po')">Orders</a>
                 <a href="#/accounting" class="menu-item" ng-show="currentUser.hasModule('accounting')">Accounting</a>
-                <a href="#/project" class="menu-item" ng-show="currentUser.hasModule('projects')">Projects</a>
-                <a href="#/administrator" class="menu-item" ng-show="currentUser.hasModule('administrator')">Administrator</a>
+                <!--
+				<a href="#/project" class="menu-item" ng-show="currentUser.hasModule('projects')">Projects</a>
+					-->
+                <a href="#/project" class="menu-item">Projects</a>
+
+				<a href="#/administrator" class="menu-item" ng-show="currentUser.hasModule('administrator')">Administrator</a>
             
                 <a href="#/hr" class="menu-item" ng-show="currentUser.hasModule('administrator')">HR</a>
            
