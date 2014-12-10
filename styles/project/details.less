@@ -120,6 +120,14 @@
 			height:5em;
             color:#CCC;
 			
+			table{
+				float:left;
+				margin-top:0.25em;
+				&:last-child{
+					margin-left:2em;
+				}
+			}
+			
 			.due-date{
 				cursor:pointer;
 			}
@@ -149,6 +157,64 @@
 				font-family:proxima;
 				letter-spacing:0.08em;
 				padding:0.5em;
+            }
+        }
+        .items-container{
+            height:100%;
+            width:50%;
+			position:absolute;
+			top:5em;
+			left:0;
+			overflow-y:scroll;
+            .item{
+                height:auto;
+                min-height:10em;
+                width:100%
+                margin:2.4%;
+                background:#282828;
+                //opacity:0.5;
+                //border-bottom:1px solid #CCC;
+				margin:0.75em;
+				position:relative;
+				text-decoration:none;
+				color:#CCC; 
+				font-family:proxima;
+				letter-spacing:0.08em;
+				padding:0.5em;
+				
+				.description{
+					position:absolute;
+					top:1em;
+					left:1em;
+					
+				}
+				
+				.details{
+					position:absolute;
+					top:3em;
+					left:1em;
+					width:auto;
+					
+					td{
+						&:last-child{
+							padding-left:1em;
+						}
+					}
+				}
+				.quantity{
+					position:absolute;
+					top:0.2;
+					right:1em;
+				}
+				
+				.image{
+					position:absolute;
+					top:0;
+					right:0;
+					height:100%;
+					width:auto;
+					max-width:65%;
+				}
             }
         }
 		

@@ -8,7 +8,8 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 		restrict: 'EA',
 		scope: {
 			'visible': '=addSupply',
-			'onAdd': '&'
+			'onAdd': '&',
+			'supplier': '='
 		},
 		require: '?supplyList',
 		link: function postLink(scope, element, attrs, supplyListCtrl) {
@@ -29,7 +30,9 @@ function ($rootScope, Supplier, Supply, Notification, $http) {
 			});
 		
 			
-			
+			/*
+			 * Watch the supplier scope in case a supplier is assigned
+			 */
 			
 			scope.showWidth = function () {
 				var units = scope.supply.units;

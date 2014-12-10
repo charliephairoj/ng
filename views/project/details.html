@@ -108,13 +108,43 @@
                     <td ng-click="showCal=true">{{project.due_date | date:"MMMM d, yyyy"}}</td>
                 </tr>
             </table>
+            <table>
+                <tr>
+                    <td>Total Items: </td>
+                    <td>{{project.items.length}}</td>
+                </tr>
+            </table>
         </div>
-        <div class="rooms-container">
-            <a class="room" ng-repeat="room in project.rooms" ng-href="#/project/room/{{room.id}}">
-				{{room.description}}
-				<br />
-				<span>{{room.reference}}</span>
-			</a>
+        <div class="items-container">
+            <div class="item" ng-repeat="item in project.items">
+				<span class='description'>{{item.description}}</span>
+				<!--
+				<span class='quantity'>{{item.quantity}}</span>
+				-->
+				<img class='image' ng-src="{{item.image.url}}" />
+				<table class="details">
+					<tr>
+						<td>Quantity</td>
+						<td>{{item.quantity}}</td>
+					</tr>
+					<tr ng-show="item.fabric">
+						<td>Fabric</td>
+						<td>{{item.fabric.description}}</td>
+					</tr>
+					<tr>
+						<td>Width</td>
+						<td>{{item.width}}mm</td>
+					</tr>
+					<tr>
+						<td>Depth</td>
+						<td>{{item.depth}}mm</td>
+					</tr>
+					<tr>
+						<td>Height</td>
+						<td>{{item.height}}mm</td>
+					</tr>
+				</table>
+			</div>
         </div>
 		<div class="supply-container">
 			<div class="supply" ng-repeat="supply in project.supplies">
